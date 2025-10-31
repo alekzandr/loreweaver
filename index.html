@@ -632,7 +632,12 @@
         };
 
         function getRandomElements(array, count) {
-            const shuffled = [...array].sort(() => 0.5 - Math.random());
+            // Fisher-Yates shuffle for proper randomization
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
             return shuffled.slice(0, count);
         }
 
@@ -706,7 +711,7 @@
         function generateEncounter() {
             const partyLevel = parseInt(document.getElementById('partyLevel').value);
             
-            if (partyLevel < 1 || partyLevel > 20) {
+            if (isNaN(partyLevel) || partyLevel < 1 || partyLevel > 20) {
                 alert('Please enter a valid party level between 1 and 20.');
                 return;
             }
@@ -768,7 +773,9 @@
                 selectedTraps.forEach(trap => {
                     const detectDC = calculateDC(partyLevel);
                     const disarmDC = detectDC + 2;
-                    const damage = Math.max(1, Math.floor(partyLevel / 2)) + 'd6';
+                    // Damage scales with party level: 1d6 per 2 levels (minimum 1d6)
+                    const damageScale = Math.max(1, Math.floor(partyLevel / 2));
+                    const damage = `${damageScale}d6`;
                     
                     html += `
                         <div class="trap">
