@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoreWeaver - D&D Exploration Encounter Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #8b5cf6;
+            --secondary-color: #6366f1;
+            --accent-color: #f59e0b;
+            --bg-dark: #1a1a2e;
+            --bg-medium: #16213e;
+            --bg-light: #0f3460;
+            --text-light: #eee;
+            --text-dark: #aaa;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-medium) 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-dark);
+            font-size: 1.2em;
+        }
+
+        .controls {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-medium);
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+        }
+
+        select option {
+            background: var(--bg-medium);
+            color: var(--text-light);
+        }
+
+        .environment-tags {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .tag {
+            padding: 10px 15px;
+            background: var(--bg-medium);
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+        }
+
+        .tag.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.6);
+        }
+
+        button {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .encounter-display {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .encounter-display.active {
+            display: block;
+        }
+
+        .encounter-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--bg-medium);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .encounter-section h2 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .encounter-section h3 {
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        .skill-check {
+            background: var(--bg-dark);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 3px solid var(--success);
+        }
+
+        .skill-check-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .skill-name {
+            font-weight: bold;
+            color: var(--success);
+            font-size: 1.1em;
+        }
+
+        .dc {
+            background: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+
+        .hazard {
+            background: var(--bg-dark);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 3px solid var(--danger);
+        }
+
+        .hazard-name {
+            font-weight: bold;
+            color: var(--danger);
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        .trap {
+            background: var(--bg-dark);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 3px solid var(--warning);
+        }
+
+        .trap-name {
+            font-weight: bold;
+            color: var(--warning);
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        .scaling-note {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(99, 102, 241, 0.2));
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid var(--primary-color);
+        }
+
+        .level-badge {
+            display: inline-block;
+            background: var(--secondary-color);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .environmental-effect {
+            background: var(--bg-dark);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .effect-name {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .description {
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .environment-tags {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+
+            .controls, .encounter-display {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚔️ LoreWeaver ⚔️</h1>
+            <p class="subtitle">D&D Exploration Encounter Generator</p>
+        </header>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="environment">Select Environment:</label>
+                <div class="environment-tags" id="environmentTags">
+                    <div class="tag" data-env="urban">🏛️ Urban</div>
+                    <div class="tag" data-env="arctic">❄️ Arctic</div>
+                    <div class="tag" data-env="ocean">🌊 Ocean</div>
+                    <div class="tag" data-env="space">🌌 Space</div>
+                    <div class="tag" data-env="crypt">💀 Crypt</div>
+                    <div class="tag" data-env="forest">🌲 Forest</div>
+                    <div class="tag" data-env="desert">🏜️ Desert</div>
+                    <div class="tag" data-env="mountain">⛰️ Mountain</div>
+                    <div class="tag" data-env="swamp">🐊 Swamp</div>
+                    <div class="tag" data-env="underground">🕳️ Underground</div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="partyLevel">Party Level (1-20):</label>
+                <input type="number" id="partyLevel" min="1" max="20" value="5">
+            </div>
+
+            <button onclick="generateEncounter()">🎲 Generate Encounter</button>
+        </div>
+
+        <div class="encounter-display" id="encounterDisplay">
+            <div id="encounterContent"></div>
+        </div>
+    </div>
+
+    <script>
+        let selectedEnvironment = 'urban';
+
+        // Environment tag selection
+        document.querySelectorAll('.tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                selectedEnvironment = this.dataset.env;
+            });
+        });
+
+        // Set default active tag
+        document.querySelector('.tag[data-env="urban"]').classList.add('active');
+
+        // Encounter data structures
+        const encounterData = {
+            urban: {
+                skillChecks: [
+                    { skill: 'Investigation', purpose: 'searching for clues in crowded streets' },
+                    { skill: 'Perception', purpose: 'noticing subtle details in architecture' },
+                    { skill: 'Stealth', purpose: 'moving unnoticed through populated areas' },
+                    { skill: 'Persuasion', purpose: 'gathering information from locals' },
+                    { skill: 'Insight', purpose: 'reading the intentions of city dwellers' },
+                    { skill: 'Acrobatics', purpose: 'navigating rooftops and tight alleyways' }
+                ],
+                traps: [
+                    { name: 'Alley Ambush Setup', description: 'A prepared ambush point with debris arranged to slow pursuers. Tripwires trigger falling crates.' },
+                    { name: 'Sewer Gas Pocket', description: 'Accumulated gas in the sewers that can ignite from open flames.' },
+                    { name: 'Collapsing Scaffold', description: 'Weakened construction scaffolding that collapses under weight.' },
+                    { name: 'Guard Checkpoint', description: 'A city watch checkpoint that requires proper documentation or clever bypass.' }
+                ],
+                hazards: [
+                    { name: 'Crowded Market', description: 'Dense crowds impede movement. Difficult terrain, risk of pickpockets.' },
+                    { name: 'Crumbling Buildings', description: 'Old structures with unstable floors and walls. Risk of collapse.' },
+                    { name: 'Polluted Waterways', description: 'Contaminated water sources that cause sickness if consumed.' },
+                    { name: 'Street Riots', description: 'Civil unrest blocking paths and creating dangerous situations.' }
+                ],
+                environmentalEffects: [
+                    { name: 'City Noise', description: 'Constant background noise imposes disadvantage on Perception checks relying on hearing.' },
+                    { name: 'Smog and Smoke', description: 'Heavy air pollution reduces visibility and may cause exhaustion on extended exposure.' },
+                    { name: 'Labyrinthine Streets', description: 'Complex street layout makes navigation challenging without proper knowledge.' }
+                ]
+            },
+            arctic: {
+                skillChecks: [
+                    { skill: 'Survival', purpose: 'navigating through blizzards and finding shelter' },
+                    { skill: 'Athletics', purpose: 'climbing ice walls and traversing deep snow' },
+                    { skill: 'Perception', purpose: 'spotting avalanche warnings and hidden crevasses' },
+                    { skill: 'Nature', purpose: 'identifying safe ice and predicting weather changes' },
+                    { skill: 'Constitution Save', purpose: 'resisting extreme cold and frostbite' }
+                ],
+                traps: [
+                    { name: 'Hidden Crevasse', description: 'A deep crack in the ice concealed by fresh snowfall.' },
+                    { name: 'Thin Ice Patch', description: 'Frozen lake surface that cannot support full weight.' },
+                    { name: 'Snow Shelf', description: 'Unstable snow accumulation that triggers avalanches when disturbed.' }
+                ],
+                hazards: [
+                    { name: 'Extreme Cold', description: 'Temperatures well below freezing. Requires cold weather gear or regular Constitution saves.' },
+                    { name: 'Whiteout Conditions', description: 'Blizzard reduces visibility to near zero. Easy to become lost.' },
+                    { name: 'Avalanche Zone', description: 'Unstable snow slopes. Loud noises or vibrations risk triggering slides.' },
+                    { name: 'Freezing Water', description: 'Falls into icy water cause rapid hypothermia and exhaustion.' }
+                ],
+                environmentalEffects: [
+                    { name: 'Slippery Ice', description: 'Most surfaces are icy, requiring careful movement or Acrobatics checks.' },
+                    { name: 'Limited Visibility', description: 'Snow and ice glare reduce sight range significantly.' },
+                    { name: 'Frostbite Risk', description: 'Exposed skin takes cold damage over time without protection.' }
+                ]
+            },
+            ocean: {
+                skillChecks: [
+                    { skill: 'Athletics', purpose: 'swimming against currents and waves' },
+                    { skill: 'Survival', purpose: 'navigating by stars and reading weather patterns' },
+                    { skill: 'Perception', purpose: 'spotting distant ships, land, or underwater threats' },
+                    { skill: 'Nature', purpose: 'understanding tides, marine life, and ocean conditions' },
+                    { skill: 'Acrobatics', purpose: 'maintaining balance on shifting deck or slippery surfaces' }
+                ],
+                traps: [
+                    { name: 'Whirlpool', description: 'Strong circular current that pulls vessels and swimmers toward the center.' },
+                    { name: 'Submerged Reef', description: 'Sharp coral formations hidden just below the surface that can damage hulls.' },
+                    { name: 'Rip Current', description: 'Powerful narrow current flowing away from shore.' }
+                ],
+                hazards: [
+                    { name: 'Storm at Sea', description: 'High waves, strong winds, and lightning. Risk of capsizing.' },
+                    { name: 'Dehydration', description: 'Lack of fresh water causes exhaustion if not managed.' },
+                    { name: 'Drowning', description: 'Deep water requires swimming or flotation. Exhaustion leads to drowning.' },
+                    { name: 'Dangerous Marine Life', description: 'Territorial creatures or predators in the water.' }
+                ],
+                environmentalEffects: [
+                    { name: 'Waves and Swells', description: 'Constant motion makes footing unstable and actions more difficult.' },
+                    { name: 'Salt Corrosion', description: 'Metal equipment degrades faster in saltwater environment.' },
+                    { name: 'Sun Exposure', description: 'Intense sun on open water causes exhaustion without proper protection.' }
+                ]
+            },
+            space: {
+                skillChecks: [
+                    { skill: 'Investigation', purpose: 'analyzing alien technology or anomalies' },
+                    { skill: 'Arcana', purpose: 'understanding cosmic energies and magical phenomena' },
+                    { skill: 'Survival', purpose: 'managing life support and resources in void' },
+                    { skill: 'Athletics', purpose: 'maneuvering in zero gravity environments' },
+                    { skill: 'Perception', purpose: 'detecting threats in the endless expanse' }
+                ],
+                traps: [
+                    { name: 'Hull Breach', description: 'Damaged section that causes rapid decompression if opened.' },
+                    { name: 'Radiation Pocket', description: 'Area of concentrated cosmic radiation that damages organic matter.' },
+                    { name: 'Magnetic Anomaly', description: 'Strong magnetic field that disrupts equipment and pulls metal objects.' }
+                ],
+                hazards: [
+                    { name: 'Vacuum Exposure', description: 'Immediate danger without proper suit. Causes rapid suffocation and freezing.' },
+                    { name: 'Meteor Shower', description: 'High-speed debris field that can puncture vessels and suits.' },
+                    { name: 'Cosmic Radiation', description: 'Invisible radiation causes ongoing damage without shielding.' },
+                    { name: 'Micro-Gravity', description: 'Zero or low gravity affects movement and combat mechanics.' }
+                ],
+                environmentalEffects: [
+                    { name: 'Weightlessness', description: 'Movement requires pushing off surfaces. Combat and actions are affected.' },
+                    { name: 'Temperature Extremes', description: 'Rapid shifts between extreme heat and cold in light and shadow.' },
+                    { name: 'Communication Lag', description: 'Distances cause delays in communication signals.' }
+                ]
+            },
+            crypt: {
+                skillChecks: [
+                    { skill: 'Investigation', purpose: 'examining ancient tombs for hidden passages' },
+                    { skill: 'Religion', purpose: 'understanding burial rites and sacred symbols' },
+                    { skill: 'Perception', purpose: 'detecting undead presence and trap mechanisms' },
+                    { skill: 'Arcana', purpose: 'identifying necromantic magic and curse marks' },
+                    { skill: 'History', purpose: 'recalling information about the entombed' }
+                ],
+                traps: [
+                    { name: 'Poison Dart Mechanism', description: 'Ancient pressure plates trigger darts coated with aged poison.' },
+                    { name: 'Collapsing Tomb', description: 'Disturbing the wrong sarcophagus causes ceiling collapse.' },
+                    { name: 'Cursed Treasure', description: 'Valuable items protected by magical curses that afflict thieves.' },
+                    { name: 'Animated Guardians', description: 'Statues or corpses that activate to protect the crypt when triggered.' }
+                ],
+                hazards: [
+                    { name: 'Necrotic Aura', description: 'Areas saturated with death magic cause ongoing necrotic damage.' },
+                    { name: 'Disease Vectors', description: 'Ancient diseases and rot pose infection risk.' },
+                    { name: 'Unstable Structure', description: 'Centuries of decay make walls and floors prone to collapse.' },
+                    { name: 'Desecration Curse', description: 'Disturbing the dead attracts undead or triggers curses.' }
+                ],
+                environmentalEffects: [
+                    { name: 'Oppressive Darkness', description: 'Total darkness in most areas. Light sources required but may attract attention.' },
+                    { name: 'Stale Air', description: 'Limited oxygen in sealed chambers causes exhaustion.' },
+                    { name: 'Unnerving Atmosphere', description: 'Psychic weight of death imposes fear or disadvantage on mental saves.' }
+                ]
+            },
+            forest: {
+                skillChecks: [
+                    { skill: 'Survival', purpose: 'tracking creatures and finding paths through dense woods' },
+                    { skill: 'Nature', purpose: 'identifying plants, animals, and natural hazards' },
+                    { skill: 'Stealth', purpose: 'moving silently through underbrush' },
+                    { skill: 'Perception', purpose: 'spotting hidden creatures and natural threats' },
+                    { skill: 'Athletics', purpose: 'climbing trees and crossing streams' }
+                ],
+                traps: [
+                    { name: 'Pit Trap', description: 'Camouflaged hole covered with branches and leaves.' },
+                    { name: 'Snare Trap', description: 'Rope trap that catches legs or pulls victims into air.' },
+                    { name: 'Poisonous Plants', description: 'Toxic vegetation that causes harm on contact or consumption.' }
+                ],
+                hazards: [
+                    { name: 'Thick Undergrowth', description: 'Dense vegetation creates difficult terrain and obscures vision.' },
+                    { name: 'Wild Beasts', description: 'Territorial animals defend their domain.' },
+                    { name: 'Quicksand', description: 'Hidden patches that trap and slowly pull down those who step in.' },
+                    { name: 'Falling Branches', description: 'Dead limbs overhead can fall during storms or when disturbed.' }
+                ],
+                environmentalEffects: [
+                    { name: 'Limited Visibility', description: 'Tree canopy and undergrowth reduce sight lines significantly.' },
+                    { name: 'Disorientation', description: 'Uniform appearance of trees makes navigation challenging.' },
+                    { name: 'Insect Swarms', description: 'Biting insects cause distraction and potential disease.' }
+                ]
+            },
+            desert: {
+                skillChecks: [
+                    { skill: 'Survival', purpose: 'finding water sources and navigating by landmarks' },
+                    { skill: 'Constitution Save', purpose: 'enduring extreme heat and dehydration' },
+                    { skill: 'Perception', purpose: 'spotting mirages, oases, and approaching sandstorms' },
+                    { skill: 'Nature', purpose: 'identifying edible plants and dangerous creatures' },
+                    { skill: 'Athletics', purpose: 'trudging through sand dunes' }
+                ],
+                traps: [
+                    { name: 'Sinking Sand', description: 'Loose sand that pulls victims downward like quicksand.' },
+                    { name: 'Buried Hazards', description: 'Sharp rocks or ruins hidden beneath sand surface.' },
+                    { name: 'Scorpion Den', description: 'Disturbing sand reveals nest of venomous creatures.' }
+                ],
+                hazards: [
+                    { name: 'Extreme Heat', description: 'Scorching temperatures cause exhaustion without proper protection.' },
+                    { name: 'Dehydration', description: 'Lack of water sources leads to rapid exhaustion and death.' },
+                    { name: 'Sandstorm', description: 'Blinding winds carrying abrasive sand. Causes damage and disorientation.' },
+                    { name: 'Heat Mirages', description: 'Visual distortions that mislead navigation.' }
+                ],
+                environmentalEffects: [
+                    { name: 'Difficult Terrain', description: 'Deep sand slows movement significantly.' },
+                    { name: 'Temperature Swings', description: 'Freezing nights follow scorching days.' },
+                    { name: 'Sun Glare', description: 'Intense reflected light causes vision impairment.' }
+                ]
+            },
+            mountain: {
+                skillChecks: [
+                    { skill: 'Athletics', purpose: 'climbing steep slopes and rocky surfaces' },
+                    { skill: 'Survival', purpose: 'finding safe paths and predicting weather' },
+                    { skill: 'Acrobatics', purpose: 'maintaining balance on narrow ledges' },
+                    { skill: 'Perception', purpose: 'spotting loose rocks and safe handholds' },
+                    { skill: 'Constitution Save', purpose: 'dealing with altitude sickness and thin air' }
+                ],
+                traps: [
+                    { name: 'Rockfall Trigger', description: 'Disturbing unstable rocks causes cascading collapse.' },
+                    { name: 'False Handhold', description: 'Loose rocks that break away when used for climbing.' },
+                    { name: 'Ice Bridge', description: 'Thin ice over crevasse that appears solid.' }
+                ],
+                hazards: [
+                    { name: 'Thin Air', description: 'High altitude causes exhaustion and affects breathing.' },
+                    { name: 'Rockslides', description: 'Unstable slopes release dangerous debris.' },
+                    { name: 'Sudden Storms', description: 'Weather changes rapidly, bringing lightning and high winds.' },
+                    { name: 'Long Falls', description: 'Sheer drops pose extreme danger.' }
+                ],
+                environmentalEffects: [
+                    { name: 'Strong Winds', description: 'Gusts can knock climbers loose or impede movement.' },
+                    { name: 'Cold Temperature', description: 'Elevation brings freezing conditions.' },
+                    { name: 'Echo and Noise', description: 'Sounds carry far and can trigger rockfalls.' }
+                ]
+            },
+            swamp: {
+                skillChecks: [
+                    { skill: 'Survival', purpose: 'navigating through murky waters and finding solid ground' },
+                    { skill: 'Nature', purpose: 'identifying poisonous plants and dangerous creatures' },
+                    { skill: 'Perception', purpose: 'detecting hidden threats in murky water' },
+                    { skill: 'Athletics', purpose: 'wading through deep mud and water' },
+                    { skill: 'Constitution Save', purpose: 'resisting disease and toxic gases' }
+                ],
+                traps: [
+                    { name: 'Bog Pit', description: 'Deep mud that traps and slowly pulls victims under.' },
+                    { name: 'Submerged Spikes', description: 'Sharpened stakes hidden beneath water surface.' },
+                    { name: 'Poisonous Gas Pocket', description: 'Methane or other toxic gases released from disturbed muck.' }
+                ],
+                hazards: [
+                    { name: 'Deep Mud', description: 'Thick mud creates difficult terrain and exhaustion risk.' },
+                    { name: 'Disease-Carrying Insects', description: 'Swarms transmit debilitating illnesses.' },
+                    { name: 'Toxic Waters', description: 'Contaminated water causes poisoning if consumed or exposed to wounds.' },
+                    { name: 'Quickmud', description: 'Liquid mud that traps and suffocates victims.' }
+                ],
+                environmentalEffects: [
+                    { name: 'Poor Visibility', description: 'Fog and vegetation limit sight range.' },
+                    { name: 'Constant Wetness', description: 'Everything becomes soaked, affecting equipment and comfort.' },
+                    { name: 'Disorientation', description: 'Uniform landscape makes navigation extremely difficult.' }
+                ]
+            },
+            underground: {
+                skillChecks: [
+                    { skill: 'Investigation', purpose: 'examining cave formations and finding hidden passages' },
+                    { skill: 'Survival', purpose: 'navigating without surface landmarks' },
+                    { skill: 'Perception', purpose: 'detecting unstable areas and creatures in darkness' },
+                    { skill: 'Athletics', purpose: 'climbing cave walls and squeezing through tight spaces' },
+                    { skill: 'Nature', purpose: 'understanding underground ecosystems and geology' }
+                ],
+                traps: [
+                    { name: 'Cave-In Trigger', description: 'Weak support causes ceiling collapse when disturbed.' },
+                    { name: 'Poisonous Gas Vent', description: 'Natural gas seepage creates toxic atmosphere in chambers.' },
+                    { name: 'Underground River', description: 'Hidden water channel that can sweep away unwary explorers.' }
+                ],
+                hazards: [
+                    { name: 'Total Darkness', description: 'Complete absence of light requires artificial light sources.' },
+                    { name: 'Unstable Passages', description: 'Structural weaknesses threaten collapse.' },
+                    { name: 'Underground Rivers', description: 'Fast-moving water in tight confines poses drowning risk.' },
+                    { name: 'Toxic Air', description: 'Poor ventilation or gas seepage creates poisonous atmosphere.' }
+                ],
+                environmentalEffects: [
+                    { name: 'Claustrophobia', description: 'Tight spaces may cause psychological stress.' },
+                    { name: 'Echo and Reverb', description: 'Sounds distort and carry unpredictably.' },
+                    { name: 'Temperature Variation', description: 'Deep caves maintain constant cool temperature.' }
+                ]
+            }
+        };
+
+        function getRandomElements(array, count) {
+            // Fisher-Yates shuffle for proper randomization
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled.slice(0, count);
+        }
+
+        function calculateDC(partyLevel) {
+            if (partyLevel <= 4) return 10 + Math.floor(Math.random() * 3);
+            if (partyLevel <= 10) return 12 + Math.floor(Math.random() * 4);
+            if (partyLevel <= 16) return 15 + Math.floor(Math.random() * 5);
+            return 18 + Math.floor(Math.random() * 5);
+        }
+
+        function getScalingNotes(partyLevel) {
+            const notes = [];
+            
+            if (partyLevel <= 4) {
+                notes.push('Low-level party: Reduce trap damage by 50%, lower DCs by 2-3.');
+                notes.push('Focus on exploration and puzzle-solving over combat danger.');
+                notes.push('Provide more obvious clues and warning signs for hazards.');
+            } else if (partyLevel <= 10) {
+                notes.push('Mid-level party: Standard encounter difficulty as presented.');
+                notes.push('Party has access to more resources and magical solutions.');
+                notes.push('Can handle multiple simultaneous challenges.');
+            } else if (partyLevel <= 16) {
+                notes.push('High-level party: Increase trap damage by 50%, raise DCs by 2-3.');
+                notes.push('Add magical components to hazards and environmental effects.');
+                notes.push('Consider multiple layers of challenges requiring diverse skills.');
+            } else {
+                notes.push('Epic-level party: Double trap damage, raise DCs by 4-5.');
+                notes.push('Incorporate legendary environmental effects and cosmic threats.');
+                notes.push('Challenges should require creative use of high-level abilities.');
+                notes.push('Standard hazards may be trivial - add supernatural elements.');
+            }
+
+            return notes;
+        }
+
+        function generateEncounterTitle(environment) {
+            const titles = {
+                urban: ['The Shadowed Alley', 'Rooftop Chase', 'The Abandoned Warehouse', 'Market District Mystery', 'Sewer Expedition'],
+                arctic: ['Frozen Wasteland Trek', 'The Avalanche Path', 'Ice Cave Exploration', 'Blizzard Survival', 'Glacier Crossing'],
+                ocean: ['Storm-Tossed Voyage', 'The Coral Labyrinth', 'Derelict Ship Discovery', 'Island Approach', 'Deep Water Descent'],
+                space: ['Derelict Station', 'Asteroid Field Navigation', 'Void Walk', 'Alien Ruins', 'Cosmic Anomaly'],
+                crypt: ['The Ancient Tomb', 'Forgotten Catacombs', 'Cursed Burial Chamber', 'The Silent Mausoleum', 'Necropolis Depths'],
+                forest: ['Dense Woodland Trail', 'The Overgrown Ruins', 'Ancient Grove', 'Forest of Whispers', 'The Hidden Glade'],
+                desert: ['Scorching Dunes', 'Oasis Mirage', 'The Buried Temple', 'Canyon of Winds', 'Desert Caravan Route'],
+                mountain: ['Treacherous Peak', 'The Mountain Pass', 'Cliffside Trail', 'Summit Ascent', 'The Hidden Valley'],
+                swamp: ['The Mire', 'Forgotten Wetlands', 'Bog of Despair', 'Murky Waters', 'The Dead Marsh'],
+                underground: ['Cavern Depths', 'The Sunless Expanse', 'Crystal Caves', 'Underground River', 'The Forgotten Mine']
+            };
+
+            const envTitles = titles[environment] || titles.urban;
+            return envTitles[Math.floor(Math.random() * envTitles.length)];
+        }
+
+        function generateEncounterDescription(environment, title) {
+            const descriptions = {
+                urban: `The party must navigate ${title.toLowerCase()}, where danger lurks in every shadow and the city itself becomes both obstacle and opportunity. Ancient architecture, crowded streets, and the constant hum of urban life create a complex environment for exploration.`,
+                arctic: `${title} presents the party with nature's harshest test. The frozen landscape offers no mercy, and survival depends on preparation, teamwork, and respect for the unforgiving elements.`,
+                ocean: `The party faces ${title.toLowerCase()}, where the ocean's power dwarfs mortal concerns. Wind, waves, and the endless expanse test both skill and resolve.`,
+                space: `In ${title.toLowerCase()}, the party confronts the ultimate frontier. The void of space offers no forgiveness for mistakes, and cosmic wonders hide terrible dangers.`,
+                crypt: `${title} holds secrets that were meant to stay buried. Ancient guardians, both magical and mundane, protect the honored dead from disturbance.`,
+                forest: `The party must traverse ${title.toLowerCase()}, where nature reigns supreme. The woods hold both beauty and danger, and the unwary quickly become lost.`,
+                desert: `${title} stretches endlessly before the party. The desert tests endurance, resourcefulness, and the will to survive against heat, thirst, and isolation.`,
+                mountain: `The party attempts ${title.toLowerCase()}, where one wrong step means a long fall. The thin air and treacherous terrain demand respect and caution.`,
+                swamp: `${title} engulfs the party in a maze of water, mud, and decay. The wetlands hide dangers beneath murky surfaces and test resolve with disease and discomfort.`,
+                underground: `The party descends into ${title.toLowerCase()}, leaving sunlight behind. In the earth's depths, darkness is absolute and the usual rules no longer apply.`
+            };
+
+            return descriptions[environment] || descriptions.urban;
+        }
+
+        function generateEncounter() {
+            const partyLevel = parseInt(document.getElementById('partyLevel').value);
+            
+            if (isNaN(partyLevel) || partyLevel < 1 || partyLevel > 20) {
+                alert('Please enter a valid party level between 1 and 20.');
+                return;
+            }
+
+            const data = encounterData[selectedEnvironment];
+            const title = generateEncounterTitle(selectedEnvironment);
+            const description = generateEncounterDescription(selectedEnvironment, title);
+
+            // Select random elements
+            const numSkills = 3 + Math.floor(Math.random() * 2); // 3-4 skills
+            const numTraps = Math.floor(Math.random() * 3) + 1; // 1-3 traps
+            const numHazards = Math.floor(Math.random() * 2) + 2; // 2-3 hazards
+            const numEffects = Math.floor(Math.random() * 2) + 1; // 1-2 effects
+
+            const selectedSkills = getRandomElements(data.skillChecks, numSkills);
+            const selectedTraps = getRandomElements(data.traps, numTraps);
+            const selectedHazards = getRandomElements(data.hazards, numHazards);
+            const selectedEffects = getRandomElements(data.environmentalEffects, numEffects);
+            const scalingNotes = getScalingNotes(partyLevel);
+
+            // Build HTML
+            let html = `
+                <div class="encounter-section">
+                    <h2>📜 ${title}</h2>
+                    <p class="description">${description}</p>
+                    <p class="description"><strong>Environment:</strong> ${selectedEnvironment.charAt(0).toUpperCase() + selectedEnvironment.slice(1)} | <strong>Recommended Party Level:</strong> ${partyLevel}</p>
+                </div>
+
+                <div class="encounter-section">
+                    <h2>🎯 Skill Challenges</h2>
+                    <p class="description">These skill checks form the core of the exploration encounter. Players must overcome these challenges to successfully navigate the environment.</p>
+            `;
+
+            selectedSkills.forEach(skill => {
+                const dc = calculateDC(partyLevel);
+                html += `
+                    <div class="skill-check">
+                        <div class="skill-check-header">
+                            <span class="skill-name">${skill.skill}</span>
+                            <span class="dc">DC ${dc}</span>
+                        </div>
+                        <p>Purpose: ${skill.purpose}</p>
+                        <p><strong>Success:</strong> The party overcomes this obstacle and gains advantage on their next related check.</p>
+                        <p><strong>Failure:</strong> The party takes longer, attracts attention, or suffers minor setbacks.</p>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+
+            // Traps
+            if (selectedTraps.length > 0) {
+                html += `
+                    <div class="encounter-section">
+                        <h2>⚠️ Traps</h2>
+                        <p class="description">Hidden dangers that require careful detection and disarming.</p>
+                `;
+
+                selectedTraps.forEach(trap => {
+                    const detectDC = calculateDC(partyLevel);
+                    const disarmDC = detectDC + 2;
+                    // Damage scales with party level: 1d6 per 2 levels (minimum 1d6)
+                    const damageScale = Math.max(1, Math.floor(partyLevel / 2));
+                    const damage = `${damageScale}d6`;
+                    
+                    html += `
+                        <div class="trap">
+                            <div class="trap-name">🪤 ${trap.name}</div>
+                            <p><strong>Description:</strong> ${trap.description}</p>
+                            <p><strong>Detection:</strong> DC ${detectDC} Investigation or Perception check</p>
+                            <p><strong>Disarm:</strong> DC ${disarmDC} Thieves' Tools check or appropriate skill</p>
+                            <p><strong>Effect:</strong> ${damage} damage (type varies by trap nature) on trigger</p>
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+            }
+
+            // Hazards
+            html += `
+                <div class="encounter-section">
+                    <h2>💥 Environmental Hazards</h2>
+                    <p class="description">Natural or environmental dangers that affect the encounter area.</p>
+            `;
+
+            selectedHazards.forEach(hazard => {
+                const saveDC = calculateDC(partyLevel);
+                html += `
+                    <div class="hazard">
+                        <div class="hazard-name">☠️ ${hazard.name}</div>
+                        <p><strong>Description:</strong> ${hazard.description}</p>
+                        <p><strong>Save DC:</strong> ${saveDC} (ability varies by hazard)</p>
+                        <p><strong>Mitigation:</strong> Proper preparation, magical protection, or environmental awareness can reduce or negate effects.</p>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+
+            // Environmental Effects
+            html += `
+                <div class="encounter-section">
+                    <h2>🌪️ Environmental Effects</h2>
+                    <p class="description">Persistent conditions that affect the entire encounter area.</p>
+            `;
+
+            selectedEffects.forEach(effect => {
+                html += `
+                    <div class="environmental-effect">
+                        <div class="effect-name">🔮 ${effect.name}</div>
+                        <p>${effect.description}</p>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+
+            // Scaling Notes
+            html += `
+                <div class="encounter-section">
+                    <h2>⚖️ Level Scaling Guide</h2>
+                    <p class="description">Adjust the encounter difficulty based on your party's level:</p>
+            `;
+
+            scalingNotes.forEach(note => {
+                html += `
+                    <div class="scaling-note">
+                        <span class="level-badge">Level ${partyLevel}</span>
+                        ${note}
+                    </div>
+                `;
+            });
+
+            html += `
+                    <div class="scaling-note">
+                        <strong>General Scaling Tips:</strong>
+                        <ul>
+                            <li>For parties below the recommended level, reduce DCs by 2-3 and halve damage values</li>
+                            <li>For parties above the recommended level, increase DCs by 2-3 and add additional complications</li>
+                            <li>Consider party composition - groups lacking certain skills may need alternative solutions</li>
+                            <li>Time pressure can increase difficulty without changing numbers</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            // Rewards and Conclusion
+            html += `
+                <div class="encounter-section">
+                    <h2>🏆 Resolution & Rewards</h2>
+                    <p class="description"><strong>Success Criteria:</strong> The party successfully navigates the primary hazards and completes the exploration objective.</p>
+                    <p class="description"><strong>Rewards:</strong></p>
+                    <ul>
+                        <li>Experience points appropriate for a medium difficulty exploration encounter</li>
+                        <li>Knowledge of the area that may prove useful later</li>
+                        <li>Possible discovery of treasure, secrets, or story clues</li>
+                        <li>Reputation or favor with relevant factions</li>
+                    </ul>
+                    <p class="description"><strong>DM Tips:</strong> Exploration encounters work best when players feel clever for overcoming challenges. Reward creative solutions and allow multiple approaches to obstacles. The journey itself should be memorable, not just the destination.</p>
+                </div>
+            `;
+
+            document.getElementById('encounterContent').innerHTML = html;
+            document.getElementById('encounterDisplay').classList.add('active');
+            
+            // Smooth scroll to encounter
+            document.getElementById('encounterDisplay').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+</body>
+</html>
