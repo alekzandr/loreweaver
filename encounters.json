@@ -1,0 +1,102 @@
+{
+  "urban": [
+    { "title": "The Shadowed Alley", "tags": ["alley", "outdoor", "street"] },
+    { "title": "Rooftop Chase", "tags": ["rooftop", "outdoor", "building"] },
+    { "title": "The Abandoned Warehouse", "tags": ["warehouse", "indoor", "building"] },
+    { "title": "Market District Mystery", "tags": ["market", "outdoor", "street"] },
+    { "title": "Sewer Expedition", "tags": ["sewer", "underground", "tunnel"] },
+    { "title": "The Clocktower District", "tags": ["district", "outdoor", "building"] },
+    { "title": "Wharf at Midnight", "tags": ["wharf", "outdoor", "dock"] },
+    { "title": "The Old Quarter", "tags": ["district", "outdoor", "street"] }
+  ],
+  "arctic": [
+    { "title": "Frozen Wasteland Trek", "tags": ["wilderness", "outdoor", "openfield"] },
+    { "title": "The Avalanche Path", "tags": ["mountain", "outdoor", "path"] },
+    { "title": "Ice Cave Exploration", "tags": ["cave", "indoor", "cavern"] },
+    { "title": "Blizzard Survival", "tags": ["wilderness", "outdoor", "openfield"] },
+    { "title": "Glacier Crossing", "tags": ["glacier", "outdoor", "openfield"] },
+    { "title": "The Whiteout", "tags": ["wilderness", "outdoor", "openfield"] },
+    { "title": "Frostbite Pass", "tags": ["pass", "outdoor", "path"] },
+    { "title": "Icebound Peaks", "tags": ["mountain", "outdoor", "peaks"] }
+  ],
+  "ocean": [
+    { "title": "Storm-Tossed Voyage", "tags": ["ship", "vessel", "deck"] },
+    { "title": "The Coral Labyrinth", "tags": ["underwater", "reef", "natural"] },
+    { "title": "Derelict Ship Discovery", "tags": ["ship", "vessel", "wreck"] },
+    { "title": "Island Approach", "tags": ["shore", "outdoor", "beach"] },
+    { "title": "Deep Water Descent", "tags": ["underwater", "depths", "openwater"] },
+    { "title": "The Doldrums", "tags": ["ship", "vessel", "deck"] },
+    { "title": "Reef of Bones", "tags": ["underwater", "reef", "wreck"] },
+    { "title": "Siren's Channel", "tags": ["underwater", "passage", "natural"] }
+  ],
+  "space": [
+    { "title": "Derelict Spelljammer", "tags": ["ship", "vessel", "derelict"] },
+    { "title": "Phlogiston Crossing", "tags": ["wildspace", "void", "openspace"] },
+    { "title": "Crystal Sphere Breach", "tags": ["void", "anomaly", "openspace"] },
+    { "title": "Astral Debris Field", "tags": ["debris", "void", "openspace"] },
+    { "title": "Wildspace Anomaly", "tags": ["wildspace", "anomaly", "openspace"] },
+    { "title": "The Rainbow Flow", "tags": ["phlogiston", "void", "openspace"] },
+    { "title": "Sphere's Edge", "tags": ["boundary", "void", "openspace"] },
+    { "title": "Gravity Well", "tags": ["anomaly", "void", "openspace"] }
+  ],
+  "crypt": [
+    { "title": "The Ancient Tomb", "tags": ["tomb", "indoor", "chamber"] },
+    { "title": "Forgotten Catacombs", "tags": ["catacomb", "tunnel", "passage"] },
+    { "title": "Cursed Burial Chamber", "tags": ["chamber", "indoor", "tomb"] },
+    { "title": "The Silent Mausoleum", "tags": ["mausoleum", "building", "indoor"] },
+    { "title": "Necropolis Depths", "tags": ["catacomb", "tunnel", "depths"] },
+    { "title": "Ossuary Halls", "tags": ["hall", "indoor", "passage"] },
+    { "title": "The Sealed Vault", "tags": ["vault", "chamber", "indoor"] },
+    { "title": "Mourner's Path", "tags": ["passage", "tunnel", "path"] }
+  ],
+  "forest": [
+    { "title": "Dense Woodland Trail", "tags": ["trail", "outdoor", "path"] },
+    { "title": "The Overgrown Ruins", "tags": ["ruins", "structure", "outdoor"] },
+    { "title": "Ancient Grove", "tags": ["grove", "outdoor", "clearing"] },
+    { "title": "Forest of Whispers", "tags": ["woods", "outdoor", "dense"] },
+    { "title": "The Hidden Glade", "tags": ["glade", "outdoor", "clearing"] },
+    { "title": "Thornwood Passage", "tags": ["passage", "outdoor", "path"] },
+    { "title": "The Green Cathedral", "tags": ["grove", "outdoor", "clearing"] },
+    { "title": "Wildwood Maze", "tags": ["woods", "outdoor", "dense"] }
+  ],
+  "desert": [
+    { "title": "Scorching Dunes", "tags": ["dunes", "outdoor", "openfield"] },
+    { "title": "Oasis Mirage", "tags": ["oasis", "outdoor", "water"] },
+    { "title": "The Buried Temple", "tags": ["temple", "ruins", "structure"] },
+    { "title": "Canyon of Winds", "tags": ["canyon", "outdoor", "passage"] },
+    { "title": "Desert Caravan Route", "tags": ["trail", "outdoor", "path"] },
+    { "title": "The Glass Wastes", "tags": ["wasteland", "outdoor", "openfield"] },
+    { "title": "Sunscorch Valley", "tags": ["valley", "outdoor", "passage"] },
+    { "title": "Dune Sea Crossing", "tags": ["dunes", "outdoor", "openfield"] }
+  ],
+  "mountain": [
+    { "title": "Treacherous Peak", "tags": ["peak", "outdoor", "summit"] },
+    { "title": "The Mountain Pass", "tags": ["pass", "outdoor", "path"] },
+    { "title": "Cliffside Trail", "tags": ["cliff", "outdoor", "path"] },
+    { "title": "Summit Ascent", "tags": ["peak", "outdoor", "summit"] },
+    { "title": "The Hidden Valley", "tags": ["valley", "outdoor", "clearing"] },
+    { "title": "Eagle's Roost", "tags": ["peak", "outdoor", "nest"] },
+    { "title": "Stormbreak Ridge", "tags": ["ridge", "outdoor", "path"] },
+    { "title": "The Devil's Stair", "tags": ["stairs", "outdoor", "path"] }
+  ],
+  "swamp": [
+    { "title": "The Mire", "tags": ["bog", "outdoor", "wetland"] },
+    { "title": "Forgotten Wetlands", "tags": ["wetland", "outdoor", "wilderness"] },
+    { "title": "Bog of Despair", "tags": ["bog", "outdoor", "wetland"] },
+    { "title": "Murky Waters", "tags": ["water", "outdoor", "wetland"] },
+    { "title": "The Dead Marsh", "tags": ["marsh", "outdoor", "wetland"] },
+    { "title": "Rotwood Fen", "tags": ["fen", "outdoor", "wetland"] },
+    { "title": "The Sinking Grounds", "tags": ["bog", "outdoor", "wetland"] },
+    { "title": "Viper's Bog", "tags": ["bog", "outdoor", "wetland"] }
+  ],
+  "underground": [
+    { "title": "Cavern Depths", "tags": ["cavern", "cave", "natural"] },
+    { "title": "The Sunless Expanse", "tags": ["cavern", "cave", "openspace"] },
+    { "title": "Crystal Caves", "tags": ["cave", "cavern", "natural"] },
+    { "title": "Underground River", "tags": ["river", "cave", "water"] },
+    { "title": "The Forgotten Mine", "tags": ["mine", "tunnel", "manmade"] },
+    { "title": "Echoing Halls", "tags": ["hall", "cavern", "chamber"] },
+    { "title": "The Deepways", "tags": ["tunnel", "passage", "manmade"] },
+    { "title": "Stonewomb Passage", "tags": ["passage", "tunnel", "natural"] }
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "urban": {
+    "warehouse": {
+      "tags": ["warehouse", "indoor", "building"],
+      "primary": ["wooden crate", "loading crane", "storage shelf", "shipping manifest", "rope coil", "tool bench"],
+      "secondary": ["rusted nail", "receipt", "ledger book", "oil lantern", "chain", "pulley"],
+      "tertiary": ["coin purse", "jewelry", "letter", "key", "trap mechanism", "poison vial"]
+    },
+    "building": {
+      "tags": ["building", "indoor", "rooftop", "district"],
+      "primary": ["ornate desk", "locked safe", "bookshelf", "filing cabinet", "portrait painting", "fireplace"],
+      "secondary": ["hidden drawer", "secret compartment", "ledger", "correspondence", "seal", "inkwell"],
+      "tertiary": ["family heirloom", "deed", "treasure map", "incriminating letter", "gold coins", "magic item"]
+    },
+    "street": {
+      "tags": ["street", "outdoor", "alley", "district", "market"],
+      "primary": ["market stall", "merchant cart", "street lamp", "notice board", "vendor stand", "fountain"],
+      "secondary": ["loose cobblestone", "rain barrel", "awning", "signpost", "doorway", "window"],
+      "tertiary": ["dropped coin", "torn poster", "hidden cache", "secret mark", "smuggler sign", "trap"]
+    },
+    "dock": {
+      "tags": ["wharf", "dock", "outdoor"],
+      "primary": ["shipping crate", "mooring post", "cargo net", "dock crane", "warehouse door", "gangplank"],
+      "secondary": ["rope", "anchor", "barrel", "canvas tarp", "shipping manifest", "oil lamp"],
+      "tertiary": ["smuggled goods", "hidden compartment", "coded message", "stolen treasure", "trap", "key"]
+    },
+    "sewer": {
+      "tags": ["sewer", "underground", "tunnel"],
+      "primary": ["drainage pipe", "sewer grate", "maintenance ladder", "brick archway", "water channel", "junction"],
+      "secondary": ["rat nest", "debris pile", "broken gate", "rusty valve", "slime", "chain"],
+      "tertiary": ["lost valuables", "body", "smuggler cache", "disease", "trap", "monster lair"]
+    }
+  },
+  "crypt": {
+    "tomb": {
+      "tags": ["tomb", "chamber", "indoor"],
+      "primary": ["stone sarcophagus", "altar", "statue", "burial niche", "stone column", "brazier"],
+      "secondary": ["burial offering", "inscription", "sealed urn", "canopic jar", "ritual item", "relic"],
+      "tertiary": ["cursed item", "treasure", "magic weapon", "ancient scroll", "undead", "trap"]
+    },
+    "catacomb": {
+      "tags": ["catacomb", "tunnel", "passage", "depths"],
+      "primary": ["bone wall", "burial alcove", "stone pillar", "ancient archway", "ossuary", "memorial plaque"],
+      "secondary": ["skull pile", "grave goods", "ancient torch", "carved symbol", "sealed niche", "offering bowl"],
+      "tertiary": ["hidden treasure", "secret passage", "cursed relic", "undead guardian", "trap", "ritual chamber"]
+    },
+    "mausoleum": {
+      "tags": ["mausoleum", "building", "indoor"],
+      "primary": ["family crypt", "marble statue", "bronze door", "stone bench", "memorial wall", "vaulted ceiling"],
+      "secondary": ["inscription plaque", "offering table", "sealed vault", "stained glass", "iron gate", "torch sconce"],
+      "tertiary": ["family treasure", "ancient relic", "magic item", "hidden crypt", "undead", "protective ward"]
+    },
+    "vault": {
+      "tags": ["vault", "chamber", "indoor"],
+      "primary": ["sealed door", "guardian statue", "treasure chest", "magical ward", "puzzle lock", "pillar"],
+      "secondary": ["pressure plate", "glyph", "keyhole", "offering pedestal", "ancient mechanism", "rune"],
+      "tertiary": ["legendary treasure", "artifact", "curse", "powerful undead", "deadly trap", "magic seal"]
+    }
+  },
+  "forest": {
+    "trail": {
+      "tags": ["trail", "path", "outdoor"],
+      "primary": ["ancient tree", "moss-covered boulder", "trail marker", "fallen log", "clearing", "stream crossing"],
+      "secondary": ["animal track", "carved mark", "abandoned camp", "broken branch", "root system", "mushroom circle"],
+      "tertiary": ["hidden cache", "druid sign", "fey marking", "treasure", "trap", "monster lair"]
+    },
+    "ruins": {
+      "tags": ["ruins", "structure", "outdoor"],
+      "primary": ["crumbling wall", "stone foundation", "overgrown statue", "collapsed archway", "broken column", "moss-covered altar"],
+      "secondary": ["ancient inscription", "carved relief", "pottery shard", "rusted weapon", "stone fragment", "hidden chamber"],
+      "tertiary": ["buried treasure", "magic item", "ancient knowledge", "guardian spirit", "trap", "secret passage"]
+    },
+    "clearing": {
+      "tags": ["clearing", "glade", "grove", "outdoor"],
+      "primary": ["fairy ring", "natural spring", "ancient tree circle", "flower meadow", "stone circle", "sacred grove"],
+      "secondary": ["unusual plant", "animal den", "bird nest", "mushroom cluster", "water source", "wildflower patch"],
+      "tertiary": ["fey presence", "magic spring", "druid treasure", "nature spirit", "blessing", "curse"]
+    },
+    "dense": {
+      "tags": ["woods", "dense", "outdoor"],
+      "primary": ["thick undergrowth", "tangled thicket", "hollow log", "dense canopy", "bramble patch", "ancient trunk"],
+      "secondary": ["animal burrow", "spider web", "vine tangle", "thorny bush", "concealed pit", "hidden path"],
+      "tertiary": ["monster lair", "hidden treasure", "trap", "rare plant", "secret passage", "predator nest"]
+    }
+  },
+  "desert": {
+    "dunes": {
+      "tags": ["dunes", "openfield", "outdoor", "wasteland"],
+      "primary": ["sand dune", "wind-carved formation", "buried skeleton", "abandoned cart", "rock outcrop", "shifting sand"],
+      "secondary": ["sun-bleached bones", "tattered cloth", "broken wheel", "empty waterskin", "scorpion nest", "sand ripples"],
+      "tertiary": ["buried treasure", "ancient artifact", "oasis map", "cursed item", "monster lair", "quicksand trap"]
+    },
+    "ruins": {
+      "tags": ["temple", "ruins", "structure"],
+      "primary": ["weathered stone pillar", "collapsed wall", "buried entrance", "ancient altar", "sandstone block", "hieroglyph"],
+      "secondary": ["carved relief", "broken statue", "pottery fragment", "ritual vessel", "stone tablet", "sealed chamber"],
+      "tertiary": ["ancient treasure", "magic artifact", "curse tablet", "mummy", "deadly trap", "hidden vault"]
+    },
+    "oasis": {
+      "tags": ["oasis", "water", "outdoor"],
+      "primary": ["oasis pool", "palm tree", "water source", "desert plants", "rock formation", "shade"],
+      "secondary": ["animal track", "fruit tree", "medicinal herb", "cool cave", "traveler marker", "campsite"],
+      "tertiary": ["hidden spring", "rare plant", "treasure cache", "spirit guardian", "blessing", "mirage"]
+    },
+    "trail": {
+      "tags": ["trail", "path", "outdoor"],
+      "primary": ["caravan marker", "desert trail", "way stone", "traveler's shrine", "cairn", "directional sign"],
+      "secondary": ["campfire remains", "discarded item", "footprints", "warning marker", "supply cache", "shelter"],
+      "tertiary": ["buried treasure", "ambush site", "hidden oasis map", "bandit cache", "trap", "ancient relic"]
+    }
+  },
+  "mountain": {
+    "peak": {
+      "tags": ["peak", "summit", "outdoor", "nest"],
+      "primary": ["mountain peak", "rocky outcrop", "ice formation", "summit cairn", "wind-swept stone", "precipice"],
+      "secondary": ["prayer flags", "climber's anchor", "eagle nest", "ice crystal", "rock shelter", "marker stone"],
+      "tertiary": ["legendary treasure", "dragon hoard", "ancient relic", "rare mineral", "spirit shrine", "trap"]
+    },
+    "pass": {
+      "tags": ["pass", "path", "outdoor", "ridge", "stairs"],
+      "primary": ["mountain pass", "narrow ledge", "switchback trail", "rock bridge", "stone steps", "guard post"],
+      "secondary": ["rope anchor", "safety rope", "trail marker", "shelter cave", "warning sign", "avalanche zone"],
+      "tertiary": ["hidden cache", "bandit treasure", "ancient marker", "trap", "monster ambush", "secret passage"]
+    },
+    "valley": {
+      "tags": ["valley", "clearing", "outdoor"],
+      "primary": ["hidden valley", "mountain stream", "alpine meadow", "sheltered grove", "rocky basin", "waterfall"],
+      "secondary": ["wildflower field", "grazing area", "mineral deposit", "hot spring", "cave entrance", "ancient tree"],
+      "tertiary": ["hidden sanctuary", "hermit dwelling", "rare herb", "treasure cache", "spirit guardian", "secret entrance"]
+    },
+    "cliff": {
+      "tags": ["cliff", "outdoor", "path"],
+      "primary": ["precarious ledge", "cliff face", "sheer drop", "rock overhang", "narrow path", "vertical wall"],
+      "secondary": ["climbing anchor", "bird nest", "cave opening", "rock shelf", "erosion crack", "loose stone"],
+      "tertiary": ["hidden cave", "eagle treasure", "ancient carving", "trap", "monster lair", "secret passage"]
+    }
+  },
+  "swamp": {
+    "bog": {
+      "tags": ["bog", "wetland", "outdoor"],
+      "primary": ["murky pool", "mud mound", "gnarled tree", "quicksand", "stagnant water", "dead vegetation"],
+      "secondary": ["marsh gas bubble", "sunken log", "lily pad", "insect swarm", "muddy bank", "rotting vegetation"],
+      "tertiary": ["sunken treasure", "body", "monster lair", "disease", "trap", "cursed area"]
+    },
+    "wetland": {
+      "tags": ["wetland", "marsh", "fen", "outdoor", "wilderness"],
+      "primary": ["marsh grass", "water channel", "raised hummock", "dead tree", "reed bed", "shallow pool"],
+      "secondary": ["bird nest", "fish trap", "willow tree", "stepping stone", "floating debris", "vegetation mat"],
+      "tertiary": ["hidden path", "hermit hut", "rare plant", "treasure cache", "hag marker", "trap"]
+    },
+    "water": {
+      "tags": ["water", "outdoor", "wetland"],
+      "primary": ["dark water", "stagnant pool", "flowing stream", "deep channel", "murky pond", "water source"],
+      "secondary": ["submerged log", "floating vegetation", "water plant", "ripple", "current", "shallow ford"],
+      "tertiary": ["sunken boat", "underwater cave", "monster lair", "treasure", "trap", "cursed water"]
+    }
+  },
+  "underground": {
+    "cavern": {
+      "tags": ["cavern", "cave", "natural", "openspace", "chamber"],
+      "primary": ["crystal formation", "stone pillar", "underground lake", "stalactite cluster", "rock formation", "cavern floor"],
+      "secondary": ["mineral vein", "bat colony", "mushroom grove", "limestone deposit", "water drip", "echo chamber"],
+      "tertiary": ["rare crystal", "underground river", "monster lair", "treasure deposit", "trap", "secret passage"]
+    },
+    "tunnel": {
+      "tags": ["tunnel", "passage", "manmade"],
+      "primary": ["mine shaft", "carved tunnel", "support beams", "rail tracks", "tool marks", "ventilation shaft"],
+      "secondary": ["mining cart", "pickaxe", "lantern hook", "ore vein", "support pillar", "wooden brace"],
+      "tertiary": ["ore deposit", "abandoned equipment", "collapsed section", "monster nest", "trap", "hidden passage"]
+    },
+    "river": {
+      "tags": ["river", "water", "cave"],
+      "primary": ["underground stream", "water channel", "rock bridge", "waterfall", "river bank", "current"],
+      "secondary": ["stepping stone", "water pool", "mineral deposit", "moisture", "echo", "fish"],
+      "tertiary": ["underwater passage", "treasure", "monster lair", "rare mineral", "trap", "secret cave"]
+    }
+  },
+  "ocean": {
+    "ship": {
+      "tags": ["ship", "vessel", "deck"],
+      "primary": ["ship wheel", "mast rigging", "cargo hold", "captain's quarters", "main deck", "anchor"],
+      "secondary": ["rope coil", "barrel", "sail", "navigation tool", "ship bell", "cannon"],
+      "tertiary": ["treasure chest", "ship's log", "hidden cargo", "secret compartment", "trap", "contraband"]
+    },
+    "wreck": {
+      "tags": ["wreck", "ship", "vessel", "underwater"],
+      "primary": ["broken hull", "sunken cargo", "ship's skeleton", "barnacle-covered mast", "debris field", "coral growth"],
+      "secondary": ["rotted sail", "rusted chain", "broken rudder", "scattered cargo", "ship bell", "anchor"],
+      "tertiary": ["treasure chest", "ship's safe", "captain's loot", "cursed cargo", "monster lair", "trap"]
+    },
+    "underwater": {
+      "tags": ["underwater", "reef", "natural", "depths", "openwater", "passage"],
+      "primary": ["coral reef", "underwater cave", "kelp forest", "rock formation", "sea floor", "current"],
+      "secondary": ["sea plant", "anemone", "shell cluster", "fish school", "underwater cliff", "sand bed"],
+      "tertiary": ["pearl bed", "sunken treasure", "monster lair", "ancient ruin", "trap", "magic current"]
+    },
+    "shore": {
+      "tags": ["shore", "beach", "outdoor"],
+      "primary": ["beach shore", "tide pool", "driftwood pile", "rock outcrop", "sand beach", "wave line"],
+      "secondary": ["seashell", "seaweed", "crab", "beach rock", "sand dune", "flotsam"],
+      "tertiary": ["message bottle", "shipwreck debris", "treasure chest", "rare shell", "trap", "hidden cave"]
+    }
+  },
+  "arctic": {
+    "wilderness": {
+      "tags": ["wilderness", "openfield", "outdoor"],
+      "primary": ["ice field", "snow plain", "frozen tundra", "ice wall", "snowdrift", "frost formation"],
+      "secondary": ["animal track", "ice crack", "wind pattern", "snow hole", "frozen plant", "ice shard"],
+      "tertiary": ["frozen corpse", "buried treasure", "rare resource", "monster lair", "trap", "ancient relic"]
+    },
+    "cave": {
+      "tags": ["cave", "cavern", "indoor"],
+      "primary": ["ice cave", "snow shelter", "frozen cavern", "ice tunnel", "frost wall", "icicle"],
+      "secondary": ["ice formation", "frozen pool", "ice pillar", "snow drift", "frost pattern", "wind tunnel"],
+      "tertiary": ["frozen treasure", "ancient remains", "rare ice", "monster den", "trap", "magic ice"]
+    },
+    "mountain": {
+      "tags": ["mountain", "peaks", "outdoor"],
+      "primary": ["ice peak", "frozen summit", "glacier slope", "ice cliff", "snow ridge", "avalanche path"],
+      "secondary": ["ice bridge", "crevasse", "snow cornice", "ice wall", "frozen waterfall", "wind gap"],
+      "tertiary": ["legendary treasure", "dragon lair", "ancient shrine", "rare mineral", "trap", "avalanche trigger"]
+    },
+    "path": {
+      "tags": ["path", "pass", "outdoor"],
+      "primary": ["frozen trail", "ice path", "snow route", "marked way", "passage", "crossing"],
+      "secondary": ["trail marker", "shelter", "supply cache", "warning sign", "rope line", "cairn"],
+      "tertiary": ["hidden cache", "abandoned camp", "treasure", "trap", "monster ambush", "shortcut"]
+    }
+  },
+  "space": {
+    "ship": {
+      "tags": ["ship", "vessel", "derelict"],
+      "primary": ["spelljamming helm", "navigation altar", "air envelope", "gravity plane", "helm chamber", "main deck"],
+      "secondary": ["star chart", "planar compass", "magic anchor", "air pump", "gravity ring", "void seal"],
+      "tertiary": ["arcane treasure", "planar map", "magic artifact", "ship secret", "trap", "hidden cargo"]
+    },
+    "void": {
+      "tags": ["void", "openspace", "wildspace", "phlogiston", "boundary"],
+      "primary": ["phlogiston flow", "wildspace debris", "crystal sphere", "planar barrier", "void current", "star field"],
+      "secondary": ["asteroid", "void eddy", "magic field", "planar echo", "cosmic dust", "light phenomenon"],
+      "tertiary": ["ancient wreck", "planar rift", "cosmic treasure", "void entity", "trap", "portal"]
+    },
+    "anomaly": {
+      "tags": ["anomaly", "void", "openspace", "wildspace"],
+      "primary": ["gravity well", "magic vortex", "planar rift", "time distortion", "space fold", "reality tear"],
+      "secondary": ["energy field", "temporal echo", "spatial loop", "magic surge", "void pulse", "reality fragment"],
+      "tertiary": ["legendary artifact", "planar gateway", "cosmic secret", "powerful entity", "deadly trap", "reality breach"]
+    },
+    "debris": {
+      "tags": ["debris", "void", "openspace"],
+      "primary": ["wrecked ship", "floating rock", "debris field", "broken hull", "scattered cargo", "void junk"],
+      "secondary": ["ship fragment", "asteroid chunk", "twisted metal", "broken mast", "cargo container", "escape pod"],
+      "tertiary": ["salvage treasure", "ship log", "hidden cargo", "survivor", "trap", "monster nest"]
+    }
+  }
+}
