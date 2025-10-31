@@ -37,7 +37,17 @@
     { "title": "Wildspace Anomaly", "tags": ["wildspace", "anomaly", "openspace"] },
     { "title": "The Rainbow Flow", "tags": ["phlogiston", "void", "openspace"] },
     { "title": "Sphere's Edge", "tags": ["boundary", "void", "openspace"] },
-    { "title": "Gravity Well", "tags": ["anomaly", "void", "openspace"] }
+    { "title": "Gravity Well", "tags": ["anomaly", "void", "openspace"] },
+    { "title": "Siege of the Living Voidship", "tags": ["ship", "void", "boarding", "living"] },
+    { "title": "Rescue at the Solar Flare Regatta", "tags": ["ship", "phlogiston", "storm", "rescue"] },
+    { "title": "Moondust Corsair Ambush", "tags": ["asteroid", "ambush", "pirates", "void"] },
+    { "title": "Chronal Drift Salvage", "tags": ["anomaly", "time", "salvage", "debris"] },
+    { "title": "Gith Armada Blockade", "tags": ["armada", "githyanki", "military", "void"] },
+    { "title": "Phlogiston Bloom Storm", "tags": ["phlogiston", "storm", "hazard", "wildspace"] },
+    { "title": "Nebula Sanctuary Negotiation", "tags": ["nebula", "diplomacy", "sanctuary", "void"] },
+    { "title": "Crystal Sphere Siegebreakers", "tags": ["crystalsphere", "siege", "battle", "void"] },
+    { "title": "Starbeast Migration Crossing", "tags": ["wildlife", "migration", "hazard", "void"] },
+    { "title": "Planar Observatory Heist", "tags": ["observatory", "heist", "structure", "void"] }
   ],
   "crypt": [
     { "title": "The Ancient Tomb", "tags": ["tomb", "indoor", "chamber"] },
