@@ -251,6 +251,66 @@
       "primary": ["wrecked ship", "floating rock", "debris field", "broken hull", "scattered cargo", "void junk"],
       "secondary": ["ship fragment", "asteroid chunk", "twisted metal", "broken mast", "cargo container", "escape pod"],
       "tertiary": ["salvage treasure", "ship log", "hidden cargo", "survivor", "trap", "monster nest"]
+    },
+    "spelljammer_bridge": {
+      "tags": ["ship", "bridge", "command", "void"],
+      "primary": ["spelljamming helm dais", "captain's astrolabe", "constellation chart table", "command sigil console", "panoramic crystal viewport", "gravity plane ladder"],
+      "secondary": ["star chart vellum", "arcane relay conduit", "whispering sending stone", "captain's log sphere", "emergency aether lever", "battle standard rack"],
+      "tertiary": ["hidden mutiny cache", "encrypted orders cylinder", "prototype helm core", "loyalty geas seal", "arcane sabotage rune", "stasis-cocooned prisoner"]
+    },
+    "asteroid_outpost": {
+      "tags": ["asteroid", "outpost", "structure", "void"],
+      "primary": ["hollowed asteroid plaza", "defensive ballista platform", "docking claw gantry", "radiant crystal beacon", "market canopy webbing", "gravity stabilizer pylon"],
+      "secondary": ["salvaged hull plating", "makeshift barracks", "void-garden planter", "contraband locker", "signal flag array", "guard post brazier"],
+      "tertiary": ["hidden smuggler vault", "encrypted trade contract", "spyglass attuned to sphere", "githyanki sleeper agent", "phlogiston flare trap", "void-sickness cure ampoule"]
+    },
+    "nebula_waystation": {
+      "tags": ["nebula", "waystation", "refuge", "void"],
+      "primary": ["luminescent mist chamber", "drift anchor spire", "pilgrim shrine alcove", "meditation prism garden", "resupply kiosk", "guardian lantern array"],
+      "secondary": ["incense brazier", "nebula water condenser", "song crystal choir", "navigation bell pull", "tranquil hammocks", "visitation ledger"],
+      "tertiary": ["secret refuge passage", "peace accord treaty", "unbound star elemental", "contraband etherwine", "astral thieves guildmark", "memory-draining mist trap"]
+    },
+    "crystal_sphere_gateway": {
+      "tags": ["crystalsphere", "gateway", "boundary", "void"],
+      "primary": ["sphere breach arch", "guardian obelisk ring", "ritual focus platform", "anchor rune circle", "prismatic seal curtain", "sentinel golem niche"],
+      "secondary": ["ancient script panel", "attunement pedestal", "warning sigil chain", "patrol brazier", "etheric measurement rod", "crystal resonance fork"],
+      "tertiary": ["sealed portal key", "sphere-cartographer journal", "latent planar breach", "arcane contagion ward", "cosmic gatekeeper spirit", "catastrophic seal release"]
+    },
+    "phlogiston_tidepool": {
+      "tags": ["phlogiston", "hazard", "wildspace", "void"],
+      "primary": ["floating fire eddy", "tidepool observation ring", "safety tether gantry", "emberproof shelter", "pressure release valve", "warning lantern buoy"],
+      "secondary": ["heat-scorched tools", "volatile sample vials", "fire-retardant cloak rack", "alchemical damping rod", "burned logbook", "spill containment mesh"],
+      "tertiary": ["ignition chain trap", "rare phlogiston crystal", "fire elemental prisoner", "secret smugglers cache", "emergency planar gateway", "experimental ignition engine"]
+    },
+    "living_ship_grove": {
+      "tags": ["ship", "living", "organic", "void"],
+      "primary": ["bioluminescent helm blossom", "sungrown canopy corridor", "sap-infused control tendril", "photosynthetic ward pod", "drifting pollen lantern", "rooted crew cradle"],
+      "secondary": ["symbiotic tool niche", "healing resin pool", "spore communication node", "caretaker chant circle", "grafted weapon rack", "sap-scribed logbook"],
+      "tertiary": ["rebellious growth tumor", "dormant star seed", "mutiny pheromone cache", "feywild graft portal", "curative nectar vial", "predatory vine trap"]
+    },
+    "planar_observatory": {
+      "tags": ["observatory", "structure", "void", "anomaly"],
+      "primary": ["rotating scrying dome", "calibrated ether telescope", "chronometer dais", "constellation mosaic floor", "gravity-inverted balcony", "arcane calculation engine"],
+      "secondary": ["star ledger scroll case", "phase-adjustment tools", "astral alignment gong", "protective ward lattice", "assistant homunculus alcove", "sealed research cabinet"],
+      "tertiary": ["forbidden planar map", "time-locked experiment", "stolen imperial cipher", "malfunctioning prediction orb", "portal to future echo", "runaway summoned entity"]
+    },
+    "void_market": {
+      "tags": ["market", "void", "trade", "floating"],
+      "primary": ["gravity-tethered bazaar ring", "merchant pennant canopy", "arcane auction dais", "cargo barge dock", "psionic negotiation booth", "floating tavern pavilion"],
+      "secondary": ["spice vapor diffuser", "contract scribes alcove", "barter token fountain", "mercenary guard post", "cage of exotic familiars", "contraband inspection table"],
+      "tertiary": ["hidden price-fixing ledger", "rival guild sabotage kit", "rare starwine crate", "secret escape portal", "assassin's staging perch", "cursed trade charm"]
+    },
+    "spellforge_workshop": {
+      "tags": ["workshop", "forge", "arcane", "void"],
+      "primary": ["gravity-anchored anvil", "molten starmetal crucible", "levitating tool rack", "runic cooling pool", "spell lattice loom", "shielding glyph wall"],
+      "secondary": ["apprentice workbench", "schematic scroll tubes", "ingot storage locker", "etheric hammer rack", "protective aprons", "hazard rune panel"],
+      "tertiary": ["unstable prototype weapon", "forbidden forge pact", "volatile slag cache", "hidden guild contract", "sentient forge spirit", "detonation fail-safe trap"]
+    },
+    "starbeast_graveyard": {
+      "tags": ["graveyard", "wildspace", "bones", "void"],
+      "primary": ["colossal rib arch", "fossilized heart chamber", "drifting bone field", "memorial totem pole", "salvager camp scaffold", "soul lantern cairn"],
+      "secondary": ["necromantic residue", "scavenger tether lines", "spore-choked crevice", "bone-harp wind chime", "ritual chalk circle", "starbeast tooth pile"],
+      "tertiary": ["haunting astral echo", "ancient captain's log", "predatory bone swarm", "guardian revenant spirit", "legendary marrow relic", "planar seal fracture"]
     }
   }
 }
