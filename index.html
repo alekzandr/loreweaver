@@ -156,6 +156,294 @@
             transform: translateY(0);
         }
 
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .nav-tab {
+            background: var(--bg-medium);
+            color: var(--text-dark);
+            border: 2px solid transparent;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: auto;
+        }
+
+        .nav-tab:hover {
+            border-color: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .page-content {
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .search-controls {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 15px;
+            font-size: 1.1em;
+            background: var(--bg-medium);
+            border: 2px solid var(--bg-dark);
+            border-radius: 10px;
+            color: var(--text-light);
+            transition: border-color 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .search-bar button {
+            width: auto;
+            padding: 15px 30px;
+        }
+
+        .filter-section h3 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .filter-group {
+            margin-bottom: 20px;
+        }
+
+        .filter-group label {
+            display: block;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .filter-tag {
+            padding: 8px 16px;
+            background: var(--bg-medium);
+            border: 2px solid var(--bg-dark);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .filter-tag:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .filter-tag.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-color: var(--accent-color);
+            color: white;
+        }
+
+        .search-results {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .result-card {
+            background: var(--bg-medium);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .result-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .result-title {
+            font-size: 1.3em;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .result-type {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            font-size: 0.85em;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .result-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .result-tag {
+            padding: 4px 10px;
+            background: var(--bg-dark);
+            border-radius: 5px;
+            font-size: 0.8em;
+            color: var(--text-dark);
+        }
+
+        .result-description {
+            color: var(--text-dark);
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .result-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .preview-btn {
+            background: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        .preview-btn:hover {
+            background: var(--primary-color);
+        }
+
+        .open-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .open-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.5);
+        }
+
+        .preview-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .preview-modal.active {
+            display: flex;
+        }
+
+        .preview-content {
+            background: var(--bg-light);
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .preview-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--danger);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .preview-close:hover {
+            transform: rotate(90deg);
+            background: #dc2626;
+        }
+
+        .preview-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .preview-title {
+            font-size: 1.8em;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .preview-body {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
         .encounter-display {
             background: var(--bg-light);
             padding: 30px;
@@ -327,40 +615,812 @@
         <header>
             <h1>⚔️ LoreWeaver ⚔️</h1>
             <p class="subtitle">D&D Exploration Encounter Generator</p>
+            
+            <!-- Navigation Tabs -->
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="switchPage('generate')">🎲 Generate</button>
+                <button class="nav-tab" onclick="switchPage('search')">🔍 Search</button>
+            </div>
         </header>
 
-        <div class="controls">
-            <div class="control-group">
-                <label for="environment">Select Environment:</label>
-                <div class="environment-tags" id="environmentTags">
-                    <div class="tag" data-env="urban">🏛️ Urban</div>
-                    <div class="tag" data-env="arctic">❄️ Arctic</div>
-                    <div class="tag" data-env="ocean">🌊 Ocean</div>
-                    <div class="tag" data-env="space">🌌 Space</div>
-                    <div class="tag" data-env="crypt">💀 Crypt</div>
-                    <div class="tag" data-env="forest">🌲 Forest</div>
-                    <div class="tag" data-env="desert">🏜️ Desert</div>
-                    <div class="tag" data-env="mountain">⛰️ Mountain</div>
-                    <div class="tag" data-env="swamp">🐊 Swamp</div>
-                    <div class="tag" data-env="underground">🕳️ Underground</div>
+        <!-- Generate Page -->
+        <div id="generatePage" class="page-content">
+            <div class="controls">
+                <div class="control-group">
+                    <label for="environment">Select Environment:</label>
+                    <div class="environment-tags" id="environmentTags">
+                        <div class="tag" data-env="urban">🏛️ Urban</div>
+                        <div class="tag" data-env="arctic">❄️ Arctic</div>
+                        <div class="tag" data-env="ocean">🌊 Ocean</div>
+                        <div class="tag" data-env="space">🌌 Space</div>
+                        <div class="tag" data-env="crypt">💀 Crypt</div>
+                        <div class="tag" data-env="forest">🌲 Forest</div>
+                        <div class="tag" data-env="desert">🏜️ Desert</div>
+                        <div class="tag" data-env="mountain">⛰️ Mountain</div>
+                        <div class="tag" data-env="swamp">🐊 Swamp</div>
+                        <div class="tag" data-env="underground">🕳️ Underground</div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="partyLevel">Party Level (1-20):</label>
+                    <input type="number" id="partyLevel" min="1" max="20" value="5">
+                </div>
+
+                <button onclick="generateEncounter()">🎲 Generate Encounter</button>
+            </div>
+
+            <div class="encounter-display" id="encounterDisplay">
+                <div id="encounterContent"></div>
+            </div>
+
+            <!-- Room Display -->
+            <div class="room-display" id="roomDisplay" style="display: none;">
+                <button onclick="returnToEncounter()" style="background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; border: none; padding: 12px 24px; margin: 20px; font-size: 16px; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+                    ← Back to Encounter
+                </button>
+                <div id="roomContent"></div>
+            </div>
+        </div>
+
+        <!-- Search Page -->
+        <div id="searchPage" class="page-content" style="display: none;">
+            <div class="search-controls">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search encounters and locations (e.g., 'tomb', 'ship', 'forest')..." />
+                    <button onclick="performSearch()">🔍 Search</button>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Filter by Tags:</h3>
+                    <div class="filter-group">
+                        <label>Environment:</label>
+                        <div class="filter-tags" id="envFilters"></div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Location Type:</label>
+                        <div class="filter-tags" id="locationFilters"></div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Setting:</label>
+                        <div class="filter-tags" id="settingFilters"></div>
+                    </div>
+                    <button onclick="clearFilters()" style="margin-top: 10px; width: auto; padding: 8px 20px;">Clear All Filters</button>
                 </div>
             </div>
 
-            <div class="control-group">
-                <label for="partyLevel">Party Level (1-20):</label>
-                <input type="number" id="partyLevel" min="1" max="20" value="5">
+            <div class="search-results" id="searchResults">
+                <p style="text-align: center; color: var(--text-dark); padding: 40px;">Enter a search term or select tags to find encounters and locations</p>
             </div>
-
-            <button onclick="generateEncounter()">🎲 Generate Encounter</button>
         </div>
 
-        <div class="encounter-display" id="encounterDisplay">
-            <div id="encounterContent"></div>
+        <!-- Preview Modal -->
+        <div id="previewModal" class="preview-modal">
+            <div class="preview-content">
+                <button class="preview-close" onclick="closePreview()">✕</button>
+                <div id="previewBody"></div>
+            </div>
         </div>
     </div>
 
     <script>
         let selectedEnvironment = 'urban';
+
+        // Search page state
+        let activeFilters = {
+            environment: [],
+            locationType: [],
+            setting: []
+        };
+
+        // Encounter titles with tags
+        const encounterTitles = {
+            urban: [
+                { title: 'The Shadowed Alley', tags: ['alley', 'outdoor', 'street'] },
+                { title: 'Rooftop Chase', tags: ['rooftop', 'outdoor', 'building'] },
+                { title: 'The Abandoned Warehouse', tags: ['warehouse', 'indoor', 'building'] },
+                { title: 'Market District Mystery', tags: ['market', 'outdoor', 'street'] },
+                { title: 'Sewer Expedition', tags: ['sewer', 'underground', 'tunnel'] },
+                { title: 'The Clocktower District', tags: ['district', 'outdoor', 'building'] },
+                { title: 'Wharf at Midnight', tags: ['wharf', 'outdoor', 'dock'] },
+                { title: 'The Old Quarter', tags: ['district', 'outdoor', 'street'] }
+            ],
+            arctic: [
+                { title: 'Frozen Wasteland Trek', tags: ['wilderness', 'outdoor', 'openfield'] },
+                { title: 'The Avalanche Path', tags: ['mountain', 'outdoor', 'path'] },
+                { title: 'Ice Cave Exploration', tags: ['cave', 'indoor', 'cavern'] },
+                { title: 'Blizzard Survival', tags: ['wilderness', 'outdoor', 'openfield'] },
+                { title: 'Glacier Crossing', tags: ['glacier', 'outdoor', 'openfield'] },
+                { title: 'The Whiteout', tags: ['wilderness', 'outdoor', 'openfield'] },
+                { title: 'Frostbite Pass', tags: ['pass', 'outdoor', 'path'] },
+                { title: 'Icebound Peaks', tags: ['mountain', 'outdoor', 'peaks'] }
+            ],
+            ocean: [
+                { title: 'Storm-Tossed Voyage', tags: ['ship', 'vessel', 'deck'] },
+                { title: 'The Coral Labyrinth', tags: ['underwater', 'reef', 'natural'] },
+                { title: 'Derelict Ship Discovery', tags: ['ship', 'vessel', 'wreck'] },
+                { title: 'Island Approach', tags: ['shore', 'outdoor', 'beach'] },
+                { title: 'Deep Water Descent', tags: ['underwater', 'depths', 'openwater'] },
+                { title: 'The Doldrums', tags: ['ship', 'vessel', 'deck'] },
+                { title: 'Reef of Bones', tags: ['underwater', 'reef', 'wreck'] },
+                { title: 'Siren\'s Channel', tags: ['underwater', 'passage', 'natural'] }
+            ],
+            space: [
+                { title: 'Derelict Spelljammer', tags: ['ship', 'vessel', 'derelict'] },
+                { title: 'Phlogiston Crossing', tags: ['wildspace', 'void', 'openspace'] },
+                { title: 'Crystal Sphere Breach', tags: ['void', 'anomaly', 'openspace'] },
+                { title: 'Astral Debris Field', tags: ['debris', 'void', 'openspace'] },
+                { title: 'Wildspace Anomaly', tags: ['wildspace', 'anomaly', 'openspace'] },
+                { title: 'The Rainbow Flow', tags: ['phlogiston', 'void', 'openspace'] },
+                { title: 'Sphere\'s Edge', tags: ['boundary', 'void', 'openspace'] },
+                { title: 'Gravity Well', tags: ['anomaly', 'void', 'openspace'] }
+            ],
+            crypt: [
+                { title: 'The Ancient Tomb', tags: ['tomb', 'indoor', 'chamber'] },
+                { title: 'Forgotten Catacombs', tags: ['catacomb', 'tunnel', 'passage'] },
+                { title: 'Cursed Burial Chamber', tags: ['chamber', 'indoor', 'tomb'] },
+                { title: 'The Silent Mausoleum', tags: ['mausoleum', 'building', 'indoor'] },
+                { title: 'Necropolis Depths', tags: ['catacomb', 'tunnel', 'depths'] },
+                { title: 'Ossuary Halls', tags: ['hall', 'indoor', 'passage'] },
+                { title: 'The Sealed Vault', tags: ['vault', 'chamber', 'indoor'] },
+                { title: 'Mourner\'s Path', tags: ['passage', 'tunnel', 'path'] }
+            ],
+            forest: [
+                { title: 'Dense Woodland Trail', tags: ['trail', 'outdoor', 'path'] },
+                { title: 'The Overgrown Ruins', tags: ['ruins', 'structure', 'outdoor'] },
+                { title: 'Ancient Grove', tags: ['grove', 'outdoor', 'clearing'] },
+                { title: 'Forest of Whispers', tags: ['woods', 'outdoor', 'dense'] },
+                { title: 'The Hidden Glade', tags: ['glade', 'outdoor', 'clearing'] },
+                { title: 'Thornwood Passage', tags: ['passage', 'outdoor', 'path'] },
+                { title: 'The Green Cathedral', tags: ['grove', 'outdoor', 'clearing'] },
+                { title: 'Wildwood Maze', tags: ['woods', 'outdoor', 'dense'] }
+            ],
+            desert: [
+                { title: 'Scorching Dunes', tags: ['dunes', 'outdoor', 'openfield'] },
+                { title: 'Oasis Mirage', tags: ['oasis', 'outdoor', 'water'] },
+                { title: 'The Buried Temple', tags: ['temple', 'ruins', 'structure'] },
+                { title: 'Canyon of Winds', tags: ['canyon', 'outdoor', 'passage'] },
+                { title: 'Desert Caravan Route', tags: ['trail', 'outdoor', 'path'] },
+                { title: 'The Glass Wastes', tags: ['wasteland', 'outdoor', 'openfield'] },
+                { title: 'Sunscorch Valley', tags: ['valley', 'outdoor', 'passage'] },
+                { title: 'Dune Sea Crossing', tags: ['dunes', 'outdoor', 'openfield'] }
+            ],
+            mountain: [
+                { title: 'Treacherous Peak', tags: ['peak', 'outdoor', 'summit'] },
+                { title: 'The Mountain Pass', tags: ['pass', 'outdoor', 'path'] },
+                { title: 'Cliffside Trail', tags: ['cliff', 'outdoor', 'path'] },
+                { title: 'Summit Ascent', tags: ['peak', 'outdoor', 'summit'] },
+                { title: 'The Hidden Valley', tags: ['valley', 'outdoor', 'clearing'] },
+                { title: 'Eagle\'s Roost', tags: ['peak', 'outdoor', 'nest'] },
+                { title: 'Stormbreak Ridge', tags: ['ridge', 'outdoor', 'path'] },
+                { title: 'The Devil\'s Stair', tags: ['stairs', 'outdoor', 'path'] }
+            ],
+            swamp: [
+                { title: 'The Mire', tags: ['bog', 'outdoor', 'wetland'] },
+                { title: 'Forgotten Wetlands', tags: ['wetland', 'outdoor', 'wilderness'] },
+                { title: 'Bog of Despair', tags: ['bog', 'outdoor', 'wetland'] },
+                { title: 'Murky Waters', tags: ['water', 'outdoor', 'wetland'] },
+                { title: 'The Dead Marsh', tags: ['marsh', 'outdoor', 'wetland'] },
+                { title: 'Rotwood Fen', tags: ['fen', 'outdoor', 'wetland'] },
+                { title: 'The Sinking Grounds', tags: ['bog', 'outdoor', 'wetland'] },
+                { title: 'Viper\'s Bog', tags: ['bog', 'outdoor', 'wetland'] }
+            ],
+            underground: [
+                { title: 'Cavern Depths', tags: ['cavern', 'cave', 'natural'] },
+                { title: 'The Sunless Expanse', tags: ['cavern', 'cave', 'openspace'] },
+                { title: 'Crystal Caves', tags: ['cave', 'cavern', 'natural'] },
+                { title: 'Underground River', tags: ['river', 'cave', 'water'] },
+                { title: 'The Forgotten Mine', tags: ['mine', 'tunnel', 'manmade'] },
+                { title: 'Echoing Halls', tags: ['hall', 'cavern', 'chamber'] },
+                { title: 'The Deepways', tags: ['tunnel', 'passage', 'manmade'] },
+                { title: 'Stonewomb Passage', tags: ['passage', 'tunnel', 'natural'] }
+            ]
+        };
+
+        // Simplified location objects for search (subset of what would be full location data)
+        const locationObjects = {
+            urban: {
+                warehouse: { 
+                    tags: ['warehouse', 'indoor', 'building'],
+                    primary: ['wooden crate', 'loading crane', 'storage shelf', 'shipping manifest', 'rope coil', 'tool bench'],
+                    secondary: ['rusted nail', 'receipt', 'ledger book', 'oil lantern', 'chain', 'pulley'],
+                    tertiary: ['coin purse', 'jewelry', 'letter', 'key', 'trap mechanism', 'poison vial']
+                },
+                building: { 
+                    tags: ['building', 'indoor', 'rooftop', 'district'],
+                    primary: ['ornate desk', 'locked safe', 'bookshelf', 'filing cabinet', 'portrait painting', 'fireplace'],
+                    secondary: ['hidden drawer', 'secret compartment', 'ledger', 'correspondence', 'seal', 'inkwell'],
+                    tertiary: ['family heirloom', 'deed', 'treasure map', 'incriminating letter', 'gold coins', 'magic item']
+                },
+                street: { 
+                    tags: ['street', 'outdoor', 'alley', 'district', 'market'],
+                    primary: ['market stall', 'merchant cart', 'street lamp', 'notice board', 'vendor stand', 'fountain'],
+                    secondary: ['loose cobblestone', 'rain barrel', 'awning', 'signpost', 'doorway', 'window'],
+                    tertiary: ['dropped coin', 'torn poster', 'hidden cache', 'secret mark', 'smuggler sign', 'trap']
+                },
+                dock: { 
+                    tags: ['wharf', 'dock', 'outdoor'],
+                    primary: ['shipping crate', 'mooring post', 'cargo net', 'dock crane', 'warehouse door', 'gangplank'],
+                    secondary: ['rope', 'anchor', 'barrel', 'canvas tarp', 'shipping manifest', 'oil lamp'],
+                    tertiary: ['smuggled goods', 'hidden compartment', 'coded message', 'stolen treasure', 'trap', 'key']
+                },
+                sewer: { 
+                    tags: ['sewer', 'underground', 'tunnel'],
+                    primary: ['drainage pipe', 'sewer grate', 'maintenance ladder', 'brick archway', 'water channel', 'junction'],
+                    secondary: ['rat nest', 'debris pile', 'broken gate', 'rusty valve', 'slime', 'chain'],
+                    tertiary: ['lost valuables', 'body', 'smuggler cache', 'disease', 'trap', 'monster lair']
+                }
+            },
+            crypt: {
+                tomb: { 
+                    tags: ['tomb', 'chamber', 'indoor'],
+                    primary: ['stone sarcophagus', 'altar', 'statue', 'burial niche', 'stone column', 'brazier'],
+                    secondary: ['burial offering', 'inscription', 'sealed urn', 'canopic jar', 'ritual item', 'relic'],
+                    tertiary: ['cursed item', 'treasure', 'magic weapon', 'ancient scroll', 'undead', 'trap']
+                },
+                catacomb: { 
+                    tags: ['catacomb', 'tunnel', 'passage', 'depths'],
+                    primary: ['bone wall', 'burial alcove', 'stone pillar', 'ancient archway', 'ossuary', 'memorial plaque'],
+                    secondary: ['skull pile', 'grave goods', 'ancient torch', 'carved symbol', 'sealed niche', 'offering bowl'],
+                    tertiary: ['hidden treasure', 'secret passage', 'cursed relic', 'undead guardian', 'trap', 'ritual chamber']
+                },
+                mausoleum: { 
+                    tags: ['mausoleum', 'building', 'indoor'],
+                    primary: ['family crypt', 'marble statue', 'bronze door', 'stone bench', 'memorial wall', 'vaulted ceiling'],
+                    secondary: ['inscription plaque', 'offering table', 'sealed vault', 'stained glass', 'iron gate', 'torch sconce'],
+                    tertiary: ['family treasure', 'ancient relic', 'magic item', 'hidden crypt', 'undead', 'protective ward']
+                },
+                vault: { 
+                    tags: ['vault', 'chamber', 'indoor'],
+                    primary: ['sealed door', 'guardian statue', 'treasure chest', 'magical ward', 'puzzle lock', 'pillar'],
+                    secondary: ['pressure plate', 'glyph', 'keyhole', 'offering pedestal', 'ancient mechanism', 'rune'],
+                    tertiary: ['legendary treasure', 'artifact', 'curse', 'powerful undead', 'deadly trap', 'magic seal']
+                }
+            },
+            forest: {
+                trail: { 
+                    tags: ['trail', 'path', 'outdoor'],
+                    primary: ['ancient tree', 'moss-covered boulder', 'trail marker', 'fallen log', 'clearing', 'stream crossing'],
+                    secondary: ['animal track', 'carved mark', 'abandoned camp', 'broken branch', 'root system', 'mushroom circle'],
+                    tertiary: ['hidden cache', 'druid sign', 'fey marking', 'treasure', 'trap', 'monster lair']
+                },
+                ruins: { 
+                    tags: ['ruins', 'structure', 'outdoor'],
+                    primary: ['crumbling wall', 'stone foundation', 'overgrown statue', 'collapsed archway', 'broken column', 'moss-covered altar'],
+                    secondary: ['ancient inscription', 'carved relief', 'pottery shard', 'rusted weapon', 'stone fragment', 'hidden chamber'],
+                    tertiary: ['buried treasure', 'magic item', 'ancient knowledge', 'guardian spirit', 'trap', 'secret passage']
+                },
+                clearing: { 
+                    tags: ['clearing', 'glade', 'grove', 'outdoor'],
+                    primary: ['fairy ring', 'natural spring', 'ancient tree circle', 'flower meadow', 'stone circle', 'sacred grove'],
+                    secondary: ['unusual plant', 'animal den', 'bird nest', 'mushroom cluster', 'water source', 'wildflower patch'],
+                    tertiary: ['fey presence', 'magic spring', 'druid treasure', 'nature spirit', 'blessing', 'curse']
+                },
+                dense: { 
+                    tags: ['woods', 'dense', 'outdoor'],
+                    primary: ['thick undergrowth', 'tangled thicket', 'hollow log', 'dense canopy', 'bramble patch', 'ancient trunk'],
+                    secondary: ['animal burrow', 'spider web', 'vine tangle', 'thorny bush', 'concealed pit', 'hidden path'],
+                    tertiary: ['monster lair', 'hidden treasure', 'trap', 'rare plant', 'secret passage', 'predator nest']
+                }
+            },
+            desert: {
+                dunes: { 
+                    tags: ['dunes', 'openfield', 'outdoor', 'wasteland'],
+                    primary: ['sand dune', 'wind-carved formation', 'buried skeleton', 'abandoned cart', 'rock outcrop', 'shifting sand'],
+                    secondary: ['sun-bleached bones', 'tattered cloth', 'broken wheel', 'empty waterskin', 'scorpion nest', 'sand ripples'],
+                    tertiary: ['buried treasure', 'ancient artifact', 'oasis map', 'cursed item', 'monster lair', 'quicksand trap']
+                },
+                ruins: { 
+                    tags: ['temple', 'ruins', 'structure'],
+                    primary: ['weathered stone pillar', 'collapsed wall', 'buried entrance', 'ancient altar', 'sandstone block', 'hieroglyph'],
+                    secondary: ['carved relief', 'broken statue', 'pottery fragment', 'ritual vessel', 'stone tablet', 'sealed chamber'],
+                    tertiary: ['ancient treasure', 'magic artifact', 'curse tablet', 'mummy', 'deadly trap', 'hidden vault']
+                },
+                oasis: { 
+                    tags: ['oasis', 'water', 'outdoor'],
+                    primary: ['oasis pool', 'palm tree', 'water source', 'desert plants', 'rock formation', 'shade'],
+                    secondary: ['animal track', 'fruit tree', 'medicinal herb', 'cool cave', 'traveler marker', 'campsite'],
+                    tertiary: ['hidden spring', 'rare plant', 'treasure cache', 'spirit guardian', 'blessing', 'mirage']
+                },
+                trail: { 
+                    tags: ['trail', 'path', 'outdoor'],
+                    primary: ['caravan marker', 'desert trail', 'way stone', 'traveler\'s shrine', 'cairn', 'directional sign'],
+                    secondary: ['campfire remains', 'discarded item', 'footprints', 'warning marker', 'supply cache', 'shelter'],
+                    tertiary: ['buried treasure', 'ambush site', 'hidden oasis map', 'bandit cache', 'trap', 'ancient relic']
+                }
+            },
+            mountain: {
+                peak: { 
+                    tags: ['peak', 'summit', 'outdoor', 'nest'],
+                    primary: ['mountain peak', 'rocky outcrop', 'ice formation', 'summit cairn', 'wind-swept stone', 'precipice'],
+                    secondary: ['prayer flags', 'climber\'s anchor', 'eagle nest', 'ice crystal', 'rock shelter', 'marker stone'],
+                    tertiary: ['legendary treasure', 'dragon hoard', 'ancient relic', 'rare mineral', 'spirit shrine', 'trap']
+                },
+                pass: { 
+                    tags: ['pass', 'path', 'outdoor', 'ridge', 'stairs'],
+                    primary: ['mountain pass', 'narrow ledge', 'switchback trail', 'rock bridge', 'stone steps', 'guard post'],
+                    secondary: ['rope anchor', 'safety rope', 'trail marker', 'shelter cave', 'warning sign', 'avalanche zone'],
+                    tertiary: ['hidden cache', 'bandit treasure', 'ancient marker', 'trap', 'monster ambush', 'secret passage']
+                },
+                valley: { 
+                    tags: ['valley', 'clearing', 'outdoor'],
+                    primary: ['hidden valley', 'mountain stream', 'alpine meadow', 'sheltered grove', 'rocky basin', 'waterfall'],
+                    secondary: ['wildflower field', 'grazing area', 'mineral deposit', 'hot spring', 'cave entrance', 'ancient tree'],
+                    tertiary: ['hidden sanctuary', 'hermit dwelling', 'rare herb', 'treasure cache', 'spirit guardian', 'secret entrance']
+                },
+                cliff: { 
+                    tags: ['cliff', 'outdoor', 'path'],
+                    primary: ['precarious ledge', 'cliff face', 'sheer drop', 'rock overhang', 'narrow path', 'vertical wall'],
+                    secondary: ['climbing anchor', 'bird nest', 'cave opening', 'rock shelf', 'erosion crack', 'loose stone'],
+                    tertiary: ['hidden cave', 'eagle treasure', 'ancient carving', 'trap', 'monster lair', 'secret passage']
+                }
+            },
+            swamp: {
+                bog: { 
+                    tags: ['bog', 'wetland', 'outdoor'],
+                    primary: ['murky pool', 'mud mound', 'gnarled tree', 'quicksand', 'stagnant water', 'dead vegetation'],
+                    secondary: ['marsh gas bubble', 'sunken log', 'lily pad', 'insect swarm', 'muddy bank', 'rotting vegetation'],
+                    tertiary: ['sunken treasure', 'body', 'monster lair', 'disease', 'trap', 'cursed area']
+                },
+                wetland: { 
+                    tags: ['wetland', 'marsh', 'fen', 'outdoor', 'wilderness'],
+                    primary: ['marsh grass', 'water channel', 'raised hummock', 'dead tree', 'reed bed', 'shallow pool'],
+                    secondary: ['bird nest', 'fish trap', 'willow tree', 'stepping stone', 'floating debris', 'vegetation mat'],
+                    tertiary: ['hidden path', 'hermit hut', 'rare plant', 'treasure cache', 'hag marker', 'trap']
+                },
+                water: { 
+                    tags: ['water', 'outdoor', 'wetland'],
+                    primary: ['dark water', 'stagnant pool', 'flowing stream', 'deep channel', 'murky pond', 'water source'],
+                    secondary: ['submerged log', 'floating vegetation', 'water plant', 'ripple', 'current', 'shallow ford'],
+                    tertiary: ['sunken boat', 'underwater cave', 'monster lair', 'treasure', 'trap', 'cursed water']
+                }
+            },
+            underground: {
+                cavern: { 
+                    tags: ['cavern', 'cave', 'natural', 'openspace', 'chamber'],
+                    primary: ['crystal formation', 'stone pillar', 'underground lake', 'stalactite cluster', 'rock formation', 'cavern floor'],
+                    secondary: ['mineral vein', 'bat colony', 'mushroom grove', 'limestone deposit', 'water drip', 'echo chamber'],
+                    tertiary: ['rare crystal', 'underground river', 'monster lair', 'treasure deposit', 'trap', 'secret passage']
+                },
+                tunnel: { 
+                    tags: ['tunnel', 'passage', 'manmade'],
+                    primary: ['mine shaft', 'carved tunnel', 'support beams', 'rail tracks', 'tool marks', 'ventilation shaft'],
+                    secondary: ['mining cart', 'pickaxe', 'lantern hook', 'ore vein', 'support pillar', 'wooden brace'],
+                    tertiary: ['ore deposit', 'abandoned equipment', 'collapsed section', 'monster nest', 'trap', 'hidden passage']
+                },
+                river: { 
+                    tags: ['river', 'water', 'cave'],
+                    primary: ['underground stream', 'water channel', 'rock bridge', 'waterfall', 'river bank', 'current'],
+                    secondary: ['stepping stone', 'water pool', 'mineral deposit', 'moisture', 'echo', 'fish'],
+                    tertiary: ['underwater passage', 'treasure', 'monster lair', 'rare mineral', 'trap', 'secret cave']
+                }
+            },
+            ocean: {
+                ship: { 
+                    tags: ['ship', 'vessel', 'deck'],
+                    primary: ['ship wheel', 'mast rigging', 'cargo hold', 'captain\'s quarters', 'main deck', 'anchor'],
+                    secondary: ['rope coil', 'barrel', 'sail', 'navigation tool', 'ship bell', 'cannon'],
+                    tertiary: ['treasure chest', 'ship\'s log', 'hidden cargo', 'secret compartment', 'trap', 'contraband']
+                },
+                wreck: { 
+                    tags: ['wreck', 'ship', 'vessel', 'underwater'],
+                    primary: ['broken hull', 'sunken cargo', 'ship\'s skeleton', 'barnacle-covered mast', 'debris field', 'coral growth'],
+                    secondary: ['rotted sail', 'rusted chain', 'broken rudder', 'scattered cargo', 'ship bell', 'anchor'],
+                    tertiary: ['treasure chest', 'ship\'s safe', 'captain\'s loot', 'cursed cargo', 'monster lair', 'trap']
+                },
+                underwater: { 
+                    tags: ['underwater', 'reef', 'natural', 'depths', 'openwater', 'passage'],
+                    primary: ['coral reef', 'underwater cave', 'kelp forest', 'rock formation', 'sea floor', 'current'],
+                    secondary: ['sea plant', 'anemone', 'shell cluster', 'fish school', 'underwater cliff', 'sand bed'],
+                    tertiary: ['pearl bed', 'sunken treasure', 'monster lair', 'ancient ruin', 'trap', 'magic current']
+                },
+                shore: { 
+                    tags: ['shore', 'beach', 'outdoor'],
+                    primary: ['beach shore', 'tide pool', 'driftwood pile', 'rock outcrop', 'sand beach', 'wave line'],
+                    secondary: ['seashell', 'seaweed', 'crab', 'beach rock', 'sand dune', 'flotsam'],
+                    tertiary: ['message bottle', 'shipwreck debris', 'treasure chest', 'rare shell', 'trap', 'hidden cave']
+                }
+            },
+            arctic: {
+                wilderness: { 
+                    tags: ['wilderness', 'openfield', 'outdoor'],
+                    primary: ['ice field', 'snow plain', 'frozen tundra', 'ice wall', 'snowdrift', 'frost formation'],
+                    secondary: ['animal track', 'ice crack', 'wind pattern', 'snow hole', 'frozen plant', 'ice shard'],
+                    tertiary: ['frozen corpse', 'buried treasure', 'rare resource', 'monster lair', 'trap', 'ancient relic']
+                },
+                cave: { 
+                    tags: ['cave', 'cavern', 'indoor'],
+                    primary: ['ice cave', 'snow shelter', 'frozen cavern', 'ice tunnel', 'frost wall', 'icicle'],
+                    secondary: ['ice formation', 'frozen pool', 'ice pillar', 'snow drift', 'frost pattern', 'wind tunnel'],
+                    tertiary: ['frozen treasure', 'ancient remains', 'rare ice', 'monster den', 'trap', 'magic ice']
+                },
+                mountain: { 
+                    tags: ['mountain', 'peaks', 'outdoor'],
+                    primary: ['ice peak', 'frozen summit', 'glacier slope', 'ice cliff', 'snow ridge', 'avalanche path'],
+                    secondary: ['ice bridge', 'crevasse', 'snow cornice', 'ice wall', 'frozen waterfall', 'wind gap'],
+                    tertiary: ['legendary treasure', 'dragon lair', 'ancient shrine', 'rare mineral', 'trap', 'avalanche trigger']
+                },
+                path: { 
+                    tags: ['path', 'pass', 'outdoor'],
+                    primary: ['frozen trail', 'ice path', 'snow route', 'marked way', 'passage', 'crossing'],
+                    secondary: ['trail marker', 'shelter', 'supply cache', 'warning sign', 'rope line', 'cairn'],
+                    tertiary: ['hidden cache', 'abandoned camp', 'treasure', 'trap', 'monster ambush', 'shortcut']
+                }
+            },
+            space: {
+                ship: { 
+                    tags: ['ship', 'vessel', 'derelict'],
+                    primary: ['spelljamming helm', 'navigation altar', 'air envelope', 'gravity plane', 'helm chamber', 'main deck'],
+                    secondary: ['star chart', 'planar compass', 'magic anchor', 'air pump', 'gravity ring', 'void seal'],
+                    tertiary: ['arcane treasure', 'planar map', 'magic artifact', 'ship secret', 'trap', 'hidden cargo']
+                },
+                void: { 
+                    tags: ['void', 'openspace', 'wildspace', 'phlogiston', 'boundary'],
+                    primary: ['phlogiston flow', 'wildspace debris', 'crystal sphere', 'planar barrier', 'void current', 'star field'],
+                    secondary: ['asteroid', 'void eddy', 'magic field', 'planar echo', 'cosmic dust', 'light phenomenon'],
+                    tertiary: ['ancient wreck', 'planar rift', 'cosmic treasure', 'void entity', 'trap', 'portal']
+                },
+                anomaly: { 
+                    tags: ['anomaly', 'void', 'openspace', 'wildspace'],
+                    primary: ['gravity well', 'magic vortex', 'planar rift', 'time distortion', 'space fold', 'reality tear'],
+                    secondary: ['energy field', 'temporal echo', 'spatial loop', 'magic surge', 'void pulse', 'reality fragment'],
+                    tertiary: ['legendary artifact', 'planar gateway', 'cosmic secret', 'powerful entity', 'deadly trap', 'reality breach']
+                },
+                debris: { 
+                    tags: ['debris', 'void', 'openspace'],
+                    primary: ['wrecked ship', 'floating rock', 'debris field', 'broken hull', 'scattered cargo', 'void junk'],
+                    secondary: ['ship fragment', 'asteroid chunk', 'twisted metal', 'broken mast', 'cargo container', 'escape pod'],
+                    tertiary: ['salvage treasure', 'ship log', 'hidden cargo', 'survivor', 'trap', 'monster nest']
+                }
+            }
+        };
+
+        // Page switching
+        function switchPage(page) {
+            document.getElementById('generatePage').style.display = 'none';
+            document.getElementById('searchPage').style.display = 'none';
+            
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            
+            if (page === 'generate') {
+                document.getElementById('generatePage').style.display = 'block';
+                document.querySelectorAll('.nav-tab')[0].classList.add('active');
+            } else if (page === 'search') {
+                document.getElementById('searchPage').style.display = 'block';
+                document.querySelectorAll('.nav-tab')[1].classList.add('active');
+                initializeSearchFilters();
+            }
+        }
+
+        // Initialize search filters
+        function initializeSearchFilters() {
+            if (document.getElementById('envFilters').children.length > 0) return;
+
+            const envFilters = document.getElementById('envFilters');
+            const environments = ['urban', 'arctic', 'ocean', 'space', 'crypt', 'forest', 'desert', 'mountain', 'swamp', 'underground'];
+            const envIcons = { urban: '🏛️', arctic: '❄️', ocean: '🌊', space: '🌌', crypt: '💀', forest: '🌲', desert: '🏜️', mountain: '⛰️', swamp: '🐊', underground: '🕳️' };
+            
+            environments.forEach(env => {
+                const tag = document.createElement('div');
+                tag.className = 'filter-tag';
+                tag.textContent = `${envIcons[env]} ${env.charAt(0).toUpperCase() + env.slice(1)}`;
+                tag.dataset.filter = env;
+                tag.dataset.type = 'environment';
+                tag.onclick = () => toggleFilter(tag, 'environment', env);
+                envFilters.appendChild(tag);
+            });
+
+            const locationFilters = document.getElementById('locationFilters');
+            const locationTypes = ['indoor', 'outdoor', 'building', 'street', 'cave', 'ruins', 'ship', 'underwater', 'tunnel', 'chamber', 'wilderness', 'path'];
+            
+            locationTypes.forEach(type => {
+                const tag = document.createElement('div');
+                tag.className = 'filter-tag';
+                tag.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+                tag.dataset.filter = type;
+                tag.dataset.type = 'locationType';
+                tag.onclick = () => toggleFilter(tag, 'locationType', type);
+                locationFilters.appendChild(tag);
+            });
+
+            const settingFilters = document.getElementById('settingFilters');
+            const settings = ['natural', 'manmade', 'magical', 'tomb', 'void', 'water', 'urban', 'wilderness'];
+            
+            settings.forEach(setting => {
+                const tag = document.createElement('div');
+                tag.className = 'filter-tag';
+                tag.textContent = setting.charAt(0).toUpperCase() + setting.slice(1);
+                tag.dataset.filter = setting;
+                tag.dataset.type = 'setting';
+                tag.onclick = () => toggleFilter(tag, 'setting', setting);
+                settingFilters.appendChild(tag);
+            });
+        }
+
+        // Toggle filter
+        function toggleFilter(element, type, value) {
+            element.classList.toggle('active');
+            
+            const index = activeFilters[type].indexOf(value);
+            if (index > -1) {
+                activeFilters[type].splice(index, 1);
+            } else {
+                activeFilters[type].push(value);
+            }
+            
+            performSearch();
+        }
+
+        // Clear filters
+        function clearFilters() {
+            activeFilters = {
+                environment: [],
+                locationType: [],
+                setting: []
+            };
+            
+            document.querySelectorAll('.filter-tag').forEach(tag => {
+                tag.classList.remove('active');
+            });
+            
+            document.getElementById('searchInput').value = '';
+            performSearch();
+        }
+
+        // Perform search
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const results = [];
+
+            // Search encounters
+            for (const [environment, encounters] of Object.entries(encounterTitles)) {
+                encounters.forEach(encounter => {
+                    let matches = true;
+
+                    if (activeFilters.environment.length > 0 && !activeFilters.environment.includes(environment)) {
+                        matches = false;
+                    }
+
+                    if (activeFilters.locationType.length > 0) {
+                        const hasMatchingTag = encounter.tags.some(tag => activeFilters.locationType.includes(tag));
+                        if (!hasMatchingTag) matches = false;
+                    }
+
+                    if (activeFilters.setting.length > 0) {
+                        const hasMatchingTag = encounter.tags.some(tag => activeFilters.setting.includes(tag));
+                        if (!hasMatchingTag) matches = false;
+                    }
+
+                    if (searchTerm) {
+                        const titleMatch = encounter.title.toLowerCase().includes(searchTerm);
+                        const tagMatch = encounter.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+                        const envMatch = environment.toLowerCase().includes(searchTerm);
+                        
+                        if (!titleMatch && !tagMatch && !envMatch) {
+                            matches = false;
+                        }
+                    }
+
+                    if (matches) {
+                        results.push({
+                            type: 'encounter',
+                            title: encounter.title,
+                            environment: environment,
+                            tags: encounter.tags,
+                            description: `An exploration encounter in a ${environment} setting`
+                        });
+                    }
+                });
+            }
+
+            // Search locations
+            for (const [environment, locations] of Object.entries(locationObjects)) {
+                for (const [locationType, locationData] of Object.entries(locations)) {
+                    let matches = true;
+
+                    if (activeFilters.environment.length > 0 && !activeFilters.environment.includes(environment)) {
+                        matches = false;
+                    }
+
+                    if (activeFilters.locationType.length > 0) {
+                        const hasMatchingTag = locationData.tags.some(tag => activeFilters.locationType.includes(tag));
+                        if (!hasMatchingTag) matches = false;
+                    }
+
+                    if (activeFilters.setting.length > 0) {
+                        const hasMatchingTag = locationData.tags.some(tag => activeFilters.setting.includes(tag));
+                        if (!hasMatchingTag) matches = false;
+                    }
+
+                    if (searchTerm) {
+                        const typeMatch = locationType.toLowerCase().includes(searchTerm);
+                        const tagMatch = locationData.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+                        const envMatch = environment.toLowerCase().includes(searchTerm);
+                        const primaryMatch = locationData.primary.some(obj => obj.toLowerCase().includes(searchTerm));
+                        const secondaryMatch = locationData.secondary.some(obj => obj.toLowerCase().includes(searchTerm));
+                        const tertiaryMatch = locationData.tertiary.some(obj => obj.toLowerCase().includes(searchTerm));
+                        
+                        if (!typeMatch && !tagMatch && !envMatch && !primaryMatch && !secondaryMatch && !tertiaryMatch) {
+                            matches = false;
+                        }
+                    }
+
+                    if (matches) {
+                        const totalObjects = locationData.primary.length + locationData.secondary.length + locationData.tertiary.length;
+                        results.push({
+                            type: 'location',
+                            title: `${locationType.charAt(0).toUpperCase() + locationType.slice(1)} (${environment})`,
+                            environment: environment,
+                            locationType: locationType,
+                            tags: locationData.tags,
+                            description: `Explore ${totalObjects} interactable objects across 3 layers of detail`,
+                            objects: locationData.primary.slice(0, 4).join(', ') + '...'
+                        });
+                    }
+                }
+            }
+
+            displaySearchResults(results);
+        }
+
+        // Display search results
+        function displaySearchResults(results) {
+            const container = document.getElementById('searchResults');
+            
+            if (results.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-dark); padding: 40px;">No results found. Try different keywords or filters.</p>';
+                return;
+            }
+
+            let html = `<h2 style="color: var(--accent-color); margin-bottom: 20px;">Found ${results.length} result${results.length !== 1 ? 's' : ''}</h2>`;
+            
+            results.forEach((result, index) => {
+                const typeColor = result.type === 'encounter' ? 'var(--primary-color)' : 'var(--success)';
+                
+                html += `
+                    <div class="result-card">
+                        <div class="result-title">${result.title}</div>
+                        <span class="result-type" style="background: ${typeColor};">${result.type.toUpperCase()}</span>
+                        <span class="result-type" style="background: var(--bg-dark);">${result.environment.toUpperCase()}</span>
+                        <p class="result-description">${result.description}</p>
+                        ${result.objects ? `<p class="result-description"><strong>Sample objects:</strong> ${result.objects}</p>` : ''}
+                        <div class="result-tags">
+                            ${result.tags.map(tag => `<span class="result-tag">${tag}</span>`).join('')}
+                        </div>
+                        <div class="result-actions">
+                            <button class="result-btn preview-btn" onclick='previewResult(${index})'>👁️ Preview</button>
+                            <button class="result-btn open-btn" onclick='openResult(${index})'>📂 Open</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+            window.searchResults = results;
+        }
+
+        // Preview result
+        function previewResult(index) {
+            const result = window.searchResults[index];
+            const modal = document.getElementById('previewModal');
+            const previewBody = document.getElementById('previewBody');
+            
+            let html = `
+                <div class="preview-header">
+                    <div class="preview-title">${result.title}</div>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <span class="result-type" style="background: ${result.type === 'encounter' ? 'var(--primary-color)' : 'var(--success)'};">${result.type.toUpperCase()}</span>
+                        <span class="result-type" style="background: var(--bg-dark);">${result.environment.toUpperCase()}</span>
+                    </div>
+                </div>
+                <div class="preview-body">
+            `;
+            
+            if (result.type === 'encounter') {
+                html += `
+                    <h3 style="color: var(--accent-color); margin-bottom: 15px;">📜 Encounter Overview</h3>
+                    <p style="margin-bottom: 20px;">${result.description}</p>
+                    
+                    <h3 style="color: var(--success); margin-bottom: 15px;">🏷️ Tags</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;">
+                        ${result.tags.map(tag => `<span class="result-tag">${tag}</span>`).join('')}
+                    </div>
+                    
+                    <h3 style="color: var(--warning); margin-bottom: 15px;">🎲 What to Expect</h3>
+                    <ul style="margin-left: 20px; line-height: 2;">
+                        <li>Skill challenges themed to ${result.environment} exploration</li>
+                        <li>Mechanical, magical, or environmental traps</li>
+                        <li>Natural, supernatural, or creature-based hazards</li>
+                        <li>Environmental effects unique to ${result.environment} settings</li>
+                    </ul>
+                    
+                    <div style="margin-top: 30px; text-align: center;">
+                        <button class="open-btn" onclick='closePreview(); openResult(${index});' style="padding: 12px 30px; font-size: 1.1em;">
+                            📂 Open Full Encounter
+                        </button>
+                    </div>
+                `;
+            } else {
+                html += `
+                    <h3 style="color: var(--accent-color); margin-bottom: 15px;">📍 Location Overview</h3>
+                    <p style="margin-bottom: 20px;">${result.description}</p>
+                    
+                    <h3 style="color: var(--success); margin-bottom: 15px;">🏷️ Tags</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;">
+                        ${result.tags.map(tag => `<span class="result-tag">${tag}</span>`).join('')}
+                    </div>
+                    
+                    <h3 style="color: var(--warning); margin-bottom: 15px;">🔍 Sample Objects</h3>
+                    <p style="margin-left: 20px; line-height: 2;">${result.objects}</p>
+                    
+                    <div style="margin-top: 30px; text-align: center;">
+                        <button class="open-btn" onclick='closePreview(); openResult(${index});' style="padding: 12px 30px; font-size: 1.1em;">
+                            📂 Generate This Location
+                        </button>
+                    </div>
+                `;
+            }
+            
+            html += `</div>`;
+            previewBody.innerHTML = html;
+            modal.classList.add('active');
+        }
+
+        // Close preview
+        function closePreview() {
+            document.getElementById('previewModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('previewModal');
+            if (e.target === modal) {
+                closePreview();
+            }
+        });
+
+        // Open result
+        function openResult(index) {
+            const result = window.searchResults[index];
+            
+            if (result.type === 'encounter') {
+                selectedEnvironment = result.environment;
+                
+                document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+                const tag = document.querySelector(`.tag[data-env="${result.environment}"]`);
+                if (tag) tag.classList.add('active');
+                
+                generateEncounter();
+                switchPage('generate');
+                
+                setTimeout(() => {
+                    document.getElementById('encounterDisplay').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            } else if (result.type === 'location') {
+                // Get location data from locationObjects
+                const locationData = locationObjects[result.environment][result.locationType];
+                
+                // Generate room directly
+                generateRoom(result.environment, result.locationType, locationData);
+                switchPage('generate');
+                
+                setTimeout(() => {
+                    document.getElementById('roomDisplay').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }
+
+        // Search input Enter key
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        performSearch();
+                    }
+                });
+            }
+        });
 
         // Environment tag selection
         document.querySelectorAll('.tag').forEach(tag => {
@@ -873,12 +1933,210 @@
                     </ul>
                     <p class="description"><strong>DM Tips:</strong> Exploration encounters work best when players feel clever for overcoming challenges. Reward creative solutions and allow multiple approaches to obstacles. The journey itself should be memorable, not just the destination.</p>
                 </div>
+                
+                <div style="text-align: center; margin-top: 30px; padding: 20px;">
+                    <button onclick="exploreEncounterLocation()" style="background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; border: none; padding: 15px 30px; font-size: 18px; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: all 0.3s ease;">
+                        🗺️ Explore Location
+                    </button>
+                    <p style="margin-top: 10px; color: #666; font-size: 14px;">Dive deeper into a contextual location within this environment</p>
+                </div>
             `;
 
             document.getElementById('encounterContent').innerHTML = html;
             document.getElementById('encounterDisplay').classList.add('active');
             
             // Smooth scroll to encounter
+            document.getElementById('encounterDisplay').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Room exploration variables
+        let currentRoomEnvironment = '';
+        let currentRoomType = '';
+        let currentRoomData = null;
+        let exploredObjects = new Set();
+
+        // Explore location from encounter
+        function exploreEncounterLocation() {
+            // Use current encounter environment or default to urban
+            const environment = selectedEnvironment || 'urban';
+            
+            // Find matching location based on encounter tags if available
+            const matchingLocations = [];
+            
+            for (const [locationType, locationData] of Object.entries(locationObjects[environment])) {
+                matchingLocations.push({ type: locationType, data: locationData });
+            }
+            
+            // Select random matching location
+            const selectedLocation = matchingLocations[Math.floor(Math.random() * matchingLocations.length)];
+            
+            // Generate and display room
+            generateRoom(environment, selectedLocation.type, selectedLocation.data);
+        }
+
+        // Generate room
+        function generateRoom(environment, locationType, locationData) {
+            currentRoomEnvironment = environment;
+            currentRoomType = locationType;
+            currentRoomData = locationData;
+            exploredObjects = new Set();
+            
+            displayRoomView();
+        }
+
+        // Display room view
+        function displayRoomView() {
+            const envIcons = {
+                urban: '🏛️', arctic: '❄️', ocean: '🌊', space: '🌌',
+                crypt: '💀', forest: '🌲', desert: '🏜️', mountain: '⛰️',
+                swamp: '🐊', underground: '🕳️'
+            };
+            
+            const icon = envIcons[currentRoomEnvironment] || '🗺️';
+            const locationName = currentRoomType.charAt(0).toUpperCase() + currentRoomType.slice(1);
+            const environmentName = currentRoomEnvironment.charAt(0).toUpperCase() + currentRoomEnvironment.slice(1);
+            
+            let html = `
+                <div class="encounter-section">
+                    <h1 style="text-align: center; color: #27ae60; margin-bottom: 30px;">
+                        ${icon} Exploring ${locationName} - ${environmentName}
+                    </h1>
+                    <p class="description" style="text-align: center; font-size: 18px; margin-bottom: 30px;">
+                        You carefully examine this location, looking for anything of interest or value.
+                    </p>
+                </div>
+
+                <div class="encounter-section">
+                    <h2>🔍 Primary Objects of Interest</h2>
+                    <p class="description">These are the prominent features and objects that immediately catch your attention:</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 20px;">
+            `;
+            
+            // Display primary objects
+            currentRoomData.primary.forEach((obj, index) => {
+                const isExplored = exploredObjects.has(`primary-${index}`);
+                const buttonStyle = isExplored 
+                    ? 'background: #95a5a6; cursor: not-allowed;' 
+                    : 'background: linear-gradient(135deg, #3498db, #2980b9); cursor: pointer;';
+                const buttonText = isExplored ? '✓ Explored' : '🔍 Examine';
+                
+                html += `
+                    <div style="border: 2px solid #3498db; border-radius: 8px; padding: 15px; background: rgba(52, 152, 219, 0.1);">
+                        <div style="font-weight: bold; margin-bottom: 10px; color: #2c3e50;">${obj}</div>
+                        <button onclick="exploreObject('primary', ${index})" 
+                                style="${buttonStyle} color: white; border: none; padding: 8px 16px; border-radius: 5px; font-size: 14px; width: 100%;"
+                                ${isExplored ? 'disabled' : ''}>
+                            ${buttonText}
+                        </button>
+                    </div>
+                `;
+            });
+            
+            html += `
+                    </div>
+                </div>
+            `;
+            
+            // Show explored secondary objects section if any exist
+            if (exploredObjects.size > 0) {
+                const secondaryObjects = Array.from(exploredObjects)
+                    .filter(id => id.startsWith('primary-'))
+                    .map(id => {
+                        const index = parseInt(id.split('-')[1]);
+                        return currentRoomData.secondary[index];
+                    });
+                
+                if (secondaryObjects.length > 0) {
+                    html += `
+                        <div class="encounter-section">
+                            <h2>🔎 Secondary Details Discovered</h2>
+                            <p class="description">Upon closer inspection, you've discovered these additional details:</p>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 20px;">
+                    `;
+                    
+                    Array.from(exploredObjects)
+                        .filter(id => id.startsWith('primary-'))
+                        .forEach(id => {
+                            const index = parseInt(id.split('-')[1]);
+                            const secondaryObj = currentRoomData.secondary[index];
+                            const isSecondaryExplored = exploredObjects.has(`secondary-${index}`);
+                            const buttonStyle = isSecondaryExplored 
+                                ? 'background: #95a5a6; cursor: not-allowed;' 
+                                : 'background: linear-gradient(135deg, #9b59b6, #8e44ad); cursor: pointer;';
+                            const buttonText = isSecondaryExplored ? '✓ Explored' : '🔍 Examine Closely';
+                            
+                            html += `
+                                <div style="border: 2px solid #9b59b6; border-radius: 8px; padding: 15px; background: rgba(155, 89, 182, 0.1);">
+                                    <div style="font-weight: bold; margin-bottom: 10px; color: #2c3e50;">${secondaryObj}</div>
+                                    <button onclick="exploreObject('secondary', ${index})" 
+                                            style="${buttonStyle} color: white; border: none; padding: 8px 16px; border-radius: 5px; font-size: 14px; width: 100%;"
+                                            ${isSecondaryExplored ? 'disabled' : ''}>
+                                        ${buttonText}
+                                    </button>
+                                </div>
+                            `;
+                        });
+                    
+                    html += `
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                // Show discovered tertiary objects
+                const tertiaryObjects = Array.from(exploredObjects)
+                    .filter(id => id.startsWith('secondary-'))
+                    .map(id => {
+                        const index = parseInt(id.split('-')[1]);
+                        return currentRoomData.tertiary[index];
+                    });
+                
+                if (tertiaryObjects.length > 0) {
+                    html += `
+                        <div class="encounter-section">
+                            <h2>✨ Hidden Discoveries</h2>
+                            <p class="description">Through careful investigation, you've uncovered these hidden elements:</p>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; margin-top: 20px;">
+                    `;
+                    
+                    tertiaryObjects.forEach(obj => {
+                        html += `
+                            <div style="border: 2px solid #f39c12; border-radius: 8px; padding: 15px; background: linear-gradient(135deg, rgba(243, 156, 18, 0.2), rgba(230, 126, 34, 0.1)); box-shadow: 0 0 15px rgba(243, 156, 18, 0.3);">
+                                <div style="font-weight: bold; font-size: 16px; color: #d68910; margin-bottom: 10px;">🏆 ${obj}</div>
+                                <div style="font-size: 13px; color: #7f8c8d; font-style: italic;">Significant discovery! This could be valuable, dangerous, or story-relevant.</div>
+                            </div>
+                        `;
+                    });
+                    
+                    html += `
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            document.getElementById('roomContent').innerHTML = html;
+            document.getElementById('encounterDisplay').classList.remove('active');
+            document.getElementById('roomDisplay').style.display = 'block';
+            document.getElementById('roomDisplay').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Explore object
+        function exploreObject(level, index) {
+            const objectId = `${level}-${index}`;
+            
+            if (exploredObjects.has(objectId)) {
+                return; // Already explored
+            }
+            
+            exploredObjects.add(objectId);
+            displayRoomView(); // Refresh the view to show new discoveries
+        }
+
+        // Return to encounter
+        function returnToEncounter() {
+            document.getElementById('roomDisplay').style.display = 'none';
+            document.getElementById('encounterDisplay').classList.add('active');
             document.getElementById('encounterDisplay').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     </script>
