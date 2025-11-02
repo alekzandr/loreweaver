@@ -1026,6 +1026,108 @@
         "5": {"secondary": 5, "tertiary": 0}
       },
       "description": "Formaldehyde and carbolic acid sting your nose in the chill stone chamber. The playwright lies pale on metal, theatrical makeup now tragic in death. Glass jars hold viscera while the coroner's quill scratches conclusions. Lantern light gleams on steel instruments and the truth they've cut free. All threads lead here, to cold proof and final revelation."
+    },
+    "clocktower_district": {
+      "tags": [
+        "district",
+        "outdoor",
+        "building",
+        "mechanical",
+        "clockwork"
+      ],
+      "primary": [
+        "massive clock gear",
+        "timing mechanism",
+        "brass pendulum",
+        "gear assembly",
+        "maintenance catwalk",
+        "clock face (interior)"
+      ],
+      "secondary": [
+        "oil can",
+        "gear teeth fragment",
+        "timing chart",
+        "adjustment wrench",
+        "synchronization rod",
+        "mechanism blueprint"
+      ],
+      "tertiary": [
+        "chronometer (precision)",
+        "temporal anomaly device",
+        "saboteur's toolkit",
+        "time-keeper's journal",
+        "arcane timing crystal",
+        "guild master's seal"
+      ],
+      "description": "Towering clock faces dominate the skyline while massive brass gears grind their eternal rhythm. The district pulses with mechanical precision—shops open by the chime, workers shift on the hour, and steam vents hiss in synchronized bursts. Maintenance catwalks web between towers where clock-keepers tend their charges. But today the synchronization falters, and the city's temporal heartbeat stutters ominously."
+    },
+    "city_gates": {
+      "tags": [
+        "gate",
+        "outdoor",
+        "street",
+        "checkpoint",
+        "entrance"
+      ],
+      "primary": [
+        "massive iron-bound gates",
+        "guard checkpoint booth",
+        "merchant caravan waiting",
+        "refugee camp forming",
+        "customs inspection station",
+        "wanted poster board"
+      ],
+      "secondary": [
+        "travel permits and papers",
+        "confiscated contraband",
+        "guard duty roster",
+        "merchant manifests",
+        "asylum petition documents",
+        "city watch orders"
+      ],
+      "tertiary": [
+        "shapeshifter detection amulet",
+        "noble's sealed orders",
+        "refugee leader's plea",
+        "smuggler's tunnel map",
+        "guard captain's conscience",
+        "hidden passage key"
+      ],
+      "description": "The great gates loom like judging titans while humanity presses against their authority. Guards in city colors scrutinize every face, every cart, every desperate story. The refugee camp sprawls in chaos beyond the walls while merchant goods rot in the sun. A doomsday prophet's voice rises above the murmur of the crowd, and tension thickens like the dust kicked up by a thousand anxious feet."
+    },
+    "undercity_fight_club": {
+      "tags": [
+        "underground",
+        "combat",
+        "crime",
+        "arena",
+        "brutal"
+      ],
+      "primary": [
+        "blood-stained fighting ring",
+        "roaring crowd on makeshift stands",
+        "betting ledger and coin purse",
+        "fighter waiting in corner",
+        "crime boss's elevated throne",
+        "torch-lit shadows beyond ring"
+      ],
+      "secondary": [
+        "fighter's contract (debt slavery)",
+        "fixed match instructions",
+        "healing poultice and bandages",
+        "underground arena map",
+        "bookie's coded messages",
+        "previous fighter's teeth"
+      ],
+      "tertiary": [
+        "demon summoning circle (hidden)",
+        "sacrificial tally marks",
+        "freedom papers (forged)",
+        "crime syndicate seal",
+        "desperate fighter's family letter",
+        "escape tunnel entrance"
+      ],
+      "description": "The sewer chamber echoes with savage cheers as fists meet flesh under flickering torchlight. Blood spatters the crude ring while desperate fighters trade pain for coin—or freedom, or survival. The crime boss watches from above, fingers drumming on armrests, already counting profits. But in the shadows beyond the crowd, something moves that isn't human, drawn by violence and desperation like a shark to blood."
     }
   },
   "crypt": {
