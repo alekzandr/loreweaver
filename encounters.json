@@ -199,6 +199,206 @@
       ],
       "description": "Crystal chandeliers scatter constellations across the floor while masked patrons trade rumors like coin. The quartet swells, drowning the hiss of silk and the scrape of steel. Behind velvet curtains, you glimpse ledgers and sealed envelopes changing hands as toasts ring. Perfume, wax, and wine sweeten the air while every gaze weighs you.",
       "weight": 1.05
+    },
+    {
+      "title": "The Grand Bazaar",
+      "tags": [
+        "market",
+        "outdoor",
+        "crowd"
+      ],
+      "description": "A sprawling marketplace of colorful tents and bustling crowds, where merchants from distant lands hawk exotic goods. The air is thick with the smells of spices, perfumes, and roasting meats. Amidst the chaos, a pickpocket syndicate operates with impunity, and a mysterious plague is spreading through the city, with the bazaar as its epicenter.",
+      "weight": 1.2
+    },
+    {
+      "title": "The Noble's Gala",
+      "tags": [
+        "ball",
+        "indoor",
+        "nobility"
+      ],
+      "description": "An exclusive gala hosted by a powerful noble family, where the city's elite gather to scheme and socialize. The ballroom glitters with jewels and whispers of political intrigue. A high-stakes card game is taking place in a smoke-filled backroom, and a scorned lover is plotting a very public revenge.",
+      "weight": 1.1
+    },
+    {
+      "title": "The University's Forbidden Section",
+      "tags": [
+        "library",
+        "indoor",
+        "arcane"
+      ],
+      "description": "A restricted area of the city's grand university, where forbidden knowledge is kept under lock and key. The air is thick with the smell of old parchment and the hum of powerful magic. A group of students is attempting to summon a demon, and a mad professor is conducting dangerous experiments with time.",
+      "weight": 1.0
+    },
+    {
+      "title": "The Rooftop Garden",
+      "tags": [
+        "rooftop",
+        "garden",
+        "outdoor"
+      ],
+      "description": "A hidden oasis of green atop a towering building, offering a panoramic view of the city. The air is sweet with the scent of rare flowers and the buzz of honeybees. A secret society of druids tends to the garden, and a pair of star-crossed lovers meets here in secret.",
+      "weight": 0.9
+    },
+    {
+      "title": "The Undercity Fight Club",
+      "tags": [
+        "underground",
+        "combat",
+        "crime"
+      ],
+      "description": "A brutal, no-holds-barred fighting tournament held in the city's sewers. The roar of the crowd is deafening, and the smell of blood and sweat is thick in the air. A desperate fighter is trying to win enough money to save his family, and a ruthless crime boss is fixing the matches.",
+      "weight": 1.3
+    },
+    {
+      "title": "The Public Bathhouse",
+      "tags": [
+        "bathhouse",
+        "social",
+        "indoor"
+      ],
+      "description": "A place of relaxation and gossip for the city's citizens. The steam rooms are filled with whispered secrets, and the massage tables are privy to all sorts of confessions. A corrupt politician is making a deal with a foreign spy, and a serial killer is stalking the bathhouse's patrons.",
+      "weight": 1.0
+    },
+    {
+      "title": "The Grand Theater",
+      "tags": [
+        "theater",
+        "entertainment",
+        "indoor"
+      ],
+      "description": "A magnificent theater where the city's finest actors perform. The stage is set for a tragedy, but the real drama is happening backstage. A jealous understudy is plotting to sabotage the lead actor, and a cursed play is driving the cast and crew to madness.",
+      "weight": 1.1
+    },
+    {
+      "title": "The City Gates",
+      "tags": [
+        "gate",
+        "outdoor",
+        "street"
+      ],
+      "description": "The main entrance to the city, a bustling chokepoint for travelers and trade. The city guard is on high alert, searching for a notorious fugitive. A caravan of refugees is seeking asylum, and a doomsday prophet is preaching to the crowds.",
+      "weight": 1.2
+    },
+    {
+      "title": "The Cemetery",
+      "tags": [
+        "cemetery",
+        "graveyard",
+        "outdoor"
+      ],
+      "description": "A silent city of the dead, where the tombstones tell stories of lives long past. A group of necromancers is performing a dark ritual, and the ghost of a murdered noble is haunting the cemetery, seeking justice.",
+      "weight": 0.9
+    },
+    {
+      "title": "The Courthouse",
+      "tags": [
+        "courthouse",
+        "indoor",
+        "building"
+      ],
+      "description": "A place of law and order, where justice is supposed to be blind. But the scales are tipped in favor of the wealthy and powerful. A corrupt judge is taking bribes, and an innocent person is about to be sentenced to death.",
+      "weight": 1.0
+    },
+    {
+      "title": "The Shady Moneylender",
+      "tags": [
+        "shop",
+        "indoor",
+        "crime"
+      ],
+      "description": "A cramped, dusty shop where a notorious moneylender does business. The air is thick with the smell of old coins and desperation. The moneylender is known for his exorbitant interest rates and his ruthless enforcers. A desperate citizen is pleading for an extension on their loan, and the moneylender is about to make an example of them.",
+      "weight": 1.0
+    },
+    {
+      "title": "The Corrupt Guard Captain",
+      "tags": [
+        "guard",
+        "street",
+        "crime"
+      ],
+      "description": "A decorated captain of the city guard is secretly in the pocket of a powerful crime lord. The captain is meeting with his underworld contact in a seedy tavern to exchange information. A young, idealistic guard has grown suspicious of his captain and is tailing him, hoping to expose his corruption.",
+      "weight": 1.1
+    },
+    {
+      "title": "The Haunted Orphanage",
+      "tags": [
+        "building",
+        "indoor",
+        "haunting"
+      ],
+      "description": "A dilapidated orphanage that is rumored to be haunted by the ghosts of the children who died there. The children's laughter can be heard echoing through the empty halls, and their ghostly figures can be seen playing in the overgrown yard. The headmistress is a cruel woman who is hiding a dark secret about the orphanage's past.",
+      "weight": 0.9
+    },
+    {
+      "title": "The Smuggler's Den",
+      "tags": [
+        "warehouse",
+        "indoor",
+        "crime"
+      ],
+      "description": "A hidden den in the city's bustling port, where a crew of smugglers is unloading a shipment of illegal goods. The air is thick with the smell of saltwater and contraband. The smugglers are on high alert, as they have been tipped off that the city guard is planning a raid.",
+      "weight": 1.2
+    },
+    {
+      "title": "The Rat-Catchers' Guild",
+      "tags": [
+        "guild",
+        "underground",
+        "social"
+      ],
+      "description": "The headquarters of the city's rat-catchers, a grimy and boisterous guildhall located in the sewers. The rat-catchers are a rough-and-tumble bunch, but they are fiercely loyal to their own. They are celebrating a recent victory over a particularly large dire rat, and the ale is flowing freely.",
+      "weight": 0.8
+    },
+    {
+      "title": "The Executioner's Block",
+      "tags": [
+        "street",
+        "outdoor",
+        "crowd"
+      ],
+      "description": "A crowd has gathered in the city square to witness a public execution. The mood is a mixture of morbid curiosity and grim satisfaction. The condemned is a notorious criminal, but some whisper that he is innocent. A daring rescue attempt is about to be made.",
+      "weight": 1.3
+    },
+    {
+      "title": "The Political Rally",
+      "tags": [
+        "street",
+        "outdoor",
+        "crowd"
+      ],
+      "description": "A charismatic politician is addressing a large crowd in the city square, his words stirring up a frenzy of patriotic fervor. But not everyone is a supporter. A group of hecklers is trying to disrupt the rally, and a rival politician has hired an assassin to eliminate the speaker.",
+      "weight": 1.1
+    },
+    {
+      "title": "The Dragon's Breath Tavern",
+      "tags": [
+        "tavern",
+        "indoor",
+        "social"
+      ],
+      "description": "A rowdy tavern frequented by dragon-worshipping cultists. The air is thick with the smell of sulfur and cheap ale. The cultists are trying to recruit new members, and they are not taking no for an answer. A disguised city guard is trying to gather information on the cult's activities.",
+      "weight": 1.0
+    },
+    {
+      "title": "The Alchemist's Guild",
+      "tags": [
+        "guild",
+        "indoor",
+        "arcane"
+      ],
+      "description": "The headquarters of the city's alchemists, a building filled with the bubbling of strange concoctions and the smell of exotic ingredients. The alchemists are a secretive and competitive bunch, and they are all vying to create the next great discovery. An experiment has gone horribly wrong, and a volatile potion is about to explode.",
+      "weight": 1.2
+    },
+    {
+      "title": "The Beggar's Court",
+      "tags": [
+        "street",
+        "outdoor",
+        "social"
+      ],
+      "description": "A hidden courtyard where the city's beggars have formed their own society, with a king, a queen, and a court of jesters and thieves. The Beggar King is a shrewd and charismatic leader who rules his subjects with a firm but fair hand. He is holding court, settling disputes and dispensing justice.",
+      "weight": 0.9
     }
   ],
   "arctic": [
