@@ -1266,6 +1266,38 @@
             margin-bottom: 15px;
             font-size: 1.6em;
             font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            user-select: none;
+            transition: all 0.2s ease;
+        }
+
+        .encounter-section h2:hover {
+            color: var(--accent-blue);
+        }
+
+        .section-toggle {
+            font-size: 0.8em;
+            color: var(--text-secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .section-toggle.collapsed {
+            transform: rotate(-90deg);
+        }
+
+        .section-content {
+            max-height: 5000px;
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            opacity: 1;
+        }
+
+        .section-content.collapsed {
+            max-height: 0;
+            opacity: 0;
         }
 
         .encounter-section h3 {
@@ -2666,14 +2698,17 @@
             // Build HTML
             let html = `
                 <div class="encounter-section">
-                    <h2>📜 ${title}</h2>
-                    <p class="description">${description}</p>
-                    <p class="description"><strong>Environment:</strong> ${selectedEnvironment.charAt(0).toUpperCase() + selectedEnvironment.slice(1)} | <strong>Recommended Party Level:</strong> ${partyLevel}</p>
+                    <h2 onclick="toggleSection(event)">📜 ${title} <span class="section-toggle">▼</span></h2>
+                    <div class="section-content">
+                        <p class="description">${description}</p>
+                        <p class="description"><strong>Environment:</strong> ${selectedEnvironment.charAt(0).toUpperCase() + selectedEnvironment.slice(1)} | <strong>Recommended Party Level:</strong> ${partyLevel}</p>
+                    </div>
                 </div>
 
                 <div class="encounter-section">
-                    <h2>🎯 Skill Challenges</h2>
-                    <p class="description">These skill checks form the core of the exploration encounter. Players must overcome these challenges to successfully navigate the environment.</p>
+                    <h2 onclick="toggleSection(event)">🎯 Skill Challenges <span class="section-toggle">▼</span></h2>
+                    <div class="section-content">
+                        <p class="description">These skill checks form the core of the exploration encounter. Players must overcome these challenges to successfully navigate the environment.</p>
             `;
 
             selectedSkills.forEach(skill => {
@@ -2691,7 +2726,7 @@
                 `;
             });
 
-            html += `</div>`;
+            html += `</div></div>`;
 
             // Encounter Flow
             if (encounterFlow && encounterFlow.length > 0) {
@@ -2704,9 +2739,10 @@
                 
                 html += `
                     <div class="encounter-section">
-                        <h2>🔄 Encounter Flow & Narrative Path</h2>
-                        <p class="description">This suggested flow helps guide the party through the encounter. <strong>Click any location name</strong> to view its details in the side panel.</p>
-                        <div style="position: relative; margin-top: 25px;">
+                        <h2 onclick="toggleSection(event)">🔄 Encounter Flow & Narrative Path <span class="section-toggle">▼</span></h2>
+                        <div class="section-content">
+                            <p class="description">This suggested flow helps guide the party through the encounter. <strong>Click any location name</strong> to view its details in the side panel.</p>
+                            <div style="position: relative; margin-top: 25px;">
                 `;
 
                 encounterFlow.forEach((step, index) => {
@@ -2812,7 +2848,7 @@
 
                 html += `
                         </div>
-                    </div>
+                    </div></div>
                 `;
             }
 
@@ -2820,8 +2856,9 @@
             if (encounterNPCs.length > 0) {
                 html += `
                     <div class="encounter-section">
-                        <h2>👥 NPCs in this Encounter</h2>
-                        <p class="description">These NPCs are present in this location and may interact with the party. They can provide information, assistance, or complications depending on how the party approaches them.</p>
+                        <h2 onclick="toggleSection(event)">👥 NPCs in this Encounter <span class="section-toggle">▼</span></h2>
+                        <div class="section-content">
+                            <p class="description">These NPCs are present in this location and may interact with the party. They can provide information, assistance, or complications depending on how the party approaches them.</p>
                 `;
 
                 encounterNPCs.forEach((npc, index) => {
@@ -2865,15 +2902,16 @@
                     `;
                 });
 
-                html += `</div>`;
+                html += `</div></div>`;
             }
 
             // Locations
             if (encounterLocations.length > 0) {
                 html += `
                     <div class="encounter-section">
-                        <h2>🗺️ Key Locations</h2>
-                        <p class="description">These locations are part of this encounter area. <strong>Click any location name</strong> to view full details in the side panel.</p>
+                        <h2 onclick="toggleSection(event)">🗺️ Key Locations <span class="section-toggle">▼</span></h2>
+                        <div class="section-content">
+                            <p class="description">These locations are part of this encounter area. <strong>Click any location name</strong> to view full details in the side panel.</p>
                 `;
 
                 encounterLocations.forEach((location, index) => {
@@ -2929,15 +2967,16 @@
                     `;
                 });
 
-                html += `</div>`;
+                html += `</div></div>`;
             }
 
             // Traps
             if (selectedTraps.length > 0) {
                 html += `
                     <div class="encounter-section">
-                        <h2>⚠️ Traps</h2>
-                        <p class="description">Hidden dangers that require careful detection and disarming.</p>
+                        <h2 onclick="toggleSection(event)">⚠️ Traps <span class="section-toggle">▼</span></h2>
+                        <div class="section-content">
+                            <p class="description">Hidden dangers that require careful detection and disarming.</p>
                 `;
 
                 selectedTraps.forEach(trap => {
@@ -2958,14 +2997,15 @@
                     `;
                 });
 
-                html += `</div>`;
+                html += `</div></div>`;
             }
 
             // Hazards
             html += `
                 <div class="encounter-section">
-                    <h2>💥 Environmental Hazards</h2>
-                    <p class="description">Natural or environmental dangers that affect the encounter area.</p>
+                    <h2 onclick="toggleSection(event)">💥 Environmental Hazards <span class="section-toggle">▼</span></h2>
+                    <div class="section-content">
+                        <p class="description">Natural or environmental dangers that affect the encounter area.</p>
             `;
 
             selectedHazards.forEach(hazard => {
@@ -2980,13 +3020,14 @@
                 `;
             });
 
-            html += `</div>`;
+            html += `</div></div>`;
 
             // Environmental Effects
             html += `
                 <div class="encounter-section">
-                    <h2>🌪️ Environmental Effects</h2>
-                    <p class="description">Persistent conditions that affect the entire encounter area.</p>
+                    <h2 onclick="toggleSection(event)">🌪️ Environmental Effects <span class="section-toggle">▼</span></h2>
+                    <div class="section-content">
+                        <p class="description">Persistent conditions that affect the entire encounter area.</p>
             `;
 
             selectedEffects.forEach(effect => {
@@ -2998,13 +3039,14 @@
                 `;
             });
 
-            html += `</div>`;
+            html += `</div></div>`;
 
             // Scaling Notes
             html += `
                 <div class="encounter-section">
-                    <h2>⚖️ Level Scaling Guide</h2>
-                    <p class="description">Adjust the encounter difficulty based on your party's level:</p>
+                    <h2 onclick="toggleSection(event)">⚖️ Level Scaling Guide <span class="section-toggle">▼</span></h2>
+                    <div class="section-content">
+                        <p class="description">Adjust the encounter difficulty based on your party's level:</p>
             `;
 
             scalingNotes.forEach(note => {
@@ -3026,22 +3068,24 @@
                             <li>Time pressure can increase difficulty without changing numbers</li>
                         </ul>
                     </div>
-                </div>
+                </div></div>
             `;
 
             // Rewards and Conclusion
             html += `
                 <div class="encounter-section">
-                    <h2>🏆 Resolution & Rewards</h2>
-                    <p class="description"><strong>Success Criteria:</strong> The party successfully navigates the primary hazards and completes the exploration objective.</p>
-                    <p class="description"><strong>Rewards:</strong></p>
-                    <ul>
-                        <li>Experience points appropriate for a medium difficulty exploration encounter</li>
-                        <li>Knowledge of the area that may prove useful later</li>
-                        <li>Possible discovery of treasure, secrets, or story clues</li>
-                        <li>Reputation or favor with relevant factions</li>
-                    </ul>
-                    <p class="description"><strong>DM Tips:</strong> Exploration encounters work best when players feel clever for overcoming challenges. Reward creative solutions and allow multiple approaches to obstacles. The journey itself should be memorable, not just the destination.</p>
+                    <h2 onclick="toggleSection(event)">🏆 Resolution & Rewards <span class="section-toggle">▼</span></h2>
+                    <div class="section-content">
+                        <p class="description"><strong>Success Criteria:</strong> The party successfully navigates the primary hazards and completes the exploration objective.</p>
+                        <p class="description"><strong>Rewards:</strong></p>
+                        <ul>
+                            <li>Experience points appropriate for a medium difficulty exploration encounter</li>
+                            <li>Knowledge of the area that may prove useful later</li>
+                            <li>Possible discovery of treasure, secrets, or story clues</li>
+                            <li>Reputation or favor with relevant factions</li>
+                        </ul>
+                        <p class="description"><strong>DM Tips:</strong> Exploration encounters work best when players feel clever for overcoming challenges. Reward creative solutions and allow multiple approaches to obstacles. The journey itself should be memorable, not just the destination.</p>
+                    </div>
                 </div>
                 
                 <div style="text-align: center; margin-top: 30px; padding: 20px;">
@@ -3502,6 +3546,20 @@
             
             // Update toggle icon
             toggle.textContent = navigator.classList.contains('active') ? '◀' : '▶';
+        }
+
+        // Section collapse/expand functionality
+        function toggleSection(event) {
+            // Get the h2 element that was clicked
+            const header = event.currentTarget;
+            const section = header.closest('.encounter-section');
+            const content = section.querySelector('.section-content');
+            const toggle = header.querySelector('.section-toggle');
+            
+            if (content) {
+                content.classList.toggle('collapsed');
+                toggle.classList.toggle('collapsed');
+            }
         }
 
         function populateFlowNavigator(flowSteps) {
