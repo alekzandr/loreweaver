@@ -847,7 +847,7 @@
       "tertiary": ["a hidden entrance to the city's underbelly", "a magical fountain that grants wishes", "a statue that comes to life at night", "a secret message hidden on the notice board", "a plot to assassinate a public figure during a speech", "a portal to another dimension that opens at a specific time"]
     },
     "asylum": {
-      "tags": ["asylum", "indoor",- "haunting", "medical"],
+      "tags": ["asylum", "indoor", "haunting", "medical"],
       "description": "A grim and foreboding institution where the city's mad are locked away. The air is thick with the smell of disinfectant and despair. The inmates are a mix of the truly insane and those who have been locked away for political reasons.",
       "primary": ["cells with barred windows", "a common room with heavily sedated patients", "a treatment room with strange and cruel-looking devices", "a padded cell for the most violent patients", "a garden where the patients are allowed to walk", "a chapel where the patients pray for salvation"],
       "secondary": ["a patient who is faking their madness to hide from their enemies", "a doctor who is conducting cruel experiments on the patients", "a ghost of a former patient who haunts the asylum", "a secret passage used by the staff to smuggle in contraband", "a patient who has a prophetic vision", "a group of patients who are planning a breakout"],

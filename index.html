@@ -1098,6 +1098,77 @@
             color: var(--accent-blue);
         }
 
+        .save-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .save-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .load-btn {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border: 1px solid #667eea;
+        }
+
+        .load-btn:hover {
+            background: rgba(102, 126, 234, 0.2);
+        }
+
+        .saved-encounter-item {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        [data-theme="dark"] .saved-encounter-item {
+            background: rgba(58, 58, 60, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .saved-encounter-item:hover {
+            background: rgba(0, 122, 255, 0.1);
+            border-color: var(--accent-blue);
+            transform: translateX(5px);
+        }
+
+        .saved-encounter-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .saved-encounter-meta {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-saved-btn {
+            padding: 4px 8px;
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid #e74c3c;
+            border-radius: 6px;
+            color: #e74c3c;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: all 0.2s ease;
+        }
+
+        .delete-saved-btn:hover {
+            background: #e74c3c;
+            color: white;
+        }
+
         [data-theme="dark"] .preview-btn:hover {
             background: rgba(10, 132, 255, 0.2);
         }
@@ -2668,6 +2739,379 @@
             return tips[profession] || 'provide information relevant to their profession';
         }
 
+        // Save current encounter to localStorage
+        function saveCurrentEncounter() {
+            if (!window.encounterTemplate) {
+                alert('No encounter to save!');
+                return;
+            }
+
+            const encounterName = prompt('Enter a name for this encounter:', window.encounterTemplate.title);
+            if (!encounterName) return;
+
+            const savedEncounter = {
+                name: encounterName,
+                timestamp: new Date().toISOString(),
+                data: {
+                    template: window.encounterTemplate,
+                    environment: window.encounterEnvironment,
+                    partyLevel: window.encounterPartyLevel,
+                    locations: window.encounterLocationsData,
+                    npcs: window.encounterNPCsData,
+                    skillChecks: window.encounterSkillChecks,
+                    traps: window.encounterTraps,
+                    hazards: window.encounterHazards,
+                    effects: window.encounterEffects,
+                    flow: window.encounterFlowData
+                }
+            };
+
+            // Get existing saved encounters
+            const saved = JSON.parse(localStorage.getItem('savedEncounters') || '[]');
+            saved.push(savedEncounter);
+            localStorage.setItem('savedEncounters', JSON.stringify(saved));
+
+            alert(`✅ Encounter "${encounterName}" saved successfully!`);
+        }
+
+        // Show saved encounters modal
+        function showSavedEncounters() {
+            const saved = JSON.parse(localStorage.getItem('savedEncounters') || '[]');
+            
+            if (saved.length === 0) {
+                alert('No saved encounters yet!');
+                return;
+            }
+
+            let html = `
+                <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.7); z-index: 10000; display: flex; align-items: center; justify-content: center;" onclick="this.remove()">
+                    <div style="background: var(--bg-primary); border-radius: 20px; padding: 30px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);" onclick="event.stopPropagation()">
+                        <h2 style="margin-top: 0; color: var(--text-primary);">📂 Saved Encounters</h2>
+                        <div style="margin-top: 20px;">
+            `;
+
+            saved.forEach((encounter, index) => {
+                const date = new Date(encounter.timestamp);
+                const formattedDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+                
+                html += `
+                    <div class="saved-encounter-item">
+                        <div class="saved-encounter-title">${encounter.name}</div>
+                        <div class="saved-encounter-meta">
+                            <span>🗓️ ${formattedDate} | 📍 ${encounter.data.environment} | ⚔️ Level ${encounter.data.partyLevel}</span>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="result-btn preview-btn" onclick="loadSavedEncounter(${index});" style="padding: 6px 12px;">Load</button>
+                                <button class="delete-saved-btn" onclick="deleteSavedEncounter(${index});">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                        </div>
+                        <button class="result-btn preview-btn" onclick="this.closest('[style*=fixed]').remove()" style="margin-top: 20px; width: 100%;">Close</button>
+                    </div>
+                </div>
+            `;
+
+            document.body.insertAdjacentHTML('beforeend', html);
+        }
+
+        // Load a saved encounter
+        function loadSavedEncounter(index) {
+            console.log('🔄 Loading encounter at index:', index);
+            
+            const saved = JSON.parse(localStorage.getItem('savedEncounters') || '[]');
+            console.log('📦 Total saved encounters:', saved.length);
+            
+            if (!saved[index]) {
+                alert('Encounter not found!');
+                return;
+            }
+
+            if (!dataLoaded) {
+                alert('Data is still loading. Please wait a moment and try again.');
+                return;
+            }
+
+            const encounter = saved[index];
+            const data = encounter.data;
+            
+            console.log('📝 Loading encounter:', encounter.name);
+            console.log('📊 Encounter data:', data);
+
+            // Restore all encounter data to global variables
+            window.encounterTemplate = data.template;
+            window.encounterEnvironment = data.environment;
+            window.encounterPartyLevel = data.partyLevel;
+            window.encounterLocationsData = data.locations;
+            window.encounterNPCsData = data.npcs;
+            window.encounterSkillChecks = data.skillChecks;
+            window.encounterTraps = data.traps;
+            window.encounterHazards = data.hazards;
+            window.encounterEffects = data.effects;
+            window.encounterFlowData = data.flow;
+
+            // Update UI (only if elements exist)
+            const environmentSelect = document.getElementById('environment');
+            const partyLevelSelect = document.getElementById('partyLevel');
+            if (environmentSelect) environmentSelect.value = data.environment;
+            if (partyLevelSelect) partyLevelSelect.value = data.partyLevel;
+
+            console.log('🔨 Rebuilding encounter display...');
+
+            // Rebuild the encounter HTML with the loaded data
+            rebuildEncounterDisplay();
+
+            // Close the modal
+            const modal = document.querySelector('[style*="position: fixed"]');
+            if (modal) {
+                modal.remove();
+                console.log('✅ Modal closed');
+            }
+
+            console.log('✅ Loaded encounter:', encounter.name);
+        }
+
+        // Delete a saved encounter
+        function deleteSavedEncounter(index) {
+            if (!confirm('Are you sure you want to delete this saved encounter?')) {
+                return;
+            }
+
+            let saved = JSON.parse(localStorage.getItem('savedEncounters') || '[]');
+            
+            if (index < 0 || index >= saved.length) {
+                alert('Error: Invalid encounter index');
+                return;
+            }
+            
+            saved.splice(index, 1);
+            localStorage.setItem('savedEncounters', JSON.stringify(saved));
+            
+            console.log('✅ Encounter deleted. Remaining:', saved.length);
+            
+            // Close the current modal
+            const modal = document.querySelector('[style*="position: fixed"]');
+            if (modal) {
+                modal.remove();
+            }
+            
+            // Refresh the saved list from localStorage
+            const updatedSaved = JSON.parse(localStorage.getItem('savedEncounters') || '[]');
+            
+            // Show the updated list if there are still saved encounters
+            if (updatedSaved.length > 0) {
+                // Small delay to ensure modal is removed before showing new one
+                setTimeout(() => {
+                    showSavedEncounters();
+                }, 100);
+            }
+        }
+
+        // Rebuild encounter display from loaded data
+        function rebuildEncounterDisplay() {
+            try {
+                const template = window.encounterTemplate;
+                const selectedEnvironment = window.encounterEnvironment;
+                const partyLevel = window.encounterPartyLevel;
+                const encounterLocations = window.encounterLocationsData;
+                const encounterNPCs = window.encounterNPCsData;
+                const selectedSkills = window.encounterSkillChecks;
+                const selectedTraps = window.encounterTraps;
+                const selectedHazards = window.encounterHazards;
+                const selectedEffects = window.encounterEffects;
+                const encounterFlow = window.encounterFlowData;
+
+                if (!template) {
+                    console.error('Missing template data');
+                    alert('Error loading encounter: Missing template data');
+                    return;
+                }
+
+                const title = template.title;
+                const description = buildEncounterDescription(selectedEnvironment, title, template.description);
+                const scalingNotes = getScalingNotes(partyLevel);
+
+            // Build HTML (same as generateEncounter)
+            let html = `
+                <div class="encounter-section">
+                    <h2 onclick="toggleSection(event)">📜 ${title} <span class="section-toggle">▼</span></h2>
+                    <div class="section-content">
+                        <p class="description">${description}</p>
+                        <p class="description"><strong>Environment:</strong> ${selectedEnvironment.charAt(0).toUpperCase() + selectedEnvironment.slice(1)} | <strong>Recommended Party Level:</strong> ${partyLevel}</p>
+                        <div style="margin-top: 15px; display: flex; gap: 10px;">
+                            <button class="save-btn result-btn" onclick="saveCurrentEncounter()">💾 Save Encounter</button>
+                            <button class="load-btn result-btn" onclick="showSavedEncounters()">📂 Load Saved</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Encounter Flow
+            if (encounterFlow && encounterFlow.length > 0) {
+                populateFlowNavigator(encounterFlow);
+
+                html += `
+                    <div class="encounter-section">
+                        <h2 onclick="toggleSection(event)">🎭 Encounter Flow <span class="section-toggle">▼</span></h2>
+                        <div class="section-content">
+                            <p class="description">This encounter unfolds across ${encounterFlow.length} key locations, each with unique challenges and discoveries.</p>
+                            <div id="flowStepsContainer">
+                `;
+
+                encounterFlow.forEach((step, index) => {
+                    html += `
+                        <div class="flow-step" style="position: relative; padding-right: 40px;">
+                            <button onclick="regenerateFlowLocation(${step.step})" 
+                                    style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: var(--accent-blue); padding: 4px; cursor: pointer; font-size: 1.2em; line-height: 1; width: auto; min-width: 0;"
+                                    title="Regenerate this location">
+                                🔄
+                            </button>
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                <div class="flow-number">${step.step}</div>
+                                <div>
+                                    <h3 style="margin: 0; padding-right: 40px;">${step.title}</h3>
+                                    ${step.location ? `<p style="margin: 5px 0 0 0; color: var(--text-secondary); font-size: 0.9em;">📍 <span class="location-link" onclick="showLocationDetail('${step.location.key}')">${step.location.name}</span></p>` : ''}
+                                </div>
+                            </div>
+                            <p class="description">${step.description}</p>
+                            ${step.connections && step.connections.length > 0 ? `
+                                <div style="margin-top: 10px; padding: 10px; background: rgba(0, 122, 255, 0.05); border-left: 3px solid var(--accent-blue); border-radius: 4px;">
+                                    <strong style="color: var(--accent-blue);">🔗 Connections:</strong>
+                                    <ul style="margin: 5px 0; padding-left: 20px;">
+                                        ${step.connections.map(conn => `<li>${conn}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            ` : ''}
+                            ${step.dmTips && step.dmTips.length > 0 ? `
+                                <div style="margin-top: 10px; padding: 10px; background: rgba(255, 149, 0, 0.05); border-left: 3px solid #ff9500; border-radius: 4px;">
+                                    <strong style="color: #ff9500;">💡 DM Tips:</strong>
+                                    <ul style="margin: 5px 0; padding-left: 20px;">
+                                        ${step.dmTips.map(tip => `<li>${tip}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                });
+
+                html += `
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // NPCs section
+            if (encounterNPCs && encounterNPCs.length > 0) {
+                html += `
+                    <div class="encounter-section">
+                        <h2 onclick="toggleSection(event)">👥 NPCs & Key Figures <span class="section-toggle">▼</span></h2>
+                        <div class="section-content" id="npcsContainer">
+                `;
+
+                encounterNPCs.forEach((npc, index) => {
+                    html += `
+                        <div class="npc-card" style="position: relative; padding-right: 40px;">
+                            <button onclick="regenerateNPC(${index})" 
+                                    style="position: absolute; top: 15px; right: 15px; background: transparent; border: none; color: var(--accent-blue); padding: 4px; cursor: pointer; font-size: 1.2em; line-height: 1; width: auto; min-width: 0;"
+                                    title="Regenerate this NPC">
+                                🔄
+                            </button>
+                            <h3 style="margin-top: 0; color: var(--text-primary); padding-right: 40px;">
+                                ${npc.name}
+                            </h3>
+                            <p style="font-size: 1.1em; color: var(--text-secondary); margin: 5px 0;">
+                                ${npc.species.charAt(0).toUpperCase() + npc.species.slice(1)} ${npc.profession.name}
+                            </p>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 15px 0;">
+                                <div>
+                                    <strong style="color: var(--accent-blue);">Alignment:</strong>
+                                    <p class="description" style="margin: 5px 0;">${npc.alignment.name}</p>
+                                </div>
+                                <div>
+                                    <strong style="color: var(--accent-blue);">Personality:</strong>
+                                    <p class="description" style="margin: 5px 0;">${npc.personality.trait}</p>
+                                </div>
+                            </div>
+                            
+                            <div style="margin: 10px 0;">
+                                <strong style="color: var(--accent-blue);">Appearance:</strong>
+                                <p class="description" style="margin: 5px 0;">${npc.appearance.description}</p>
+                            </div>
+                            
+                            <div style="background: rgba(255, 149, 0, 0.1); border-left: 3px solid #ff9500; padding: 10px; margin: 10px 0; border-radius: 4px;">
+                                <strong style="color: #ff9500;">🔒 Secret (DM Only):</strong>
+                                <p class="description" style="margin: 5px 0;">${npc.secret.secret}</p>
+                            </div>
+                            
+                            <div style="margin-top: 10px;">
+                                <strong style="color: var(--accent-blue);">Roleplaying Tips:</strong>
+                                <ul style="margin: 5px 0; padding-left: 20px;">
+                                    <li>As a ${npc.profession.name.toLowerCase()}, they may ${getProfessionRoleTip(npc.profession.name)}</li>
+                                    <li>Their ${npc.personality.trait.toLowerCase()} personality will affect how they respond to the party</li>
+                                    <li>They could provide information about ${template.tags[0] || 'the area'} if properly approached</li>
+                                </ul>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `</div></div>`;
+            }
+
+            // Scaling Notes
+            html += `
+                <div class="encounter-section">
+                    <h2 onclick="toggleSection(event)">⚖️ Level Scaling Guide <span class="section-toggle">▼</span></h2>
+                    <div class="section-content">
+                        <p class="description">Adjust the encounter difficulty based on your party's level:</p>
+            `;
+
+            scalingNotes.forEach(note => {
+                html += `
+                    <div class="scaling-note">
+                        <div class="scaling-level">${note.level}</div>
+                        <div>
+                            <p class="description" style="margin: 5px 0;">${note.adjustment}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                    </div>
+                </div>
+            `;
+
+            // Display
+            const encounterDisplay = document.getElementById('encounterDisplay');
+            const encounterContent = document.getElementById('encounterContent');
+            
+            if (!encounterContent) {
+                console.error('encounterContent element not found');
+                alert('Error: Display element not found. Please refresh the page.');
+                return;
+            }
+            
+            encounterContent.innerHTML = html;
+            encounterDisplay.style.display = 'block';
+            
+            const generatorForm = document.querySelector('.controls');
+            if (generatorForm) {
+                generatorForm.style.display = 'none';
+            }
+
+            console.log('✅ Encounter display rebuilt from loaded data');
+            } catch (error) {
+                console.error('Error rebuilding encounter display:', error);
+                alert('Error loading encounter: ' + error.message);
+            }
+        }
+
         function buildEncounterDescription(environment, title, customDescription) {
             // If a custom description is provided (from encounters.json), use it
             if (customDescription) {
@@ -2965,6 +3409,10 @@
                     <div class="section-content">
                         <p class="description">${description}</p>
                         <p class="description"><strong>Environment:</strong> ${selectedEnvironment.charAt(0).toUpperCase() + selectedEnvironment.slice(1)} | <strong>Recommended Party Level:</strong> ${partyLevel}</p>
+                        <div style="margin-top: 15px; display: flex; gap: 10px;">
+                            <button class="save-btn result-btn" onclick="saveCurrentEncounter()">💾 Save Encounter</button>
+                            <button class="load-btn result-btn" onclick="showSavedEncounters()">📂 Load Saved</button>
+                        </div>
                     </div>
                 </div>
             `;
