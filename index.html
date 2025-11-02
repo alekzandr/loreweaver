@@ -233,8 +233,83 @@
             box-shadow: 0 6px 16px rgba(0, 122, 255, 0.4);
         }
 
+        [data-theme="dark"] button:hover {
+            background: #0077ed;
+        }
+
         button:active {
             transform: translateY(0);
+        }
+
+        /* Button Variants */
+        .btn-success {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+        }
+
+        .btn-success:hover {
+            background: linear-gradient(135deg, #27ae60, #229954);
+            box-shadow: 0 6px 16px rgba(46, 204, 113, 0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+        }
+
+        .btn-danger:hover {
+            background: linear-gradient(135deg, #c0392b, #a93226);
+            box-shadow: 0 6px 16px rgba(231, 76, 60, 0.4);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2980b9, #21618c);
+            box-shadow: 0 6px 16px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            box-shadow: 0 4px 12px rgba(155, 89, 182, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #8e44ad, #7d3c98);
+            box-shadow: 0 6px 16px rgba(155, 89, 182, 0.4);
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9em;
+            width: auto;
+        }
+
+        .btn-medium {
+            padding: 12px 24px;
+            font-size: 1em;
+            width: auto;
+        }
+
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 1.1em;
+        }
+
+        button:disabled,
+        button.disabled {
+            background: #95a5a6 !important;
+            cursor: not-allowed !important;
+            opacity: 0.6;
+            box-shadow: none !important;
+        }
+
+        button:disabled:hover,
+        button.disabled:hover {
+            transform: none !important;
         }
 
         .nav-tabs {
@@ -375,6 +450,13 @@
             transition: all 0.2s ease;
             font-size: 0.9em;
             font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        [data-theme="dark"] .filter-tag {
+            background: rgba(58, 58, 60, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
         }
 
         .filter-tag:hover {
@@ -386,8 +468,12 @@
         .filter-tag.active {
             background: var(--accent-blue);
             border-color: var(--accent-blue);
-            color: white;
+            color: white !important;
             box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+        }
+
+        [data-theme="dark"] .filter-tag.active {
+            box-shadow: 0 2px 8px rgba(10, 132, 255, 0.4);
         }
 
         /* Settings Page */
@@ -497,8 +583,8 @@
         }
 
         [data-theme="dark"] .result-card {
-            background: rgba(58, 58, 60, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(28, 28, 30, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .result-card:hover {
@@ -508,8 +594,9 @@
         }
 
         [data-theme="dark"] .result-card:hover {
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-            border-color: rgba(10, 132, 255, 0.4);
+            background: rgba(28, 28, 30, 0.95);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            border-color: rgba(10, 132, 255, 0.5);
         }
 
         .result-title {
@@ -634,6 +721,12 @@
             animation: slideUp 0.3s ease;
         }
 
+        [data-theme="dark"] .preview-content {
+            background: rgba(28, 28, 30, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
         @keyframes slideUp {
             from {
                 opacity: 0;
@@ -664,9 +757,17 @@
             justify-content: center;
         }
 
+        [data-theme="dark"] .preview-close {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
         .preview-close:hover {
             background: rgba(0, 0, 0, 0.2);
             transform: scale(1.1);
+        }
+
+        [data-theme="dark"] .preview-close:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .preview-header {
@@ -942,7 +1043,7 @@
 
             <!-- Room Display -->
             <div class="room-display" id="roomDisplay" style="display: none;">
-                <button onclick="returnToEncounter()" style="background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; border: none; padding: 12px 24px; margin: 20px; font-size: 16px; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+                <button onclick="returnToEncounter()" class="btn-danger btn-medium">
                     ← Back to Encounter
                 </button>
                 <div id="roomContent"></div>
@@ -952,7 +1053,10 @@
         <!-- NPC Generator Page -->
         <div id="npcPage" class="page-content" style="display: none;">
             <div class="controls">
-                <h2 style="margin-bottom: 20px; color: var(--text-primary);">👤 NPC Generator</h2>
+                <h2 style="margin-bottom: 10px; color: var(--text-primary);">👤 NPC Generator</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 0.95em;">
+                    Choose specific traits or leave as "Random" for a surprise character!
+                </p>
                 
                 <div class="control-group">
                     <label for="npcSpecies">Species:</label>
@@ -967,6 +1071,91 @@
                         <option value="gnome">Gnome</option>
                         <option value="half-elf">Half-Elf</option>
                         <option value="half-orc">Half-Orc</option>
+                        <option value="genasi">Genasi</option>
+                        <option value="aasimar">Aasimar</option>
+                        <option value="goliath">Goliath</option>
+                        <option value="kenku">Kenku</option>
+                        <option value="kobold">Kobold</option>
+                        <option value="harengon">Harengon</option>
+                        <option value="satyr">Satyr</option>
+                        <option value="shadow-fey">Shadow Fey</option>
+                        <option value="shifter">Shifter</option>
+                        <option value="yuan-ti">Yuan-Ti</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="npcProfession">Profession:</label>
+                    <select id="npcProfession">
+                        <option value="random">Random</option>
+                        <option value="Blacksmith">Blacksmith</option>
+                        <option value="Merchant">Merchant</option>
+                        <option value="Innkeeper">Innkeeper</option>
+                        <option value="Guard">Guard</option>
+                        <option value="Farmer">Farmer</option>
+                        <option value="Alchemist">Alchemist</option>
+                        <option value="Cleric">Cleric</option>
+                        <option value="Wizard">Wizard</option>
+                        <option value="Thief">Thief</option>
+                        <option value="Bard">Bard</option>
+                        <option value="Sailor">Sailor</option>
+                        <option value="Hunter">Hunter</option>
+                        <option value="Scholar">Scholar</option>
+                        <option value="Noble">Noble</option>
+                        <option value="Beggar">Beggar</option>
+                        <option value="Artisan">Artisan</option>
+                        <option value="Soldier">Soldier</option>
+                        <option value="Herbalist">Herbalist</option>
+                        <option value="Gambler">Gambler</option>
+                        <option value="Priest">Priest</option>
+                        <option value="Assassin">Assassin</option>
+                        <option value="Spy">Spy</option>
+                        <option value="Gladiator">Gladiator</option>
+                        <option value="Cartographer">Cartographer</option>
+                        <option value="Fortune Teller">Fortune Teller</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="npcAlignment">Alignment:</label>
+                    <select id="npcAlignment">
+                        <option value="random">Random</option>
+                        <option value="Lawful Good">Lawful Good</option>
+                        <option value="Neutral Good">Neutral Good</option>
+                        <option value="Chaotic Good">Chaotic Good</option>
+                        <option value="Lawful Neutral">Lawful Neutral</option>
+                        <option value="True Neutral">True Neutral</option>
+                        <option value="Chaotic Neutral">Chaotic Neutral</option>
+                        <option value="Lawful Evil">Lawful Evil</option>
+                        <option value="Neutral Evil">Neutral Evil</option>
+                        <option value="Chaotic Evil">Chaotic Evil</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="npcPersonality">Personality:</label>
+                    <select id="npcPersonality">
+                        <option value="random">Random</option>
+                        <option value="Argumentative and stubborn">Argumentative and stubborn</option>
+                        <option value="Cheerful and optimistic">Cheerful and optimistic</option>
+                        <option value="Curious and inquisitive">Curious and inquisitive</option>
+                        <option value="Cynical and distrustful">Cynical and distrustful</option>
+                        <option value="Friendly and helpful">Friendly and helpful</option>
+                        <option value="Greedy and materialistic">Greedy and materialistic</option>
+                        <option value="Honest and forthright">Honest and forthright</option>
+                        <option value="Humble and modest">Humble and modest</option>
+                        <option value="Impulsive and reckless">Impulsive and reckless</option>
+                        <option value="Lazy and unmotivated">Lazy and unmotivated</option>
+                        <option value="Melancholic and brooding">Melancholic and brooding</option>
+                        <option value="Nervous and anxious">Nervous and anxious</option>
+                        <option value="Proud and arrogant">Proud and arrogant</option>
+                        <option value="Quiet and observant">Quiet and observant</option>
+                        <option value="Sarcastic and witty">Sarcastic and witty</option>
+                        <option value="Secretive and mysterious">Secretive and mysterious</option>
+                        <option value="Serious and stern">Serious and stern</option>
+                        <option value="Superstitious and cautious">Superstitious and cautious</option>
+                        <option value="Theatrical and dramatic">Theatrical and dramatic</option>
+                        <option value="Violent and aggressive">Violent and aggressive</option>
                     </select>
                 </div>
 
@@ -1003,7 +1192,7 @@
                         <label>Setting:</label>
                         <div class="filter-tags" id="settingFilters"></div>
                     </div>
-                    <button onclick="clearFilters()" style="margin-top: 10px; width: auto; padding: 8px 20px;">Clear All Filters</button>
+                    <button onclick="clearFilters()" class="btn-small">Clear All Filters</button>
                 </div>
             </div>
 
@@ -1381,20 +1570,20 @@
             const container = document.getElementById('searchResults');
 
             if (results.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: var(--text-dark); padding: 40px;">No results found. Try different keywords or filters.</p>';
+                container.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 40px;">No results found. Try different keywords or filters.</p>';
                 return;
             }
 
-            let html = `<h2 style="color: var(--accent-color); margin-bottom: 20px;">Found ${results.length} result${results.length !== 1 ? 's' : ''}</h2>`;
+            let html = `<h2 style="color: var(--accent-blue); margin-bottom: 20px;">Found ${results.length} result${results.length !== 1 ? 's' : ''}</h2>`;
 
             results.forEach((result, index) => {
-                const typeColor = result.type === 'encounter' ? 'var(--primary-color)' : 'var(--success)';
+                const typeColor = result.type === 'encounter' ? '#3498db' : '#2ecc71';
 
                 html += `
                     <div class="result-card">
                         <div class="result-title">${result.title}</div>
                         <span class="result-type" style="background: ${typeColor};">${result.type.toUpperCase()}</span>
-                        <span class="result-type" style="background: var(--bg-dark);">${result.environment.toUpperCase()}</span>
+                        <span class="result-type" style="background: var(--accent-blue);">${result.environment.toUpperCase()}</span>
                         <p class="result-description">${result.description}</p>
                         ${result.objects ? `<p class="result-description"><strong>Sample objects:</strong> ${result.objects}</p>` : ''}
                         <div class="result-tags">
@@ -1422,8 +1611,8 @@
                 <div class="preview-header">
                     <div class="preview-title">${result.title}</div>
                     <div style="display: flex; gap: 10px; margin-top: 10px;">
-                        <span class="result-type" style="background: ${result.type === 'encounter' ? 'var(--primary-color)' : 'var(--success)'};">${result.type.toUpperCase()}</span>
-                        <span class="result-type" style="background: var(--bg-dark);">${result.environment.toUpperCase()}</span>
+                        <span class="result-type" style="background: ${result.type === 'encounter' ? '#3498db' : '#2ecc71'};">${result.type.toUpperCase()}</span>
+                        <span class="result-type" style="background: var(--accent-blue);">${result.environment.toUpperCase()}</span>
                     </div>
                 </div>
                 <div class="preview-body">
@@ -1431,16 +1620,16 @@
 
             if (result.type === 'encounter') {
                 html += `
-                    <h3 style="color: var(--accent-color); margin-bottom: 15px;">📜 Encounter Overview</h3>
-                    <p style="margin-bottom: 20px;">${result.description}</p>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 15px;">📜 Encounter Overview</h3>
+                    <p style="margin-bottom: 20px; color: var(--text-primary);">${result.description}</p>
 
-                    <h3 style="color: var(--success); margin-bottom: 15px;">🏷️ Tags</h3>
+                    <h3 style="color: #2ecc71; margin-bottom: 15px;">🏷️ Tags</h3>
                     <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;">
                         ${result.tags.map(tag => `<span class="result-tag">${tag}</span>`).join('')}
                     </div>
 
-                    <h3 style="color: var(--warning); margin-bottom: 15px;">🎲 What to Expect</h3>
-                    <ul style="margin-left: 20px; line-height: 2;">
+                    <h3 style="color: #f39c12; margin-bottom: 15px;">🎲 What to Expect</h3>
+                    <ul style="margin-left: 20px; line-height: 2; color: var(--text-primary);">
                         <li>Skill challenges themed to ${result.environment} exploration</li>
                         <li>Mechanical, magical, or environmental traps</li>
                         <li>Natural, supernatural, or creature-based hazards</li>
@@ -1455,16 +1644,16 @@
                 `;
             } else {
                 html += `
-                    <h3 style="color: var(--accent-color); margin-bottom: 15px;">📍 Location Overview</h3>
-                    <p style="margin-bottom: 20px;">${result.description}</p>
+                    <h3 style="color: var(--accent-blue); margin-bottom: 15px;">📍 Location Overview</h3>
+                    <p style="margin-bottom: 20px; color: var(--text-primary);">${result.description}</p>
 
-                    <h3 style="color: var(--success); margin-bottom: 15px;">🏷️ Tags</h3>
+                    <h3 style="color: #2ecc71; margin-bottom: 15px;">🏷️ Tags</h3>
                     <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;">
                         ${result.tags.map(tag => `<span class="result-tag">${tag}</span>`).join('')}
                     </div>
 
-                    <h3 style="color: var(--warning); margin-bottom: 15px;">🔍 Sample Objects</h3>
-                    <p style="margin-left: 20px; line-height: 2;">${result.objects}</p>
+                    <h3 style="color: #f39c12; margin-bottom: 15px;">🔍 Sample Objects</h3>
+                    <p style="margin-left: 20px; line-height: 2; color: var(--text-primary);">${result.objects}</p>
 
                     <div style="margin-top: 30px; text-align: center;">
                         <button class="open-btn" onclick='closePreview(); openResult(${index});' style="padding: 12px 30px; font-size: 1.1em;">
@@ -2064,10 +2253,10 @@
                 </div>
                 
                 <div style="text-align: center; margin-top: 30px; padding: 20px;">
-                    <button onclick="exploreEncounterLocation()" style="background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; border: none; padding: 15px 30px; font-size: 18px; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: all 0.3s ease;">
+                    <button onclick="exploreEncounterLocation()" class="btn-success btn-large">
                         🗺️ Explore Location
                     </button>
-                    <p style="margin-top: 10px; color: #666; font-size: 14px;">Dive deeper into a contextual location within this environment</p>
+                    <p style="margin-top: 10px; color: var(--text-secondary); font-size: 14px;">Dive deeper into a contextual location within this environment</p>
                 </div>
             `;
 
@@ -2144,16 +2333,17 @@
             // Display primary objects
             currentRoomData.primary.forEach((obj, index) => {
                 const isExplored = exploredObjects.has(`primary-${index}`);
-                const buttonStyle = isExplored 
-                    ? 'background: #95a5a6; cursor: not-allowed;' 
-                    : 'background: linear-gradient(135deg, #3498db, #2980b9); cursor: pointer;';
+                const buttonClass = isExplored 
+                    ? 'disabled' 
+                    : 'btn-primary';
                 const buttonText = isExplored ? '✓ Explored' : '🔍 Examine';
                 
                 html += `
-                    <div style="border: 2px solid #3498db; border-radius: 8px; padding: 15px; background: rgba(52, 152, 219, 0.1);">
-                        <div style="font-weight: bold; margin-bottom: 10px; color: #2c3e50;">${obj}</div>
+                    <div style="border: 2px solid var(--accent-blue); border-radius: 8px; padding: 15px; background: rgba(52, 152, 219, 0.1);">
+                        <div style="font-weight: bold; margin-bottom: 10px; color: var(--text-primary);">${obj}</div>
                         <button onclick="exploreObject('primary', ${index})" 
-                                style="${buttonStyle} color: white; border: none; padding: 8px 16px; border-radius: 5px; font-size: 14px; width: 100%;"
+                                class="${buttonClass} btn-small"
+                                style="width: 100%;"
                                 ${isExplored ? 'disabled' : ''}>
                             ${buttonText}
                         </button>
@@ -2189,16 +2379,17 @@
                             const index = parseInt(id.split('-')[1]);
                             const secondaryObj = currentRoomData.secondary[index];
                             const isSecondaryExplored = exploredObjects.has(`secondary-${index}`);
-                            const buttonStyle = isSecondaryExplored 
-                                ? 'background: #95a5a6; cursor: not-allowed;' 
-                                : 'background: linear-gradient(135deg, #9b59b6, #8e44ad); cursor: pointer;';
+                            const buttonClass = isSecondaryExplored 
+                                ? 'disabled' 
+                                : 'btn-secondary';
                             const buttonText = isSecondaryExplored ? '✓ Explored' : '🔍 Examine Closely';
                             
                             html += `
                                 <div style="border: 2px solid #9b59b6; border-radius: 8px; padding: 15px; background: rgba(155, 89, 182, 0.1);">
-                                    <div style="font-weight: bold; margin-bottom: 10px; color: #2c3e50;">${secondaryObj}</div>
+                                    <div style="font-weight: bold; margin-bottom: 10px; color: var(--text-primary);">${secondaryObj}</div>
                                     <button onclick="exploreObject('secondary', ${index})" 
-                                            style="${buttonStyle} color: white; border: none; padding: 8px 16px; border-radius: 5px; font-size: 14px; width: 100%;"
+                                            class="${buttonClass} btn-small"
+                                            style="width: 100%;"
                                             ${isSecondaryExplored ? 'disabled' : ''}>
                                         ${buttonText}
                                     </button>
@@ -2272,6 +2463,9 @@
         // Generate NPC
         function generateNPC() {
             const selectedSpecies = document.getElementById('npcSpecies').value;
+            const selectedProfession = document.getElementById('npcProfession').value;
+            const selectedAlignment = document.getElementById('npcAlignment').value;
+            const selectedPersonality = document.getElementById('npcPersonality').value;
             
             // Choose species
             const speciesKeys = Object.keys(npcData.species);
@@ -2286,10 +2480,19 @@
             const surname = speciesData.surnames[Math.floor(Math.random() * speciesData.surnames.length)];
             const fullName = `${firstName} ${surname}`;
             
-            // Generate characteristics
-            const alignment = npcData.alignments[Math.floor(Math.random() * npcData.alignments.length)];
-            const personality = npcData.personalities[Math.floor(Math.random() * npcData.personalities.length)];
-            const profession = npcData.professions[Math.floor(Math.random() * npcData.professions.length)];
+            // Generate characteristics based on filters
+            const alignment = selectedAlignment === 'random'
+                ? npcData.alignments[Math.floor(Math.random() * npcData.alignments.length)]
+                : npcData.alignments.find(a => a.name === selectedAlignment);
+            
+            const personality = selectedPersonality === 'random'
+                ? npcData.personalities[Math.floor(Math.random() * npcData.personalities.length)]
+                : npcData.personalities.find(p => p.trait === selectedPersonality);
+            
+            const profession = selectedProfession === 'random'
+                ? npcData.professions[Math.floor(Math.random() * npcData.professions.length)]
+                : npcData.professions.find(p => p.name === selectedProfession);
+            
             const secret = npcData.secrets[Math.floor(Math.random() * npcData.secrets.length)];
             const appearance = npcData.appearances[Math.floor(Math.random() * npcData.appearances.length)];
             
