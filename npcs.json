@@ -1212,7 +1212,10 @@
       "tags": [
         "crafting",
         "metal",
-        "strength"
+        "strength",
+        "urban",
+        "building",
+        "forge"
       ]
     },
     {
@@ -1220,7 +1223,11 @@
       "tags": [
         "trading",
         "wealthy",
-        "social"
+        "social",
+        "urban",
+        "market",
+        "street",
+        "caravan"
       ]
     },
     {
@@ -1228,7 +1235,11 @@
       "tags": [
         "hospitality",
         "social",
-        "information"
+        "information",
+        "urban",
+        "inn",
+        "tavern",
+        "building"
       ]
     },
     {
@@ -1236,7 +1247,11 @@
       "tags": [
         "combat",
         "lawful",
-        "protective"
+        "protective",
+        "urban",
+        "street",
+        "gate",
+        "patrol"
       ]
     },
     {
@@ -1244,7 +1259,10 @@
       "tags": [
         "rural",
         "hardworking",
-        "humble"
+        "humble",
+        "wilderness",
+        "field",
+        "village"
       ]
     },
     {
@@ -1252,7 +1270,11 @@
       "tags": [
         "crafting",
         "intelligent",
-        "experimental"
+        "experimental",
+        "urban",
+        "building",
+        "laboratory",
+        "arcane"
       ]
     },
     {
@@ -1260,7 +1282,12 @@
       "tags": [
         "religious",
         "healing",
-        "spiritual"
+        "spiritual",
+        "temple",
+        "shrine",
+        "crypt",
+        "sacred",
+        "dungeon"
       ]
     },
     {
@@ -1268,7 +1295,11 @@
       "tags": [
         "magical",
         "scholarly",
-        "reclusive"
+        "reclusive",
+        "tower",
+        "library",
+        "arcane",
+        "dungeon"
       ]
     },
     {
@@ -1276,7 +1307,13 @@
       "tags": [
         "criminal",
         "sneaky",
-        "street"
+        "street",
+        "urban",
+        "alley",
+        "sewer",
+        "crypt",
+        "dungeon",
+        "underground"
       ]
     },
     {
@@ -1284,7 +1321,12 @@
       "tags": [
         "performer",
         "charismatic",
-        "traveling"
+        "traveling",
+        "tavern",
+        "inn",
+        "festival",
+        "street",
+        "urban"
       ]
     },
     {
@@ -1292,7 +1334,12 @@
       "tags": [
         "nautical",
         "adventurous",
-        "tough"
+        "tough",
+        "wharf",
+        "dock",
+        "ship",
+        "port",
+        "coastal"
       ]
     },
     {
@@ -1300,7 +1347,11 @@
       "tags": [
         "wilderness",
         "skilled",
-        "solitary"
+        "solitary",
+        "forest",
+        "tracking",
+        "outdoor",
+        "rural"
       ]
     },
     {
@@ -1308,7 +1359,11 @@
       "tags": [
         "intellectual",
         "bookish",
-        "knowledgeable"
+        "knowledgeable",
+        "library",
+        "university",
+        "archive",
+        "urban"
       ]
     },
     {
@@ -1316,7 +1371,11 @@
       "tags": [
         "wealthy",
         "influential",
-        "political"
+        "political",
+        "urban",
+        "manor",
+        "palace",
+        "estate"
       ]
     },
     {
@@ -1324,7 +1383,10 @@
       "tags": [
         "poor",
         "desperate",
-        "street"
+        "street",
+        "urban",
+        "alley",
+        "slum"
       ]
     },
     {
@@ -1332,7 +1394,10 @@
       "tags": [
         "crafting",
         "creative",
-        "skilled"
+        "skilled",
+        "urban",
+        "workshop",
+        "market"
       ]
     },
     {
@@ -1340,7 +1405,11 @@
       "tags": [
         "combat",
         "disciplined",
-        "veteran"
+        "veteran",
+        "urban",
+        "barracks",
+        "military",
+        "patrol"
       ]
     },
     {
@@ -1348,7 +1417,11 @@
       "tags": [
         "nature",
         "healing",
-        "knowledgeable"
+        "knowledgeable",
+        "forest",
+        "wilderness",
+        "garden",
+        "village"
       ]
     },
     {
@@ -1356,7 +1429,11 @@
       "tags": [
         "risky",
         "social",
-        "untrustworthy"
+        "untrustworthy",
+        "tavern",
+        "inn",
+        "urban",
+        "street"
       ]
     },
     {
@@ -1364,7 +1441,11 @@
       "tags": [
         "religious",
         "devoted",
-        "influential"
+        "influential",
+        "temple",
+        "shrine",
+        "sacred",
+        "crypt"
       ]
     },
     {
@@ -1372,7 +1453,11 @@
       "tags": [
         "criminal",
         "deadly",
-        "secretive"
+        "secretive",
+        "urban",
+        "alley",
+        "rooftop",
+        "shadow"
       ]
     },
     {
@@ -1380,7 +1465,11 @@
       "tags": [
         "secretive",
         "intelligent",
-        "deceptive"
+        "deceptive",
+        "urban",
+        "guild",
+        "political",
+        "shadow"
       ]
     },
     {
@@ -1388,7 +1477,10 @@
       "tags": [
         "combat",
         "entertaining",
-        "strong"
+        "strong",
+        "arena",
+        "urban",
+        "spectacle"
       ]
     },
     {
@@ -1396,7 +1488,10 @@
       "tags": [
         "scholarly",
         "traveling",
-        "observant"
+        "observant",
+        "exploration",
+        "wilderness",
+        "urban"
       ]
     },
     {
@@ -1404,7 +1499,11 @@
       "tags": [
         "mystical",
         "charismatic",
-        "mysterious"
+        "mysterious",
+        "urban",
+        "festival",
+        "market",
+        "arcane"
       ]
     }
   ],
