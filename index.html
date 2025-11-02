@@ -2956,36 +2956,20 @@
                         <p class="description"><strong>Environment:</strong> ${selectedEnvironment.charAt(0).toUpperCase() + selectedEnvironment.slice(1)} | <strong>Recommended Party Level:</strong> ${partyLevel}</p>
                     </div>
                 </div>
-
-                <div class="encounter-section">
-                    <h2 onclick="toggleSection(event)">🎯 Skill Challenges <span class="section-toggle">▼</span></h2>
-                    <div class="section-content">
-                        <p class="description">These skill checks form the core of the exploration encounter. Players must overcome these challenges to successfully navigate the environment.</p>
             `;
 
-            selectedSkills.forEach(skill => {
-                const dc = calculateDC(partyLevel);
-                html += `
-                    <div class="skill-check">
-                        <div class="skill-check-header">
-                            <span class="skill-name">${skill.skill}</span>
-                            <span class="dc">DC ${dc}</span>
-                        </div>
-                        <p><strong>${skill.challenge}</strong></p>
-                        <p>${skill.description}</p>
-                        <p><strong>Success:</strong> ${skill.success}</p>
-                        <p><strong>Failure:</strong> ${skill.failure}</p>
-                    </div>
-                `;
-            });
-
-            html += `</div></div>`;
+            // Store location and NPC data globally for the detail panels
+            // Also store skill checks, traps, and hazards per location
+            window.encounterLocationsData = encounterLocations;
+            window.encounterNPCsData = encounterNPCs;
+            window.encounterSkillChecks = selectedSkills;
+            window.encounterTraps = selectedTraps;
+            window.encounterHazards = selectedHazards;
+            window.encounterEffects = selectedEffects;
+            window.encounterPartyLevel = partyLevel;
 
             // Encounter Flow
             if (encounterFlow && encounterFlow.length > 0) {
-                // Store location and NPC data globally for the detail panels
-                window.encounterLocationsData = encounterLocations;
-                window.encounterNPCsData = encounterNPCs;
                 
                 // Populate the flow navigator
                 populateFlowNavigator(encounterFlow);
@@ -3151,83 +3135,6 @@
                                     <li>They could provide information about ${template.tags[0] || 'the area'} if properly approached</li>
                                 </ul>
                             </div>
-                        </div>
-                    `;
-                });
-
-                html += `</div></div>`;
-            }
-
-            // Traps
-            if (selectedTraps.length > 0) {
-                html += `
-                    <div class="encounter-section">
-                        <h2 onclick="toggleSection(event)">⚠️ Traps <span class="section-toggle">▼</span></h2>
-                        <div class="section-content">
-                            <p class="description">Hidden dangers requiring detection and disarming.</p>
-                `;
-
-                selectedTraps.forEach(trap => {
-                    const detectDC = calculateDC(partyLevel);
-                    const disarmDC = detectDC + 2;
-                    
-                    html += `
-                        <div class="trap" style="background: rgba(255, 59, 48, 0.1); border-left: 3px solid #ff3b30; padding: 15px; margin: 10px 0; border-radius: 6px;">
-                            <h4 style="color: #ff3b30; margin-top: 0;">🪤 ${trap.name}</h4>
-                            <p><strong>Description:</strong> ${trap.description}</p>
-                            <p><strong>Detect:</strong> ${trap.detectMethod} (DC ${detectDC})</p>
-                            <p><strong>Disarm:</strong> ${trap.disarmMethod} (DC ${disarmDC})</p>
-                            <p><strong>Damage Type:</strong> ${trap.damageType}</p>
-                            <p><strong>Severity:</strong> <span style="text-transform: capitalize;">${trap.severity}</span> ${trap.resetable ? '| Can reset' : ''}</p>
-                        </div>
-                    `;
-                });
-
-                html += `</div></div>`;
-            }
-
-            // Hazards
-            if (selectedHazards.length > 0) {
-                html += `
-                    <div class="encounter-section">
-                        <h2 onclick="toggleSection(event)">💥 Environmental Hazards <span class="section-toggle">▼</span></h2>
-                        <div class="section-content">
-                            <p class="description">Persistent environmental dangers affecting the area.</p>
-                `;
-
-                selectedHazards.forEach(hazard => {
-                    const saveDC = calculateDC(partyLevel);
-                    
-                    html += `
-                        <div class="hazard" style="background: rgba(255, 149, 0, 0.1); border-left: 3px solid #ff9500; padding: 15px; margin: 10px 0; border-radius: 6px;">
-                            <h4 style="color: #ff9500; margin-top: 0;">☠️ ${hazard.name}</h4>
-                            <p><strong>Description:</strong> ${hazard.description}</p>
-                            <p><strong>Save:</strong> ${hazard.saveAbility} DC ${saveDC}</p>
-                            <p><strong>Effect:</strong> ${hazard.effect}</p>
-                            <p><strong>Severity:</strong> <span style="text-transform: capitalize;">${hazard.severity}</span> ${hazard.persistent ? '| Persistent' : ''}</p>
-                        </div>
-                    `;
-                });
-
-                html += `</div></div>`;
-            }
-
-            // Environmental Effects
-            if (selectedEffects.length > 0) {
-                html += `
-                    <div class="encounter-section">
-                        <h2 onclick="toggleSection(event)">🌪️ Environmental Effects <span class="section-toggle">▼</span></h2>
-                        <div class="section-content">
-                            <p class="description">Area-wide conditions affecting everyone in the encounter.</p>
-                `;
-
-                selectedEffects.forEach(effect => {
-                    html += `
-                        <div class="environmental-effect" style="background: rgba(52, 152, 219, 0.1); border-left: 3px solid var(--accent-blue); padding: 15px; margin: 10px 0; border-radius: 6px;">
-                            <h4 style="color: var(--accent-blue); margin-top: 0;">🔮 ${effect.name}</h4>
-                            <p><strong>Description:</strong> ${effect.description}</p>
-                            <p><strong>Mechanical Effect:</strong> ${effect.mechanicalEffect}</p>
-                            <p><strong>Severity:</strong> <span style="text-transform: capitalize;">${effect.severity}</span></p>
                         </div>
                     `;
                 });
@@ -3490,6 +3397,66 @@
             document.getElementById('encounterDisplay').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
+        // Helper function: Get skill checks relevant to a specific location
+        function getSkillChecksForLocation(locationTags) {
+            if (!window.encounterSkillChecks || !locationTags) return [];
+            
+            // Score each skill check against location tags
+            const scoredChecks = window.encounterSkillChecks.map(check => {
+                let score = 0;
+                for (const tag of check.tags) {
+                    if (locationTags.includes(tag)) score += 1;
+                }
+                score += Math.random() * 0.3; // Add slight randomness
+                return { check, score };
+            });
+            
+            // Sort by score and return top 2-3 checks
+            scoredChecks.sort((a, b) => b.score - a.score);
+            const numChecks = scoredChecks[0].score > 0 ? Math.min(3, Math.ceil(Math.random() * 2) + 1) : 0;
+            return scoredChecks.slice(0, numChecks).map(s => s.check);
+        }
+
+        // Helper function: Get traps relevant to a specific location
+        function getTrapsForLocation(locationTags) {
+            if (!window.encounterTraps || !locationTags) return [];
+            
+            // Score each trap against location tags
+            const scoredTraps = window.encounterTraps.map(trap => {
+                let score = 0;
+                for (const tag of trap.tags) {
+                    if (locationTags.includes(tag)) score += 1;
+                }
+                score += Math.random() * 0.5;
+                return { trap, score };
+            });
+            
+            // Sort by score and maybe return 0-1 trap
+            scoredTraps.sort((a, b) => b.score - a.score);
+            const hasTrap = scoredTraps[0] && scoredTraps[0].score > 0 && Math.random() < 0.4;
+            return hasTrap ? [scoredTraps[0].trap] : [];
+        }
+
+        // Helper function: Get hazards relevant to a specific location
+        function getHazardsForLocation(locationTags) {
+            if (!window.encounterHazards || !locationTags) return [];
+            
+            // Score each hazard against location tags
+            const scoredHazards = window.encounterHazards.map(hazard => {
+                let score = 0;
+                for (const tag of hazard.tags) {
+                    if (locationTags.includes(tag)) score += 1;
+                }
+                score += Math.random() * 0.5;
+                return { hazard, score };
+            });
+            
+            // Sort by score and maybe return 0-1 hazard
+            scoredHazards.sort((a, b) => b.score - a.score);
+            const hasHazard = scoredHazards[0] && scoredHazards[0].score > 0 && Math.random() < 0.5;
+            return hasHazard ? [scoredHazards[0].hazard] : [];
+        }
+
         // Show location detail in side panel
         function showLocationDetail(locationKey, viewLevel = 'primary', selectedIndex = null) {
             const location = window.encounterLocationsData.find(loc => loc.key === locationKey);
@@ -3503,12 +3470,37 @@
             const content = document.getElementById('locationDetailContent');
             const progressiveReveal = localStorage.getItem('progressiveReveal') === 'true';
             
+            // Get contextual content for this location
+            const locationSkillChecks = getSkillChecksForLocation(location.data.tags || []);
+            const locationTraps = getTrapsForLocation(location.data.tags || []);
+            const locationHazards = getHazardsForLocation(location.data.tags || []);
+            
             let html = `
                 <h3 style="margin-top: 0;">🗺️ ${location.name}</h3>
                 <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 20px;">
                     ${location.data.description || 'A location of interest in the encounter.'}
                 </p>
             `;
+            
+            // Show hazards at the top as warnings if present
+            if (locationHazards.length > 0) {
+                locationHazards.forEach(hazard => {
+                    const saveDC = calculateDC(window.encounterPartyLevel || 5);
+                    html += `
+                        <div style="background: rgba(255, 149, 0, 0.15); border-left: 3px solid #ff9500; padding: 12px; margin-bottom: 15px; border-radius: 6px;">
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                <span style="font-size: 1.2em;">⚠️</span>
+                                <strong style="color: #ff9500;">${hazard.name}</strong>
+                            </div>
+                            <p style="margin: 5px 0; font-size: 0.9em;">${hazard.description}</p>
+                            <p style="margin: 5px 0; font-size: 0.85em; color: var(--text-secondary);">
+                                <strong>Save:</strong> ${hazard.saveAbility} DC ${saveDC} | <strong>Effect:</strong> ${hazard.effect}
+                            </p>
+                        </div>
+                    `;
+                });
+            }
+            
             
             if (progressiveReveal) {
                 // Progressive reveal mode - interactive drill-down
@@ -3568,6 +3560,40 @@
                         
                         html += `</div>`;
                     }
+                    
+                    // Show skill checks relevant to this location
+                    if (locationSkillChecks.length > 0) {
+                        html += `
+                            <div style="margin-bottom: 20px;">
+                                <h4 style="color: var(--accent-blue); margin-bottom: 10px;">
+                                    🎯 Possible Skill Checks
+                                </h4>
+                                <p style="color: var(--text-secondary); font-size: 0.85em; margin-bottom: 10px; font-style: italic;">
+                                    Suggested checks for interacting with this location...
+                                </p>
+                        `;
+                        
+                        locationSkillChecks.forEach(skill => {
+                            const dc = calculateDC(window.encounterPartyLevel || 5);
+                            html += `
+                                <div style="background: rgba(52, 152, 219, 0.1); border-left: 3px solid var(--accent-blue); padding: 10px; margin: 8px 0; border-radius: 4px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                        <strong style="color: var(--accent-blue);">${skill.skill}</strong>
+                                        <span style="background: var(--accent-blue); color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.85em; font-weight: bold;">DC ${dc}</span>
+                                    </div>
+                                    <p style="margin: 4px 0; font-size: 0.9em;"><strong>${skill.challenge}</strong></p>
+                                    <p style="margin: 4px 0; font-size: 0.85em; color: var(--text-secondary);">
+                                        <strong>Success:</strong> ${skill.success}
+                                    </p>
+                                    <p style="margin: 4px 0; font-size: 0.85em; color: var(--text-secondary);">
+                                        <strong>Failure:</strong> ${skill.failure}
+                                    </p>
+                                </div>
+                            `;
+                        });
+                        
+                        html += `</div>`;
+                    }
                 } else if (viewLevel === 'secondary' && selectedIndex !== null) {
                     // Show specific secondary detail with back button
                     if (location.data.secondary && location.data.secondary[selectedIndex]) {
@@ -3593,7 +3619,42 @@
                     }
                 } else if (viewLevel === 'tertiary' && selectedIndex !== null) {
                     // Show hidden discovery with back button
-                    if (location.data.tertiary && location.data.tertiary[selectedIndex]) {
+                    // Randomly decide if this discovery is a trap (30% chance if traps available)
+                    const isTrap = locationTraps.length > 0 && Math.random() < 0.3;
+                    
+                    if (isTrap) {
+                        const trap = locationTraps[0];
+                        const detectDC = calculateDC(window.encounterPartyLevel || 5);
+                        const disarmDC = detectDC + 2;
+                        
+                        html += `
+                            <div class="back-button" onclick="showLocationDetail('${locationKey}', 'secondary', ${selectedIndex})">
+                                ← Back to Secondary Details
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <h4 style="color: var(--accent-blue); margin-bottom: 10px;">
+                                    🔍 ${location.data.primary[selectedIndex]}
+                                </h4>
+                                <div style="background: rgba(52, 152, 219, 0.08); padding: 12px; border-radius: 6px; margin-bottom: 15px;">
+                                    <strong>🔎 Secondary Details:</strong><br>
+                                    ${location.data.secondary[selectedIndex]}
+                                </div>
+                                <div class="feature-item tertiary-feature" style="border: 2px solid #ff3b30; background: rgba(255, 59, 48, 0.1); cursor: default;">
+                                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                                        <span style="font-size: 1.3em;">⚠️</span>
+                                        <strong style="color: #ff3b30;">TRAP: ${trap.name}</strong>
+                                    </div>
+                                    <p style="margin: 6px 0;"><strong>Description:</strong> ${trap.description}</p>
+                                    <p style="margin: 6px 0;"><strong>Detect:</strong> ${trap.detectMethod} (DC ${detectDC})</p>
+                                    <p style="margin: 6px 0;"><strong>Disarm:</strong> ${trap.disarmMethod} (DC ${disarmDC})</p>
+                                    <p style="margin: 6px 0;"><strong>Damage:</strong> ${trap.damageType} | <strong>Severity:</strong> ${trap.severity}</p>
+                                    <div style="margin-top: 10px; font-size: 0.85em; opacity: 0.8; font-style: italic; color: #ff3b30;">
+                                        🪤 Hidden danger! Players investigating this area trigger the trap unless they actively search for it first.
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    } else if (location.data.tertiary && location.data.tertiary[selectedIndex]) {
                         html += `
                             <div class="back-button" onclick="showLocationDetail('${locationKey}', 'secondary', ${selectedIndex})">
                                 ← Back to Secondary Details
@@ -3634,6 +3695,37 @@
                     `;
                 }
                 
+                // Skill Checks for this location
+                if (locationSkillChecks.length > 0) {
+                    html += `
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: var(--accent-blue); margin-bottom: 10px; border-bottom: 1px solid rgba(0, 122, 255, 0.3); padding-bottom: 5px;">
+                                🎯 Possible Skill Checks
+                            </h4>
+                    `;
+                    
+                    locationSkillChecks.forEach(skill => {
+                        const dc = calculateDC(window.encounterPartyLevel || 5);
+                        html += `
+                            <div style="background: rgba(52, 152, 219, 0.1); border-left: 3px solid var(--accent-blue); padding: 10px; margin: 8px 0; border-radius: 4px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                    <strong style="color: var(--accent-blue);">${skill.skill}</strong>
+                                    <span style="background: var(--accent-blue); color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.85em; font-weight: bold;">DC ${dc}</span>
+                                </div>
+                                <p style="margin: 4px 0; font-size: 0.9em;"><strong>${skill.challenge}</strong></p>
+                                <p style="margin: 4px 0; font-size: 0.85em; color: var(--text-secondary);">
+                                    <strong>Success:</strong> ${skill.success}
+                                </p>
+                                <p style="margin: 4px 0; font-size: 0.85em; color: var(--text-secondary);">
+                                    <strong>Failure:</strong> ${skill.failure}
+                                </p>
+                            </div>
+                        `;
+                    });
+                    
+                    html += `</div>`;
+                }
+                
                 // Secondary Details
                 if (location.data.secondary && location.data.secondary.length > 0) {
                     html += `
@@ -3660,6 +3752,35 @@
                             </ul>
                         </div>
                     `;
+                }
+                
+                // Traps in this location (if any)
+                if (locationTraps.length > 0) {
+                    html += `
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: #ff3b30; margin-bottom: 10px; border-bottom: 1px solid rgba(255, 59, 48, 0.3); padding-bottom: 5px;">
+                                ⚠️ Possible Traps
+                            </h4>
+                    `;
+                    
+                    locationTraps.forEach(trap => {
+                        const detectDC = calculateDC(window.encounterPartyLevel || 5);
+                        const disarmDC = detectDC + 2;
+                        html += `
+                            <div style="background: rgba(255, 59, 48, 0.1); border-left: 3px solid #ff3b30; padding: 10px; margin: 8px 0; border-radius: 4px;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <span style="font-size: 1.1em;">🪤</span>
+                                    <strong style="color: #ff3b30;">${trap.name}</strong>
+                                </div>
+                                <p style="margin: 4px 0; font-size: 0.9em;">${trap.description}</p>
+                                <p style="margin: 4px 0; font-size: 0.85em;"><strong>Detect:</strong> ${trap.detectMethod} (DC ${detectDC})</p>
+                                <p style="margin: 4px 0; font-size: 0.85em;"><strong>Disarm:</strong> ${trap.disarmMethod} (DC ${disarmDC})</p>
+                                <p style="margin: 4px 0; font-size: 0.85em;"><strong>Damage:</strong> ${trap.damageType} | <strong>Severity:</strong> ${trap.severity}</p>
+                            </div>
+                        `;
+                    });
+                    
+                    html += `</div>`;
                 }
             }
             
