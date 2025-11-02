@@ -968,6 +968,11 @@
         "Whispercoil",
         "Wyrmshadow"
       ]
+    },
+    "aarakocra": {
+      "tags": ["avian", "nomadic", "sky-dweller"],
+      "firstNames": ["Aera", "Aial", "Aur", "Deekek", "Errk", "Heek", "Jeed", "Kleeck", "Oorr", "Ouss"],
+      "surnames": ["Cloudchaser", "Windrider", "Sunstrider", "Stormwing", "Skycaller", "Peakdiver", "Brightplume", "Swiftfeather", "Highcrest", "Silentsoar"]
     }
   },
   "alignments": [

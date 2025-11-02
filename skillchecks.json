@@ -879,6 +879,406 @@
       "success": "Stop the fall",
       "failure": "Continue falling",
       "tags": ["physical", "dexterity", "emergency", "falling", "dangerous", "vertical"]
+    },
+    {
+      "skill": "Acrobatics",
+      "challenge": "Run along a collapsing bridge",
+      "description": "A bridge or walkway is crumbling behind you, requiring you to keep your footing while running at full speed.",
+      "success": "Reach the other side before it collapses completely",
+      "failure": "Fall with the bridge, taking damage and landing in a dangerous area",
+      "tags": ["physical", "dexterity", "chase", "urgent", "dangerous", "bridge"]
+    },
+    {
+      "skill": "Animal Handling",
+      "challenge": "Ride an unconventional mount",
+      "description": "Attempt to ride a creature not typically used as a mount, such as a giant lizard or a dire wolf.",
+      "success": "Successfully ride the creature",
+      "failure": "The creature throws you off or refuses to cooperate",
+      "tags": ["wisdom", "outdoor", "animals", "mount", "unconventional"]
+    },
+    {
+      "skill": "Arcana",
+      "challenge": "Identify the properties of a magic item",
+      "description": "Spend a short rest focusing on a magic item to understand its properties, how to use it, whether it is cursed, and how many charges it has.",
+      "success": "You identify the item’s properties and how to use them",
+      "failure": "You are unable to identify the item’s properties",
+      "tags": ["intelligence", "magic", "study", "scholarly", "artifact"]
+    },
+    {
+      "skill": "Athletics",
+      "challenge": "Hold your breath underwater",
+      "description": "You are submerged in water and must hold your breath to avoid drowning.",
+      "success": "You can hold your breath for a number of minutes equal to 1 + your Constitution modifier (minimum of 30 seconds)",
+      "failure": "You run out of breath and start to drown",
+      "tags": ["strength", "physical", "water", "dangerous", "survival"]
+    },
+    {
+      "skill": "Deception",
+      "challenge": "Imitate a voice",
+      "description": "You attempt to mimic the voice of another person to fool a listener.",
+      "success": "The listener is convinced you are the person you are imitating",
+      "failure": "The listener recognizes that you are faking the voice",
+      "tags": ["charisma", "social", "urban", "intrigue", "impersonation"]
+    },
+    {
+      "skill": "History",
+      "challenge": "Recall a noble family’s lineage",
+      "description": "You try to remember the family tree of a noble house, including its prominent members, alliances, and rivalries.",
+      "success": "You recall the family’s history, which may give you an advantage in social situations",
+      "failure": "You cannot recall the family’s history, or you remember it incorrectly",
+      "tags": ["intelligence", "knowledge", "scholarly", "urban", "nobility"]
+    },
+    {
+      "skill": "Insight",
+      "challenge": "Determine if a creature is under magical influence",
+      "description": "You observe a creature’s behavior to determine if it is acting of its own free will.",
+      "success": "You can tell if the creature is charmed, frightened, or otherwise magically compelled",
+      "failure": "You cannot determine if the creature is under magical influence",
+      "tags": ["wisdom", "social", "perception", "magic", "investigation"]
+    },
+    {
+      "skill": "Intimidation",
+      "challenge": "Interrogate a prisoner",
+      "description": "You use threats and fear to extract information from a captive.",
+      "success": "The prisoner tells you what you want to know",
+      "failure": "The prisoner refuses to talk, or lies to you",
+      "tags": ["charisma", "social", "interrogation", "crime", "urban"]
+    },
+    {
+      "skill": "Investigation",
+      "challenge": "Find a secret compartment",
+      "description": "You search a room or piece of furniture for hidden compartments.",
+      "success": "You find a hidden compartment and whatever is inside",
+      "failure": "You do not find any hidden compartments",
+      "tags": ["intelligence", "perception", "indoor", "secret", "treasure"]
+    },
+    {
+      "skill": "Medicine",
+      "challenge": "Craft a healing poultice",
+      "description": "You use your knowledge of herbs and natural remedies to create a poultice that can heal wounds.",
+      "success": "You create a poultice that restores a small number of hit points",
+      "failure": "You create a poultice that has no effect, or is even harmful",
+      "tags": ["wisdom", "healing", "medical", "crafting", "herbalism"]
+    },
+    {
+      "skill": "Nature",
+      "challenge": "Identify a creature’s weakness",
+      "description": "You use your knowledge of nature to identify a creature’s weaknesses and vulnerabilities.",
+      "success": "You learn one of the creature’s weaknesses, such as a vulnerability to a certain type of damage",
+      "failure": "You cannot identify any of the creature’s weaknesses",
+      "tags": ["intelligence", "knowledge", "combat", "monster", "tactical"]
+    },
+    {
+      "skill": "Perception",
+      "challenge": "Eavesdrop on a conversation",
+      "description": "You try to overhear a conversation without being detected.",
+      "success": "You hear the conversation clearly",
+      "failure": "You are detected, or you only hear snippets of the conversation",
+      "tags": ["wisdom", "awareness", "stealth", "urban", "intrigue"]
+    },
+    {
+      "skill": "Performance",
+      "challenge": "Compose a song or poem",
+      "description": "You use your artistic talents to create a work of art that can inspire, entertain, or persuade.",
+      "success": "You create a work of art that has the desired effect on your audience",
+      "failure": "Your work of art is uninspired and has no effect",
+      "tags": ["charisma", "social", "art", "entertainment", "inspiration"]
+    },
+    {
+      "skill": "Persuasion",
+      "challenge": "Haggle with a merchant",
+      "description": "You try to convince a merchant to lower their prices.",
+      "success": "The merchant agrees to a lower price",
+      "failure": "The merchant refuses to lower their price, and may even raise it",
+      "tags": ["charisma", "social", "urban", "trade", "merchant"]
+    },
+    {
+      "skill": "Religion",
+      "challenge": "Perform a sacred ritual",
+      "description": "You perform a religious ceremony to ask for your deity’s favor, or to achieve a magical effect.",
+      "success": "The ritual is successful, and you gain the desired effect",
+      "failure": "The ritual fails, and you may even anger your deity",
+      "tags": ["intelligence", "knowledge", "religion", "ritual", "holy"]
+    },
+    {
+      "skill": "Sleight of Hand",
+      "challenge": "Cheat at a game of chance",
+      "description": "You use your nimble fingers to manipulate the outcome of a game of dice or cards.",
+      "success": "You win the game without being caught",
+      "failure": "You are caught cheating, and may have to face the consequences",
+      "tags": ["dexterity", "crime", "urban", "gambling", "social"]
+    },
+    {
+      "skill": "Stealth",
+      "challenge": "Create a diversion",
+      "description": "You create a distraction to draw attention away from yourself or your allies.",
+      "success": "The diversion works, and you are able to act unnoticed",
+      "failure": "The diversion fails, and you may draw unwanted attention to yourself",
+      "tags": ["dexterity", "stealth", "tactical", "urban", "distraction"]
+    },
+    {
+      "skill": "Survival",
+      "challenge": "Forage for food in an urban environment",
+      "description": "You search for edible plants and animals in a city or town.",
+      "success": "You find enough food to feed yourself and your allies for one day",
+      "failure": "You are unable to find any food, or you eat something that makes you sick",
+      "tags": ["wisdom", "outdoor", "urban", "survival", "foraging"]
+    },
+    {
+      "skill": "Acrobatics",
+      "challenge": "Leap from a moving vehicle",
+      "description": "You attempt to jump from a moving cart, wagon, or other vehicle without injuring yourself.",
+      "success": "You land safely on your feet",
+      "failure": "You take damage from the fall and may be knocked prone",
+      "tags": ["physical", "dexterity", "chase", "urgent", "dangerous"]
+    },
+    {
+      "skill": "Animal Handling",
+      "challenge": "Intimidate a predator",
+      "description": "You attempt to scare off a predatory animal by making yourself appear larger and more threatening.",
+      "success": "The predator is intimidated and backs away",
+      "failure": "The predator is not intimidated and may attack",
+      "tags": ["wisdom", "outdoor", "animals", "survival", "intimidation"]
+    },
+    {
+      "skill": "Arcana",
+      "challenge": "Overload a magical trap",
+      "description": "You attempt to overload a magical trap with raw magical energy, causing it to backfire or fizzle out.",
+      "success": "The trap is disabled",
+      "failure": "The trap triggers, and may even have an enhanced effect",
+      "tags": ["intelligence", "magic", "trap", "dangerous", "technical"]
+    },
+    {
+      "skill": "Athletics",
+      "challenge": "Catch a falling object",
+      "description": "You attempt to catch a heavy or awkward object that is falling from a great height.",
+      "success": "You catch the object safely",
+      "failure": "The object hits you, causing damage, or you fail to catch it",
+      "tags": ["strength", "physical", "emergency", "dangerous"]
+    },
+    {
+      "skill": "Deception",
+      "challenge": "Spread a rumor",
+      "description": "You attempt to start a rumor that will spread through a community and have a desired effect.",
+      "success": "The rumor spreads and has the intended effect",
+      "failure": "The rumor does not spread, or it has an unintended effect",
+      "tags": ["charisma", "social", "urban", "intrigue", "gossip"]
+    },
+    {
+      "skill": "History",
+      "challenge": "Identify a historical forgery",
+      "description": "You examine a historical document or artifact to determine if it is genuine.",
+      "success": "You can tell if the item is a forgery",
+      "failure": "You cannot tell if the item is a forgery",
+      "tags": ["intelligence", "knowledge", "scholarly", "investigation", "forgery"]
+    },
+    {
+      "skill": "Insight",
+      "challenge": "Sense a creature’s alignment",
+      "description": "You attempt to get a sense of a creature’s moral and ethical leanings.",
+      "success": "You get a general sense of the creature’s alignment (good, evil, lawful, chaotic, or neutral)",
+      "failure": "You cannot get a sense of the creature’s alignment",
+      "tags": ["wisdom", "social", "perception", "alignment"]
+    },
+    {
+      "skill": "Intimidation",
+      "challenge": "Break an object to prove your strength",
+      "description": "You attempt to break an object with your bare hands to intimidate onlookers.",
+      "success": "You break the object, and your display of strength has the desired effect",
+      "failure": "You fail to break the object, and may even injure yourself",
+      "tags": ["charisma", "social", "intimidation", "strength"]
+    },
+    {
+      "skill": "Investigation",
+      "challenge": "Lip-read a conversation",
+      "description": "You attempt to understand what someone is saying by reading their lips from a distance.",
+      "success": "You understand the conversation",
+      "failure": "You cannot understand the conversation, or you misunderstand what is being said",
+      "tags": ["intelligence", "perception", "stealth", "urban", "spy"]
+    },
+    {
+      "skill": "Medicine",
+      "challenge": "Revive a drowned person",
+      "description": "You attempt to revive a person who has drowned by performing CPR and other life-saving measures.",
+      "success": "The person is revived",
+      "failure": "The person remains dead",
+      "tags": ["wisdom", "healing", "medical", "emergency", "water"]
+    },
+    {
+      "skill": "Nature",
+      "challenge": "Identify a plant by its taste",
+      "description": "You taste a small amount of a plant to determine if it is edible, poisonous, or has magical properties.",
+      "success": "You correctly identify the plant and its properties",
+      "failure": "You misidentify the plant, and may suffer the consequences of eating a poisonous or magical plant",
+      "tags": ["intelligence", "knowledge", "outdoor", "survival", "foraging"]
+    },
+    {
+      "skill": "Perception",
+      "challenge": "Detect a magical trap",
+      "description": "You search an area for the tell-tale signs of a magical trap.",
+      "success": "You detect the trap and can attempt to disarm it",
+      "failure": "You do not detect the trap and may trigger it",
+      "tags": ["wisdom", "awareness", "magic", "trap", "dangerous"]
+    },
+    {
+      "skill": "Performance",
+      "challenge": "Tell a captivating story",
+      "description": "You tell a story that is so engaging that it captivates your audience and makes them forget their troubles.",
+      "success": "Your audience is captivated by your story and may be more inclined to help you",
+      "failure": "Your story is boring and your audience loses interest",
+      "tags": ["charisma", "social", "entertainment", "storytelling"]
+    },
+    {
+      "skill": "Persuasion",
+      "challenge": "Appeal to someone’s better nature",
+      "description": "You try to convince someone to do the right thing by appealing to their sense of morality and compassion.",
+      "success": "The person is moved by your words and agrees to help you",
+      "failure": "The person is unmoved by your words and refuses to help you",
+      "tags": ["charisma", "social", "diplomacy", "good"]
+    },
+    {
+      "skill": "Religion",
+      "challenge": "Exorcise a demon",
+      "description": "You attempt to drive a demon out of a possessed person or object.",
+      "success": "The demon is exorcised",
+      "failure": "The demon is not exorcised, and may even become more powerful",
+      "tags": ["intelligence", "knowledge", "religion", "ritual", "holy", "demon"]
+    },
+    {
+      "skill": "Sleight of Hand",
+      "challenge": "Slip a drug into someone’s drink",
+      "description": "You attempt to secretly add a drug or poison to someone’s drink.",
+      "success": "You successfully drug the person’s drink",
+      "failure": "You are caught in the act, or the person notices that their drink has been tampered with",
+      "tags": ["dexterity", "crime", "urban", "poison", "stealth"]
+    },
+    {
+      "skill": "Stealth",
+      "challenge": "Sabotage a machine",
+      "description": "You attempt to secretly sabotage a piece of machinery to cause it to malfunction.",
+      "success": "The machine is sabotaged and will malfunction at a critical moment",
+      "failure": "You are caught in the act, or the sabotage is discovered before it can have an effect",
+      "tags": ["dexterity", "stealth", "sabotage", "industrial", "technical"]
+    },
+    {
+      "skill": "Survival",
+      "challenge": "Start a fire in the rain",
+      "description": "You attempt to start a fire with damp wood and in the middle of a downpour.",
+      "success": "You are able to start a small fire that can be used for warmth and cooking",
+      "failure": "You are unable to start a fire",
+      "tags": ["wisdom", "outdoor", "survival", "camping", "weather"]
+    },
+    {
+      "skill": "Acrobatics",
+      "challenge": "Walk on a tightrope",
+      "description": "You attempt to walk across a tightrope stretched between two high points.",
+      "success": "You cross the tightrope successfully",
+      "failure": "You fall from the tightrope and take damage",
+      "tags": ["physical", "dexterity", "high-places", "dangerous", "performance"]
+    },
+    {
+      "skill": "Animal Handling",
+      "challenge": "Win a horse race",
+      "description": "You attempt to ride your horse to victory in a race.",
+      "success": "You win the race",
+      "failure": "You lose the race",
+      "tags": ["wisdom", "outdoor", "animals", "mount", "race"]
+    },
+    {
+      "skill": "Arcana",
+      "challenge": "Create a magic circle",
+      "description": "You attempt to draw a magic circle that can be used to summon or trap a creature.",
+      "success": "The magic circle is created successfully",
+      "failure": "The magic circle is flawed and may have unintended consequences",
+      "tags": ["intelligence", "magic", "ritual", "summoning", "trapping"]
+    },
+    {
+      "skill": "Athletics",
+      "challenge": "Win a wrestling match",
+      "description": "You attempt to defeat an opponent in a wrestling match.",
+      "success": "You win the match",
+      "failure": "You lose the match",
+      "tags": ["strength", "physical", "combat", "wrestling"]
+    },
+    {
+      "skill": "Deception",
+      "challenge": "Create a false identity",
+      "description": "You create a new identity for yourself, complete with a backstory and forged documents.",
+      "success": "Your false identity is convincing and allows you to move about freely",
+      "failure": "Your false identity is discovered, and you may be arrested or worse",
+      "tags": ["charisma", "social", "urban", "intrigue", "disguise"]
+    },
+    {
+      "skill": "History",
+      "challenge": "Appraise an antique",
+      "description": "You examine an antique to determine its age, origin, and value.",
+      "success": "You correctly appraise the antique",
+      "failure": "You incorrectly appraise the antique",
+      "tags": ["intelligence", "knowledge", "scholarly", "trade", "appraisal"]
+    },
+    {
+      "skill": "Insight",
+      "challenge": "Win a game of chess",
+      "description": "You play a game of chess against a skilled opponent.",
+      "success": "You win the game",
+      "failure": "You lose the game",
+      "tags": ["wisdom", "social", "game", "strategy"]
+    },
+    {
+      "skill": "Intimidation",
+      "challenge": "Stare down a wild beast",
+      "description": "You attempt to intimidate a wild animal by staring it down and showing no fear.",
+      "success": "The beast is intimidated and backs away",
+      "failure": "The beast is not intimidated and may attack",
+      "tags": ["charisma", "social", "intimidation", "animals", "survival"]
+    },
+    {
+      "skill": "Investigation",
+      "challenge": "Solve a riddle",
+      "description": "You attempt to solve a riddle posed by a creature, a magical item, or an inscription.",
+      "success": "You solve the riddle and may be rewarded",
+      "failure": "You cannot solve the riddle and may face a penalty",
+      "tags": ["intelligence", "puzzle", "riddle"]
+    },
+    {
+      "skill": "Medicine",
+      "challenge": "Set a broken bone",
+      "description": "You attempt to set a broken bone to allow it to heal properly.",
+      "success": "The bone is set correctly and will heal without complications",
+      "failure": "The bone is not set correctly and may heal improperly, causing long-term problems",
+      "tags": ["wisdom", "healing", "medical", "technical"]
+    },
+    {
+      "skill": "Nature",
+      "challenge": "Predict a volcanic eruption",
+      "description": "You use your knowledge of geology and nature to predict when a volcano will erupt.",
+      "success": "You correctly predict the eruption and can warn people to evacuate",
+      "failure": "You incorrectly predict the eruption, or you fail to predict it at all",
+      "tags": ["intelligence", "knowledge", "outdoor", "survival", "disaster"]
+    },
+    {
+      "skill": "Perception",
+      "challenge": "Find a needle in a haystack",
+      "description": "You search a large area for a small, hidden object.",
+      "success": "You find the object",
+      "failure": "You do not find the object",
+      "tags": ["wisdom", "awareness", "investigation", "search"]
+    },
+    {
+      "skill": "Performance",
+      "challenge": "Win a dance competition",
+      "description": "You compete in a dance competition, showing off your grace and skill.",
+      "success": "You win the competition",
+      "failure": "You lose the competition",
+      "tags": ["charisma", "social", "entertainment", "dance"]
+    },
+    {
+      "skill": "Persuasion",
+      "challenge": "Give a rousing speech to inspire troops",
+      "description": "You give a speech to a group of soldiers to boost their morale before a battle.",
+      "success": "The troops are inspired and gain a bonus to their attack rolls or saving throws",
+      "failure": "The speech has no effect, or it may even lower their morale",
+      "tags": ["charisma", "social", "leadership", "combat", "inspiration"]
     }
   ]
 }
