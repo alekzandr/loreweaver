@@ -1937,5 +1937,175 @@
       ],
       "description": "Vast bones drift in lines, rib arches big enough to swallow ships. Cold light pools in hollows and clings to teeth. Salvage rigs hang back on taut lines while prayers murmur over open channels. The void feels solemn here."
     }
+  },
+  "plane": {
+    "ethereal": {
+      "tags": [
+        "ethereal",
+        "plane",
+        "boundary"
+      ],
+      "primary": [
+        "wispy curtain",
+        "ghostly echo",
+        "shimmering portal",
+        "drifting memory",
+        "ethereal current",
+        "phase spider web"
+      ],
+      "secondary": [
+        "fading apparition",
+        "ectoplasmic residue",
+        "lost spirit",
+        "memory fragment",
+        "planar beacon",
+        "ethereal storm"
+      ],
+      "tertiary": [
+        "soul-bound item",
+        "ghostly treasure",
+        "map of the planes",
+        "spirit trap",
+        "planar key",
+        "dangerous memory"
+      ],
+      "description": "A curtain of mist separates the material world from a realm of ghosts and memories. Colors are muted, sounds are muffled, and the air is thin. Shapes drift in and out of sight, and the world you know is just a faint echo."
+    }
+  },
+  "coast": {
+    "beach": {
+      "tags": [
+        "beach",
+        "coast",
+        "outdoor"
+      ],
+      "primary": [
+        "sandy shore",
+        "crashing waves",
+        "tide pools",
+        "seagull nest",
+        "driftwood",
+        "sand dunes"
+      ],
+      "secondary": [
+        "seashells",
+        "seaweed",
+        "crabs",
+        "rocky outcrop",
+        "message in a bottle",
+        "shipwreck debris"
+      ],
+      "tertiary": [
+        "pirate treasure",
+        "smuggler's cache",
+        "siren's call",
+        "merfolk encounter",
+        "sea monster attack",
+        "hidden cove"
+      ],
+      "description": "The endless ocean meets a shore of fine sand, littered with the treasures and tragedies of the sea. The air is salty, the sun is warm, and the sound of the waves is a constant companion."
+    }
+  },
+  "jungle": {
+    "ruins": {
+      "tags": [
+        "ruins",
+        "jungle",
+        "outdoor"
+      ],
+      "primary": [
+        "vine-covered temple",
+        "crumbling statues",
+        "overgrown plaza",
+        "sacrificial altar",
+        "hidden chambers",
+        "ancient carvings"
+      ],
+      "secondary": [
+        "poisonous plants",
+        "exotic animals",
+        "hidden traps",
+        "ancient artifacts",
+        "lost treasure",
+        "forgotten gods"
+      ],
+      "tertiary": [
+        "cursed idols",
+        "guardian spirits",
+        "secret societies",
+        "plague outbreak",
+        "cannibal tribes",
+        "portal to another dimension"
+      ],
+      "description": "Deep in the heart of the jungle, a lost civilization's ruins are slowly being reclaimed by nature. The air is thick with the scent of decay and the buzz of insects. Every shadow could hide a secret, a treasure, or a threat."
+    }
+  },
+  "island": {
+    "volcano": {
+      "tags": [
+        "volcano",
+        "island",
+        "outdoor"
+      ],
+      "primary": [
+        "smoking caldera",
+        "lava flows",
+        "ash fields",
+        "pumice stones",
+        "magma vents",
+        "obsidian shards"
+      ],
+      "secondary": [
+        "fire elementals",
+        "magma mephits",
+        "salamanders",
+        "dragon's lair",
+        "rare minerals",
+        "geothermal vents"
+      ],
+      "tertiary": [
+        "elemental gems",
+        "volcanic glass weapons",
+        "portal to the plane of fire",
+        "cultist hideout",
+        "ancient prophecy",
+        "imminent eruption"
+      ],
+      "description": "A towering volcano dominates the island, its peak wreathed in smoke and its slopes scarred by rivers of fire. The air is hot and acrid, and the ground trembles with the power of the earth."
+    }
+  },
+  "badlands": {
+    "canyon": {
+      "tags": [
+        "canyon",
+        "badlands",
+        "outdoor"
+      ],
+      "primary": [
+        "towering mesas",
+        "deep canyons",
+        "natural bridges",
+        "wind-carved arches",
+        "dry riverbeds",
+        "hoodoos"
+      ],
+      "secondary": [
+        "rock slides",
+        "flash floods",
+        "dangerous wildlife",
+        "hidden caves",
+        "ancient petroglyphs",
+        "dinosaur bones"
+      ],
+      "tertiary": [
+        "outlaw hideout",
+        "lost gold mine",
+        "native burial ground",
+        "vision quest site",
+        "dust storm",
+        "monster nest"
+      ],
+      "description": "The sun beats down on a maze of canyons and mesas, where the only law is survival. The land is harsh and unforgiving, but it holds a stark beauty and the promise of adventure for those brave enough to seek it."
+    }
   }
 }
