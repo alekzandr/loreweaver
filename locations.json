@@ -484,6 +484,199 @@
         "ethereal choir member bound to a silver cage"
       ]
     },
+    "rooftop_garden": {
+      "tags": [
+        "rooftop",
+        "garden",
+        "outdoor"
+      ],
+      "primary": [
+        "flowering plants",
+        "herb garden",
+        "secluded bench",
+        "fountain",
+        "bee hives",
+        "gardener's shed"
+      ],
+      "secondary": [
+        "rare flowers",
+        "poisonous herbs",
+        "secret meeting spot",
+        "lovers' carving",
+        "hidden message",
+        "stash of tools"
+      ],
+      "tertiary": [
+        "alchemist's secret ingredient",
+        "assassin's poison source",
+        "portal to the feywild",
+        "talking statue",
+        "mandrake root",
+        "hidden treasure chest"
+      ],
+      "description": "Above the city's grime, a hidden oasis of green offers a respite from the chaos. The air is sweet with the scent of flowers and damp earth. It is a place of peace, but also of secrets."
+    },
+    "undercity_market": {
+      "tags": [
+        "market",
+        "underground",
+        "indoor"
+      ],
+      "primary": [
+        "stalls selling illicit goods",
+        "shady characters",
+        "black market currency",
+        "smuggled items",
+        "dangerous beasts in cages",
+        "illegal fighting pit"
+      ],
+      "secondary": [
+        "stolen art",
+        "forbidden magic items",
+        "counterfeit documents",
+        "slaves",
+        "information brokers",
+        "assassins for hire"
+      ],
+      "tertiary": [
+        "a powerful artifact",
+        "a map to a hidden treasure",
+        "a captive noble",
+        "a secret entrance to the palace",
+        "a thieves' guild headquarters",
+        "a portal to the abyss"
+      ],
+      "description": "In the city's sewers and forgotten tunnels, a thriving black market operates outside the law. Here, anything can be bought for a price, from forbidden magic to a person's life."
+    },
+    "public_bathhouse": {
+      "tags": [
+        "bathhouse",
+        "social",
+        "indoor"
+      ],
+      "primary": [
+        "hot pools",
+        "cold plunges",
+        "steam rooms",
+        "massage tables",
+        "relaxation areas",
+        "changing rooms"
+      ],
+      "secondary": [
+        "gossiping nobles",
+        "scheming merchants",
+        "secret meetings",
+        "dead drops",
+        "hidden weapons",
+        "scrying pools"
+      ],
+      "tertiary": [
+        "a politician's secret",
+        "a merchant's illegal deal",
+        "a plot to overthrow the government",
+        "a hidden treasure",
+        "a portal to the plane of water",
+        "a murder mystery"
+      ],
+      "description": "The bathhouse is a place of relaxation and socializing for the city's elite. But beneath the steam and scented oils, it is a hotbed of intrigue, where secrets are traded and plots are hatched."
+    },
+    "theater": {
+      "tags": [
+        "theater",
+        "entertainment",
+        "indoor"
+      ],
+      "primary": [
+        "stage",
+        "backstage area",
+        "audience seating",
+        "orchestra pit",
+        "costume department",
+        "prop room"
+      ],
+      "secondary": [
+        "jealous actors",
+        "overbearing directors",
+        "secret romances",
+        "scathing reviews",
+        "haunted stage",
+        "a play that predicts the future"
+      ],
+      "tertiary": [
+        "a cursed play",
+        "a real magical artifact used as a prop",
+        "a secret society of actors",
+        "a plot to assassinate a noble in the audience",
+        "a portal to another dimension backstage",
+        "a ghost that demands a final performance"
+      ],
+      "description": "The grand theater is a place of magic and illusion, where stories come to life on stage. But the drama is not always confined to the performance. Backstage, a world of jealousy, ambition, and intrigue awaits."
+    },
+    "noble_manor": {
+      "tags": [
+        "manor",
+        "noble",
+        "indoor"
+      ],
+      "primary": [
+        "grand ballroom",
+        "opulent dining hall",
+        "manicured gardens",
+        "art gallery",
+        "family crypt",
+        "servants' quarters"
+      ],
+      "secondary": [
+        "scheming relatives",
+        "disgruntled servants",
+        "family secrets",
+        "hidden passages",
+        "a cursed heirloom",
+        "a forbidden love affair"
+      ],
+      "tertiary": [
+        "a will that changes everything",
+        "proof of a dark family secret",
+        "a plot to murder the head of the family",
+        "a hidden treasure",
+        "a portal to a private demiplane",
+        "a deal with a devil"
+      ],
+      "description": "The manor of a powerful noble family is a world of its own, with a strict hierarchy and a web of secrets. The family's wealth and power are on display, but so are their rivalries and dark desires."
+    },
+    "cemetery": {
+      "tags": [
+        "cemetery",
+        "graveyard",
+        "outdoor"
+      ],
+      "primary": [
+        "tombstones",
+        "mausoleums",
+        "gravedigger's shack",
+        "weeping statues",
+        "freshly dug grave",
+        "a flock of crows"
+      ],
+      "secondary": [
+        "grave robbers",
+        "necromancers",
+        "restless spirits",
+        "a secret cult",
+        "a hidden entrance to the underdark",
+        "a talking skull"
+      ],
+      "tertiary": [
+        "a powerful undead creature",
+        "a cursed grave",
+        "a map to a hidden treasure",
+        "a portal to the shadowfell",
+        "a prophecy of doom",
+        "the ghost of a murdered person seeking justice"
+      ],
+      "description": "The city's cemetery is a place of quiet contemplation, but it is also a place of secrets and sorrow. The dead do not always rest easy, and the living who visit have their own stories to tell."
+    }
+  },
     "tavern": {
       "tags": [
         "tavern",
@@ -614,6 +807,39 @@
         "truth serum order",
         "resurrection component",
         "cursed tincture causing madness"
+      ]
+    },
+    "printing_press": {
+      "tags": [
+        "industrial",
+        "indoor",
+        "urban",
+        "workshop"
+      ],
+      "description": "The rhythmic clatter and hiss of the press fills the air, mingling with the sharp scent of ink and paper. Stacks of fresh broadsheets and pamphlets rise from busy tables. Workers move with practiced efficiency, their hands stained with ink, as the machine devours blank pages and churns out news and decrees.",
+      "primary": [
+        "heavy iron printing press",
+        "stacks of blank parchment",
+        "ink-stained workbenches",
+        "drying racks for fresh prints",
+        "typesetting trays with lead letters",
+        "paper reams and cutting tools"
+      ],
+      "secondary": [
+        "discarded proofs and misprints",
+        "ink pots and rollers",
+        "bound ledgers of print orders",
+        "hidden compartment for illicit pamphlets",
+        "ventilation shaft for fumes",
+        "small furnace for melting lead type"
+      ],
+      "tertiary": [
+        "coded message in a newspaper",
+        "forged documents",
+        "rare historical text",
+        "printing plate for counterfeit currency",
+        "secret society manifesto",
+        "poisoned ink vial"
       ]
     }
   },
