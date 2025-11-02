@@ -1773,6 +1773,8 @@
         var encounterTitles = {};
         var locationObjects = {};
         var npcData = {};
+        var skillChecksData = {};
+        var dangersData = {};
 
         let dataLoaded = false;
 
@@ -1780,10 +1782,12 @@
         async function loadData() {
             try {
                 console.log('Starting data load...');
-                const [encountersResponse, locationsResponse, npcsResponse] = await Promise.all([
+                const [encountersResponse, locationsResponse, npcsResponse, skillChecksResponse, dangersResponse] = await Promise.all([
                     fetch('encounters.json').catch(err => { console.error('Failed to fetch encounters.json:', err); return null; }),
                     fetch('locations.json').catch(err => { console.error('Failed to fetch locations.json:', err); return null; }),
-                    fetch('npcs.json').catch(err => { console.error('Failed to fetch npcs.json:', err); return null; })
+                    fetch('npcs.json').catch(err => { console.error('Failed to fetch npcs.json:', err); return null; }),
+                    fetch('skillchecks.json').catch(err => { console.error('Failed to fetch skillchecks.json:', err); return null; }),
+                    fetch('dangers.json').catch(err => { console.error('Failed to fetch dangers.json:', err); return null; })
                 ]);
 
                 if (encountersResponse && encountersResponse.ok) {
@@ -1809,6 +1813,23 @@
                     console.log('✓ Loaded npcs.json');
                 } else {
                     console.error('❌ Failed to load npcs.json - response:', npcsResponse?.status);
+                }
+                
+                if (skillChecksResponse && skillChecksResponse.ok) {
+                    skillChecksData = await skillChecksResponse.json();
+                    console.log('✓ Loaded skillchecks.json:', skillChecksData.skillChecks?.length || 0, 'skill checks');
+                } else {
+                    console.error('❌ Failed to load skillchecks.json - response:', skillChecksResponse?.status);
+                }
+                
+                if (dangersResponse && dangersResponse.ok) {
+                    dangersData = await dangersResponse.json();
+                    console.log('✓ Loaded dangers.json:', 
+                        dangersData.traps?.length || 0, 'traps,',
+                        dangersData.hazards?.length || 0, 'hazards,',
+                        dangersData.environmentalEffects?.length || 0, 'effects');
+                } else {
+                    console.error('❌ Failed to load dangers.json - response:', dangersResponse?.status);
                 }
                 
                 dataLoaded = true;
@@ -2659,6 +2680,222 @@
             return descriptions[environment] || descriptions.urban;
         }
 
+        // Smart selection function for skill checks based on tag matching
+        function selectSkillChecks(encounterTags, locationTags, npcTags, numChecks = null) {
+            if (!skillChecksData || !skillChecksData.skillChecks || skillChecksData.skillChecks.length === 0) {
+                console.warn('No skill checks data available');
+                return [];
+            }
+
+            // Determine number of skill checks (3-4)
+            if (numChecks === null) {
+                numChecks = Math.random() < 0.6 ? 3 : 4;
+            }
+
+            // Combine all tags for matching
+            const allTags = [...encounterTags, ...locationTags, ...npcTags];
+
+            // Score each skill check based on tag matching
+            const scoredChecks = skillChecksData.skillChecks.map(check => {
+                let score = 0;
+                
+                // Count matching tags
+                for (const tag of check.tags) {
+                    if (allTags.includes(tag)) {
+                        score += 1;
+                    }
+                }
+
+                // Bonus for matching specific encounter tags (more relevant)
+                for (const tag of check.tags) {
+                    if (encounterTags.includes(tag)) {
+                        score += 0.5;
+                    }
+                }
+
+                // Add small random variance for variety
+                score += Math.random() * 0.3;
+
+                return { check, score };
+            });
+
+            // Sort by score and select top candidates
+            scoredChecks.sort((a, b) => b.score - a.score);
+
+            // Take from top-scoring checks with some randomization
+            const topCandidates = scoredChecks.slice(0, Math.min(15, scoredChecks.length));
+            const selected = [];
+            const usedSkills = new Set();
+
+            // Prefer diverse skills
+            for (let i = 0; i < numChecks && topCandidates.length > 0; i++) {
+                // Try to find check with unused skill
+                let selectedCheck = null;
+                for (let j = 0; j < topCandidates.length; j++) {
+                    if (!usedSkills.has(topCandidates[j].check.skill)) {
+                        selectedCheck = topCandidates.splice(j, 1)[0];
+                        break;
+                    }
+                }
+                
+                // If all skills used, just take highest scored
+                if (!selectedCheck && topCandidates.length > 0) {
+                    selectedCheck = topCandidates.shift();
+                }
+
+                if (selectedCheck) {
+                    selected.push(selectedCheck.check);
+                    usedSkills.add(selectedCheck.check.skill);
+                }
+            }
+
+            // If we didn't get enough, fill with random
+            while (selected.length < numChecks && skillChecksData.skillChecks.length > selected.length) {
+                const randomCheck = skillChecksData.skillChecks[Math.floor(Math.random() * skillChecksData.skillChecks.length)];
+                if (!selected.includes(randomCheck)) {
+                    selected.push(randomCheck);
+                }
+            }
+
+            return selected;
+        }
+
+        // Smart selection function for traps based on location tags
+        function selectTraps(locationTags, numTraps = null) {
+            if (!dangersData || !dangersData.traps || dangersData.traps.length === 0) {
+                return [];
+            }
+
+            // Determine number of traps (0-2, weighted toward 1)
+            if (numTraps === null) {
+                const roll = Math.random();
+                if (roll < 0.3) numTraps = 0;      // 30% chance of no traps
+                else if (roll < 0.8) numTraps = 1; // 50% chance of 1 trap
+                else numTraps = 2;                 // 20% chance of 2 traps
+            }
+
+            if (numTraps === 0) return [];
+
+            // Score traps based on tag matching
+            const scoredTraps = dangersData.traps.map(trap => {
+                let score = 0;
+                
+                for (const tag of trap.tags) {
+                    if (locationTags.includes(tag)) {
+                        score += 1;
+                    }
+                }
+
+                score += Math.random() * 0.5;
+                return { trap, score };
+            });
+
+            scoredTraps.sort((a, b) => b.score - a.score);
+
+            // Select top scoring traps
+            const selected = [];
+            const topCandidates = scoredTraps.slice(0, Math.min(10, scoredTraps.length));
+
+            for (let i = 0; i < numTraps && topCandidates.length > 0; i++) {
+                const index = Math.floor(Math.random() * Math.min(5, topCandidates.length));
+                selected.push(topCandidates.splice(index, 1)[0].trap);
+            }
+
+            return selected;
+        }
+
+        // Smart selection function for hazards based on environment
+        function selectHazards(environmentTag, locationTags, numHazards = null) {
+            if (!dangersData || !dangersData.hazards || dangersData.hazards.length === 0) {
+                return [];
+            }
+
+            // Determine number of hazards (1-2)
+            if (numHazards === null) {
+                numHazards = Math.random() < 0.6 ? 1 : 2;
+            }
+
+            const allTags = [environmentTag, ...locationTags];
+
+            // Score hazards
+            const scoredHazards = dangersData.hazards.map(hazard => {
+                let score = 0;
+                
+                for (const tag of hazard.tags) {
+                    if (allTags.includes(tag)) {
+                        score += 1;
+                    }
+                }
+
+                // Extra weight for environment match
+                if (hazard.tags.includes(environmentTag)) {
+                    score += 1;
+                }
+
+                score += Math.random() * 0.5;
+                return { hazard, score };
+            });
+
+            scoredHazards.sort((a, b) => b.score - a.score);
+
+            const selected = [];
+            const topCandidates = scoredHazards.slice(0, Math.min(10, scoredHazards.length));
+
+            for (let i = 0; i < numHazards && topCandidates.length > 0; i++) {
+                const index = Math.floor(Math.random() * Math.min(5, topCandidates.length));
+                selected.push(topCandidates.splice(index, 1)[0].hazard);
+            }
+
+            return selected;
+        }
+
+        // Smart selection function for environmental effects
+        function selectEnvironmentalEffects(environmentTag, encounterTags, numEffects = null) {
+            if (!dangersData || !dangersData.environmentalEffects || dangersData.environmentalEffects.length === 0) {
+                return [];
+            }
+
+            // Determine number of effects (0-1, 40% chance of 1)
+            if (numEffects === null) {
+                numEffects = Math.random() < 0.4 ? 1 : 0;
+            }
+
+            if (numEffects === 0) return [];
+
+            const allTags = [environmentTag, ...encounterTags];
+
+            // Score effects
+            const scoredEffects = dangersData.environmentalEffects.map(effect => {
+                let score = 0;
+                
+                for (const tag of effect.tags) {
+                    if (allTags.includes(tag)) {
+                        score += 1;
+                    }
+                }
+
+                // Extra weight for environment match
+                if (effect.tags.includes(environmentTag)) {
+                    score += 1;
+                }
+
+                score += Math.random() * 0.5;
+                return { effect, score };
+            });
+
+            scoredEffects.sort((a, b) => b.score - a.score);
+
+            const selected = [];
+            const topCandidates = scoredEffects.slice(0, Math.min(10, scoredEffects.length));
+
+            for (let i = 0; i < numEffects && topCandidates.length > 0; i++) {
+                const index = Math.floor(Math.random() * Math.min(3, topCandidates.length));
+                selected.push(topCandidates.splice(index, 1)[0].effect);
+            }
+
+            return selected;
+        }
+
         function generateEncounter() {
             const partyLevel = parseInt(document.getElementById('partyLevel').value);
             
@@ -2673,7 +2910,6 @@
                 return;
             }
 
-            const data = encounterData[selectedEnvironment];
             const template = selectEncounterTemplate(selectedEnvironment);
             console.log('Selected template:', template);
             console.log('Template description:', template.description);
@@ -2682,24 +2918,34 @@
             const description = buildEncounterDescription(selectedEnvironment, title, template.description);
             console.log('Final description:', description.substring(0, 100) + '...');
 
-            // Select random elements
-            const numSkills = 3 + Math.floor(Math.random() * 2); // 3-4 skills
-            const numTraps = Math.floor(Math.random() * 3) + 1; // 1-3 traps
-            const numHazards = Math.floor(Math.random() * 2) + 2; // 2-3 hazards
-            const numEffects = Math.floor(Math.random() * 2) + 1; // 1-2 effects
-
-            const selectedSkills = getRandomElements(data.skillChecks, numSkills);
-            const selectedTraps = getRandomElements(data.traps, numTraps);
-            const selectedHazards = getRandomElements(data.hazards, numHazards);
-            const selectedEffects = getRandomElements(data.environmentalEffects, numEffects);
-            const scalingNotes = getScalingNotes(partyLevel);
-            
-            // Generate NPCs and Locations based on encounter tags
+            // Generate NPCs and Locations based on encounter tags FIRST
             const encounterNPCs = selectNPCsForEncounter(template.tags);
             const encounterLocations = selectLocationsForEncounter(template.tags, selectedEnvironment);
             
+            // Collect all tags for smart content selection
+            const encounterTags = template.tags || [];
+            const locationTags = encounterLocations.flatMap(loc => loc.data.tags || []);
+            const npcTags = encounterNPCs.flatMap(npc => [
+                ...(npc.profession?.tags || []),
+                ...(npc.personality?.tags || []),
+                ...(npc.secret?.tags || [])
+            ]);
+
+            // Smart selection based on combined context
+            const selectedSkills = selectSkillChecks(encounterTags, locationTags, npcTags);
+            const selectedTraps = selectTraps(locationTags);
+            const selectedHazards = selectHazards(selectedEnvironment, locationTags);
+            const selectedEffects = selectEnvironmentalEffects(selectedEnvironment, encounterTags);
+            const scalingNotes = getScalingNotes(partyLevel);
+            
             // Generate encounter flow
             const encounterFlow = generateEncounterFlow(encounterLocations, encounterNPCs, title);
+
+            console.log('📊 Content Selection Summary:');
+            console.log('  Skill Checks:', selectedSkills.length);
+            console.log('  Traps:', selectedTraps.length);
+            console.log('  Hazards:', selectedHazards.length);
+            console.log('  Effects:', selectedEffects.length);
 
             // Build HTML
             let html = `
@@ -2725,9 +2971,10 @@
                             <span class="skill-name">${skill.skill}</span>
                             <span class="dc">DC ${dc}</span>
                         </div>
-                        <p>Purpose: ${skill.purpose}</p>
-                        <p><strong>Success:</strong> The party overcomes this obstacle and gains advantage on their next related check.</p>
-                        <p><strong>Failure:</strong> The party takes longer, attracts attention, or suffers minor setbacks.</p>
+                        <p><strong>${skill.challenge}</strong></p>
+                        <p>${skill.description}</p>
+                        <p><strong>Success:</strong> ${skill.success}</p>
+                        <p><strong>Failure:</strong> ${skill.failure}</p>
                     </div>
                 `;
             });
@@ -2904,6 +3151,83 @@
                                     <li>They could provide information about ${template.tags[0] || 'the area'} if properly approached</li>
                                 </ul>
                             </div>
+                        </div>
+                    `;
+                });
+
+                html += `</div></div>`;
+            }
+
+            // Traps
+            if (selectedTraps.length > 0) {
+                html += `
+                    <div class="encounter-section">
+                        <h2 onclick="toggleSection(event)">⚠️ Traps <span class="section-toggle">▼</span></h2>
+                        <div class="section-content">
+                            <p class="description">Hidden dangers requiring detection and disarming.</p>
+                `;
+
+                selectedTraps.forEach(trap => {
+                    const detectDC = calculateDC(partyLevel);
+                    const disarmDC = detectDC + 2;
+                    
+                    html += `
+                        <div class="trap" style="background: rgba(255, 59, 48, 0.1); border-left: 3px solid #ff3b30; padding: 15px; margin: 10px 0; border-radius: 6px;">
+                            <h4 style="color: #ff3b30; margin-top: 0;">🪤 ${trap.name}</h4>
+                            <p><strong>Description:</strong> ${trap.description}</p>
+                            <p><strong>Detect:</strong> ${trap.detectMethod} (DC ${detectDC})</p>
+                            <p><strong>Disarm:</strong> ${trap.disarmMethod} (DC ${disarmDC})</p>
+                            <p><strong>Damage Type:</strong> ${trap.damageType}</p>
+                            <p><strong>Severity:</strong> <span style="text-transform: capitalize;">${trap.severity}</span> ${trap.resetable ? '| Can reset' : ''}</p>
+                        </div>
+                    `;
+                });
+
+                html += `</div></div>`;
+            }
+
+            // Hazards
+            if (selectedHazards.length > 0) {
+                html += `
+                    <div class="encounter-section">
+                        <h2 onclick="toggleSection(event)">💥 Environmental Hazards <span class="section-toggle">▼</span></h2>
+                        <div class="section-content">
+                            <p class="description">Persistent environmental dangers affecting the area.</p>
+                `;
+
+                selectedHazards.forEach(hazard => {
+                    const saveDC = calculateDC(partyLevel);
+                    
+                    html += `
+                        <div class="hazard" style="background: rgba(255, 149, 0, 0.1); border-left: 3px solid #ff9500; padding: 15px; margin: 10px 0; border-radius: 6px;">
+                            <h4 style="color: #ff9500; margin-top: 0;">☠️ ${hazard.name}</h4>
+                            <p><strong>Description:</strong> ${hazard.description}</p>
+                            <p><strong>Save:</strong> ${hazard.saveAbility} DC ${saveDC}</p>
+                            <p><strong>Effect:</strong> ${hazard.effect}</p>
+                            <p><strong>Severity:</strong> <span style="text-transform: capitalize;">${hazard.severity}</span> ${hazard.persistent ? '| Persistent' : ''}</p>
+                        </div>
+                    `;
+                });
+
+                html += `</div></div>`;
+            }
+
+            // Environmental Effects
+            if (selectedEffects.length > 0) {
+                html += `
+                    <div class="encounter-section">
+                        <h2 onclick="toggleSection(event)">🌪️ Environmental Effects <span class="section-toggle">▼</span></h2>
+                        <div class="section-content">
+                            <p class="description">Area-wide conditions affecting everyone in the encounter.</p>
+                `;
+
+                selectedEffects.forEach(effect => {
+                    html += `
+                        <div class="environmental-effect" style="background: rgba(52, 152, 219, 0.1); border-left: 3px solid var(--accent-blue); padding: 15px; margin: 10px 0; border-radius: 6px;">
+                            <h4 style="color: var(--accent-blue); margin-top: 0;">🔮 ${effect.name}</h4>
+                            <p><strong>Description:</strong> ${effect.description}</p>
+                            <p><strong>Mechanical Effect:</strong> ${effect.mechanicalEffect}</p>
+                            <p><strong>Severity:</strong> <span style="text-transform: capitalize;">${effect.severity}</span></p>
                         </div>
                     `;
                 });
