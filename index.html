@@ -3399,13 +3399,6 @@
 
                 <div style="margin-bottom: 20px;">
                     <h4 style="color: #9b59b6; margin-bottom: 10px; border-bottom: 1px solid rgba(155, 89, 182, 0.3); padding-bottom: 5px;">
-                        💬 Personality Trait
-                    </h4>
-                    <p style="color: var(--text-secondary);">${npc.personality?.description || npc.personality || 'No description available'}</p>
-                </div>
-
-                <div style="margin-bottom: 20px;">
-                    <h4 style="color: #9b59b6; margin-bottom: 10px; border-bottom: 1px solid rgba(155, 89, 182, 0.3); padding-bottom: 5px;">
                         🎭 Role in Encounter
                     </h4>
                     <p style="color: var(--text-secondary);">${npc.profession?.description || 'A ' + (npc.profession?.name || npc.profession) + ' in the area.'}</p>
@@ -3701,6 +3694,13 @@
                 numNPCs = Math.floor(Math.random() * 3) + 1;
             }
             
+            console.log('selectNPCsForEncounter - npcData available:', !!npcData);
+            console.log('npcData keys:', npcData ? Object.keys(npcData) : 'npcData is null/undefined');
+            console.log('Appearances count:', npcData?.appearances?.length || 0);
+            console.log('Secrets count:', npcData?.secrets?.length || 0);
+            console.log('Personalities count:', npcData?.personalities?.length || 0);
+            console.log('Alignments count:', npcData?.alignments?.length || 0);
+            
             const npcs = [];
             const usedProfessions = new Set();
             
@@ -3749,10 +3749,25 @@
                 const surname = speciesData.surnames[Math.floor(Math.random() * speciesData.surnames.length)];
                 const fullName = `${firstName} ${surname}`;
                 
-                const alignment = npcData.alignments[Math.floor(Math.random() * npcData.alignments.length)];
-                const personality = npcData.personalities[Math.floor(Math.random() * npcData.personalities.length)];
-                const secret = npcData.secrets[Math.floor(Math.random() * npcData.secrets.length)];
-                const appearance = npcData.appearances[Math.floor(Math.random() * npcData.appearances.length)];
+                const alignment = npcData.alignments?.[Math.floor(Math.random() * npcData.alignments.length)] || { name: 'Neutral', description: 'Acts according to circumstance' };
+                const personalityObj = npcData.personalities?.[Math.floor(Math.random() * npcData.personalities.length)] || { trait: 'Reserved', description: 'Keeps to themselves' };
+                const secretObj = npcData.secrets?.[Math.floor(Math.random() * npcData.secrets.length)] || { secret: 'Has a hidden past', tags: [] };
+                const appearanceObj = npcData.appearances?.[Math.floor(Math.random() * npcData.appearances.length)] || { description: 'Unremarkable appearance', tags: [] };
+                
+                // Extract the actual string values from the objects
+                const personality = personalityObj; // Keep as object for trait and description access
+                const secret = secretObj.secret || secretObj;
+                const appearance = appearanceObj.description || appearanceObj;
+                
+                console.log(`Generated NPC ${i+1}:`, {
+                    name: fullName,
+                    alignment: alignment,
+                    personality: personality,
+                    secretObj: secretObj,
+                    secret: secret,
+                    appearanceObj: appearanceObj,
+                    appearance: appearance
+                });
                 
                 npcs.push({
                     name: fullName,
