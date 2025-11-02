@@ -796,27 +796,16 @@
         // To update content: Edit encounters.json and locations.json files
         // The app will try to load from those files first, then fall back to this embedded data
         
-        let encounterTitles = {"urban":[{"title":"The Shadowed Alley","tags":["alley","outdoor","street"]},{"title":"Rooftop Chase","tags":["rooftop","outdoor","building"]},{"title":"The Abandoned Warehouse","tags":["warehouse","indoor","building"]},{"title":"Market District Mystery","tags":["market","outdoor","street"]},{"title":"Sewer Expedition","tags":["sewer","underground","tunnel"]},{"title":"The Clocktower District","tags":["district","outdoor","building"]},{"title":"Wharf at Midnight","tags":["wharf","outdoor","dock"]},{"title":"The Old Quarter","tags":["district","outdoor","street"]}],"arctic":[{"title":"Frozen Wasteland Trek","tags":["wilderness","outdoor","openfield"]},{"title":"The Avalanche Path","tags":["mountain","outdoor","path"]},{"title":"Ice Cave Exploration","tags":["cave","indoor","cavern"]},{"title":"Blizzard Survival","tags":["wilderness","outdoor","openfield"]},{"title":"Glacier Crossing","tags":["glacier","outdoor","openfield"]},{"title":"The Whiteout","tags":["wilderness","outdoor","openfield"]},{"title":"Frostbite Pass","tags":["pass","outdoor","path"]},{"title":"Icebound Peaks","tags":["mountain","outdoor","peaks"]}],"ocean":[{"title":"Storm-Tossed Voyage","tags":["ship","vessel","deck"]},{"title":"The Coral Labyrinth","tags":["underwater","reef","natural"]},{"title":"Derelict Ship Discovery","tags":["ship","vessel","wreck"]},{"title":"Island Approach","tags":["shore","outdoor","beach"]},{"title":"Deep Water Descent","tags":["underwater","depths","openwater"]},{"title":"The Doldrums","tags":["ship","vessel","deck"]},{"title":"Reef of Bones","tags":["underwater","reef","wreck"]},{"title":"Siren's Channel","tags":["underwater","passage","natural"]}],"space":[{"title":"Derelict Spelljammer","tags":["ship","vessel","derelict"]},{"title":"Phlogiston Crossing","tags":["wildspace","void","openspace"]},{"title":"Crystal Sphere Breach","tags":["void","anomaly","openspace"]},{"title":"Astral Debris Field","tags":["debris","void","openspace"]},{"title":"Wildspace Anomaly","tags":["wildspace","anomaly","openspace"]},{"title":"The Rainbow Flow","tags":["phlogiston","void","openspace"]},{"title":"Sphere's Edge","tags":["boundary","void","openspace"]},{"title":"Gravity Well","tags":["anomaly","void","openspace"]}],"crypt":[{"title":"The Ancient Tomb","tags":["tomb","indoor","chamber"]},{"title":"Forgotten Catacombs","tags":["catacomb","tunnel","passage"]},{"title":"Cursed Burial Chamber","tags":["chamber","indoor","tomb"]},{"title":"The Silent Mausoleum","tags":["mausoleum","building","indoor"]},{"title":"Necropolis Depths","tags":["catacomb","tunnel","depths"]},{"title":"Ossuary Halls","tags":["hall","indoor","passage"]},{"title":"The Sealed Vault","tags":["vault","chamber","indoor"]},{"title":"Mourner's Path","tags":["passage","tunnel","path"]}],"forest":[{"title":"Dense Woodland Trail","tags":["trail","outdoor","path"]},{"title":"The Overgrown Ruins","tags":["ruins","structure","outdoor"]},{"title":"Ancient Grove","tags":["grove","outdoor","clearing"]},{"title":"Forest of Whispers","tags":["woods","outdoor","dense"]},{"title":"The Hidden Glade","tags":["glade","outdoor","clearing"]},{"title":"Thornwood Passage","tags":["passage","outdoor","path"]},{"title":"The Green Cathedral","tags":["grove","outdoor","clearing"]},{"title":"Wildwood Maze","tags":["woods","outdoor","dense"]}],"desert":[{"title":"Scorching Dunes","tags":["dunes","outdoor","openfield"]},{"title":"Oasis Mirage","tags":["oasis","outdoor","water"]},{"title":"The Buried Temple","tags":["temple","ruins","structure"]},{"title":"Canyon of Winds","tags":["canyon","outdoor","passage"]},{"title":"Desert Caravan Route","tags":["trail","outdoor","path"]},{"title":"The Glass Wastes","tags":["wasteland","outdoor","openfield"]},{"title":"Sunscorch Valley","tags":["valley","outdoor","passage"]},{"title":"Dune Sea Crossing","tags":["dunes","outdoor","openfield"]}],"mountain":[{"title":"Treacherous Peak","tags":["peak","outdoor","summit"]},{"title":"The Mountain Pass","tags":["pass","outdoor","path"]},{"title":"Cliffside Trail","tags":["cliff","outdoor","path"]},{"title":"Summit Ascent","tags":["peak","outdoor","summit"]},{"title":"The Hidden Valley","tags":["valley","outdoor","clearing"]},{"title":"Eagle's Roost","tags":["peak","outdoor","nest"]},{"title":"Stormbreak Ridge","tags":["ridge","outdoor","path"]},{"title":"The Devil's Stair","tags":["stairs","outdoor","path"]}],"swamp":[{"title":"The Mire","tags":["bog","outdoor","wetland"]},{"title":"Forgotten Wetlands","tags":["wetland","outdoor","wilderness"]},{"title":"Bog of Despair","tags":["bog","outdoor","wetland"]},{"title":"Murky Waters","tags":["water","outdoor","wetland"]},{"title":"The Dead Marsh","tags":["marsh","outdoor","wetland"]},{"title":"Rotwood Fen","tags":["fen","outdoor","wetland"]},{"title":"The Sinking Grounds","tags":["bog","outdoor","wetland"]},{"title":"Viper's Bog","tags":["bog","outdoor","wetland"]}],"underground":[{"title":"Cavern Depths","tags":["cavern","cave","natural"]},{"title":"The Sunless Expanse","tags":["cavern","cave","openspace"]},{"title":"Crystal Caves","tags":["cave","cavern","natural"]},{"title":"Underground River","tags":["river","cave","water"]},{"title":"The Forgotten Mine","tags":["mine","tunnel","manmade"]},{"title":"Echoing Halls","tags":["hall","cavern","chamber"]},{"title":"The Deepways","tags":["tunnel","passage","manmade"]},{"title":"Stonewomb Passage","tags":["passage","tunnel","natural"]}]};
-
-        let locationObjects = {"urban":{"warehouse":{"tags":["warehouse","indoor","building"],"primary":["wooden crate","loading crane","storage shelf","shipping manifest","rope coil","tool bench"],"secondary":["rusted nail","receipt","ledger book","oil lantern","chain","pulley"],"tertiary":["coin purse","jewelry","letter","key","trap mechanism","poison vial"]},"building":{"tags":["building","indoor","rooftop","district"],"primary":["ornate desk","locked safe","bookshelf","filing cabinet","portrait painting","fireplace"],"secondary":["hidden drawer","secret compartment","ledger","correspondence","seal","inkwell"],"tertiary":["family heirloom","deed","treasure map","incriminating letter","gold coins","magic item"]},"street":{"tags":["street","outdoor","alley","district","market"],"primary":["market stall","merchant cart","street lamp","notice board","vendor stand","fountain"],"secondary":["loose cobblestone","rain barrel","awning","signpost","doorway","window"],"tertiary":["dropped coin","torn poster","hidden cache","secret mark","smuggler sign","trap"]},"dock":{"tags":["wharf","dock","outdoor"],"primary":["shipping crate","mooring post","cargo net","dock crane","warehouse door","gangplank"],"secondary":["rope","anchor","barrel","canvas tarp","shipping manifest","oil lamp"],"tertiary":["smuggled goods","hidden compartment","coded message","stolen treasure","trap","key"]},"sewer":{"tags":["sewer","underground","tunnel"],"primary":["drainage pipe","sewer grate","maintenance ladder","brick archway","water channel","junction"],"secondary":["rat nest","debris pile","broken gate","rusty valve","slime","chain"],"tertiary":["lost valuables","body","smuggler cache","disease","trap","monster lair"]}},"crypt":{"tomb":{"tags":["tomb","chamber","indoor"],"primary":["stone sarcophagus","altar","statue","burial niche","stone column","brazier"],"secondary":["burial offering","inscription","sealed urn","canopic jar","ritual item","relic"],"tertiary":["cursed item","treasure","magic weapon","ancient scroll","undead","trap"]},"catacomb":{"tags":["catacomb","tunnel","passage","depths"],"primary":["bone wall","burial alcove","stone pillar","ancient archway","ossuary","memorial plaque"],"secondary":["skull pile","grave goods","ancient torch","carved symbol","sealed niche","offering bowl"],"tertiary":["hidden treasure","secret passage","cursed relic","undead guardian","trap","ritual chamber"]},"mausoleum":{"tags":["mausoleum","building","indoor"],"primary":["family crypt","marble statue","bronze door","stone bench","memorial wall","vaulted ceiling"],"secondary":["inscription plaque","offering table","sealed vault","stained glass","iron gate","torch sconce"],"tertiary":["family treasure","ancient relic","magic item","hidden crypt","undead","protective ward"]},"vault":{"tags":["vault","chamber","indoor"],"primary":["sealed door","guardian statue","treasure chest","magical ward","puzzle lock","pillar"],"secondary":["pressure plate","glyph","keyhole","offering pedestal","ancient mechanism","rune"],"tertiary":["legendary treasure","artifact","curse","powerful undead","deadly trap","magic seal"]}},"forest":{"trail":{"tags":["trail","path","outdoor"],"primary":["ancient tree","moss-covered boulder","trail marker","fallen log","clearing","stream crossing"],"secondary":["animal track","carved mark","abandoned camp","broken branch","root system","mushroom circle"],"tertiary":["hidden cache","druid sign","fey marking","treasure","trap","monster lair"]},"ruins":{"tags":["ruins","structure","outdoor"],"primary":["crumbling wall","stone foundation","overgrown statue","collapsed archway","broken column","moss-covered altar"],"secondary":["ancient inscription","carved relief","pottery shard","rusted weapon","stone fragment","hidden chamber"],"tertiary":["buried treasure","magic item","ancient knowledge","guardian spirit","trap","secret passage"]},"clearing":{"tags":["clearing","glade","grove","outdoor"],"primary":["fairy ring","natural spring","ancient tree circle","flower meadow","stone circle","sacred grove"],"secondary":["unusual plant","animal den","bird nest","mushroom cluster","water source","wildflower patch"],"tertiary":["fey presence","magic spring","druid treasure","nature spirit","blessing","curse"]},"dense":{"tags":["woods","dense","outdoor"],"primary":["thick undergrowth","tangled thicket","hollow log","dense canopy","bramble patch","ancient trunk"],"secondary":["animal burrow","spider web","vine tangle","thorny bush","concealed pit","hidden path"],"tertiary":["monster lair","hidden treasure","trap","rare plant","secret passage","predator nest"]}},"desert":{"dunes":{"tags":["dunes","openfield","outdoor","wasteland"],"primary":["sand dune","wind-carved formation","buried skeleton","abandoned cart","rock outcrop","shifting sand"],"secondary":["sun-bleached bones","tattered cloth","broken wheel","empty waterskin","scorpion nest","sand ripples"],"tertiary":["buried treasure","ancient artifact","oasis map","cursed item","monster lair","quicksand trap"]},"ruins":{"tags":["temple","ruins","structure"],"primary":["weathered stone pillar","collapsed wall","buried entrance","ancient altar","sandstone block","hieroglyph"],"secondary":["carved relief","broken statue","pottery fragment","ritual vessel","stone tablet","sealed chamber"],"tertiary":["ancient treasure","magic artifact","curse tablet","mummy","deadly trap","hidden vault"]},"oasis":{"tags":["oasis","water","outdoor"],"primary":["oasis pool","palm tree","water source","desert plants","rock formation","shade"],"secondary":["animal track","fruit tree","medicinal herb","cool cave","traveler marker","campsite"],"tertiary":["hidden spring","rare plant","treasure cache","spirit guardian","blessing","mirage"]},"trail":{"tags":["trail","path","outdoor"],"primary":["caravan marker","desert trail","way stone","traveler's shrine","cairn","directional sign"],"secondary":["campfire remains","discarded item","footprints","warning marker","supply cache","shelter"],"tertiary":["buried treasure","ambush site","hidden oasis map","bandit cache","trap","ancient relic"]}},"mountain":{"peak":{"tags":["peak","summit","outdoor","nest"],"primary":["mountain peak","rocky outcrop","ice formation","summit cairn","wind-swept stone","precipice"],"secondary":["prayer flags","climber's anchor","eagle nest","ice crystal","rock shelter","marker stone"],"tertiary":["legendary treasure","dragon hoard","ancient relic","rare mineral","spirit shrine","trap"]},"pass":{"tags":["pass","path","outdoor","ridge","stairs"],"primary":["mountain pass","narrow ledge","switchback trail","rock bridge","stone steps","guard post"],"secondary":["rope anchor","safety rope","trail marker","shelter cave","warning sign","avalanche zone"],"tertiary":["hidden cache","bandit treasure","ancient marker","trap","monster ambush","secret passage"]},"valley":{"tags":["valley","clearing","outdoor"],"primary":["hidden valley","mountain stream","alpine meadow","sheltered grove","rocky basin","waterfall"],"secondary":["wildflower field","grazing area","mineral deposit","hot spring","cave entrance","ancient tree"],"tertiary":["hidden sanctuary","hermit dwelling","rare herb","treasure cache","spirit guardian","secret entrance"]},"cliff":{"tags":["cliff","outdoor","path"],"primary":["precarious ledge","cliff face","sheer drop","rock overhang","narrow path","vertical wall"],"secondary":["climbing anchor","bird nest","cave opening","rock shelf","erosion crack","loose stone"],"tertiary":["hidden cave","eagle treasure","ancient carving","trap","monster lair","secret passage"]}},"swamp":{"bog":{"tags":["bog","wetland","outdoor"],"primary":["murky pool","mud mound","gnarled tree","quicksand","stagnant water","dead vegetation"],"secondary":["marsh gas bubble","sunken log","lily pad","insect swarm","muddy bank","rotting vegetation"],"tertiary":["sunken treasure","body","monster lair","disease","trap","cursed area"]},"wetland":{"tags":["wetland","marsh","fen","outdoor","wilderness"],"primary":["marsh grass","water channel","raised hummock","dead tree","reed bed","shallow pool"],"secondary":["bird nest","fish trap","willow tree","stepping stone","floating debris","vegetation mat"],"tertiary":["hidden path","hermit hut","rare plant","treasure cache","hag marker","trap"]},"water":{"tags":["water","outdoor","wetland"],"primary":["dark water","stagnant pool","flowing stream","deep channel","murky pond","water source"],"secondary":["submerged log","floating vegetation","water plant","ripple","current","shallow ford"],"tertiary":["sunken boat","underwater cave","monster lair","treasure","trap","cursed water"]}},"underground":{"cavern":{"tags":["cavern","cave","natural","openspace","chamber"],"primary":["crystal formation","stone pillar","underground lake","stalactite cluster","rock formation","cavern floor"],"secondary":["mineral vein","bat colony","mushroom grove","limestone deposit","water drip","echo chamber"],"tertiary":["rare crystal","underground river","monster lair","treasure deposit","trap","secret passage"]},"tunnel":{"tags":["tunnel","passage","manmade"],"primary":["mine shaft","carved tunnel","support beams","rail tracks","tool marks","ventilation shaft"],"secondary":["mining cart","pickaxe","lantern hook","ore vein","support pillar","wooden brace"],"tertiary":["ore deposit","abandoned equipment","collapsed section","monster nest","trap","hidden passage"]},"river":{"tags":["river","water","cave"],"primary":["underground stream","water channel","rock bridge","waterfall","river bank","current"],"secondary":["stepping stone","water pool","mineral deposit","moisture","echo","fish"],"tertiary":["underwater passage","treasure","monster lair","rare mineral","trap","secret cave"]}},"ocean":{"ship":{"tags":["ship","vessel","deck"],"primary":["ship wheel","mast rigging","cargo hold","captain's quarters","main deck","anchor"],"secondary":["rope coil","barrel","sail","navigation tool","ship bell","cannon"],"tertiary":["treasure chest","ship's log","hidden cargo","secret compartment","trap","contraband"]},"wreck":{"tags":["wreck","ship","vessel","underwater"],"primary":["broken hull","sunken cargo","ship's skeleton","barnacle-covered mast","debris field","coral growth"],"secondary":["rotted sail","rusted chain","broken rudder","scattered cargo","ship bell","anchor"],"tertiary":["treasure chest","ship's safe","captain's loot","cursed cargo","monster lair","trap"]},"underwater":{"tags":["underwater","reef","natural","depths","openwater","passage"],"primary":["coral reef","underwater cave","kelp forest","rock formation","sea floor","current"],"secondary":["sea plant","anemone","shell cluster","fish school","underwater cliff","sand bed"],"tertiary":["pearl bed","sunken treasure","monster lair","ancient ruin","trap","magic current"]},"shore":{"tags":["shore","beach","outdoor"],"primary":["beach shore","tide pool","driftwood pile","rock outcrop","sand beach","wave line"],"secondary":["seashell","seaweed","crab","beach rock","sand dune","flotsam"],"tertiary":["message bottle","shipwreck debris","treasure chest","rare shell","trap","hidden cave"]}},"arctic":{"wilderness":{"tags":["wilderness","openfield","outdoor"],"primary":["ice field","snow plain","frozen tundra","ice wall","snowdrift","frost formation"],"secondary":["animal track","ice crack","wind pattern","snow hole","frozen plant","ice shard"],"tertiary":["frozen corpse","buried treasure","rare resource","monster lair","trap","ancient relic"]},"cave":{"tags":["cave","cavern","indoor"],"primary":["ice cave","snow shelter","frozen cavern","ice tunnel","frost wall","icicle"],"secondary":["ice formation","frozen pool","ice pillar","snow drift","frost pattern","wind tunnel"],"tertiary":["frozen treasure","ancient remains","rare ice","monster den","trap","magic ice"]},"mountain":{"tags":["mountain","peaks","outdoor"],"primary":["ice peak","frozen summit","glacier slope","ice cliff","snow ridge","avalanche path"],"secondary":["ice bridge","crevasse","snow cornice","ice wall","frozen waterfall","wind gap"],"tertiary":["legendary treasure","dragon lair","ancient shrine","rare mineral","trap","avalanche trigger"]},"path":{"tags":["path","pass","outdoor"],"primary":["frozen trail","ice path","snow route","marked way","passage","crossing"],"secondary":["trail marker","shelter","supply cache","warning sign","rope line","cairn"],"tertiary":["hidden cache","abandoned camp","treasure","trap","monster ambush","shortcut"]}},"space":{"ship":{"tags":["ship","vessel","derelict"],"primary":["spelljamming helm","navigation altar","air envelope","gravity plane","helm chamber","main deck"],"secondary":["star chart","planar compass","magic anchor","air pump","gravity ring","void seal"],"tertiary":["arcane treasure","planar map","magic artifact","ship secret","trap","hidden cargo"]},"void":{"tags":["void","openspace","wildspace","phlogiston","boundary"],"primary":["phlogiston flow","wildspace debris","crystal sphere","planar barrier","void current","star field"],"secondary":["asteroid","void eddy","magic field","planar echo","cosmic dust","light phenomenon"],"tertiary":["ancient wreck","planar rift","cosmic treasure","void entity","trap","portal"]},"anomaly":{"tags":["anomaly","void","openspace","wildspace"],"primary":["gravity well","magic vortex","planar rift","time distortion","space fold","reality tear"],"secondary":["energy field","temporal echo","spatial loop","magic surge","void pulse","reality fragment"],"tertiary":["legendary artifact","planar gateway","cosmic secret","powerful entity","deadly trap","reality breach"]},"debris":{"tags":["debris","void","openspace"],"primary":["wrecked ship","floating rock","debris field","broken hull","scattered cargo","void junk"],"secondary":["ship fragment","asteroid chunk","twisted metal","broken mast","cargo container","escape pod"],"tertiary":["salvage treasure","ship log","hidden cargo","survivor","trap","monster nest"]}}};
-
-        let dataLoaded = true; // Data is embedded, so it's always loaded
-
-        // Load data on page load (tries external files, falls back to embedded data)
         async function loadData() {
             try {
-                // Try to fetch from external files
                 const [encountersResponse, locationsResponse] = await Promise.all([
                     fetch('encounters.json').catch(() => null),
                     fetch('locations.json').catch(() => null)
                 ]);
-                
+
                 if (encountersResponse && locationsResponse && encountersResponse.ok && locationsResponse.ok) {
                     encounterTitles = await encountersResponse.json();
                     locationObjects = await locationsResponse.json();
-                    console.log('Data loaded from external JSON files');
-                } else {
-                    console.log('Using embedded data (external files not available)');
                 }
             } catch (error) {
                 console.log('Using embedded data');
@@ -827,7 +816,7 @@
         document.addEventListener('DOMContentLoaded', async function() {
             // Load external data files
             await loadData();
-            
+
             // Setup Enter key for search input
             const searchInput = document.getElementById('searchInput');
             if (searchInput) {
@@ -839,17 +828,13 @@
             }
         });
 
-        // REMOVED: Encounter titles now loaded from encounters.json
-        
-        // REMOVED: Location objects now loaded from locations.json
-
         // Page switching
         function switchPage(page) {
             document.getElementById('generatePage').style.display = 'none';
             document.getElementById('searchPage').style.display = 'none';
-            
+
             document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
-            
+
             if (page === 'generate') {
                 document.getElementById('generatePage').style.display = 'block';
                 document.querySelectorAll('.nav-tab')[0].classList.add('active');
@@ -867,7 +852,7 @@
             const envFilters = document.getElementById('envFilters');
             const environments = ['urban', 'arctic', 'ocean', 'space', 'crypt', 'forest', 'desert', 'mountain', 'swamp', 'underground'];
             const envIcons = { urban: '🏛️', arctic: '❄️', ocean: '🌊', space: '🌌', crypt: '💀', forest: '🌲', desert: '🏜️', mountain: '⛰️', swamp: '🐊', underground: '🕳️' };
-            
+
             environments.forEach(env => {
                 const tag = document.createElement('div');
                 tag.className = 'filter-tag';
@@ -880,7 +865,7 @@
 
             const locationFilters = document.getElementById('locationFilters');
             const locationTypes = ['indoor', 'outdoor', 'building', 'street', 'cave', 'ruins', 'ship', 'underwater', 'tunnel', 'chamber', 'wilderness', 'path'];
-            
+
             locationTypes.forEach(type => {
                 const tag = document.createElement('div');
                 tag.className = 'filter-tag';
@@ -893,7 +878,7 @@
 
             const settingFilters = document.getElementById('settingFilters');
             const settings = ['natural', 'manmade', 'magical', 'tomb', 'void', 'water', 'urban', 'wilderness'];
-            
+
             settings.forEach(setting => {
                 const tag = document.createElement('div');
                 tag.className = 'filter-tag';
@@ -908,14 +893,14 @@
         // Toggle filter
         function toggleFilter(element, type, value) {
             element.classList.toggle('active');
-            
+
             const index = activeFilters[type].indexOf(value);
             if (index > -1) {
                 activeFilters[type].splice(index, 1);
             } else {
                 activeFilters[type].push(value);
             }
-            
+
             performSearch();
         }
 
@@ -926,11 +911,11 @@
                 locationType: [],
                 setting: []
             };
-            
+
             document.querySelectorAll('.filter-tag').forEach(tag => {
                 tag.classList.remove('active');
             });
-            
+
             document.getElementById('searchInput').value = '';
             performSearch();
         }
@@ -963,7 +948,7 @@
                         const titleMatch = encounter.title.toLowerCase().includes(searchTerm);
                         const tagMatch = encounter.tags.some(tag => tag.toLowerCase().includes(searchTerm));
                         const envMatch = environment.toLowerCase().includes(searchTerm);
-                        
+
                         if (!titleMatch && !tagMatch && !envMatch) {
                             matches = false;
                         }
@@ -975,7 +960,7 @@
                             title: encounter.title,
                             environment: environment,
                             tags: encounter.tags,
-                            description: `An exploration encounter in a ${environment} setting`
+                            description: buildEncounterDescription(environment, encounter.title, encounter.description)
                         });
                     }
                 });
@@ -1007,7 +992,7 @@
                         const primaryMatch = locationData.primary.some(obj => obj.toLowerCase().includes(searchTerm));
                         const secondaryMatch = locationData.secondary.some(obj => obj.toLowerCase().includes(searchTerm));
                         const tertiaryMatch = locationData.tertiary.some(obj => obj.toLowerCase().includes(searchTerm));
-                        
+
                         if (!typeMatch && !tagMatch && !envMatch && !primaryMatch && !secondaryMatch && !tertiaryMatch) {
                             matches = false;
                         }
@@ -1015,13 +1000,14 @@
 
                     if (matches) {
                         const totalObjects = locationData.primary.length + locationData.secondary.length + locationData.tertiary.length;
+                        const locationDescription = locationData.description || `Explore ${totalObjects} interactable objects across 3 layers of detail`;
                         results.push({
                             type: 'location',
                             title: `${locationType.charAt(0).toUpperCase() + locationType.slice(1)} (${environment})`,
                             environment: environment,
                             locationType: locationType,
                             tags: locationData.tags,
-                            description: `Explore ${totalObjects} interactable objects across 3 layers of detail`,
+                            description: locationDescription,
                             objects: locationData.primary.slice(0, 4).join(', ') + '...'
                         });
                     }
@@ -1034,17 +1020,17 @@
         // Display search results
         function displaySearchResults(results) {
             const container = document.getElementById('searchResults');
-            
+
             if (results.length === 0) {
                 container.innerHTML = '<p style="text-align: center; color: var(--text-dark); padding: 40px;">No results found. Try different keywords or filters.</p>';
                 return;
             }
 
             let html = `<h2 style="color: var(--accent-color); margin-bottom: 20px;">Found ${results.length} result${results.length !== 1 ? 's' : ''}</h2>`;
-            
+
             results.forEach((result, index) => {
                 const typeColor = result.type === 'encounter' ? 'var(--primary-color)' : 'var(--success)';
-                
+
                 html += `
                     <div class="result-card">
                         <div class="result-title">${result.title}</div>
@@ -1062,7 +1048,7 @@
                     </div>
                 `;
             });
-            
+
             container.innerHTML = html;
             window.searchResults = results;
         }
@@ -1072,7 +1058,7 @@
             const result = window.searchResults[index];
             const modal = document.getElementById('previewModal');
             const previewBody = document.getElementById('previewBody');
-            
+
             let html = `
                 <div class="preview-header">
                     <div class="preview-title">${result.title}</div>
@@ -1083,17 +1069,17 @@
                 </div>
                 <div class="preview-body">
             `;
-            
+
             if (result.type === 'encounter') {
                 html += `
                     <h3 style="color: var(--accent-color); margin-bottom: 15px;">📜 Encounter Overview</h3>
                     <p style="margin-bottom: 20px;">${result.description}</p>
-                    
+
                     <h3 style="color: var(--success); margin-bottom: 15px;">🏷️ Tags</h3>
                     <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;">
                         ${result.tags.map(tag => `<span class="result-tag">${tag}</span>`).join('')}
                     </div>
-                    
+
                     <h3 style="color: var(--warning); margin-bottom: 15px;">🎲 What to Expect</h3>
                     <ul style="margin-left: 20px; line-height: 2;">
                         <li>Skill challenges themed to ${result.environment} exploration</li>
@@ -1101,7 +1087,7 @@
                         <li>Natural, supernatural, or creature-based hazards</li>
                         <li>Environmental effects unique to ${result.environment} settings</li>
                     </ul>
-                    
+
                     <div style="margin-top: 30px; text-align: center;">
                         <button class="open-btn" onclick='closePreview(); openResult(${index});' style="padding: 12px 30px; font-size: 1.1em;">
                             📂 Open Full Encounter
@@ -1112,15 +1098,15 @@
                 html += `
                     <h3 style="color: var(--accent-color); margin-bottom: 15px;">📍 Location Overview</h3>
                     <p style="margin-bottom: 20px;">${result.description}</p>
-                    
+
                     <h3 style="color: var(--success); margin-bottom: 15px;">🏷️ Tags</h3>
                     <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;">
                         ${result.tags.map(tag => `<span class="result-tag">${tag}</span>`).join('')}
                     </div>
-                    
+
                     <h3 style="color: var(--warning); margin-bottom: 15px;">🔍 Sample Objects</h3>
                     <p style="margin-left: 20px; line-height: 2;">${result.objects}</p>
-                    
+
                     <div style="margin-top: 30px; text-align: center;">
                         <button class="open-btn" onclick='closePreview(); openResult(${index});' style="padding: 12px 30px; font-size: 1.1em;">
                             📂 Generate This Location
@@ -1128,7 +1114,7 @@
                     </div>
                 `;
             }
-            
+
             html += `</div>`;
             previewBody.innerHTML = html;
             modal.classList.add('active');
@@ -1150,28 +1136,26 @@
         // Open result
         function openResult(index) {
             const result = window.searchResults[index];
-            
+
             if (result.type === 'encounter') {
                 selectedEnvironment = result.environment;
-                
+
                 document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
                 const tag = document.querySelector(`.tag[data-env="${result.environment}"]`);
                 if (tag) tag.classList.add('active');
-                
+
                 generateEncounter();
                 switchPage('generate');
-                
+
                 setTimeout(() => {
                     document.getElementById('encounterDisplay').scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 100);
             } else if (result.type === 'location') {
-                // Get location data from locationObjects
                 const locationData = locationObjects[result.environment][result.locationType];
-                
-                // Generate room directly
+
                 generateRoom(result.environment, result.locationType, locationData);
                 switchPage('generate');
-                
+
                 setTimeout(() => {
                     document.getElementById('roomDisplay').scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 100);
@@ -1189,6 +1173,2768 @@
 
         // Set default active tag
         document.querySelector('.tag[data-env="urban"]').classList.add('active');
+
+        let encounterTitles = {
+    "urban": [
+        {
+            "title": "The Shadowed Alley",
+            "tags": [
+                "alley",
+                "outdoor",
+                "street"
+            ],
+            "description": "A single guttering lantern throws nervous silhouettes against damp brick as smugglers barter over forbidden relics. Every whispered threat rides the fog, ready to drag interlopers into a maze of hidden doors and knife-bright intentions.",
+            "weight": 1.1
+        },
+        {
+            "title": "Rooftop Chase",
+            "tags": [
+                "rooftop",
+                "outdoor",
+                "building"
+            ],
+            "description": "Terracotta shingles and laundry lines blur beneath desperate feet while bells toll the alarm across the skyline. Chimney sweeps, nesting griffins, and sheer drops turn every leap into a wager with gravity and the guards below.",
+            "weight": 1.2
+        },
+        {
+            "title": "The Abandoned Warehouse",
+            "tags": [
+                "warehouse",
+                "indoor",
+                "building"
+            ],
+            "description": "Dust-choked crates form a claustrophobic labyrinth where contraband sigils flare to life when touched. Something restless prowls between the pallets, stirred awake by anyone bold enough to break the silence.",
+            "weight": 0.9
+        },
+        {
+            "title": "Market District Mystery",
+            "tags": [
+                "market",
+                "outdoor",
+                "street"
+            ],
+            "description": "Merchants hawk fragrant spices over the hushed gossip of a vanished magistrate. Beneath the tapestry of awnings, secret ledgers, coded chalk marks, and suspicious performers all beg to be decoded before the crowd turns hostile.",
+            "weight": 1.0
+        },
+        {
+            "title": "Sewer Expedition",
+            "tags": [
+                "sewer",
+                "underground",
+                "tunnel"
+            ],
+            "description": "Sluggish canals of alchemical runoff glow sickly green, illuminating murals that rewrite the city\u2019s founding myths. Mutated vermin and forgotten cult wards conspire to drown the unwary beneath a century of secrets.",
+            "weight": 0.8
+        },
+        {
+            "title": "The Clocktower District",
+            "tags": [
+                "district",
+                "outdoor",
+                "building"
+            ],
+            "description": "Clockwork giants toll the hour as brass gears strain against a sabotage-born misalignment. Spires connected by maintenance catwalks demand delicate timing lest the party be caught in a storm of spinning weights and civic panic.",
+            "weight": 1.0
+        },
+        {
+            "title": "Wharf at Midnight",
+            "tags": [
+                "wharf",
+                "outdoor",
+                "dock"
+            ],
+            "description": "Salt mist swallows lantern light while contraband-laden barges glide in under foreign colors. Whispered deals, restless spirits, and tide-called predators all hunger for a single misstep on the slick planks.",
+            "weight": 0.95
+        },
+        {
+            "title": "The Old Quarter",
+            "tags": [
+                "district",
+                "outdoor",
+                "street"
+            ],
+            "description": "Lean tenements huddle over cobbles carved with warding sigils now cracked and fading. Elders barricade their doorways as ancestral guardians stir against a brewing riot the watch refuses to quell.",
+            "weight": 0.85
+        },
+        {
+            "title": "Festival of Masks Unveiled",
+            "tags": [
+                "festival",
+                "crowd",
+                "market"
+            ],
+            "description": "Ribboned performers and masked revelers whirl beneath fireworks that spell omens in smoke. When a prophetic masque ends in a real abduction, the heroes must navigate jubilant chaos to unmask conspirators.",
+            "weight": 1.35
+        },
+        {
+            "title": "Guildhouse Heist Aftermath",
+            "tags": [
+                "guild",
+                "heist",
+                "indoor"
+            ],
+            "description": "Shattered vault wards and drifting illusion shards reveal a thieves\u2019 triumph hours too soon. Rival factions arrive in waves, each eager to pin blame or steal what the original crew missed.",
+            "weight": 1.1
+        },
+        {
+            "title": "Basilica of Echoing Confessions",
+            "tags": [
+                "temple",
+                "indoor",
+                "district"
+            ],
+            "description": "Sound-catcher domes preserve every whispered confession until the clergy release them in sonorous choruses. Tonight a vengeful chorus threatens to expose blackmail material unless the sanctum\u2019s curse is soothed.",
+            "weight": 0.9
+        },
+        {
+            "title": "Night Watch Mutiny",
+            "tags": [
+                "guard",
+                "street",
+                "riot"
+            ],
+            "description": "Barricades of overturned carts frame a standoff between loyalist captains and disgruntled rookies. The party must thread the line between diplomacy and derring-do before the city wakes to civil war.",
+            "weight": 1.25
+        },
+        {
+            "title": "Skybridge Duel at Dawn",
+            "tags": [
+                "rooftop",
+                "bridge",
+                "duel"
+            ],
+            "description": "A duelist\u2019s seconds tighten ceremonial harnesses as the river sunrise paints the elevated span in molten gold. Sabotaged anchors, hidden snipers, and hungry gargoyles mean honor is only one of many blades drawn.",
+            "weight": 1.05
+        },
+        {
+            "title": "Arcane Tram Derailment",
+            "tags": [
+                "transit",
+                "arcane",
+                "disaster"
+            ],
+            "description": "Lightning-fed rails shriek while a levitating tram car dangles above a plaza of panicked commuters. Stabilizing the conduit requires crowd control, counter-spells, and a race against plummeting wreckage.",
+            "weight": 1.3
+        },
+        {
+            "title": "Stormglass Conservatory Siege",
+            "tags": [
+                "conservatory",
+                "indoor",
+                "arcane"
+            ],
+            "description": "Crystalline greenhouses fracture under the strain of caged tempests now raging free. Elemental botanists plead for rescue as sentient vines and living hail duel beneath shimmering domes.",
+            "weight": 0.95
+        },
+        {
+            "title": "Moonlit Menagerie Escape",
+            "tags": [
+                "menagerie",
+                "outdoor",
+                "beasts"
+            ],
+            "description": "Exotic beasts prowl the moon-washed gardens after a sabotaged lock release. From chimeric songbirds to a melancholic manticore, each creature demands a different mix of empathy and strategy to corral.",
+            "weight": 1.05
+        },
+        {
+            "title": "Tax Collector's Uprising",
+            "tags": [
+                "bureaucracy",
+                "protest",
+                "street"
+            ],
+            "description": "Ledgers burn in braziers as clerks and citizens storm the civic countinghouse over a cursed levy. The crowd\u2019s fury hides a spectral auditor eager to balance the books with blood.",
+            "weight": 0.9
+        },
+        {
+            "title": "Cursed Foundry Reawakening",
+            "tags": [
+                "foundry",
+                "industrial",
+                "indoor"
+            ],
+            "description": "Molten channels spark to life in a long-shuttered foundry where golems once forged city defenses. Unchecked anima surges now seek new hosts among the living, forcing a desperate shutdown under blistering heat.",
+            "weight": 1.15
+        }
+    ],
+    "arctic": [
+        {
+            "title": "Frozen Wasteland Trek",
+            "tags": [
+                "wilderness",
+                "outdoor",
+                "openfield"
+            ]
+        },
+        {
+            "title": "The Avalanche Path",
+            "tags": [
+                "mountain",
+                "outdoor",
+                "path"
+            ]
+        },
+        {
+            "title": "Ice Cave Exploration",
+            "tags": [
+                "cave",
+                "indoor",
+                "cavern"
+            ]
+        },
+        {
+            "title": "Blizzard Survival",
+            "tags": [
+                "wilderness",
+                "outdoor",
+                "openfield"
+            ]
+        },
+        {
+            "title": "Glacier Crossing",
+            "tags": [
+                "glacier",
+                "outdoor",
+                "openfield"
+            ]
+        },
+        {
+            "title": "The Whiteout",
+            "tags": [
+                "wilderness",
+                "outdoor",
+                "openfield"
+            ]
+        },
+        {
+            "title": "Frostbite Pass",
+            "tags": [
+                "pass",
+                "outdoor",
+                "path"
+            ]
+        },
+        {
+            "title": "Icebound Peaks",
+            "tags": [
+                "mountain",
+                "outdoor",
+                "peaks"
+            ]
+        }
+    ],
+    "ocean": [
+        {
+            "title": "Storm-Tossed Voyage",
+            "tags": [
+                "ship",
+                "vessel",
+                "deck"
+            ]
+        },
+        {
+            "title": "The Coral Labyrinth",
+            "tags": [
+                "underwater",
+                "reef",
+                "natural"
+            ]
+        },
+        {
+            "title": "Derelict Ship Discovery",
+            "tags": [
+                "ship",
+                "vessel",
+                "wreck"
+            ]
+        },
+        {
+            "title": "Island Approach",
+            "tags": [
+                "shore",
+                "outdoor",
+                "beach"
+            ]
+        },
+        {
+            "title": "Deep Water Descent",
+            "tags": [
+                "underwater",
+                "depths",
+                "openwater"
+            ]
+        },
+        {
+            "title": "The Doldrums",
+            "tags": [
+                "ship",
+                "vessel",
+                "deck"
+            ]
+        },
+        {
+            "title": "Reef of Bones",
+            "tags": [
+                "underwater",
+                "reef",
+                "wreck"
+            ]
+        },
+        {
+            "title": "Siren's Channel",
+            "tags": [
+                "underwater",
+                "passage",
+                "natural"
+            ]
+        }
+    ],
+    "space": [
+        {
+            "title": "Derelict Spelljammer",
+            "tags": [
+                "ship",
+                "vessel",
+                "derelict"
+            ]
+        },
+        {
+            "title": "Phlogiston Crossing",
+            "tags": [
+                "wildspace",
+                "void",
+                "openspace"
+            ]
+        },
+        {
+            "title": "Crystal Sphere Breach",
+            "tags": [
+                "void",
+                "anomaly",
+                "openspace"
+            ]
+        },
+        {
+            "title": "Astral Debris Field",
+            "tags": [
+                "debris",
+                "void",
+                "openspace"
+            ]
+        },
+        {
+            "title": "Wildspace Anomaly",
+            "tags": [
+                "wildspace",
+                "anomaly",
+                "openspace"
+            ]
+        },
+        {
+            "title": "The Rainbow Flow",
+            "tags": [
+                "phlogiston",
+                "void",
+                "openspace"
+            ]
+        },
+        {
+            "title": "Sphere's Edge",
+            "tags": [
+                "boundary",
+                "void",
+                "openspace"
+            ]
+        },
+        {
+            "title": "Gravity Well",
+            "tags": [
+                "anomaly",
+                "void",
+                "openspace"
+            ]
+        },
+        {
+            "title": "Siege of the Living Voidship",
+            "tags": [
+                "ship",
+                "void",
+                "boarding",
+                "living"
+            ]
+        },
+        {
+            "title": "Rescue at the Solar Flare Regatta",
+            "tags": [
+                "ship",
+                "phlogiston",
+                "storm",
+                "rescue"
+            ]
+        },
+        {
+            "title": "Moondust Corsair Ambush",
+            "tags": [
+                "asteroid",
+                "ambush",
+                "pirates",
+                "void"
+            ]
+        },
+        {
+            "title": "Chronal Drift Salvage",
+            "tags": [
+                "anomaly",
+                "time",
+                "salvage",
+                "debris"
+            ]
+        },
+        {
+            "title": "Gith Armada Blockade",
+            "tags": [
+                "armada",
+                "githyanki",
+                "military",
+                "void"
+            ]
+        },
+        {
+            "title": "Phlogiston Bloom Storm",
+            "tags": [
+                "phlogiston",
+                "storm",
+                "hazard",
+                "wildspace"
+            ]
+        },
+        {
+            "title": "Nebula Sanctuary Negotiation",
+            "tags": [
+                "nebula",
+                "diplomacy",
+                "sanctuary",
+                "void"
+            ]
+        },
+        {
+            "title": "Crystal Sphere Siegebreakers",
+            "tags": [
+                "crystalsphere",
+                "siege",
+                "battle",
+                "void"
+            ]
+        },
+        {
+            "title": "Starbeast Migration Crossing",
+            "tags": [
+                "wildlife",
+                "migration",
+                "hazard",
+                "void"
+            ]
+        },
+        {
+            "title": "Planar Observatory Heist",
+            "tags": [
+                "observatory",
+                "heist",
+                "structure",
+                "void"
+            ]
+        }
+    ],
+    "crypt": [
+        {
+            "title": "The Ancient Tomb",
+            "tags": [
+                "tomb",
+                "indoor",
+                "chamber"
+            ]
+        },
+        {
+            "title": "Forgotten Catacombs",
+            "tags": [
+                "catacomb",
+                "tunnel",
+                "passage"
+            ]
+        },
+        {
+            "title": "Cursed Burial Chamber",
+            "tags": [
+                "chamber",
+                "indoor",
+                "tomb"
+            ]
+        },
+        {
+            "title": "The Silent Mausoleum",
+            "tags": [
+                "mausoleum",
+                "building",
+                "indoor"
+            ]
+        },
+        {
+            "title": "Necropolis Depths",
+            "tags": [
+                "catacomb",
+                "tunnel",
+                "depths"
+            ]
+        },
+        {
+            "title": "Ossuary Halls",
+            "tags": [
+                "hall",
+                "indoor",
+                "passage"
+            ]
+        },
+        {
+            "title": "The Sealed Vault",
+            "tags": [
+                "vault",
+                "chamber",
+                "indoor"
+            ]
+        },
+        {
+            "title": "Mourner's Path",
+            "tags": [
+                "passage",
+                "tunnel",
+                "path"
+            ]
+        }
+    ],
+    "forest": [
+        {
+            "title": "Dense Woodland Trail",
+            "tags": [
+                "trail",
+                "outdoor",
+                "path"
+            ]
+        },
+        {
+            "title": "The Overgrown Ruins",
+            "tags": [
+                "ruins",
+                "structure",
+                "outdoor"
+            ]
+        },
+        {
+            "title": "Ancient Grove",
+            "tags": [
+                "grove",
+                "outdoor",
+                "clearing"
+            ]
+        },
+        {
+            "title": "Forest of Whispers",
+            "tags": [
+                "woods",
+                "outdoor",
+                "dense"
+            ]
+        },
+        {
+            "title": "The Hidden Glade",
+            "tags": [
+                "glade",
+                "outdoor",
+                "clearing"
+            ]
+        },
+        {
+            "title": "Thornwood Passage",
+            "tags": [
+                "passage",
+                "outdoor",
+                "path"
+            ]
+        },
+        {
+            "title": "The Green Cathedral",
+            "tags": [
+                "grove",
+                "outdoor",
+                "clearing"
+            ]
+        },
+        {
+            "title": "Wildwood Maze",
+            "tags": [
+                "woods",
+                "outdoor",
+                "dense"
+            ]
+        }
+    ],
+    "desert": [
+        {
+            "title": "Scorching Dunes",
+            "tags": [
+                "dunes",
+                "outdoor",
+                "openfield"
+            ]
+        },
+        {
+            "title": "Oasis Mirage",
+            "tags": [
+                "oasis",
+                "outdoor",
+                "water"
+            ]
+        },
+        {
+            "title": "The Buried Temple",
+            "tags": [
+                "temple",
+                "ruins",
+                "structure"
+            ]
+        },
+        {
+            "title": "Canyon of Winds",
+            "tags": [
+                "canyon",
+                "outdoor",
+                "passage"
+            ]
+        },
+        {
+            "title": "Desert Caravan Route",
+            "tags": [
+                "trail",
+                "outdoor",
+                "path"
+            ]
+        },
+        {
+            "title": "The Glass Wastes",
+            "tags": [
+                "wasteland",
+                "outdoor",
+                "openfield"
+            ]
+        },
+        {
+            "title": "Sunscorch Valley",
+            "tags": [
+                "valley",
+                "outdoor",
+                "passage"
+            ]
+        },
+        {
+            "title": "Dune Sea Crossing",
+            "tags": [
+                "dunes",
+                "outdoor",
+                "openfield"
+            ]
+        }
+    ],
+    "mountain": [
+        {
+            "title": "Treacherous Peak",
+            "tags": [
+                "peak",
+                "outdoor",
+                "summit"
+            ]
+        },
+        {
+            "title": "The Mountain Pass",
+            "tags": [
+                "pass",
+                "outdoor",
+                "path"
+            ]
+        },
+        {
+            "title": "Cliffside Trail",
+            "tags": [
+                "cliff",
+                "outdoor",
+                "path"
+            ]
+        },
+        {
+            "title": "Summit Ascent",
+            "tags": [
+                "peak",
+                "outdoor",
+                "summit"
+            ]
+        },
+        {
+            "title": "The Hidden Valley",
+            "tags": [
+                "valley",
+                "outdoor",
+                "clearing"
+            ]
+        },
+        {
+            "title": "Eagle's Roost",
+            "tags": [
+                "peak",
+                "outdoor",
+                "nest"
+            ]
+        },
+        {
+            "title": "Stormbreak Ridge",
+            "tags": [
+                "ridge",
+                "outdoor",
+                "path"
+            ]
+        },
+        {
+            "title": "The Devil's Stair",
+            "tags": [
+                "stairs",
+                "outdoor",
+                "path"
+            ]
+        }
+    ],
+    "swamp": [
+        {
+            "title": "The Mire",
+            "tags": [
+                "bog",
+                "outdoor",
+                "wetland"
+            ]
+        },
+        {
+            "title": "Forgotten Wetlands",
+            "tags": [
+                "wetland",
+                "outdoor",
+                "wilderness"
+            ]
+        },
+        {
+            "title": "Bog of Despair",
+            "tags": [
+                "bog",
+                "outdoor",
+                "wetland"
+            ]
+        },
+        {
+            "title": "Murky Waters",
+            "tags": [
+                "water",
+                "outdoor",
+                "wetland"
+            ]
+        },
+        {
+            "title": "The Dead Marsh",
+            "tags": [
+                "marsh",
+                "outdoor",
+                "wetland"
+            ]
+        },
+        {
+            "title": "Rotwood Fen",
+            "tags": [
+                "fen",
+                "outdoor",
+                "wetland"
+            ]
+        },
+        {
+            "title": "The Sinking Grounds",
+            "tags": [
+                "bog",
+                "outdoor",
+                "wetland"
+            ]
+        },
+        {
+            "title": "Viper's Bog",
+            "tags": [
+                "bog",
+                "outdoor",
+                "wetland"
+            ]
+        }
+    ],
+    "underground": [
+        {
+            "title": "Cavern Depths",
+            "tags": [
+                "cavern",
+                "cave",
+                "natural"
+            ]
+        },
+        {
+            "title": "The Sunless Expanse",
+            "tags": [
+                "cavern",
+                "cave",
+                "openspace"
+            ]
+        },
+        {
+            "title": "Crystal Caves",
+            "tags": [
+                "cave",
+                "cavern",
+                "natural"
+            ]
+        },
+        {
+            "title": "Underground River",
+            "tags": [
+                "river",
+                "cave",
+                "water"
+            ]
+        },
+        {
+            "title": "The Forgotten Mine",
+            "tags": [
+                "mine",
+                "tunnel",
+                "manmade"
+            ]
+        },
+        {
+            "title": "Echoing Halls",
+            "tags": [
+                "hall",
+                "cavern",
+                "chamber"
+            ]
+        },
+        {
+            "title": "The Deepways",
+            "tags": [
+                "tunnel",
+                "passage",
+                "manmade"
+            ]
+        },
+        {
+            "title": "Stonewomb Passage",
+            "tags": [
+                "passage",
+                "tunnel",
+                "natural"
+            ]
+        }
+    ]
+};
+
+        let locationObjects = {
+    "urban": {
+        "warehouse": {
+            "tags": [
+                "warehouse",
+                "indoor",
+                "building"
+            ],
+            "primary": [
+                "wooden crate",
+                "loading crane",
+                "storage shelf",
+                "shipping manifest",
+                "rope coil",
+                "tool bench"
+            ],
+            "secondary": [
+                "rusted nail",
+                "receipt",
+                "ledger book",
+                "oil lantern",
+                "chain",
+                "pulley"
+            ],
+            "tertiary": [
+                "coin purse",
+                "jewelry",
+                "letter",
+                "key",
+                "trap mechanism",
+                "poison vial"
+            ]
+        },
+        "building": {
+            "tags": [
+                "building",
+                "indoor",
+                "rooftop",
+                "district"
+            ],
+            "primary": [
+                "ornate desk",
+                "locked safe",
+                "bookshelf",
+                "filing cabinet",
+                "portrait painting",
+                "fireplace"
+            ],
+            "secondary": [
+                "hidden drawer",
+                "secret compartment",
+                "ledger",
+                "correspondence",
+                "seal",
+                "inkwell"
+            ],
+            "tertiary": [
+                "family heirloom",
+                "deed",
+                "treasure map",
+                "incriminating letter",
+                "gold coins",
+                "magic item"
+            ]
+        },
+        "street": {
+            "tags": [
+                "street",
+                "outdoor",
+                "alley",
+                "district",
+                "market"
+            ],
+            "primary": [
+                "market stall",
+                "merchant cart",
+                "street lamp",
+                "notice board",
+                "vendor stand",
+                "fountain"
+            ],
+            "secondary": [
+                "loose cobblestone",
+                "rain barrel",
+                "awning",
+                "signpost",
+                "doorway",
+                "window"
+            ],
+            "tertiary": [
+                "dropped coin",
+                "torn poster",
+                "hidden cache",
+                "secret mark",
+                "smuggler sign",
+                "trap"
+            ]
+        },
+        "dock": {
+            "tags": [
+                "wharf",
+                "dock",
+                "outdoor"
+            ],
+            "primary": [
+                "shipping crate",
+                "mooring post",
+                "cargo net",
+                "dock crane",
+                "warehouse door",
+                "gangplank"
+            ],
+            "secondary": [
+                "rope",
+                "anchor",
+                "barrel",
+                "canvas tarp",
+                "shipping manifest",
+                "oil lamp"
+            ],
+            "tertiary": [
+                "smuggled goods",
+                "hidden compartment",
+                "coded message",
+                "stolen treasure",
+                "trap",
+                "key"
+            ]
+        },
+        "sewer": {
+            "tags": [
+                "sewer",
+                "underground",
+                "tunnel"
+            ],
+            "primary": [
+                "drainage pipe",
+                "sewer grate",
+                "maintenance ladder",
+                "brick archway",
+                "water channel",
+                "junction"
+            ],
+            "secondary": [
+                "rat nest",
+                "debris pile",
+                "broken gate",
+                "rusty valve",
+                "slime",
+                "chain"
+            ],
+            "tertiary": [
+                "lost valuables",
+                "body",
+                "smuggler cache",
+                "disease",
+                "trap",
+                "monster lair"
+            ]
+        },
+        "skybridge": {
+            "tags": [
+                "skybridge",
+                "rooftop",
+                "outdoor",
+                "bridge"
+            ],
+            "description": "Suspended between rival guild towers, the skybridge trembles with dawn winds and unresolved grudges. Every cable hums with latent magic that keeps the city moving far below.",
+            "primary": [
+                "suspension cables humming with latent magic",
+                "ornate stone balustrade etched with duelist crests",
+                "lantern pylons casting rainbows through morning mist",
+                "banner-strewn archway leading into guild towers",
+                "watchpost alcove overlooking the river docks",
+                "emergency winch platform secured with brass locks"
+            ],
+            "secondary": [
+                "tethered dueling harness draped over a railing",
+                "discarded glove stamped with a noble seal",
+                "loose paving stone hiding a grappling hook clamp",
+                "maintenance hatch leading into the tower interior",
+                "chalked boundary line for formal challenges",
+                "sightline to a concealed crossbow perch"
+            ],
+            "tertiary": [
+                "folded ransom note weighted by a silver coin",
+                "concealed wand sheath wedged beneath the balustrade",
+                "clockwork raven relay awaiting whispered orders",
+                "spent alchemical flare lodged in the railing",
+                "gemstone dust marking sabotage runes",
+                "coil of silken rope with a dangerously frayed section"
+            ]
+        },
+        "maskmakers_guildhall": {
+            "tags": [
+                "guildhall",
+                "indoor",
+                "artisanal"
+            ],
+            "description": "Velvet drapes, perfumed steam, and disciplined apprentices cloak the guildhall in theatrical mystique. The slightest breeze sends jeweled masks whispering like gossip against the walls.",
+            "primary": [
+                "grand showroom lined with mannequins in seasonal regalia",
+                "engraving studio with mirror-bright tools",
+                "vaulted ceiling mural depicting historic galas",
+                "apprentice workshop buzzing with illusion magic",
+                "sealed vault door embossed with the guild sigil",
+                "ledger table stacked with commission contracts"
+            ],
+            "secondary": [
+                "mask molds carved from rare heartwood",
+                "racks of scented lacquer vials",
+                "discarded ticket stubs from recent performances",
+                "secret trapdoor concealed beneath layered carpet",
+                "whispering illusion that reenacts famous scandals",
+                "spyglass trained on the plaza outside"
+            ],
+            "tertiary": [
+                "blackmail ledger tucked inside a gilt mask",
+                "vial of sleep-inducing incense blend",
+                "encrypted invitation to a rival guild soiree",
+                "hidden compartment containing counterfeit seals",
+                "promise note from a debtor noble",
+                "glimmering spirit mask that speaks truths unasked"
+            ]
+        },
+        "arcane_tram_depot": {
+            "tags": [
+                "transit",
+                "industrial",
+                "indoor"
+            ],
+            "description": "Crystal rails and brass couplings crackle with residual lightning as workers scramble to calm the depot. The air smells of ozone and hot copper whenever a tram arrives too quickly.",
+            "primary": [
+                "levitating tram car suspended in maintenance cradle",
+                "conductor's control dais surrounded by safety sigils",
+                "rack of insulated harnesses for line workers",
+                "dispatch board mapping city routes in light",
+                "emergency aether dampener anchored to the floor",
+                "tool trolley bristling with arc-wrenches"
+            ],
+            "secondary": [
+                "scorch-marked panel awaiting repair",
+                "stack of commuter complaints bound with ribbon",
+                "arc flash shield leaning against a column",
+                "maintenance log etched into glass tablet",
+                "warning placard listing evacuation procedures",
+                "spare focusing crystals stored in padded cases"
+            ],
+            "tertiary": [
+                "prototype speed governor hidden under a tarp",
+                "smuggled cargo crate mislabeled as scrap",
+                "encrypted schedule chip containing extra stops",
+                "bundle of bribe notes for inspector lookaways",
+                "sympathetic charm binding two tram conductors",
+                "unstable lightning elemental trapped in a flask"
+            ]
+        },
+        "moonlit_menagerie": {
+            "tags": [
+                "menagerie",
+                "outdoor",
+                "garden"
+            ],
+            "description": "Fragrant nightbloom flowers mingle with the musk of exotic beasts roaming free of their enclosures. Bioluminescent insects trace anxious constellations above the pathways.",
+            "primary": [
+                "star-lit aviary dome with prismatic glass panes",
+                "serene reflecting pool doubling as a selkie habitat",
+                "caretaker kiosk stocked with calming draughts",
+                "ornamental hedge maze concealing hidden pens",
+                "stone amphitheater for animal training displays",
+                "runed gate that responds to keeper whistles"
+            ],
+            "secondary": [
+                "scattered feed buckets tipped by panicked creatures",
+                "broken latch hanging from a griffon roost",
+                "trail of luminescent fur leading into the gardens",
+                "scribbled feeding schedule pinned to a post",
+                "abandoned spectator cloak marked with noble crest",
+                "quiet alarm bell disabled by cut wires"
+            ],
+            "tertiary": [
+                "cracked crate that once housed a miniature dragon",
+                "tranquilizing blowgun with empty darts",
+                "secret adoption contract for an illegal familiar",
+                "map of underground escape tunnels for beasts",
+                "enchanted collar that compels obedience",
+                "unhatched egg pulsing with latent magic"
+            ]
+        },
+        "stormglass_conservatory": {
+            "tags": [
+                "conservatory",
+                "arcane",
+                "indoor"
+            ],
+            "description": "Glass spires chime in the wind while contained squalls flash across enchanted terrariums. Scholars hurry between habitats, chasing weather phenomena in miniature.",
+            "primary": [
+                "cyclone terrarium contained by sigil-laced glass",
+                "humidity regulator shaped like a silver tree",
+                "research dais covered in pressure gauges",
+                "stormglass petals refracting multicolored light",
+                "spiral staircase leading to observation balcony",
+                "arcane sluice routing rainwater into reservoirs"
+            ],
+            "secondary": [
+                "loose runic clamp sparking erratically",
+                "journal detailing forecast experiments",
+                "protective cloak woven from water-repellent silk",
+                "lantern fueled by bottled lightning",
+                "case of emergency grounding rods",
+                "collection of thunderstone seeds ready to bloom"
+            ],
+            "tertiary": [
+                "sentient vine specimen seeking new soil",
+                "sealed note from a saboteur demanding funding",
+                "prototype weather wand calibrated for hurricanes",
+                "rare pollen that induces prophetic dreams",
+                "dimensional leak whispering with storm spirits",
+                "booby-trapped toolbox rigged to explode in rain"
+            ]
+        },
+        "clockwork_foundry": {
+            "tags": [
+                "foundry",
+                "industrial",
+                "indoor"
+            ],
+            "description": "Molten metal glows beneath gantries crowded with articulated arms and pacing foremen. The heartbeat of pistons reverberates through the bones of anyone inside.",
+            "primary": [
+                "central smelting crucible fed by fire elementals",
+                "assembly line of half-finished guardian constructs",
+                "control balcony overlooking stamping presses",
+                "rack of modular armor plating in various sizes",
+                "cooling trough bubbling with tempering oils",
+                "vault door leading to blueprint archives"
+            ],
+            "secondary": [
+                "slag heap glittering with valuable scrap",
+                "abacus tallying production quotas",
+                "overheated pressure gauge venting steam",
+                "worker locker stuffed with protective gear",
+                "toolbox containing precision tuning forks",
+                "work roster with names hastily scratched out"
+            ],
+            "tertiary": [
+                "rune-stamped schematic revealing forbidden designs",
+                "residual anima crystal craving a new host",
+                "strike fund hidden beneath loose floorboards",
+                "dormant golem heart waiting to ignite",
+                "unpaid invoice to a mercenary company",
+                "emergency shutoff lever jammed with slag"
+            ]
+        },
+        "hidden_resistance_safehouse": {
+            "tags": [
+                "safehouse",
+                "underground",
+                "alley"
+            ],
+            "description": "A humble soup kitchen hides a labyrinth of escape tunnels, message drops, and loyal lookouts. Lantern light is hooded, and every greeting is a test phrase.",
+            "primary": [
+                "cellar entrance concealed behind flour sacks",
+                "chalkboard menu masking coded directives",
+                "meeting table carved with insurgent slogans",
+                "lockbox filled with forged travel papers",
+                "narrow tunnel leading to the sewer network",
+                "makeshift infirmary stocked with contraband salves"
+            ],
+            "secondary": [
+                "rotating pantry shelf that opens a hidden passage",
+                "pinned map riddled with colored string routes",
+                "stash of plain cloaks for fast disguises",
+                "listening tube connected to street-level grate",
+                "symbolic relic of a fallen revolutionary",
+                "pair of messenger pigeons cooing softly"
+            ],
+            "tertiary": [
+                "sealed orders naming the next target of sabotage",
+                "coded confession from an embedded spy",
+                "cache of emeralds funding the resistance",
+                "knock sequence engraved on a copper coin",
+                "portable sending stone tuned to allies",
+                "trapdoor rigged with sleeping gas for intruders"
+            ]
+        },
+        "floating_bazaar": {
+            "tags": [
+                "market",
+                "floating",
+                "outdoor"
+            ],
+            "description": "Linked barges bob against the river current while lanterns cast jeweled light over eager shoppers. Bargaining happens as much with secrets as with coin.",
+            "primary": [
+                "central barter raft stacked with rare spices",
+                "rope bridges connecting brightly painted stalls",
+                "river shamans chanting for calm waters",
+                "entertainers juggling fireflies in glass globes",
+                "driftwood shrine honoring river spirits",
+                "ledger booth for customs inspectors"
+            ],
+            "secondary": [
+                "hidden keelboat loaded with contraband",
+                "clinking string of barter tokens",
+                "net of glittering fish offered as payment",
+                "folding stage for sudden performances",
+                "tethered guard drake dozing beside a post",
+                "weathered chart of shifting sandbars"
+            ],
+            "tertiary": [
+                "smuggler's code etched beneath a crate",
+                "sealed jar containing a wish-granting minnow",
+                "secret contract binding a merchant prince",
+                "glass ampoule of river curse antidote",
+                "escape rope anchored for a quick getaway",
+                "assassin's garrote hidden in a silk sash"
+            ]
+        },
+        "city_watch_barracks": {
+            "tags": [
+                "barracks",
+                "guard",
+                "indoor"
+            ],
+            "description": "Banners bearing the city crest hang above rows of neatly made bunks and polished armor racks. The scent of oil, steel, and strong tea keeps the watch sharp between patrols.",
+            "primary": [
+                "mess hall full of half-finished breakfasts",
+                "armory cage lined with spears and tower shields",
+                "briefing dais showcasing active patrol routes",
+                "evidence locker secured with arcane wards",
+                "sparring ring ringed by practice dummies",
+                "captain's office overlooking the courtyard"
+            ],
+            "secondary": [
+                "disciplinary board listing recent infractions",
+                "locked chest of confiscated contraband",
+                "stack of requisition forms awaiting signatures",
+                "training manuals annotated with field notes",
+                "wall of commendations for brave service",
+                "pigeon coop used for urgent alerts"
+            ],
+            "tertiary": [
+                "unsigned arrest warrant implicating a noble",
+                "hidden flask tucked behind a duty roster",
+                "emergency whistle tuned to resonate citywide wards",
+                "favor chit owed by an influential guildmaster",
+                "encoded patrol schedule indicating a planned mutiny",
+                "secret ledger documenting protection rackets"
+            ]
+        },
+        "echoing_basilica": {
+            "tags": [
+                "temple",
+                "indoor",
+                "acoustic"
+            ],
+            "description": "Every whisper blossoms into a choir beneath the basilica's resonance domes. Penitent candles flicker in time with the echoes, revealing sins long suppressed.",
+            "primary": [
+                "choir loft suspended above marble nave",
+                "confessional alcoves veiled by velvet curtains",
+                "resonance bell attuned to spoken truths",
+                "mosaic floor depicting civic heroes kneeling",
+                "sacristy cabinet filled with sanctified relics",
+                "archives chamber storing confession transcripts"
+            ],
+            "secondary": [
+                "incense brazier that amplifies spoken words",
+                "scribbled sermon notes hinting at scandal",
+                "acoustic focus crystal humming with energy",
+                "collection plate overflowing with anonymous coins",
+                "warden's staff inlaid with silence runes",
+                "hidden stairway to rooftop observation deck"
+            ],
+            "tertiary": [
+                "sealed letter threatening public revelation",
+                "atonement mask whispering secrets of past wearers",
+                "banned treatise on manipulating the basilica echoes",
+                "crypt key disguised as rosary beads",
+                "scroll promising absolution in exchange for treachery",
+                "ethereal choir member bound to a silver cage"
+            ]
+        }
+    },
+    "crypt": {
+        "tomb": {
+            "tags": [
+                "tomb",
+                "chamber",
+                "indoor"
+            ],
+            "primary": [
+                "stone sarcophagus",
+                "altar",
+                "statue",
+                "burial niche",
+                "stone column",
+                "brazier"
+            ],
+            "secondary": [
+                "burial offering",
+                "inscription",
+                "sealed urn",
+                "canopic jar",
+                "ritual item",
+                "relic"
+            ],
+            "tertiary": [
+                "cursed item",
+                "treasure",
+                "magic weapon",
+                "ancient scroll",
+                "undead",
+                "trap"
+            ]
+        },
+        "catacomb": {
+            "tags": [
+                "catacomb",
+                "tunnel",
+                "passage",
+                "depths"
+            ],
+            "primary": [
+                "bone wall",
+                "burial alcove",
+                "stone pillar",
+                "ancient archway",
+                "ossuary",
+                "memorial plaque"
+            ],
+            "secondary": [
+                "skull pile",
+                "grave goods",
+                "ancient torch",
+                "carved symbol",
+                "sealed niche",
+                "offering bowl"
+            ],
+            "tertiary": [
+                "hidden treasure",
+                "secret passage",
+                "cursed relic",
+                "undead guardian",
+                "trap",
+                "ritual chamber"
+            ]
+        },
+        "mausoleum": {
+            "tags": [
+                "mausoleum",
+                "building",
+                "indoor"
+            ],
+            "primary": [
+                "family crypt",
+                "marble statue",
+                "bronze door",
+                "stone bench",
+                "memorial wall",
+                "vaulted ceiling"
+            ],
+            "secondary": [
+                "inscription plaque",
+                "offering table",
+                "sealed vault",
+                "stained glass",
+                "iron gate",
+                "torch sconce"
+            ],
+            "tertiary": [
+                "family treasure",
+                "ancient relic",
+                "magic item",
+                "hidden crypt",
+                "undead",
+                "protective ward"
+            ]
+        },
+        "vault": {
+            "tags": [
+                "vault",
+                "chamber",
+                "indoor"
+            ],
+            "primary": [
+                "sealed door",
+                "guardian statue",
+                "treasure chest",
+                "magical ward",
+                "puzzle lock",
+                "pillar"
+            ],
+            "secondary": [
+                "pressure plate",
+                "glyph",
+                "keyhole",
+                "offering pedestal",
+                "ancient mechanism",
+                "rune"
+            ],
+            "tertiary": [
+                "legendary treasure",
+                "artifact",
+                "curse",
+                "powerful undead",
+                "deadly trap",
+                "magic seal"
+            ]
+        }
+    },
+    "forest": {
+        "trail": {
+            "tags": [
+                "trail",
+                "path",
+                "outdoor"
+            ],
+            "primary": [
+                "ancient tree",
+                "moss-covered boulder",
+                "trail marker",
+                "fallen log",
+                "clearing",
+                "stream crossing"
+            ],
+            "secondary": [
+                "animal track",
+                "carved mark",
+                "abandoned camp",
+                "broken branch",
+                "root system",
+                "mushroom circle"
+            ],
+            "tertiary": [
+                "hidden cache",
+                "druid sign",
+                "fey marking",
+                "treasure",
+                "trap",
+                "monster lair"
+            ]
+        },
+        "ruins": {
+            "tags": [
+                "ruins",
+                "structure",
+                "outdoor"
+            ],
+            "primary": [
+                "crumbling wall",
+                "stone foundation",
+                "overgrown statue",
+                "collapsed archway",
+                "broken column",
+                "moss-covered altar"
+            ],
+            "secondary": [
+                "ancient inscription",
+                "carved relief",
+                "pottery shard",
+                "rusted weapon",
+                "stone fragment",
+                "hidden chamber"
+            ],
+            "tertiary": [
+                "buried treasure",
+                "magic item",
+                "ancient knowledge",
+                "guardian spirit",
+                "trap",
+                "secret passage"
+            ]
+        },
+        "clearing": {
+            "tags": [
+                "clearing",
+                "glade",
+                "grove",
+                "outdoor"
+            ],
+            "primary": [
+                "fairy ring",
+                "natural spring",
+                "ancient tree circle",
+                "flower meadow",
+                "stone circle",
+                "sacred grove"
+            ],
+            "secondary": [
+                "unusual plant",
+                "animal den",
+                "bird nest",
+                "mushroom cluster",
+                "water source",
+                "wildflower patch"
+            ],
+            "tertiary": [
+                "fey presence",
+                "magic spring",
+                "druid treasure",
+                "nature spirit",
+                "blessing",
+                "curse"
+            ]
+        },
+        "dense": {
+            "tags": [
+                "woods",
+                "dense",
+                "outdoor"
+            ],
+            "primary": [
+                "thick undergrowth",
+                "tangled thicket",
+                "hollow log",
+                "dense canopy",
+                "bramble patch",
+                "ancient trunk"
+            ],
+            "secondary": [
+                "animal burrow",
+                "spider web",
+                "vine tangle",
+                "thorny bush",
+                "concealed pit",
+                "hidden path"
+            ],
+            "tertiary": [
+                "monster lair",
+                "hidden treasure",
+                "trap",
+                "rare plant",
+                "secret passage",
+                "predator nest"
+            ]
+        }
+    },
+    "desert": {
+        "dunes": {
+            "tags": [
+                "dunes",
+                "openfield",
+                "outdoor",
+                "wasteland"
+            ],
+            "primary": [
+                "sand dune",
+                "wind-carved formation",
+                "buried skeleton",
+                "abandoned cart",
+                "rock outcrop",
+                "shifting sand"
+            ],
+            "secondary": [
+                "sun-bleached bones",
+                "tattered cloth",
+                "broken wheel",
+                "empty waterskin",
+                "scorpion nest",
+                "sand ripples"
+            ],
+            "tertiary": [
+                "buried treasure",
+                "ancient artifact",
+                "oasis map",
+                "cursed item",
+                "monster lair",
+                "quicksand trap"
+            ]
+        },
+        "ruins": {
+            "tags": [
+                "temple",
+                "ruins",
+                "structure"
+            ],
+            "primary": [
+                "weathered stone pillar",
+                "collapsed wall",
+                "buried entrance",
+                "ancient altar",
+                "sandstone block",
+                "hieroglyph"
+            ],
+            "secondary": [
+                "carved relief",
+                "broken statue",
+                "pottery fragment",
+                "ritual vessel",
+                "stone tablet",
+                "sealed chamber"
+            ],
+            "tertiary": [
+                "ancient treasure",
+                "magic artifact",
+                "curse tablet",
+                "mummy",
+                "deadly trap",
+                "hidden vault"
+            ]
+        },
+        "oasis": {
+            "tags": [
+                "oasis",
+                "water",
+                "outdoor"
+            ],
+            "primary": [
+                "oasis pool",
+                "palm tree",
+                "water source",
+                "desert plants",
+                "rock formation",
+                "shade"
+            ],
+            "secondary": [
+                "animal track",
+                "fruit tree",
+                "medicinal herb",
+                "cool cave",
+                "traveler marker",
+                "campsite"
+            ],
+            "tertiary": [
+                "hidden spring",
+                "rare plant",
+                "treasure cache",
+                "spirit guardian",
+                "blessing",
+                "mirage"
+            ]
+        },
+        "trail": {
+            "tags": [
+                "trail",
+                "path",
+                "outdoor"
+            ],
+            "primary": [
+                "caravan marker",
+                "desert trail",
+                "way stone",
+                "traveler's shrine",
+                "cairn",
+                "directional sign"
+            ],
+            "secondary": [
+                "campfire remains",
+                "discarded item",
+                "footprints",
+                "warning marker",
+                "supply cache",
+                "shelter"
+            ],
+            "tertiary": [
+                "buried treasure",
+                "ambush site",
+                "hidden oasis map",
+                "bandit cache",
+                "trap",
+                "ancient relic"
+            ]
+        }
+    },
+    "mountain": {
+        "peak": {
+            "tags": [
+                "peak",
+                "summit",
+                "outdoor",
+                "nest"
+            ],
+            "primary": [
+                "mountain peak",
+                "rocky outcrop",
+                "ice formation",
+                "summit cairn",
+                "wind-swept stone",
+                "precipice"
+            ],
+            "secondary": [
+                "prayer flags",
+                "climber's anchor",
+                "eagle nest",
+                "ice crystal",
+                "rock shelter",
+                "marker stone"
+            ],
+            "tertiary": [
+                "legendary treasure",
+                "dragon hoard",
+                "ancient relic",
+                "rare mineral",
+                "spirit shrine",
+                "trap"
+            ]
+        },
+        "pass": {
+            "tags": [
+                "pass",
+                "path",
+                "outdoor",
+                "ridge",
+                "stairs"
+            ],
+            "primary": [
+                "mountain pass",
+                "narrow ledge",
+                "switchback trail",
+                "rock bridge",
+                "stone steps",
+                "guard post"
+            ],
+            "secondary": [
+                "rope anchor",
+                "safety rope",
+                "trail marker",
+                "shelter cave",
+                "warning sign",
+                "avalanche zone"
+            ],
+            "tertiary": [
+                "hidden cache",
+                "bandit treasure",
+                "ancient marker",
+                "trap",
+                "monster ambush",
+                "secret passage"
+            ]
+        },
+        "valley": {
+            "tags": [
+                "valley",
+                "clearing",
+                "outdoor"
+            ],
+            "primary": [
+                "hidden valley",
+                "mountain stream",
+                "alpine meadow",
+                "sheltered grove",
+                "rocky basin",
+                "waterfall"
+            ],
+            "secondary": [
+                "wildflower field",
+                "grazing area",
+                "mineral deposit",
+                "hot spring",
+                "cave entrance",
+                "ancient tree"
+            ],
+            "tertiary": [
+                "hidden sanctuary",
+                "hermit dwelling",
+                "rare herb",
+                "treasure cache",
+                "spirit guardian",
+                "secret entrance"
+            ]
+        },
+        "cliff": {
+            "tags": [
+                "cliff",
+                "outdoor",
+                "path"
+            ],
+            "primary": [
+                "precarious ledge",
+                "cliff face",
+                "sheer drop",
+                "rock overhang",
+                "narrow path",
+                "vertical wall"
+            ],
+            "secondary": [
+                "climbing anchor",
+                "bird nest",
+                "cave opening",
+                "rock shelf",
+                "erosion crack",
+                "loose stone"
+            ],
+            "tertiary": [
+                "hidden cave",
+                "eagle treasure",
+                "ancient carving",
+                "trap",
+                "monster lair",
+                "secret passage"
+            ]
+        }
+    },
+    "swamp": {
+        "bog": {
+            "tags": [
+                "bog",
+                "wetland",
+                "outdoor"
+            ],
+            "primary": [
+                "murky pool",
+                "mud mound",
+                "gnarled tree",
+                "quicksand",
+                "stagnant water",
+                "dead vegetation"
+            ],
+            "secondary": [
+                "marsh gas bubble",
+                "sunken log",
+                "lily pad",
+                "insect swarm",
+                "muddy bank",
+                "rotting vegetation"
+            ],
+            "tertiary": [
+                "sunken treasure",
+                "body",
+                "monster lair",
+                "disease",
+                "trap",
+                "cursed area"
+            ]
+        },
+        "wetland": {
+            "tags": [
+                "wetland",
+                "marsh",
+                "fen",
+                "outdoor",
+                "wilderness"
+            ],
+            "primary": [
+                "marsh grass",
+                "water channel",
+                "raised hummock",
+                "dead tree",
+                "reed bed",
+                "shallow pool"
+            ],
+            "secondary": [
+                "bird nest",
+                "fish trap",
+                "willow tree",
+                "stepping stone",
+                "floating debris",
+                "vegetation mat"
+            ],
+            "tertiary": [
+                "hidden path",
+                "hermit hut",
+                "rare plant",
+                "treasure cache",
+                "hag marker",
+                "trap"
+            ]
+        },
+        "water": {
+            "tags": [
+                "water",
+                "outdoor",
+                "wetland"
+            ],
+            "primary": [
+                "dark water",
+                "stagnant pool",
+                "flowing stream",
+                "deep channel",
+                "murky pond",
+                "water source"
+            ],
+            "secondary": [
+                "submerged log",
+                "floating vegetation",
+                "water plant",
+                "ripple",
+                "current",
+                "shallow ford"
+            ],
+            "tertiary": [
+                "sunken boat",
+                "underwater cave",
+                "monster lair",
+                "treasure",
+                "trap",
+                "cursed water"
+            ]
+        }
+    },
+    "underground": {
+        "cavern": {
+            "tags": [
+                "cavern",
+                "cave",
+                "natural",
+                "openspace",
+                "chamber"
+            ],
+            "primary": [
+                "crystal formation",
+                "stone pillar",
+                "underground lake",
+                "stalactite cluster",
+                "rock formation",
+                "cavern floor"
+            ],
+            "secondary": [
+                "mineral vein",
+                "bat colony",
+                "mushroom grove",
+                "limestone deposit",
+                "water drip",
+                "echo chamber"
+            ],
+            "tertiary": [
+                "rare crystal",
+                "underground river",
+                "monster lair",
+                "treasure deposit",
+                "trap",
+                "secret passage"
+            ]
+        },
+        "tunnel": {
+            "tags": [
+                "tunnel",
+                "passage",
+                "manmade"
+            ],
+            "primary": [
+                "mine shaft",
+                "carved tunnel",
+                "support beams",
+                "rail tracks",
+                "tool marks",
+                "ventilation shaft"
+            ],
+            "secondary": [
+                "mining cart",
+                "pickaxe",
+                "lantern hook",
+                "ore vein",
+                "support pillar",
+                "wooden brace"
+            ],
+            "tertiary": [
+                "ore deposit",
+                "abandoned equipment",
+                "collapsed section",
+                "monster nest",
+                "trap",
+                "hidden passage"
+            ]
+        },
+        "river": {
+            "tags": [
+                "river",
+                "water",
+                "cave"
+            ],
+            "primary": [
+                "underground stream",
+                "water channel",
+                "rock bridge",
+                "waterfall",
+                "river bank",
+                "current"
+            ],
+            "secondary": [
+                "stepping stone",
+                "water pool",
+                "mineral deposit",
+                "moisture",
+                "echo",
+                "fish"
+            ],
+            "tertiary": [
+                "underwater passage",
+                "treasure",
+                "monster lair",
+                "rare mineral",
+                "trap",
+                "secret cave"
+            ]
+        }
+    },
+    "ocean": {
+        "ship": {
+            "tags": [
+                "ship",
+                "vessel",
+                "deck"
+            ],
+            "primary": [
+                "ship wheel",
+                "mast rigging",
+                "cargo hold",
+                "captain's quarters",
+                "main deck",
+                "anchor"
+            ],
+            "secondary": [
+                "rope coil",
+                "barrel",
+                "sail",
+                "navigation tool",
+                "ship bell",
+                "cannon"
+            ],
+            "tertiary": [
+                "treasure chest",
+                "ship's log",
+                "hidden cargo",
+                "secret compartment",
+                "trap",
+                "contraband"
+            ]
+        },
+        "wreck": {
+            "tags": [
+                "wreck",
+                "ship",
+                "vessel",
+                "underwater"
+            ],
+            "primary": [
+                "broken hull",
+                "sunken cargo",
+                "ship's skeleton",
+                "barnacle-covered mast",
+                "debris field",
+                "coral growth"
+            ],
+            "secondary": [
+                "rotted sail",
+                "rusted chain",
+                "broken rudder",
+                "scattered cargo",
+                "ship bell",
+                "anchor"
+            ],
+            "tertiary": [
+                "treasure chest",
+                "ship's safe",
+                "captain's loot",
+                "cursed cargo",
+                "monster lair",
+                "trap"
+            ]
+        },
+        "underwater": {
+            "tags": [
+                "underwater",
+                "reef",
+                "natural",
+                "depths",
+                "openwater",
+                "passage"
+            ],
+            "primary": [
+                "coral reef",
+                "underwater cave",
+                "kelp forest",
+                "rock formation",
+                "sea floor",
+                "current"
+            ],
+            "secondary": [
+                "sea plant",
+                "anemone",
+                "shell cluster",
+                "fish school",
+                "underwater cliff",
+                "sand bed"
+            ],
+            "tertiary": [
+                "pearl bed",
+                "sunken treasure",
+                "monster lair",
+                "ancient ruin",
+                "trap",
+                "magic current"
+            ]
+        },
+        "shore": {
+            "tags": [
+                "shore",
+                "beach",
+                "outdoor"
+            ],
+            "primary": [
+                "beach shore",
+                "tide pool",
+                "driftwood pile",
+                "rock outcrop",
+                "sand beach",
+                "wave line"
+            ],
+            "secondary": [
+                "seashell",
+                "seaweed",
+                "crab",
+                "beach rock",
+                "sand dune",
+                "flotsam"
+            ],
+            "tertiary": [
+                "message bottle",
+                "shipwreck debris",
+                "treasure chest",
+                "rare shell",
+                "trap",
+                "hidden cave"
+            ]
+        }
+    },
+    "arctic": {
+        "wilderness": {
+            "tags": [
+                "wilderness",
+                "openfield",
+                "outdoor"
+            ],
+            "primary": [
+                "ice field",
+                "snow plain",
+                "frozen tundra",
+                "ice wall",
+                "snowdrift",
+                "frost formation"
+            ],
+            "secondary": [
+                "animal track",
+                "ice crack",
+                "wind pattern",
+                "snow hole",
+                "frozen plant",
+                "ice shard"
+            ],
+            "tertiary": [
+                "frozen corpse",
+                "buried treasure",
+                "rare resource",
+                "monster lair",
+                "trap",
+                "ancient relic"
+            ]
+        },
+        "cave": {
+            "tags": [
+                "cave",
+                "cavern",
+                "indoor"
+            ],
+            "primary": [
+                "ice cave",
+                "snow shelter",
+                "frozen cavern",
+                "ice tunnel",
+                "frost wall",
+                "icicle"
+            ],
+            "secondary": [
+                "ice formation",
+                "frozen pool",
+                "ice pillar",
+                "snow drift",
+                "frost pattern",
+                "wind tunnel"
+            ],
+            "tertiary": [
+                "frozen treasure",
+                "ancient remains",
+                "rare ice",
+                "monster den",
+                "trap",
+                "magic ice"
+            ]
+        },
+        "mountain": {
+            "tags": [
+                "mountain",
+                "peaks",
+                "outdoor"
+            ],
+            "primary": [
+                "ice peak",
+                "frozen summit",
+                "glacier slope",
+                "ice cliff",
+                "snow ridge",
+                "avalanche path"
+            ],
+            "secondary": [
+                "ice bridge",
+                "crevasse",
+                "snow cornice",
+                "ice wall",
+                "frozen waterfall",
+                "wind gap"
+            ],
+            "tertiary": [
+                "legendary treasure",
+                "dragon lair",
+                "ancient shrine",
+                "rare mineral",
+                "trap",
+                "avalanche trigger"
+            ]
+        },
+        "path": {
+            "tags": [
+                "path",
+                "pass",
+                "outdoor"
+            ],
+            "primary": [
+                "frozen trail",
+                "ice path",
+                "snow route",
+                "marked way",
+                "passage",
+                "crossing"
+            ],
+            "secondary": [
+                "trail marker",
+                "shelter",
+                "supply cache",
+                "warning sign",
+                "rope line",
+                "cairn"
+            ],
+            "tertiary": [
+                "hidden cache",
+                "abandoned camp",
+                "treasure",
+                "trap",
+                "monster ambush",
+                "shortcut"
+            ]
+        }
+    },
+    "space": {
+        "ship": {
+            "tags": [
+                "ship",
+                "vessel",
+                "derelict"
+            ],
+            "primary": [
+                "spelljamming helm",
+                "navigation altar",
+                "air envelope",
+                "gravity plane",
+                "helm chamber",
+                "main deck"
+            ],
+            "secondary": [
+                "star chart",
+                "planar compass",
+                "magic anchor",
+                "air pump",
+                "gravity ring",
+                "void seal"
+            ],
+            "tertiary": [
+                "arcane treasure",
+                "planar map",
+                "magic artifact",
+                "ship secret",
+                "trap",
+                "hidden cargo"
+            ]
+        },
+        "void": {
+            "tags": [
+                "void",
+                "openspace",
+                "wildspace",
+                "phlogiston",
+                "boundary"
+            ],
+            "primary": [
+                "phlogiston flow",
+                "wildspace debris",
+                "crystal sphere",
+                "planar barrier",
+                "void current",
+                "star field"
+            ],
+            "secondary": [
+                "asteroid",
+                "void eddy",
+                "magic field",
+                "planar echo",
+                "cosmic dust",
+                "light phenomenon"
+            ],
+            "tertiary": [
+                "ancient wreck",
+                "planar rift",
+                "cosmic treasure",
+                "void entity",
+                "trap",
+                "portal"
+            ]
+        },
+        "anomaly": {
+            "tags": [
+                "anomaly",
+                "void",
+                "openspace",
+                "wildspace"
+            ],
+            "primary": [
+                "gravity well",
+                "magic vortex",
+                "planar rift",
+                "time distortion",
+                "space fold",
+                "reality tear"
+            ],
+            "secondary": [
+                "energy field",
+                "temporal echo",
+                "spatial loop",
+                "magic surge",
+                "void pulse",
+                "reality fragment"
+            ],
+            "tertiary": [
+                "legendary artifact",
+                "planar gateway",
+                "cosmic secret",
+                "powerful entity",
+                "deadly trap",
+                "reality breach"
+            ]
+        },
+        "debris": {
+            "tags": [
+                "debris",
+                "void",
+                "openspace"
+            ],
+            "primary": [
+                "wrecked ship",
+                "floating rock",
+                "debris field",
+                "broken hull",
+                "scattered cargo",
+                "void junk"
+            ],
+            "secondary": [
+                "ship fragment",
+                "asteroid chunk",
+                "twisted metal",
+                "broken mast",
+                "cargo container",
+                "escape pod"
+            ],
+            "tertiary": [
+                "salvage treasure",
+                "ship log",
+                "hidden cargo",
+                "survivor",
+                "trap",
+                "monster nest"
+            ]
+        },
+        "spelljammer_bridge": {
+            "tags": [
+                "ship",
+                "bridge",
+                "command",
+                "void"
+            ],
+            "primary": [
+                "spelljamming helm dais",
+                "captain's astrolabe",
+                "constellation chart table",
+                "command sigil console",
+                "panoramic crystal viewport",
+                "gravity plane ladder"
+            ],
+            "secondary": [
+                "star chart vellum",
+                "arcane relay conduit",
+                "whispering sending stone",
+                "captain's log sphere",
+                "emergency aether lever",
+                "battle standard rack"
+            ],
+            "tertiary": [
+                "hidden mutiny cache",
+                "encrypted orders cylinder",
+                "prototype helm core",
+                "loyalty geas seal",
+                "arcane sabotage rune",
+                "stasis-cocooned prisoner"
+            ]
+        },
+        "asteroid_outpost": {
+            "tags": [
+                "asteroid",
+                "outpost",
+                "structure",
+                "void"
+            ],
+            "primary": [
+                "hollowed asteroid plaza",
+                "defensive ballista platform",
+                "docking claw gantry",
+                "radiant crystal beacon",
+                "market canopy webbing",
+                "gravity stabilizer pylon"
+            ],
+            "secondary": [
+                "salvaged hull plating",
+                "makeshift barracks",
+                "void-garden planter",
+                "contraband locker",
+                "signal flag array",
+                "guard post brazier"
+            ],
+            "tertiary": [
+                "hidden smuggler vault",
+                "encrypted trade contract",
+                "spyglass attuned to sphere",
+                "githyanki sleeper agent",
+                "phlogiston flare trap",
+                "void-sickness cure ampoule"
+            ]
+        },
+        "nebula_waystation": {
+            "tags": [
+                "nebula",
+                "waystation",
+                "refuge",
+                "void"
+            ],
+            "primary": [
+                "luminescent mist chamber",
+                "drift anchor spire",
+                "pilgrim shrine alcove",
+                "meditation prism garden",
+                "resupply kiosk",
+                "guardian lantern array"
+            ],
+            "secondary": [
+                "incense brazier",
+                "nebula water condenser",
+                "song crystal choir",
+                "navigation bell pull",
+                "tranquil hammocks",
+                "visitation ledger"
+            ],
+            "tertiary": [
+                "secret refuge passage",
+                "peace accord treaty",
+                "unbound star elemental",
+                "contraband etherwine",
+                "astral thieves guildmark",
+                "memory-draining mist trap"
+            ]
+        },
+        "crystal_sphere_gateway": {
+            "tags": [
+                "crystalsphere",
+                "gateway",
+                "boundary",
+                "void"
+            ],
+            "primary": [
+                "sphere breach arch",
+                "guardian obelisk ring",
+                "ritual focus platform",
+                "anchor rune circle",
+                "prismatic seal curtain",
+                "sentinel golem niche"
+            ],
+            "secondary": [
+                "ancient script panel",
+                "attunement pedestal",
+                "warning sigil chain",
+                "patrol brazier",
+                "etheric measurement rod",
+                "crystal resonance fork"
+            ],
+            "tertiary": [
+                "sealed portal key",
+                "sphere-cartographer journal",
+                "latent planar breach",
+                "arcane contagion ward",
+                "cosmic gatekeeper spirit",
+                "catastrophic seal release"
+            ]
+        },
+        "phlogiston_tidepool": {
+            "tags": [
+                "phlogiston",
+                "hazard",
+                "wildspace",
+                "void"
+            ],
+            "primary": [
+                "floating fire eddy",
+                "tidepool observation ring",
+                "safety tether gantry",
+                "emberproof shelter",
+                "pressure release valve",
+                "warning lantern buoy"
+            ],
+            "secondary": [
+                "heat-scorched tools",
+                "volatile sample vials",
+                "fire-retardant cloak rack",
+                "alchemical damping rod",
+                "burned logbook",
+                "spill containment mesh"
+            ],
+            "tertiary": [
+                "ignition chain trap",
+                "rare phlogiston crystal",
+                "fire elemental prisoner",
+                "secret smugglers cache",
+                "emergency planar gateway",
+                "experimental ignition engine"
+            ]
+        },
+        "living_ship_grove": {
+            "tags": [
+                "ship",
+                "living",
+                "organic",
+                "void"
+            ],
+            "primary": [
+                "bioluminescent helm blossom",
+                "sungrown canopy corridor",
+                "sap-infused control tendril",
+                "photosynthetic ward pod",
+                "drifting pollen lantern",
+                "rooted crew cradle"
+            ],
+            "secondary": [
+                "symbiotic tool niche",
+                "healing resin pool",
+                "spore communication node",
+                "caretaker chant circle",
+                "grafted weapon rack",
+                "sap-scribed logbook"
+            ],
+            "tertiary": [
+                "rebellious growth tumor",
+                "dormant star seed",
+                "mutiny pheromone cache",
+                "feywild graft portal",
+                "curative nectar vial",
+                "predatory vine trap"
+            ]
+        },
+        "planar_observatory": {
+            "tags": [
+                "observatory",
+                "structure",
+                "void",
+                "anomaly"
+            ],
+            "primary": [
+                "rotating scrying dome",
+                "calibrated ether telescope",
+                "chronometer dais",
+                "constellation mosaic floor",
+                "gravity-inverted balcony",
+                "arcane calculation engine"
+            ],
+            "secondary": [
+                "star ledger scroll case",
+                "phase-adjustment tools",
+                "astral alignment gong",
+                "protective ward lattice",
+                "assistant homunculus alcove",
+                "sealed research cabinet"
+            ],
+            "tertiary": [
+                "forbidden planar map",
+                "time-locked experiment",
+                "stolen imperial cipher",
+                "malfunctioning prediction orb",
+                "portal to future echo",
+                "runaway summoned entity"
+            ]
+        },
+        "void_market": {
+            "tags": [
+                "market",
+                "void",
+                "trade",
+                "floating"
+            ],
+            "primary": [
+                "gravity-tethered bazaar ring",
+                "merchant pennant canopy",
+                "arcane auction dais",
+                "cargo barge dock",
+                "psionic negotiation booth",
+                "floating tavern pavilion"
+            ],
+            "secondary": [
+                "spice vapor diffuser",
+                "contract scribes alcove",
+                "barter token fountain",
+                "mercenary guard post",
+                "cage of exotic familiars",
+                "contraband inspection table"
+            ],
+            "tertiary": [
+                "hidden price-fixing ledger",
+                "rival guild sabotage kit",
+                "rare starwine crate",
+                "secret escape portal",
+                "assassin's staging perch",
+                "cursed trade charm"
+            ]
+        },
+        "spellforge_workshop": {
+            "tags": [
+                "workshop",
+                "forge",
+                "arcane",
+                "void"
+            ],
+            "primary": [
+                "gravity-anchored anvil",
+                "molten starmetal crucible",
+                "levitating tool rack",
+                "runic cooling pool",
+                "spell lattice loom",
+                "shielding glyph wall"
+            ],
+            "secondary": [
+                "apprentice workbench",
+                "schematic scroll tubes",
+                "ingot storage locker",
+                "etheric hammer rack",
+                "protective aprons",
+                "hazard rune panel"
+            ],
+            "tertiary": [
+                "unstable prototype weapon",
+                "forbidden forge pact",
+                "volatile slag cache",
+                "hidden guild contract",
+                "sentient forge spirit",
+                "detonation fail-safe trap"
+            ]
+        },
+        "starbeast_graveyard": {
+            "tags": [
+                "graveyard",
+                "wildspace",
+                "bones",
+                "void"
+            ],
+            "primary": [
+                "colossal rib arch",
+                "fossilized heart chamber",
+                "drifting bone field",
+                "memorial totem pole",
+                "salvager camp scaffold",
+                "soul lantern cairn"
+            ],
+            "secondary": [
+                "necromantic residue",
+                "scavenger tether lines",
+                "spore-choked crevice",
+                "bone-harp wind chime",
+                "ritual chalk circle",
+                "starbeast tooth pile"
+            ],
+            "tertiary": [
+                "haunting astral echo",
+                "ancient captain's log",
+                "predatory bone swarm",
+                "guardian revenant spirit",
+                "legendary marrow relic",
+                "planar seal fracture"
+            ]
+        }
+    }
+};
 
         // Encounter data structures
         const encounterData = {
@@ -1489,25 +4235,43 @@
             return notes;
         }
 
-        function generateEncounterTitle(environment) {
-            const titles = {
-                urban: ['The Shadowed Alley', 'Rooftop Chase', 'The Abandoned Warehouse', 'Market District Mystery', 'Sewer Expedition'],
-                arctic: ['Frozen Wasteland Trek', 'The Avalanche Path', 'Ice Cave Exploration', 'Blizzard Survival', 'Glacier Crossing'],
-                ocean: ['Storm-Tossed Voyage', 'The Coral Labyrinth', 'Derelict Ship Discovery', 'Island Approach', 'Deep Water Descent'],
-                space: ['Derelict Station', 'Asteroid Field Navigation', 'Void Walk', 'Alien Ruins', 'Cosmic Anomaly'],
-                crypt: ['The Ancient Tomb', 'Forgotten Catacombs', 'Cursed Burial Chamber', 'The Silent Mausoleum', 'Necropolis Depths'],
-                forest: ['Dense Woodland Trail', 'The Overgrown Ruins', 'Ancient Grove', 'Forest of Whispers', 'The Hidden Glade'],
-                desert: ['Scorching Dunes', 'Oasis Mirage', 'The Buried Temple', 'Canyon of Winds', 'Desert Caravan Route'],
-                mountain: ['Treacherous Peak', 'The Mountain Pass', 'Cliffside Trail', 'Summit Ascent', 'The Hidden Valley'],
-                swamp: ['The Mire', 'Forgotten Wetlands', 'Bog of Despair', 'Murky Waters', 'The Dead Marsh'],
-                underground: ['Cavern Depths', 'The Sunless Expanse', 'Crystal Caves', 'Underground River', 'The Forgotten Mine']
-            };
+        const fallbackEncounterTitles = {
+            urban: ['The Shadowed Alley', 'Rooftop Chase', 'The Abandoned Warehouse', 'Market District Mystery', 'Sewer Expedition'],
+            arctic: ['Frozen Wasteland Trek', 'The Avalanche Path', 'Ice Cave Exploration', 'Blizzard Survival', 'Glacier Crossing'],
+            ocean: ['Storm-Tossed Voyage', 'The Coral Labyrinth', 'Derelict Ship Discovery', 'Island Approach', 'Deep Water Descent'],
+            space: ['Derelict Station', 'Asteroid Field Navigation', 'Void Walk', 'Alien Ruins', 'Cosmic Anomaly'],
+            crypt: ['The Ancient Tomb', 'Forgotten Catacombs', 'Cursed Burial Chamber', 'The Silent Mausoleum', 'Necropolis Depths'],
+            forest: ['Dense Woodland Trail', 'The Overgrown Ruins', 'Ancient Grove', 'Forest of Whispers', 'The Hidden Glade'],
+            desert: ['Scorching Dunes', 'Oasis Mirage', 'The Buried Temple', 'Canyon of Winds', 'Desert Caravan Route'],
+            mountain: ['Treacherous Peak', 'The Mountain Pass', 'Cliffside Trail', 'Summit Ascent', 'The Hidden Valley'],
+            swamp: ['The Mire', 'Forgotten Wetlands', 'Bog of Despair', 'Murky Waters', 'The Dead Marsh'],
+            underground: ['Cavern Depths', 'The Sunless Expanse', 'Crystal Caves', 'Underground River', 'The Forgotten Mine']
+        };
 
-            const envTitles = titles[environment] || titles.urban;
-            return envTitles[Math.floor(Math.random() * envTitles.length)];
+        function selectEncounterTemplate(environment) {
+            const entries = encounterTitles && encounterTitles[environment];
+            if (entries && entries.length > 0) {
+                const totalWeight = entries.reduce((sum, entry) => sum + (entry.weight ?? 1), 0);
+                let roll = Math.random() * totalWeight;
+                for (const entry of entries) {
+                    roll -= (entry.weight ?? 1);
+                    if (roll <= 0) {
+                        return entry;
+                    }
+                }
+                return entries[entries.length - 1];
+            }
+
+            const fallback = fallbackEncounterTitles[environment] || fallbackEncounterTitles.urban;
+            const title = fallback[Math.floor(Math.random() * fallback.length)];
+            return { title, description: null };
         }
 
-        function generateEncounterDescription(environment, title) {
+        function buildEncounterDescription(environment, title, customDescription) {
+            if (customDescription) {
+                return customDescription;
+            }
+
             const descriptions = {
                 urban: `The party must navigate ${title.toLowerCase()}, where every alley hums with intrigue and the city itself plays kingmaker. Lantern light paints long shadows over ancient masonry, and the press of humanity can offer salvation or doom depending on which whispers they heed.`,
                 arctic: `${title} hurls the party into a realm of grinding ice and razor winds. Only careful preparation, shared body heat, and unshakable resolve stand between the heroes and the endless white hunger of the north.`,
@@ -1533,8 +4297,9 @@
             }
 
             const data = encounterData[selectedEnvironment];
-            const title = generateEncounterTitle(selectedEnvironment);
-            const description = generateEncounterDescription(selectedEnvironment, title);
+            const template = selectEncounterTemplate(selectedEnvironment);
+            const title = template.title;
+            const description = buildEncounterDescription(selectedEnvironment, title, template.description);
 
             // Select random elements
             const numSkills = 3 + Math.floor(Math.random() * 2); // 3-4 skills

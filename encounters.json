@@ -1,13 +1,113 @@
 {
   "urban": [
-    { "title": "The Shadowed Alley", "tags": ["alley", "outdoor", "street"] },
-    { "title": "Rooftop Chase", "tags": ["rooftop", "outdoor", "building"] },
-    { "title": "The Abandoned Warehouse", "tags": ["warehouse", "indoor", "building"] },
-    { "title": "Market District Mystery", "tags": ["market", "outdoor", "street"] },
-    { "title": "Sewer Expedition", "tags": ["sewer", "underground", "tunnel"] },
-    { "title": "The Clocktower District", "tags": ["district", "outdoor", "building"] },
-    { "title": "Wharf at Midnight", "tags": ["wharf", "outdoor", "dock"] },
-    { "title": "The Old Quarter", "tags": ["district", "outdoor", "street"] }
+    {
+      "title": "The Shadowed Alley",
+      "tags": ["alley", "outdoor", "street"],
+      "description": "A single guttering lantern throws nervous silhouettes against damp brick as smugglers barter over forbidden relics. Every whispered threat rides the fog, ready to drag interlopers into a maze of hidden doors and knife-bright intentions.",
+      "weight": 1.1
+    },
+    {
+      "title": "Rooftop Chase",
+      "tags": ["rooftop", "outdoor", "building"],
+      "description": "Terracotta shingles and laundry lines blur beneath desperate feet while bells toll the alarm across the skyline. Chimney sweeps, nesting griffins, and sheer drops turn every leap into a wager with gravity and the guards below.",
+      "weight": 1.2
+    },
+    {
+      "title": "The Abandoned Warehouse",
+      "tags": ["warehouse", "indoor", "building"],
+      "description": "Dust-choked crates form a claustrophobic labyrinth where contraband sigils flare to life when touched. Something restless prowls between the pallets, stirred awake by anyone bold enough to break the silence.",
+      "weight": 0.9
+    },
+    {
+      "title": "Market District Mystery",
+      "tags": ["market", "outdoor", "street"],
+      "description": "Merchants hawk fragrant spices over the hushed gossip of a vanished magistrate. Beneath the tapestry of awnings, secret ledgers, coded chalk marks, and suspicious performers all beg to be decoded before the crowd turns hostile.",
+      "weight": 1.0
+    },
+    {
+      "title": "Sewer Expedition",
+      "tags": ["sewer", "underground", "tunnel"],
+      "description": "Sluggish canals of alchemical runoff glow sickly green, illuminating murals that rewrite the city’s founding myths. Mutated vermin and forgotten cult wards conspire to drown the unwary beneath a century of secrets.",
+      "weight": 0.8
+    },
+    {
+      "title": "The Clocktower District",
+      "tags": ["district", "outdoor", "building"],
+      "description": "Clockwork giants toll the hour as brass gears strain against a sabotage-born misalignment. Spires connected by maintenance catwalks demand delicate timing lest the party be caught in a storm of spinning weights and civic panic.",
+      "weight": 1.0
+    },
+    {
+      "title": "Wharf at Midnight",
+      "tags": ["wharf", "outdoor", "dock"],
+      "description": "Salt mist swallows lantern light while contraband-laden barges glide in under foreign colors. Whispered deals, restless spirits, and tide-called predators all hunger for a single misstep on the slick planks.",
+      "weight": 0.95
+    },
+    {
+      "title": "The Old Quarter",
+      "tags": ["district", "outdoor", "street"],
+      "description": "Lean tenements huddle over cobbles carved with warding sigils now cracked and fading. Elders barricade their doorways as ancestral guardians stir against a brewing riot the watch refuses to quell.",
+      "weight": 0.85
+    },
+    {
+      "title": "Festival of Masks Unveiled",
+      "tags": ["festival", "crowd", "market"],
+      "description": "Ribboned performers and masked revelers whirl beneath fireworks that spell omens in smoke. When a prophetic masque ends in a real abduction, the heroes must navigate jubilant chaos to unmask conspirators.",
+      "weight": 1.35
+    },
+    {
+      "title": "Guildhouse Heist Aftermath",
+      "tags": ["guild", "heist", "indoor"],
+      "description": "Shattered vault wards and drifting illusion shards reveal a thieves’ triumph hours too soon. Rival factions arrive in waves, each eager to pin blame or steal what the original crew missed.",
+      "weight": 1.1
+    },
+    {
+      "title": "Basilica of Echoing Confessions",
+      "tags": ["temple", "indoor", "district"],
+      "description": "Sound-catcher domes preserve every whispered confession until the clergy release them in sonorous choruses. Tonight a vengeful chorus threatens to expose blackmail material unless the sanctum’s curse is soothed.",
+      "weight": 0.9
+    },
+    {
+      "title": "Night Watch Mutiny",
+      "tags": ["guard", "street", "riot"],
+      "description": "Barricades of overturned carts frame a standoff between loyalist captains and disgruntled rookies. The party must thread the line between diplomacy and derring-do before the city wakes to civil war.",
+      "weight": 1.25
+    },
+    {
+      "title": "Skybridge Duel at Dawn",
+      "tags": ["rooftop", "bridge", "duel"],
+      "description": "A duelist’s seconds tighten ceremonial harnesses as the river sunrise paints the elevated span in molten gold. Sabotaged anchors, hidden snipers, and hungry gargoyles mean honor is only one of many blades drawn.",
+      "weight": 1.05
+    },
+    {
+      "title": "Arcane Tram Derailment",
+      "tags": ["transit", "arcane", "disaster"],
+      "description": "Lightning-fed rails shriek while a levitating tram car dangles above a plaza of panicked commuters. Stabilizing the conduit requires crowd control, counter-spells, and a race against plummeting wreckage.",
+      "weight": 1.3
+    },
+    {
+      "title": "Stormglass Conservatory Siege",
+      "tags": ["conservatory", "indoor", "arcane"],
+      "description": "Crystalline greenhouses fracture under the strain of caged tempests now raging free. Elemental botanists plead for rescue as sentient vines and living hail duel beneath shimmering domes.",
+      "weight": 0.95
+    },
+    {
+      "title": "Moonlit Menagerie Escape",
+      "tags": ["menagerie", "outdoor", "beasts"],
+      "description": "Exotic beasts prowl the moon-washed gardens after a sabotaged lock release. From chimeric songbirds to a melancholic manticore, each creature demands a different mix of empathy and strategy to corral.",
+      "weight": 1.05
+    },
+    {
+      "title": "Tax Collector's Uprising",
+      "tags": ["bureaucracy", "protest", "street"],
+      "description": "Ledgers burn in braziers as clerks and citizens storm the civic countinghouse over a cursed levy. The crowd’s fury hides a spectral auditor eager to balance the books with blood.",
+      "weight": 0.9
+    },
+    {
+      "title": "Cursed Foundry Reawakening",
+      "tags": ["foundry", "industrial", "indoor"],
+      "description": "Molten channels spark to life in a long-shuttered foundry where golems once forged city defenses. Unchecked anima surges now seek new hosts among the living, forcing a desperate shutdown under blistering heat.",
+      "weight": 1.15
+    }
   ],
   "arctic": [
     { "title": "Frozen Wasteland Trek", "tags": ["wilderness", "outdoor", "openfield"] },
