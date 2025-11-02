@@ -47,6 +47,16 @@
             transition: background 0.3s ease, color 0.3s ease;
         }
 
+        /* Main content wrapper for sliding */
+        .main-content {
+            transition: margin-left 0.3s ease;
+            margin-left: 0;
+        }
+
+        .main-content.nav-active {
+            margin-left: 320px;
+        }
+
         [data-theme="dark"] body {
             background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #16213e 100%);
         }
@@ -894,6 +904,128 @@
             text-align: center;
         }
 
+        /* Flow Navigator - Left Side Panel */
+        .flow-navigator {
+            position: fixed;
+            left: -320px;
+            top: 100px;
+            width: 320px;
+            max-height: calc(100vh - 120px);
+            background: var(--card-bg);
+            border: 2px solid var(--accent-blue);
+            border-left: none;
+            border-radius: 0 12px 12px 0;
+            padding: 20px;
+            overflow-y: auto;
+            transition: left 0.3s ease;
+            z-index: 999;
+            box-shadow: 4px 0 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .flow-navigator.active {
+            left: 0;
+        }
+
+        .flow-navigator-toggle {
+            position: fixed;
+            left: 0;
+            top: 120px;
+            width: 40px;
+            height: 50px;
+            background: var(--accent-blue);
+            border: 2px solid var(--accent-blue);
+            border-left: none;
+            border-radius: 0 8px 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 998;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .flow-navigator-toggle:hover {
+            background: rgba(0, 122, 255, 0.8);
+            width: 45px;
+        }
+
+        .flow-navigator-toggle.active {
+            left: 320px;
+        }
+
+        .flow-nav-header {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--accent-blue);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-blue);
+        }
+
+        .flow-step {
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .flow-step-node {
+            background: rgba(0, 122, 255, 0.1);
+            border: 2px solid var(--accent-blue);
+            border-radius: 8px;
+            padding: 12px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .flow-step-node:hover {
+            background: rgba(0, 122, 255, 0.2);
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+        }
+
+        .flow-step-number {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 28px;
+            height: 28px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 0.9em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .flow-step-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            font-size: 0.95em;
+        }
+
+        .flow-step-location {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .flow-connector {
+            width: 2px;
+            height: 15px;
+            background: linear-gradient(to bottom, var(--accent-blue), transparent);
+            margin: 0 auto;
+            margin-left: 12px;
+        }
+
         .result-title {
             font-size: 1.3em;
             color: var(--text-primary);
@@ -1304,18 +1436,19 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>⚔️ LoreWeaver ⚔️</h1>
-            <p class="subtitle">D&D Exploration Encounter Generator</p>
-            
-            <!-- Navigation Tabs -->
-            <div class="nav-tabs">
-                <button class="nav-tab active" onclick="switchPage('generate')">🎲 Generate</button>
-                <button class="nav-tab" onclick="switchPage('npc')">👤 NPCs</button>
-                <button class="nav-tab" onclick="switchPage('search')">🔍 Search</button>
-                <button class="nav-tab" onclick="switchPage('settings')">⚙️ Settings</button>
-            </div>
+    <div class="main-content" id="mainContent">
+        <div class="container">
+            <header>
+                <h1>⚔️ LoreWeaver ⚔️</h1>
+                <p class="subtitle">D&D Exploration Encounter Generator</p>
+                
+                <!-- Navigation Tabs -->
+                <div class="nav-tabs">
+                    <button class="nav-tab active" onclick="switchPage('generate')">🎲 Generate</button>
+                    <button class="nav-tab" onclick="switchPage('npc')">👤 NPCs</button>
+                    <button class="nav-tab" onclick="switchPage('search')">🔍 Search</button>
+                    <button class="nav-tab" onclick="switchPage('settings')">⚙️ Settings</button>
+                </div>
         </header>
 
         <!-- Generate Page -->
@@ -1372,6 +1505,15 @@
 
         <!-- NPC Hover Tooltip -->
         <div class="npc-tooltip" id="npcTooltip"></div>
+
+        <!-- Flow Navigator (Left Side Panel) -->
+        <div class="flow-navigator-toggle" id="flowNavigatorToggle" onclick="toggleFlowNavigator()">
+            ▶
+        </div>
+        <div class="flow-navigator" id="flowNavigator">
+            <div class="flow-nav-header">🗺️ Encounter Flow</div>
+            <div id="flowNavigatorContent"></div>
+        </div>
 
         <!-- NPC Generator Page -->
         <div id="npcPage" class="page-content" style="display: none;">
@@ -2557,6 +2699,9 @@
                 window.encounterLocationsData = encounterLocations;
                 window.encounterNPCsData = encounterNPCs;
                 
+                // Populate the flow navigator
+                populateFlowNavigator(encounterFlow);
+                
                 html += `
                     <div class="encounter-section">
                         <h2>🔄 Encounter Flow & Narrative Path</h2>
@@ -2571,7 +2716,7 @@
                     if (isBranching) {
                         // Special display for branching paths
                         html += `
-                            <div class="flow-step" style="background: linear-gradient(135deg, rgba(155, 89, 182, 0.15), rgba(142, 68, 173, 0.1)); border-left: 4px solid #9b59b6; padding: 20px; margin: 20px 0; border-radius: 8px; position: relative;">
+                            <div id="flow-step-${step.step}" class="flow-step" style="background: linear-gradient(135deg, rgba(155, 89, 182, 0.15), rgba(142, 68, 173, 0.1)); border-left: 4px solid #9b59b6; padding: 20px; margin: 20px 0; border-radius: 8px; position: relative;">
                                 <div style="display: flex; align-items: center; margin-bottom: 15px;">
                                     <div style="background: #9b59b6; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">
                                         ${step.step}
@@ -2601,7 +2746,7 @@
                     } else if (step.title === "Resolution") {
                         // Special display for resolution
                         html += `
-                            <div class="flow-step" style="background: linear-gradient(135deg, rgba(39, 174, 96, 0.15), rgba(46, 204, 113, 0.1)); border-left: 4px solid #27ae60; padding: 20px; margin: 20px 0; border-radius: 8px; position: relative;">
+                            <div id="flow-step-${step.step}" class="flow-step" style="background: linear-gradient(135deg, rgba(39, 174, 96, 0.15), rgba(46, 204, 113, 0.1)); border-left: 4px solid #27ae60; padding: 20px; margin: 20px 0; border-radius: 8px; position: relative;">
                                 <div style="display: flex; align-items: center; margin-bottom: 15px;">
                                     <div style="background: #27ae60; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">
                                         ✓
@@ -2622,7 +2767,7 @@
                     } else {
                         // Normal flow step
                         html += `
-                            <div class="flow-step" style="background: rgba(52, 152, 219, 0.1); border-left: 4px solid var(--accent-blue); padding: 20px; margin: 20px 0; border-radius: 8px; position: relative;">
+                            <div id="flow-step-${step.step}" class="flow-step" style="background: rgba(52, 152, 219, 0.1); border-left: 4px solid var(--accent-blue); padding: 20px; margin: 20px 0; border-radius: 8px; position: relative;">
                                 <div style="display: flex; align-items: center; margin-bottom: 15px;">
                                     <div style="background: var(--accent-blue); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">
                                         ${step.step}
@@ -3345,6 +3490,77 @@
             }
         });
 
+        // Flow Navigator Functions
+        function toggleFlowNavigator() {
+            const navigator = document.getElementById('flowNavigator');
+            const toggle = document.getElementById('flowNavigatorToggle');
+            const mainContent = document.getElementById('mainContent');
+            
+            navigator.classList.toggle('active');
+            toggle.classList.toggle('active');
+            mainContent.classList.toggle('nav-active');
+            
+            // Update toggle icon
+            toggle.textContent = navigator.classList.contains('active') ? '◀' : '▶';
+        }
+
+        function populateFlowNavigator(flowSteps) {
+            const content = document.getElementById('flowNavigatorContent');
+            
+            if (!flowSteps || flowSteps.length === 0) {
+                content.innerHTML = '<p style="color: var(--text-secondary); font-size: 0.9em;">No encounter flow available</p>';
+                return;
+            }
+            
+            let html = '';
+            
+            flowSteps.forEach((step, index) => {
+                const isLastStep = index === flowSteps.length - 1;
+                const stepId = `flow-step-${step.step}`;
+                
+                html += `
+                    <div class="flow-step" onclick="scrollToFlowStep(${step.step})">
+                        <div class="flow-step-node">
+                            <div class="flow-step-number">${step.step}</div>
+                            <div class="flow-step-title">${step.title}</div>
+                `;
+                
+                // Show location(s)
+                if (step.location) {
+                    html += `
+                            <div class="flow-step-location">
+                                📍 ${step.location.name}
+                            </div>
+                    `;
+                } else if (step.locations && step.locations.length > 0) {
+                    html += `
+                            <div class="flow-step-location">
+                                📍 ${step.locations.length} optional locations
+                            </div>
+                    `;
+                }
+                
+                html += `
+                        </div>
+                    </div>
+                `;
+                
+                // Add connector between steps
+                if (!isLastStep) {
+                    html += `<div class="flow-connector"></div>`;
+                }
+            });
+            
+            content.innerHTML = html;
+        }
+
+        function scrollToFlowStep(stepNumber) {
+            const stepElement = document.getElementById(`flow-step-${stepNumber}`);
+            if (stepElement) {
+                stepElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
         // NPC Detail Panel Functions
         function showNPCDetail(npcIndex) {
             const npc = window.encounterNPCsData[npcIndex];
@@ -3895,5 +4111,6 @@
             document.getElementById('npcDisplay').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     </script>
+    </div> <!-- End main-content -->
 </body>
 </html>
