@@ -3055,16 +3055,16 @@
                         // Normal flow step
                         html += `
                             <div id="flow-step-${step.step}" class="flow-step" style="background: rgba(52, 152, 219, 0.1); border-left: 4px solid var(--accent-blue); padding: 20px; margin: 20px 0; border-radius: 8px; position: relative;">
+                                <button onclick="regenerateFlowLocation(${step.step})" 
+                                        style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: var(--accent-blue); padding: 4px; cursor: pointer; font-size: 1.2em; line-height: 1; width: auto; min-width: 0;"
+                                        title="Regenerate this location">
+                                    🔄
+                                </button>
                                 <div style="display: flex; align-items: center; margin-bottom: 15px;">
                                     <div style="background: var(--accent-blue); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">
                                         ${step.step}
                                     </div>
-                                    <h3 style="margin: 0; color: var(--accent-blue); flex-grow: 1;">${step.title}</h3>
-                                    <button onclick="regenerateFlowLocation(${step.step})" 
-                                            style="background: rgba(52, 152, 219, 0.2); border: 1px solid var(--accent-blue); color: var(--accent-blue); padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.9em; display: flex; align-items: center; gap: 6px;"
-                                            title="Regenerate this location">
-                                        🔄 Regenerate
-                                    </button>
+                                    <h3 style="margin: 0; color: var(--accent-blue); flex-grow: 1; padding-right: 40px;">${step.title}</h3>
                                 </div>
                                 
                                 <div style="background: rgba(52, 152, 219, 0.15); border-radius: 6px; padding: 12px; margin-bottom: 15px;">
@@ -3121,11 +3121,11 @@
                     html += `
                         <div class="npc-card" style="background: rgba(58, 58, 60, 0.3); border-radius: 8px; padding: 20px; margin: 15px 0; position: relative;">
                             <button onclick="regenerateNPC(${index})" 
-                                    style="position: absolute; top: 15px; right: 15px; background: rgba(52, 152, 219, 0.2); border: 1px solid var(--accent-blue); color: var(--accent-blue); padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85em; display: flex; align-items: center; gap: 6px;"
+                                    style="position: absolute; top: 15px; right: 15px; background: transparent; border: none; color: var(--accent-blue); padding: 4px; cursor: pointer; font-size: 1.2em; line-height: 1; width: auto; min-width: 0;"
                                     title="Regenerate this NPC">
-                                🔄 Regenerate
+                                🔄
                             </button>
-                            <h3 style="margin-top: 0; color: var(--accent-blue);">${npc.name}</h3>
+                            <h3 style="margin-top: 0; color: var(--accent-blue); padding-right: 40px;">${npc.name}</h3>
                             <p style="font-size: 1.1em; color: var(--text-secondary); margin: 5px 0;">
                                 ${npc.species.charAt(0).toUpperCase() + npc.species.slice(1)} ${npc.profession.name}
                             </p>
@@ -3479,6 +3479,356 @@
             scoredHazards.sort((a, b) => b.score - a.score);
             const hasHazard = scoredHazards[0] && scoredHazards[0].score > 0 && Math.random() < 0.5;
             return hasHazard ? [scoredHazards[0].hazard] : [];
+        }
+
+        // Regenerate a specific location in the encounter flow
+        function regenerateFlowLocation(stepNumber) {
+            if (!window.encounterFlowData || !window.encounterLocationsData || !window.encounterTemplate) {
+                console.error('Missing encounter data for regeneration');
+                return;
+            }
+
+            // Find the flow step
+            const flowStep = window.encounterFlowData.find(step => step.step === stepNumber);
+            if (!flowStep || !flowStep.location) {
+                console.error('Flow step not found:', stepNumber);
+                return;
+            }
+
+            console.log('Regenerating location for step:', stepNumber);
+
+            // Get encounter tags for context
+            const encounterTags = window.encounterTemplate.tags || [];
+            
+            // Select a new location that matches encounter tags but isn't already in use
+            const usedLocationKeys = window.encounterLocationsData.map(loc => loc.key);
+            const allLocations = selectLocationsForEncounter(encounterTags, window.encounterEnvironment, 5);
+            
+            // Find a location not currently in use
+            let newLocation = allLocations.find(loc => !usedLocationKeys.includes(loc.key));
+            if (!newLocation) {
+                // If all are in use, just pick a random one
+                newLocation = allLocations[Math.floor(Math.random() * allLocations.length)];
+            }
+
+            // Find the index of the old location in encounterLocationsData
+            const oldLocationIndex = window.encounterLocationsData.findIndex(
+                loc => loc.key === flowStep.location.key
+            );
+
+            // Replace the location in the global data
+            if (oldLocationIndex !== -1) {
+                window.encounterLocationsData[oldLocationIndex] = newLocation;
+            }
+
+            // Update the flow step
+            flowStep.location = newLocation;
+            
+            // Update description to reference new location
+            const encounterTitle = window.encounterTemplate.title;
+            if (stepNumber === 1) {
+                flowStep.description = `The party first encounters ${encounterTitle.toLowerCase()}. They arrive at ${newLocation.name}, where the situation begins to unfold.`;
+            } else if (stepNumber === 2 && window.encounterLocationsData[0]) {
+                flowStep.description = `Clues, encounters, or circumstances lead the party to ${newLocation.name}. The situation deepens as they uncover more details.`;
+                if (flowStep.connections) {
+                    flowStep.connections[0] = `Evidence at ${window.encounterLocationsData[0].name} points to activity here`;
+                }
+            } else if (stepNumber === 3 && window.encounterLocationsData[1]) {
+                flowStep.description = `The encounter intensifies at ${newLocation.name}. Stakes are raised and the party must make crucial decisions.`;
+                if (flowStep.connections) {
+                    flowStep.connections[0] = `Chase, pursuit, or urgency drives the party from ${window.encounterLocationsData[1].name}`;
+                }
+            }
+
+            // Check if we should regenerate an NPC based on the new location's tags
+            // Regenerate NPC if the location tags don't match well with current NPC
+            const npcIndex = stepNumber - 1; // Step 1 uses NPC 0, Step 2 uses NPC 1, etc.
+            if (window.encounterNPCsData && window.encounterNPCsData[npcIndex]) {
+                const currentNPC = window.encounterNPCsData[npcIndex];
+                const newLocationTags = newLocation.data.tags || [];
+                
+                // Get all tags from current NPC
+                const currentNPCTags = [
+                    ...(currentNPC.profession?.tags || []),
+                    ...(currentNPC.personality?.tags || []),
+                    ...(currentNPC.secret?.tags || [])
+                ];
+                
+                // Calculate match score
+                let matchScore = 0;
+                for (const tag of currentNPCTags) {
+                    if (newLocationTags.includes(tag)) matchScore++;
+                }
+                
+                // If match is poor (fewer than 2 matching tags), regenerate the NPC
+                if (matchScore < 2) {
+                    console.log('🔄 Location tags changed significantly, regenerating associated NPC...');
+                    
+                    // Combine encounter and location tags for NPC generation
+                    const combinedTags = [...encounterTags, ...newLocationTags];
+                    const newNPCs = selectNPCsForEncounter(combinedTags, 1);
+                    
+                    if (newNPCs.length > 0) {
+                        window.encounterNPCsData[npcIndex] = newNPCs[0];
+                        renderNPCSection();
+                        console.log('✅ NPC regenerated to match new location:', newNPCs[0].name);
+                    }
+                } else {
+                    console.log('✓ Current NPC still fits the new location (match score:', matchScore, ')');
+                }
+            }
+
+            // Update subsequent flow steps that reference this location
+            updateSubsequentFlowSteps(stepNumber);
+
+            // Re-render the flow step
+            renderFlowStep(flowStep);
+            
+            console.log('✅ Location regenerated:', newLocation.name);
+        }
+
+        // Update subsequent flow steps when a location changes
+        function updateSubsequentFlowSteps(changedStepNumber) {
+            if (!window.encounterFlowData || !window.encounterLocationsData) return;
+
+            const encounterTitle = window.encounterTemplate?.title || 'the encounter';
+
+            // Update step references based on which step changed
+            window.encounterFlowData.forEach(step => {
+                // Skip the step that was just changed
+                if (step.step === changedStepNumber) return;
+
+                // Update Step 2 if Step 1 changed
+                if (changedStepNumber === 1 && step.step === 2) {
+                    if (window.encounterLocationsData[0]) {
+                        const newLoc1 = window.encounterLocationsData[0];
+                        step.description = `Clues, encounters, or circumstances lead the party to ${step.location.name}. The situation deepens as they uncover more details.`;
+                        if (step.connections) {
+                            step.connections[0] = `Evidence at ${newLoc1.name} points to activity here`;
+                        }
+                        renderFlowStep(step);
+                    }
+                }
+
+                // Update Step 3 if Step 2 changed
+                if (changedStepNumber === 2 && step.step === 3) {
+                    if (window.encounterLocationsData[1]) {
+                        const newLoc2 = window.encounterLocationsData[1];
+                        step.description = `The encounter intensifies at ${step.location.name}. Stakes are raised and the party must make crucial decisions.`;
+                        if (step.connections) {
+                            step.connections[0] = `Chase, pursuit, or urgency drives the party from ${newLoc2.name}`;
+                        }
+                        renderFlowStep(step);
+                    }
+                }
+
+                // Update Resolution step if Step 3 changed (it references the final location)
+                if (changedStepNumber === 3 && step.title === "Resolution") {
+                    const finalLocation = window.encounterLocationsData.length > 2 ? 
+                        window.encounterLocationsData[2] : 
+                        window.encounterLocationsData[window.encounterLocationsData.length - 1];
+                    
+                    if (finalLocation) {
+                        step.description = `The encounter concludes, typically at ${finalLocation.name} or wherever the party's investigation leads them.`;
+                        step.location = finalLocation;
+                        renderFlowStep(step);
+                    }
+                }
+            });
+        }
+
+        // Render a single flow step (helper for regeneration)
+        function renderFlowStep(step) {
+            const stepElement = document.getElementById(`flow-step-${step.step}`);
+            if (!stepElement) {
+                console.error('Step element not found:', step.step);
+                return;
+            }
+
+            // Helper function to wrap NPC name with interactive elements
+            function wrapNPCName(npc, index) {
+                return `<span class="npc-link" 
+                             onclick="showNPCDetail(${index})" 
+                             onmouseenter="showNPCTooltip(event, ${index})"
+                             onmouseleave="hideNPCTooltip()">${npc.name}</span>`;
+            }
+
+            let html = '';
+            
+            if (step.title === "Resolution") {
+                html = `
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <div style="background: #27ae60; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">
+                            ✓
+                        </div>
+                        <h3 style="margin: 0; color: #27ae60;">🎯 ${step.title}</h3>
+                    </div>
+                    <p class="description" style="margin: 15px 0; font-style: italic;">${step.description}</p>
+                    <div style="background: rgba(39, 174, 96, 0.08); border-radius: 6px; padding: 12px; margin-top: 15px;">
+                        <strong style="color: var(--accent-blue);">💡 DM Tips:</strong>
+                        <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 0.95em;">
+                            ${step.dmTips.map(tip => `<li>${tip}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            } else {
+                html = `
+                    <button onclick="regenerateFlowLocation(${step.step})" 
+                            style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: var(--accent-blue); padding: 4px; cursor: pointer; font-size: 1.2em; line-height: 1; width: auto; min-width: 0;"
+                            title="Regenerate this location">
+                        🔄
+                    </button>
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <div style="background: var(--accent-blue); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">
+                            ${step.step}
+                        </div>
+                        <h3 style="margin: 0; color: var(--accent-blue); flex-grow: 1; padding-right: 40px;">${step.title}</h3>
+                    </div>
+                    
+                    <div style="background: rgba(52, 152, 219, 0.15); border-radius: 6px; padding: 12px; margin-bottom: 15px;">
+                        <strong style="color: var(--accent-blue);">📍 Location: <span class="location-link" onclick="showLocationDetail('${step.location.key}')">${step.location.name}</span></strong>
+                    </div>
+                    
+                    <p class="description" style="margin: 15px 0; font-style: italic;">${step.description}</p>
+                    
+                    ${step.connections ? `
+                        <div style="margin: 15px 0;">
+                            <strong style="color: var(--accent-blue);">🔗 How the party arrives here:</strong>
+                            <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 0.95em;">
+                                ${step.connections.map(conn => `<li>${conn}</li>`).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+                    
+                    <div style="background: rgba(52, 152, 219, 0.08); border-radius: 6px; padding: 12px; margin-top: 15px;">
+                        <strong style="color: var(--accent-blue);">💡 DM Tips:</strong>
+                        <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 0.95em;">
+                            ${step.dmTips.map(tip => `<li>${tip}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            stepElement.innerHTML = html;
+        }
+
+        // Regenerate a specific NPC
+        function regenerateNPC(npcIndex) {
+            if (!window.encounterNPCsData || !window.encounterTemplate) {
+                console.error('Missing NPC data for regeneration');
+                return;
+            }
+
+            console.log('Regenerating NPC at index:', npcIndex);
+
+            // Get encounter tags for context
+            const encounterTags = window.encounterTemplate.tags || [];
+            
+            // Generate a new NPC with appropriate tags
+            const newNPCs = selectNPCsForEncounter(encounterTags, 1);
+            if (newNPCs.length === 0) {
+                console.error('Failed to generate new NPC');
+                return;
+            }
+
+            const newNPC = newNPCs[0];
+            
+            // Replace the NPC in the global data
+            window.encounterNPCsData[npcIndex] = newNPC;
+
+            // Update the flow if this NPC is referenced
+            if (window.encounterFlowData) {
+                window.encounterFlowData.forEach(step => {
+                    if (step.dmTips) {
+                        step.dmTips = step.dmTips.map(tip => {
+                            // Update NPC references in DM tips
+                            // This is a simple update - you might want to make it more sophisticated
+                            return tip;
+                        });
+                    }
+                });
+            }
+
+            // Re-render the NPC section
+            renderNPCSection();
+            
+            console.log('✅ NPC regenerated:', newNPC.name);
+        }
+
+        // Render the entire NPC section (helper for regeneration)
+        function renderNPCSection() {
+            const encounterDisplay = document.getElementById('encounterOutput');
+            if (!encounterDisplay) return;
+
+            // Find the NPCs section
+            const sections = encounterDisplay.querySelectorAll('.encounter-section');
+            let npcSection = null;
+            sections.forEach(section => {
+                const header = section.querySelector('h2');
+                if (header && header.textContent.includes('👥 NPCs')) {
+                    npcSection = section;
+                }
+            });
+
+            if (!npcSection) {
+                console.error('NPC section not found');
+                return;
+            }
+
+            // Rebuild NPC HTML
+            let html = '<p class="description">These NPCs are present in this location and may interact with the party. They can provide information, assistance, or complications depending on how the party approaches them.</p>';
+            
+            window.encounterNPCsData.forEach((npc, index) => {
+                html += `
+                    <div class="npc-card" style="background: rgba(58, 58, 60, 0.3); border-radius: 8px; padding: 20px; margin: 15px 0; position: relative;">
+                        <button onclick="regenerateNPC(${index})" 
+                                style="position: absolute; top: 15px; right: 15px; background: transparent; border: none; color: var(--accent-blue); padding: 4px; cursor: pointer; font-size: 1.2em; line-height: 1; width: auto; min-width: 0;"
+                                title="Regenerate this NPC">
+                            🔄
+                        </button>
+                        <h3 style="margin-top: 0; color: var(--accent-blue); padding-right: 40px;">${npc.name}</h3>
+                        <p style="font-size: 1.1em; color: var(--text-secondary); margin: 5px 0;">
+                            ${npc.species.charAt(0).toUpperCase() + npc.species.slice(1)} ${npc.profession.name}
+                        </p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 15px 0;">
+                            <div>
+                                <strong style="color: var(--accent-blue);">Alignment:</strong>
+                                <p class="description" style="margin: 5px 0;">${npc.alignment.name}</p>
+                            </div>
+                            <div>
+                                <strong style="color: var(--accent-blue);">Personality:</strong>
+                                <p class="description" style="margin: 5px 0;">${npc.personality.trait}</p>
+                            </div>
+                        </div>
+                        
+                        <div style="margin: 10px 0;">
+                            <strong style="color: var(--accent-blue);">Appearance:</strong>
+                            <p class="description" style="margin: 5px 0;">${npc.appearance.description}</p>
+                        </div>
+                        
+                        <div style="background: rgba(255, 149, 0, 0.1); border-left: 3px solid #ff9500; padding: 10px; margin: 10px 0; border-radius: 4px;">
+                            <strong style="color: #ff9500;">🔒 Secret (DM Only):</strong>
+                            <p class="description" style="margin: 5px 0;">${npc.secret.secret}</p>
+                        </div>
+                        
+                        <div style="margin-top: 10px;">
+                            <strong style="color: var(--accent-blue);">Roleplaying Tips:</strong>
+                            <ul style="margin: 5px 0; padding-left: 20px;">
+                                <li>As a ${npc.profession.name.toLowerCase()}, they may ${getProfessionRoleTip(npc.profession.name)}</li>
+                                <li>Their ${npc.personality.trait.toLowerCase()} personality will affect how they respond to the party</li>
+                                <li>They could provide information about ${window.encounterTemplate.tags[0] || 'the area'} if properly approached</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Update the content
+            const contentDiv = npcSection.querySelector('.section-content');
+            if (contentDiv) {
+                contentDiv.innerHTML = html;
+            }
         }
 
         // Show location detail in side panel
