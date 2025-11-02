@@ -1510,6 +1510,338 @@
         "market",
         "arcane"
       ]
+    },
+    {
+      "name": "Bounty Hunter",
+      "tags": [
+        "combat",
+        "tracking",
+        "dangerous",
+        "wilderness",
+        "urban",
+        "law",
+        "mercenary"
+      ]
+    },
+    {
+      "name": "Grave Digger",
+      "tags": [
+        "dark",
+        "somber",
+        "isolated",
+        "urban",
+        "cemetery",
+        "death",
+        "undead"
+      ]
+    },
+    {
+      "name": "Beast Tamer",
+      "tags": [
+        "nature",
+        "wilderness",
+        "dangerous",
+        "entertaining",
+        "circus",
+        "animals"
+      ]
+    },
+    {
+      "name": "Poisoner",
+      "tags": [
+        "criminal",
+        "stealth",
+        "dangerous",
+        "alchemy",
+        "underground",
+        "assassin"
+      ]
+    },
+    {
+      "name": "Ship Captain",
+      "tags": [
+        "leadership",
+        "coastal",
+        "travel",
+        "commerce",
+        "naval",
+        "adventure"
+      ]
+    },
+    {
+      "name": "Plague Doctor",
+      "tags": [
+        "healing",
+        "dark",
+        "urban",
+        "medical",
+        "mysterious",
+        "death"
+      ]
+    },
+    {
+      "name": "Scribe",
+      "tags": [
+        "scholarly",
+        "urban",
+        "knowledge",
+        "library",
+        "religious",
+        "historical"
+      ]
+    },
+    {
+      "name": "Gambler",
+      "tags": [
+        "social",
+        "urban",
+        "tavern",
+        "deceptive",
+        "risky",
+        "entertainment"
+      ]
+    },
+    {
+      "name": "Executioner",
+      "tags": [
+        "dark",
+        "law",
+        "urban",
+        "feared",
+        "death",
+        "brutal"
+      ]
+    },
+    {
+      "name": "Astrologer",
+      "tags": [
+        "mystical",
+        "scholarly",
+        "arcane",
+        "urban",
+        "noble",
+        "prophetic"
+      ]
+    },
+    {
+      "name": "Chimney Sweep",
+      "tags": [
+        "urban",
+        "poor",
+        "stealthy",
+        "observant",
+        "common",
+        "rooftop"
+      ]
+    },
+    {
+      "name": "Shipwright",
+      "tags": [
+        "crafting",
+        "coastal",
+        "skilled",
+        "commerce",
+        "naval",
+        "building"
+      ]
+    },
+    {
+      "name": "Jailer",
+      "tags": [
+        "law",
+        "urban",
+        "brutal",
+        "prison",
+        "underground",
+        "cruel"
+      ]
+    },
+    {
+      "name": "Hermit",
+      "tags": [
+        "isolated",
+        "wilderness",
+        "mysterious",
+        "wisdom",
+        "nature",
+        "reclusive"
+      ]
+    },
+    {
+      "name": "Debt Collector",
+      "tags": [
+        "urban",
+        "intimidating",
+        "criminal",
+        "commerce",
+        "threatening",
+        "violent"
+      ]
+    },
+    {
+      "name": "Falconer",
+      "tags": [
+        "nature",
+        "noble",
+        "wilderness",
+        "hunting",
+        "animals",
+        "skilled"
+      ]
+    },
+    {
+      "name": "Lamplighter",
+      "tags": [
+        "urban",
+        "common",
+        "night",
+        "street",
+        "observant",
+        "humble"
+      ]
+    },
+    {
+      "name": "Exorcist",
+      "tags": [
+        "religious",
+        "dark",
+        "haunted",
+        "undead",
+        "spiritual",
+        "dangerous"
+      ]
+    },
+    {
+      "name": "Smuggler",
+      "tags": [
+        "criminal",
+        "coastal",
+        "stealth",
+        "commerce",
+        "underground",
+        "deceptive"
+      ]
+    },
+    {
+      "name": "Tattoo Artist",
+      "tags": [
+        "artistic",
+        "urban",
+        "social",
+        "mystical",
+        "cultural",
+        "underground"
+      ]
+    },
+    {
+      "name": "Rat Catcher",
+      "tags": [
+        "urban",
+        "poor",
+        "underground",
+        "sewer",
+        "vermin",
+        "humble"
+      ]
+    },
+    {
+      "name": "Arena Master",
+      "tags": [
+        "entertainment",
+        "urban",
+        "wealthy",
+        "combat",
+        "spectacle",
+        "influential"
+      ]
+    },
+    {
+      "name": "Mortician",
+      "tags": [
+        "dark",
+        "death",
+        "urban",
+        "somber",
+        "cemetery",
+        "mysterious"
+      ]
+    },
+    {
+      "name": "Circus Performer",
+      "tags": [
+        "entertaining",
+        "charismatic",
+        "acrobatic",
+        "travel",
+        "spectacle",
+        "social"
+      ]
+    },
+    {
+      "name": "Cultist",
+      "tags": [
+        "religious",
+        "dark",
+        "fanatical",
+        "dangerous",
+        "secretive",
+        "ritual"
+      ]
+    },
+    {
+      "name": "Surveyor",
+      "tags": [
+        "scholarly",
+        "wilderness",
+        "observant",
+        "exploration",
+        "mapping",
+        "travel"
+      ]
+    },
+    {
+      "name": "Bodyguard",
+      "tags": [
+        "combat",
+        "protective",
+        "loyal",
+        "urban",
+        "noble",
+        "intimidating"
+      ]
+    },
+    {
+      "name": "Street Performer",
+      "tags": [
+        "entertaining",
+        "charismatic",
+        "urban",
+        "poor",
+        "social",
+        "artistic"
+      ]
+    },
+    {
+      "name": "Warden",
+      "tags": [
+        "law",
+        "wilderness",
+        "protective",
+        "nature",
+        "ranger",
+        "guardian"
+      ]
+    },
+    {
+      "name": "Relic Hunter",
+      "tags": [
+        "adventure",
+        "scholarly",
+        "exploration",
+        "ruins",
+        "treasure",
+        "dangerous"
+      ]
     }
   ],
   "secrets": [
@@ -1671,6 +2003,276 @@
         "treacherous",
         "guilty",
         "untrustworthy"
+      ]
+    },
+    {
+      "secret": "Was once a famous hero under a different name",
+      "tags": [
+        "mysterious",
+        "heroic",
+        "hidden",
+        "past"
+      ]
+    },
+    {
+      "secret": "Has a terminal illness and only months to live",
+      "tags": [
+        "tragic",
+        "desperate",
+        "dying",
+        "mortal"
+      ]
+    },
+    {
+      "secret": "Is being blackmailed by a powerful enemy",
+      "tags": [
+        "trapped",
+        "desperate",
+        "secretive",
+        "threatened"
+      ]
+    },
+    {
+      "secret": "Murdered someone in self-defense but never reported it",
+      "tags": [
+        "guilty",
+        "haunted",
+        "criminal",
+        "fearful"
+      ]
+    },
+    {
+      "secret": "Is a shapeshifter hiding their true form",
+      "tags": [
+        "magical",
+        "deceptive",
+        "monstrous",
+        "hidden"
+      ]
+    },
+    {
+      "secret": "Has prophetic dreams that always come true",
+      "tags": [
+        "magical",
+        "prophetic",
+        "burdened",
+        "mystical"
+      ]
+    },
+    {
+      "secret": "Embezzled funds from their employer",
+      "tags": [
+        "criminal",
+        "greedy",
+        "deceptive",
+        "guilty"
+      ]
+    },
+    {
+      "secret": "Is addicted to a rare and expensive substance",
+      "tags": [
+        "desperate",
+        "weak",
+        "addicted",
+        "vulnerable"
+      ]
+    },
+    {
+      "secret": "Witnessed a major crime but is too afraid to speak",
+      "tags": [
+        "fearful",
+        "knowledgeable",
+        "threatened",
+        "cowardly"
+      ]
+    },
+    {
+      "secret": "Is actually working as a double agent",
+      "tags": [
+        "deceptive",
+        "spy",
+        "dangerous",
+        "secretive"
+      ]
+    },
+    {
+      "secret": "Lost their entire family in a tragic accident they caused",
+      "tags": [
+        "tragic",
+        "guilty",
+        "haunted",
+        "broken"
+      ]
+    },
+    {
+      "secret": "Has the ability to speak with animals",
+      "tags": [
+        "magical",
+        "nature",
+        "unique",
+        "mystical"
+      ]
+    },
+    {
+      "secret": "Is hiding a wanted criminal in their home",
+      "tags": [
+        "criminal",
+        "protective",
+        "risky",
+        "loyal"
+      ]
+    },
+    {
+      "secret": "Was banished from their homeland for a crime",
+      "tags": [
+        "exiled",
+        "criminal",
+        "mysterious",
+        "past"
+      ]
+    },
+    {
+      "secret": "Is immune to magic due to a curse",
+      "tags": [
+        "magical",
+        "cursed",
+        "unique",
+        "burdened"
+      ]
+    },
+    {
+      "secret": "Faked their own death years ago",
+      "tags": [
+        "deceptive",
+        "mysterious",
+        "hidden",
+        "criminal"
+      ]
+    },
+    {
+      "secret": "Is secretly in love with someone forbidden",
+      "tags": [
+        "romantic",
+        "conflicted",
+        "secretive",
+        "emotional"
+      ]
+    },
+    {
+      "secret": "Has a twin sibling who is their exact opposite",
+      "tags": [
+        "mysterious",
+        "complicated",
+        "family",
+        "unique"
+      ]
+    },
+    {
+      "secret": "Can see ghosts and spirits invisible to others",
+      "tags": [
+        "magical",
+        "haunted",
+        "mystical",
+        "burdened"
+      ]
+    },
+    {
+      "secret": "Is slowly transforming into something inhuman",
+      "tags": [
+        "cursed",
+        "monstrous",
+        "magical",
+        "tragic"
+      ]
+    },
+    {
+      "secret": "Knows the location of a legendary treasure",
+      "tags": [
+        "knowledgeable",
+        "wealthy",
+        "secretive",
+        "valuable"
+      ]
+    },
+    {
+      "secret": "Was raised by monsters instead of their own kind",
+      "tags": [
+        "unusual",
+        "outcast",
+        "monstrous",
+        "mysterious"
+      ]
+    },
+    {
+      "secret": "Is the last survivor of a destroyed civilization",
+      "tags": [
+        "tragic",
+        "ancient",
+        "lonely",
+        "knowledgeable"
+      ]
+    },
+    {
+      "secret": "Has made a pact with a devil for power",
+      "tags": [
+        "dark",
+        "magical",
+        "dangerous",
+        "corrupted"
+      ]
+    },
+    {
+      "secret": "Is actually royalty in hiding from assassins",
+      "tags": [
+        "noble",
+        "hidden",
+        "threatened",
+        "mysterious"
+      ]
+    },
+    {
+      "secret": "Stole a holy relic and is being hunted for it",
+      "tags": [
+        "criminal",
+        "religious",
+        "hunted",
+        "desperate"
+      ]
+    },
+    {
+      "secret": "Has no memory of their life before five years ago",
+      "tags": [
+        "mysterious",
+        "confused",
+        "magical",
+        "tragic"
+      ]
+    },
+    {
+      "secret": "Is being possessed by a spirit they cannot control",
+      "tags": [
+        "haunted",
+        "dangerous",
+        "magical",
+        "tragic"
+      ]
+    },
+    {
+      "secret": "Accidentally killed an innocent person while practicing magic",
+      "tags": [
+        "guilty",
+        "magical",
+        "haunted",
+        "criminal"
+      ]
+    },
+    {
+      "secret": "Is secretly planning to overthrow the local government",
+      "tags": [
+        "rebellious",
+        "dangerous",
+        "political",
+        "revolutionary"
       ]
     }
   ],
@@ -1834,6 +2436,528 @@
         "charismatic",
         "memorable"
       ]
+    },
+    {
+      "description": "One eye is a different color or glows faintly",
+      "tags": [
+        "magical",
+        "mysterious",
+        "striking",
+        "cursed"
+      ]
+    },
+    {
+      "description": "Covered in ritualistic scars or brandings",
+      "tags": [
+        "tribal",
+        "dark",
+        "mysterious",
+        "cultist"
+      ]
+    },
+    {
+      "description": "Unusually tall or short for their species",
+      "tags": [
+        "distinctive",
+        "unusual",
+        "memorable",
+        "noticeable"
+      ]
+    },
+    {
+      "description": "Fingers stained with ink or chemicals",
+      "tags": [
+        "scholarly",
+        "crafting",
+        "alchemist",
+        "scribe"
+      ]
+    },
+    {
+      "description": "Missing an ear or part of their nose",
+      "tags": [
+        "scarred",
+        "veteran",
+        "brutal",
+        "distinctive"
+      ]
+    },
+    {
+      "description": "Always smells of exotic perfumes or incense",
+      "tags": [
+        "wealthy",
+        "mysterious",
+        "religious",
+        "sensory"
+      ]
+    },
+    {
+      "description": "Hair is styled in an unusual or outlandish way",
+      "tags": [
+        "distinctive",
+        "vain",
+        "rebellious",
+        "artistic"
+      ]
+    },
+    {
+      "description": "Walks with a cane or staff despite being young",
+      "tags": [
+        "injured",
+        "mysterious",
+        "magical",
+        "distinctive"
+      ]
+    },
+    {
+      "description": "Has pointed, filed, or golden teeth",
+      "tags": [
+        "intimidating",
+        "wealthy",
+        "unusual",
+        "monstrous"
+      ]
+    },
+    {
+      "description": "Skin is covered in strange runes or tattoos",
+      "tags": [
+        "magical",
+        "mysterious",
+        "tribal",
+        "marked"
+      ]
+    },
+    {
+      "description": "Wears multiple religious symbols from different faiths",
+      "tags": [
+        "religious",
+        "confused",
+        "superstitious",
+        "eclectic"
+      ]
+    },
+    {
+      "description": "Has six fingers on one or both hands",
+      "tags": [
+        "unusual",
+        "cursed",
+        "distinctive",
+        "monstrous"
+      ]
+    },
+    {
+      "description": "Eyes are completely black or white",
+      "tags": [
+        "cursed",
+        "magical",
+        "unsettling",
+        "monstrous"
+      ]
+    },
+    {
+      "description": "Constantly sweating or shivering",
+      "tags": [
+        "sickly",
+        "nervous",
+        "cursed",
+        "addicted"
+      ]
+    },
+    {
+      "description": "Wears a mask that never comes off",
+      "tags": [
+        "mysterious",
+        "hidden",
+        "secretive",
+        "disfigured"
+      ]
+    },
+    {
+      "description": "Skin has a faint metallic sheen or is unnaturally pale",
+      "tags": [
+        "magical",
+        "cursed",
+        "unusual",
+        "undead"
+      ]
+    },
+    {
+      "description": "Hair moves on its own as if underwater",
+      "tags": [
+        "magical",
+        "fey",
+        "mysterious",
+        "elemental"
+      ]
+    },
+    {
+      "description": "Covered in old burns that form strange patterns",
+      "tags": [
+        "scarred",
+        "magical",
+        "survivor",
+        "marked"
+      ]
+    },
+    {
+      "description": "Speaks in two voices simultaneously",
+      "tags": [
+        "cursed",
+        "possessed",
+        "magical",
+        "unsettling"
+      ]
+    },
+    {
+      "description": "Hands are always stained with blood no matter how much they wash",
+      "tags": [
+        "cursed",
+        "guilty",
+        "haunted",
+        "killer"
+      ]
+    },
+    {
+      "description": "Casts no shadow or reflection",
+      "tags": [
+        "cursed",
+        "undead",
+        "magical",
+        "vampire"
+      ]
+    },
+    {
+      "description": "Wears clothing from a bygone era",
+      "tags": [
+        "eccentric",
+        "ancient",
+        "wealthy",
+        "nostalgic"
+      ]
+    },
+    {
+      "description": "Has clawed or webbed fingers",
+      "tags": [
+        "monstrous",
+        "cursed",
+        "aquatic",
+        "unusual"
+      ]
+    },
+    {
+      "description": "Constantly accompanied by the sound of distant bells",
+      "tags": [
+        "cursed",
+        "haunted",
+        "magical",
+        "mysterious"
+      ]
+    },
+    {
+      "description": "Teeth are filed to points",
+      "tags": [
+        "intimidating",
+        "tribal",
+        "monstrous",
+        "savage"
+      ]
+    },
+    {
+      "description": "Eyes glow when they experience strong emotions",
+      "tags": [
+        "magical",
+        "emotional",
+        "distinctive",
+        "elemental"
+      ]
+    },
+    {
+      "description": "Skin is cool to the touch like marble",
+      "tags": [
+        "undead",
+        "cursed",
+        "magical",
+        "unsettling"
+      ]
+    },
+    {
+      "description": "Always covered in a fine layer of dust or ash",
+      "tags": [
+        "mysterious",
+        "dirty",
+        "haunted",
+        "cursed"
+      ]
+    },
+    {
+      "description": "Has elongated or pointed ears despite their species",
+      "tags": [
+        "fey",
+        "cursed",
+        "magical",
+        "unusual"
+      ]
+    },
+    {
+      "description": "Veins are visible and glow with a strange color",
+      "tags": [
+        "magical",
+        "cursed",
+        "sick",
+        "elemental"
+      ]
+    }
+  ],
+  "npcTemplates": [
+    {
+      "name": "Grizzled Town Guard",
+      "role": "Guard",
+      "tags": ["law", "military", "urban", "protective", "veteran", "common"]
+    },
+    {
+      "name": "Cunning Smuggler",
+      "role": "Criminal",
+      "tags": ["criminal", "stealth", "urban", "coastal", "commerce", "underground"]
+    },
+    {
+      "name": "Hermit Sage",
+      "role": "Scholar",
+      "tags": ["knowledge", "magic", "isolated", "wilderness", "ancient", "mysterious"]
+    },
+    {
+      "name": "Desperate Bandit Leader",
+      "role": "Outlaw",
+      "tags": ["criminal", "combat", "wilderness", "dangerous", "desperate", "leadership"]
+    },
+    {
+      "name": "Corrupt Noble",
+      "role": "Aristocrat",
+      "tags": ["noble", "politics", "urban", "wealthy", "corrupt", "influence"]
+    },
+    {
+      "name": "Zealous Cult Priest",
+      "role": "Religious",
+      "tags": ["religious", "fanatical", "dark", "ritual", "dangerous", "charismatic"]
+    },
+    {
+      "name": "Wandering Merchant",
+      "role": "Trader",
+      "tags": ["commerce", "travel", "friendly", "information", "common", "versatile"]
+    },
+    {
+      "name": "Tribal Shaman",
+      "role": "Spiritual Leader",
+      "tags": ["magic", "tribal", "nature", "ancient", "wisdom", "wilderness"]
+    },
+    {
+      "name": "Dockside Informant",
+      "role": "Spy",
+      "tags": ["information", "coastal", "urban", "criminal", "stealth", "commerce"]
+    },
+    {
+      "name": "Paranoid Alchemist",
+      "role": "Craftsman",
+      "tags": ["magic", "crafting", "isolated", "dangerous", "knowledge", "urban"]
+    },
+    {
+      "name": "Haunted Veteran",
+      "role": "Ex-Soldier",
+      "tags": ["military", "traumatized", "combat", "veteran", "haunted", "dangerous"]
+    },
+    {
+      "name": "Mysterious Fortune Teller",
+      "role": "Diviner",
+      "tags": ["magic", "mysterious", "urban", "knowledge", "enigmatic", "fey"]
+    },
+    {
+      "name": "Ruthless Mercenary Captain",
+      "role": "Mercenary",
+      "tags": ["combat", "military", "leadership", "dangerous", "professional", "common"]
+    },
+    {
+      "name": "Eccentric Inventor",
+      "role": "Tinkerer",
+      "tags": ["crafting", "knowledge", "eccentric", "urban", "magical", "innovative"]
+    },
+    {
+      "name": "Tormented Undead",
+      "role": "Undead",
+      "tags": ["undead", "haunted", "dark", "tragic", "dangerous", "cursed"]
+    },
+    {
+      "name": "Ambitious Young Mage",
+      "role": "Wizard",
+      "tags": ["magic", "ambitious", "knowledge", "urban", "academic", "arrogant"]
+    },
+    {
+      "name": "Scarred Arena Champion",
+      "role": "Gladiator",
+      "tags": ["combat", "entertainment", "urban", "famous", "brutal", "veteran"]
+    },
+    {
+      "name": "Cultured Diplomat",
+      "role": "Envoy",
+      "tags": ["politics", "charismatic", "urban", "noble", "influence", "peaceful"]
+    },
+    {
+      "name": "Reclusive Druid",
+      "role": "Nature Guardian",
+      "tags": ["nature", "magic", "wilderness", "protective", "isolated", "ancient"]
+    },
+    {
+      "name": "Street Urchin Leader",
+      "role": "Gang Leader",
+      "tags": ["urban", "criminal", "young", "desperate", "leadership", "stealth"]
+    },
+    {
+      "name": "Obsessed Necromancer",
+      "role": "Dark Mage",
+      "tags": ["magic", "dark", "undead", "dangerous", "obsessed", "isolated"]
+    },
+    {
+      "name": "Jovial Innkeeper",
+      "role": "Hospitality",
+      "tags": ["friendly", "urban", "information", "common", "social", "commerce"]
+    },
+    {
+      "name": "Exiled Prince",
+      "role": "Nobility",
+      "tags": ["noble", "tragic", "politics", "combat", "leadership", "desperate"]
+    },
+    {
+      "name": "Feral Beast Trainer",
+      "role": "Animal Handler",
+      "tags": ["nature", "wilderness", "dangerous", "eccentric", "combat", "primitive"]
+    },
+    {
+      "name": "Conniving Guild Master",
+      "role": "Guild Leader",
+      "tags": ["commerce", "urban", "influence", "corrupt", "wealthy", "politics"]
+    },
+    {
+      "name": "Broken Paladin",
+      "role": "Fallen Hero",
+      "tags": ["religious", "tragic", "combat", "haunted", "dangerous", "cursed"]
+    },
+    {
+      "name": "Ethereal Ghost",
+      "role": "Spirit",
+      "tags": ["undead", "haunted", "tragic", "mysterious", "ethereal", "ancient"]
+    },
+    {
+      "name": "Charming Con Artist",
+      "role": "Swindler",
+      "tags": ["criminal", "charismatic", "urban", "deceptive", "social", "clever"]
+    },
+    {
+      "name": "Weathered Sea Captain",
+      "role": "Sailor",
+      "tags": ["coastal", "leadership", "travel", "veteran", "adventure", "commerce"]
+    },
+    {
+      "name": "Mad Oracle",
+      "role": "Seer",
+      "tags": ["magic", "knowledge", "insane", "mysterious", "dangerous", "prophetic"]
+    },
+    {
+      "name": "Stoic Monastery Guard",
+      "role": "Monk",
+      "tags": ["religious", "combat", "disciplined", "peaceful", "isolated", "martial"]
+    },
+    {
+      "name": "Vengeful Assassin",
+      "role": "Killer",
+      "tags": ["criminal", "stealth", "combat", "dangerous", "obsessed", "professional"]
+    },
+    {
+      "name": "Curious Archaeologist",
+      "role": "Explorer",
+      "tags": ["knowledge", "ancient", "adventure", "academic", "ruins", "treasure"]
+    },
+    {
+      "name": "Disfigured Plague Doctor",
+      "role": "Healer",
+      "tags": ["medical", "dark", "urban", "mysterious", "helpful", "cursed"]
+    },
+    {
+      "name": "Greedy Tax Collector",
+      "role": "Bureaucrat",
+      "tags": ["law", "urban", "corrupt", "unpopular", "commerce", "politics"]
+    },
+    {
+      "name": "Wise Tribal Elder",
+      "role": "Leader",
+      "tags": ["tribal", "wisdom", "leadership", "ancient", "nature", "peaceful"]
+    },
+    {
+      "name": "Sadistic Torturer",
+      "role": "Interrogator",
+      "tags": ["criminal", "dark", "cruel", "dangerous", "law", "underground"]
+    },
+    {
+      "name": "Rebellious Bard",
+      "role": "Entertainer",
+      "tags": ["charismatic", "social", "performance", "rebellious", "information", "urban"]
+    },
+    {
+      "name": "Ancient Lich",
+      "role": "Undead Wizard",
+      "tags": ["undead", "magic", "ancient", "powerful", "evil", "knowledge"]
+    },
+    {
+      "name": "Honorable Duel Master",
+      "role": "Fighter",
+      "tags": ["combat", "honorable", "martial", "teaching", "urban", "disciplined"]
+    },
+    {
+      "name": "Shifty Black Market Dealer",
+      "role": "Fence",
+      "tags": ["criminal", "commerce", "urban", "stealth", "underground", "information"]
+    },
+    {
+      "name": "Protective Mother Figure",
+      "role": "Guardian",
+      "tags": ["protective", "kind", "common", "urban", "healing", "nurturing"]
+    },
+    {
+      "name": "Wrathful Fire Genasi",
+      "role": "Elemental Warrior",
+      "tags": ["elemental", "combat", "dangerous", "planar", "magical", "fierce"]
+    },
+    {
+      "name": "Scheming Vizier",
+      "role": "Advisor",
+      "tags": ["politics", "noble", "corrupt", "influence", "knowledge", "deceptive"]
+    },
+    {
+      "name": "Fey-Touched Wildling",
+      "role": "Wild Child",
+      "tags": ["fey", "nature", "wilderness", "mysterious", "magical", "eccentric"]
+    },
+    {
+      "name": "Battle-Scarred Orc Chieftain",
+      "role": "Tribal Leader",
+      "tags": ["tribal", "combat", "leadership", "fierce", "honorable", "wilderness"]
+    },
+    {
+      "name": "Enigmatic Warlock",
+      "role": "Pact Mage",
+      "tags": ["magic", "dark", "mysterious", "dangerous", "pact", "powerful"]
+    },
+    {
+      "name": "Cheerful Halfling Burglar",
+      "role": "Thief",
+      "tags": ["criminal", "stealth", "urban", "charming", "clever", "small"]
+    },
+    {
+      "name": "Stoic Golem Guardian",
+      "role": "Construct",
+      "tags": ["construct", "guardian", "magical", "ancient", "protective", "ruins"]
+    },
+    {
+      "name": "Desperate Refugee Leader",
+      "role": "Survivor",
+      "tags": ["leadership", "desperate", "tragic", "protective", "common", "displaced"]
     }
   ]
 }

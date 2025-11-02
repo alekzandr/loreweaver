@@ -3102,7 +3102,7 @@
                                 ${npc.name}
                             </h3>
                             <p style="font-size: 1.1em; color: var(--text-secondary); margin: 5px 0;">
-                                ${npc.species.charAt(0).toUpperCase() + npc.species.slice(1)} ${npc.profession.name}
+                                ${npc.species.charAt(0).toUpperCase() + npc.species.slice(1)} ${npc.profession.name}${npc.templateName ? ` <span style="color: var(--accent-gold); font-style: italic;">(${npc.templateName})</span>` : ''}
                             </p>
                             
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 15px 0;">
@@ -3677,7 +3677,7 @@
                             </button>
                             <h3 style="margin-top: 0; color: var(--accent-blue); padding-right: 40px;">${npc.name}</h3>
                             <p style="font-size: 1.1em; color: var(--text-secondary); margin: 5px 0;">
-                                ${npc.species.charAt(0).toUpperCase() + npc.species.slice(1)} ${npc.profession.name}
+                                ${npc.species.charAt(0).toUpperCase() + npc.species.slice(1)} ${npc.profession.name}${npc.templateName ? ` <span style="color: var(--accent-gold); font-style: italic;">(${npc.templateName})</span>` : ''}
                             </p>
                             
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 15px 0;">
@@ -4680,7 +4680,7 @@
                         </button>
                         <h3 style="margin-top: 0; color: var(--accent-blue); padding-right: 40px;">${npc.name}</h3>
                         <p style="font-size: 1.1em; color: var(--text-secondary); margin: 5px 0;">
-                            ${npc.species.charAt(0).toUpperCase() + npc.species.slice(1)} ${npc.profession.name}
+                            ${npc.species.charAt(0).toUpperCase() + npc.species.slice(1)} ${npc.profession.name}${npc.templateName ? ` <span style="color: var(--accent-gold); font-style: italic;">(${npc.templateName})</span>` : ''}
                         </p>
                         
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 15px 0;">
@@ -5561,45 +5561,98 @@
             console.log('Secrets count:', npcData?.secrets?.length || 0);
             console.log('Personalities count:', npcData?.personalities?.length || 0);
             console.log('Alignments count:', npcData?.alignments?.length || 0);
+            console.log('NPC Templates count:', npcData?.npcTemplates?.length || 0);
             
             const npcs = [];
             const usedProfessions = new Set();
+            const usedTemplates = new Set();
             
             for (let i = 0; i < numNPCs; i++) {
-                // Score each profession based on tag matching
-                const professionScores = npcData.professions.map(profession => {
-                    // Don't reuse professions
-                    if (usedProfessions.has(profession.name)) {
-                        return { profession, score: -1 };
-                    }
-                    
-                    // Count matching tags
-                    let score = 0;
-                    for (const tag of encounterTags) {
-                        if (profession.tags.includes(tag)) {
-                            score++;
+                let selectedProfession = null;
+                let usingTemplate = false;
+                let templateName = null;
+                let templateRole = null;
+                
+                // Try to use NPC templates if available (70% chance)
+                if (npcData.npcTemplates && npcData.npcTemplates.length > 0 && Math.random() < 0.7) {
+                    // Score each template based on tag matching
+                    const templateScores = npcData.npcTemplates.map(template => {
+                        // Don't reuse templates
+                        if (usedTemplates.has(template.name)) {
+                            return { template, score: -1 };
                         }
-                    }
+                        
+                        // Count matching tags
+                        let score = 0;
+                        for (const tag of encounterTags) {
+                            if (template.tags && template.tags.includes(tag)) {
+                                score++;
+                            }
+                        }
+                        
+                        return { template, score };
+                    });
                     
-                    return { profession, score };
-                });
-                
-                // Filter out professions with no matching tags and already used ones
-                const validProfessions = professionScores.filter(p => p.score > 0);
-                
-                // If no matches, pick a random profession
-                let selectedProfession;
-                if (validProfessions.length === 0) {
-                    const availableProfessions = npcData.professions.filter(p => !usedProfessions.has(p.name));
-                    selectedProfession = availableProfessions[Math.floor(Math.random() * availableProfessions.length)];
-                } else {
-                    // Weight selection by score - higher scores more likely
-                    const maxScore = Math.max(...validProfessions.map(p => p.score));
-                    const topProfessions = validProfessions.filter(p => p.score >= maxScore - 1);
-                    selectedProfession = topProfessions[Math.floor(Math.random() * topProfessions.length)].profession;
+                    // Filter templates with at least 2 matching tags for good fit
+                    const validTemplates = templateScores.filter(t => t.score >= 2);
+                    
+                    if (validTemplates.length > 0) {
+                        // Use template - weight selection by score
+                        const maxScore = Math.max(...validTemplates.map(t => t.score));
+                        const topTemplates = validTemplates.filter(t => t.score >= maxScore - 1);
+                        const selectedTemplate = topTemplates[Math.floor(Math.random() * topTemplates.length)].template;
+                        
+                        usedTemplates.add(selectedTemplate.name);
+                        usingTemplate = true;
+                        templateName = selectedTemplate.name;
+                        templateRole = selectedTemplate.role;
+                        
+                        // Create a profession object from the template for consistency
+                        selectedProfession = {
+                            name: selectedTemplate.role,
+                            tags: selectedTemplate.tags
+                        };
+                        
+                        console.log(`Using NPC Template: ${templateName} (${templateRole}) - matched ${templateScores.find(t => t.template === selectedTemplate).score} tags`);
+                    }
                 }
                 
-                usedProfessions.add(selectedProfession.name);
+                // Fall back to profession-based generation if no template used
+                if (!usingTemplate) {
+                    // Score each profession based on tag matching
+                    const professionScores = npcData.professions.map(profession => {
+                        // Don't reuse professions
+                        if (usedProfessions.has(profession.name)) {
+                            return { profession, score: -1 };
+                        }
+                        
+                        // Count matching tags
+                        let score = 0;
+                        for (const tag of encounterTags) {
+                            if (profession.tags.includes(tag)) {
+                                score++;
+                            }
+                        }
+                        
+                        return { profession, score };
+                    });
+                    
+                    // Filter out professions with no matching tags and already used ones
+                    const validProfessions = professionScores.filter(p => p.score > 0);
+                    
+                    // If no matches, pick a random profession
+                    if (validProfessions.length === 0) {
+                        const availableProfessions = npcData.professions.filter(p => !usedProfessions.has(p.name));
+                        selectedProfession = availableProfessions[Math.floor(Math.random() * availableProfessions.length)];
+                    } else {
+                        // Weight selection by score - higher scores more likely
+                        const maxScore = Math.max(...validProfessions.map(p => p.score));
+                        const topProfessions = validProfessions.filter(p => p.score >= maxScore - 1);
+                        selectedProfession = topProfessions[Math.floor(Math.random() * topProfessions.length)].profession;
+                    }
+                    
+                    usedProfessions.add(selectedProfession.name);
+                }
                 
                 // Generate the NPC
                 const speciesKeys = Object.keys(npcData.species);
@@ -5622,6 +5675,7 @@
                 
                 console.log(`Generated NPC ${i+1}:`, {
                     name: fullName,
+                    template: usingTemplate ? templateName : 'N/A',
                     alignment: alignment,
                     personality: personality,
                     secretObj: secretObj,
@@ -5635,6 +5689,7 @@
                     species,
                     speciesData,
                     profession: selectedProfession,
+                    templateName: usingTemplate ? templateName : null,
                     alignment,
                     personality,
                     appearance,
