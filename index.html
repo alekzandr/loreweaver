@@ -2978,6 +2978,9 @@
             window.encounterHazards = selectedHazards;
             window.encounterEffects = selectedEffects;
             window.encounterPartyLevel = partyLevel;
+            window.encounterTemplate = template;
+            window.encounterEnvironment = selectedEnvironment;
+            window.encounterFlowData = encounterFlow;
 
             // Encounter Flow
             if (encounterFlow && encounterFlow.length > 0) {
@@ -3056,7 +3059,12 @@
                                     <div style="background: var(--accent-blue); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">
                                         ${step.step}
                                     </div>
-                                    <h3 style="margin: 0; color: var(--accent-blue);">${step.title}</h3>
+                                    <h3 style="margin: 0; color: var(--accent-blue); flex-grow: 1;">${step.title}</h3>
+                                    <button onclick="regenerateFlowLocation(${step.step})" 
+                                            style="background: rgba(52, 152, 219, 0.2); border: 1px solid var(--accent-blue); color: var(--accent-blue); padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.9em; display: flex; align-items: center; gap: 6px;"
+                                            title="Regenerate this location">
+                                        🔄 Regenerate
+                                    </button>
                                 </div>
                                 
                                 <div style="background: rgba(52, 152, 219, 0.15); border-radius: 6px; padding: 12px; margin-bottom: 15px;">
@@ -3111,7 +3119,12 @@
 
                 encounterNPCs.forEach((npc, index) => {
                     html += `
-                        <div class="npc-card" style="background: rgba(58, 58, 60, 0.3); border-radius: 8px; padding: 20px; margin: 15px 0;">
+                        <div class="npc-card" style="background: rgba(58, 58, 60, 0.3); border-radius: 8px; padding: 20px; margin: 15px 0; position: relative;">
+                            <button onclick="regenerateNPC(${index})" 
+                                    style="position: absolute; top: 15px; right: 15px; background: rgba(52, 152, 219, 0.2); border: 1px solid var(--accent-blue); color: var(--accent-blue); padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85em; display: flex; align-items: center; gap: 6px;"
+                                    title="Regenerate this NPC">
+                                🔄 Regenerate
+                            </button>
                             <h3 style="margin-top: 0; color: var(--accent-blue);">${npc.name}</h3>
                             <p style="font-size: 1.1em; color: var(--text-secondary); margin: 5px 0;">
                                 ${npc.species.charAt(0).toUpperCase() + npc.species.slice(1)} ${npc.profession.name}
