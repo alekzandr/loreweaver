@@ -810,6 +810,147 @@
         "secret society manifesto",
         "poisoned ink vial"
       ]
+    },
+    "gambling_hall": {
+      "tags": ["gambling", "indoor", "social", "crime"],
+      "description": "The clatter of dice and the shuffle of cards are a constant din in this dimly lit, smoke-filled hall. Fortunes are won and lost on the turn of a card, and the air is thick with tension and desperation.",
+      "primary": ["card tables", "dice tables", "roulette wheel", "bar", "stage for performers", "private rooms"],
+      "secondary": ["marked cards", "loaded dice", "hidden cameras", "bouncers", "loan sharks", "bookies"],
+      "tertiary": ["a map to a hidden treasure in the form of a tattoo on a regular patron", "a cursed deck of cards that predicts the future", "a secret society of cheaters", "a high-stakes game where the prize is a person's freedom", "a portal to a pocket dimension where the house always wins", "a ghost who haunts the gambling hall, forever trying to win back their lost soul"]
+    },
+    "opulent_opera_house": {
+      "tags": ["opera house", "entertainment", "indoor", "social"],
+      "description": "A grand opera house with velvet seats, golden balconies, and a history of tragic performances. The air is filled with the sound of soaring arias and the scent of expensive perfume. But behind the scenes, a world of jealousy, ambition, and intrigue awaits.",
+      "primary": ["stage", "orchestra pit", "audience seating", "royal box", "backstage area", "dressing rooms"],
+      "secondary": ["a secret passage used by a phantom", "a cursed prop that brings disaster to every production", "a love letter from a diva to her secret lover", "a blackmail note threatening to reveal a scandalous secret", "a trapdoor in the stage used for dramatic entrances and exits", "a ghost who haunts the opera house, forever singing their final aria"],
+      "tertiary": ["a plot to assassinate a noble in the audience", "a real magical artifact used as a prop", "a secret society of actors who are also assassins", "a portal to another dimension backstage", "a cursed play that drives the cast and crew to madness", "the ghost of a murdered performer seeking justice"]
+    },
+    "curio_shop": {
+      "tags": ["shop", "indoor", "arcane"],
+      "description": "A dusty shop filled with strange and exotic items from far-off lands. The air is thick with the smell of old books, strange spices, and forgotten magic. The shopkeeper is a mysterious figure who seems to know the history of every item in the shop.",
+      "primary": ["shelves of strange artifacts", "taxidermied beasts", "ancient tomes", "magical trinkets", "cursed items", "a mysterious shopkeeper"],
+      "secondary": ["a shrunken head that whispers secrets", "a music box that plays a haunting melody", "a mirror that shows a different reflection", "a snow globe that contains a miniature, living world", "a puzzle box that has never been opened", "a collection of exotic and dangerous plants"],
+      "tertiary": ["a powerful artifact in disguise", "a map to a lost city hidden in an old book", "a cursed item that brings misfortune to its owner", "a portal to another dimension in the back room", "a secret society that uses the shop as a front", "the shopkeeper is a dragon in human form"]
+    },
+    "fighting_pit": {
+      "tags": ["arena", "combat", "outdoor", "crime"],
+      "description": "A bloody arena where warriors battle for gold and glory. The roar of the crowd is deafening, and the smell of blood and sweat is thick in the air. The fighters are a mix of desperate souls, glory hounds, and condemned criminals.",
+      "primary": ["a sand-covered arena floor", "cages for the fighters", "a viewing platform for the wealthy", "a betting booth", "a healer's tent", "a stable for the beasts"],
+      "secondary": ["a secret entrance for smuggling in illegal combatants", "a corrupt referee who takes bribes", "a fighter who is being blackmailed into throwing a match", "a beast that has been starved to make it more ferocious", "a group of gamblers who are planning to rig the fights", "a secret escape tunnel for fighters who want to flee"],
+      "tertiary": ["a legendary warrior who is fighting incognito", "a magical weapon that is offered as a prize", "a plot to assassinate a noble who is attending the fights", "a portal to a plane of eternal battle", "a secret society of gladiators who are planning a rebellion", "the owner of the fighting pit is a demon who feeds on the violence"]
+    },
+    "public_square": {
+      "tags": ["square", "outdoor", "social", "market"],
+      "description": "A bustling square at the heart of the city, where people gather to trade, socialize, and protest. The square is surrounded by important buildings, including the courthouse, the city hall, and the grand temple. A fountain in the center of the square is a popular meeting place.",
+      "primary": ["a central fountain", "a statue of a famous hero", "a public notice board", "market stalls", "street performers", "a soapbox for public speeches"],
+      "secondary": ["a pickpocket working the crowd", "a secret meeting between two spies", "a group of protesters demonstrating against the government", "a street preacher warning of the end of the world", "a lost child crying for their parents", "a city guard on patrol"],
+      "tertiary": ["a hidden entrance to the city's underbelly", "a magical fountain that grants wishes", "a statue that comes to life at night", "a secret message hidden on the notice board", "a plot to assassinate a public figure during a speech", "a portal to another dimension that opens at a specific time"]
+    },
+    "asylum": {
+      "tags": ["asylum", "indoor",- "haunting", "medical"],
+      "description": "A grim and foreboding institution where the city's mad are locked away. The air is thick with the smell of disinfectant and despair. The inmates are a mix of the truly insane and those who have been locked away for political reasons.",
+      "primary": ["cells with barred windows", "a common room with heavily sedated patients", "a treatment room with strange and cruel-looking devices", "a padded cell for the most violent patients", "a garden where the patients are allowed to walk", "a chapel where the patients pray for salvation"],
+      "secondary": ["a patient who is faking their madness to hide from their enemies", "a doctor who is conducting cruel experiments on the patients", "a ghost of a former patient who haunts the asylum", "a secret passage used by the staff to smuggle in contraband", "a patient who has a prophetic vision", "a group of patients who are planning a breakout"],
+      "tertiary": ["a powerful artifact that is driving the patients mad", "a portal to a plane of madness", "a secret society that is using the asylum as a front for their activities", "the head of the asylum is a mind flayer who is feeding on the patients' brains", "a patient who is the key to stopping a great evil", "a cure for madness that is hidden somewhere in the asylum"]
+    },
+    "university_campus": {
+      "tags": ["university", "indoor", "outdoor", "scholarly"],
+      "description": "A sprawling campus of lecture halls, libraries, and student dormitories. The air is filled with the buzz of intellectual debate and the scent of old books. The students are a mix of bright-eyed idealists and jaded cynics.",
+      "primary": ["a grand library with towering shelves of books", "a lecture hall where a famous professor is giving a speech", "a student dormitory in the midst of a wild party", "a laboratory where students are conducting magical experiments", "a courtyard where students are relaxing and socializing", "a statue of the university's founder"],
+      "secondary": ["a secret society of students who practice forbidden magic", "a professor who is being blackmailed by a student", "a rivalry between two fraternities that is about to turn violent", "a student who has discovered a dangerous secret about the university", "a ghost of a former student who haunts the library", "a portal to another dimension in a forgotten classroom"],
+      "tertiary": ["a powerful artifact hidden somewhere on campus", "a secret that could destroy the university's reputation", "a plot to assassinate a professor who knows too much", "a magical creature that has been accidentally summoned to the campus", "a student who is a chosen one destined to save the world", "the university is a front for a powerful and ancient organization"]
+    },
+    "prison": {
+      "tags": ["prison", "indoor", "crime"],
+      "description": "A high-security prison that houses the city's most dangerous criminals. The air is thick with the smell of sweat, fear, and despair. The guards are a mix of jaded veterans and brutal sadists.",
+      "primary": ["cells with heavily barred doors", "a mess hall where the prisoners eat in silence", "an exercise yard where the prisoners are allowed to walk", "a solitary confinement block for the most dangerous prisoners", "a visitation room where prisoners can meet with their families", "the warden's office"],
+      "secondary": ["a prisoner who is planning a breakout", "a corrupt guard who is smuggling in contraband", "a rivalry between two gangs that is about to turn violent", "a prisoner who has information that could bring down a powerful crime lord", "a ghost of a former prisoner who haunts the prison", "a secret escape tunnel that has been hidden for years"],
+      "tertiary": ["a legendary artifact that is hidden somewhere in the prison", "a secret that could lead to a city-wide riot", "a plot to assassinate the warden", "a magical creature that is being held captive in the prison", "a prisoner who is the key to stopping a great evil", "the prison is a front for a powerful and ancient organization"]
+    },
+    "museum": {
+      "tags": ["museum", "indoor", "scholarly"],
+      "description": "A museum filled with historical artifacts and curiosities. The air is thick with the smell of dust and preservation chemicals. The exhibits range from the mundane to the magical.",
+      "primary": ["a collection of ancient pottery", "a display of medieval armor and weapons", "a taxidermied dragon", "a gallery of portraits of famous historical figures", "an exhibit on the city's history", "a collection of magical artifacts"],
+      "secondary": ["a cursed artifact that brings misfortune to anyone who touches it", "a secret message hidden in a painting", "a ghost of a historical figure who haunts the museum", "a group of thieves who are planning to steal a valuable artifact", "a portal to the past that is hidden in one of the exhibits", "a secret society that uses the museum as a meeting place"],
+      "tertiary": ["a powerful artifact that is hidden in plain sight", "a secret that could rewrite history", "a plot to assassinate a visiting dignitary", "a magical creature that has been brought to life from an exhibit", "a visitor who is a time traveler from the future", "the museum is a front for a powerful and ancient organization"]
+    },
+    "zoo": {
+      "tags": ["zoo", "outdoor", "animals"],
+      "description": "A zoo that houses a collection of exotic and dangerous beasts. The air is filled with the sounds and smells of the animal kingdom. The enclosures range from the mundane to the magical.",
+      "primary": ["a lion's den", "a snake pit", "an aviary filled with exotic birds", "a pool with a giant squid", "a paddock with a herd of unicorns", "a cage with a captured griffon"],
+      "secondary": ["a zookeeper who is secretly a member of an animal rights extremist group", "a beast that has been magically enhanced to be more dangerous", "a group of poachers who are planning to steal a rare animal", "a portal to a savage dimension that is hidden in one of the enclosures", "a secret society that worships the animals as gods", "the zoo is a front for a powerful and ancient organization"],
+      "tertiary": ["a legendary beast that is hidden in the zoo", "a secret that could lead to the downfall of the city", "a plot to release all the animals from their cages", "a magical creature that can grant wishes", "a visitor who is a shapeshifter in disguise", "the zoo is a place of great magical power"]
+    },
+    "bank": {
+      "tags": ["bank", "indoor", "crime"],
+      "description": "A heavily guarded bank that holds the wealth of the city's elite. The air is thick with the smell of money and the hum of security systems. The vaults are said to be impenetrable.",
+      "primary": ["a grand lobby with marble floors and teller windows", "a vault with a massive steel door", "a security room with guards monitoring cameras", "a series of safe deposit boxes", "a manager's office with a panoramic view of the city", "a team of heavily armed guards"],
+      "secondary": ["a group of bank robbers who are planning a heist", "a corrupt bank manager who is embezzling money", "a secret passage into the vault", "a magical security system that is impossible to bypass", "a safe deposit box that contains a dangerous artifact", "a ghost of a former bank robber who haunts the vault"],
+      "tertiary": ["a legendary treasure that is hidden in the bank", "a secret that could bring down the city's economy", "a plot to assassinate the bank manager", "a magical creature that is guarding the vault", "a customer who is a powerful wizard in disguise", "the bank is a front for a powerful and ancient organization"]
+    },
+    "courthouse": {
+      "tags": ["courthouse", "indoor", "social"],
+      "description": "A grand courthouse where justice is dispensed, for a price. The air is thick with the smell of old books and the sound of gavels. The judges are a mix of the honorable and the corrupt.",
+      "primary": ["a courtroom where a trial is in session", "a law library with towering shelves of books", "a holding cell for prisoners awaiting trial", "a judge's chambers", "a gallery for spectators", "a team of bailiffs"],
+      "secondary": ["a corrupt judge who is taking bribes", "a lawyer who is willing to do anything to win a case", "a witness who is being intimidated into silence", "a piece of evidence that could change the outcome of a trial", "a ghost of a wrongly convicted person who haunts the courthouse", "a secret society of lawyers and judges who control the city's legal system"],
+      "tertiary": ["a legendary artifact that is hidden in the courthouse", "a secret that could bring down the city's government", "a plot to assassinate a judge", "a magical creature that is being held as evidence", "a defendant who is a powerful wizard in disguise", "the courthouse is a front for a powerful and ancient organization"]
+    },
+    "city_hall": {
+      "tags": ["city hall", "indoor", "social", "political"],
+      "description": "The seat of the city's government, a place of bureaucracy and political intrigue. The air is thick with the smell of paperwork and the sound of whispered deals. The politicians are a mix of the idealistic and the corrupt.",
+      "primary": ["a grand council chamber where the city's leaders meet", "a records office with towering shelves of documents", "a series of offices for the city's bureaucrats", "a press room where reporters gather for news", "a public gallery for citizens to observe the government at work", "a team of city guards"],
+      "secondary": ["a corrupt politician who is taking bribes", "a bureaucrat who is selling city secrets", "a reporter who is about to break a major scandal", "a group of citizens who are protesting a new law", "a ghost of a former mayor who haunts the city hall", "a secret society of politicians and bureaucrats who control the city"],
+      "tertiary": ["a legendary artifact that is hidden in the city hall", "a secret that could bring down the city's government", "a plot to assassinate the mayor", "a magical creature that is being held captive in the city hall", "a citizen who is a powerful wizard in disguise", "the city hall is a front for a powerful and ancient organization"]
+    },
+    "orphanage": {
+      "tags": ["orphanage", "indoor", "social"],
+      "description": "A grim orphanage that is home to the city's unwanted children. The air is thick with the smell of cheap stew and despair. The children are a mix of the hopeful and the broken.",
+      "primary": ["a dormitory with rows of narrow beds", "a classroom where the children are taught basic literacy and numeracy", "a playground with rusty swings and a broken slide", "a dining hall where the children eat their meager meals", "the headmistress's office", "a small shrine to a forgotten god"],
+      "secondary": ["a cruel headmistress who abuses the children", "a group of bullies who terrorize the other children", "a child who has a secret magical ability", "a hidden stash of food that the children have been saving", "a ghost of a former orphan who haunts the orphanage", "a secret society of orphans who are planning to escape"],
+      "tertiary": ["a legendary artifact that is hidden in the orphanage", "a secret that could bring down a powerful noble family", "a plot to sell the children into slavery", "a magical creature that is protecting the children", "a child who is the heir to a lost kingdom", "the orphanage is a front for a powerful and ancient organization"]
+    },
+    "brothel": {
+      "tags": ["brothel", "indoor", "social", "crime"],
+      "description": "A lavish brothel that caters to the city's elite. The air is thick with the smell of expensive perfume and the sound of whispered secrets. The courtesans are a mix of the beautiful and the cunning.",
+      "primary": ["a series of opulent bedrooms", "a common room with a bar and a stage for performers", "a private garden for the courtesans and their clients", "a secret entrance for discreet clients", "a team of bouncers", "the madam's office"],
+      "secondary": ["a courtesan who is a spy for a foreign power", "a client who is a powerful politician with a dark secret", "a rivalry between two courtesans that is about to turn violent", "a courtesan who has information that could bring down a powerful noble family", "a ghost of a former courtesan who haunts the brothel", "a secret society of courtesans who control the city's underworld"],
+      "tertiary": ["a legendary artifact that is hidden in the brothel", "a secret that could bring down the city's government", "a plot to assassinate a powerful client", "a magical creature that is being held captive in the brothel", "a courtesan who is a powerful wizard in disguise", "the brothel is a front for a powerful and ancient organization"]
+    },
+    "pawn_shop": {
+      "tags": ["shop", "indoor", "crime"],
+      "description": "A cluttered pawn shop where people trade their possessions for a handful of coins. The air is thick with the smell of dust and desperation. The shopkeeper is a shrewd and ruthless businessman.",
+      "primary": ["shelves of second-hand goods", "a counter with a scale for weighing gold and silver", "a back room where the shopkeeper stores his most valuable items", "a series of cages for small animals", "a collection of strange and unusual weapons", "a mysterious shopkeeper"],
+      "secondary": ["a stolen item that is being fenced at the shop", "a cursed item that brings misfortune to its owner", "a secret message hidden in an old book", "a map to a hidden treasure that is being sold for a pittance", "a ghost of a former customer who haunts the shop", "a secret society that uses the shop as a front for their activities"],
+      "tertiary": ["a powerful artifact that is hidden in plain sight", "a secret that could bring down a powerful noble family", "a plot to rob the shop", "a magical creature that is being held captive in the shop", "a customer who is a powerful wizard in disguise", "the pawn shop is a front for a powerful and ancient organization"]
+    },
+    "stables": {
+      "tags": ["stables", "outdoor", "animals"],
+      "description": "A bustling stables where horses are bought, sold, and cared for. The air is thick with the smell of hay and manure. The stable hands are a mix of the hardworking and the lazy.",
+      "primary": ["a series of stalls for the horses", "a training yard where the horses are exercised", "a blacksmith's forge for shoeing the horses", "a carriage house with a collection of fine carriages", "a hayloft for storing feed", "the stable master's office"],
+      "secondary": ["a prize-winning racehorse that is being targeted by a rival stable", "a stable hand who is secretly a member of a horse-thieving gang", "a magical horse that can talk", "a hidden stash of stolen goods in the hayloft", "a ghost of a former stable master who haunts the stables", "a secret society of horse breeders who are trying to create the perfect steed"],
+      "tertiary": ["a legendary horse that is hidden in the stables", "a secret that could bring down a powerful noble family", "a plot to poison the city's water supply through the stables", "a magical creature that is disguised as a horse", "a stable hand who is the heir to a lost kingdom", "the stables are a front for a powerful and ancient organization"]
+    },
+    "tannery": {
+      "tags": ["tannery", "indoor", "industrial"],
+      "description": "A foul-smelling tannery where animal hides are turned into leather. The air is thick with the smell of chemicals and rotting flesh. The workers are a mix of the desperate and the hardened.",
+      "primary": ["vats of tanning solution", "racks of drying hides", "a fleshing beam for scraping the hides", "a series of pools for washing the hides", "a furnace for heating the tanning solution", "a pile of discarded animal parts"],
+      "secondary": ["a worker who has fallen into a vat of tanning solution", "a group of workers who are planning to go on strike", "a secret ingredient that is used to create a superior type of leather", "a hidden stash of illegal goods", "a ghost of a former worker who haunts the tannery", "a secret society of tanners who are also assassins"],
+      "tertiary": ["a legendary hide that is being tanned at the tannery", "a secret that could bring down a powerful guild", "a plot to poison the city's water supply through the tannery", "a magical creature that is being held captive in the tannery", "a worker who is a powerful wizard in disguise", "the tannery is a front for a powerful and ancient organization"]
+    },
+    "blacksmith": {
+      "tags": ["blacksmith", "indoor", "industrial"],
+      "description": "A busy blacksmith's forge, where the clang of hammer on anvil is a constant sound. The air is thick with the smell of coal smoke and hot metal. The blacksmith is a master of their craft.",
+      "primary": ["a forge with a roaring fire", "an anvil and a collection of hammers", "a quenching trough filled with water", "a rack of finished weapons and armor", "a pile of scrap metal", "a powerful and muscular blacksmith"],
+      "secondary": ["a magical hammer that can shape any metal", "a secret formula for creating a new type of alloy", "a weapon that is cursed to betray its wielder", "a hidden compartment in the forge that contains a stash of illegal weapons", "a ghost of a former blacksmith who haunts the forge", "a secret society of blacksmiths who are also warriors"],
+
+      "tertiary": ["a legendary weapon that is being forged at the blacksmith's", "a secret that could bring down a powerful kingdom", "a plot to assassinate a noble with a poisoned weapon", "a magical creature that is being held captive in the forge", "the blacksmith is a demigod in disguise", "the blacksmith's forge is a front for a powerful and ancient organization"]
+    },
+    "bakery": {
+      "tags": ["bakery", "indoor", "social"],
+      "description": "A warm and inviting bakery that fills the street with the smell of fresh bread. The baker is a cheerful and friendly person who is always happy to chat with their customers.",
+      "primary": ["a brick oven with a roaring fire", "a counter with a display of fresh bread and pastries", "a series of shelves with bags of flour and sugar", "a kneading table covered in flour", "a friendly and talkative baker", "a cat sleeping in a patch of sunlight"],
+      "secondary": ["a secret recipe for a magical bread that can heal any ailment", "a batch of poisoned pastries that are intended for a noble", "a hidden compartment in the oven that contains a stash of smuggled goods", "a ghost of a former baker who haunts the bakery", "a secret society of bakers who are also spies", "the bakery is a front for a powerful and ancient organization"],
+      "tertiary": ["a legendary bread that can grant eternal life", "a secret that could bring down a powerful guild", "a plot to poison the city's water supply through the bakery", "a magical creature that is disguised as a cat", "the baker is a powerful wizard in disguise", "the bakery is a place of great magical power"]
     }
   },
   "crypt": {
