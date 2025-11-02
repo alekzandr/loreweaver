@@ -2260,7 +2260,8 @@
                 const tag = document.querySelector(`.tag[data-env="${result.environment}"]`);
                 if (tag) tag.classList.add('active');
 
-                generateEncounter();
+                // Pass the specific encounter title to generate that exact encounter
+                generateEncounter(result.title);
                 switchPage('generate');
 
                 setTimeout(() => {
@@ -2600,10 +2601,20 @@
             underground: ['Cavern Depths', 'The Sunless Expanse', 'Crystal Caves', 'Underground River', 'The Forgotten Mine']
         };
 
-        function selectEncounterTemplate(environment) {
+        function selectEncounterTemplate(environment, specificTitle = null) {
             const entries = encounterTitles && encounterTitles[environment];
             console.log('Selecting encounter for environment:', environment);
             console.log('Available entries:', entries ? entries.length : 'none');
+            
+            // If a specific title is requested, find and return that encounter
+            if (specificTitle && entries) {
+                const specificEncounter = entries.find(entry => entry.title === specificTitle);
+                if (specificEncounter) {
+                    console.log('Found specific encounter:', specificEncounter.title);
+                    return specificEncounter;
+                }
+                console.warn('Specific encounter not found:', specificTitle, '- falling back to random selection');
+            }
             
             if (entries && entries.length > 0) {
                 const totalWeight = entries.reduce((sum, entry) => sum + (entry.weight ?? 1), 0);
@@ -2896,7 +2907,7 @@
             return selected;
         }
 
-        function generateEncounter() {
+        function generateEncounter(specificEncounterTitle = null) {
             const partyLevel = parseInt(document.getElementById('partyLevel').value);
             
             if (isNaN(partyLevel) || partyLevel < 1 || partyLevel > 20) {
@@ -2910,7 +2921,7 @@
                 return;
             }
 
-            const template = selectEncounterTemplate(selectedEnvironment);
+            const template = selectEncounterTemplate(selectedEnvironment, specificEncounterTitle);
             console.log('Selected template:', template);
             console.log('Template description:', template.description);
             
