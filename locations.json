@@ -170,9 +170,7 @@
         "outdoor",
         "bridge"
       ],
-      "description": "Iron lattice and quiet enchantment span the gap high above the streets. Wind tugs at your cloak while the city unfurls below. Crystal lanterns flicker along the rails when distant thunder grumbles. The metal under your palm hums with a faint, steady vibration.",
-      "primary": [
-        "suspension cables humming with latent magic",
+      "description": "Iron lattice and quiet enchantment span the gap high above the streets. Wind tugs at your cloak while the city unfurls below. Crystal lanterns flicker along the rails when distant thunder grumbles. The metal under your palm hums with a faint, steady vibration.","primary": ["suspension cables humming with latent magic",
         "ornate stone balustrade etched with duelist crests",
         "lantern pylons casting rainbows through morning mist",
         "banner-strewn archway leading into guild towers",
@@ -202,9 +200,7 @@
         "indoor",
         "artisanal"
       ],
-      "description": "Shelves brim with half-finished masks, each face catching the light as you pass. Lacquer, incense, and warm cloth scent the room. Artisans move with practiced grace, tools tapping out a careful rhythm. Painted eyes seem to follow you from every corner.",
-      "primary": [
-        "grand showroom lined with mannequins in seasonal regalia",
+      "description": "Shelves brim with half-finished masks, each face catching the light as you pass. Lacquer, incense, and warm cloth scent the room. Artisans move with practiced grace, tools tapping out a careful rhythm. Painted eyes seem to follow you from every corner.","primary": ["grand showroom lined with mannequins in seasonal regalia",
         "engraving studio with mirror-bright tools",
         "vaulted ceiling mural depicting historic galas",
         "apprentice workshop buzzing with illusion magic",
@@ -234,9 +230,7 @@
         "industrial",
         "indoor"
       ],
-      "description": "Rails hum with latent energy beneath stained-glass constellations. Conductors in rune-stitched uniforms guide commuters through rings of light. The clang of maintenance golems meets the chime of departure bells. Switches clack in tight sequences as the floor thrums underfoot.",
-      "primary": [
-        "levitating tram car suspended in maintenance cradle",
+      "description": "Rails hum with latent energy beneath stained-glass constellations. Conductors in rune-stitched uniforms guide commuters through rings of light. The clang of maintenance golems meets the chime of departure bells. Switches clack in tight sequences as the floor thrums underfoot.","primary": ["levitating tram car suspended in maintenance cradle",
         "conductor's control dais surrounded by safety sigils",
         "rack of insulated harnesses for line workers",
         "dispatch board mapping city routes in light",
@@ -266,9 +260,7 @@
         "outdoor",
         "garden"
       ],
-      "description": "Silver moonlight slips through wrought-iron cages tangled in flowering vines. Exotic beasts lounge on enchanted sand, their eyes tracking your movement. Soft music drifts from somewhere unseen. Latches rattle and chains tug when a tail thumps or a wing tests the air.",
-      "primary": [
-        "star-lit aviary dome with prismatic glass panes",
+      "description": "Silver moonlight slips through wrought-iron cages tangled in flowering vines. Exotic beasts lounge on enchanted sand, their eyes tracking your movement. Soft music drifts from somewhere unseen. Latches rattle and chains tug when a tail thumps or a wing tests the air.","primary": ["star-lit aviary dome with prismatic glass panes",
         "serene reflecting pool doubling as a selkie habitat",
         "caretaker kiosk stocked with calming draughts",
         "ornamental hedge maze concealing hidden pens",
@@ -298,9 +290,7 @@
         "arcane",
         "indoor"
       ],
-      "description": "Crystal domes cradle stormclouds above rare, glistening flora. Humid air carries ozone, wet leaves, and sweet blooms. Lightning crawls across the glass with a pop that tingles on your skin. Scholars murmur as gauges tick and petals refract the light.",
-      "primary": [
-        "cyclone terrarium contained by sigil-laced glass",
+      "description": "Crystal domes cradle stormclouds above rare, glistening flora. Humid air carries ozone, wet leaves, and sweet blooms. Lightning crawls across the glass with a pop that tingles on your skin. Scholars murmur as gauges tick and petals refract the light.","primary": ["cyclone terrarium contained by sigil-laced glass",
         "humidity regulator shaped like a silver tree",
         "research dais covered in pressure gauges",
         "stormglass petals refracting multicolored light",
@@ -330,9 +320,7 @@
         "industrial",
         "indoor"
       ],
-      "description": "Massive gears turn with a steady clank while molten metal pours into waiting molds. Sparks hiss through hot air as shouted orders cut the din. Hot brass and machine oil burn the back of your throat. The floor trembles with each press and vented plume of steam.",
-      "primary": [
-        "central smelting crucible fed by fire elementals",
+      "description": "Massive gears turn with a steady clank while molten metal pours into waiting molds. Sparks hiss through hot air as shouted orders cut the din. Hot brass and machine oil burn the back of your throat. The floor trembles with each press and vented plume of steam.","primary": ["central smelting crucible fed by fire elementals",
         "assembly line of half-finished guardian constructs",
         "control balcony overlooking stamping presses",
         "rack of modular armor plating in various sizes",
@@ -362,9 +350,7 @@
         "underground",
         "alley"
       ],
-      "description": "An unmarked door opens into rooms lit by shuttered lanterns. Maps sprawl across tables weighted with coded slips and pins. Whispered plans scrape against the steady sound of a whetstone. Hands pause, then resume, as your boots quiet on the floorboards.",
-      "primary": [
-        "cellar entrance concealed behind flour sacks",
+      "description": "An unmarked door opens into rooms lit by shuttered lanterns. Maps sprawl across tables weighted with coded slips and pins. Whispered plans scrape against the steady sound of a whetstone. Hands pause, then resume, as your boots quiet on the floorboards.","primary": ["cellar entrance concealed behind flour sacks",
         "chalkboard menu masking coded directives",
         "meeting table carved with insurgent slogans",
         "lockbox filled with forged travel papers",
@@ -394,9 +380,7 @@
         "floating",
         "outdoor"
       ],
-      "description": "Tethered barges bob in a slow rhythm while awnings snap over the canal. Vendors pass spices, charms, and rumors from boat to boat. Lanterns sway from mastheads, light rippling over piled wares. Coins clink, planks tilt, and hulls bump with each trade.",
-      "primary": [
-        "central barter raft stacked with rare spices",
+      "description": "Tethered barges bob in a slow rhythm while awnings snap over the canal. Vendors pass spices, charms, and rumors from boat to boat. Lanterns sway from mastheads, light rippling over piled wares. Coins clink, planks tilt, and hulls bump with each trade.","primary": ["central barter raft stacked with rare spices",
         "rope bridges connecting brightly painted stalls",
         "river shamans chanting for calm waters",
         "entertainers juggling fireflies in glass globes",
@@ -426,9 +410,7 @@
         "guard",
         "indoor"
       ],
-      "description": "Armor stands gleam beside tight bunks smelling of oiled leather and strong tea. From the yard come sharp calls and the bite of practice steel. Ink, sweat, and rain drift through open doors. Signal horns and boots wait ready by the threshold.",
-      "primary": [
-        "mess hall full of half-finished breakfasts",
+      "description": "Armor stands gleam beside tight bunks smelling of oiled leather and strong tea. From the yard come sharp calls and the bite of practice steel. Ink, sweat, and rain drift through open doors. Signal horns and boots wait ready by the threshold.","primary": ["mess hall full of half-finished breakfasts",
         "armory cage lined with spears and tower shields",
         "briefing dais showcasing active patrol routes",
         "evidence locker secured with arcane wards",
@@ -458,9 +440,7 @@
         "indoor",
         "acoustic"
       ],
-      "description": "Vaulted ceilings turn every whisper into a soft chorus. Stained glass paints shifting colors across cool marble. Incense curls lazily around carved pews and confessionals. Your own voice returns to you, clear enough to make you lower it.",
-      "primary": [
-        "choir loft suspended above marble nave",
+      "description": "Vaulted ceilings turn every whisper into a soft chorus. Stained glass paints shifting colors across cool marble. Incense curls lazily around carved pews and confessionals. Your own voice returns to you, clear enough to make you lower it.","primary": ["choir loft suspended above marble nave",
         "confessional alcoves veiled by velvet curtains",
         "resonance bell attuned to spoken truths",
         "mosaic floor depicting civic heroes kneeling",
@@ -675,8 +655,7 @@
         "the ghost of a murdered person seeking justice"
       ],
       "description": "The city's cemetery is a place of quiet contemplation, but it is also a place of secrets and sorrow. The dead do not always rest easy, and the living who visit have their own stories to tell."
-    }
-  },
+    },
     "tavern": {
       "tags": [
         "tavern",
@@ -684,9 +663,7 @@
         "indoor",
         "social"
       ],
-      "description": "Firelight dances across worn tables while laughter and clinking mugs fill the air. The scent of roasted meat and spilled ale mingles with pipe smoke. Patrons huddle in shadowed corners trading whispers, while the barkeep polishes glasses with a knowing eye. Every creak of the floorboards tells a story.",
-      "primary": [
-        "scarred oak bar with countless tap handles",
+      "description": "Firelight dances across worn tables while laughter and clinking mugs fill the air. The scent of roasted meat and spilled ale mingles with pipe smoke. Patrons huddle in shadowed corners trading whispers, while the barkeep polishes glasses with a knowing eye. Every creak of the floorboards tells a story.","primary": ["scarred oak bar with countless tap handles",
         "stone fireplace crackling with warmth",
         "notice board covered in job postings",
         "gaming tables with dice and cards scattered",
@@ -717,9 +694,7 @@
         "spectacle",
         "outdoor"
       ],
-      "description": "Sand soaks up blood and sweat beneath the roar of thousands. Tiered seats rise in a circle, packed with citizens hungry for glory or death. Sunlight beats down on the killing floor while shadows pool in the archways. The air tastes of iron and anticipation.",
-      "primary": [
-        "weapon rack holding dulled training gear",
+      "description": "Sand soaks up blood and sweat beneath the roar of thousands. Tiered seats rise in a circle, packed with citizens hungry for glory or death. Sunlight beats down on the killing floor while shadows pool in the archways. The air tastes of iron and anticipation.","primary": ["weapon rack holding dulled training gear",
         "champion's gate carved with victory tallies",
         "announcer's podium draped in colorful banners",
         "sand pit marked with combat circles",
@@ -750,9 +725,7 @@
         "scholarly",
         "arcane"
       ],
-      "description": "Towering shelves march into shadow while dust motes dance in shafts of colored light. Leather and parchment scent the air thick as incense. The scratch of quills and whispered debates echo between the stacks. Knowledge sleeps here, waiting to be awakened.",
-      "primary": [
-        "reading desk with enchanted lamp",
+      "description": "Towering shelves march into shadow while dust motes dance in shafts of colored light. Leather and parchment scent the air thick as incense. The scratch of quills and whispered debates echo between the stacks. Knowledge sleeps here, waiting to be awakened.","primary": ["reading desk with enchanted lamp",
         "card catalog system with arcane sorting",
         "restricted section behind iron gate",
         "scribe's workstation with fresh ink",
@@ -783,9 +756,7 @@
         "crafting",
         "healing"
       ],
-      "description": "Glass jars line shelves from floor to ceiling, filled with herbs, powders, and stranger things. Mortar and pestle rest beside bubbling alembics. The air is thick with competing scents—lavender, sulfur, mint, and decay. Behind the counter, careful eyes weigh both coin and intent.",
-      "primary": [
-        "ingredient shelves organized by effect",
+      "description": "Glass jars line shelves from floor to ceiling, filled with herbs, powders, and stranger things. Mortar and pestle rest beside bubbling alembics. The air is thick with competing scents—lavender, sulfur, mint, and decay. Behind the counter, careful eyes weigh both coin and intent.","primary": ["ingredient shelves organized by effect",
         "grinding station with brass tools",
         "distillation apparatus with copper coils",
         "poison cabinet triple-locked",
@@ -816,9 +787,7 @@
         "urban",
         "workshop"
       ],
-      "description": "The rhythmic clatter and hiss of the press fills the air, mingling with the sharp scent of ink and paper. Stacks of fresh broadsheets and pamphlets rise from busy tables. Workers move with practiced efficiency, their hands stained with ink, as the machine devours blank pages and churns out news and decrees.",
-      "primary": [
-        "heavy iron printing press",
+      "description": "The rhythmic clatter and hiss of the press fills the air, mingling with the sharp scent of ink and paper. Stacks of fresh broadsheets and pamphlets rise from busy tables. Workers move with practiced efficiency, their hands stained with ink, as the machine devours blank pages and churns out news and decrees.","primary": ["heavy iron printing press",
         "stacks of blank parchment",
         "ink-stained workbenches",
         "drying racks for fresh prints",

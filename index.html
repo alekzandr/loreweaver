@@ -2667,6 +2667,12 @@
                 return;
             }
 
+            // Check if data is loaded
+            if (!dataLoaded) {
+                alert('Data is still loading. Please wait a moment and try again.');
+                return;
+            }
+
             const data = encounterData[selectedEnvironment];
             const template = selectEncounterTemplate(selectedEnvironment);
             console.log('Selected template:', template);
@@ -3963,6 +3969,12 @@
 
         // Generate NPC
         function selectNPCsForEncounter(encounterTags, numNPCs = null) {
+            // Safety check: ensure npcData is loaded
+            if (!npcData || !npcData.professions || !npcData.species) {
+                console.error('NPC data not loaded yet!');
+                return [];
+            }
+            
             // Determine number of NPCs (1-3 based on encounter context)
             if (numNPCs === null) {
                 numNPCs = Math.floor(Math.random() * 3) + 1;
