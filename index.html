@@ -903,6 +903,7 @@
             <!-- Navigation Tabs -->
             <div class="nav-tabs">
                 <button class="nav-tab active" onclick="switchPage('generate')">🎲 Generate</button>
+                <button class="nav-tab" onclick="switchPage('npc')">👤 NPCs</button>
                 <button class="nav-tab" onclick="switchPage('search')">🔍 Search</button>
                 <button class="nav-tab" onclick="switchPage('settings')">⚙️ Settings</button>
             </div>
@@ -945,6 +946,38 @@
                     ← Back to Encounter
                 </button>
                 <div id="roomContent"></div>
+            </div>
+        </div>
+
+        <!-- NPC Generator Page -->
+        <div id="npcPage" class="page-content" style="display: none;">
+            <div class="controls">
+                <h2 style="margin-bottom: 20px; color: var(--text-primary);">👤 NPC Generator</h2>
+                
+                <div class="control-group">
+                    <label for="npcSpecies">Species:</label>
+                    <select id="npcSpecies">
+                        <option value="random">Random</option>
+                        <option value="human">Human</option>
+                        <option value="elf">Elf</option>
+                        <option value="dwarf">Dwarf</option>
+                        <option value="halfling">Halfling</option>
+                        <option value="dragonborn">Dragonborn</option>
+                        <option value="tiefling">Tiefling</option>
+                        <option value="gnome">Gnome</option>
+                        <option value="half-elf">Half-Elf</option>
+                        <option value="half-orc">Half-Orc</option>
+                    </select>
+                </div>
+
+                <button onclick="generateNPC()">✨ Generate NPC</button>
+            </div>
+
+            <div class="encounter-display" id="npcDisplay">
+                <div class="encounter-section">
+                    <h2>🎲 Your NPC Will Appear Here</h2>
+                    <p class="description">Click "Generate NPC" to create a diverse and interesting character for your campaign!</p>
+                </div>
             </div>
         </div>
 
@@ -1039,6 +1072,8 @@
 
         let locationObjects = {"urban":{"warehouse":{"tags":["warehouse","indoor","building"],"primary":["wooden crate","loading crane","storage shelf","shipping manifest","rope coil","tool bench"],"secondary":["rusted nail","receipt","ledger book","oil lantern","chain","pulley"],"tertiary":["coin purse","jewelry","letter","key","trap mechanism","poison vial"]},"building":{"tags":["building","indoor","rooftop","district"],"primary":["ornate desk","locked safe","bookshelf","filing cabinet","portrait painting","fireplace"],"secondary":["hidden drawer","secret compartment","ledger","correspondence","seal","inkwell"],"tertiary":["family heirloom","deed","treasure map","incriminating letter","gold coins","magic item"]},"street":{"tags":["street","outdoor","alley","district","market"],"primary":["market stall","merchant cart","street lamp","notice board","vendor stand","fountain"],"secondary":["loose cobblestone","rain barrel","awning","signpost","doorway","window"],"tertiary":["dropped coin","torn poster","hidden cache","secret mark","smuggler sign","trap"]},"dock":{"tags":["wharf","dock","outdoor"],"primary":["shipping crate","mooring post","cargo net","dock crane","warehouse door","gangplank"],"secondary":["rope","anchor","barrel","canvas tarp","shipping manifest","oil lamp"],"tertiary":["smuggled goods","hidden compartment","coded message","stolen treasure","trap","key"]},"sewer":{"tags":["sewer","underground","tunnel"],"primary":["drainage pipe","sewer grate","maintenance ladder","brick archway","water channel","junction"],"secondary":["rat nest","debris pile","broken gate","rusty valve","slime","chain"],"tertiary":["lost valuables","body","smuggler cache","disease","trap","monster lair"]}},"crypt":{"tomb":{"tags":["tomb","chamber","indoor"],"primary":["stone sarcophagus","altar","statue","burial niche","stone column","brazier"],"secondary":["burial offering","inscription","sealed urn","canopic jar","ritual item","relic"],"tertiary":["cursed item","treasure","magic weapon","ancient scroll","undead","trap"]},"catacomb":{"tags":["catacomb","tunnel","passage","depths"],"primary":["bone wall","burial alcove","stone pillar","ancient archway","ossuary","memorial plaque"],"secondary":["skull pile","grave goods","ancient torch","carved symbol","sealed niche","offering bowl"],"tertiary":["hidden treasure","secret passage","cursed relic","undead guardian","trap","ritual chamber"]},"mausoleum":{"tags":["mausoleum","building","indoor"],"primary":["family crypt","marble statue","bronze door","stone bench","memorial wall","vaulted ceiling"],"secondary":["inscription plaque","offering table","sealed vault","stained glass","iron gate","torch sconce"],"tertiary":["family treasure","ancient relic","magic item","hidden crypt","undead","protective ward"]},"vault":{"tags":["vault","chamber","indoor"],"primary":["sealed door","guardian statue","treasure chest","magical ward","puzzle lock","pillar"],"secondary":["pressure plate","glyph","keyhole","offering pedestal","ancient mechanism","rune"],"tertiary":["legendary treasure","artifact","curse","powerful undead","deadly trap","magic seal"]}},"forest":{"trail":{"tags":["trail","path","outdoor"],"primary":["ancient tree","moss-covered boulder","trail marker","fallen log","clearing","stream crossing"],"secondary":["animal track","carved mark","abandoned camp","broken branch","root system","mushroom circle"],"tertiary":["hidden cache","druid sign","fey marking","treasure","trap","monster lair"]},"ruins":{"tags":["ruins","structure","outdoor"],"primary":["crumbling wall","stone foundation","overgrown statue","collapsed archway","broken column","moss-covered altar"],"secondary":["ancient inscription","carved relief","pottery shard","rusted weapon","stone fragment","hidden chamber"],"tertiary":["buried treasure","magic item","ancient knowledge","guardian spirit","trap","secret passage"]},"clearing":{"tags":["clearing","glade","grove","outdoor"],"primary":["fairy ring","natural spring","ancient tree circle","flower meadow","stone circle","sacred grove"],"secondary":["unusual plant","animal den","bird nest","mushroom cluster","water source","wildflower patch"],"tertiary":["fey presence","magic spring","druid treasure","nature spirit","blessing","curse"]},"dense":{"tags":["woods","dense","outdoor"],"primary":["thick undergrowth","tangled thicket","hollow log","dense canopy","bramble patch","ancient trunk"],"secondary":["animal burrow","spider web","vine tangle","thorny bush","concealed pit","hidden path"],"tertiary":["monster lair","hidden treasure","trap","rare plant","secret passage","predator nest"]}},"desert":{"dunes":{"tags":["dunes","openfield","outdoor","wasteland"],"primary":["sand dune","wind-carved formation","buried skeleton","abandoned cart","rock outcrop","shifting sand"],"secondary":["sun-bleached bones","tattered cloth","broken wheel","empty waterskin","scorpion nest","sand ripples"],"tertiary":["buried treasure","ancient artifact","oasis map","cursed item","monster lair","quicksand trap"]},"ruins":{"tags":["temple","ruins","structure"],"primary":["weathered stone pillar","collapsed wall","buried entrance","ancient altar","sandstone block","hieroglyph"],"secondary":["carved relief","broken statue","pottery fragment","ritual vessel","stone tablet","sealed chamber"],"tertiary":["ancient treasure","magic artifact","curse tablet","mummy","deadly trap","hidden vault"]},"oasis":{"tags":["oasis","water","outdoor"],"primary":["oasis pool","palm tree","water source","desert plants","rock formation","shade"],"secondary":["animal track","fruit tree","medicinal herb","cool cave","traveler marker","campsite"],"tertiary":["hidden spring","rare plant","treasure cache","spirit guardian","blessing","mirage"]},"trail":{"tags":["trail","path","outdoor"],"primary":["caravan marker","desert trail","way stone","traveler's shrine","cairn","directional sign"],"secondary":["campfire remains","discarded item","footprints","warning marker","supply cache","shelter"],"tertiary":["buried treasure","ambush site","hidden oasis map","bandit cache","trap","ancient relic"]}},"mountain":{"peak":{"tags":["peak","summit","outdoor","nest"],"primary":["mountain peak","rocky outcrop","ice formation","summit cairn","wind-swept stone","precipice"],"secondary":["prayer flags","climber's anchor","eagle nest","ice crystal","rock shelter","marker stone"],"tertiary":["legendary treasure","dragon hoard","ancient relic","rare mineral","spirit shrine","trap"]},"pass":{"tags":["pass","path","outdoor","ridge","stairs"],"primary":["mountain pass","narrow ledge","switchback trail","rock bridge","stone steps","guard post"],"secondary":["rope anchor","safety rope","trail marker","shelter cave","warning sign","avalanche zone"],"tertiary":["hidden cache","bandit treasure","ancient marker","trap","monster ambush","secret passage"]},"valley":{"tags":["valley","clearing","outdoor"],"primary":["hidden valley","mountain stream","alpine meadow","sheltered grove","rocky basin","waterfall"],"secondary":["wildflower field","grazing area","mineral deposit","hot spring","cave entrance","ancient tree"],"tertiary":["hidden sanctuary","hermit dwelling","rare herb","treasure cache","spirit guardian","secret entrance"]},"cliff":{"tags":["cliff","outdoor","path"],"primary":["precarious ledge","cliff face","sheer drop","rock overhang","narrow path","vertical wall"],"secondary":["climbing anchor","bird nest","cave opening","rock shelf","erosion crack","loose stone"],"tertiary":["hidden cave","eagle treasure","ancient carving","trap","monster lair","secret passage"]}},"swamp":{"bog":{"tags":["bog","wetland","outdoor"],"primary":["murky pool","mud mound","gnarled tree","quicksand","stagnant water","dead vegetation"],"secondary":["marsh gas bubble","sunken log","lily pad","insect swarm","muddy bank","rotting vegetation"],"tertiary":["sunken treasure","body","monster lair","disease","trap","cursed area"]},"wetland":{"tags":["wetland","marsh","fen","outdoor","wilderness"],"primary":["marsh grass","water channel","raised hummock","dead tree","reed bed","shallow pool"],"secondary":["bird nest","fish trap","willow tree","stepping stone","floating debris","vegetation mat"],"tertiary":["hidden path","hermit hut","rare plant","treasure cache","hag marker","trap"]},"water":{"tags":["water","outdoor","wetland"],"primary":["dark water","stagnant pool","flowing stream","deep channel","murky pond","water source"],"secondary":["submerged log","floating vegetation","water plant","ripple","current","shallow ford"],"tertiary":["sunken boat","underwater cave","monster lair","treasure","trap","cursed water"]}},"underground":{"cavern":{"tags":["cavern","cave","natural","openspace","chamber"],"primary":["crystal formation","stone pillar","underground lake","stalactite cluster","rock formation","cavern floor"],"secondary":["mineral vein","bat colony","mushroom grove","limestone deposit","water drip","echo chamber"],"tertiary":["rare crystal","underground river","monster lair","treasure deposit","trap","secret passage"]},"tunnel":{"tags":["tunnel","passage","manmade"],"primary":["mine shaft","carved tunnel","support beams","rail tracks","tool marks","ventilation shaft"],"secondary":["mining cart","pickaxe","lantern hook","ore vein","support pillar","wooden brace"],"tertiary":["ore deposit","abandoned equipment","collapsed section","monster nest","trap","hidden passage"]},"river":{"tags":["river","water","cave"],"primary":["underground stream","water channel","rock bridge","waterfall","river bank","current"],"secondary":["stepping stone","water pool","mineral deposit","moisture","echo","fish"],"tertiary":["underwater passage","treasure","monster lair","rare mineral","trap","secret cave"]}},"ocean":{"ship":{"tags":["ship","vessel","deck"],"primary":["ship wheel","mast rigging","cargo hold","captain's quarters","main deck","anchor"],"secondary":["rope coil","barrel","sail","navigation tool","ship bell","cannon"],"tertiary":["treasure chest","ship's log","hidden cargo","secret compartment","trap","contraband"]},"wreck":{"tags":["wreck","ship","vessel","underwater"],"primary":["broken hull","sunken cargo","ship's skeleton","barnacle-covered mast","debris field","coral growth"],"secondary":["rotted sail","rusted chain","broken rudder","scattered cargo","ship bell","anchor"],"tertiary":["treasure chest","ship's safe","captain's loot","cursed cargo","monster lair","trap"]},"underwater":{"tags":["underwater","reef","natural","depths","openwater","passage"],"primary":["coral reef","underwater cave","kelp forest","rock formation","sea floor","current"],"secondary":["sea plant","anemone","shell cluster","fish school","underwater cliff","sand bed"],"tertiary":["pearl bed","sunken treasure","monster lair","ancient ruin","trap","magic current"]},"shore":{"tags":["shore","beach","outdoor"],"primary":["beach shore","tide pool","driftwood pile","rock outcrop","sand beach","wave line"],"secondary":["seashell","seaweed","crab","beach rock","sand dune","flotsam"],"tertiary":["message bottle","shipwreck debris","treasure chest","rare shell","trap","hidden cave"]}},"arctic":{"wilderness":{"tags":["wilderness","openfield","outdoor"],"primary":["ice field","snow plain","frozen tundra","ice wall","snowdrift","frost formation"],"secondary":["animal track","ice crack","wind pattern","snow hole","frozen plant","ice shard"],"tertiary":["frozen corpse","buried treasure","rare resource","monster lair","trap","ancient relic"]},"cave":{"tags":["cave","cavern","indoor"],"primary":["ice cave","snow shelter","frozen cavern","ice tunnel","frost wall","icicle"],"secondary":["ice formation","frozen pool","ice pillar","snow drift","frost pattern","wind tunnel"],"tertiary":["frozen treasure","ancient remains","rare ice","monster den","trap","magic ice"]},"mountain":{"tags":["mountain","peaks","outdoor"],"primary":["ice peak","frozen summit","glacier slope","ice cliff","snow ridge","avalanche path"],"secondary":["ice bridge","crevasse","snow cornice","ice wall","frozen waterfall","wind gap"],"tertiary":["legendary treasure","dragon lair","ancient shrine","rare mineral","trap","avalanche trigger"]},"path":{"tags":["path","pass","outdoor"],"primary":["frozen trail","ice path","snow route","marked way","passage","crossing"],"secondary":["trail marker","shelter","supply cache","warning sign","rope line","cairn"],"tertiary":["hidden cache","abandoned camp","treasure","trap","monster ambush","shortcut"]}},"space":{"ship":{"tags":["ship","vessel","derelict"],"primary":["spelljamming helm","navigation altar","air envelope","gravity plane","helm chamber","main deck"],"secondary":["star chart","planar compass","magic anchor","air pump","gravity ring","void seal"],"tertiary":["arcane treasure","planar map","magic artifact","ship secret","trap","hidden cargo"]},"void":{"tags":["void","openspace","wildspace","phlogiston","boundary"],"primary":["phlogiston flow","wildspace debris","crystal sphere","planar barrier","void current","star field"],"secondary":["asteroid","void eddy","magic field","planar echo","cosmic dust","light phenomenon"],"tertiary":["ancient wreck","planar rift","cosmic treasure","void entity","trap","portal"]},"anomaly":{"tags":["anomaly","void","openspace","wildspace"],"primary":["gravity well","magic vortex","planar rift","time distortion","space fold","reality tear"],"secondary":["energy field","temporal echo","spatial loop","magic surge","void pulse","reality fragment"],"tertiary":["legendary artifact","planar gateway","cosmic secret","powerful entity","deadly trap","reality breach"]},"debris":{"tags":["debris","void","openspace"],"primary":["wrecked ship","floating rock","debris field","broken hull","scattered cargo","void junk"],"secondary":["ship fragment","asteroid chunk","twisted metal","broken mast","cargo container","escape pod"],"tertiary":["salvage treasure","ship log","hidden cargo","survivor","trap","monster nest"]}}};
 
+        let npcData = {"species":{"human":{"tags":["common","versatile","civilized"],"firstNames":["Aldric","Brianna","Cedric","Diana","Elias","Fiona","Garrett","Helena","Ivan","Jasmine","Kael","Lydia","Marcus","Nora","Owen","Petra","Quinn","Rosa","Silas","Thalia"],"surnames":["Ashford","Blackwood","Crawford","Donovan","Everett","Frost","Griffin","Hawthorne","Ironwood","Kane","Lockhart","Morven","Northwood","Oakheart","Pierce","Ravencroft","Sterling","Thornhill","Underwood","Winters"]},"elf":{"tags":["fey","elegant","longlived"],"firstNames":["Aelindra","Beriothien","Cyrillian","Daratrine","Elenwe","Faelyn","Galadrion","Holimion","Ithilwen","Jhelnae","Kylantha","Luthien","Mithrandir","Naeryndam","Oloriël","Phaendar","Quillith","Ryllae","Sylvari","Thalionwë"],"surnames":["Moonwhisper","Starweaver","Silverleaf","Dawnbringer","Nightbreeze","Sunfire","Mistwalker","Dreamweaver","Stormwind","Brightwood","Crystalbrook","Shadowgrove","Everglade","Rosepetal","Wintermoon","Goldleaf","Springblossom","Autumnshade","Frostwhisper","Willowmist"]},"dwarf":{"tags":["stout","crafty","underground"],"firstNames":["Baern","Dagnal","Eberk","Fargrim","Gimbol","Harbek","Ilde","Jhulae","Kathra","Mardred","Nalaed","Ovina","Porrak","Rurik","Sannl","Thorin","Ulfgar","Vistra","Whurdred","Zilda"],"surnames":["Ironforge","Stonehammer","Deepdelver","Mountainheart","Goldvein","Steelbeard","Battleborn","Rockhewer","Anvilstrike","Forgemaster","Gemcutter","Oreseeker","Tunnelfoot","Clanhammer","Brassbeard","Strongale","Flintheart","Copperhelm","Mithrilhand","Silverforge"]},"halfling":{"tags":["small","nimble","cheerful"],"firstNames":["Alton","Bree","Cade","Dee","Eldon","Fable","Garret","Holly","Jasper","Kat","Lyle","Merla","Nedda","Ostran","Perrin","Roscoe","Shaena","Tye","Verna","Wellby"],"surnames":["Goodbarrel","Greenbottle","Highhill","Hilltopple","Leagallow","Tealeaf","Thorngage","Tosscobble","Underbough","Brushgather","Goldworthy","Nimblefingers","Quickstep","Rumblefoot","Softstep","Swiftwhistle","Proudfoot","Burrowes","Meadowbrook","Thistletop"]},"dragonborn":{"tags":["draconic","proud","ancient"],"firstNames":["Arjhan","Balasar","Bharash","Donaar","Ghesh","Heskan","Kriv","Medrash","Mehen","Nadarr","Pandjed","Patrin","Rhogar","Shamash","Shedinn","Tarhun","Torinn","Akra","Biri","Daar"],"surnames":["Clethtinthiallor","Daardendrian","Delmirev","Drachedandion","Fenkenkabradon","Kepeshkmolik","Kerrhylon","Kimbatuul","Linxakasendalor","Myastan","Nemmonis","Norixius","Ophinshtalajiir","Prexijandilin","Shestendeliath","Turnuroth","Verthisathurgiesh","Yarjerit","Zradeth","Flamebrand"]},"tiefling":{"tags":["infernal","charismatic","outcast"],"firstNames":["Akmenios","Amnon","Barakas","Damakos","Ekemon","Iados","Kairon","Leucis","Melech","Mordai","Morthos","Pelaios","Skamos","Therai","Akta","Bryseis","Criella","Damaia","Ea","Kallista"],"surnames":["Art","Carrion","Despair","Excellence","Fear","Glory","Hope","Ideal","Music","Nowhere","Open","Poetry","Quest","Random","Reverence","Sorrow","Temerity","Torment","Weary","Nowhere"]},"gnome":{"tags":["small","inventive","curious"],"firstNames":["Alston","Boddynock","Brocc","Burgell","Dimble","Eldon","Erky","Fonkin","Frug","Gerbo","Gimble","Jebeddo","Kellen","Namfoodle","Orryn","Roondar","Seebo","Sindri","Warryn","Zook"],"surnames":["Beren","Daergel","Folkor","Garrick","Nackle","Murnig","Ningel","Raulnor","Scheppen","Timbers","Turen","Sparklegem","Tinkertop","Cogsworth","Gearwhistle","Brassbolt","Quickwit","Fizzlebang","Rumblebottom","Brightgem"]},"half-elf":{"tags":["mixed","diplomatic","versatile"],"firstNames":["Amaranth","Brevin","Carric","Dalkon","Enna","Faelyn","Gareth","Hazel","Immeral","Jorlan","Kylan","Lyriel","Marik","Neria","Oriel","Perrin","Quarion","Reinna","Soveliss","Talon"],"surnames":["Amakiir","Brightwood","Deepbrook","Evenwood","Greycastle","Hallowmere","Ironleaf","Lakemere","Moonbrook","Nighthollow","Oakenheart","Riverwood","Silvermoon","Starling","Thorngage","Wayfinder","Whisperwind","Wildflower","Winterbloom","Woodwalker"]},"half-orc":{"tags":["strong","fierce","outcast"],"firstNames":["Dench","Feng","Gell","Henk","Holg","Imsh","Keth","Krusk","Mhurren","Ront","Shump","Thokk","Baggi","Emen","Engong","Kansif","Myev","Neega","Ovak","Ownka"],"surnames":["Ironhide","Skullcrusher","Bloodrage","Grimjaw","Stonefist","Warbringer","Thunderborn","Battleheart","Ashmark","Flintborn","Hardknuckle","Razortusk","Steelgaze","Wolfheart","Earthshaker","Bonegrinder","Firebrand","Rockback","Shadowmaw","Stormbrow"]}},"alignments":[{"name":"Lawful Good","tags":["lawful","good","honorable"]},{"name":"Neutral Good","tags":["neutral","good","kind"]},{"name":"Chaotic Good","tags":["chaotic","good","rebellious"]},{"name":"Lawful Neutral","tags":["lawful","neutral","orderly"]},{"name":"True Neutral","tags":["neutral","balanced","pragmatic"]},{"name":"Chaotic Neutral","tags":["chaotic","neutral","unpredictable"]},{"name":"Lawful Evil","tags":["lawful","evil","tyrannical"]},{"name":"Neutral Evil","tags":["neutral","evil","selfish"]},{"name":"Chaotic Evil","tags":["chaotic","evil","destructive"]}],"personalities":[{"trait":"Argumentative and stubborn","tags":["combative","difficult","strong-willed"]},{"trait":"Cheerful and optimistic","tags":["happy","positive","encouraging"]},{"trait":"Curious and inquisitive","tags":["nosy","scholarly","investigative"]},{"trait":"Cynical and distrustful","tags":["suspicious","pessimistic","wary"]},{"trait":"Friendly and helpful","tags":["kind","supportive","welcoming"]},{"trait":"Greedy and materialistic","tags":["selfish","merchant","ambitious"]},{"trait":"Honest and forthright","tags":["truthful","direct","reliable"]},{"trait":"Humble and modest","tags":["meek","unassuming","quiet"]},{"trait":"Impulsive and reckless","tags":["hasty","dangerous","unpredictable"]},{"trait":"Lazy and unmotivated","tags":["slothful","apathetic","passive"]},{"trait":"Melancholic and brooding","tags":["sad","thoughtful","withdrawn"]},{"trait":"Nervous and anxious","tags":["fearful","worried","timid"]},{"trait":"Proud and arrogant","tags":["haughty","confident","superior"]},{"trait":"Quiet and observant","tags":["watchful","reserved","perceptive"]},{"trait":"Sarcastic and witty","tags":["humorous","clever","mocking"]},{"trait":"Secretive and mysterious","tags":["enigmatic","private","guarded"]},{"trait":"Serious and stern","tags":["grave","strict","formal"]},{"trait":"Superstitious and cautious","tags":["fearful","traditional","careful"]},{"trait":"Theatrical and dramatic","tags":["flamboyant","expressive","performer"]},{"trait":"Violent and aggressive","tags":["hostile","dangerous","combative"]}],"professions":[{"name":"Blacksmith","tags":["crafting","metal","strength"]},{"name":"Merchant","tags":["trading","wealthy","social"]},{"name":"Innkeeper","tags":["hospitality","social","information"]},{"name":"Guard","tags":["combat","lawful","protective"]},{"name":"Farmer","tags":["rural","hardworking","humble"]},{"name":"Alchemist","tags":["crafting","intelligent","experimental"]},{"name":"Cleric","tags":["religious","healing","spiritual"]},{"name":"Wizard","tags":["magical","scholarly","reclusive"]},{"name":"Thief","tags":["criminal","sneaky","street"]},{"name":"Bard","tags":["performer","charismatic","traveling"]},{"name":"Sailor","tags":["nautical","adventurous","tough"]},{"name":"Hunter","tags":["wilderness","skilled","solitary"]},{"name":"Scholar","tags":["intellectual","bookish","knowledgeable"]},{"name":"Noble","tags":["wealthy","influential","political"]},{"name":"Beggar","tags":["poor","desperate","street"]},{"name":"Artisan","tags":["crafting","creative","skilled"]},{"name":"Soldier","tags":["combat","disciplined","veteran"]},{"name":"Herbalist","tags":["nature","healing","knowledgeable"]},{"name":"Gambler","tags":["risky","social","untrustworthy"]},{"name":"Priest","tags":["religious","devoted","influential"]},{"name":"Assassin","tags":["criminal","deadly","secretive"]},{"name":"Spy","tags":["secretive","intelligent","deceptive"]},{"name":"Gladiator","tags":["combat","entertaining","strong"]},{"name":"Cartographer","tags":["scholarly","traveling","observant"]},{"name":"Fortune Teller","tags":["mystical","charismatic","mysterious"]}],"secrets":[{"secret":"Is actually a member of a thieves' guild","tags":["criminal","deceptive","dangerous"]},{"secret":"Witnessed a terrible crime but never reported it","tags":["guilty","fearful","compromised"]},{"secret":"Is deeply in debt to a powerful organization","tags":["desperate","vulnerable","pressured"]},{"secret":"Has a hidden magical ability they're afraid to reveal","tags":["magical","fearful","special"]},{"secret":"Is actually nobility traveling incognito","tags":["disguised","wealthy","fugitive"]},{"secret":"Murdered someone in their past","tags":["guilty","dangerous","haunted"]},{"secret":"Is a spy for a foreign power","tags":["deceptive","dangerous","political"]},{"secret":"Has a terminal illness they're hiding","tags":["dying","tragic","desperate"]},{"secret":"Is secretly in love with someone inappropriate","tags":["romantic","conflicted","vulnerable"]},{"secret":"Knows the location of a hidden treasure","tags":["knowledgeable","valuable","targeted"]},{"secret":"Is being blackmailed","tags":["vulnerable","desperate","compromised"]},{"secret":"Has a doppelganger twin nobody knows about","tags":["mysterious","dangerous","confusing"]},{"secret":"Was involved in a cult in their youth","tags":["dark past","reformed","haunted"]},{"secret":"Is actually a lycanthrope","tags":["cursed","dangerous","monstrous"]},{"secret":"Faked their own death years ago","tags":["fugitive","deceptive","mysterious"]},{"secret":"Has a child they abandoned","tags":["guilty","shameful","vulnerable"]},{"secret":"Is addicted to a dangerous substance","tags":["weak","desperate","vulnerable"]},{"secret":"Knows a devastating secret about the local ruler","tags":["dangerous","knowledgeable","political"]},{"secret":"Is actually undead but appears living","tags":["monstrous","magical","deceptive"]},{"secret":"Betrayed their closest friend for personal gain","tags":["treacherous","guilty","untrustworthy"]}],"appearances":[{"description":"Distinctive scar across face","tags":["scarred","veteran","memorable"]},{"description":"Unusually tall for their species","tags":["tall","imposing","noticeable"]},{"description":"Unusually short for their species","tags":["short","small","underestimated"]},{"description":"Missing an eye or wears an eyepatch","tags":["scarred","veteran","distinctive"]},{"description":"Brightly colored clothing","tags":["colorful","flashy","noticeable"]},{"description":"Always wears a hood or mask","tags":["hidden","mysterious","secretive"]},{"description":"Elaborate tattoos covering body","tags":["marked","artistic","cultural"]},{"description":"Walks with a pronounced limp","tags":["injured","veteran","memorable"]},{"description":"Extremely muscular build","tags":["strong","intimidating","physical"]},{"description":"Very thin and gaunt","tags":["frail","sickly","mysterious"]},{"description":"Heterochromia (different colored eyes)","tags":["unique","striking","memorable"]},{"description":"Silver or white hair despite young age","tags":["unusual","striking","mysterious"]},{"description":"Missing fingers or hand","tags":["scarred","veteran","distinctive"]},{"description":"Constantly fidgets with a trinket","tags":["nervous","memorable","quirky"]},{"description":"Wears expensive jewelry","tags":["wealthy","flashy","target"]},{"description":"Has a pet that follows them everywhere","tags":["unique","memorable","quirky"]},{"description":"Speaks with a thick accent","tags":["foreign","distinctive","memorable"]},{"description":"Burns or fire scars on skin","tags":["scarred","survivor","distinctive"]},{"description":"Wears armor even in casual settings","tags":["paranoid","veteran","prepared"]},{"description":"Exceptionally beautiful or handsome","tags":["attractive","charismatic","memorable"]}]};
+
         let dataLoaded = true; // Data is embedded, so it's always loaded
 
         // Load data on page load (tries external files, falls back to embedded data)
@@ -1126,6 +1161,7 @@
         // Page switching
         function switchPage(page) {
             document.getElementById('generatePage').style.display = 'none';
+            document.getElementById('npcPage').style.display = 'none';
             document.getElementById('searchPage').style.display = 'none';
             document.getElementById('settingsPage').style.display = 'none';
             
@@ -1134,13 +1170,16 @@
             if (page === 'generate') {
                 document.getElementById('generatePage').style.display = 'block';
                 document.querySelectorAll('.nav-tab')[0].classList.add('active');
+            } else if (page === 'npc') {
+                document.getElementById('npcPage').style.display = 'block';
+                document.querySelectorAll('.nav-tab')[1].classList.add('active');
             } else if (page === 'search') {
                 document.getElementById('searchPage').style.display = 'block';
-                document.querySelectorAll('.nav-tab')[1].classList.add('active');
+                document.querySelectorAll('.nav-tab')[2].classList.add('active');
                 initializeSearchFilters();
             } else if (page === 'settings') {
                 document.getElementById('settingsPage').style.display = 'block';
-                document.querySelectorAll('.nav-tab')[2].classList.add('active');
+                document.querySelectorAll('.nav-tab')[3].classList.add('active');
             }
         }
 
@@ -2178,6 +2217,106 @@
             document.getElementById('roomDisplay').style.display = 'none';
             document.getElementById('encounterDisplay').classList.add('active');
             document.getElementById('encounterDisplay').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Generate NPC
+        function generateNPC() {
+            const selectedSpecies = document.getElementById('npcSpecies').value;
+            
+            // Choose species
+            const speciesKeys = Object.keys(npcData.species);
+            const species = selectedSpecies === 'random' 
+                ? speciesKeys[Math.floor(Math.random() * speciesKeys.length)]
+                : selectedSpecies;
+            
+            const speciesData = npcData.species[species];
+            
+            // Generate name
+            const firstName = speciesData.firstNames[Math.floor(Math.random() * speciesData.firstNames.length)];
+            const surname = speciesData.surnames[Math.floor(Math.random() * speciesData.surnames.length)];
+            const fullName = `${firstName} ${surname}`;
+            
+            // Generate characteristics
+            const alignment = npcData.alignments[Math.floor(Math.random() * npcData.alignments.length)];
+            const personality = npcData.personalities[Math.floor(Math.random() * npcData.personalities.length)];
+            const profession = npcData.professions[Math.floor(Math.random() * npcData.professions.length)];
+            const secret = npcData.secrets[Math.floor(Math.random() * npcData.secrets.length)];
+            const appearance = npcData.appearances[Math.floor(Math.random() * npcData.appearances.length)];
+            
+            // Build display HTML
+            let html = `
+                <div class="encounter-section">
+                    <h2>👤 ${fullName}</h2>
+                    <p style="font-size: 1.2em; color: var(--text-secondary); margin-bottom: 20px;">
+                        ${species.charAt(0).toUpperCase() + species.slice(1)} ${profession.name}
+                    </p>
+                </div>
+
+                <div class="encounter-section">
+                    <h3>Basic Information</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                        <div>
+                            <strong style="color: var(--accent-blue);">Species:</strong>
+                            <p class="description" style="margin-top: 5px;">${species.charAt(0).toUpperCase() + species.slice(1)}</p>
+                            <div class="result-tags">
+                                ${speciesData.tags.map(tag => `<span class="result-tag">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                        <div>
+                            <strong style="color: var(--accent-blue);">Alignment:</strong>
+                            <p class="description" style="margin-top: 5px;">${alignment.name}</p>
+                            <div class="result-tags">
+                                ${alignment.tags.map(tag => `<span class="result-tag">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                        <div>
+                            <strong style="color: var(--accent-blue);">Profession:</strong>
+                            <p class="description" style="margin-top: 5px;">${profession.name}</p>
+                            <div class="result-tags">
+                                ${profession.tags.map(tag => `<span class="result-tag">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="encounter-section">
+                    <h3>Personality</h3>
+                    <p class="description">${personality.trait}</p>
+                    <div class="result-tags" style="margin-top: 10px;">
+                        ${personality.tags.map(tag => `<span class="result-tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div class="encounter-section">
+                    <h3>Appearance</h3>
+                    <p class="description">${appearance.description}</p>
+                    <div class="result-tags" style="margin-top: 10px;">
+                        ${appearance.tags.map(tag => `<span class="result-tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div class="encounter-section" style="background: rgba(255, 149, 0, 0.05); border-left: 3px solid #ff9500;">
+                    <h3 style="color: #ff9500;">🔒 Secret (DM Only)</h3>
+                    <p class="description">${secret.secret}</p>
+                    <div class="result-tags" style="margin-top: 10px;">
+                        ${secret.tags.map(tag => `<span class="result-tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div class="encounter-section">
+                    <h3>Roleplaying Notes</h3>
+                    <ul>
+                        <li>Consider how their ${personality.trait.toLowerCase()} personality affects their interactions</li>
+                        <li>Their profession as a ${profession.name.toLowerCase()} should influence their knowledge and contacts</li>
+                        <li>The secret "${secret.secret.toLowerCase()}" could be revealed through careful questioning or investigation</li>
+                        <li>Their ${appearance.description.toLowerCase()} makes them memorable to players</li>
+                    </ul>
+                </div>
+            `;
+            
+            document.getElementById('npcDisplay').innerHTML = html;
+            document.getElementById('npcDisplay').classList.add('active');
+            document.getElementById('npcDisplay').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     </script>
 </body>
