@@ -483,6 +483,138 @@
         "scroll promising absolution in exchange for treachery",
         "ethereal choir member bound to a silver cage"
       ]
+    },
+    "tavern": {
+      "tags": [
+        "tavern",
+        "inn",
+        "indoor",
+        "social"
+      ],
+      "description": "Firelight dances across worn tables while laughter and clinking mugs fill the air. The scent of roasted meat and spilled ale mingles with pipe smoke. Patrons huddle in shadowed corners trading whispers, while the barkeep polishes glasses with a knowing eye. Every creak of the floorboards tells a story.",
+      "primary": [
+        "scarred oak bar with countless tap handles",
+        "stone fireplace crackling with warmth",
+        "notice board covered in job postings",
+        "gaming tables with dice and cards scattered",
+        "musician's stage with weathered instruments",
+        "private booths with curtains for discretion"
+      ],
+      "secondary": [
+        "loose floorboard hiding smuggler's cache",
+        "cellar trapdoor secured with iron lock",
+        "wall-mounted trophy from adventurer's tale",
+        "secret mark indicating thieves' guild contact",
+        "ledger book with coded entries",
+        "hidden cubby behind the portrait"
+      ],
+      "tertiary": [
+        "map to forgotten treasure",
+        "poison vial slipped into a drink",
+        "letter of recommendation from noble",
+        "key to private room upstairs",
+        "bounty notice for local criminal",
+        "magic ring lost in a bet"
+      ]
+    },
+    "arena": {
+      "tags": [
+        "arena",
+        "combat",
+        "spectacle",
+        "outdoor"
+      ],
+      "description": "Sand soaks up blood and sweat beneath the roar of thousands. Tiered seats rise in a circle, packed with citizens hungry for glory or death. Sunlight beats down on the killing floor while shadows pool in the archways. The air tastes of iron and anticipation.",
+      "primary": [
+        "weapon rack holding dulled training gear",
+        "champion's gate carved with victory tallies",
+        "announcer's podium draped in colorful banners",
+        "sand pit marked with combat circles",
+        "noble's box with cushioned seating",
+        "gladiator holding cells beneath the stands"
+      ],
+      "secondary": [
+        "healer's station with bandages and salves",
+        "betting ledger tracking crowd favorites",
+        "trap door releasing exotic beasts",
+        "vendor stalls selling food and souvenirs",
+        "hidden escape tunnel for disgraced fighters",
+        "shrine to the god of honorable combat"
+      ],
+      "tertiary": [
+        "poisoned blade disguised as practice weapon",
+        "bribe note promising a thrown match",
+        "champion's amulet granting combat prowess",
+        "secret sigil marking underground fight club",
+        "contract for illegal death match",
+        "freedom papers for enslaved gladiator"
+      ]
+    },
+    "library": {
+      "tags": [
+        "library",
+        "indoor",
+        "scholarly",
+        "arcane"
+      ],
+      "description": "Towering shelves march into shadow while dust motes dance in shafts of colored light. Leather and parchment scent the air thick as incense. The scratch of quills and whispered debates echo between the stacks. Knowledge sleeps here, waiting to be awakened.",
+      "primary": [
+        "reading desk with enchanted lamp",
+        "card catalog system with arcane sorting",
+        "restricted section behind iron gate",
+        "scribe's workstation with fresh ink",
+        "rolling ladder for high shelves",
+        "curator's office filled with rare volumes"
+      ],
+      "secondary": [
+        "bookmark marking forbidden passage",
+        "translation notes in margin",
+        "library card belonging to suspicious patron",
+        "hidden compartment in desk drawer",
+        "coded message between book pages",
+        "preservation ward humming with magic"
+      ],
+      "tertiary": [
+        "spell scroll tucked in ancient tome",
+        "map revealing secret passage",
+        "blackmail letter using literature quotes",
+        "portal key disguised as bookend",
+        "cursed manuscript binding souls",
+        "decoder ring for encrypted texts"
+      ]
+    },
+    "apothecary": {
+      "tags": [
+        "shop",
+        "indoor",
+        "crafting",
+        "healing"
+      ],
+      "description": "Glass jars line shelves from floor to ceiling, filled with herbs, powders, and stranger things. Mortar and pestle rest beside bubbling alembics. The air is thick with competing scents—lavender, sulfur, mint, and decay. Behind the counter, careful eyes weigh both coin and intent.",
+      "primary": [
+        "ingredient shelves organized by effect",
+        "grinding station with brass tools",
+        "distillation apparatus with copper coils",
+        "poison cabinet triple-locked",
+        "healing potion display rack",
+        "examination table for diagnosis"
+      ],
+      "secondary": [
+        "recipe book with coded formulas",
+        "rare component preserved in amber",
+        "customer logbook noting purchases",
+        "ventilation system filtering toxic fumes",
+        "scales for precise measurements",
+        "apprentice's notes on experiments"
+      ],
+      "tertiary": [
+        "antidote to rare poison",
+        "illegal alchemical explosive",
+        "love potion commission",
+        "truth serum order",
+        "resurrection component",
+        "cursed tincture causing madness"
+      ]
     }
   },
   "crypt": {
@@ -1936,176 +2068,6 @@
         "planar seal fracture"
       ],
       "description": "Vast bones drift in lines, rib arches big enough to swallow ships. Cold light pools in hollows and clings to teeth. Salvage rigs hang back on taut lines while prayers murmur over open channels. The void feels solemn here."
-    }
-  },
-  "plane": {
-    "ethereal": {
-      "tags": [
-        "ethereal",
-        "plane",
-        "boundary"
-      ],
-      "primary": [
-        "wispy curtain",
-        "ghostly echo",
-        "shimmering portal",
-        "drifting memory",
-        "ethereal current",
-        "phase spider web"
-      ],
-      "secondary": [
-        "fading apparition",
-        "ectoplasmic residue",
-        "lost spirit",
-        "memory fragment",
-        "planar beacon",
-        "ethereal storm"
-      ],
-      "tertiary": [
-        "soul-bound item",
-        "ghostly treasure",
-        "map of the planes",
-        "spirit trap",
-        "planar key",
-        "dangerous memory"
-      ],
-      "description": "A curtain of mist separates the material world from a realm of ghosts and memories. Colors are muted, sounds are muffled, and the air is thin. Shapes drift in and out of sight, and the world you know is just a faint echo."
-    }
-  },
-  "coast": {
-    "beach": {
-      "tags": [
-        "beach",
-        "coast",
-        "outdoor"
-      ],
-      "primary": [
-        "sandy shore",
-        "crashing waves",
-        "tide pools",
-        "seagull nest",
-        "driftwood",
-        "sand dunes"
-      ],
-      "secondary": [
-        "seashells",
-        "seaweed",
-        "crabs",
-        "rocky outcrop",
-        "message in a bottle",
-        "shipwreck debris"
-      ],
-      "tertiary": [
-        "pirate treasure",
-        "smuggler's cache",
-        "siren's call",
-        "merfolk encounter",
-        "sea monster attack",
-        "hidden cove"
-      ],
-      "description": "The endless ocean meets a shore of fine sand, littered with the treasures and tragedies of the sea. The air is salty, the sun is warm, and the sound of the waves is a constant companion."
-    }
-  },
-  "jungle": {
-    "ruins": {
-      "tags": [
-        "ruins",
-        "jungle",
-        "outdoor"
-      ],
-      "primary": [
-        "vine-covered temple",
-        "crumbling statues",
-        "overgrown plaza",
-        "sacrificial altar",
-        "hidden chambers",
-        "ancient carvings"
-      ],
-      "secondary": [
-        "poisonous plants",
-        "exotic animals",
-        "hidden traps",
-        "ancient artifacts",
-        "lost treasure",
-        "forgotten gods"
-      ],
-      "tertiary": [
-        "cursed idols",
-        "guardian spirits",
-        "secret societies",
-        "plague outbreak",
-        "cannibal tribes",
-        "portal to another dimension"
-      ],
-      "description": "Deep in the heart of the jungle, a lost civilization's ruins are slowly being reclaimed by nature. The air is thick with the scent of decay and the buzz of insects. Every shadow could hide a secret, a treasure, or a threat."
-    }
-  },
-  "island": {
-    "volcano": {
-      "tags": [
-        "volcano",
-        "island",
-        "outdoor"
-      ],
-      "primary": [
-        "smoking caldera",
-        "lava flows",
-        "ash fields",
-        "pumice stones",
-        "magma vents",
-        "obsidian shards"
-      ],
-      "secondary": [
-        "fire elementals",
-        "magma mephits",
-        "salamanders",
-        "dragon's lair",
-        "rare minerals",
-        "geothermal vents"
-      ],
-      "tertiary": [
-        "elemental gems",
-        "volcanic glass weapons",
-        "portal to the plane of fire",
-        "cultist hideout",
-        "ancient prophecy",
-        "imminent eruption"
-      ],
-      "description": "A towering volcano dominates the island, its peak wreathed in smoke and its slopes scarred by rivers of fire. The air is hot and acrid, and the ground trembles with the power of the earth."
-    }
-  },
-  "badlands": {
-    "canyon": {
-      "tags": [
-        "canyon",
-        "badlands",
-        "outdoor"
-      ],
-      "primary": [
-        "towering mesas",
-        "deep canyons",
-        "natural bridges",
-        "wind-carved arches",
-        "dry riverbeds",
-        "hoodoos"
-      ],
-      "secondary": [
-        "rock slides",
-        "flash floods",
-        "dangerous wildlife",
-        "hidden caves",
-        "ancient petroglyphs",
-        "dinosaur bones"
-      ],
-      "tertiary": [
-        "outlaw hideout",
-        "lost gold mine",
-        "native burial ground",
-        "vision quest site",
-        "dust storm",
-        "monster nest"
-      ],
-      "description": "The sun beats down on a maze of canyons and mesas, where the only law is survival. The land is harsh and unforgiving, but it holds a stark beauty and the promise of adventure for those brave enough to seek it."
     }
   }
 }

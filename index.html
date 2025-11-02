@@ -612,6 +612,32 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        .location-card {
+            background: rgba(58, 58, 60, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 1px solid rgba(0, 122, 255, 0.2);
+        }
+
+        [data-theme="dark"] .location-card {
+            background: rgba(28, 28, 30, 0.5);
+            border: 1px solid rgba(10, 132, 255, 0.3);
+        }
+
+        .flow-step {
+            transition: all 0.3s ease;
+        }
+
+        .flow-step:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] .flow-step:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
         .result-title {
             font-size: 1.3em;
             color: var(--text-primary);
@@ -2154,8 +2180,12 @@
             const selectedEffects = getRandomElements(data.environmentalEffects, numEffects);
             const scalingNotes = getScalingNotes(partyLevel);
             
-            // Generate NPCs based on encounter tags
+            // Generate NPCs and Locations based on encounter tags
             const encounterNPCs = selectNPCsForEncounter(template.tags);
+            const encounterLocations = selectLocationsForEncounter(template.tags, selectedEnvironment);
+            
+            // Generate encounter flow
+            const encounterFlow = generateEncounterFlow(encounterLocations, encounterNPCs, title);
 
             // Build HTML
             let html = `
@@ -2186,6 +2216,122 @@
             });
 
             html += `</div>`;
+
+            // Encounter Flow
+            if (encounterFlow && encounterFlow.length > 0) {
+                html += `
+                    <div class="encounter-section">
+                        <h2>🔄 Encounter Flow & Narrative Path</h2>
+                        <p class="description">This suggested flow helps guide the party through the encounter. Locations are connected narratively, but the party can explore in different orders based on their choices.</p>
+                        <div style="position: relative; margin-top: 25px;">
+                `;
+
+                encounterFlow.forEach((step, index) => {
+                    const isLastStep = index === encounterFlow.length - 1;
+                    const isBranching = step.title === "Branching Paths & Optional Areas";
+                    
+                    if (isBranching) {
+                        // Special display for branching paths
+                        html += `
+                            <div class="flow-step" style="background: linear-gradient(135deg, rgba(155, 89, 182, 0.15), rgba(142, 68, 173, 0.1)); border-left: 4px solid #9b59b6; padding: 20px; margin: 20px 0; border-radius: 8px; position: relative;">
+                                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                    <div style="background: #9b59b6; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">
+                                        ${step.step}
+                                    </div>
+                                    <h3 style="margin: 0; color: #9b59b6;">🔀 ${step.title}</h3>
+                                </div>
+                                
+                                <p class="description" style="margin: 15px 0; font-style: italic;">${step.description}</p>
+                                
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 15px 0;">
+                                    ${step.branches.map(branch => `
+                                        <div style="background: rgba(155, 89, 182, 0.1); border: 1px dashed #9b59b6; border-radius: 6px; padding: 12px;">
+                                            <strong style="color: var(--accent-blue);">→ ${branch.location.name}</strong>
+                                            <p style="margin: 8px 0 0 0; font-size: 0.9em; color: var(--text-secondary);">${branch.reason}</p>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                
+                                <div style="background: rgba(155, 89, 182, 0.08); border-radius: 6px; padding: 12px; margin-top: 15px;">
+                                    <strong style="color: var(--accent-blue);">💡 DM Tips:</strong>
+                                    <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 0.95em;">
+                                        ${step.dmTips.map(tip => `<li>${tip}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        `;
+                    } else if (step.title === "Resolution") {
+                        // Special display for resolution
+                        html += `
+                            <div class="flow-step" style="background: linear-gradient(135deg, rgba(39, 174, 96, 0.15), rgba(46, 204, 113, 0.1)); border-left: 4px solid #27ae60; padding: 20px; margin: 20px 0; border-radius: 8px; position: relative;">
+                                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                    <div style="background: #27ae60; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">
+                                        ✓
+                                    </div>
+                                    <h3 style="margin: 0; color: #27ae60;">🎯 ${step.title}</h3>
+                                </div>
+                                
+                                <p class="description" style="margin: 15px 0; font-style: italic;">${step.description}</p>
+                                
+                                <div style="background: rgba(39, 174, 96, 0.08); border-radius: 6px; padding: 12px; margin-top: 15px;">
+                                    <strong style="color: var(--accent-blue);">💡 DM Tips:</strong>
+                                    <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 0.95em;">
+                                        ${step.dmTips.map(tip => `<li>${tip}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        // Normal flow step
+                        html += `
+                            <div class="flow-step" style="background: rgba(52, 152, 219, 0.1); border-left: 4px solid var(--accent-blue); padding: 20px; margin: 20px 0; border-radius: 8px; position: relative;">
+                                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                    <div style="background: var(--accent-blue); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">
+                                        ${step.step}
+                                    </div>
+                                    <h3 style="margin: 0; color: var(--accent-blue);">${step.title}</h3>
+                                </div>
+                                
+                                <div style="background: rgba(52, 152, 219, 0.15); border-radius: 6px; padding: 12px; margin-bottom: 15px;">
+                                    <strong style="color: var(--accent-blue);">📍 Location: ${step.location.name}</strong>
+                                </div>
+                                
+                                <p class="description" style="margin: 15px 0; font-style: italic;">${step.description}</p>
+                                
+                                ${step.connections ? `
+                                    <div style="margin: 15px 0;">
+                                        <strong style="color: var(--accent-blue);">🔗 How the party arrives here:</strong>
+                                        <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 0.95em;">
+                                            ${step.connections.map(conn => `<li>${conn}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                ` : ''}
+                                
+                                <div style="background: rgba(52, 152, 219, 0.08); border-radius: 6px; padding: 12px; margin-top: 15px;">
+                                    <strong style="color: var(--accent-blue);">💡 DM Tips:</strong>
+                                    <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 0.95em;">
+                                        ${step.dmTips.map(tip => `<li>${tip}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    
+                    // Add connector arrow between steps (except after last step)
+                    if (!isLastStep) {
+                        html += `
+                            <div style="text-align: center; margin: 10px 0; color: var(--accent-blue); font-size: 24px;">
+                                ↓
+                            </div>
+                        `;
+                    }
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            }
 
             // NPCs
             if (encounterNPCs.length > 0) {
@@ -2232,6 +2378,66 @@
                                     <li>They could provide information about ${template.tags[0] || 'the area'} if properly approached</li>
                                 </ul>
                             </div>
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+            }
+
+            // Locations
+            if (encounterLocations.length > 0) {
+                html += `
+                    <div class="encounter-section">
+                        <h2>🗺️ Key Locations</h2>
+                        <p class="description">These locations are part of this encounter area. Each offers opportunities for discovery, interaction, and adventure.</p>
+                `;
+
+                encounterLocations.forEach((location, index) => {
+                    html += `
+                        <div class="location-card" style="background: rgba(58, 58, 60, 0.2); border-radius: 8px; padding: 20px; margin: 15px 0; border: 1px solid rgba(0, 122, 255, 0.2);">
+                            <h3 style="margin-top: 0; color: var(--accent-blue);">${index + 1}. ${location.name}</h3>
+                            
+                            ${location.data.description ? `
+                                <div style="margin: 15px 0;">
+                                    <p class="description" style="font-style: italic; color: var(--text-secondary);">${location.data.description}</p>
+                                </div>
+                            ` : ''}
+                            
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                                ${location.data.primary ? `
+                                    <div>
+                                        <strong style="color: var(--accent-blue);">🔍 Primary Features:</strong>
+                                        <ul style="margin: 5px 0; padding-left: 20px; font-size: 0.95em;">
+                                            ${location.data.primary.slice(0, 3).map(item => `<li>${item}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                ` : ''}
+                                
+                                ${location.data.secondary ? `
+                                    <div>
+                                        <strong style="color: var(--accent-blue);">🔎 Details:</strong>
+                                        <ul style="margin: 5px 0; padding-left: 20px; font-size: 0.95em;">
+                                            ${location.data.secondary.slice(0, 3).map(item => `<li>${item}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                ` : ''}
+                                
+                                ${location.data.tertiary ? `
+                                    <div>
+                                        <strong style="color: var(--accent-blue);">💎 Hidden/Valuable:</strong>
+                                        <ul style="margin: 5px 0; padding-left: 20px; font-size: 0.95em;">
+                                            ${location.data.tertiary.slice(0, 3).map(item => `<li>${item}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                ` : ''}
+                            </div>
+                            
+                            ${location.data.tags && location.data.tags.length > 0 ? `
+                                <div class="result-tags" style="margin-top: 15px;">
+                                    ${location.data.tags.map(tag => `<span class="result-tag">${tag}</span>`).join('')}
+                                </div>
+                            ` : ''}
                         </div>
                     `;
                 });
@@ -2557,6 +2763,213 @@
             document.getElementById('roomDisplay').style.display = 'none';
             document.getElementById('encounterDisplay').classList.add('active');
             document.getElementById('encounterDisplay').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Generate Locations for Encounter
+        function selectLocationsForEncounter(encounterTags, environment, numLocations = null) {
+            // Determine number of locations (3-5 based on random distribution)
+            if (numLocations === null) {
+                // Weighted toward 3-4 locations
+                const roll = Math.random();
+                if (roll < 0.4) numLocations = 3;      // 40%
+                else if (roll < 0.75) numLocations = 4; // 35%
+                else numLocations = 5;                  // 25%
+            }
+            
+            const environmentLocations = locationObjects[environment];
+            if (!environmentLocations) {
+                console.warn('No locations found for environment:', environment);
+                return [];
+            }
+            
+            const locations = [];
+            const locationKeys = Object.keys(environmentLocations);
+            const usedLocations = new Set();
+            
+            for (let i = 0; i < numLocations && locationKeys.length > 0; i++) {
+                // Score each location based on tag matching
+                const locationScores = locationKeys
+                    .filter(key => !usedLocations.has(key))
+                    .map(key => {
+                        const location = environmentLocations[key];
+                        let score = 0;
+                        
+                        // Count matching tags
+                        for (const tag of encounterTags) {
+                            if (location.tags && location.tags.includes(tag)) {
+                                score += 2; // Higher weight for direct matches
+                            }
+                        }
+                        
+                        // Bonus for environmental tags matching
+                        if (location.tags) {
+                            for (const tag of location.tags) {
+                                if (encounterTags.includes(tag)) {
+                                    score += 1;
+                                }
+                            }
+                        }
+                        
+                        // Add small random variance for interesting variety
+                        score += Math.random() * 0.5;
+                        
+                        return { key, location, score };
+                    });
+                
+                // If no locations have matching tags, use random distribution
+                if (locationScores.every(l => l.score < 0.5)) {
+                    const availableKeys = locationKeys.filter(k => !usedLocations.has(k));
+                    if (availableKeys.length === 0) break;
+                    
+                    const randomKey = availableKeys[Math.floor(Math.random() * availableKeys.length)];
+                    usedLocations.add(randomKey);
+                    locations.push({
+                        key: randomKey,
+                        name: formatLocationName(randomKey),
+                        data: environmentLocations[randomKey]
+                    });
+                    continue;
+                }
+                
+                // Sort by score and use weighted random selection
+                locationScores.sort((a, b) => b.score - a.score);
+                
+                // Weighted selection: higher scores more likely, but not guaranteed
+                const totalScore = locationScores.reduce((sum, l) => sum + Math.max(0.1, l.score), 0);
+                let random = Math.random() * totalScore;
+                
+                let selectedLocation = null;
+                for (const scored of locationScores) {
+                    random -= Math.max(0.1, scored.score);
+                    if (random <= 0) {
+                        selectedLocation = scored;
+                        break;
+                    }
+                }
+                
+                // Fallback to highest scored
+                if (!selectedLocation) {
+                    selectedLocation = locationScores[0];
+                }
+                
+                usedLocations.add(selectedLocation.key);
+                locations.push({
+                    key: selectedLocation.key,
+                    name: formatLocationName(selectedLocation.key),
+                    data: selectedLocation.location
+                });
+            }
+            
+            return locations;
+        }
+
+        function formatLocationName(key) {
+            // Convert snake_case or single words to Title Case
+            return key
+                .split('_')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+        }
+
+        function generateEncounterFlow(locations, npcs, encounterTitle) {
+            if (locations.length === 0) return null;
+            
+            const flowSteps = [];
+            
+            // Step 1: Initial encounter setup
+            flowSteps.push({
+                step: 1,
+                title: "Initial Discovery",
+                location: locations[0],
+                description: `The party first encounters ${encounterTitle.toLowerCase()}. They arrive at ${locations[0].name}, where the situation begins to unfold.`,
+                dmTips: [
+                    "Set the atmosphere with sensory details from the location description",
+                    "Introduce environmental effects or hazards to establish tension",
+                    npcs.length > 0 ? `Consider having ${npcs[0].name} (${npcs[0].profession.name}) present here` : "Consider adding ambient sounds or NPC activity"
+                ]
+            });
+            
+            // Step 2: Investigation/Complication (if there's a second location)
+            if (locations.length > 1) {
+                flowSteps.push({
+                    step: 2,
+                    title: "Investigation & Complications",
+                    location: locations[1],
+                    description: `Clues, encounters, or circumstances lead the party to ${locations[1].name}. The situation deepens as they uncover more details.`,
+                    dmTips: [
+                        `Primary features from ${locations[0].name} can provide hints or connections to this location`,
+                        "Introduce skill challenges or traps as the party moves between locations",
+                        npcs.length > 1 ? `${npcs[1].name} might provide information, create obstacles, or offer assistance` : "Add tension through environmental effects"
+                    ],
+                    connections: [
+                        `Evidence at ${locations[0].name} points to activity here`,
+                        `NPCs or witnesses mention this location`,
+                        `A discovered map, key, or clue leads directly here`
+                    ]
+                });
+            }
+            
+            // Step 3: Escalation (if there's a third location)
+            if (locations.length > 2) {
+                flowSteps.push({
+                    step: 3,
+                    title: "Escalation Point",
+                    location: locations[2],
+                    description: `The encounter intensifies at ${locations[2].name}. Stakes are raised and the party must make crucial decisions.`,
+                    dmTips: [
+                        "This is where major conflict, revelations, or challenges should occur",
+                        "Combine multiple hazards or environmental effects for maximum drama",
+                        npcs.length > 2 ? `${npcs[2].name}'s secret or motivations might be revealed here` : "Consider adding a time-pressure element"
+                    ],
+                    connections: [
+                        `Chase, pursuit, or urgency drives the party from ${locations[1].name}`,
+                        `A discovered tertiary object reveals the true nature of the situation`,
+                        `Environmental hazards force movement to this location`
+                    ]
+                });
+            }
+            
+            // Step 4: Additional locations become optional branches or parallel events
+            if (locations.length > 3) {
+                const remainingLocations = locations.slice(3);
+                flowSteps.push({
+                    step: 4,
+                    title: "Branching Paths & Optional Areas",
+                    locations: remainingLocations,
+                    description: `The encounter can branch to these additional locations based on party choices, investigation results, or NPC interactions.`,
+                    dmTips: [
+                        "These locations can be explored in any order or skipped entirely",
+                        "Use them as rewards for good investigation or clever thinking",
+                        "They can provide alternative solutions, shortcuts, or additional complications"
+                    ],
+                    branches: remainingLocations.map((loc, i) => ({
+                        location: loc,
+                        reason: [
+                            "Party splits up to cover more ground",
+                            "Following a specific NPC or lead",
+                            "Seeking additional resources or information",
+                            "Avoiding danger in the main path"
+                        ][i % 4]
+                    }))
+                });
+            }
+            
+            // Final step: Resolution
+            const finalLocation = locations.length > 2 ? locations[2] : locations[locations.length - 1];
+            flowSteps.push({
+                step: flowSteps.length + 1,
+                title: "Resolution",
+                location: finalLocation,
+                description: `The encounter concludes, typically at ${finalLocation.name} or wherever the party's investigation leads them.`,
+                dmTips: [
+                    "Tie up loose threads and reveal the outcome of the party's choices",
+                    "Tertiary discoveries here can provide significant rewards or plot hooks",
+                    "NPCs react to how the party handled the situation",
+                    "Set up future adventures or consequences based on the resolution"
+                ]
+            });
+            
+            return flowSteps;
         }
 
         // Generate NPC
