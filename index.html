@@ -1578,6 +1578,11 @@
                     <input type="number" id="partyLevel" min="1" max="20" value="5">
                 </div>
 
+                <div class="control-group">
+                    <label for="numLocations">Number of Locations (1-5):</label>
+                    <input type="number" id="numLocations" min="1" max="5" value="3">
+                </div>
+
                 <button onclick="generateEncounter()">🎲 Generate Encounter</button>
             </div>
 
@@ -2958,43 +2963,116 @@
                         <h2 onclick="toggleSection(event)">🎭 Encounter Flow <span class="section-toggle">▼</span></h2>
                         <div class="section-content">
                             <p class="description">This encounter unfolds across ${encounterFlow.length} key locations, each with unique challenges and discoveries.</p>
+                            <button class="save-btn result-btn" onclick="addNewLocation()" style="margin-bottom: 15px;">➕ Add Another Location</button>
                             <div id="flowStepsContainer">
                 `;
 
                 encounterFlow.forEach((step, index) => {
-                    html += `
-                        <div class="flow-step" style="position: relative; padding-right: 40px;">
-                            <button onclick="regenerateFlowLocation(${step.step})" 
-                                    style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: var(--accent-blue); padding: 4px; cursor: pointer; font-size: 1.2em; line-height: 1; width: auto; min-width: 0;"
-                                    title="Regenerate this location">
-                                🔄
-                            </button>
-                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                                <div class="flow-number">${step.step}</div>
-                                <div>
-                                    <h3 style="margin: 0; padding-right: 40px;">${step.title}</h3>
-                                    ${step.location ? `<p style="margin: 5px 0 0 0; color: var(--text-secondary); font-size: 0.9em;">📍 <span class="location-link" onclick="showLocationDetail('${step.location.key}')">${step.location.name}</span></p>` : ''}
+                    const isResolution = step.title === "Resolution";
+                    const isBranching = step.title === "Branching Paths & Optional Areas";
+                    const isNormalStep = !isResolution && !isBranching;
+                    const isLastStep = index === encounterFlow.length - 1;
+                    
+                    if (isBranching) {
+                        // Branching paths styling
+                        html += `
+                            <div id="flow-step-${step.step}" class="flow-step" style="background: linear-gradient(135deg, rgba(155, 89, 182, 0.15), rgba(142, 68, 173, 0.1)); border-left: 4px solid #9b59b6; padding: 20px; margin: 20px 0; border-radius: 8px; position: relative;">
+                                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                    <div style="background: #9b59b6; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">
+                                        ${step.step}
+                                    </div>
+                                    <h3 style="margin: 0; color: #9b59b6;">🔀 ${step.title}</h3>
+                                </div>
+                                <p class="description" style="margin: 15px 0; font-style: italic;">${step.description}</p>
+                            </div>
+                        `;
+                    } else if (isResolution) {
+                        // Resolution styling
+                        html += `
+                            <div id="flow-step-${step.step}" class="flow-step" style="background: linear-gradient(135deg, rgba(39, 174, 96, 0.15), rgba(46, 204, 113, 0.1)); border-left: 4px solid #27ae60; padding: 20px; margin: 20px 0; border-radius: 8px; position: relative;">
+                                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                    <div style="background: #27ae60; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">
+                                        ✓
+                                    </div>
+                                    <h3 style="margin: 0; color: #27ae60;">🎯 ${step.title}</h3>
+                                </div>
+                                <p class="description" style="margin: 15px 0; font-style: italic;">${step.description}</p>
+                                ${step.dmTips && step.dmTips.length > 0 ? `
+                                    <div style="background: rgba(39, 174, 96, 0.08); border-radius: 6px; padding: 12px; margin-top: 15px;">
+                                        <strong style="color: var(--accent-blue);">💡 DM Tips:</strong>
+                                        <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 0.95em;">
+                                            ${step.dmTips.map(tip => `<li>${tip}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        `;
+                    } else {
+                        // Normal step styling
+                        html += `
+                            <div id="flow-step-${step.step}" class="flow-step" style="background: rgba(52, 152, 219, 0.1); border-left: 4px solid var(--accent-blue); padding: 20px; margin: 20px 0; border-radius: 8px; position: relative;">
+                                <div style="position: absolute; top: 20px; right: 20px; display: flex; gap: 8px;">
+                                    ${index > 0 && !encounterFlow[index - 1].title.includes("Resolution") ? `<button onclick="moveLocationUp(${step.step})" 
+                                            style="background: transparent; border: none; color: var(--accent-blue); padding: 4px; cursor: pointer; font-size: 1.2em; line-height: 1; width: auto; min-width: 0;"
+                                            title="Move location up">
+                                        ⬆️
+                                    </button>` : ''}
+                                    ${index < encounterFlow.length - 1 && !encounterFlow[index + 1].title.includes("Resolution") ? `<button onclick="moveLocationDown(${step.step})" 
+                                            style="background: transparent; border: none; color: var(--accent-blue); padding: 4px; cursor: pointer; font-size: 1.2em; line-height: 1; width: auto; min-width: 0;"
+                                            title="Move location down">
+                                        ⬇️
+                                    </button>` : ''}
+                                    <button onclick="regenerateFlowLocation(${step.step})" 
+                                            style="background: transparent; border: none; color: var(--accent-blue); padding: 4px; cursor: pointer; font-size: 1.2em; line-height: 1; width: auto; min-width: 0;"
+                                            title="Regenerate this location">
+                                        🔄
+                                    </button>
+                                    ${encounterFlow.filter(s => s.title !== "Resolution" && s.title !== "Branching Paths & Optional Areas").length > 1 ? `<button onclick="removeLocation(${step.step})" 
+                                            style="background: transparent; border: none; color: #e74c3c; padding: 4px; cursor: pointer; font-size: 1.2em; line-height: 1; width: auto; min-width: 0;"
+                                            title="Remove this location">
+                                        🗑️
+                                    </button>` : ''}
+                                </div>
+                                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                    <div style="background: var(--accent-blue); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">
+                                        ${step.step}
+                                    </div>
+                                    <h3 style="margin: 0; color: var(--accent-blue); flex-grow: 1; padding-right: 120px;">${step.title}</h3>
+                                </div>
+                                
+                                <div style="background: rgba(52, 152, 219, 0.15); border-radius: 6px; padding: 12px; margin-bottom: 15px;">
+                                    <strong style="color: var(--accent-blue);">📍 Location: <span class="location-link" onclick="showLocationDetail('${step.location.key}')">${step.location.name}</span></strong>
+                                </div>
+                                
+                                <p class="description" style="margin: 15px 0; font-style: italic;">${step.description}</p>
+                                
+                                ${step.connections && step.connections.length > 0 ? `
+                                    <div style="margin: 15px 0;">
+                                        <strong style="color: var(--accent-blue);">🔗 How the party arrives here:</strong>
+                                        <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 0.95em;">
+                                            ${step.connections.map(conn => `<li>${conn}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                ` : ''}
+                                
+                                <div style="background: rgba(52, 152, 219, 0.08); border-radius: 6px; padding: 12px; margin-top: 15px;">
+                                    <strong style="color: var(--accent-blue);">💡 DM Tips:</strong>
+                                    <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 0.95em;">
+                                        ${step.dmTips && step.dmTips.length > 0 ? step.dmTips.map(tip => `<li>${tip}</li>`).join('') : '<li>No specific tips for this step</li>'}
+                                    </ul>
                                 </div>
                             </div>
-                            <p class="description">${step.description}</p>
-                            ${step.connections && step.connections.length > 0 ? `
-                                <div style="margin-top: 10px; padding: 10px; background: rgba(0, 122, 255, 0.05); border-left: 3px solid var(--accent-blue); border-radius: 4px;">
-                                    <strong style="color: var(--accent-blue);">🔗 Connections:</strong>
-                                    <ul style="margin: 5px 0; padding-left: 20px;">
-                                        ${step.connections.map(conn => `<li>${conn}</li>`).join('')}
-                                    </ul>
-                                </div>
-                            ` : ''}
-                            ${step.dmTips && step.dmTips.length > 0 ? `
-                                <div style="margin-top: 10px; padding: 10px; background: rgba(255, 149, 0, 0.05); border-left: 3px solid #ff9500; border-radius: 4px;">
-                                    <strong style="color: #ff9500;">💡 DM Tips:</strong>
-                                    <ul style="margin: 5px 0; padding-left: 20px;">
-                                        ${step.dmTips.map(tip => `<li>${tip}</li>`).join('')}
-                                    </ul>
-                                </div>
-                            ` : ''}
-                        </div>
-                    `;
+                        `;
+                    }
+                    
+                    // Add connector arrow between steps (except after last step)
+                    if (!isLastStep) {
+                        html += `
+                            <div style="text-align: center; margin: 10px 0; color: var(--accent-blue); font-size: 24px;">
+                                ↓
+                            </div>
+                        `;
+                    }
                 });
 
                 html += `
@@ -3353,9 +3431,15 @@
 
         function generateEncounter(specificEncounterTitle = null) {
             const partyLevel = parseInt(document.getElementById('partyLevel').value);
+            const numLocations = parseInt(document.getElementById('numLocations')?.value || 3);
             
             if (isNaN(partyLevel) || partyLevel < 1 || partyLevel > 20) {
                 alert('Please enter a valid party level between 1 and 20.');
+                return;
+            }
+
+            if (isNaN(numLocations) || numLocations < 1 || numLocations > 5) {
+                alert('Please enter a valid number of locations between 1 and 5.');
                 return;
             }
 
@@ -3374,8 +3458,8 @@
             console.log('Final description:', description.substring(0, 100) + '...');
 
             // Generate NPCs and Locations based on encounter tags FIRST
-            const encounterNPCs = selectNPCsForEncounter(template.tags);
-            const encounterLocations = selectLocationsForEncounter(template.tags, selectedEnvironment);
+            const encounterNPCs = selectNPCsForEncounter(template.tags, numLocations);
+            const encounterLocations = selectLocationsForEncounter(template.tags, selectedEnvironment, numLocations);
             
             // Collect all tags for smart content selection
             const encounterTags = template.tags || [];
@@ -3441,6 +3525,7 @@
                         <h2 onclick="toggleSection(event)">🔄 Encounter Flow & Narrative Path <span class="section-toggle">▼</span></h2>
                         <div class="section-content">
                             <p class="description">This suggested flow helps guide the party through the encounter. <strong>Click any location name</strong> to view its details in the side panel.</p>
+                            <button class="save-btn result-btn" onclick="addNewLocation()" style="margin-bottom: 15px;">➕ Add Another Location</button>
                             <div style="position: relative; margin-top: 25px;">
                 `;
 
@@ -3503,16 +3588,33 @@
                         // Normal flow step
                         html += `
                             <div id="flow-step-${step.step}" class="flow-step" style="background: rgba(52, 152, 219, 0.1); border-left: 4px solid var(--accent-blue); padding: 20px; margin: 20px 0; border-radius: 8px; position: relative;">
-                                <button onclick="regenerateFlowLocation(${step.step})" 
-                                        style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: var(--accent-blue); padding: 4px; cursor: pointer; font-size: 1.2em; line-height: 1; width: auto; min-width: 0;"
-                                        title="Regenerate this location">
-                                    🔄
-                                </button>
+                                <div style="position: absolute; top: 20px; right: 20px; display: flex; gap: 8px;">
+                                    ${step.step > 1 && step.title !== "Resolution" ? `<button onclick="moveLocationUp(${step.step})" 
+                                            style="background: transparent; border: none; color: var(--accent-blue); padding: 4px; cursor: pointer; font-size: 1.2em; line-height: 1; width: auto; min-width: 0;"
+                                            title="Move location up">
+                                        ⬆️
+                                    </button>` : ''}
+                                    ${step.step < encounterFlow.length - 1 && step.title !== "Resolution" ? `<button onclick="moveLocationDown(${step.step})" 
+                                            style="background: transparent; border: none; color: var(--accent-blue); padding: 4px; cursor: pointer; font-size: 1.2em; line-height: 1; width: auto; min-width: 0;"
+                                            title="Move location down">
+                                        ⬇️
+                                    </button>` : ''}
+                                    <button onclick="regenerateFlowLocation(${step.step})" 
+                                            style="background: transparent; border: none; color: var(--accent-blue); padding: 4px; cursor: pointer; font-size: 1.2em; line-height: 1; width: auto; min-width: 0;"
+                                            title="Regenerate this location">
+                                        🔄
+                                    </button>
+                                    ${encounterFlow.filter(s => s.title !== "Resolution" && s.title !== "Branching Paths & Optional Areas").length > 1 ? `<button onclick="removeLocation(${step.step})" 
+                                            style="background: transparent; border: none; color: #e74c3c; padding: 4px; cursor: pointer; font-size: 1.2em; line-height: 1; width: auto; min-width: 0;"
+                                            title="Remove this location">
+                                        🗑️
+                                    </button>` : ''}
+                                </div>
                                 <div style="display: flex; align-items: center; margin-bottom: 15px;">
                                     <div style="background: var(--accent-blue); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">
                                         ${step.step}
                                     </div>
-                                    <h3 style="margin: 0; color: var(--accent-blue); flex-grow: 1; padding-right: 40px;">${step.title}</h3>
+                                    <h3 style="margin: 0; color: var(--accent-blue); flex-grow: 1; padding-right: 120px;">${step.title}</h3>
                                 </div>
                                 
                                 <div style="background: rgba(52, 152, 219, 0.15); border-radius: 6px; padding: 12px; margin-bottom: 15px;">
@@ -4080,6 +4182,348 @@
                         step.description = `The encounter concludes, typically at ${finalLocation.name} or wherever the party's investigation leads them.`;
                         step.location = finalLocation;
                         renderFlowStep(step);
+                    }
+                }
+            });
+        }
+
+        // Add a new location to the encounter
+        function addNewLocation() {
+            try {
+                console.log('🔄 Adding new location...');
+                
+                if (!window.encounterLocationsData || !window.encounterTemplate) {
+                    alert('No encounter loaded');
+                    return;
+                }
+
+                if (!locationObjects) {
+                    alert('Location data not loaded yet');
+                    return;
+                }
+
+                const encounterTags = window.encounterTemplate.tags || [];
+                const selectedEnvironment = window.encounterEnvironment;
+                
+                console.log('Environment:', selectedEnvironment);
+                console.log('Encounter tags:', encounterTags);
+                
+                // Get used location keys to avoid duplicates
+                const usedKeys = window.encounterLocationsData.map(loc => loc.key);
+                
+                // Select a new location
+                const environmentLocations = locationObjects[selectedEnvironment];
+                if (!environmentLocations) {
+                    alert('No locations found for this environment!');
+                    return;
+                }
+                
+                const allLocationKeys = Object.keys(environmentLocations);
+                const availableKeys = allLocationKeys.filter(key => !usedKeys.includes(key));
+                
+                console.log('📍 Total locations in environment:', allLocationKeys.length);
+                console.log('📍 Available locations:', availableKeys.length);
+                console.log('📍 Used keys:', usedKeys);
+                
+                if (availableKeys.length === 0) {
+                    alert('No more unique locations available for this environment!');
+                    return;
+                }
+
+                // Score and select best matching location
+                let scoredLocations = availableKeys.map(key => {
+                    const location = environmentLocations[key];
+                    let score = 0;
+                    const locationTags = location.tags || [];
+                    
+                    for (const tag of encounterTags) {
+                        if (locationTags.includes(tag)) score += 2;
+                    }
+                    
+                    return { key, location, score };
+                });
+
+                scoredLocations.sort((a, b) => b.score - a.score);
+                const selectedLocation = scoredLocations[0];
+                
+                const newLocation = {
+                    key: selectedLocation.key,
+                    name: selectedLocation.key.charAt(0).toUpperCase() + selectedLocation.key.slice(1).replace(/_/g, ' '),
+                    data: selectedLocation.location
+                };
+
+                console.log('✅ Selected new location:', newLocation.name);
+
+                // Add to locations array
+                window.encounterLocationsData.push(newLocation);
+                
+                console.log('Generating NPC...');
+                
+                // Generate a new NPC for this location
+                const combinedTags = [...encounterTags, ...(newLocation.data.tags || [])];
+                const newNPCs = selectNPCsForEncounter(combinedTags, 1);
+                
+                if (newNPCs.length > 0) {
+                    window.encounterNPCsData.push(newNPCs[0]);
+                    console.log('✅ Generated new NPC:', newNPCs[0].name);
+                }
+                
+                console.log('Updating skill checks, traps, hazards...');
+                
+                // Update skill checks, traps, and hazards with the new location
+                const allLocationTags = window.encounterLocationsData.flatMap(loc => loc.data.tags || []);
+                const allNPCTags = window.encounterNPCsData.flatMap(npc => [
+                    ...(npc.profession?.tags || []),
+                    ...(npc.personality?.tags || []),
+                    ...(npc.secret?.tags || [])
+                ]);
+                
+                // Refresh skill checks with new tags
+                window.encounterSkillChecks = selectSkillChecks(encounterTags, allLocationTags, allNPCTags);
+                window.encounterTraps = selectTraps(allLocationTags);
+                window.encounterHazards = selectHazards(selectedEnvironment, allLocationTags);
+
+                console.log('Creating new flow step...');
+
+                // Calculate the new step number (insert before Resolution)
+                const currentSteps = window.encounterFlowData.filter(s => s.title !== "Resolution" && s.title !== "Branching Paths & Optional Areas");
+                const newStepNumber = currentSteps.length + 1;
+                
+                // Create the new flow step
+                const newFlowStep = {
+                    step: newStepNumber,
+                    title: `Location ${newStepNumber}`,
+                    location: newLocation,
+                    description: `The investigation leads to ${newLocation.name}, where new clues and challenges await.`,
+                    connections: currentSteps.length > 0 ? [`Following leads from ${currentSteps[currentSteps.length - 1].location.name}`] : ['The investigation begins here'],
+                    dmTips: [
+                        `This location was added to extend the encounter`,
+                        `Consider how the party discovered this location based on previous events`
+                    ]
+                };
+
+                console.log('Inserting into flow...');
+
+                // Insert the new step before Resolution
+                const resolutionIndex = window.encounterFlowData.findIndex(s => s.title === "Resolution");
+                if (resolutionIndex !== -1) {
+                    // Insert new step before Resolution
+                    window.encounterFlowData.splice(resolutionIndex, 0, newFlowStep);
+                    
+                    // Renumber all steps
+                    let stepCounter = 1;
+                    window.encounterFlowData.forEach(step => {
+                        if (step.title !== "Branching Paths & Optional Areas") {
+                            step.step = stepCounter++;
+                        }
+                    });
+                    
+                    // Update Resolution's location to the new location
+                    const resolutionStep = window.encounterFlowData.find(s => s.title === "Resolution");
+                    if (resolutionStep) {
+                        resolutionStep.location = newLocation;
+                        resolutionStep.description = `The encounter concludes at ${newLocation.name} or wherever the party's investigation leads them.`;
+                    }
+                } else {
+                    // No resolution, just add to end
+                    window.encounterFlowData.push(newFlowStep);
+                }
+
+                console.log('📊 Flow after adding:', window.encounterFlowData.map(s => `${s.step}: ${s.title}`));
+
+                console.log('Updating flow navigator...');
+                
+                // Update the flow navigator
+                populateFlowNavigator(window.encounterFlowData);
+
+                console.log('Rebuilding display...');
+                
+                // Re-render the entire encounter
+                rebuildEncounterDisplay();
+                
+                console.log('✅ New location added successfully');
+            } catch (error) {
+                console.error('❌ Error adding location:', error);
+                alert('Error adding location: ' + error.message);
+            }
+        }
+
+        // Remove a location from the encounter
+        function removeLocation(stepNumber) {
+            const normalSteps = window.encounterFlowData.filter(s => s.title !== "Resolution" && s.title !== "Branching Paths & Optional Areas");
+            
+            if (normalSteps.length <= 1) {
+                alert('Cannot remove the last location! An encounter must have at least one location.');
+                return;
+            }
+            
+            if (!confirm('Are you sure you want to remove this location?')) {
+                return;
+            }
+            
+            console.log('🗑️ Removing location at step:', stepNumber);
+            
+            // Find the index in the flow data
+            const flowIndex = window.encounterFlowData.findIndex(s => s.step === stepNumber && s.title !== "Resolution" && s.title !== "Branching Paths & Optional Areas");
+            
+            if (flowIndex < 0) {
+                alert('Location not found!');
+                return;
+            }
+            
+            // Remove from flow data
+            window.encounterFlowData.splice(flowIndex, 1);
+            
+            // Remove corresponding location and NPC
+            const locationIndex = stepNumber - 1;
+            if (locationIndex >= 0 && locationIndex < window.encounterLocationsData.length) {
+                window.encounterLocationsData.splice(locationIndex, 1);
+            }
+            
+            if (locationIndex >= 0 && locationIndex < window.encounterNPCsData.length) {
+                window.encounterNPCsData.splice(locationIndex, 1);
+            }
+            
+            // Renumber all steps
+            let stepCounter = 1;
+            window.encounterFlowData.forEach(step => {
+                if (step.title !== "Branching Paths & Optional Areas") {
+                    step.step = stepCounter++;
+                }
+            });
+            
+            // Update Resolution to point to the new last location
+            const resolutionStep = window.encounterFlowData.find(s => s.title === "Resolution");
+            if (resolutionStep && window.encounterLocationsData.length > 0) {
+                const lastLocation = window.encounterLocationsData[window.encounterLocationsData.length - 1];
+                resolutionStep.location = lastLocation;
+                resolutionStep.description = `The encounter concludes at ${lastLocation.name} or wherever the party's investigation leads them.`;
+            }
+            
+            // Update all flow references
+            updateFlowReferences();
+            
+            // Update the flow navigator
+            populateFlowNavigator(window.encounterFlowData);
+            
+            // Re-render the entire encounter
+            rebuildEncounterDisplay();
+            
+            console.log('✅ Location removed successfully');
+        }
+
+        // Move a location up in the flow
+        function moveLocationUp(stepNumber) {
+            if (stepNumber <= 1) return; // Can't move first step up
+            
+            const flowData = window.encounterFlowData;
+            const currentIndex = flowData.findIndex(s => s.step === stepNumber && s.title !== "Resolution" && s.title !== "Branching Paths & Optional Areas");
+            
+            if (currentIndex <= 0) return;
+            
+            // Find previous non-special step
+            let prevIndex = currentIndex - 1;
+            while (prevIndex >= 0 && (flowData[prevIndex].title === "Resolution" || flowData[prevIndex].title === "Branching Paths & Optional Areas")) {
+                prevIndex--;
+            }
+            
+            if (prevIndex < 0) return;
+            
+            // Swap locations and NPCs
+            const currentLocation = window.encounterLocationsData[currentIndex];
+            const prevLocation = window.encounterLocationsData[prevIndex];
+            window.encounterLocationsData[prevIndex] = currentLocation;
+            window.encounterLocationsData[currentIndex] = prevLocation;
+            
+            // Also swap NPCs
+            const currentNPC = window.encounterNPCsData[currentIndex];
+            const prevNPC = window.encounterNPCsData[prevIndex];
+            window.encounterNPCsData[prevIndex] = currentNPC;
+            window.encounterNPCsData[currentIndex] = prevNPC;
+            
+            // Update flow data
+            flowData[currentIndex].location = prevLocation;
+            flowData[prevIndex].location = currentLocation;
+            
+            // Update connections and descriptions
+            updateFlowReferences();
+            
+            // Re-render
+            populateFlowNavigator(flowData);
+            rebuildEncounterDisplay();
+            
+            console.log('✅ Moved location up');
+        }
+
+        // Move a location down in the flow
+        function moveLocationDown(stepNumber) {
+            const flowData = window.encounterFlowData;
+            const currentIndex = flowData.findIndex(s => s.step === stepNumber && s.title !== "Resolution" && s.title !== "Branching Paths & Optional Areas");
+            
+            if (currentIndex < 0) return;
+            
+            // Find next non-special step
+            let nextIndex = currentIndex + 1;
+            while (nextIndex < flowData.length && (flowData[nextIndex].title === "Resolution" || flowData[nextIndex].title === "Branching Paths & Optional Areas")) {
+                nextIndex++;
+            }
+            
+            if (nextIndex >= flowData.length) return;
+            
+            // Swap locations and NPCs
+            const currentLocation = window.encounterLocationsData[currentIndex];
+            const nextLocation = window.encounterLocationsData[nextIndex];
+            window.encounterLocationsData[nextIndex] = currentLocation;
+            window.encounterLocationsData[currentIndex] = nextLocation;
+            
+            // Also swap NPCs
+            const currentNPC = window.encounterNPCsData[currentIndex];
+            const nextNPC = window.encounterNPCsData[nextIndex];
+            window.encounterNPCsData[nextIndex] = currentNPC;
+            window.encounterNPCsData[currentIndex] = nextNPC;
+            
+            // Update flow data
+            flowData[currentIndex].location = nextLocation;
+            flowData[nextIndex].location = currentLocation;
+            
+            // Update connections and descriptions
+            updateFlowReferences();
+            
+            // Re-render
+            populateFlowNavigator(flowData);
+            rebuildEncounterDisplay();
+            
+            console.log('✅ Moved location down');
+        }
+
+        // Update all flow step references after reordering
+        function updateFlowReferences() {
+            const flowData = window.encounterFlowData;
+            
+            flowData.forEach((step, index) => {
+                if (step.title === "Resolution") {
+                    // Update resolution to reference the last location
+                    const lastLocation = window.encounterLocationsData[window.encounterLocationsData.length - 1];
+                    if (lastLocation) {
+                        step.location = lastLocation;
+                        step.description = `The encounter concludes at ${lastLocation.name} or wherever the party's investigation leads them.`;
+                    }
+                } else if (step.title !== "Branching Paths & Optional Areas") {
+                    // Update connections to reference previous location
+                    if (index > 0) {
+                        const prevStep = flowData[index - 1];
+                        if (prevStep && prevStep.location && prevStep.title !== "Resolution" && prevStep.title !== "Branching Paths & Optional Areas") {
+                            if (index === 1) {
+                                step.description = `Clues, encounters, or circumstances lead the party to ${step.location.name}. The situation deepens as they uncover more details.`;
+                                step.connections = [`Evidence at ${prevStep.location.name} points to activity here`];
+                            } else if (index === 2) {
+                                step.description = `The encounter intensifies at ${step.location.name}. Stakes are raised and the party must make crucial decisions.`;
+                                step.connections = [`Chase, pursuit, or urgency drives the party from ${prevStep.location.name}`];
+                            } else {
+                                step.description = `The investigation leads to ${step.location.name}, where new clues and challenges await.`;
+                                step.connections = [`Following leads from ${prevStep.location.name}`];
+                            }
+                        }
                     }
                 }
             });
