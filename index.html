@@ -638,6 +638,262 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
 
+        .location-link {
+            color: var(--accent-blue);
+            text-decoration: underline;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .location-link:hover {
+            color: #5ac8fa;
+            text-decoration: none;
+        }
+
+        /* Sticky Location Detail Panel */
+        .location-detail-panel {
+            position: fixed;
+            top: 80px;
+            right: -450px;
+            width: 420px;
+            max-height: calc(100vh - 100px);
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent-blue);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+
+        .location-detail-panel.active {
+            right: 20px;
+        }
+
+        .location-detail-panel .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 59, 48, 0.2);
+            border: 1px solid #ff3b30;
+            color: #ff3b30;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .location-detail-panel .close-btn:hover {
+            background: rgba(255, 59, 48, 0.4);
+            transform: rotate(90deg);
+        }
+
+        .location-detail-panel h3 {
+            color: var(--accent-blue);
+            margin-bottom: 15px;
+            padding-right: 30px;
+        }
+
+        [data-theme="dark"] .location-detail-panel {
+            background: rgba(28, 28, 30, 0.98);
+            border-color: rgba(10, 132, 255, 0.5);
+        }
+
+        .location-section-header {
+            cursor: pointer;
+            user-select: none;
+            padding: 10px;
+            margin: -10px;
+            border-radius: 6px;
+            transition: background 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .location-section-header:hover {
+            background: rgba(0, 122, 255, 0.1);
+        }
+
+        .location-section-header .expand-icon {
+            font-size: 0.8em;
+            transition: transform 0.3s ease;
+            color: var(--accent-blue);
+        }
+
+        .location-section-header.expanded .expand-icon {
+            transform: rotate(90deg);
+        }
+
+        .location-section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .location-section-content.expanded {
+            max-height: 1000px;
+        }
+
+        .location-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: rgba(0, 122, 255, 0.05);
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+
+        .breadcrumb-item {
+            color: var(--accent-blue);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .breadcrumb-item:hover {
+            background: rgba(0, 122, 255, 0.2);
+        }
+
+        .breadcrumb-item.active {
+            color: var(--text-primary);
+            font-weight: bold;
+            cursor: default;
+        }
+
+        .breadcrumb-separator {
+            color: var(--text-secondary);
+        }
+
+        .feature-item {
+            cursor: pointer;
+            padding: 8px 12px;
+            margin: 6px 0;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .feature-item:hover {
+            background: rgba(0, 122, 255, 0.1);
+            border-left-color: var(--accent-blue);
+            transform: translateX(5px);
+        }
+
+        .feature-item.primary-feature {
+            background: rgba(52, 152, 219, 0.05);
+        }
+
+        .feature-item.secondary-feature {
+            background: rgba(52, 152, 219, 0.08);
+        }
+
+        .feature-item.tertiary-feature {
+            background: rgba(243, 156, 18, 0.08);
+            color: #f39c12;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background: rgba(0, 122, 255, 0.1);
+            border: 1px solid var(--accent-blue);
+            border-radius: 6px;
+            color: var(--accent-blue);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+
+        .back-button:hover {
+            background: rgba(0, 122, 255, 0.2);
+            transform: translateX(-3px);
+        }
+
+        /* NPC link styling */
+        .npc-link {
+            color: #9b59b6;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            text-underline-offset: 2px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .npc-link:hover {
+            color: #8e44ad;
+            text-decoration-style: solid;
+        }
+
+        /* NPC hover tooltip */
+        .npc-tooltip {
+            position: absolute;
+            background: var(--card-bg);
+            border: 2px solid #9b59b6;
+            border-radius: 8px;
+            padding: 15px;
+            min-width: 280px;
+            max-width: 350px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            z-index: 10000;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .npc-tooltip.active {
+            opacity: 1;
+        }
+
+        .npc-tooltip-header {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #9b59b6;
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(155, 89, 182, 0.3);
+            padding-bottom: 5px;
+        }
+
+        .npc-tooltip-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        .npc-tooltip-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .npc-tooltip-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .npc-tooltip-hint {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(155, 89, 182, 0.2);
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            font-style: italic;
+            text-align: center;
+        }
+
         .result-title {
             font-size: 1.3em;
             color: var(--text-primary);
@@ -1031,6 +1287,19 @@
                 padding: 30px 20px;
                 max-width: 95%;
             }
+
+            .location-detail-panel {
+                top: 0;
+                right: -100%;
+                width: 100%;
+                max-width: 100%;
+                max-height: 100vh;
+                border-radius: 0;
+            }
+
+            .location-detail-panel.active {
+                right: 0;
+            }
         }
     </style>
 </head>
@@ -1088,6 +1357,21 @@
                 <div id="roomContent"></div>
             </div>
         </div>
+
+        <!-- Location Detail Panel (Sticky) -->
+        <div class="location-detail-panel" id="locationDetailPanel">
+            <div class="close-btn" onclick="hideLocationDetail()">×</div>
+            <div id="locationDetailContent"></div>
+        </div>
+
+        <!-- NPC Detail Panel (Sticky) -->
+        <div class="location-detail-panel" id="npcDetailPanel">
+            <div class="close-btn" onclick="hideNPCDetail()">×</div>
+            <div id="npcDetailContent"></div>
+        </div>
+
+        <!-- NPC Hover Tooltip -->
+        <div class="npc-tooltip" id="npcTooltip"></div>
 
         <!-- NPC Generator Page -->
         <div id="npcPage" class="page-content" style="display: none;">
@@ -1262,6 +1546,22 @@
                 </div>
 
                 <div class="settings-section">
+                    <h2>Location Details Display</h2>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3>Progressive Reveal</h3>
+                            <p>When enabled, location details are revealed progressively (Primary → Secondary → Hidden). When disabled, all information is shown at once.</p>
+                        </div>
+                        <div class="theme-switch" id="progressiveRevealSwitch" onclick="toggleProgressiveReveal()">
+                            <div class="theme-switch-slider">
+                                <span class="theme-icon">🔍</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
                     <h2>About</h2>
                     <p style="color: var(--text-secondary); line-height: 1.8;">
                         <strong style="color: var(--text-primary);">LoreWeaver</strong> is a D&D exploration encounter generator designed to help Dungeon Masters create engaging and dynamic encounters across various environments.
@@ -1350,6 +1650,9 @@
             // Load saved theme
             loadTheme();
             
+            // Load progressive reveal setting
+            loadProgressiveReveal();
+            
             // Load external data files
             await loadData();
 
@@ -1404,6 +1707,37 @@
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
             updateThemeUI(savedTheme);
+        }
+
+        // Progressive reveal toggle
+        function toggleProgressiveReveal() {
+            const currentSetting = localStorage.getItem('progressiveReveal') === 'true';
+            const newSetting = !currentSetting;
+            
+            localStorage.setItem('progressiveReveal', newSetting);
+            updateProgressiveRevealUI(newSetting);
+        }
+
+        // Update progressive reveal UI
+        function updateProgressiveRevealUI(enabled) {
+            const progressiveRevealSwitch = document.getElementById('progressiveRevealSwitch');
+            const icon = progressiveRevealSwitch?.querySelector('.theme-icon');
+            
+            if (progressiveRevealSwitch) {
+                if (enabled) {
+                    progressiveRevealSwitch.classList.add('active');
+                    if (icon) icon.textContent = '🔓';
+                } else {
+                    progressiveRevealSwitch.classList.remove('active');
+                    if (icon) icon.textContent = '🔍';
+                }
+            }
+        }
+
+        // Load progressive reveal setting on page load
+        function loadProgressiveReveal() {
+            const savedSetting = localStorage.getItem('progressiveReveal') === 'true';
+            updateProgressiveRevealUI(savedSetting);
         }
 
         // Page switching
@@ -2219,10 +2553,14 @@
 
             // Encounter Flow
             if (encounterFlow && encounterFlow.length > 0) {
+                // Store location and NPC data globally for the detail panels
+                window.encounterLocationsData = encounterLocations;
+                window.encounterNPCsData = encounterNPCs;
+                
                 html += `
                     <div class="encounter-section">
                         <h2>🔄 Encounter Flow & Narrative Path</h2>
-                        <p class="description">This suggested flow helps guide the party through the encounter. Locations are connected narratively, but the party can explore in different orders based on their choices.</p>
+                        <p class="description">This suggested flow helps guide the party through the encounter. <strong>Click any location name</strong> to view its details in the side panel.</p>
                         <div style="position: relative; margin-top: 25px;">
                 `;
 
@@ -2246,7 +2584,7 @@
                                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 15px 0;">
                                     ${step.branches.map(branch => `
                                         <div style="background: rgba(155, 89, 182, 0.1); border: 1px dashed #9b59b6; border-radius: 6px; padding: 12px;">
-                                            <strong style="color: var(--accent-blue);">→ ${branch.location.name}</strong>
+                                            <strong><span class="location-link" onclick="showLocationDetail('${branch.location.key}')">→ ${branch.location.name}</span></strong>
                                             <p style="margin: 8px 0 0 0; font-size: 0.9em; color: var(--text-secondary);">${branch.reason}</p>
                                         </div>
                                     `).join('')}
@@ -2293,7 +2631,7 @@
                                 </div>
                                 
                                 <div style="background: rgba(52, 152, 219, 0.15); border-radius: 6px; padding: 12px; margin-bottom: 15px;">
-                                    <strong style="color: var(--accent-blue);">📍 Location: ${step.location.name}</strong>
+                                    <strong style="color: var(--accent-blue);">📍 Location: <span class="location-link" onclick="showLocationDetail('${step.location.key}')">${step.location.name}</span></strong>
                                 </div>
                                 
                                 <p class="description" style="margin: 15px 0; font-style: italic;">${step.description}</p>
@@ -2390,13 +2728,17 @@
                 html += `
                     <div class="encounter-section">
                         <h2>🗺️ Key Locations</h2>
-                        <p class="description">These locations are part of this encounter area. Each offers opportunities for discovery, interaction, and adventure.</p>
+                        <p class="description">These locations are part of this encounter area. <strong>Click any location name</strong> to view full details in the side panel.</p>
                 `;
 
                 encounterLocations.forEach((location, index) => {
                     html += `
                         <div class="location-card" style="background: rgba(58, 58, 60, 0.2); border-radius: 8px; padding: 20px; margin: 15px 0; border: 1px solid rgba(0, 122, 255, 0.2);">
-                            <h3 style="margin-top: 0; color: var(--accent-blue);">${index + 1}. ${location.name}</h3>
+                            <h3 style="margin-top: 0; color: var(--accent-blue);">
+                                <span class="location-link" onclick="showLocationDetail('${location.key}')" style="cursor: pointer;">
+                                    ${index + 1}. ${location.name}
+                                </span>
+                            </h3>
                             
                             ${location.data.description ? `
                                 <div style="margin: 15px 0;">
@@ -2765,6 +3107,378 @@
             document.getElementById('encounterDisplay').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
+        // Show location detail in side panel
+        function showLocationDetail(locationKey, viewLevel = 'primary', selectedIndex = null) {
+            const location = window.encounterLocationsData.find(loc => loc.key === locationKey);
+            
+            if (!location) {
+                console.error('Location not found:', locationKey);
+                return;
+            }
+
+            const panel = document.getElementById('locationDetailPanel');
+            const content = document.getElementById('locationDetailContent');
+            const progressiveReveal = localStorage.getItem('progressiveReveal') === 'true';
+            
+            let html = `
+                <h3 style="margin-top: 0;">🗺️ ${location.name}</h3>
+                <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 20px;">
+                    ${location.data.description || 'A location of interest in the encounter.'}
+                </p>
+            `;
+            
+            if (progressiveReveal) {
+                // Progressive reveal mode - interactive drill-down
+                
+                // Breadcrumb navigation
+                html += `
+                    <div class="location-breadcrumb">
+                        <span class="breadcrumb-item ${viewLevel === 'primary' ? 'active' : ''}" 
+                              onclick="showLocationDetail('${locationKey}', 'primary')">
+                            🔍 Primary
+                        </span>
+                `;
+                
+                if (viewLevel === 'secondary' || viewLevel === 'tertiary') {
+                    html += `
+                        <span class="breadcrumb-separator">→</span>
+                        <span class="breadcrumb-item ${viewLevel === 'secondary' ? 'active' : ''}" 
+                              onclick="showLocationDetail('${locationKey}', 'secondary', ${selectedIndex})">
+                            🔎 Secondary
+                        </span>
+                    `;
+                }
+                
+                if (viewLevel === 'tertiary') {
+                    html += `
+                        <span class="breadcrumb-separator">→</span>
+                        <span class="breadcrumb-item active">
+                            ✨ Discovery
+                        </span>
+                    `;
+                }
+                
+                html += `</div>`;
+                
+                // Content based on current view level
+                if (viewLevel === 'primary') {
+                    // Show all primary features as clickable items
+                    if (location.data.primary && location.data.primary.length > 0) {
+                        html += `
+                            <div style="margin-bottom: 20px;">
+                                <h4 style="color: var(--accent-blue); margin-bottom: 15px;">
+                                    🔍 Primary Features
+                                </h4>
+                                <p style="color: var(--text-secondary); font-size: 0.9em; margin-bottom: 10px; font-style: italic;">
+                                    Click a feature to investigate further...
+                                </p>
+                        `;
+                        
+                        location.data.primary.forEach((item, index) => {
+                            html += `
+                                <div class="feature-item primary-feature" 
+                                     onclick="showLocationDetail('${locationKey}', 'secondary', ${index})">
+                                    ${item}
+                                </div>
+                            `;
+                        });
+                        
+                        html += `</div>`;
+                    }
+                } else if (viewLevel === 'secondary' && selectedIndex !== null) {
+                    // Show specific secondary detail with back button
+                    if (location.data.secondary && location.data.secondary[selectedIndex]) {
+                        html += `
+                            <div class="back-button" onclick="showLocationDetail('${locationKey}', 'primary')">
+                                ← Back to Primary Features
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <h4 style="color: var(--accent-blue); margin-bottom: 10px;">
+                                    � Investigating: ${location.data.primary[selectedIndex]}
+                                </h4>
+                                <div class="feature-item secondary-feature" 
+                                     onclick="showLocationDetail('${locationKey}', 'tertiary', ${selectedIndex})"
+                                     style="margin-top: 15px;">
+                                    <strong>🔎 What you discover:</strong><br>
+                                    ${location.data.secondary[selectedIndex]}
+                                    <div style="margin-top: 10px; font-size: 0.85em; color: var(--text-secondary); font-style: italic;">
+                                        Click to investigate deeper...
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                } else if (viewLevel === 'tertiary' && selectedIndex !== null) {
+                    // Show hidden discovery with back button
+                    if (location.data.tertiary && location.data.tertiary[selectedIndex]) {
+                        html += `
+                            <div class="back-button" onclick="showLocationDetail('${locationKey}', 'secondary', ${selectedIndex})">
+                                ← Back to Secondary Details
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <h4 style="color: var(--accent-blue); margin-bottom: 10px;">
+                                    🔍 ${location.data.primary[selectedIndex]}
+                                </h4>
+                                <div style="background: rgba(52, 152, 219, 0.08); padding: 12px; border-radius: 6px; margin-bottom: 15px;">
+                                    <strong>🔎 Secondary Details:</strong><br>
+                                    ${location.data.secondary[selectedIndex]}
+                                </div>
+                                <div class="feature-item tertiary-feature" style="border: 2px solid #f39c12; cursor: default;">
+                                    <strong>✨ Hidden Discovery:</strong><br>
+                                    ${location.data.tertiary[selectedIndex]}
+                                    <div style="margin-top: 10px; font-size: 0.85em; opacity: 0.8; font-style: italic;">
+                                        💎 This could be valuable, dangerous, or story-relevant!
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+            } else {
+                // Show all mode - everything expanded
+                
+                // Primary Features
+                if (location.data.primary && location.data.primary.length > 0) {
+                    html += `
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: var(--accent-blue); margin-bottom: 10px; border-bottom: 1px solid rgba(0, 122, 255, 0.3); padding-bottom: 5px;">
+                                🔍 Primary Features
+                            </h4>
+                            <ul style="margin: 10px 0; padding-left: 20px;">
+                                ${location.data.primary.map(item => `<li style="margin: 8px 0;">${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+                
+                // Secondary Details
+                if (location.data.secondary && location.data.secondary.length > 0) {
+                    html += `
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: var(--accent-blue); margin-bottom: 10px; border-bottom: 1px solid rgba(0, 122, 255, 0.3); padding-bottom: 5px;">
+                                🔎 Secondary Details
+                            </h4>
+                            <ul style="margin: 10px 0; padding-left: 20px;">
+                                ${location.data.secondary.map(item => `<li style="margin: 8px 0;">${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+                
+                // Tertiary Discoveries
+                if (location.data.tertiary && location.data.tertiary.length > 0) {
+                    html += `
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: #f39c12; margin-bottom: 10px; border-bottom: 1px solid rgba(243, 156, 18, 0.3); padding-bottom: 5px;">
+                                ✨ Hidden Discoveries
+                            </h4>
+                            <ul style="margin: 10px 0; padding-left: 20px;">
+                                ${location.data.tertiary.map(item => `<li style="margin: 8px 0; color: #f39c12;">${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+            }
+            
+            // Tags
+            if (location.data.tags && location.data.tags.length > 0) {
+                html += `
+                    <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                            ${location.data.tags.map(tag => `
+                                <span style="background: rgba(0, 122, 255, 0.2); color: var(--accent-blue); padding: 4px 10px; border-radius: 12px; font-size: 0.85em;">
+                                    ${tag}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            content.innerHTML = html;
+            panel.classList.add('active');
+        }
+
+        // Toggle location section expansion
+        function toggleLocationSection(sectionId) {
+            const content = document.getElementById(sectionId);
+            const header = content.previousElementSibling;
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                header.classList.remove('expanded');
+            } else {
+                content.classList.add('expanded');
+                header.classList.add('expanded');
+            }
+        }
+
+        // Hide location detail panel
+        function hideLocationDetail() {
+            const panel = document.getElementById('locationDetailPanel');
+            panel.classList.remove('active');
+        }
+
+        // Close panel when clicking outside
+        document.addEventListener('click', function(e) {
+            const panel = document.getElementById('locationDetailPanel');
+            // Don't close if clicking inside the panel or on interactive elements
+            const isInteractive = e.target.classList.contains('location-link') ||
+                                  e.target.classList.contains('feature-item') ||
+                                  e.target.classList.contains('back-button') ||
+                                  e.target.classList.contains('breadcrumb-item') ||
+                                  e.target.closest('.feature-item') ||
+                                  e.target.closest('.back-button') ||
+                                  e.target.closest('.breadcrumb-item');
+            
+            if (panel.classList.contains('active') && !panel.contains(e.target) && !isInteractive) {
+                hideLocationDetail();
+            }
+
+            // Also check NPC panel
+            const npcPanel = document.getElementById('npcDetailPanel');
+            const isNPCInteractive = e.target.classList.contains('npc-link') ||
+                                     e.target.closest('.npc-link');
+            
+            if (npcPanel.classList.contains('active') && !npcPanel.contains(e.target) && !isNPCInteractive) {
+                hideNPCDetail();
+            }
+        });
+
+        // NPC Detail Panel Functions
+        function showNPCDetail(npcIndex) {
+            const npc = window.encounterNPCsData[npcIndex];
+            
+            if (!npc) {
+                console.error('NPC not found at index:', npcIndex);
+                return;
+            }
+
+            const panel = document.getElementById('npcDetailPanel');
+            const content = document.getElementById('npcDetailContent');
+            
+            // Debug: Log NPC data structure
+            console.log('NPC Data:', npc);
+            
+            let html = `
+                <h3 style="margin-top: 0; color: #9b59b6;">👤 ${npc.name}</h3>
+                <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 20px;">
+                    ${npc.species} ${npc.profession?.name || npc.profession}
+                </p>
+
+                <div style="margin-bottom: 20px;">
+                    <h4 style="color: #9b59b6; margin-bottom: 10px; border-bottom: 1px solid rgba(155, 89, 182, 0.3); padding-bottom: 5px;">
+                        📋 Basic Information
+                    </h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+                        <div>
+                            <strong style="color: var(--text-secondary);">Species:</strong>
+                            <div style="color: var(--text-primary);">${npc.species || 'Unknown'}</div>
+                        </div>
+                        <div>
+                            <strong style="color: var(--text-secondary);">Profession:</strong>
+                            <div style="color: var(--text-primary);">${npc.profession?.name || npc.profession || 'Unknown'}</div>
+                        </div>
+                        <div>
+                            <strong style="color: var(--text-secondary);">Alignment:</strong>
+                            <div style="color: var(--text-primary);">${npc.alignment?.name || npc.alignment || 'Unknown'}</div>
+                        </div>
+                        <div>
+                            <strong style="color: var(--text-secondary);">Personality:</strong>
+                            <div style="color: var(--text-primary);">${npc.personality?.trait || npc.personality || 'Unknown'}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h4 style="color: #9b59b6; margin-bottom: 10px; border-bottom: 1px solid rgba(155, 89, 182, 0.3); padding-bottom: 5px;">
+                        👁️ Appearance
+                    </h4>
+                    <p style="color: var(--text-secondary); font-style: italic;">${npc.appearance || 'No description available'}</p>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h4 style="color: #9b59b6; margin-bottom: 10px; border-bottom: 1px solid rgba(155, 89, 182, 0.3); padding-bottom: 5px;">
+                        💬 Personality Trait
+                    </h4>
+                    <p style="color: var(--text-secondary);">${npc.personality?.description || npc.personality || 'No description available'}</p>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h4 style="color: #9b59b6; margin-bottom: 10px; border-bottom: 1px solid rgba(155, 89, 182, 0.3); padding-bottom: 5px;">
+                        🎭 Role in Encounter
+                    </h4>
+                    <p style="color: var(--text-secondary);">${npc.profession?.description || 'A ' + (npc.profession?.name || npc.profession) + ' in the area.'}</p>
+                    <p style="color: var(--text-secondary); margin-top: 8px;"><strong>Can:</strong> ${getProfessionRoleTip(npc.profession?.name || npc.profession)}</p>
+                </div>
+
+                <div style="background: rgba(255, 149, 0, 0.1); border-left: 3px solid #ff9500; padding: 12px; border-radius: 6px; margin-bottom: 20px;">
+                    <h4 style="color: #ff9500; margin: 0 0 8px 0;">
+                        🤫 Secret (DM Only)
+                    </h4>
+                    <p style="color: var(--text-secondary); margin: 0; font-style: italic;">${npc.secret || 'No secret revealed'}</p>
+                </div>
+
+                <div style="background: rgba(155, 89, 182, 0.1); border-radius: 6px; padding: 12px;">
+                    <h4 style="color: #9b59b6; margin: 0 0 8px 0;">
+                        ⚖️ Alignment
+                    </h4>
+                    <p style="color: var(--text-secondary); margin: 0;">${npc.alignment?.description || 'Alignment: ' + (npc.alignment?.name || npc.alignment || 'Unknown')}</p>
+                </div>
+            `;
+            
+            content.innerHTML = html;
+            panel.classList.add('active');
+        }
+
+        function hideNPCDetail() {
+            const panel = document.getElementById('npcDetailPanel');
+            panel.classList.remove('active');
+        }
+
+        // NPC Tooltip Functions
+        function showNPCTooltip(event, npcIndex) {
+            const npc = window.encounterNPCsData[npcIndex];
+            
+            if (!npc) return;
+
+            const tooltip = document.getElementById('npcTooltip');
+            
+            tooltip.innerHTML = `
+                <div class="npc-tooltip-header">👤 ${npc.name}</div>
+                <div class="npc-tooltip-row">
+                    <span class="npc-tooltip-label">Species:</span>
+                    <span class="npc-tooltip-value">${npc.species || 'Unknown'}</span>
+                </div>
+                <div class="npc-tooltip-row">
+                    <span class="npc-tooltip-label">Profession:</span>
+                    <span class="npc-tooltip-value">${npc.profession?.name || npc.profession || 'Unknown'}</span>
+                </div>
+                <div class="npc-tooltip-row">
+                    <span class="npc-tooltip-label">Alignment:</span>
+                    <span class="npc-tooltip-value">${npc.alignment?.name || npc.alignment || 'Unknown'}</span>
+                </div>
+                <div class="npc-tooltip-row">
+                    <span class="npc-tooltip-label">Personality:</span>
+                    <span class="npc-tooltip-value">${npc.personality?.trait || npc.personality || 'Unknown'}</span>
+                </div>
+                <div class="npc-tooltip-hint">Click for full details</div>
+            `;
+            
+            // Position tooltip near the cursor
+            const x = event.clientX + 15;
+            const y = event.clientY + 15;
+            
+            tooltip.style.left = x + 'px';
+            tooltip.style.top = y + 'px';
+            tooltip.classList.add('active');
+        }
+
+        function hideNPCTooltip() {
+            const tooltip = document.getElementById('npcTooltip');
+            tooltip.classList.remove('active');
+        }
+
         // Generate Locations for Encounter
         function selectLocationsForEncounter(encounterTags, environment, numLocations = null) {
             // Determine number of locations (3-5 based on random distribution)
@@ -2874,6 +3588,14 @@
         function generateEncounterFlow(locations, npcs, encounterTitle) {
             if (locations.length === 0) return null;
             
+            // Helper function to wrap NPC name with interactive elements
+            function wrapNPCName(npc, index) {
+                return `<span class="npc-link" 
+                             onclick="showNPCDetail(${index})" 
+                             onmouseenter="showNPCTooltip(event, ${index})"
+                             onmouseleave="hideNPCTooltip()">${npc.name}</span>`;
+            }
+            
             const flowSteps = [];
             
             // Step 1: Initial encounter setup
@@ -2885,7 +3607,7 @@
                 dmTips: [
                     "Set the atmosphere with sensory details from the location description",
                     "Introduce environmental effects or hazards to establish tension",
-                    npcs.length > 0 ? `Consider having ${npcs[0].name} (${npcs[0].profession.name}) present here` : "Consider adding ambient sounds or NPC activity"
+                    npcs.length > 0 ? `Consider having ${wrapNPCName(npcs[0], 0)} (${npcs[0].profession.name}) present here` : "Consider adding ambient sounds or NPC activity"
                 ]
             });
             
@@ -2899,7 +3621,7 @@
                     dmTips: [
                         `Primary features from ${locations[0].name} can provide hints or connections to this location`,
                         "Introduce skill challenges or traps as the party moves between locations",
-                        npcs.length > 1 ? `${npcs[1].name} might provide information, create obstacles, or offer assistance` : "Add tension through environmental effects"
+                        npcs.length > 1 ? `${wrapNPCName(npcs[1], 1)} might provide information, create obstacles, or offer assistance` : "Add tension through environmental effects"
                     ],
                     connections: [
                         `Evidence at ${locations[0].name} points to activity here`,
@@ -2919,7 +3641,7 @@
                     dmTips: [
                         "This is where major conflict, revelations, or challenges should occur",
                         "Combine multiple hazards or environmental effects for maximum drama",
-                        npcs.length > 2 ? `${npcs[2].name}'s secret or motivations might be revealed here` : "Consider adding a time-pressure element"
+                        npcs.length > 2 ? `${wrapNPCName(npcs[2], 2)}'s secret or motivations might be revealed here` : "Consider adding a time-pressure element"
                     ],
                     connections: [
                         `Chase, pursuit, or urgency drives the party from ${locations[1].name}`,
