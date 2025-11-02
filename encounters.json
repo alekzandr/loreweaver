@@ -7,7 +7,7 @@
         "outdoor",
         "street"
       ],
-      "description": "A single guttering lantern throws nervous silhouettes against damp brick as smugglers barter over forbidden relics. The reek of stale rainwater mixes with spices spilled from a toppled crate, masking the copper tang of fresh blood. Every whispered threat rides the fog, promising violence with a blade\u2019s casual gleam. Hidden doors and knife-bright intentions wait to drag interlopers into the alley\u2019s waiting dark.",
+      "description": "A guttering lantern throws your shadow against damp brick while low voices trade over wrapped bundles. Spice and stale rainwater mingle in the air, edged by the copper tang of fresh blood. Fog carries clipped whispers as a few bare blades catch the light. Half-seen door seams and watching eyes make the alley feel tight and dangerous.",
       "weight": 1.1
     },
     {
@@ -17,7 +17,7 @@
         "outdoor",
         "building"
       ],
-      "description": "Terracotta shingles and laundry lines blur beneath desperate feet while bells toll the alarm across the skyline. The wind whips cloaks and banners into snares that threaten to pitch runners into the streets below. Chimney sweeps shout warnings as nesting griffins shriek from their perches, hungry for the commotion. Every leap becomes a wager with gravity and the guards swarming at ground level.",
+      "description": "Terracotta shingles and laundry lines blur beneath your boots as bells toll across the skyline. Wind snaps cloaks and catching lines threaten to pitch you toward the streets below. Chimney sweeps shout warnings while roosting griffins shriek at the commotion. Each leap is a hard bargain with gravity and slick tile.",
       "weight": 1.2
     },
     {
@@ -27,7 +27,7 @@
         "indoor",
         "building"
       ],
-      "description": "Dust-choked crates form a claustrophobic labyrinth where contraband sigils flare to life when brushed by passing hands. Floorboards groan beneath the weight of old secrets, answering with hollow knocks that echo through the rafters. Something restless prowls between the pallets, stirred awake by anyone bold enough to break the silence. The air tastes of rust, rope fibers, and a long-forgotten promise of vengeance.",
+      "description": "Dust-choked crates form a claustrophobic maze, and smudged sigils flare for a heartbeat when you brush a lid. Floorboards groan and answer with hollow knocks that echo through the rafters. Soft scuffing moves between the pallets when you pause to listen. The air tastes of rust and old rope fibers.",
       "weight": 0.9
     },
     {
@@ -37,7 +37,7 @@
         "outdoor",
         "street"
       ],
-      "description": "Merchants hawk fragrant spices over the hushed gossip of a vanished magistrate, their smiles tight as purse strings. Beneath the tapestry of awnings, coded chalk marks and secret ledgers cry out for a clever eye. Street performers juggle knives and illusions alike, disguising conspirators as mere entertainers. The crowd\u2019s mood shifts with every rumor, ready to turn riotous if the heroes fumble the truth.",
+      "description": "Merchants hawk fragrant spices over hushed talk about a missing official. Under layered awnings, you spot chalk marks on posts and glimpse ledgers passed hand to hand. Street performers juggle knives and bright illusions that swallow faces in reflected color. The crowd presses and sways, its mood tilting with every new whisper.",
       "weight": 1.0
     },
     {
@@ -47,7 +47,7 @@
         "underground",
         "tunnel"
       ],
-      "description": "Sluggish canals of alchemical runoff glow sickly green, painting brick tunnels in lurid hues. The slap of unseen tails and the drip of mineral-rich condensation compose a rhythm older than the city above. Mutated vermin watch from culvert mouths while forgotten cult wards pulse in sullen defiance. Here the party wades through a century of secrets, each step a gamble against drowning in muck and memory.",
+      "description": "Sluggish canals of alchemical runoff glow sickly green, painting the brick in wavering light. The slap of unseen tails and the drip of mineral-rich condensation set a steady rhythm. Vermin watch from culvert mouths while worn symbols along the walls pulse faintly. Each step through the muck threatens a stumble and a cold plunge.",
       "weight": 0.8
     },
     {
@@ -57,7 +57,7 @@
         "outdoor",
         "building"
       ],
-      "description": "Clockwork giants toll the hour as brass gears strain against a sabotage-born misalignment. Steam shrouds the district in a feverish haze that tastes of oil and panic. Spires connected by maintenance catwalks demand delicate timing, lest a misstep fling heroes into spinning weights. Citizens gather below with eyes upturned, desperate for someone to calm the mechanical storm.",
+      "description": "Clockwork towers toll the hour as brass gears grind against a troubling misalignment. Steam shrouds the streets in a warm haze that tastes of oil. Spires linked by maintenance catwalks demand careful timing, or a misstep will fling you toward spinning weights. Below, onlookers watch with heads tilted back and hands over ears.",
       "weight": 1.0
     },
     {
@@ -67,7 +67,7 @@
         "outdoor",
         "dock"
       ],
-      "description": "Salt mist swallows lantern light while contraband-laden barges glide in under foreign colors. Ropes creak like weary bones as sailors exchange coded greetings above the slow lap of the tide. Whispered deals, restless spirits, and tide-called predators all hunger for a single misstep on the slick planks. Every wave threatens to reveal or erase incriminating footprints in the moonlit grime.",
+      "description": "Salt mist swallows lantern light while barges slide in under unfamiliar colors. Ropes creak as sailors trade quick, low greetings above the slow lap of the tide. The planks are slick, and a single misstep would be loud here. Each wave reveals and erases footprints in moonlit grime.",
       "weight": 0.95
     },
     {
@@ -77,7 +77,7 @@
         "outdoor",
         "street"
       ],
-      "description": "Lean tenements huddle over cobbles carved with warding sigils now cracked and fading. Wind funnels through alleyways carrying the scent of damp stone and the mutterings of worried elders. Behind shuttered windows, ancestral guardians stir as the watch refuses to quell a brewing riot. The heroes arrive to find a neighborhood poised between reverence for tradition and an eruption of fury.",
+      "description": "Lean tenements huddle over cobbles etched with cracked warding marks. Wind funnels through alleys with the scent of damp stone and stove smoke. Shutters twitch and fall still as you pass, and voices drop to murmurs. The street feels tight with old pride and fresh anger.",
       "weight": 0.85
     },
     {
@@ -87,7 +87,7 @@
         "crowd",
         "market"
       ],
-      "description": "Ribboned performers and masked revelers whirl beneath fireworks that spell omens in smoke. Music and laughter merge into a dizzying roar, hiding the sharp intake of breath when a prophetic masque ends in a real abduction. Lantern-lit stalls blur together as the crowd surges, each costume a potential accomplice. Only the quick-witted can navigate the jubilant chaos and unmask the conspirators before the celebration becomes a tragedy.",
+      "description": "Ribboned performers and masked revelers whirl beneath fireworks that smear symbols across the smoke. Music and laughter merge into a dizzying roar until a sharp cry cuts the noise. A cloaked figure drags someone behind a curtain of banners as lantern-lit stalls blur with the surge. Faces are hidden; trails vanish in confetti and color.",
       "weight": 1.35
     },
     {
@@ -97,7 +97,7 @@
         "heist",
         "indoor"
       ],
-      "description": "Shattered vault wards and drifting illusion shards reveal a thieves\u2019 triumph hours too soon. The guildhouse crackles with residual magic that distorts light and sound into accusing whispers. Rival factions arrive in waves, each eager to pin blame or steal what the original crew missed. The party must sift truth from deception before the guild\u2019s reputation\u2014and their own\u2014crumbles.",
+      "description": "Shattered wards and drifting illusion shards hang in the air like broken glass. The guildhouse crackles with stray magic that bends light and twists voices into whispers. Footsteps gather outside as new faces arrive to point fingers or pry at leftovers. Every hallway offers echoes and half-seen shapes.",
       "weight": 1.1
     },
     {
@@ -107,7 +107,7 @@
         "indoor",
         "district"
       ],
-      "description": "Sound-catcher domes preserve every whispered confession until the clergy release them in sonorous choruses. Tonight the basilica trembles with a vengeful hymn that threatens to expose blackmail material to the gathered faithful. Incense thick as fog curls around marble pillars etched with contrition in a dozen languages. Only a delicate blend of diplomacy and courage can soothe the sanctum\u2019s curse before secrets shatter the congregation.",
+      "description": "Curved domes catch stray whispers and feed them back as soft choruses that linger in the nave. Tonight the hymn swells into something sharp enough to raise hairs on your arms. Incense curls thick as fog around marble pillars etched with words of contrition. Faces turn toward the choir as private words bleed into the open.",
       "weight": 0.9
     },
     {
@@ -117,7 +117,7 @@
         "street",
         "riot"
       ],
-      "description": "Barricades of overturned carts frame a standoff between loyalist captains and disgruntled rookies. Rain-slick cobblestones glimmer with torchlight as citizens peek from shuttered windows, praying for peace. The tension is palpable, each shouted order echoing like a war drum against the sleeping city. The party must thread the narrow line between diplomacy and daring before dawn breaks into civil war.",
+      "description": "Overturned carts form barricades between tight ranks of captains and rookies. Rain-slick cobbles glimmer in torchlight while citizens peer from shutters and then vanish. Each shouted order cracks against stone like a drumbeat. The air holds still, waiting for a single shove to start the rush.",
       "weight": 1.25
     },
     {
@@ -127,7 +127,7 @@
         "bridge",
         "duel"
       ],
-      "description": "A duelist\u2019s seconds tighten ceremonial harnesses as the river sunrise paints the elevated span in molten gold. The bridge\u2019s cables hum with barely contained energy while spectators gather on distant rooftops. Sabotaged anchors, hidden snipers, and hungry gargoyles add unseen blades to the contest of honor. One misstep could send combatants plummeting into the misty abyss, ending more than a feud.",
+      "description": "A duelist's seconds tighten ceremonial harnesses as sunrise paints the span in molten gold. The bridge's cables hum while spectators cluster on distant rooftops. Loose anchors, hidden shapes, and watchful gargoyles add edges you can feel but not name. One misstep could send anyone into the mist below.",
       "weight": 1.05
     },
     {
@@ -137,7 +137,7 @@
         "arcane",
         "disaster"
       ],
-      "description": "Lightning-fed rails shriek while a levitating tram car dangles above a plaza of panicked commuters. Sparks cascade like wild fireworks as mages scramble to stabilize the conduit. Onlookers crowd the edges despite the danger, their curiosity overriding common sense. Restoring order means managing the crowd, countering rogue spells, and racing against plummeting wreckage.",
+      "description": "Lightning-fed rails shriek while a levitating tram car dangles over a packed plaza. Sparks cascade like wild fireworks as robed technicians brace sigil-stamped tools against the conduit. Onlookers crowd the edges despite shouted warnings. The car tilts, groans, and drops an inch that steals breaths.",
       "weight": 1.3
     },
     {
@@ -147,7 +147,7 @@
         "indoor",
         "arcane"
       ],
-      "description": "Crystalline greenhouses fracture under the strain of caged tempests now raging free. Shards hum with elemental resonance, turning every footstep into a potential lightning rod. Elemental botanists plead for rescue while sentient vines and living hail duel beneath shimmering domes. The heroes must calm the storm before the conservatory shatters into lethal rain.",
+      "description": "Crystalline greenhouses fracture as the captured storm inside surges against the panes. Glass sings with a rising hum that turns every footstep into a risk. Scholars shout over the wind while living vines whip at curtains of slicing hail. The domes flicker, one crack away from bursting into glittering rain.",
       "weight": 0.95
     },
     {
@@ -157,7 +157,7 @@
         "outdoor",
         "beasts"
       ],
-      "description": "Exotic beasts prowl the moon-washed gardens after a sabotaged lock release. Perfumed night-blooming flowers barely mask the musk of restless predators stalking the paths. From chimeric songbirds to a melancholic manticore, each creature demands empathy or cunning to corral. The wrong approach could turn the menagerie into a midnight battlefield.",
+      "description": "Exotic beasts prowl moon-washed paths with cage doors hanging open on twisted hinges. Perfumed night-blooming flowers barely mask the musk of restless predators. From jeweled songbirds to a pacing manticore, every eye tracks your movement. A wrong noise could set the whole garden running.",
       "weight": 1.05
     },
     {
@@ -167,7 +167,7 @@
         "protest",
         "street"
       ],
-      "description": "Ledgers burn in braziers as clerks and citizens storm the civic countinghouse over a cursed levy. The air is thick with ink-smudged manifestos, shouted accusations, and the clatter of upended desks. Amid the chaos, a spectral auditor manifests, eager to balance the books with blood. The heroes must unravel the curse before the revolt claims innocents on both sides.",
+      "description": "Ledgers burn in braziers while clerks and citizens surge through the countinghouse doors. Ink-smudged broadsheets flutter underfoot amid shouted accusations and the clatter of upended desks. A pale, translucent figure coalesces above the ledgers, tallying with an echoing scrape of quill on stone. The crowd recoils, then roars louder.",
       "weight": 0.9
     },
     {
@@ -177,8 +177,28 @@
         "industrial",
         "indoor"
       ],
-      "description": "Molten channels spark to life in a long-shuttered foundry where golems once forged the city\u2019s defenses. The heat is blistering, warping iron tools into twisted sculptures while embers sketch ghostly figures in the air. Unchecked anima surges now seek new hosts among the living, animating chains and hammers with murderous intent. Only swift action can prevent the foundry from birthing a new army of molten horrors.",
+      "description": "Cold furnaces thump awake and molten channels sputter to life along the floor. The heat crushes the breath, warping iron tools into twisted shapes while sparks sketch figures in the smoke. Chains twitch and hammers jerk as if tugged by invisible hands. The roar builds until every surface glows at the edges.",
       "weight": 1.15
+    },
+    {
+      "title": "Back-Alley Apothecary Sting",
+      "tags": [
+        "alley",
+        "indoor",
+        "shop"
+      ],
+      "description": "Perfumed smoke coils from corked vials arranged like jewels behind iron grating. Hooded buyers trade low words while heavy boots gather outside on wet stone. The bell above the door rings off-tempo, and shutters thud in unison. Labels are hand-scratched and some vials fizz; every eye searches for an exit.",
+      "weight": 0.95
+    },
+    {
+      "title": "Guildhall Ball Intrigue",
+      "tags": [
+        "ball",
+        "indoor",
+        "nobility"
+      ],
+      "description": "Crystal chandeliers scatter constellations across the floor while masked patrons trade rumors like coin. The quartet swells, drowning the hiss of silk and the scrape of steel. Behind velvet curtains, you glimpse ledgers and sealed envelopes changing hands as toasts ring. Perfume, wax, and wine sweeten the air while every gaze weighs you.",
+      "weight": 1.05
     }
   ],
   "arctic": [
@@ -198,7 +218,7 @@
         "outdoor",
         "path"
       ],
-      "description": "Jagged peaks loom above a narrow trail carved into the mountain\u2019s flank. Fresh fractures zigzag across the snowpack, warning that the slightest vibration could send tons of powder roaring downward. The crunch of boots is muffled by the heavy silence of a world holding its breath. Far below, the valley waits like an open grave for the unwary."
+      "description": "Jagged peaks loom above a narrow trail carved into the mountain’s flank. Fresh fractures zigzag across the snowpack, warning that the slightest vibration could send tons of powder roaring downward. The crunch of boots is muffled by the heavy silence of a world holding its breath. Far below, the valley waits like an open grave for the unwary."
     },
     {
       "title": "Ice Cave Exploration",
@@ -216,7 +236,7 @@
         "outdoor",
         "openfield"
       ],
-      "description": "Snowflakes the size of daggers whirl in a howling storm that erases horizon and sky alike. Visibility shrinks to arm\u2019s length as the wind scours exposed skin raw. The world becomes a battlefield of instinct and endurance, where shelter is a distant memory. Only the sharpest senses can separate the cries of allies from the wails of the blizzard."
+      "description": "Snowflakes the size of daggers whirl in a howling storm that erases horizon and sky alike. Visibility shrinks to arm’s length as the wind scours exposed skin raw. The world becomes a battlefield of instinct and endurance, where shelter is a distant memory. Only the sharpest senses can separate the cries of allies from the wails of the blizzard."
     },
     {
       "title": "Glacier Crossing",
@@ -253,6 +273,24 @@
         "peaks"
       ],
       "description": "Snow-crowned mountains pierce the clouds, their slopes scarred by avalanches and ancient dragon claws. Thin air bites at lungs while the sun dances off fields of jagged ice. Wind-carved statues of heroes and monsters seem to watch every ascent with frozen approval. Somewhere above, the rattle of falling scree warns that the mountain tests all who dare climb it."
+    },
+    {
+      "title": "Aurora-Wreathed Battlefield",
+      "tags": [
+        "tundra",
+        "outdoor",
+        "openfield"
+      ],
+      "description": "Ribbons of green and violet fire ripple across a sky that refuses to sleep. Frost-rimed armor litters the snow, humming with residual war-magic. Footsteps crunch atop buried banners that twitch like they still remember the charge. The aurora answers spoken oaths with sparks, eager to crown a new victor or curse a coward."
+    },
+    {
+      "title": "Hunter on the Black Ice",
+      "tags": [
+        "lake",
+        "outdoor",
+        "ice"
+      ],
+      "description": "A mirror-dark lake stretches to the horizon, its glassy surface spiderwebbed with ancient cracks. Below, shadowy shapes glide with predatory grace, tracking every vibration. Wind skates over the ice, carrying the click of claws against the underside. One misstep becomes a plunge into a mouth full of winter."
     }
   ],
   "ocean": [
@@ -272,7 +310,7 @@
         "reef",
         "natural"
       ],
-      "description": "A riot of color surrounds the party as living coral spires arch into a cathedral of the sea. Schools of curious fish dart between tunnels lit by shafts of liquid sunlight. Every turn reveals new wonders and lurking predators hidden among the reef\u2019s crevices. Even the water seems to hum with ancient songs that promise both guidance and doom."
+      "description": "A riot of color surrounds the party as living coral spires arch into a cathedral of the sea. Schools of curious fish dart between tunnels lit by shafts of liquid sunlight. Every turn reveals new wonders and lurking predators hidden among the reef’s crevices. Even the water seems to hum with ancient songs that promise both guidance and doom."
     },
     {
       "title": "Derelict Ship Discovery",
@@ -281,7 +319,7 @@
         "vessel",
         "wreck"
       ],
-      "description": "The shattered silhouette of a once-proud vessel looms through the fog, its rigging hanging like torn shrouds. Waterlogged decks groan underfoot, releasing the scent of salt, pitch, and old ghosts. Barnacles have claimed the figurehead, yet the captain\u2019s cabin still holds a flicker of lantern light. Whatever remains aboard does not rest easy and may resent fresh intruders."
+      "description": "The shattered silhouette of a once-proud vessel looms through the fog, its rigging hanging like torn shrouds. Waterlogged decks groan underfoot, releasing the scent of salt, pitch, and old ghosts. Barnacles have claimed the figurehead, yet the captain’s cabin still holds a flicker of lantern light. Whatever remains aboard does not rest easy and may resent fresh intruders."
     },
     {
       "title": "Island Approach",
@@ -290,7 +328,7 @@
         "outdoor",
         "beach"
       ],
-      "description": "A palm-lined shore rises from the mist, crowned by cliffs that glitter with waterfalls and hidden caves. The surf hisses across the sand like a warning whispered in an unfamiliar tongue. Exotic birds wheel overhead, their cries echoing off jagged rocks. As the tide pulls back, strange footprints reveal that someone\u2014or something\u2014awaits the landing party."
+      "description": "A palm-lined shore rises from the mist, crowned by cliffs that glitter with waterfalls and hidden caves. The surf hisses across the sand like a warning whispered in an unfamiliar tongue. Exotic birds wheel overhead, their cries echoing off jagged rocks. As the tide pulls back, strange footprints reveal that someone—or something—awaits the landing party."
     },
     {
       "title": "Deep Water Descent",
@@ -327,6 +365,24 @@
         "natural"
       ],
       "description": "The current twists into a seductive spiral, drawing ships toward cliffs studded with razor coral. Ethereal voices weave through the mist, promising love, glory, and long-lost companions. Waves shimmer with illusory visions that blur the line between memory and temptation. Those who cannot anchor their minds will join the wrecks that litter the channel floor."
+    },
+    {
+      "title": "Eye of the Maelstrom",
+      "tags": [
+        "storm",
+        "sea",
+        "hazard"
+      ],
+      "description": "Walls of water rise like cathedral buttresses, circling a calm heart where gulls hang frozen in the gale. Lightning crawls along the waves instead of the sky, sketching sigils in foaming arcs. The helm bucks with a will of its own, eager to surrender to the pull. Only a sacrifice or a secret name will buy a way out."
+    },
+    {
+      "title": "Kelp Forest Ambush",
+      "tags": [
+        "underwater",
+        "forest",
+        "reef"
+      ],
+      "description": "Sun pillars sift through towering fronds that sway like the lungs of the sea. Spear-thin leaves rasp against armor, disguising the approach of silent hunters. Lost harpoons and rusted coins dangle from the kelp like trophies. Disturb the canopy and the forest answers with tangle, tooth, and tide."
     }
   ],
   "space": [
@@ -355,7 +411,7 @@
         "anomaly",
         "openspace"
       ],
-      "description": "A jagged wound opens in the crystalline barrier, bleeding motes of starlight into the void. Arcane lightning crackles along the rim, seeking to fuse the rupture closed or blast interlopers into powder. Beyond the breach lies a realm of unknown constellations and unclaimed secrets. The ship\u2019s wards groan under the strain, demanding swift action to survive the crossing."
+      "description": "A jagged wound opens in the crystalline barrier, bleeding motes of starlight into the void. Arcane lightning crackles along the rim, seeking to fuse the rupture closed or blast interlopers into powder. Beyond the breach lies a realm of unknown constellations and unclaimed secrets. The ship’s wards groan under the strain, demanding swift action to survive the crossing."
     },
     {
       "title": "Astral Debris Field",
@@ -373,7 +429,7 @@
         "anomaly",
         "openspace"
       ],
-      "description": "A sphere of warped starlight pulses ahead, bending gravity and time like taffy. Colors beyond mortal comprehension ripple across its surface, illuminating strange glyphs that hover in midair. Instruments scream conflicting readings, while the crew feels memories slip sideways. The anomaly beckons with promises of insight\u2014and the risk of never returning whole."
+      "description": "A sphere of warped starlight pulses ahead, bending gravity and time like taffy. Colors beyond mortal comprehension ripple across its surface, illuminating strange glyphs that hover in midair. Instruments scream conflicting readings, while the crew feels memories slip sideways. The anomaly beckons with promises of insight—and the risk of never returning whole."
     },
     {
       "title": "The Rainbow Flow",
@@ -400,7 +456,7 @@
         "void",
         "openspace"
       ],
-      "description": "An invisible fist seizes the ship, dragging it toward a swirling maw of compressed starlight. Loose equipment and crew alike feel the pull, straining harnesses and fraying nerves. The hull groans as arcane wards flare, trying to counter the crushing force. Only quick adjustments and daring spellcraft can free the vessel from the well\u2019s hungry grasp."
+      "description": "An invisible fist seizes the ship, dragging it toward a swirling maw of compressed starlight. Loose equipment and crew alike feel the pull, straining harnesses and fraying nerves. The hull groans as arcane wards flare, trying to counter the crushing force. Only quick adjustments and daring spellcraft can free the vessel from the well’s hungry grasp."
     },
     {
       "title": "Siege of the Living Voidship",
@@ -410,7 +466,7 @@
         "boarding",
         "living"
       ],
-      "description": "Organic tendrils lash out from a titanic voidship grown from the flesh of a forgotten god. Bioluminescent eyes line its carapace, tracking every movement with predatory patience. Boarding pods thump against the hull, disgorging chitin-clad warriors with hissing battle chants. Survival hinges on severing the creature\u2019s neural conduits before it consumes the fleet."
+      "description": "Organic tendrils lash out from a titanic voidship grown from the flesh of a forgotten god. Bioluminescent eyes line its carapace, tracking every movement with predatory patience. Boarding pods thump against the hull, disgorging chitin-clad warriors with hissing battle chants. Survival hinges on severing the creature’s neural conduits before it consumes the fleet."
     },
     {
       "title": "Rescue at the Solar Flare Regatta",
@@ -420,7 +476,7 @@
         "storm",
         "rescue"
       ],
-      "description": "Solar sails billow like phoenix wings as racing ships skim the edge of a blazing star. A competitor\u2019s vessel trails smoke and shattered rigging, spiraling toward a lethal flare. Crowds of spectators cheer from distant platforms, oblivious to the brewing disaster. The heroes must thread a path through magnetic storms to snatch the crew from a fiery demise."
+      "description": "Solar sails billow like phoenix wings as racing ships skim the edge of a blazing star. A competitor’s vessel trails smoke and shattered rigging, spiraling toward a lethal flare. Crowds of spectators cheer from distant platforms, oblivious to the brewing disaster. The heroes must thread a path through magnetic storms to snatch the crew from a fiery demise."
     },
     {
       "title": "Moondust Corsair Ambush",
@@ -430,7 +486,7 @@
         "pirates",
         "void"
       ],
-      "description": "Silvery motes cling to the ship\u2019s hull as it drifts through a cloud of moondust, masking the approach of lurking corsairs. Pirate vessels emerge from the glittering haze, their cannons charged with lunar frost. Cutthroats hail over open channels, offering surrender with mocking courtesy. The slightest hesitation could see the heroes boarded and their cargo plundered."
+      "description": "Silvery motes cling to the ship’s hull as it drifts through a cloud of moondust, masking the approach of lurking corsairs. Pirate vessels emerge from the glittering haze, their cannons charged with lunar frost. Cutthroats hail over open channels, offering surrender with mocking courtesy. The slightest hesitation could see the heroes boarded and their cargo plundered."
     },
     {
       "title": "Chronal Drift Salvage",
@@ -480,7 +536,7 @@
         "battle",
         "void"
       ],
-      "description": "Massive siege engines the size of fortresses anchor themselves to the sphere\u2019s surface, drilling luminous cracks into the cosmic shell. Arcane artillery roars in synchronized volleys while defenders scramble to reinforce failing wards. Shockwaves ripple through wildspace, threatening to hurl smaller ships into lethal debris. The heroes must decide whether to defend the sphere or exploit the chaos."
+      "description": "Massive siege engines the size of fortresses anchor themselves to the sphere’s surface, drilling luminous cracks into the cosmic shell. Arcane artillery roars in synchronized volleys while defenders scramble to reinforce failing wards. Shockwaves ripple through wildspace, threatening to hurl smaller ships into lethal debris. The heroes must decide whether to defend the sphere or exploit the chaos."
     },
     {
       "title": "Starbeast Migration Crossing",
@@ -500,7 +556,25 @@
         "structure",
         "void"
       ],
-      "description": "Floating platforms encircle an obsidian observatory whose lenses peer into a dozen realities at once. Clockwork custodians march along suspended bridges, ticking in time with the universe\u2019s heartbeat. Scholars clutch star charts infused with spells that could rewrite destinies. To steal here is to dance on the edge of revelation and catastrophe."
+      "description": "Floating platforms encircle an obsidian observatory whose lenses peer into a dozen realities at once. Clockwork custodians march along suspended bridges, ticking in time with the universe’s heartbeat. Scholars clutch star charts infused with spells that could rewrite destinies. To steal here is to dance on the edge of revelation and catastrophe."
+    },
+    {
+      "title": "Comet-Tail Skimming",
+      "tags": [
+        "void",
+        "comet",
+        "hazard"
+      ],
+      "description": "A luminous tail of ice and dust unfurls for leagues, glittering like a god’s veil. Instruments ice over mid-reading as volatile crystals sandblast the hull. Hitchhiking elementals trace glyphs across the sails, begging for passage or promising sabotage. Ride the wake just right and time itself seems to slingshot."
+    },
+    {
+      "title": "Star Map of the Mad Navigator",
+      "tags": [
+        "anomaly",
+        "observatory",
+        "puzzle"
+      ],
+      "description": "A derelict skiff drifts inside a sphere of chart-lines drawn in solid light. Constellations reorder at a whisper, locking and unlocking invisible doors between worlds. Journals nailed to the mast are written in overlapping hands—every one the captain’s. Solve the map’s riddle, or become another route scrawled in desperation."
     }
   ],
   "crypt": [
@@ -556,7 +630,7 @@
         "indoor",
         "passage"
       ],
-      "description": "Walls of carefully stacked skulls watch with hollow eyes as visitors tread the narrow corridors. Each skull bears carved runes detailing a life\u2019s worth of secrets and sins. The scent of dry bone dust fills the lungs, making every breath feel heavier. Somewhere ahead, a ritual chamber waits to judge the living among the dead."
+      "description": "Walls of carefully stacked skulls watch with hollow eyes as visitors tread the narrow corridors. Each skull bears carved runes detailing a life’s worth of secrets and sins. The scent of dry bone dust fills the lungs, making every breath feel heavier. Somewhere ahead, a ritual chamber waits to judge the living among the dead."
     },
     {
       "title": "The Sealed Vault",
@@ -565,7 +639,7 @@
         "chamber",
         "indoor"
       ],
-      "description": "An adamantine door bristling with locks bars entry to a treasury rumored to house sacred relics. Frost creeps across its surface despite the stagnant air, hinting at wards hungry to freeze intruders solid. The floor is inlaid with pressure plates disguised as intricate mosaics. Opening the vault promises riches\u2014but may unleash the guardian bound within."
+      "description": "An adamantine door bristling with locks bars entry to a treasury rumored to house sacred relics. Frost creeps across its surface despite the stagnant air, hinting at wards hungry to freeze intruders solid. The floor is inlaid with pressure plates disguised as intricate mosaics. Opening the vault promises riches—but may unleash the guardian bound within."
     },
     {
       "title": "Mourner's Path",
@@ -575,6 +649,24 @@
         "path"
       ],
       "description": "A winding corridor lined with funerary tapestries recounts the lineage of those interred beyond. Candles burn with unnaturally blue flames, casting mournful light on the stone. Soft sobbing echoes from unseen mourners, tugging at the heart with sorrow not entirely foreign. Each step forward requires a whispered apology to the dead."
+    },
+    {
+      "title": "Bell of the Last Rite",
+      "tags": [
+        "chapel",
+        "indoor",
+        "ritual"
+      ],
+      "description": "A dust-drowned chapel centers on a bronze bell veined with blackened silver. It tolls once whenever a lie is spoken, shaking loose ash that swirls into pleading shapes. The dead stir in their niches, waiting for a final confession. Ring it willingly and earn absolution—or strike it thrice and wake the warden."
+    },
+    {
+      "title": "The Ghoul Market",
+      "tags": [
+        "market",
+        "tunnel",
+        "underground"
+      ],
+      "description": "Lanterns of bottled witchfire illuminate stalls piled with teeth, memories, and lightly used limbs. Vendors with polite smiles haggle in whispers over favors owed by the living. A living customer is a novelty—and a delicacy—if etiquette fails. Bargain well, and the dead will honor the receipt."
     }
   ],
   "forest": [
@@ -585,7 +677,7 @@
         "outdoor",
         "path"
       ],
-      "description": "Towering trunks crowd the narrow trail, their branches knitting overhead to blot out the sun. Damp earth muffles footsteps while the scent of pine and rich loam fills the air. Distant birdcalls shift abruptly to silence as something unseen watches from the underbrush. Every bend hides a new secret waiting to be discovered\u2014or sprung."
+      "description": "Towering trunks crowd the narrow trail, their branches knitting overhead to blot out the sun. Damp earth muffles footsteps while the scent of pine and rich loam fills the air. Distant birdcalls shift abruptly to silence as something unseen watches from the underbrush. Every bend hides a new secret waiting to be discovered—or sprung."
     },
     {
       "title": "The Overgrown Ruins",
@@ -594,7 +686,7 @@
         "structure",
         "outdoor"
       ],
-      "description": "Vines and flowering creepers have claimed the crumbling stones of an ancient temple. Weather-worn carvings peek through the foliage, telling stories of empires swallowed by the wild. Sunbeams pierce the canopy to illuminate mosaics glistening with dew. Yet the hush of the glade suggests that the ruin\u2019s guardians never truly left."
+      "description": "Vines and flowering creepers have claimed the crumbling stones of an ancient temple. Weather-worn carvings peek through the foliage, telling stories of empires swallowed by the wild. Sunbeams pierce the canopy to illuminate mosaics glistening with dew. Yet the hush of the glade suggests that the ruin’s guardians never truly left."
     },
     {
       "title": "Ancient Grove",
@@ -603,7 +695,7 @@
         "outdoor",
         "clearing"
       ],
-      "description": "A circle of colossal trees forms a living cathedral, their bark etched with glowing druidic sigils. Soft light filters through leaves that shimmer with motes of faerie dust. The air tastes sweet, carrying the hum of distant bees and the whisper of ancestral voices. To disturb this grove is to trespass on the heart of the forest\u2019s memory."
+      "description": "A circle of colossal trees forms a living cathedral, their bark etched with glowing druidic sigils. Soft light filters through leaves that shimmer with motes of faerie dust. The air tastes sweet, carrying the hum of distant bees and the whisper of ancestral voices. To disturb this grove is to trespass on the heart of the forest’s memory."
     },
     {
       "title": "Forest of Whispers",
@@ -621,7 +713,7 @@
         "outdoor",
         "clearing"
       ],
-      "description": "A curtain of ivy parts to reveal a secluded clearing carpeted in silver-blue wildflowers. A crystalline spring burbles at the center, releasing a gentle melody that soothes frayed nerves. Fireflies dance in lazy spirals even under the midday sun. The glade feels like a blessing\u2014but every blessing has a keeper."
+      "description": "A curtain of ivy parts to reveal a secluded clearing carpeted in silver-blue wildflowers. A crystalline spring burbles at the center, releasing a gentle melody that soothes frayed nerves. Fireflies dance in lazy spirals even under the midday sun. The glade feels like a blessing—but every blessing has a keeper."
     },
     {
       "title": "Thornwood Passage",
@@ -630,7 +722,7 @@
         "outdoor",
         "path"
       ],
-      "description": "Brambles form tunnel-like walls thick with razor-edged thorns that glisten with sap. The path winds in tight loops, forcing travelers to press close to the prickling growth. Occasional breaks reveal sun-drenched clearings baited with the scent of ripe berries. Only the patient and careful avoid emerging marked by the forest\u2019s barbs."
+      "description": "Brambles form tunnel-like walls thick with razor-edged thorns that glisten with sap. The path winds in tight loops, forcing travelers to press close to the prickling growth. Occasional breaks reveal sun-drenched clearings baited with the scent of ripe berries. Only the patient and careful avoid emerging marked by the forest’s barbs."
     },
     {
       "title": "The Green Cathedral",
@@ -648,7 +740,25 @@
         "outdoor",
         "dense"
       ],
-      "description": "Game trails twist and double back, guided by mischievous sprites that delight in misdirection. Glimmering will-o\u2019-wisps bob between tree trunks, offering false exits and hidden dangers. The canopy knits tighter with every wrong turn, turning noon to twilight. Only unwavering focus can lead the party through before the forest decides to keep them."
+      "description": "Game trails twist and double back, guided by mischievous sprites that delight in misdirection. Glimmering will-o’-wisps bob between tree trunks, offering false exits and hidden dangers. The canopy knits tighter with every wrong turn, turning noon to twilight. Only unwavering focus can lead the party through before the forest decides to keep them."
+    },
+    {
+      "title": "Bridge of Singing Roots",
+      "tags": [
+        "bridge",
+        "outdoor",
+        "grove"
+      ],
+      "description": "A tangle of living roots braids a natural span over a misty chasm. Each footfall plucks a woody note that harmonizes with unseen birds. The melody shifts to warn of danger, speeding to a frantic tempo when steel is drawn. Cross with respect and the forest carries you like a hymn."
+    },
+    {
+      "title": "Hag’s Oven Cottage",
+      "tags": [
+        "cottage",
+        "structure",
+        "clearing"
+      ],
+      "description": "A crooked chimney exhales the scent of sugared bread and alder smoke. Gingerbread shutters hide iron bars, and the herb garden hums with flies. A polite knock is answered by flour-dusted hands and a smile too many teeth wide. Hospitality here is binding—right up to the baking."
     }
   ],
   "desert": [
@@ -677,7 +787,7 @@
         "ruins",
         "structure"
       ],
-      "description": "Sand cascades from half-buried pillars adorned with symbols of forgotten gods. The entrance yawns like a hungry mouth, promising cool shadows and ancient traps. Faint chanting echoes from within, though no figure stands in the doorway. To enter is to awaken the temple\u2019s memory of intruders past."
+      "description": "Sand cascades from half-buried pillars adorned with symbols of forgotten gods. The entrance yawns like a hungry mouth, promising cool shadows and ancient traps. Faint chanting echoes from within, though no figure stands in the doorway. To enter is to awaken the temple’s memory of intruders past."
     },
     {
       "title": "Canyon of Winds",
@@ -704,7 +814,7 @@
         "outdoor",
         "openfield"
       ],
-      "description": "Miles of fused sand glitter like obsidian mirrors, reflecting the sky in dizzying fractals. The surface is razor-sharp, threatening to slice through boots with every step. Strange statues of melted stone rise like frozen waves. Rumor claims the wastes were born from a dragon\u2019s breath or a wizard\u2019s war gone wrong."
+      "description": "Miles of fused sand glitter like obsidian mirrors, reflecting the sky in dizzying fractals. The surface is razor-sharp, threatening to slice through boots with every step. Strange statues of melted stone rise like frozen waves. Rumor claims the wastes were born from a dragon’s breath or a wizard’s war gone wrong."
     },
     {
       "title": "Sunscorch Valley",
@@ -713,7 +823,7 @@
         "outdoor",
         "passage"
       ],
-      "description": "Sheer cliffs trap the day\u2019s heat, turning the valley into a cauldron of shimmering air. Sparse scrub clings to life in the shade of jagged rocks. Heat mirages flicker like spirits beckoning from distant ledges. Only those who travel by dawn or twilight survive the valley\u2019s wrath."
+      "description": "Sheer cliffs trap the day’s heat, turning the valley into a cauldron of shimmering air. Sparse scrub clings to life in the shade of jagged rocks. Heat mirages flicker like spirits beckoning from distant ledges. Only those who travel by dawn or twilight survive the valley’s wrath."
     },
     {
       "title": "Dune Sea Crossing",
@@ -723,6 +833,24 @@
         "openfield"
       ],
       "description": "Endless waves of sand roll to the horizon, cresting like a golden ocean frozen in motion. Stars guide travelers at night while the sun blazes mercilessly by day. The crunch of shifting dunes creates a rhythm that can lull the weary into a trance. Here, navigation depends on memory, constellations, and luck."
+    },
+    {
+      "title": "Wayfort Under Sandstorm Siege",
+      "tags": [
+        "fort",
+        "storm",
+        "outdoor"
+      ],
+      "description": "A lone caravanserai squats behind half-buried walls as the horizon boils to life. Grit knives into every seam while warding banners snap themselves to ribbons. Traders barter for sanctuary with water, spices, and rumors of raiders riding the storm’s back. Within the courtyard, tempers rise as fast as the dunes."
+    },
+    {
+      "title": "Salt Flats Thunder",
+      "tags": [
+        "wasteland",
+        "openfield",
+        "storm"
+      ],
+      "description": "A mirror-bright plain of salt stretches under bruised clouds, etched with hexes left by desperate travelers. Thunder rolls like a stampede across the flats as sheet lightning paints afterimages on the eyes. The air crackles with a taste like old coins and rain that never falls. Out here, shadows have no place to hide—except under you."
     }
   ],
   "mountain": [
@@ -751,7 +879,7 @@
         "outdoor",
         "path"
       ],
-      "description": "A narrow footpath clings to the mountainside, barely wider than a boot. Below yawns a dizzying drop, filled with the roar of a distant river. Loose stones skitter away at the slightest disturbance, heralding the danger of a single misstep. The trail\u2019s only companions are circling eagles and the echo of one\u2019s own heartbeat."
+      "description": "A narrow footpath clings to the mountainside, barely wider than a boot. Below yawns a dizzying drop, filled with the roar of a distant river. Loose stones skitter away at the slightest disturbance, heralding the danger of a single misstep. The trail’s only companions are circling eagles and the echo of one’s own heartbeat."
     },
     {
       "title": "Summit Ascent",
@@ -769,7 +897,7 @@
         "outdoor",
         "clearing"
       ],
-      "description": "Beyond a narrow cleft lies a sheltered valley untouched by the howling winds. Crystal streams weave through flower-strewn meadows, and ancient standing stones hum with quiet power. Herds of mountain elk watch curiously from the slopes. For a moment, the valley offers respite\u2014but mysteries linger in every shadowed grove."
+      "description": "Beyond a narrow cleft lies a sheltered valley untouched by the howling winds. Crystal streams weave through flower-strewn meadows, and ancient standing stones hum with quiet power. Herds of mountain elk watch curiously from the slopes. For a moment, the valley offers respite—but mysteries linger in every shadowed grove."
     },
     {
       "title": "Eagle's Roost",
@@ -787,7 +915,7 @@
         "outdoor",
         "path"
       ],
-      "description": "Lightning scars stripe the ridge where storms have made their battleground. Winds howl between stone pillars, carrying the scent of ozone and rain. Dark clouds gather with unnatural haste whenever strangers arrive. Those who stand atop the ridge can feel the storm\u2019s heartbeat thrumming through their boots."
+      "description": "Lightning scars stripe the ridge where storms have made their battleground. Winds howl between stone pillars, carrying the scent of ozone and rain. Dark clouds gather with unnatural haste whenever strangers arrive. Those who stand atop the ridge can feel the storm’s heartbeat thrumming through their boots."
     },
     {
       "title": "The Devil's Stair",
@@ -797,6 +925,24 @@
         "path"
       ],
       "description": "A stairway carved into the mountain spirals upward with angles that defy mortal geometry. Torches flicker despite the lack of breeze, casting shadows that climb ahead of the party. Each step seems steeper than the last, demanding offerings of sweat and resolve. Legends claim the stair leads to a bargain no mortal should accept lightly."
+    },
+    {
+      "title": "Skybridge Monastery",
+      "tags": [
+        "monastery",
+        "bridge",
+        "structure"
+      ],
+      "description": "Suspension bridges stitch snow-bright peaks together, bearing saffron-clad monks and the occasional daring goat. Prayer wheels spin in the crosswinds, rattling like contented bones. Pilgrims climb rung-ladders that vanish into cloud, trusting knots tied by ancestors. Hospitality is warm, but so are the debates that end with duels at dawn."
+    },
+    {
+      "title": "Obsidian Scree Slope",
+      "tags": [
+        "slope",
+        "outdoor",
+        "hazard"
+      ],
+      "description": "Shards of volcanic glass cascade at the slightest touch, hissing like black rain. Boots shred and ropes fray while the mountain demands careful penance in blood. Sunlight turns every fragment to a knife of reflected fire. One wrong slide becomes an avalanche of razors."
     }
   ],
   "swamp": [
@@ -861,7 +1007,7 @@
         "outdoor",
         "wetland"
       ],
-      "description": "Every step triggers a slow descent as the earth liquefies beneath the party\u2019s weight. Water seeps up through boot soles, carrying leeches eager for warm blood. Distant thunder suggests shifting underground rivers ready to collapse the path entirely. Moving quickly is impossible; survival demands patience and ingenuity."
+      "description": "Every step triggers a slow descent as the earth liquefies beneath the party’s weight. Water seeps up through boot soles, carrying leeches eager for warm blood. Distant thunder suggests shifting underground rivers ready to collapse the path entirely. Moving quickly is impossible; survival demands patience and ingenuity."
     },
     {
       "title": "Viper's Bog",
@@ -871,6 +1017,24 @@
         "wetland"
       ],
       "description": "Reeds rustle with the slither of innumerable snakes, their scales glistening with swampwater sheen. Sunken stones form treacherous stepping paths barely wide enough for a single foot. The scent of crushed herbs fills the air, a sign of alchemists who harvest venom here. One careless stumble could rouse a coiled matriarch with fangs like daggers."
+    },
+    {
+      "title": "Cypress Boardwalk",
+      "tags": [
+        "boardwalk",
+        "structure",
+        "wetland"
+      ],
+      "description": "Grey planks float on oil-dark water between cathedral-trunked cypress trees. Lanterns in glass jars sway from crooks, their light swallowed inches from the flame. Beneath the slats, something keeps pace with bootfalls, tapping along with webbed patience. Locals insist you never stop walking and never look down."
+    },
+    {
+      "title": "Sunken Bell Tower",
+      "tags": [
+        "ruins",
+        "water",
+        "structure"
+      ],
+      "description": "Only the topmost windows of a drowned tower break the peat-stained water. A bell tolls from below the surface, summoning fog and forgotten vows. Ivy-strangled stone steps descend into silt where pews lie like shipwreck ribs. Ring the bell and the congregation will rise."
     }
   ],
   "underground": [
@@ -945,6 +1109,24 @@
         "natural"
       ],
       "description": "Smooth rock walls curve inward like the ribs of a colossal beast, warm to the touch despite the subterranean chill. The air thrums with a low vibration, as though the earth itself breathes. Occasional pockets of glowing fungi cast gentle light on fossilized remains embedded in the stone. Travelers often leave offerings here, hoping the passage births safe journeys ahead."
+    },
+    {
+      "title": "Sporebloom Thicket",
+      "tags": [
+        "fungus",
+        "grove",
+        "hazard"
+      ],
+      "description": "Towering mushrooms fold and unfold like umbrellas breathing in the damp. A single brushed cap releases a galaxy of luminous spores that drift with hungry intent. Myconid gestures warn of a coming bloom that eats sound, light, and memory. Cross quickly, masked and silent, or join the mulch."
+    },
+    {
+      "title": "Subterranean Ferry",
+      "tags": [
+        "river",
+        "boat",
+        "tunnel"
+      ],
+      "description": "A skiff carved from a single fossil bone bobs against a mooring of braided roots. The ferryman’s lantern burns with cold fire that reflects no oar or hand. The current knows the way, charging tolls in secrets spoken or names surrendered. Pay, and the river will remember you kindly—this time."
     }
   ]
 }
