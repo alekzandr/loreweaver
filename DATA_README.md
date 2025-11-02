@@ -25,7 +25,9 @@ A single-page application for generating D&D 5e exploration encounters with cont
     {
       "title": "Encounter Name",
       "description": "Rich narrative description that sets the scene and atmosphere",
-      "tags": ["tag1", "tag2", "tag3", "tag4"]
+      "tags": ["tag1", "tag2", "tag3", "tag4"],
+      "weight": 1.0,
+      "customLocations": ["location_key_1", "location_key_2", "location_key_3"]
     }
   ]
 }
@@ -38,6 +40,49 @@ A single-page application for generating D&D 5e exploration encounters with cont
   - Include environment type: `urban`, `dungeon`, `outdoor`, `indoor`
   - Include themes: `crime`, `mystery`, `supernatural`, `combat`, `social`
   - Include specific features: `warehouse`, `mansion`, `sewer`, `laboratory`
+- **Weight** (optional): Default is 1.0. Increase for custom/hand-crafted encounters you want to appear more often (e.g., 2.0)
+- **customLocations** (optional): Array of specific location keys to use instead of random selection
+
+**Custom/Hand-Crafted Encounters:**
+
+For scenarios with specific narratives (murder mysteries, heists, investigation scenarios), you can specify exact locations in order:
+
+```json
+{
+  "urban": [
+    {
+      "title": "The Poisoned Playwright",
+      "description": "The city's most celebrated playwright has been found dead in his private theater box...",
+      "tags": ["murder_mystery", "investigation", "urban", "indoor", "social", "poisoned_playwright", "custom_scenario"],
+      "weight": 2.0,
+      "customLocations": [
+        "playwrights_theater",
+        "apothecary_shop", 
+        "rival_estate",
+        "underground_printing_press",
+        "city_morgue"
+      ]
+    }
+  ]
+}
+```
+
+**When to Use Custom Locations:**
+- Murder mysteries with specific crime scenes and investigation sequence
+- Multi-location heists with planned progression
+- Story-driven scenarios where location order matters
+- Any encounter where random locations would break the narrative
+
+**Benefits:**
+- Locations appear in the specified order
+- Ensures logical progression through the investigation
+- Works with discovery chains to create guided narratives
+- Can be regenerated for consistent experience
+
+**Requirements:**
+- Location keys must exist in `locations.json` under the same environment
+- Recommend adding unique tag (e.g., `"poisoned_playwright"`) to encounter and all its locations for filtering
+- Use with discovery chains in locations for best results
 
 **Tagging Philosophy**: Tags drive smart content selection - NPCs, locations, and skill checks with matching tags will be prioritized.
 
@@ -54,7 +99,11 @@ A single-page application for generating D&D 5e exploration encounters with cont
       "description": "Atmospheric description of the location",
       "primary": ["visible feature 1", "visible feature 2", ...],
       "secondary": ["detail 1", "detail 2", ...],
-      "tertiary": ["hidden thing 1", "hidden thing 2", ...]
+      "tertiary": ["hidden thing 1", "hidden thing 2", ...],
+      "discoveryChains": {
+        "0": {"secondary": 2, "tertiary": 0},
+        "1": {"secondary": 4, "tertiary": 1}
+      }
     }
   }
 }
@@ -64,6 +113,75 @@ A single-page application for generating D&D 5e exploration encounters with cont
 - **Primary**: Immediately visible objects and features when entering the location
 - **Secondary**: Details discovered when examining primary objects more closely
 - **Tertiary**: Hidden discoveries requiring investigation - treasures, traps, secrets, plot hooks
+
+**Discovery Chains (Optional):**
+
+By default, the progressive reveal system matches discoveries by index (investigating primary[0] reveals secondary[0] then tertiary[0]). For hand-crafted locations where you want logical investigation chains, add a `discoveryChains` object.
+
+**When to use Discovery Chains:**
+- Custom/hand-crafted encounters with specific narratives
+- Murder mysteries or investigation scenarios
+- Locations where clues should lead to specific other clues
+- Any scenario where random pairings would break immersion
+
+**How Discovery Chains Work:**
+```json
+"discoveryChains": {
+  "0": {"secondary": 2, "tertiary": 1},
+  "1": {"secondary": 4, "tertiary": 0},
+  "2": {"secondary": 3, "tertiary": 2}
+}
+```
+
+- The key (`"0"`, `"1"`, `"2"`) is the index of the **primary** feature
+- `"secondary"` value is the index of which secondary discovery is revealed
+- `"tertiary"` value is the index of which tertiary discovery is revealed
+
+**Example:**
+```json
+{
+  "playwrights_theater": {
+    "tags": ["theater", "murder_mystery", "investigation"],
+    "primary": [
+      "velvet-lined private box where body was found",
+      "poisoned wine glass with residue on rim",
+      "playbill showing tonight's performance"
+    ],
+    "secondary": [
+      "torn invitation card bearing rival's seal",
+      "backstage pass to green room",
+      "powder compact dropped beneath seat",
+      "program notes with handwritten corrections",
+      "wine bottle label from 'Silver Serpent Apothecary'"
+    ],
+    "tertiary": [
+      "receipt from apothecary shop dated three days ago",
+      "encoded diary entry describing blackmail plot",
+      "theatrical poison prop that's actually real"
+    ],
+    "discoveryChains": {
+      "0": {"secondary": 2, "tertiary": 1},
+      "1": {"secondary": 4, "tertiary": 0},
+      "2": {"secondary": 3, "tertiary": 1}
+    }
+  }
+}
+```
+
+In this example:
+- Investigating **"poisoned wine glass"** (primary[1]) →
+- Reveals **"wine bottle label from apothecary"** (secondary[4]) →
+- Leads to **"receipt from apothecary shop"** (tertiary[0])
+
+This creates a logical clue chain that guides investigation!
+
+**Tips for Creating Discovery Chains:**
+1. Start with your narrative - what should lead to what?
+2. Map out the investigation flow on paper first
+3. Number your primary, secondary, and tertiary arrays (0-indexed)
+4. Create chains that tell a story or lead between locations
+5. Not every primary needs a unique chain - similar items can share discoveries
+6. For custom encounters, chain tertiary discoveries to point toward next locations
 
 **Description Guidelines:**
 - 2-3 sentences setting atmosphere with sensory details

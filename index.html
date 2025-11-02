@@ -2857,6 +2857,17 @@
             window.encounterHazards = data.hazards;
             window.encounterEffects = data.effects;
             window.encounterFlowData = data.flow;
+            
+            // If flow data is missing (old saved encounters), regenerate it
+            if (!window.encounterFlowData && data.locations && data.npcs) {
+                console.log('⚠️ Flow data missing, regenerating...');
+                window.encounterFlowData = generateEncounterFlow(
+                    data.locations,
+                    data.npcs,
+                    data.template.title,
+                    data.template
+                );
+            }
 
             // Update UI (only if elements exist)
             const environmentSelect = document.getElementById('environment');
@@ -2997,6 +3008,33 @@
                                     <h3 style="margin: 0; color: #27ae60;">🎯 ${step.title}</h3>
                                 </div>
                                 <p class="description" style="margin: 15px 0; font-style: italic;">${step.description}</p>
+                                
+                                ${step.customResolutions && step.customResolutions.length > 0 ? `
+                                    <div style="margin-top: 20px;">
+                                        <h4 style="color: #27ae60; margin-bottom: 15px;">Possible Resolutions:</h4>
+                                        ${step.customResolutions.map((resolution, resIndex) => `
+                                            <div style="background: rgba(39, 174, 96, 0.08); border-left: 3px solid #27ae60; border-radius: 6px; padding: 15px; margin-bottom: 15px;">
+                                                <h5 style="margin: 0 0 10px 0; color: #27ae60; font-size: 1.05em;">
+                                                    ${resIndex + 1}. ${resolution.title}
+                                                </h5>
+                                                <p style="margin: 8px 0; font-size: 0.95em; line-height: 1.5;">
+                                                    ${resolution.description}
+                                                </p>
+                                                <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(39, 174, 96, 0.2);">
+                                                    <div style="margin-bottom: 6px;">
+                                                        <strong style="color: var(--accent-blue); font-size: 0.9em;">⚙️ Requirements:</strong>
+                                                        <span style="font-size: 0.9em; color: var(--text-secondary);"> ${resolution.requirements}</span>
+                                                    </div>
+                                                    <div>
+                                                        <strong style="color: #f39c12; font-size: 0.9em;">🎁 Rewards:</strong>
+                                                        <span style="font-size: 0.9em; color: var(--text-secondary);"> ${resolution.rewards}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                ` : ''}
+                                
                                 ${step.dmTips && step.dmTips.length > 0 ? `
                                     <div style="background: rgba(39, 174, 96, 0.08); border-radius: 6px; padding: 12px; margin-top: 15px;">
                                         <strong style="color: var(--accent-blue);">💡 DM Tips:</strong>
@@ -3459,7 +3497,9 @@
 
             // Generate NPCs and Locations based on encounter tags FIRST
             const encounterNPCs = selectNPCsForEncounter(template.tags, numLocations);
-            const encounterLocations = selectLocationsForEncounter(template.tags, selectedEnvironment, numLocations);
+            // Check if encounter has custom locations defined
+            const customLocationKeys = template.customLocations || null;
+            const encounterLocations = selectLocationsForEncounter(template.tags, selectedEnvironment, numLocations, customLocationKeys);
             
             // Collect all tags for smart content selection
             const encounterTags = template.tags || [];
@@ -3478,7 +3518,7 @@
             const scalingNotes = getScalingNotes(partyLevel);
             
             // Generate encounter flow
-            const encounterFlow = generateEncounterFlow(encounterLocations, encounterNPCs, title);
+            const encounterFlow = generateEncounterFlow(encounterLocations, encounterNPCs, title, template);
 
             console.log('📊 Content Selection Summary:');
             console.log('  Skill Checks:', selectedSkills.length);
@@ -3575,6 +3615,32 @@
                                 </div>
                                 
                                 <p class="description" style="margin: 15px 0; font-style: italic;">${step.description}</p>
+                                
+                                ${step.customResolutions && step.customResolutions.length > 0 ? `
+                                    <div style="margin-top: 20px;">
+                                        <h4 style="color: #27ae60; margin-bottom: 15px;">Possible Resolutions:</h4>
+                                        ${step.customResolutions.map((resolution, resIndex) => `
+                                            <div style="background: rgba(39, 174, 96, 0.08); border-left: 3px solid #27ae60; border-radius: 6px; padding: 15px; margin-bottom: 15px;">
+                                                <h5 style="margin: 0 0 10px 0; color: #27ae60; font-size: 1.05em;">
+                                                    ${resIndex + 1}. ${resolution.title}
+                                                </h5>
+                                                <p style="margin: 8px 0; font-size: 0.95em; line-height: 1.5;">
+                                                    ${resolution.description}
+                                                </p>
+                                                <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(39, 174, 96, 0.2);">
+                                                    <div style="margin-bottom: 6px;">
+                                                        <strong style="color: var(--accent-blue); font-size: 0.9em;">⚙️ Requirements:</strong>
+                                                        <span style="font-size: 0.9em; color: var(--text-secondary);"> ${resolution.requirements}</span>
+                                                    </div>
+                                                    <div>
+                                                        <strong style="color: #f39c12; font-size: 0.9em;">🎁 Rewards:</strong>
+                                                        <span style="font-size: 0.9em; color: var(--text-secondary);"> ${resolution.rewards}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                ` : ''}
                                 
                                 <div style="background: rgba(39, 174, 96, 0.08); border-radius: 6px; padding: 12px; margin-top: 15px;">
                                     <strong style="color: var(--accent-blue);">💡 DM Tips:</strong>
@@ -4628,21 +4694,18 @@
             // Replace the NPC in the global data
             window.encounterNPCsData[npcIndex] = newNPC;
 
-            // Update the flow if this NPC is referenced
-            if (window.encounterFlowData) {
-                window.encounterFlowData.forEach(step => {
-                    if (step.dmTips) {
-                        step.dmTips = step.dmTips.map(tip => {
-                            // Update NPC references in DM tips
-                            // This is a simple update - you might want to make it more sophisticated
-                            return tip;
-                        });
-                    }
-                });
+            // Regenerate the flow with updated NPCs so NPC names are fresh
+            if (window.encounterLocationsData && window.encounterTemplate) {
+                window.encounterFlowData = generateEncounterFlow(
+                    window.encounterLocationsData,
+                    window.encounterNPCsData,
+                    window.encounterTemplate.title,
+                    window.encounterTemplate
+                );
             }
 
-            // Re-render the NPC section
-            renderNPCSection();
+            // Rebuild the entire encounter display to update all references
+            rebuildEncounterDisplay();
             
             console.log('✅ NPC regenerated:', newNPC.name);
         }
@@ -4862,7 +4925,13 @@
                     }
                 } else if (viewLevel === 'secondary' && selectedIndex !== null) {
                     // Show specific secondary detail with back button
-                    if (location.data.secondary && location.data.secondary[selectedIndex]) {
+                    // Check if location has discovery chains for logical progression
+                    let secondaryIndex = selectedIndex;
+                    if (location.data.discoveryChains && location.data.discoveryChains[selectedIndex.toString()]) {
+                        secondaryIndex = location.data.discoveryChains[selectedIndex.toString()].secondary;
+                    }
+                    
+                    if (location.data.secondary && location.data.secondary[secondaryIndex] !== undefined) {
                         html += `
                             <div class="back-button" onclick="showLocationDetail('${locationKey}', 'primary')">
                                 ← Back to Primary Features
@@ -4875,7 +4944,7 @@
                                      onclick="showLocationDetail('${locationKey}', 'tertiary', ${selectedIndex})"
                                      style="margin-top: 15px;">
                                     <strong>🔎 What you discover:</strong><br>
-                                    ${location.data.secondary[selectedIndex]}
+                                    ${location.data.secondary[secondaryIndex]}
                                     <div style="margin-top: 10px; font-size: 0.85em; color: var(--text-secondary); font-style: italic;">
                                         Click to investigate deeper...
                                     </div>
@@ -4885,6 +4954,11 @@
                     }
                 } else if (viewLevel === 'tertiary' && selectedIndex !== null) {
                     // Show hidden discovery with back button
+                    // Check if location has discovery chains for logical progression
+                    let tertiaryIndex = selectedIndex;
+                    if (location.data.discoveryChains && location.data.discoveryChains[selectedIndex.toString()]) {
+                        tertiaryIndex = location.data.discoveryChains[selectedIndex.toString()].tertiary;
+                    }
                     // Randomly decide if this discovery is a trap (30% chance if traps available)
                     const isTrap = locationTraps.length > 0 && Math.random() < 0.3;
                     
@@ -4920,7 +4994,13 @@
                                 </div>
                             </div>
                         `;
-                    } else if (location.data.tertiary && location.data.tertiary[selectedIndex]) {
+                    } else if (location.data.tertiary && location.data.tertiary[tertiaryIndex] !== undefined) {
+                        // Get the correct secondary index based on discovery chains
+                        let secondaryIndex = selectedIndex;
+                        if (location.data.discoveryChains && location.data.discoveryChains[selectedIndex.toString()]) {
+                            secondaryIndex = location.data.discoveryChains[selectedIndex.toString()].secondary;
+                        }
+                        
                         html += `
                             <div class="back-button" onclick="showLocationDetail('${locationKey}', 'secondary', ${selectedIndex})">
                                 ← Back to Secondary Details
@@ -4931,11 +5011,11 @@
                                 </h4>
                                 <div style="background: rgba(52, 152, 219, 0.08); padding: 12px; border-radius: 6px; margin-bottom: 15px;">
                                     <strong>🔎 Secondary Details:</strong><br>
-                                    ${location.data.secondary[selectedIndex]}
+                                    ${location.data.secondary[secondaryIndex]}
                                 </div>
                                 <div class="feature-item tertiary-feature" style="border: 2px solid #f39c12; cursor: default;">
                                     <strong>✨ Hidden Discovery:</strong><br>
-                                    ${location.data.tertiary[selectedIndex]}
+                                    ${location.data.tertiary[tertiaryIndex]}
                                     <div style="margin-top: 10px; font-size: 0.85em; opacity: 0.8; font-style: italic;">
                                         💎 This could be valuable, dangerous, or story-relevant!
                                     </div>
@@ -5328,7 +5408,30 @@
         }
 
         // Generate Locations for Encounter
-        function selectLocationsForEncounter(encounterTags, environment, numLocations = null) {
+        function selectLocationsForEncounter(encounterTags, environment, numLocations = null, customLocationKeys = null) {
+            // If custom locations are provided, use them instead of random selection
+            if (customLocationKeys && customLocationKeys.length > 0) {
+                const environmentLocations = locationObjects[environment];
+                if (!environmentLocations) {
+                    console.warn('No locations found for environment:', environment);
+                    return [];
+                }
+                
+                return customLocationKeys.map(key => {
+                    const locationData = environmentLocations[key];
+                    if (!locationData) {
+                        console.warn(`Custom location '${key}' not found in environment '${environment}'`);
+                        return null;
+                    }
+                    return {
+                        key: key,
+                        name: formatLocationName(key),
+                        data: locationData
+                    };
+                }).filter(loc => loc !== null);
+            }
+            
+            // Otherwise, use original random selection logic
             // Determine number of locations (3-5 based on random distribution)
             if (numLocations === null) {
                 // Weighted toward 3-4 locations
@@ -5433,7 +5536,7 @@
                 .join(' ');
         }
 
-        function generateEncounterFlow(locations, npcs, encounterTitle) {
+        function generateEncounterFlow(locations, npcs, encounterTitle, encounterTemplate = null) {
             if (locations.length === 0) return null;
             
             // Helper function to wrap NPC name with interactive elements
@@ -5526,18 +5629,40 @@
             
             // Final step: Resolution
             const finalLocation = locations.length > 2 ? locations[2] : locations[locations.length - 1];
-            flowSteps.push({
-                step: flowSteps.length + 1,
-                title: "Resolution",
-                location: finalLocation,
-                description: `The encounter concludes, typically at ${finalLocation.name} or wherever the party's investigation leads them.`,
-                dmTips: [
-                    "Tie up loose threads and reveal the outcome of the party's choices",
-                    "Tertiary discoveries here can provide significant rewards or plot hooks",
-                    "NPCs react to how the party handled the situation",
-                    "Set up future adventures or consequences based on the resolution"
-                ]
-            });
+            
+            // Check if encounter has custom resolutions
+            const hasCustomResolutions = encounterTemplate && encounterTemplate.resolutions && encounterTemplate.resolutions.length > 0;
+            
+            if (hasCustomResolutions) {
+                // Use custom resolutions from encounter template
+                flowSteps.push({
+                    step: flowSteps.length + 1,
+                    title: "Resolution",
+                    location: finalLocation,
+                    description: `The encounter concludes with multiple possible outcomes based on the party's investigation and choices.`,
+                    customResolutions: encounterTemplate.resolutions,
+                    dmTips: [
+                        "Review the party's investigation - which locations did they visit?",
+                        "Which clues and evidence did they discover?",
+                        "How thoroughly did they investigate each location?",
+                        "Based on their choices, select the most appropriate resolution below"
+                    ]
+                });
+            } else {
+                // Use generic resolution
+                flowSteps.push({
+                    step: flowSteps.length + 1,
+                    title: "Resolution",
+                    location: finalLocation,
+                    description: `The encounter concludes, typically at ${finalLocation.name} or wherever the party's investigation leads them.`,
+                    dmTips: [
+                        "Tie up loose threads and reveal the outcome of the party's choices",
+                        "Tertiary discoveries here can provide significant rewards or plot hooks",
+                        "NPCs react to how the party handled the situation",
+                        "Set up future adventures or consequences based on the resolution"
+                    ]
+                });
+            }
             
             return flowSteps;
         }

@@ -880,7 +880,7 @@
       "failure": "Continue falling",
       "tags": ["physical", "dexterity", "emergency", "falling", "dangerous", "vertical"]
     },
-    {
+        {
       "skill": "Acrobatics",
       "challenge": "Run along a collapsing bridge",
       "description": "A bridge or walkway is crumbling behind you, requiring you to keep your footing while running at full speed.",
@@ -946,339 +946,99 @@
     },
     {
       "skill": "Investigation",
-      "challenge": "Find a secret compartment",
-      "description": "You search a room or piece of furniture for hidden compartments.",
-      "success": "You find a hidden compartment and whatever is inside",
-      "failure": "You do not find any hidden compartments",
-      "tags": ["intelligence", "perception", "indoor", "secret", "treasure"]
-    },
-    {
-      "skill": "Medicine",
-      "challenge": "Craft a healing poultice",
-      "description": "You use your knowledge of herbs and natural remedies to create a poultice that can heal wounds.",
-      "success": "You create a poultice that restores a small number of hit points",
-      "failure": "You create a poultice that has no effect, or is even harmful",
-      "tags": ["wisdom", "healing", "medical", "crafting", "herbalism"]
-    },
-    {
-      "skill": "Nature",
-      "challenge": "Identify a creature’s weakness",
-      "description": "You use your knowledge of nature to identify a creature’s weaknesses and vulnerabilities.",
-      "success": "You learn one of the creature’s weaknesses, such as a vulnerability to a certain type of damage",
-      "failure": "You cannot identify any of the creature’s weaknesses",
-      "tags": ["intelligence", "knowledge", "combat", "monster", "tactical"]
+      "challenge": "Analyze poison residue in wine glass",
+      "description": "Examine the crystalline residue and color of the poisoned wine to identify the toxin.",
+      "success": "Identify rare theatrical poison from apothecary shop",
+      "failure": "Generic poison identification with no source",
+      "tags": ["investigation", "murder_mystery", "poisoned_playwright", "theater", "poison", "custom_scenario"]
     },
     {
       "skill": "Perception",
-      "challenge": "Eavesdrop on a conversation",
-      "description": "You try to overhear a conversation without being detected.",
-      "success": "You hear the conversation clearly",
-      "failure": "You are detected, or you only hear snippets of the conversation",
-      "tags": ["wisdom", "awareness", "stealth", "urban", "intrigue"]
-    },
-    {
-      "skill": "Performance",
-      "challenge": "Compose a song or poem",
-      "description": "You use your artistic talents to create a work of art that can inspire, entertain, or persuade.",
-      "success": "You create a work of art that has the desired effect on your audience",
-      "failure": "Your work of art is uninspired and has no effect",
-      "tags": ["charisma", "social", "art", "entertainment", "inspiration"]
-    },
-    {
-      "skill": "Persuasion",
-      "challenge": "Haggle with a merchant",
-      "description": "You try to convince a merchant to lower their prices.",
-      "success": "The merchant agrees to a lower price",
-      "failure": "The merchant refuses to lower their price, and may even raise it",
-      "tags": ["charisma", "social", "urban", "trade", "merchant"]
-    },
-    {
-      "skill": "Religion",
-      "challenge": "Perform a sacred ritual",
-      "description": "You perform a religious ceremony to ask for your deity’s favor, or to achieve a magical effect.",
-      "success": "The ritual is successful, and you gain the desired effect",
-      "failure": "The ritual fails, and you may even anger your deity",
-      "tags": ["intelligence", "knowledge", "religion", "ritual", "holy"]
-    },
-    {
-      "skill": "Sleight of Hand",
-      "challenge": "Cheat at a game of chance",
-      "description": "You use your nimble fingers to manipulate the outcome of a game of dice or cards.",
-      "success": "You win the game without being caught",
-      "failure": "You are caught cheating, and may have to face the consequences",
-      "tags": ["dexterity", "crime", "urban", "gambling", "social"]
-    },
-    {
-      "skill": "Stealth",
-      "challenge": "Create a diversion",
-      "description": "You create a distraction to draw attention away from yourself or your allies.",
-      "success": "The diversion works, and you are able to act unnoticed",
-      "failure": "The diversion fails, and you may draw unwanted attention to yourself",
-      "tags": ["dexterity", "stealth", "tactical", "urban", "distraction"]
-    },
-    {
-      "skill": "Survival",
-      "challenge": "Forage for food in an urban environment",
-      "description": "You search for edible plants and animals in a city or town.",
-      "success": "You find enough food to feed yourself and your allies for one day",
-      "failure": "You are unable to find any food, or you eat something that makes you sick",
-      "tags": ["wisdom", "outdoor", "urban", "survival", "foraging"]
-    },
-    {
-      "skill": "Acrobatics",
-      "challenge": "Leap from a moving vehicle",
-      "description": "You attempt to jump from a moving cart, wagon, or other vehicle without injuring yourself.",
-      "success": "You land safely on your feet",
-      "failure": "You take damage from the fall and may be knocked prone",
-      "tags": ["physical", "dexterity", "chase", "urgent", "dangerous"]
-    },
-    {
-      "skill": "Animal Handling",
-      "challenge": "Intimidate a predator",
-      "description": "You attempt to scare off a predatory animal by making yourself appear larger and more threatening.",
-      "success": "The predator is intimidated and backs away",
-      "failure": "The predator is not intimidated and may attack",
-      "tags": ["wisdom", "outdoor", "animals", "survival", "intimidation"]
-    },
-    {
-      "skill": "Arcana",
-      "challenge": "Overload a magical trap",
-      "description": "You attempt to overload a magical trap with raw magical energy, causing it to backfire or fizzle out.",
-      "success": "The trap is disabled",
-      "failure": "The trap triggers, and may even have an enhanced effect",
-      "tags": ["intelligence", "magic", "trap", "dangerous", "technical"]
-    },
-    {
-      "skill": "Athletics",
-      "challenge": "Catch a falling object",
-      "description": "You attempt to catch a heavy or awkward object that is falling from a great height.",
-      "success": "You catch the object safely",
-      "failure": "The object hits you, causing damage, or you fail to catch it",
-      "tags": ["strength", "physical", "emergency", "dangerous"]
-    },
-    {
-      "skill": "Deception",
-      "challenge": "Spread a rumor",
-      "description": "You attempt to start a rumor that will spread through a community and have a desired effect.",
-      "success": "The rumor spreads and has the intended effect",
-      "failure": "The rumor does not spread, or it has an unintended effect",
-      "tags": ["charisma", "social", "urban", "intrigue", "gossip"]
-    },
-    {
-      "skill": "History",
-      "challenge": "Identify a historical forgery",
-      "description": "You examine a historical document or artifact to determine if it is genuine.",
-      "success": "You can tell if the item is a forgery",
-      "failure": "You cannot tell if the item is a forgery",
-      "tags": ["intelligence", "knowledge", "scholarly", "investigation", "forgery"]
-    },
-    {
-      "skill": "Insight",
-      "challenge": "Sense a creature’s alignment",
-      "description": "You attempt to get a sense of a creature’s moral and ethical leanings.",
-      "success": "You get a general sense of the creature’s alignment (good, evil, lawful, chaotic, or neutral)",
-      "failure": "You cannot get a sense of the creature’s alignment",
-      "tags": ["wisdom", "social", "perception", "alignment"]
-    },
-    {
-      "skill": "Intimidation",
-      "challenge": "Break an object to prove your strength",
-      "description": "You attempt to break an object with your bare hands to intimidate onlookers.",
-      "success": "You break the object, and your display of strength has the desired effect",
-      "failure": "You fail to break the object, and may even injure yourself",
-      "tags": ["charisma", "social", "intimidation", "strength"]
+      "challenge": "Notice the torn invitation beneath theater seat",
+      "description": "Search the death scene carefully for overlooked clues.",
+      "success": "Find invitation from rival playwright showing motive",
+      "failure": "Miss crucial evidence linking to rival estate",
+      "tags": ["perception", "murder_mystery", "poisoned_playwright", "theater", "clue", "custom_scenario"]
     },
     {
       "skill": "Investigation",
-      "challenge": "Lip-read a conversation",
-      "description": "You attempt to understand what someone is saying by reading their lips from a distance.",
-      "success": "You understand the conversation",
-      "failure": "You cannot understand the conversation, or you misunderstand what is being said",
-      "tags": ["intelligence", "perception", "stealth", "urban", "spy"]
-    },
-    {
-      "skill": "Medicine",
-      "challenge": "Revive a drowned person",
-      "description": "You attempt to revive a person who has drowned by performing CPR and other life-saving measures.",
-      "success": "The person is revived",
-      "failure": "The person remains dead",
-      "tags": ["wisdom", "healing", "medical", "emergency", "water"]
-    },
-    {
-      "skill": "Nature",
-      "challenge": "Identify a plant by its taste",
-      "description": "You taste a small amount of a plant to determine if it is edible, poisonous, or has magical properties.",
-      "success": "You correctly identify the plant and its properties",
-      "failure": "You misidentify the plant, and may suffer the consequences of eating a poisonous or magical plant",
-      "tags": ["intelligence", "knowledge", "outdoor", "survival", "foraging"]
-    },
-    {
-      "skill": "Perception",
-      "challenge": "Detect a magical trap",
-      "description": "You search an area for the tell-tale signs of a magical trap.",
-      "success": "You detect the trap and can attempt to disarm it",
-      "failure": "You do not detect the trap and may trigger it",
-      "tags": ["wisdom", "awareness", "magic", "trap", "dangerous"]
-    },
-    {
-      "skill": "Performance",
-      "challenge": "Tell a captivating story",
-      "description": "You tell a story that is so engaging that it captivates your audience and makes them forget their troubles.",
-      "success": "Your audience is captivated by your story and may be more inclined to help you",
-      "failure": "Your story is boring and your audience loses interest",
-      "tags": ["charisma", "social", "entertainment", "storytelling"]
-    },
-    {
-      "skill": "Persuasion",
-      "challenge": "Appeal to someone’s better nature",
-      "description": "You try to convince someone to do the right thing by appealing to their sense of morality and compassion.",
-      "success": "The person is moved by your words and agrees to help you",
-      "failure": "The person is unmoved by your words and refuses to help you",
-      "tags": ["charisma", "social", "diplomacy", "good"]
-    },
-    {
-      "skill": "Religion",
-      "challenge": "Exorcise a demon",
-      "description": "You attempt to drive a demon out of a possessed person or object.",
-      "success": "The demon is exorcised",
-      "failure": "The demon is not exorcised, and may even become more powerful",
-      "tags": ["intelligence", "knowledge", "religion", "ritual", "holy", "demon"]
-    },
-    {
-      "skill": "Sleight of Hand",
-      "challenge": "Slip a drug into someone’s drink",
-      "description": "You attempt to secretly add a drug or poison to someone’s drink.",
-      "success": "You successfully drug the person’s drink",
-      "failure": "You are caught in the act, or the person notices that their drink has been tampered with",
-      "tags": ["dexterity", "crime", "urban", "poison", "stealth"]
-    },
-    {
-      "skill": "Stealth",
-      "challenge": "Sabotage a machine",
-      "description": "You attempt to secretly sabotage a piece of machinery to cause it to malfunction.",
-      "success": "The machine is sabotaged and will malfunction at a critical moment",
-      "failure": "You are caught in the act, or the sabotage is discovered before it can have an effect",
-      "tags": ["dexterity", "stealth", "sabotage", "industrial", "technical"]
-    },
-    {
-      "skill": "Survival",
-      "challenge": "Start a fire in the rain",
-      "description": "You attempt to start a fire with damp wood and in the middle of a downpour.",
-      "success": "You are able to start a small fire that can be used for warmth and cooking",
-      "failure": "You are unable to start a fire",
-      "tags": ["wisdom", "outdoor", "survival", "camping", "weather"]
-    },
-    {
-      "skill": "Acrobatics",
-      "challenge": "Walk on a tightrope",
-      "description": "You attempt to walk across a tightrope stretched between two high points.",
-      "success": "You cross the tightrope successfully",
-      "failure": "You fall from the tightrope and take damage",
-      "tags": ["physical", "dexterity", "high-places", "dangerous", "performance"]
-    },
-    {
-      "skill": "Animal Handling",
-      "challenge": "Win a horse race",
-      "description": "You attempt to ride your horse to victory in a race.",
-      "success": "You win the race",
-      "failure": "You lose the race",
-      "tags": ["wisdom", "outdoor", "animals", "mount", "race"]
-    },
-    {
-      "skill": "Arcana",
-      "challenge": "Create a magic circle",
-      "description": "You attempt to draw a magic circle that can be used to summon or trap a creature.",
-      "success": "The magic circle is created successfully",
-      "failure": "The magic circle is flawed and may have unintended consequences",
-      "tags": ["intelligence", "magic", "ritual", "summoning", "trapping"]
-    },
-    {
-      "skill": "Athletics",
-      "challenge": "Win a wrestling match",
-      "description": "You attempt to defeat an opponent in a wrestling match.",
-      "success": "You win the match",
-      "failure": "You lose the match",
-      "tags": ["strength", "physical", "combat", "wrestling"]
-    },
-    {
-      "skill": "Deception",
-      "challenge": "Create a false identity",
-      "description": "You create a new identity for yourself, complete with a backstory and forged documents.",
-      "success": "Your false identity is convincing and allows you to move about freely",
-      "failure": "Your false identity is discovered, and you may be arrested or worse",
-      "tags": ["charisma", "social", "urban", "intrigue", "disguise"]
-    },
-    {
-      "skill": "History",
-      "challenge": "Appraise an antique",
-      "description": "You examine an antique to determine its age, origin, and value.",
-      "success": "You correctly appraise the antique",
-      "failure": "You incorrectly appraise the antique",
-      "tags": ["intelligence", "knowledge", "scholarly", "trade", "appraisal"]
+      "challenge": "Cross-reference apothecary ledger with theater tickets",
+      "description": "Match purchase records to determine who bought poison recently.",
+      "success": "Connect specific customer to theater attendance",
+      "failure": "Too many customers to narrow down",
+      "tags": ["investigation", "murder_mystery", "poisoned_playwright", "apothecary", "records", "custom_scenario"]
     },
     {
       "skill": "Insight",
-      "challenge": "Win a game of chess",
-      "description": "You play a game of chess against a skilled opponent.",
-      "success": "You win the game",
-      "failure": "You lose the game",
-      "tags": ["wisdom", "social", "game", "strategy"]
-    },
-    {
-      "skill": "Intimidation",
-      "challenge": "Stare down a wild beast",
-      "description": "You attempt to intimidate a wild animal by staring it down and showing no fear.",
-      "success": "The beast is intimidated and backs away",
-      "failure": "The beast is not intimidated and may attack",
-      "tags": ["charisma", "social", "intimidation", "animals", "survival"]
-    },
-    {
-      "skill": "Investigation",
-      "challenge": "Solve a riddle",
-      "description": "You attempt to solve a riddle posed by a creature, a magical item, or an inscription.",
-      "success": "You solve the riddle and may be rewarded",
-      "failure": "You cannot solve the riddle and may face a penalty",
-      "tags": ["intelligence", "puzzle", "riddle"]
-    },
-    {
-      "skill": "Medicine",
-      "challenge": "Set a broken bone",
-      "description": "You attempt to set a broken bone to allow it to heal properly.",
-      "success": "The bone is set correctly and will heal without complications",
-      "failure": "The bone is not set correctly and may heal improperly, causing long-term problems",
-      "tags": ["wisdom", "healing", "medical", "technical"]
-    },
-    {
-      "skill": "Nature",
-      "challenge": "Predict a volcanic eruption",
-      "description": "You use your knowledge of geology and nature to predict when a volcano will erupt.",
-      "success": "You correctly predict the eruption and can warn people to evacuate",
-      "failure": "You incorrectly predict the eruption, or you fail to predict it at all",
-      "tags": ["intelligence", "knowledge", "outdoor", "survival", "disaster"]
+      "challenge": "Read the apothecary owner's nervous tells",
+      "description": "Determine if the shopkeeper is hiding information about the poison sale.",
+      "success": "Learn about the suspicious customer who bought the poison",
+      "failure": "Apothecary successfully stonewalls the inquiry",
+      "tags": ["insight", "murder_mystery", "poisoned_playwright", "apothecary", "social", "custom_scenario"]
     },
     {
       "skill": "Perception",
-      "challenge": "Find a needle in a haystack",
-      "description": "You search a large area for a small, hidden object.",
-      "success": "You find the object",
-      "failure": "You do not find the object",
-      "tags": ["wisdom", "awareness", "investigation", "search"]
-    },
-    {
-      "skill": "Performance",
-      "challenge": "Win a dance competition",
-      "description": "You compete in a dance competition, showing off your grace and skill.",
-      "success": "You win the competition",
-      "failure": "You lose the competition",
-      "tags": ["charisma", "social", "entertainment", "dance"]
+      "challenge": "Spot burned letter fragments in estate fireplace",
+      "description": "Notice incompletely destroyed evidence among the ashes.",
+      "success": "Recover partial text revealing blackmail motive",
+      "failure": "Evidence too damaged to read",
+      "tags": ["perception", "murder_mystery", "poisoned_playwright", "estate", "fire", "custom_scenario"]
     },
     {
       "skill": "Persuasion",
-      "challenge": "Give a rousing speech to inspire troops",
-      "description": "You give a speech to a group of soldiers to boost their morale before a battle.",
-      "success": "The troops are inspired and gain a bonus to their attack rolls or saving throws",
-      "failure": "The speech has no effect, or it may even lower their morale",
-      "tags": ["charisma", "social", "leadership", "combat", "inspiration"]
+      "challenge": "Convince estate servant to reveal master's movements",
+      "description": "Get the loyal servant to admit their master's suspicious behavior.",
+      "success": "Learn master visited apothecary and attended theater",
+      "failure": "Servant remains tight-lipped",
+      "tags": ["persuasion", "murder_mystery", "poisoned_playwright", "estate", "social", "custom_scenario"]
+    },
+    {
+      "skill": "Stealth",
+      "challenge": "Infiltrate underground printing press undetected",
+      "description": "Sneak into the illegal press to gather evidence without alerting criminals.",
+      "success": "Access incriminating documents without confrontation",
+      "failure": "Discovered by press workers, potential combat",
+      "tags": ["stealth", "murder_mystery", "poisoned_playwright", "printing_press", "criminal", "custom_scenario"]
+    },
+    {
+      "skill": "Investigation",
+      "challenge": "Decode the scandal sheet's source annotations",
+      "description": "Trace the libelous article back to who commissioned it.",
+      "success": "Discover payment from rival playwright",
+      "failure": "Sources too well protected to identify",
+      "tags": ["investigation", "murder_mystery", "poisoned_playwright", "printing_press", "documents", "custom_scenario"]
+    },
+    {
+      "skill": "Medicine",
+      "challenge": "Interpret coroner's toxicology report",
+      "description": "Understand the technical autopsy findings to determine time and method.",
+      "success": "Pinpoint exact poison and administration window",
+      "failure": "General understanding but miss crucial timing detail",
+      "tags": ["medicine", "murder_mystery", "poisoned_playwright", "morgue", "poison", "custom_scenario"]
+    },
+    {
+      "skill": "Investigation",
+      "challenge": "Connect all evidence threads to identify murderer",
+      "description": "Synthesize clues from all five locations to solve the murder.",
+      "success": "Definitively identify killer with proof",
+      "failure": "Strong suspicion but insufficient legal evidence",
+      "tags": ["investigation", "murder_mystery", "poisoned_playwright", "morgue", "conclusion", "custom_scenario"]
+    },
+    {
+      "skill": "Arcana",
+      "challenge": "Identify magical residue on poison bottle",
+      "description": "Determine if magic was used to enhance or disguise the poison.",
+      "success": "Discover magical signature linking to specific individual",
+      "failure": "Cannot distinguish magical traces",
+      "tags": ["arcana", "murder_mystery", "poisoned_playwright", "poison", "magic", "custom_scenario"]
+    },
+    {
+      "skill": "Intimidation",
+      "challenge": "Force confession from cornered suspect",
+      "description": "Present overwhelming evidence and pressure suspect to admit guilt.",
+      "success": "Extract full confession including motive",
+      "failure": "Suspect lawyers up or flees",
+      "tags": ["intimidation", "murder_mystery", "poisoned_playwright", "social", "confrontation", "custom_scenario"]
     }
   ]
 }

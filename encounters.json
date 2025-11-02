@@ -399,6 +399,47 @@
       ],
       "description": "A hidden courtyard where the city's beggars have formed their own society, with a king, a queen, and a court of jesters and thieves. The Beggar King is a shrewd and charismatic leader who rules his subjects with a firm but fair hand. He is holding court, settling disputes and dispensing justice.",
       "weight": 0.9
+    },
+    {
+      "title": "The Poisoned Playwright",
+      "tags": [
+        "murder_mystery",
+        "investigation",
+        "urban",
+        "indoor",
+        "social",
+        "poisoned_playwright",
+        "custom_scenario"
+      ],
+      "description": "The city's most celebrated playwright has been found dead in his private theater box, a half-empty wine glass still clutched in his rigid fingers. The performance continues below, unaware, as crimson curtains sway and gaslight flickers across gilded balconies. Four suspects with motive and opportunity scatter into the night—each fleeing to their own refuge. The poisoner must be found before dawn, when the scandal breaks and evidence vanishes with the morning fog.",
+      "weight": 2.0,
+      "customLocations": [
+        "playwrights_theater",
+        "apothecary_shop",
+        "rival_estate",
+        "underground_printing_press",
+        "city_morgue"
+      ],
+      "resolutions": [
+        {
+          "title": "Justice Prevails",
+          "description": "The party gathers irrefutable evidence from the morgue's toxicology report, the apothecary's purchase records, and witness testimonies. Confronting the murderer with proof of means, motive, and opportunity, they secure a confession. The city watch arrives to make the arrest as dawn breaks, preserving the playwright's reputation and bringing the killer to justice before the scandal can spread.",
+          "requirements": "Evidence from at least 3 locations, successful Investigation checks",
+          "rewards": "Gratitude from the theater guild, monetary reward from the victim's estate, reputation boost in high society"
+        },
+        {
+          "title": "Secrets Buried",
+          "description": "The investigation reveals that the truth would destroy multiple innocent lives—the playwright's hidden affairs, the rival's desperate debts, the apothecary's illegal side business. The party must choose: expose the killer and ruin many, or arrange a quiet solution. Perhaps the murderer agrees to exile, a false story is concocted, or powerful patrons make the evidence disappear. The fog rolls in, and with it, the secrets.",
+          "requirements": "Discovery of blackmail materials and love letters, negotiation with involved parties",
+          "rewards": "Favors owed from powerful NPCs, blackmail material for future use, guilty conscience"
+        },
+        {
+          "title": "Race Against Dawn",
+          "description": "Time runs out before all evidence can be collected. The party must make a dramatic choice at the morgue as the first light of dawn appears: present what they have to the authorities and hope it's enough, confront the suspected killer directly in a tense standoff, or watch helplessly as the murderer destroys key evidence and escapes into the morning crowds. Their incomplete investigation has consequences.",
+          "requirements": "Failure to visit all locations or failed time-sensitive skill checks",
+          "rewards": "Partial truth revealed, ongoing quest to find the escaped killer, lessons learned about time management"
+        }
+      ]
     }
   ],
   "arctic": [
