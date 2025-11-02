@@ -2147,12 +2147,14 @@
                     }
 
                     if (matches) {
+                        // Handle both 'description' (string) and 'descriptions' (array) fields
+                        const descriptionSource = encounter.descriptions || encounter.description;
                         results.push({
                             type: 'encounter',
                             title: encounter.title,
                             environment: environment,
                             tags: encounter.tags,
-                            description: buildEncounterDescription(environment, encounter.title, encounter.description)
+                            description: buildEncounterDescription(environment, encounter.title, descriptionSource)
                         });
                     }
                 });
@@ -2947,7 +2949,9 @@
                 }
 
                 const title = template.title;
-                const description = buildEncounterDescription(selectedEnvironment, title, template.description);
+                // Handle both 'description' (string) and 'descriptions' (array) fields
+                const descriptionSource = template.descriptions || template.description;
+                const description = buildEncounterDescription(selectedEnvironment, title, descriptionSource);
                 const scalingNotes = getScalingNotes(partyLevel);
 
             // Build HTML (same as generateEncounter)
@@ -3231,6 +3235,10 @@
         function buildEncounterDescription(environment, title, customDescription) {
             // If a custom description is provided (from encounters.json), use it
             if (customDescription) {
+                // Handle array of descriptions - pick one randomly
+                if (Array.isArray(customDescription)) {
+                    return customDescription[Math.floor(Math.random() * customDescription.length)];
+                }
                 return customDescription;
             }
 
@@ -3489,10 +3497,13 @@
 
             const template = selectEncounterTemplate(selectedEnvironment, specificEncounterTitle);
             console.log('Selected template:', template);
-            console.log('Template description:', template.description);
+            
+            // Handle both 'description' (string) and 'descriptions' (array) fields
+            const descriptionSource = template.descriptions || template.description;
+            console.log('Template description source:', descriptionSource);
             
             const title = template.title;
-            const description = buildEncounterDescription(selectedEnvironment, title, template.description);
+            const description = buildEncounterDescription(selectedEnvironment, title, descriptionSource);
             console.log('Final description:', description.substring(0, 100) + '...');
 
             // Generate NPCs and Locations based on encounter tags FIRST

@@ -5,150 +5,420 @@
       "tags": [
         "alley",
         "outdoor",
-        "street"
+        "street",
+        "crime"
       ],
-      "description": "A guttering lantern throws your shadow against damp brick while low voices trade over wrapped bundles. Spice and stale rainwater mingle in the air, edged by the copper tang of fresh blood. Fog carries clipped whispers as a few bare blades catch the light. Half-seen door seams and watching eyes make the alley feel tight and dangerous.",
-      "weight": 1.1
+      "descriptions": [
+        "A guttering lantern throws your shadow against damp brick while low voices trade over wrapped bundles. Spice and stale rainwater mingle in the air, edged by the copper tang of fresh blood. Fog carries clipped whispers as a few bare blades catch the light. Half-seen door seams and watching eyes make the alley feel tight and dangerous.",
+        "Garbage piles breathe steam in the narrow passage where bootfalls echo like drum beats. A cutpurse's dropped pouch spills silver into the muck while cloaked figures melt into doorways. Overhead, washing lines drip onto worn cobbles that remember a thousand midnight deals. The walls lean close, and every shadow could conceal a knife or a witness."
+      ],
+      "weight": 1.1,
+      "resolutions": [
+        {
+          "title": "Street Justice",
+          "description": "The confrontation ends with the criminals fleeing into the urban maze, but not before dropping evidence linking them to a larger operation. The party can choose to pursue immediately through dangerous territory, or gather allies and return with reinforcements at dawn. Local residents emerge cautiously, offering thanks and information about the criminal network's next target.",
+          "requirements": "Successful combat or intimidation checks, investigation of dropped evidence",
+          "rewards": "Gratitude from local residents, information network access, possible guide through dangerous districts"
+        },
+        {
+          "title": "Darker Bargains",
+          "description": "The encounter reveals that the criminals are desperate refugees being extorted by a corrupt city official. The party must decide whether to turn them in for the bounty, help them escape the city, or confront the official and risk making a powerful enemy. Each choice has immediate consequences for the alley's residents.",
+          "requirements": "Insight checks to uncover the truth, persuasion or deception to navigate the moral dilemma",
+          "rewards": "Choice of: bounty money, criminal contacts, evidence against corrupt official, or refugees' heartfelt gratitude"
+        }
+      ]
     },
     {
       "title": "Rooftop Chase",
       "tags": [
         "rooftop",
         "outdoor",
-        "building"
+        "building",
+        "acrobatic"
       ],
-      "description": "Terracotta shingles and laundry lines blur beneath your boots as bells toll across the skyline. Wind snaps cloaks and catching lines threaten to pitch you toward the streets below. Chimney sweeps shout warnings while roosting griffins shriek at the commotion. Each leap is a hard bargain with gravity and slick tile.",
-      "weight": 1.2
+      "descriptions": [
+        "Terracotta shingles and laundry lines blur beneath your boots as bells toll across the skyline. Wind snaps cloaks and catching lines threaten to pitch you toward the streets below. Chimney sweeps shout warnings while roosting griffins shriek at the commotion. Each leap is a hard bargain with gravity and slick tile.",
+        "Moonlight silvers the roof slates as your quarry races through a forest of chimneys and weathervanes. Guild signs creak on chains below while you balance on rain-slick ridges, the whole city sprawling beneath like a carpet of fireflies. The figure ahead drops a smoke bomb that billows across the tiles—through the haze you catch glimpses of their desperate flight toward the cathedral spires."
+      ],
+      "weight": 1.2,
+      "resolutions": [
+        {
+          "title": "Cornered Confession",
+          "description": "The chase ends at a dead-end rooftop with nowhere left to run. The cornered figure, revealed to be an informant fleeing assassins, offers a desperate bargain: protection in exchange for information about a conspiracy reaching the highest levels of city power. The party hears approaching footsteps—the real hunters are closing in.",
+          "requirements": "Successful athletics/acrobatics checks to keep pace, insight to understand the situation",
+          "rewards": "Valuable conspiracy information, potential ally informant, involvement in larger political intrigue"
+        },
+        {
+          "title": "The Escape Artist",
+          "description": "Your quarry proves too skilled, vanishing into a hidden passage between chimney stacks. But they leave behind a satchel dropped in haste—inside are coded messages, a map of secret routes through the city's rooftops, and a single black feather that radiates faint magic. The escape creates more questions than answers.",
+          "requirements": "Chase continues but quarry escapes, investigation of dropped items",
+          "rewards": "Map of rooftop pathways (advantage on future urban chases), coded messages, mysterious magical feather"
+        }
+      ]
     },
     {
       "title": "The Abandoned Warehouse",
       "tags": [
         "warehouse",
         "indoor",
-        "building"
+        "building",
+        "mystery"
       ],
-      "description": "Dust-choked crates form a claustrophobic maze, and smudged sigils flare for a heartbeat when you brush a lid. Floorboards groan and answer with hollow knocks that echo through the rafters. Soft scuffing moves between the pallets when you pause to listen. The air tastes of rust and old rope fibers.",
-      "weight": 0.9
+      "descriptions": [
+        "Dust-choked crates form a claustrophobic maze, and smudged sigils flare for a heartbeat when you brush a lid. Floorboards groan and answer with hollow knocks that echo through the rafters. Soft scuffing moves between the pallets when you pause to listen. The air tastes of rust and old rope fibers.",
+        "Shafts of grimy light pierce the gloom where crates sit stacked to the ceiling like a child's toy blocks. Fresh bootprints disturb decades of dust, leading to a cleared space where strange alchemical equipment still bubbles softly. Loading doors hang askew on rusted chains, and something large recently dragged itself across the warped floorboards toward the river exit."
+      ],
+      "weight": 0.9,
+      "resolutions": [
+        {
+          "title": "Smuggler's Network Exposed",
+          "description": "The warehouse is a hub for a sophisticated smuggling operation moving cursed artifacts into the city. The party discovers ledgers naming corrupt customs officials and a schedule of incoming shipments. They can seize the evidence and alert authorities, negotiate with the smugglers for a cut and information, or shut down the operation themselves.",
+          "requirements": "Investigation of crates and documents, stealth or combat to handle guards",
+          "rewards": "Smuggling ledgers (evidence against officials), share of valuable contraband, or reputation with city watch"
+        },
+        {
+          "title": "Something Worse Beneath",
+          "description": "The warehouse is just a cover—beneath the floorboards lies an entrance to forgotten catacombs where something ancient has awakened. The scuffing sounds belong to pale humanoids emerging at night to feed. The alchemical equipment was an attempt to study them that went horribly wrong. The party must decide whether to seal the entrance, investigate deeper, or alert the city to evacuate nearby districts.",
+          "requirements": "Discovery of hidden entrance, survival check to notice danger signs, knowledge checks about the creatures",
+          "rewards": "Ancient catacomb map, researcher's notes on the creatures, disturbing knowledge of what lies under the city"
+        }
+      ]
     },
     {
       "title": "Market District Mystery",
       "tags": [
         "market",
         "outdoor",
-        "street"
+        "street",
+        "social"
       ],
-      "description": "Merchants hawk fragrant spices over hushed talk about a missing official. Under layered awnings, you spot chalk marks on posts and glimpse ledgers passed hand to hand. Street performers juggle knives and bright illusions that swallow faces in reflected color. The crowd presses and sways, its mood tilting with every new whisper.",
-      "weight": 1.0
+      "descriptions": [
+        "Merchants hawk fragrant spices over hushed talk about a missing official. Under layered awnings, you spot chalk marks on posts and glimpse ledgers passed hand to hand. Street performers juggle knives and bright illusions that swallow faces in reflected color. The crowd presses and sways, its mood tilting with every new whisper.",
+        "The bazaar churns with desperate energy—merchants shouting prices while pickpockets work the crush. But beneath the commerce flows a current of fear: three stalls stand empty, their owners vanished overnight. Street urchins press notes into palms for copper, and the city watch questions vendors with increasing aggression. Something has the market spooked, and everyone seems to know more than they're saying."
+      ],
+      "weight": 1.0,
+      "resolutions": [
+        {
+          "title": "Conspiracy Unmasked",
+          "description": "The missing official didn't vanish—they faked their disappearance after discovering a price-fixing scheme involving guild masters and city councilors. The party finds them hiding in a safe house, torn between exposing the conspiracy and protecting their family from retaliation. The evidence is damning, but going public will shake the city's economy and make powerful enemies.",
+          "requirements": "Successful investigation and persuasion checks, following chalk mark trail, gaining informant trust",
+          "rewards": "Official's gratitude and future political favors, or conspiracy evidence to use as leverage, economic reform reputation"
+        },
+        {
+          "title": "The Shapeshifter's Game",
+          "description": "The official isn't missing—they're replaced. A doppelganger has taken their place and is slowly replacing other key figures in the market district. The party discovers the pattern: missing persons, subtle personality changes, and a hidden lair beneath the old fountain. They must expose the infiltrator without causing city-wide panic, and decide what to do with the real official trapped in stasis.",
+          "requirements": "Insight checks to notice behavioral inconsistencies, investigation of disappearances, stealth to discover lair",
+          "rewards": "Rescued official's reward, doppelganger's stolen identity kit, knowledge of remaining infiltrators to root out"
+        }
+      ]
     },
     {
       "title": "Sewer Expedition",
       "tags": [
         "sewer",
         "underground",
-        "tunnel"
+        "tunnel",
+        "dangerous"
       ],
-      "description": "Sluggish canals of alchemical runoff glow sickly green, painting the brick in wavering light. The slap of unseen tails and the drip of mineral-rich condensation set a steady rhythm. Vermin watch from culvert mouths while worn symbols along the walls pulse faintly. Each step through the muck threatens a stumble and a cold plunge.",
-      "weight": 0.8
+      "descriptions": [
+        "Sluggish canals of alchemical runoff glow sickly green, painting the brick in wavering light. The slap of unseen tails and the drip of mineral-rich condensation set a steady rhythm. Vermin watch from culvert mouths while worn symbols along the walls pulse faintly. Each step through the muck threatens a stumble and a cold plunge.",
+        "The tunnels breathe with the city's waste—a warm, fetid wind that carries distant chanting. Corroded grates overhead leak pale daylight onto ceremonial markings scrawled in something that isn't paint. Fresh candles float in the effluent, still burning, and the rats flee ahead of you in squeaking waves. Whatever made the symbols is down here right now."
+      ],
+      "weight": 0.8,
+      "resolutions": [
+        {
+          "title": "Cult Disrupted",
+          "description": "Deep in the sewers, the party discovers a doomsday cult preparing to poison the city's water supply. Their leader, a charismatic zealot, offers a choice: join them in 'cleansing' the corrupt city above, or fight through plague-ridden fanatics to destroy their alchemical apparatus. Time is short—the poison is already mixed, and the cultists are willing to die for their cause.",
+          "requirements": "Navigate sewer hazards, combat or persuasion with cultists, disable alchemical device",
+          "rewards": "City's gratitude and substantial reward, cult intelligence, confiscated alchemical formulas, or cult alliance if morally compromised"
+        },
+        {
+          "title": "Plague Source Contained",
+          "description": "The expedition reveals the source of the recent illness outbreak: a breached vault containing failed biological experiments from a war decades past. The contamination is spreading through the water system. The party must choose between a dangerous containment ritual that might cost lives, collapsing the tunnels to seal it (cutting off parts of the city), or risking transport of samples to find a cure.",
+          "requirements": "Survival checks to avoid infection, knowledge of history/arcana to understand the threat, difficult moral choice",
+          "rewards": "Cure research (leads to grateful healers' guild), ancient military records, sealed biohazard gear, tragic knowledge"
+        }
+      ]
     },
     {
       "title": "The Clocktower District",
       "tags": [
         "district",
         "outdoor",
-        "building"
+        "building",
+        "mechanical"
       ],
-      "description": "Clockwork towers toll the hour as brass gears grind against a troubling misalignment. Steam shrouds the streets in a warm haze that tastes of oil. Spires linked by maintenance catwalks demand careful timing, or a misstep will fling you toward spinning weights. Below, onlookers watch with heads tilted back and hands over ears.",
-      "weight": 1.0
+      "descriptions": [
+        "Clockwork towers toll the hour as brass gears grind against a troubling misalignment. Steam shrouds the streets in a warm haze that tastes of oil. Spires linked by maintenance catwalks demand careful timing, or a misstep will fling you toward spinning weights. Below, onlookers watch with heads tilted back and hands over ears.",
+        "The great clock faces show different times—a mechanical impossibility that has the district's chronologists in a panic. Gears the size of wagons stutter and reverse while temporal anomalies ripple through the air like heat shimmer. Workers are trapped on frozen catwalks between grinding mechanisms, and somewhere in the tower's heart, something is deliberately sabotaging the synchronized timepieces that regulate the entire city's schedule."
+      ],
+      "weight": 1.0,
+      "resolutions": [
+        {
+          "title": "Sabotage Prevented",
+          "description": "The party climbs through the tower's dangerous mechanisms to find a brilliant but bitter clockmaker executing revenge against the guild that stole his designs. They must talk him down before he destroys the mainspring, which would create a temporal shockwave. Success means capturing him for trial, but his knowledge of the hidden flaw in the tower's design is invaluable—and he's the only one who can fix it safely.",
+          "requirements": "Athletics/acrobatics to navigate moving machinery, persuasion to convince the saboteur, investigation to understand the mechanism",
+          "rewards": "Clockmaker's reluctant cooperation, guild reward, temporal knowledge, or saboteur's gratitude if helped to escape"
+        },
+        {
+          "title": "Time Unraveled",
+          "description": "The misalignment isn't sabotage—it's a defense mechanism. The tower was built on a temporal nexus, and something from the future is trying to break through. The party experiences brief flashes of possible futures while shutting down the tower's defenses would let whatever it is arrive. They must choose: keep the defenses running and live with unstable time, destroy the nexus, or open it and face what comes.",
+          "requirements": "Arcana checks to understand temporal magic, wisdom saves against time distortion, courage to face unknown future threat",
+          "rewards": "Glimpses of possible futures (campaign foreshadowing), temporal nexus shard (powerful magic item), or future entity's alliance/enmity"
+        }
+      ]
     },
     {
       "title": "Wharf at Midnight",
       "tags": [
         "wharf",
         "outdoor",
-        "dock"
+        "dock",
+        "criminal"
       ],
-      "description": "Salt mist swallows lantern light while barges slide in under unfamiliar colors. Ropes creak as sailors trade quick, low greetings above the slow lap of the tide. The planks are slick, and a single misstep would be loud here. Each wave reveals and erases footprints in moonlit grime.",
-      "weight": 0.95
+      "descriptions": [
+        "Salt mist swallows lantern light while barges slide in under unfamiliar colors. Ropes creak as sailors trade quick, low greetings above the slow lap of the tide. The planks are slick, and a single misstep would be loud here. Each wave reveals and erases footprints in moonlit grime.",
+        "Fog rolls thick between dock pilings where merchant ships rock in their berths. A cutter with no lights drifts to the private pier, its crew unloading crates with practiced silence. The harbormaster's office windows stay dark—they've been paid well to look the other way. But someone else watches from the warehouse shadows, and the smugglers' lookout just noticed your party."
+      ],
+      "weight": 0.95,
+      "resolutions": [
+        {
+          "title": "Smuggling Ring Exposed",
+          "description": "The party uncovers a sophisticated smuggling operation moving weapons to rebel forces in neighboring territories. The smugglers offer a substantial bribe for silence, knowing exposure means execution. The cargo includes both illegal weapons and humanitarian supplies for refugees. Turning them in serves the law but dooms innocents; taking the bribe makes the party complicit; stealing the cargo makes everyone an enemy.",
+          "requirements": "Stealth to observe operation, investigation of cargo, moral choice under pressure",
+          "rewards": "Choice of: substantial bribe money, harbor watch gratitude and future intel, confiscated weapons, or smugglers' gratitude and safe passage"
+        },
+        {
+          "title": "Foreign Agent Captured",
+          "description": "The midnight delivery is a cover for a spy exchange. One of the 'sailors' is a foreign agent carrying intelligence that could prevent or start a war. Multiple factions converge—rival spies, assassins, city watch, and foreign operatives. The party must decide who gets the agent, knowing their choice will have international consequences. Combat erupts on the fog-shrouded docks.",
+          "requirements": "Combat against multiple factions, quick decision-making under pressure, navigation of moral complexity",
+          "rewards": "Faction gratitude (chosen side), partial intelligence access, political leverage, dangerous new enemies, campaign-level consequences"
+        }
+      ]
     },
     {
       "title": "The Old Quarter",
       "tags": [
         "district",
         "outdoor",
-        "street"
+        "street",
+        "social"
       ],
-      "description": "Lean tenements huddle over cobbles etched with cracked warding marks. Wind funnels through alleys with the scent of damp stone and stove smoke. Shutters twitch and fall still as you pass, and voices drop to murmurs. The street feels tight with old pride and fresh anger.",
-      "weight": 0.85
+      "descriptions": [
+        "Lean tenements huddle over cobbles etched with cracked warding marks. Wind funnels through alleys with the scent of damp stone and stove smoke. Shutters twitch and fall still as you pass, and voices drop to murmurs. The street feels tight with old pride and fresh anger.",
+        "The old district simmers with tension—protest signs lean against walls painted with revolutionary slogans. A crowd gathers at the fountain where a charismatic speaker denounces the merchant council's new taxes. City watch form a cordon at the district gate, hands on clubs. The residents remember when this quarter governed itself, and they're tired of being forgotten."
+      ],
+      "weight": 0.85,
+      "resolutions": [
+        {
+          "title": "Peaceful Protest Secured",
+          "description": "The party mediates between angry residents and nervous city watch before violence erupts. They discover the speaker is actually an agent provocateur sent to cause a riot that would justify martial law. Exposing the infiltrator defuses the situation, but the underlying grievances remain. The residents ask the party to carry their petition to the council—a simple errand that will make powerful enemies or allies.",
+          "requirements": "Insight to detect deception, persuasion to calm both sides, investigation to uncover the provocateur",
+          "rewards": "Residents' trust and safe haven in Old Quarter, city watch gratitude, petition document (potential campaign quest), or provocateur's employer exposed"
+        },
+        {
+          "title": "Revolution's First Spark",
+          "description": "The grievances are legitimate—the merchant council has been stealing from the Old Quarter for years. The party finds evidence of embezzlement, forced evictions, and disappeared community leaders. They must choose: side with the establishment and suppress the evidence, help organize legitimate resistance, or step aside and let the fury take its course. The city's future hinges on this moment.",
+          "requirements": "Investigation of council corruption, moral choice with far-reaching consequences, potential combat if choosing sides",
+          "rewards": "Revolutionary alliance (Old Quarter becomes base), council favor (if suppressed), embezzlement evidence (leverage), campaign-altering political shift"
+        }
+      ]
     },
     {
-      "title": "Festival of Masks Unveiled",
+      "title": "Festival of Masks",
       "tags": [
         "festival",
         "crowd",
-        "market"
+        "market",
+        "mystery"
       ],
-      "description": "Ribboned performers and masked revelers whirl beneath fireworks that smear symbols across the smoke. Music and laughter merge into a dizzying roar until a sharp cry cuts the noise. A cloaked figure drags someone behind a curtain of banners as lantern-lit stalls blur with the surge. Faces are hidden; trails vanish in confetti and color.",
-      "weight": 1.35
+      "descriptions": [
+        "Ribboned performers and masked revelers whirl beneath fireworks that smear symbols across the smoke. Music and laughter merge into a dizzying roar until a sharp cry cuts the noise. A cloaked figure drags someone behind a curtain of banners as lantern-lit stalls blur with the surge. Faces are hidden; trails vanish in confetti and color.",
+        "The annual Festival of Masks transforms the square into controlled chaos—nobles mingle anonymously with commoners, fortunes are won and lost at game stalls, and traditional beast-dances stomp through the crowd. But this year the celebration masks something sinister: three people wearing the Raven mask haven't been seen in hours, and a pattern of bloody handprints marks the alley behind the puppet theater. The crowd's joy could turn to stampeding terror at any moment."
+      ],
+      "weight": 1.35,
+      "resolutions": [
+        {
+          "title": "Kidnapping Thwarted",
+          "description": "The party tracks the abductor through festival crowds to a warehouse beneath the square. A desperate cult is collecting people born under the Raven constellation for a midnight ritual. The victims are alive but time is short—the party must fight through cultist guards, disrupt the ritual, and evacuate victims without alerting the festival crowd above and causing a deadly stampede.",
+          "requirements": "Investigation through festival chaos, stealth and combat in tight quarters, careful rescue operation",
+          "rewards": "Rescued victims' gratitude (one is a disguised noble), cult intelligence, ritual components, or noble's significant reward"
+        },
+        {
+          "title": "Assassination Prevented",
+          "description": "The disappearances are cover for a political assassination. A foreign agent is eliminating their own operatives who might expose the real target: a visiting dignitary watching from the festival balcony. The party has minutes to identify the assassin among thousands of masked celebrants, protect the target, and prevent an international incident. The wrong person accused could spark a riot.",
+          "requirements": "Insight and investigation under time pressure, protection of VIP, crowd control, possibly combat with master assassin",
+          "rewards": "Dignitary's immense gratitude and diplomatic favor, foreign agent intelligence network exposed, prevention of war, or capture of legendary assassin"
+        }
+      ]
     },
     {
-      "title": "Guildhouse Heist Aftermath",
+      "title": "Guildhouse Heist",
       "tags": [
         "guild",
         "heist",
-        "indoor"
+        "indoor",
+        "crime"
       ],
-      "description": "Shattered wards and drifting illusion shards hang in the air like broken glass. The guildhouse crackles with stray magic that bends light and twists voices into whispers. Footsteps gather outside as new faces arrive to point fingers or pry at leftovers. Every hallway offers echoes and half-seen shapes.",
-      "weight": 1.1
+      "descriptions": [
+        "Shattered wards and drifting illusion shards hang in the air like broken glass. The guildhouse crackles with stray magic that bends light and twists voices into whispers. Footsteps gather outside as new faces arrive to point fingers or pry at leftovers. Every hallway offers echoes and half-seen shapes.",
+        "The Mages' Guild vault sits open—an impossible feat that has the city's most powerful wizards in a panic. Magical alarms shriek and malfunction, casting wild illusions of the thieves still fleeing. But the real perpetrators left behind their calling card: a black rose and a note challenging the guild to find them. Rival guilds, city watch, and opportunistic looters converge on the scene, all with different agendas."
+      ],
+      "weight": 1.1,
+      "resolutions": [
+        {
+          "title": "Master Thieves Captured",
+          "description": "The party follows the magical trace left by stolen artifacts to the Thieves' Guild safehouse. What they find is unexpected: the thieves are former guild members, expelled for exposing corruption. The stolen items are evidence of illegal experiments on unwilling subjects. The party must choose between returning the 'evidence' to powerful mages who'll destroy it, or protecting the thieves and facing the guild's wrath.",
+          "requirements": "Tracking magical signatures, investigation of guild corruption, combat or negotiation with thieves, moral complexity",
+          "rewards": "Mages' Guild gratitude and training (if evidence returned), Thieves' Guild alliance (if protected), corruption evidence, magical items from either side"
+        },
+        {
+          "title": "Internal Conspiracy Exposed",
+          "description": "Investigation reveals no external thieves—this was an inside job. A guild master staged the heist to cover their embezzlement and frame a rival. The party uncovers ledgers, secret rooms, and witnesses. But the corrupt master is politically connected and warns that exposing them will destroy the party's reputation in the city. They must decide whether to take the offered bribe, pursue justice regardless, or use the evidence as leverage.",
+          "requirements": "Investigation of guild politics, uncovering hidden evidence, navigating power structures, moral choice",
+          "rewards": "Choice of: substantial bribe, justice served (reputation boost), leverage over powerful mage, political entanglement, guild reform"
+        }
+      ]
     },
     {
       "title": "Basilica of Echoing Confessions",
       "tags": [
         "temple",
         "indoor",
-        "district"
+        "district",
+        "mystery"
       ],
-      "description": "Curved domes catch stray whispers and feed them back as soft choruses that linger in the nave. Tonight the hymn swells into something sharp enough to raise hairs on your arms. Incense curls thick as fog around marble pillars etched with words of contrition. Faces turn toward the choir as private words bleed into the open.",
-      "weight": 0.9
+      "descriptions": [
+        "Curved domes catch stray whispers and feed them back as soft choruses that linger in the nave. Tonight the hymn swells into something sharp enough to raise hairs on your arms. Incense curls thick as fog around marble pillars etched with words of contrition. Faces turn toward the choir as private words bleed into the open.",
+        "The basilica's acoustics are legendary—a whisper at the altar can be heard in the furthest pew. But tonight the building is betraying its purpose: confessions meant for priests alone echo through the halls for all to hear. Dark secrets spill into public space while horrified worshippers realize their most private sins are being broadcast. The high priest suspects sabotage, but the truth might be divine judgment."
+      ],
+      "weight": 0.9,
+      "resolutions": [
+        {
+          "title": "Architectural Sabotage",
+          "description": "The party discovers someone has subtly modified the basilica's resonance chambers to amplify and broadcast specific confession booths. The saboteur is a disgraced architect seeking revenge on the clergy who ruined their career. They've also planted evidence that will be revealed during tomorrow's high ceremony, exposing corruption in the church hierarchy. The party must choose between stopping the architect or letting the truth emerge.",
+          "requirements": "Investigation of acoustic modifications, architecture/engineering knowledge, confrontation with saboteur, moral choice",
+          "rewards": "Church gratitude and blessing (if stopped), architect's gratitude and evidence (if helped), exposed church corruption, magical acoustic device"
+        },
+        {
+          "title": "Divine Manifestation",
+          "description": "The echoing confessions aren't sabotage—they're a miracle. A deity is forcing the truth into the open to cleanse the temple of hypocrites. The revealed sins include a murder confession, theft from the poor fund, and a conspiracy to assassinate a bishop. The party must navigate the religious and political fallout, decide who to protect, and determine if they should interfere with divine will at all.",
+          "requirements": "Religion checks to understand divine intervention, investigation of revealed crimes, wisdom to navigate theological crisis, social challenges",
+          "rewards": "Divine blessing or curse (depending on choices), criminal confessions to investigate, political leverage, theological reputation, campaign-altering church crisis"
+        }
+      ]
     },
     {
       "title": "Night Watch Mutiny",
       "tags": [
         "guard",
         "street",
-        "riot"
+        "riot",
+        "conflict"
       ],
-      "description": "Overturned carts form barricades between tight ranks of captains and rookies. Rain-slick cobbles glimmer in torchlight while citizens peer from shutters and then vanish. Each shouted order cracks against stone like a drumbeat. The air holds still, waiting for a single shove to start the rush.",
-      "weight": 1.25
+      "descriptions": [
+        "Overturned carts form barricades between tight ranks of captains and rookies. Rain-slick cobbles glimmer in torchlight while citizens peer from shutters and then vanish. Each shouted order cracks against stone like a drumbeat. The air holds still, waiting for a single shove to start the rush.",
+        "Half the city watch has mutinied over unpaid wages and brutal conditions. Veterans square off against loyalist officers in the district square, both sides armed and furious. Citizens are trapped in their homes as the standoff drags toward dawn. The watch captain, corrupt but maintaining order, faces off against a reform-minded sergeant who won't back down. One wrong word could turn this into a bloodbath."
+      ],
+      "weight": 1.25,
+      "resolutions": [
+        {
+          "title": "Peaceful Compromise",
+          "description": "The party negotiates between both factions, uncovering the truth: the captain has been skimming wages, but the reformers are backed by a criminal syndicate wanting to destabilize law enforcement. Neither side has clean hands. The party must broker a deal that addresses legitimate grievances while preventing criminal takeover. Success means reform and new allies; failure means either tyranny or chaos.",
+          "requirements": "High persuasion and insight checks, investigation of both sides, negotiation under extreme pressure, balanced judgment",
+          "rewards": "Reformed watch gratitude and reliable allies, exposed criminal conspiracy, city stability maintained, political reputation boost"
+        },
+        {
+          "title": "Choose a Side",
+          "description": "Compromise isn't possible—the party must pick a faction and help them win. Siding with the captain means suppressing legitimate reform but maintaining order and gaining a powerful if corrupt ally. Siding with reformers means fighting experienced officers but establishing a just watch and earning the people's trust. Either choice means combat, casualties, and long-term consequences for city politics.",
+          "requirements": "Combat with chosen enemy faction, moral choice with major consequences, tactical decision-making",
+          "rewards": "Chosen faction's gratitude and significant influence, enemy faction's lasting enmity, city power structure shift, campaign-level political change"
+        }
+      ]
     },
     {
       "title": "Skybridge Duel at Dawn",
       "tags": [
         "rooftop",
         "bridge",
-        "duel"
+        "duel",
+        "honor"
       ],
-      "description": "A duelist's seconds tighten ceremonial harnesses as sunrise paints the span in molten gold. The bridge's cables hum while spectators cluster on distant rooftops. Loose anchors, hidden shapes, and watchful gargoyles add edges you can feel but not name. One misstep could send anyone into the mist below.",
-      "weight": 1.05
+      "descriptions": [
+        "A duelist's seconds tighten ceremonial harnesses as sunrise paints the span in molten gold. The bridge's cables hum while spectators cluster on distant rooftops. Loose anchors, hidden shapes, and watchful gargoyles add edges you can feel but not name. One misstep could send anyone into the mist below.",
+        "The skybridge sways in dawn wind as two nobles prepare for a duel of honor. But this isn't ceremonial—someone has sabotaged the bridge's support cables, and the gathered crowd doesn't realize they're standing on a death trap. The duelists are ignorant pawns in an assassination plot. The party has minutes to identify the saboteur, prevent the bridge collapse, and stop the duel without causing a scandal that would shame both noble houses."
+      ],
+      "weight": 1.05,
+      "resolutions": [
+        {
+          "title": "Honor Preserved",
+          "description": "The party exposes the assassination plot and identifies the saboteur: a rival house hoping both duelists would die and blame fall on each other's families, starting a war. Quick action prevents the collapse and saves everyone. The grateful nobles call off their duel and unite against the common enemy. The party earns favor from two powerful houses but makes a deadly enemy of the third.",
+          "requirements": "Investigation under time pressure, engineering check to identify sabotage, persuasion to stop duel, possibly combat with saboteur",
+          "rewards": "Two noble houses' gratitude and patronage, prevented assassination, exposure of conspiracy, deadly rival house enemy"
+        },
+        {
+          "title": "Duel Concluded",
+          "description": "Unable to stop events in time, the party focuses on evacuating spectators and stabilizing the bridge long enough for the duel to conclude. One duelist falls—whether by opponent's blade or failing bridge is ambiguous. The survivor swears it was honorable combat, but the dead noble's family suspects foul play and demands the party's testimony. The party must choose what truth to tell, knowing their words will either prevent or ignite a house war.",
+          "requirements": "Engineering/athletics to prevent total collapse, survival during partial bridge failure, social navigation of aftermath, moral choice",
+          "rewards": "Survivor's gratitude or enmity (based on testimony), potential house war prevented or started, tragic knowledge, bridge engineering insights"
+        }
+      ]
     },
     {
       "title": "Arcane Tram Derailment",
       "tags": [
         "transit",
         "arcane",
-        "disaster"
+        "disaster",
+        "rescue"
       ],
-      "description": "Lightning-fed rails shriek while a levitating tram car dangles over a packed plaza. Sparks cascade like wild fireworks as robed technicians brace sigil-stamped tools against the conduit. Onlookers crowd the edges despite shouted warnings. The car tilts, groans, and drops an inch that steals breaths.",
-      "weight": 1.3
+      "descriptions": [
+        "Lightning-fed rails shriek while a levitating tram car dangles over a packed plaza. Sparks cascade like wild fireworks as robed technicians brace sigil-stamped tools against the conduit. Onlookers crowd the edges despite shouted warnings. The car tilts, groans, and drops an inch that steals breaths.",
+        "The tram system's main car hangs by failing levitation spells, packed with morning commuters. Arcane conduits overload and discharge random magic—one passenger is slowly turning to stone, another is floating toward the gap, and the driver has been polymorphed into a terrified sheep. The technicians' guild is arguing over procedure while the tram drops another foot. Someone needs to act now, procedures be damned."
+      ],
+      "weight": 1.3,
+      "resolutions": [
+        {
+          "title": "Heroic Rescue",
+          "description": "The party organizes a desperate rescue operation, using magic and improvisation to evacuate passengers before the tram falls. They must stabilize the levitation spell, create escape routes, dispel random magical effects, and keep the crowd from stampeding. Success saves everyone and makes the party city heroes. Failure means casualties and a disaster the city won't forget.",
+          "requirements": "Arcana checks to stabilize magic, athletics/acrobatics for rescue work, crowd control, teamwork under pressure, creative problem-solving",
+          "rewards": "City-wide hero status, grateful passengers (influential contacts), technicians' guild favor, commendation from city council, possible magic item reward"
+        },
+        {
+          "title": "Sabotage Uncovered",
+          "description": "While working to prevent disaster, the party discovers this wasn't an accident—someone deliberately overloaded the conduits. The saboteur is still present, trying to ensure maximum casualties to discredit the technicians' guild so their rivals can take over the city's transit contract. The party must simultaneously prevent disaster and stop the saboteur from triggering a complete system failure that would drop every tram in the city.",
+          "requirements": "Investigation during crisis, arcana to identify sabotage, combat with saboteur while managing ongoing disaster, prevent catastrophic failure",
+          "rewards": "Prevented city-wide catastrophe, saboteur captured, corporate conspiracy exposed, technicians' guild massive gratitude, transit system reform"
+        }
+      ]
     },
     {
       "title": "Stormglass Conservatory Siege",
       "tags": [
         "conservatory",
         "indoor",
-        "arcane"
+        "arcane",
+        "nature"
       ],
-      "description": "Crystalline greenhouses fracture as the captured storm inside surges against the panes. Glass sings with a rising hum that turns every footstep into a risk. Scholars shout over the wind while living vines whip at curtains of slicing hail. The domes flicker, one crack away from bursting into glittering rain.",
-      "weight": 0.95
+      "descriptions": [
+        "Crystalline greenhouses fracture as the captured storm inside surges against the panes. Glass sings with a rising hum that turns every footstep into a risk. Scholars shout over the wind while living vines whip at curtains of slicing hail. The domes flicker, one crack away from bursting into glittering rain.",
+        "The conservatory's experimental weather dome is failing catastrophically. Inside, impossible plants from across the planes grow wild, fed by a contained hurricane that's breaking free. Scholars are trapped among carnivorous flowers and lightning-fruit trees while the glass ceiling develops spreading cracks. Outside, a protest group claims the conservatory's weather manipulation has been causing droughts in poor districts. They're threatening to shatter the dome themselves."
+      ],
+      "weight": 0.95,
+      "resolutions": [
+        {
+          "title": "Storm Contained",
+          "description": "The party enters the chaotic conservatory to rescue trapped scholars and stabilize the storm before it breaks free and devastates the district. They must navigate aggressive plant life, dodgearcane weather phenomena, and find the control mechanism—all while the glass shatters piece by piece. Success saves the conservatory and its irreplaceable specimens. But the protesters' drought accusations prove accurate, forcing the party to decide whether to expose the conservatory's crimes.",
+          "requirements": "Nature/arcana to handle magical plants, survival in extreme weather, rescue operation, investigation of drought claims, moral choice",
+          "rewards": "Scholars' gratitude, rare plant specimens, weather magic knowledge, drought evidence (leverage or justice), conservatory reform or exposure"
+        },
+        {
+          "title": "Controlled Destruction",
+          "description": "The storm can't be contained—it must be released in a controlled manner to prevent catastrophic dome failure. The party works with both protesters and scholars to evacuate the area and direct the storm's release safely. But once freed, the storm reveals its true nature: it's a captured elemental prince seeking revenge. The party must negotiate with an angry storm entity while preventing it from destroying the city in retribution.",
+          "requirements": "Evacuation coordination, nature/arcana to communicate with elemental, diplomacy with angry storm prince, possible combat or bargaining",
+          "rewards": "Elemental prince's boon (if negotiated well), protesters' gratitude, end of drought, storm magic knowledge, or elemental curse if handled poorly"
+        }
+      ]
     },
     {
       "title": "Moonlit Menagerie Escape",
@@ -235,50 +505,140 @@
       "tags": [
         "rooftop",
         "garden",
-        "outdoor"
+        "outdoor",
+        "secret"
       ],
-      "description": "A hidden oasis of green atop a towering building, offering a panoramic view of the city. The air is sweet with the scent of rare flowers and the buzz of honeybees. A secret society of druids tends to the garden, and a pair of star-crossed lovers meets here in secret.",
-      "weight": 0.9
+      "descriptions": [
+        "A hidden oasis of green atop a towering building, offering a panoramic view of the city. The air is sweet with the scent of rare flowers and the buzz of honeybees. A secret society of druids tends to the garden, and a pair of star-crossed lovers meets here in secret.",
+        "Impossible greenery thrives on this sky-high refuge, tended by a hidden circle of urban druids who maintain nature's foothold in the stone jungle. Bee hives hum between flowering vines that shouldn't survive this altitude, and fruit trees bend with impossible harvests. But tonight the sanctuary has been discovered—corporate agents plan to seize it for a luxury development, and the druids prepare for a last stand."
+      ],
+      "weight": 0.9,
+      "resolutions": [
+        {
+          "title": "Sanctuary Preserved",
+          "description": "The party helps the druids defend their garden using legal channels, uncovering that the rooftop is actually protected sacred ground from the city's founding charter. They expose the corporate conspiracy and ensure the garden's protection. The grateful druids share their knowledge and grant access to rare plants and healing. The sanctuary becomes a safe haven for the party in the city's heart.",
+          "requirements": "Investigation of legal documents, persuasion/intimidation with corporate agents, possible stealth or social combat, supporting druids",
+          "rewards": "Druid circle alliance, rare plant access, healing sanctuary, legal victory, urban nature magic knowledge"
+        },
+        {
+          "title": "Nature's Exodus",
+          "description": "The garden can't be saved—corporate power is too great. The party helps the druids perform a final ritual to transplant the garden's spirit to a new location outside the city. The plants wither and die in hours, leaving the rooftop barren. But the ritual reveals something unexpected: the garden was containing a planar breach to the Feywild. Now freed, fey creatures flood into the corporate building below, causing chaos and forcing evacuation.",
+          "requirements": "Nature/arcana for transplant ritual, rapid evacuation of druids and plants, managing Feywild breach consequences, moral reckoning",
+          "rewards": "Druid gratitude and relocation knowledge, Feywild contacts (chaotic), corporate enemy, bittersweet victory, transformed building becomes fey territory"
+        }
+      ]
     },
     {
       "title": "The Undercity Fight Club",
       "tags": [
         "underground",
         "combat",
-        "crime"
+        "crime",
+        "brutal"
       ],
-      "description": "A brutal, no-holds-barred fighting tournament held in the city's sewers. The roar of the crowd is deafening, and the smell of blood and sweat is thick in the air. A desperate fighter is trying to win enough money to save his family, and a ruthless crime boss is fixing the matches.",
-      "weight": 1.3
+      "descriptions": [
+        "A brutal, no-holds-barred fighting tournament held in the city's sewers. The roar of the crowd is deafening, and the smell of blood and sweat is thick in the air. A desperate fighter is trying to win enough money to save his family, and a ruthless crime boss is fixing the matches.",
+        "Blood spatters the makeshift ring as fighters battle for screaming crowds in the torch-lit depths. The underground arena runs on desperation—debtors fighting for freedom, exiles seeking coin, and thrill-seekers risking death. But something's wrong tonight: fighters are dying in ways that don't match their wounds, and the crime boss running the show seems to be offering certain fighters to something in the shadows beyond the ring."
+      ],
+      "weight": 1.3,
+      "resolutions": [
+        {
+          "title": "Champion Emerges",
+          "description": "The party enters the tournament (or backs a fighter) and fights their way to the top, exposing the fixed matches and the crime boss's deal with an underground demon. Victory earns freedom for the enslaved fighters and control of the fighting ring. The party can shut it down, reform it into legitimate combat sports, or take it over for profit and influence in the criminal underworld.",
+          "requirements": "Combat prowess or backing skilled fighter, investigation of fixed matches, confrontation with crime boss and demon, moral choice",
+          "rewards": "Fighter gratitude and loyalty, control of fight club (income/influence), demon combat or banishment, underworld reputation"
+        },
+        {
+          "title": "Ring Destroyed",
+          "description": "The corruption runs too deep—the entire operation feeds a demon cult using fighter deaths as sacrifices. The party must evacuate fighters and audience before collapsing the arena chamber, sealing the demon below. But this will anger powerful crime figures who were invested in the operation, and the displaced fighters will have nowhere to go. The party must find safe refuge for former fighters while dealing with criminal retaliation.",
+          "requirements": "Combat with demon cultists, tactical chamber collapse, evacuation under pressure, dealing with criminal consequences, aiding displaced fighters",
+          "rewards": "Demon threat eliminated, rescued fighters (potential recruits/contacts), criminal syndicate enemy, moral victory with messy aftermath"
+        }
+      ]
     },
     {
       "title": "The Public Bathhouse",
       "tags": [
         "bathhouse",
         "social",
-        "indoor"
+        "indoor",
+        "intrigue"
       ],
-      "description": "A place of relaxation and gossip for the city's citizens. The steam rooms are filled with whispered secrets, and the massage tables are privy to all sorts of confessions. A corrupt politician is making a deal with a foreign spy, and a serial killer is stalking the bathhouse's patrons.",
-      "weight": 1.0
+      "descriptions": [
+        "A place of relaxation and gossip for the city's citizens. The steam rooms are filled with whispered secrets, and the massage tables are privy to all sorts of confessions. A corrupt politician is making a deal with a foreign spy, and a serial killer is stalking the bathhouse's patrons.",
+        "Steam and hushed voices fill the public baths where class distinctions dissolve in shared pools. Today the atmosphere is tense—a high-profile patron was found dead in a private steam room, and the bathhouse has been sealed. Everyone present is a suspect, from the politician in corner negotiations to the mysterious regular who always wears gloves. The killer is still here, and they know the party is investigating."
+      ],
+      "weight": 1.0,
+      "resolutions": [
+        {
+          "title": "Murder Solved",
+          "description": "The party unravels a complex web of blackmail, espionage, and revenge. The victim was a foreign agent, the politician was being blackmailed, and the killer is the bathhouse owner—who discovered their spouse was one of the agent's targets. The party must decide whether to turn in the owner (who had sympathetic motives), expose the spy ring, or use the information as leverage. Each choice has diplomatic consequences.",
+          "requirements": "Investigation in confined social setting, interrogation of suspects, insight to detect lies, discretion with sensitive information",
+          "rewards": "Choice of: bathhouse owner's gratitude, politician's favor, spy network intelligence, diplomatic leverage, or multiple faction rewards if navigated carefully"
+        },
+        {
+          "title": "Serial Killer Captured",
+          "description": "The victim wasn't the first—they're the latest in a string of murders. The party discovers the killer is a bathhouse attendant with an otherworldly patron, collecting souls through drowning rituals in specific pools. The killer has already marked their next victim—someone in the party. They must identify the killer, protect the marked target, and stop the ritual before the entity manifests through the bathhouse's central pool.",
+          "requirements": "Investigation of murder pattern, protection of marked party member, combat with possessed killer, disruption of summoning ritual",
+          "rewards": "Multiple lives saved, otherworldly entity banished, bathhouse cleansed, city guard gratitude, possible cursed artifact recovered"
+        }
+      ]
     },
     {
       "title": "The Grand Theater",
       "tags": [
         "theater",
         "entertainment",
-        "indoor"
+        "indoor",
+        "cursed"
       ],
-      "description": "A magnificent theater where the city's finest actors perform. The stage is set for a tragedy, but the real drama is happening backstage. A jealous understudy is plotting to sabotage the lead actor, and a cursed play is driving the cast and crew to madness.",
-      "weight": 1.1
+      "descriptions": [
+        "A magnificent theater where the city's finest actors perform. The stage is set for a tragedy, but the real drama is happening backstage. A jealous understudy is plotting to sabotage the lead actor, and a cursed play is driving the cast and crew to madness.",
+        "Opening night of the legendary Lost King's Tragedy—a play that hasn't been performed in a century for good reason. The rehearsals have been plagued by accidents, the lead actor hears voices from the empty balconies, and the director insists the show must go on despite three cast members collapsing. The cursed script is rewriting itself, and the boundary between performance and reality grows thinner with each scene."
+      ],
+      "weight": 1.1,
+      "resolutions": [
+        {
+          "title": "Show Stopped",
+          "description": "The party investigates and discovers the play is a ritual that summons the spirit of the Lost King, seeking to reclaim his throne through possession of the lead actor. They must stop the performance before the final act, exorcise the restless royal spirit, and deal with the director—who knowingly staged the cursed play as revenge against the city that executed his ancestor, the Lost King. The gathered nobles in the audience don't realize how close they came to supernatural catastrophe.",
+          "requirements": "Investigation of play's history, combat/exorcism of Lost King's spirit, stopping performance without causing panic, confronting director",
+          "rewards": "Noble gratitude for prevented catastrophe, exorcised spirit's treasure cache, theater preservation, historical artifacts, director's confession implicates others"
+        },
+        {
+          "title": "Performance Completed",
+          "description": "The party arrives too late—the final scene begins and the Lost King manifests. But an unexpected twist: the king doesn't seek conquest. He was unjustly executed and the play is his only way to communicate the truth about a greater betrayal. The party must decide whether to help him reveal the conspiracy (which will shake the city's noble families), banish him back to the afterlife, or negotiate a peaceful resolution where his truth is told but his spirit finally rests.",
+          "requirements": "Communication with spirit, investigation of historical conspiracy, negotiation between worlds, moral choice with political consequences",
+          "rewards": "Lost King's truth revealed (campaign-changing history), spirit's blessing/treasure, noble house conspiracies exposed, or peaceful resolution with spirit's gratitude"
+        }
+      ]
     },
     {
       "title": "The City Gates",
       "tags": [
         "gate",
         "outdoor",
-        "street"
+        "street",
+        "checkpoint"
       ],
-      "description": "The main entrance to the city, a bustling chokepoint for travelers and trade. The city guard is on high alert, searching for a notorious fugitive. A caravan of refugees is seeking asylum, and a doomsday prophet is preaching to the crowds.",
-      "weight": 1.2
+      "descriptions": [
+        "The main entrance to the city, a bustling chokepoint for travelers and trade. The city guard is on high alert, searching for a notorious fugitive. A caravan of refugees is seeking asylum, and a doomsday prophet is preaching to the crowds.",
+        "The gates are clogged with desperate humanity—refugees fleeing war, merchants whose goods rot in the sun, and travelers caught in lockdown. The guard captain has orders to let no one in until a fugitive is found, but tensions rise by the hour. The refugees include women and children, the merchants are losing fortunes, and the prophet's crowd grows as they preach that this is the first sign of the end times."
+      ],
+      "weight": 1.2,
+      "resolutions": [
+        {
+          "title": "Fugitive Captured",
+          "description": "The party identifies the fugitive—a shapeshifter hiding among the refugees. But they discover the 'fugitive' is actually a witness to noble corruption, fleeing assassination. The guard captain knows but follows orders. The party must choose: turn in the witness to open the gates (dooming the witness but saving the refugees), help the witness escape (keeping gates closed longer), or expose the corrupt nobles ordering the manhunt.",
+          "requirements": "Investigation to find shapeshifter, insight into political situation, moral choice with consequences",
+          "rewards": "Choice of: refugee gratitude, witness's evidence (political leverage), noble favor (if witness turned in), or reformed guard captain as ally"
+        },
+        {
+          "title": "Gates Forced Open",
+          "description": "No fugitive exists—the lockdown is a power play by paranoid nobles fearing plague or revolution. The party discovers evidence and must decide how to act. They can present proof to force the gates open peacefully, rally the crowd to overwhelm the guards (risking violence), or sneak people through smuggler tunnels. Each approach has different consequences for the city's stability.",
+          "requirements": "Investigation of orders, social challenges with factions, decision-making under pressure, possible crowd control or smuggling",
+          "rewards": "Massive refugee gratitude (future allies), merchant connections, guard captain's respect (if handled well), or noble enmity"
+        }
+      ]
     },
     {
       "title": "The Cemetery",
@@ -448,9 +808,28 @@
       "tags": [
         "wilderness",
         "outdoor",
-        "openfield"
+        "openfield",
+        "survival"
       ],
-      "description": "A pale sun hangs low over a horizon of endless white, casting long shadows that creep like ghosts across the tundra. Each breath crystallizes in the air, glittering briefly before the wind snatches it away. The snow underfoot groans, hinting at hollow chambers and hidden crevasses. Distant howls ride the gale, promising that the wasteland is anything but empty."
+      "descriptions": [
+        "A pale sun hangs low over a horizon of endless white, casting long shadows that creep like ghosts across the tundra. Each breath crystallizes in the air, glittering briefly before the wind snatches it away. The snow underfoot groans, hinting at hollow chambers and hidden crevasses. Distant howls ride the gale, promising that the wasteland is anything but empty.",
+        "The blizzard hit three hours ago and shows no sign of stopping. Visibility drops to arm's length as whiteout conditions erase the world. The party's guide collapsed an hour back—either hypothermia or something worse. Supplies are dwindling, shelter is nowhere, and the compass spins uselessly. Something large is circling the party just beyond the curtain of snow, its footfalls barely audible over the screaming wind."
+      ],
+      "weight": 1.0,
+      "resolutions": [
+        {
+          "title": "Shelter Found",
+          "description": "The party discovers an ancient waystation half-buried in snow—a relic from when caravans regularly crossed these wastes. Inside they find frozen corpses of previous travelers, supplies, and a journal detailing a safer route. But they also find evidence that something has been using this shelter as a feeding ground. They can rest and recover here, but must decide whether to investigate the predator's lair or move on quickly with the route information.",
+          "requirements": "Survival checks to find shelter, investigation of waystation, decision about predator threat",
+          "rewards": "Rest and recovery, route map (advantage on future arctic travel), supplies, predator intelligence, or combat with territorial beast"
+        },
+        {
+          "title": "Nomad Rescue",
+          "description": "As hypothermia sets in, the party is rescued by arctic nomads who appear from the storm. The nomads demand payment for the rescue—either coin, labor, or a dangerous favor. Their camp reveals they're refugees fleeing something that destroyed their homeland. The party must recover, navigate the social dynamics of desperate people, and decide whether to help them face what they're running from.",
+          "requirements": "Survival to last until rescue, negotiation with nomads, investigation of their story, moral choice",
+          "rewards": "Life saved, arctic survival knowledge, nomad allies or debt, information about regional threat, potential quest hook"
+        }
+      ]
     },
     {
       "title": "The Avalanche Path",
@@ -540,9 +919,28 @@
       "tags": [
         "ship",
         "vessel",
-        "deck"
+        "deck",
+        "disaster"
       ],
-      "description": "Waves slam into the hull with bone-rattling force as thunderheads bruise the sky overhead. Crew members shout over the roar of wind and cracking sails, their faces lit by jagged lightning. The ship pitches wildly, revealing brief glimpses of black water filled with ghostly foam. In the chaos, something massive circles beneath the surface, waiting for the perfect moment to strike."
+      "descriptions": [
+        "Waves slam into the hull with bone-rattling force as thunderheads bruise the sky overhead. Crew members shout over the roar of wind and cracking sails, their faces lit by jagged lightning. The ship pitches wildly, revealing brief glimpses of black water filled with ghostly foam. In the chaos, something massive circles beneath the surface, waiting for the perfect moment to strike.",
+        "The hurricane appeared from nowhere, as if summoned. The captain screams that this is no natural storm—the clouds form spiraling symbols of an ancient sea god's wrath. Water floods the lower decks, the mast cracks ominously, and crew members are swept overboard. The ship won't survive another hour. The party must choose: abandon ship in lifeboats, attempt desperate repairs, or discover why the sea god is angry and appease it before everyone drowns."
+      ],
+      "weight": 1.2,
+      "resolutions": [
+        {
+          "title": "Ship Saved",
+          "description": "Through heroic effort, magical intervention, or clever sailing, the party keeps the ship afloat long enough to reach the eye of the storm. There they find a maelstrom with a gateway to an underwater temple. The sea god's priest emerges, explaining the captain violated sacred waters. The party must mediate: convince the god to spare the ship in exchange for penance, or defend the ship against divine wrath. Either choice has lasting consequences.",
+          "requirements": "Skill challenges to save ship (athletics, nature, spellcasting), investigation of the violation, diplomacy or combat with sea priest",
+          "rewards": "Ship and crew saved, sea god's grudging respect (if mediated), sacred waters knowledge, or divine curse if fought"
+        },
+        {
+          "title": "Shipwrecked",
+          "description": "The ship breaks apart in the storm. The party and handful of survivors wash ashore on an uncharted island. Wreckage and supplies scatter across the beach. The island seems uninhabited but shows signs of ancient civilization. The party must establish shelter, find food and water, explore the ruins, and discover a way off the island—all while the surviving crew looks to them for leadership and hope dwindles.",
+          "requirements": "Survival checks for shipwreck, leadership of survivors, island exploration, discovering escape method",
+          "rewards": "Survival skills tested, discovery of lost island civilization, ancient ruins and treasures, eventual rescue or ship building, crew loyalty, campaign detour"
+        }
+      ]
     },
     {
       "title": "The Coral Labyrinth",
@@ -916,9 +1314,28 @@
       "tags": [
         "trail",
         "outdoor",
-        "path"
+        "path",
+        "mystery"
       ],
-      "description": "Towering trunks crowd the narrow trail, their branches knitting overhead to blot out the sun. Damp earth muffles footsteps while the scent of pine and rich loam fills the air. Distant birdcalls shift abruptly to silence as something unseen watches from the underbrush. Every bend hides a new secret waiting to be discovered—or sprung."
+      "descriptions": [
+        "Towering trunks crowd the narrow trail, their branches knitting overhead to blot out the sun. Damp earth muffles footsteps while the scent of pine and rich loam fills the air. Distant birdcalls shift abruptly to silence as something unseen watches from the underbrush. Every bend hides a new secret waiting to be discovered—or sprung.",
+        "The forest path loops back on itself impossibly—the party has passed the same lightning-struck oak three times despite walking straight. Ancient trees shift position when no one is looking, and the trail markings change between heartbeats. Fey laughter echoes from no discernible direction. The party is being tested or toyed with, and the only way out is to understand the rules of this game."
+      ],
+      "weight": 1.0,
+      "resolutions": [
+        {
+          "title": "Path Revealed",
+          "description": "The party solves the forest's riddle—offering tribute at the oak, speaking only truth, or performing a specific ritual. The trees part to reveal the true path and a grateful dryad who was trapped by the same enchantment. She explains that a dark druid cursed these woods to prevent intruders from reaching their sacred grove. The party can help her break the curse fully, earning druid circle gratitude, or simply pass through.",
+          "requirements": "Nature/arcana checks to understand the enchantment, appropriate tribute or ritual, aiding the dryad",
+          "rewards": "Dryad's blessing, safe passage, knowledge of druid grove location, natural magic lore, or druid circle contact"
+        },
+        {
+          "title": "Fey Bargain",
+          "description": "A trickster fey reveals themselves as the cause—they've been bored and wanted playmates. They offer a deal: complete three challenges (riddles, contests, or tasks) and win freedom plus a boon. Refuse or fail and become part of the forest forever. The challenges are dangerous but fair, and the fey actually honors their word. Success grants powerful fey magic but also draws the attention of the Feywild Court.",
+          "requirements": "Three skill challenges (DM's choice), negotiation with fey, accepting consequences of fey bargain",
+          "rewards": "Fey boon (powerful magic item or ability), Feywild contact (chaotic), freedom from loop, but future fey attention (blessing or curse)"
+        }
+      ]
     },
     {
       "title": "The Overgrown Ruins",
