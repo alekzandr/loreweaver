@@ -1118,6 +1118,122 @@
             background: rgba(102, 126, 234, 0.2);
         }
 
+        /* Modern Dropdown Menu */
+        .encounter-actions {
+            position: relative;
+            display: inline-block;
+        }
+
+        .encounter-menu-btn {
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: inherit;
+        }
+
+        [data-theme="dark"] .encounter-menu-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .encounter-menu-btn:hover {
+            background: rgba(0, 122, 255, 0.1);
+            border-color: var(--accent-blue);
+            transform: translateY(-1px);
+        }
+
+        .encounter-menu-btn .menu-icon {
+            font-size: 1.1em;
+        }
+
+        .encounter-dropdown {
+            position: absolute;
+            top: calc(100% + 4px);
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.05);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .encounter-dropdown {
+            background: rgba(44, 44, 46, 0.98);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .encounter-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-section {
+            padding: 8px 0;
+        }
+
+        .dropdown-section:not(:last-child) {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="dark"] .dropdown-section:not(:last-child) {
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-label {
+            padding: 4px 16px;
+            font-size: 0.7em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            opacity: 0.6;
+        }
+
+        .dropdown-item {
+            padding: 10px 16px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9em;
+            color: var(--text-primary);
+            background: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(0, 122, 255, 0.08);
+            color: var(--accent-blue);
+        }
+
+        .dropdown-item .item-icon {
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+        }
+
         .saved-encounter-item {
             padding: 15px;
             background: rgba(255, 255, 255, 0.5);
@@ -1325,6 +1441,7 @@
             background: rgba(255, 255, 255, 0.9);
             border-radius: 16px;
             border: 1px solid rgba(0, 0, 0, 0.06);
+            overflow: visible;
         }
 
         [data-theme="dark"] .encounter-section {
@@ -1361,7 +1478,7 @@
 
         .section-content {
             max-height: 5000px;
-            overflow: hidden;
+            overflow: visible;
             transition: max-height 0.3s ease, opacity 0.3s ease;
             opacity: 1;
         }
@@ -1369,6 +1486,7 @@
         .section-content.collapsed {
             max-height: 0;
             opacity: 0;
+            overflow: hidden;
         }
 
         .encounter-section h3 {
@@ -2961,9 +3079,42 @@
                     <div class="section-content">
                         <p class="description">${description}</p>
                         <p class="description"><strong>Environment:</strong> ${selectedEnvironment.charAt(0).toUpperCase() + selectedEnvironment.slice(1)} | <strong>Recommended Party Level:</strong> ${partyLevel}</p>
-                        <div style="margin-top: 15px; display: flex; gap: 10px;">
-                            <button class="save-btn result-btn" onclick="saveCurrentEncounter()">💾 Save Encounter</button>
-                            <button class="load-btn result-btn" onclick="showSavedEncounters()">📂 Load Saved</button>
+                        <div style="margin-top: 15px; display: flex; justify-content: flex-end;">
+                            <div class="encounter-actions">
+                                <button class="encounter-menu-btn" onclick="toggleEncounterMenu(event)">
+                                    <span class="menu-icon">⚡</span>
+                                    <span>Actions</span>
+                                    <span style="font-size: 0.7em;">▼</span>
+                                </button>
+                                <div class="encounter-dropdown">
+                                    <div class="dropdown-section">
+                                        <div class="dropdown-label">Save & Load</div>
+                                        <button class="dropdown-item" onclick="saveCurrentEncounter(); closeEncounterMenu();">
+                                            <span class="item-icon">💾</span>
+                                            <span>Save Encounter</span>
+                                        </button>
+                                        <button class="dropdown-item" onclick="showSavedEncounters(); closeEncounterMenu();">
+                                            <span class="item-icon">📂</span>
+                                            <span>Load Saved</span>
+                                        </button>
+                                    </div>
+                                    <div class="dropdown-section">
+                                        <div class="dropdown-label">Export</div>
+                                        <button class="dropdown-item" onclick="exportEncounterMarkdown(); closeEncounterMenu();">
+                                            <span class="item-icon">📝</span>
+                                            <span>Export Markdown</span>
+                                        </button>
+                                        <button class="dropdown-item" onclick="exportEncounterText(); closeEncounterMenu();">
+                                            <span class="item-icon">📄</span>
+                                            <span>Export Text</span>
+                                        </button>
+                                        <button class="dropdown-item" onclick="exportEncounterPDF(); closeEncounterMenu();">
+                                            <span class="item-icon">📑</span>
+                                            <span>Export PDF</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3544,9 +3695,42 @@
                     <div class="section-content">
                         <p class="description">${description}</p>
                         <p class="description"><strong>Environment:</strong> ${selectedEnvironment.charAt(0).toUpperCase() + selectedEnvironment.slice(1)} | <strong>Recommended Party Level:</strong> ${partyLevel}</p>
-                        <div style="margin-top: 15px; display: flex; gap: 10px;">
-                            <button class="save-btn result-btn" onclick="saveCurrentEncounter()">💾 Save Encounter</button>
-                            <button class="load-btn result-btn" onclick="showSavedEncounters()">📂 Load Saved</button>
+                        <div style="margin-top: 15px; display: flex; justify-content: flex-end;">
+                            <div class="encounter-actions">
+                                <button class="encounter-menu-btn" onclick="toggleEncounterMenu(event)">
+                                    <span class="menu-icon">⚡</span>
+                                    <span>Actions</span>
+                                    <span style="font-size: 0.7em;">▼</span>
+                                </button>
+                                <div class="encounter-dropdown">
+                                    <div class="dropdown-section">
+                                        <div class="dropdown-label">Save & Load</div>
+                                        <button class="dropdown-item" onclick="saveCurrentEncounter(); closeEncounterMenu();">
+                                            <span class="item-icon">💾</span>
+                                            <span>Save Encounter</span>
+                                        </button>
+                                        <button class="dropdown-item" onclick="showSavedEncounters(); closeEncounterMenu();">
+                                            <span class="item-icon">📂</span>
+                                            <span>Load Saved</span>
+                                        </button>
+                                    </div>
+                                    <div class="dropdown-section">
+                                        <div class="dropdown-label">Export</div>
+                                        <button class="dropdown-item" onclick="exportEncounterMarkdown(); closeEncounterMenu();">
+                                            <span class="item-icon">📝</span>
+                                            <span>Export Markdown</span>
+                                        </button>
+                                        <button class="dropdown-item" onclick="exportEncounterText(); closeEncounterMenu();">
+                                            <span class="item-icon">📄</span>
+                                            <span>Export Text</span>
+                                        </button>
+                                        <button class="dropdown-item" onclick="exportEncounterPDF(); closeEncounterMenu();">
+                                            <span class="item-icon">📑</span>
+                                            <span>Export PDF</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -5946,6 +6130,353 @@
             document.getElementById('npcDisplay').classList.add('active');
             document.getElementById('npcDisplay').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+
+        // Export Functions
+        function exportEncounterMarkdown() {
+            const content = generateEncounterMarkdown();
+            downloadFile(content, `encounter-${Date.now()}.md`, 'text/markdown');
+        }
+
+        function exportEncounterText() {
+            const content = generateEncounterText();
+            downloadFile(content, `encounter-${Date.now()}.txt`, 'text/plain');
+        }
+
+        function exportEncounterPDF() {
+            // For PDF, we'll convert HTML to a printable format and trigger print dialog
+            const content = generateEncounterHTML();
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Encounter - ${window.encounterTitle || 'Unknown'}</title>
+                    <style>
+                        body {
+                            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                            max-width: 800px;
+                            margin: 40px auto;
+                            padding: 20px;
+                            line-height: 1.6;
+                            color: #333;
+                        }
+                        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+                        h2 { color: #34495e; margin-top: 25px; border-bottom: 2px solid #95a5a6; padding-bottom: 5px; }
+                        h3 { color: #7f8c8d; margin-top: 20px; }
+                        .meta { background: #ecf0f1; padding: 10px; border-radius: 5px; margin: 20px 0; }
+                        .location, .npc, .flow-step, .resolution { 
+                            background: #f8f9fa; 
+                            padding: 15px; 
+                            margin: 15px 0; 
+                            border-left: 4px solid #3498db; 
+                            page-break-inside: avoid;
+                        }
+                        .secret { background: #ffe5e5; padding: 10px; margin: 10px 0; border-left: 4px solid #e74c3c; }
+                        ul { margin: 10px 0; }
+                        @media print {
+                            body { margin: 0; padding: 15px; }
+                            .no-print { display: none; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    ${content}
+                    <div class="no-print" style="margin-top: 30px; text-align: center;">
+                        <button onclick="window.print()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">Print / Save as PDF</button>
+                        <button onclick="window.close()" style="padding: 10px 20px; font-size: 16px; cursor: pointer; margin-left: 10px;">Close</button>
+                    </div>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+        }
+
+        function generateEncounterMarkdown() {
+            let md = `# ${window.encounterTitle || 'Encounter'}\n\n`;
+            md += `**Environment:** ${window.encounterEnvironment || 'Unknown'} | **Party Level:** ${window.encounterPartyLevel || 'Unknown'}\n\n`;
+            md += `${window.encounterDescription || 'No description available'}\n\n`;
+
+            // Encounter Flow
+            if (window.encounterFlowData && window.encounterFlowData.length > 0) {
+                md += `## 🎭 Encounter Flow\n\n`;
+                window.encounterFlowData.forEach((step, index) => {
+                    md += `### Step ${step.step}: ${step.title} - ${step.location.name}\n\n`;
+                    md += `${step.description}\n\n`;
+                    if (step.dmTips && step.dmTips.length > 0) {
+                        md += `**DM Tips:**\n`;
+                        step.dmTips.forEach(tip => md += `- ${tip}\n`);
+                        md += `\n`;
+                    }
+                    if (step.customResolutions && step.customResolutions.length > 0) {
+                        md += `**Possible Resolutions:**\n\n`;
+                        step.customResolutions.forEach(res => {
+                            md += `#### ${res.title}\n\n`;
+                            md += `${res.description}\n\n`;
+                            md += `**Requirements:** ${res.requirements}\n\n`;
+                            md += `**Rewards:** ${res.rewards}\n\n`;
+                        });
+                    }
+                });
+            }
+
+            // Locations
+            if (window.encounterLocationsData && window.encounterLocationsData.length > 0) {
+                md += `## 📍 Locations\n\n`;
+                window.encounterLocationsData.forEach((location, index) => {
+                    md += `### ${location.name}\n\n`;
+                    md += `${location.data.description || 'No description'}\n\n`;
+                });
+            }
+
+            // NPCs
+            if (window.encounterNPCsData && window.encounterNPCsData.length > 0) {
+                md += `## 👥 NPCs\n\n`;
+                window.encounterNPCsData.forEach((npc, index) => {
+                    md += `### ${npc.name}\n\n`;
+                    md += `**Race:** ${npc.race?.name || npc.race || 'Unknown'} | `;
+                    md += `**Profession:** ${npc.profession?.name || npc.profession || 'Unknown'} | `;
+                    md += `**Alignment:** ${npc.alignment?.name || npc.alignment || 'Unknown'}\n\n`;
+                    md += `**Appearance:** ${npc.appearance || 'No description'}\n\n`;
+                    md += `**Personality:** ${npc.personality?.trait || npc.personality || 'Unknown'}\n\n`;
+                    md += `**Secret (DM Only):** ${npc.secret || 'None'}\n\n`;
+                });
+            }
+
+            // Skill Checks
+            if (window.encounterSkillChecks && window.encounterSkillChecks.length > 0) {
+                md += `## 🎲 Skill Checks\n\n`;
+                window.encounterSkillChecks.forEach(check => {
+                    md += `- **${check.name}** (DC ${check.dc}): ${check.description}\n`;
+                });
+                md += `\n`;
+            }
+
+            // Traps
+            if (window.encounterTraps && window.encounterTraps.length > 0) {
+                md += `## ⚠️ Traps & Hazards\n\n`;
+                window.encounterTraps.forEach(trap => {
+                    md += `### ${trap.name}\n\n`;
+                    md += `${trap.description}\n\n`;
+                    md += `**Trigger:** ${trap.trigger}\n\n`;
+                    md += `**Effect:** ${trap.effect}\n\n`;
+                });
+            }
+
+            return md;
+        }
+
+        function generateEncounterText() {
+            let txt = `${window.encounterTitle || 'ENCOUNTER'}\n`;
+            txt += `${'='.repeat((window.encounterTitle || 'ENCOUNTER').length)}\n\n`;
+            txt += `Environment: ${window.encounterEnvironment || 'Unknown'} | Party Level: ${window.encounterPartyLevel || 'Unknown'}\n\n`;
+            txt += `${window.encounterDescription || 'No description available'}\n\n`;
+
+            // Encounter Flow
+            if (window.encounterFlowData && window.encounterFlowData.length > 0) {
+                txt += `ENCOUNTER FLOW\n`;
+                txt += `${'-'.repeat(50)}\n\n`;
+                window.encounterFlowData.forEach((step, index) => {
+                    txt += `Step ${step.step}: ${step.title} - ${step.location.name}\n`;
+                    txt += `${'-'.repeat(40)}\n`;
+                    txt += `${step.description}\n\n`;
+                    if (step.dmTips && step.dmTips.length > 0) {
+                        txt += `DM Tips:\n`;
+                        step.dmTips.forEach(tip => txt += `  - ${tip}\n`);
+                        txt += `\n`;
+                    }
+                    if (step.customResolutions && step.customResolutions.length > 0) {
+                        txt += `Possible Resolutions:\n\n`;
+                        step.customResolutions.forEach(res => {
+                            txt += `  ${res.title}\n`;
+                            txt += `  ${res.description}\n`;
+                            txt += `  Requirements: ${res.requirements}\n`;
+                            txt += `  Rewards: ${res.rewards}\n\n`;
+                        });
+                    }
+                });
+            }
+
+            // Locations
+            if (window.encounterLocationsData && window.encounterLocationsData.length > 0) {
+                txt += `LOCATIONS\n`;
+                txt += `${'-'.repeat(50)}\n\n`;
+                window.encounterLocationsData.forEach((location, index) => {
+                    txt += `${location.name}\n`;
+                    txt += `${location.data.description || 'No description'}\n\n`;
+                });
+            }
+
+            // NPCs
+            if (window.encounterNPCsData && window.encounterNPCsData.length > 0) {
+                txt += `NPCs\n`;
+                txt += `${'-'.repeat(50)}\n\n`;
+                window.encounterNPCsData.forEach((npc, index) => {
+                    txt += `${npc.name}\n`;
+                    txt += `Race: ${npc.race?.name || npc.race || 'Unknown'} | `;
+                    txt += `Profession: ${npc.profession?.name || npc.profession || 'Unknown'} | `;
+                    txt += `Alignment: ${npc.alignment?.name || npc.alignment || 'Unknown'}\n`;
+                    txt += `Appearance: ${npc.appearance || 'No description'}\n`;
+                    txt += `Personality: ${npc.personality?.trait || npc.personality || 'Unknown'}\n`;
+                    txt += `Secret (DM Only): ${npc.secret || 'None'}\n\n`;
+                });
+            }
+
+            // Skill Checks
+            if (window.encounterSkillChecks && window.encounterSkillChecks.length > 0) {
+                txt += `SKILL CHECKS\n`;
+                txt += `${'-'.repeat(50)}\n\n`;
+                window.encounterSkillChecks.forEach(check => {
+                    txt += `- ${check.name} (DC ${check.dc}): ${check.description}\n`;
+                });
+                txt += `\n`;
+            }
+
+            // Traps
+            if (window.encounterTraps && window.encounterTraps.length > 0) {
+                txt += `TRAPS & HAZARDS\n`;
+                txt += `${'-'.repeat(50)}\n\n`;
+                window.encounterTraps.forEach(trap => {
+                    txt += `${trap.name}\n`;
+                    txt += `${trap.description}\n`;
+                    txt += `Trigger: ${trap.trigger}\n`;
+                    txt += `Effect: ${trap.effect}\n\n`;
+                });
+            }
+
+            return txt;
+        }
+
+        function generateEncounterHTML() {
+            let html = `<h1>${window.encounterTitle || 'Encounter'}</h1>`;
+            html += `<div class="meta"><strong>Environment:</strong> ${window.encounterEnvironment || 'Unknown'} | <strong>Party Level:</strong> ${window.encounterPartyLevel || 'Unknown'}</div>`;
+            html += `<p>${window.encounterDescription || 'No description available'}</p>`;
+
+            // Encounter Flow
+            if (window.encounterFlowData && window.encounterFlowData.length > 0) {
+                html += `<h2>🎭 Encounter Flow</h2>`;
+                window.encounterFlowData.forEach((step, index) => {
+                    html += `<div class="flow-step">`;
+                    html += `<h3>Step ${step.step}: ${step.title} - ${step.location.name}</h3>`;
+                    html += `<p>${step.description}</p>`;
+                    if (step.dmTips && step.dmTips.length > 0) {
+                        html += `<p><strong>DM Tips:</strong></p><ul>`;
+                        step.dmTips.forEach(tip => html += `<li>${tip}</li>`);
+                        html += `</ul>`;
+                    }
+                    if (step.customResolutions && step.customResolutions.length > 0) {
+                        html += `<p><strong>Possible Resolutions:</strong></p>`;
+                        step.customResolutions.forEach(res => {
+                            html += `<div class="resolution">`;
+                            html += `<h4>${res.title}</h4>`;
+                            html += `<p>${res.description}</p>`;
+                            html += `<p><strong>Requirements:</strong> ${res.requirements}</p>`;
+                            html += `<p><strong>Rewards:</strong> ${res.rewards}</p>`;
+                            html += `</div>`;
+                        });
+                    }
+                    html += `</div>`;
+                });
+            }
+
+            // Locations
+            if (window.encounterLocationsData && window.encounterLocationsData.length > 0) {
+                html += `<h2>📍 Locations</h2>`;
+                window.encounterLocationsData.forEach((location, index) => {
+                    html += `<div class="location">`;
+                    html += `<h3>${location.name}</h3>`;
+                    html += `<p>${location.data.description || 'No description'}</p>`;
+                    html += `</div>`;
+                });
+            }
+
+            // NPCs
+            if (window.encounterNPCsData && window.encounterNPCsData.length > 0) {
+                html += `<h2>👥 NPCs</h2>`;
+                window.encounterNPCsData.forEach((npc, index) => {
+                    html += `<div class="npc">`;
+                    html += `<h3>${npc.name}</h3>`;
+                    html += `<p><strong>Race:</strong> ${npc.race?.name || npc.race || 'Unknown'} | `;
+                    html += `<strong>Profession:</strong> ${npc.profession?.name || npc.profession || 'Unknown'} | `;
+                    html += `<strong>Alignment:</strong> ${npc.alignment?.name || npc.alignment || 'Unknown'}</p>`;
+                    html += `<p><strong>Appearance:</strong> ${npc.appearance || 'No description'}</p>`;
+                    html += `<p><strong>Personality:</strong> ${npc.personality?.trait || npc.personality || 'Unknown'}</p>`;
+                    html += `<div class="secret"><strong>Secret (DM Only):</strong> ${npc.secret || 'None'}</div>`;
+                    html += `</div>`;
+                });
+            }
+
+            // Skill Checks
+            if (window.encounterSkillChecks && window.encounterSkillChecks.length > 0) {
+                html += `<h2>🎲 Skill Checks</h2><ul>`;
+                window.encounterSkillChecks.forEach(check => {
+                    html += `<li><strong>${check.name}</strong> (DC ${check.dc}): ${check.description}</li>`;
+                });
+                html += `</ul>`;
+            }
+
+            // Traps
+            if (window.encounterTraps && window.encounterTraps.length > 0) {
+                html += `<h2>⚠️ Traps & Hazards</h2>`;
+                window.encounterTraps.forEach(trap => {
+                    html += `<div class="location">`;
+                    html += `<h3>${trap.name}</h3>`;
+                    html += `<p>${trap.description}</p>`;
+                    html += `<p><strong>Trigger:</strong> ${trap.trigger}</p>`;
+                    html += `<p><strong>Effect:</strong> ${trap.effect}</p>`;
+                    html += `</div>`;
+                });
+            }
+
+            return html;
+        }
+
+        function downloadFile(content, filename, mimeType) {
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Dropdown Menu Functions
+        function toggleEncounterMenu(event) {
+            event.stopPropagation();
+            const button = event.currentTarget;
+            const dropdown = button.nextElementSibling;
+            
+            // Close other open dropdowns
+            document.querySelectorAll('.encounter-dropdown.show').forEach(dd => {
+                if (dd !== dropdown) {
+                    dd.classList.remove('show');
+                }
+            });
+            
+            dropdown.classList.toggle('show');
+        }
+
+        function closeEncounterMenu() {
+            document.querySelectorAll('.encounter-dropdown.show').forEach(dd => {
+                dd.classList.remove('show');
+            });
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.encounter-actions')) {
+                closeEncounterMenu();
+            }
+        });
+
+        // Close dropdown on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeEncounterMenu();
+            }
+        });
     </script>
     </div> <!-- End main-content -->
 </body>
