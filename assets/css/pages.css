@@ -105,6 +105,47 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
 }
 
+.result-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    background: rgba(0, 122, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 122, 255, 0.1);
+}
+
+.result-count {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.result-breakdown {
+    display: flex;
+    gap: 10px;
+}
+
+.count-badge {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.encounter-badge {
+    background: rgba(255, 59, 48, 0.1);
+    color: #ff3b30;
+    border: 1px solid rgba(255, 59, 48, 0.2);
+}
+
+.location-badge {
+    background: rgba(0, 122, 255, 0.1);
+    color: var(--accent-blue);
+    border: 1px solid rgba(0, 122, 255, 0.2);
+}
+
 .result-title {
     font-size: 1.3em;
     color: var(--text-primary);

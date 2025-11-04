@@ -189,6 +189,35 @@
     border-color: rgba(10, 132, 255, 0.4);
 }
 
+[data-theme="dark"] .location-features {
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .feature-column {
+    background: rgba(58, 58, 60, 0.3);
+}
+
+[data-theme="dark"] .feature-column ul li {
+    border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .result-summary {
+    background: rgba(10, 132, 255, 0.1);
+    border-color: rgba(10, 132, 255, 0.2);
+}
+
+[data-theme="dark"] .encounter-badge {
+    background: rgba(255, 69, 58, 0.2);
+    color: #ff453a;
+    border-color: rgba(255, 69, 58, 0.3);
+}
+
+[data-theme="dark"] .location-badge {
+    background: rgba(10, 132, 255, 0.2);
+    color: #64d2ff;
+    border-color: rgba(10, 132, 255, 0.3);
+}
+
 /* Theme toggle button styles */
 .theme-toggle {
     background: var(--accent-blue);

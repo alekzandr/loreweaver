@@ -158,25 +158,33 @@
                         <div class="filter-dropdowns">
                             <div class="filter-group">
                                 <label for="envFilter">Environment</label>
-                                <select id="envFilter" onchange="applyFilters()">
+                                <select id="envFilter" onchange="onEnvironmentChange()">
                                     <option value="">All Environments</option>
                                 </select>
                             </div>
                             <div class="filter-group">
+                                <label for="typeFilter">Type</label>
+                                <select id="typeFilter" onchange="onFilterChange()">
+                                    <option value="">All Types</option>
+                                    <option value="encounter">Encounters</option>
+                                    <option value="location">Locations</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
                                 <label for="locationTypeFilter">Location Type</label>
-                                <select id="locationTypeFilter" onchange="applyFilters()">
+                                <select id="locationTypeFilter" onchange="onFilterChange()">
                                     <option value="">All Location Types</option>
                                 </select>
                             </div>
                             <div class="filter-group">
                                 <label for="settingFilter">Setting</label>
-                                <select id="settingFilter" onchange="applyFilters()">
+                                <select id="settingFilter" onchange="onFilterChange()">
                                     <option value="">All Settings</option>
                                 </select>
                             </div>
                             <div class="filter-group">
                                 <label for="planeFilter">Plane</label>
-                                <select id="planeFilter" onchange="applyFilters()">
+                                <select id="planeFilter" onchange="onFilterChange()">
                                     <option value="">All Planes</option>
                                 </select>
                             </div>

@@ -490,6 +490,63 @@ button.disabled:hover {
     text-align: right;
 }
 
+.location-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.feature-column {
+    background: rgba(58, 58, 60, 0.03);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.feature-column h4 {
+    font-size: 0.95em;
+    color: var(--accent-blue);
+    margin-bottom: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.feature-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feature-column ul li {
+    font-size: 0.9em;
+    color: var(--text-primary);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    line-height: 1.4;
+}
+
+.feature-column ul li:last-child {
+    border-bottom: none;
+}
+
+.feature-column ul li.empty-list {
+    color: var(--text-secondary);
+    font-style: italic;
+    text-align: center;
+    padding: 12px 0;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 900px) {
+    .location-features {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
+
 .npc-card {
     background: rgba(58, 58, 60, 0.3);
     border-radius: 8px;

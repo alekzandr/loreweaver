@@ -756,8 +756,11 @@ export function initializeSearchFilters() {
     const settingFilter = document.getElementById('settingFilter');
     const planeFilter = document.getElementById('planeFilter');
 
-    // Check if already populated
-    if (envFilter.options.length > 1) return;
+    // Store current selections
+    const currentEnv = envFilter?.value || '';
+    const currentLocationType = locationTypeFilter?.value || '';
+    const currentSetting = settingFilter?.value || '';
+    const currentPlane = planeFilter?.value || '';
 
     // Populate environments from data
     const environments = new Set();
@@ -776,37 +779,44 @@ export function initializeSearchFilters() {
         });
     }
 
-    // Sort and populate environment filter
+    // Clear and repopulate environment filter
+    envFilter.innerHTML = '<option value="">All Environments</option>';
     Array.from(environments).sort().forEach(env => {
         const option = document.createElement('option');
         option.value = env;
         option.textContent = env.charAt(0).toUpperCase() + env.slice(1);
+        if (env === currentEnv) option.selected = true;
         envFilter.appendChild(option);
     });
 
-    // Sort and populate location type filter
+    // Clear and repopulate location type filter
+    locationTypeFilter.innerHTML = '<option value="">All Location Types</option>';
     Array.from(locationTypes).sort().forEach(type => {
         const option = document.createElement('option');
         option.value = type;
         option.textContent = type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        if (type === currentLocationType) option.selected = true;
         locationTypeFilter.appendChild(option);
     });
 
-    // Sort and populate setting filter (from tags)
+    // Clear and repopulate setting filter (from tags)
+    settingFilter.innerHTML = '<option value="">All Settings</option>';
     Array.from(settings).sort().forEach(setting => {
         const option = document.createElement('option');
         option.value = setting;
         option.textContent = setting.charAt(0).toUpperCase() + setting.slice(1);
+        if (setting === currentSetting) option.selected = true;
         settingFilter.appendChild(option);
     });
 
-    // Placeholder for future plane data
+    // Clear and repopulate plane filter
+    planeFilter.innerHTML = '<option value="">All Planes</option>';
     const planes = ['Material Plane', 'Feywild', 'Shadowfell', 'Astral Plane', 'Ethereal Plane'];
-
     planes.forEach(plane => {
         const option = document.createElement('option');
         option.value = plane.toLowerCase().replace(/\s+/g, '-');
         option.textContent = plane;
+        if (plane.toLowerCase().replace(/\s+/g, '-') === currentPlane) option.selected = true;
         planeFilter.appendChild(option);
     });
 }

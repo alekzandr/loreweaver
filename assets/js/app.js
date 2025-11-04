@@ -6,9 +6,11 @@ import { loadData, dataLoaded } from './data-loader.js';
 // Global state
 export let selectedEnvironment = 'urban';
 export let activeFilters = {
+    type: '',
     environment: [],
     locationType: [],
-    setting: []
+    setting: [],
+    plane: []
 };
 
 /**
@@ -261,9 +263,25 @@ export function switchPage(page) {
 }
 
 /**
+ * Handle environment filter change
+ */
+export function onEnvironmentChange() {
+    onFilterChange();
+}
+
+/**
+ * Handle any filter change - update all dependent filters
+ */
+export function onFilterChange() {
+    updateAllFilters();
+    applyFilters();
+}
+
+/**
  * Apply filters to search results
  */
 export function applyFilters() {
+    const typeFilter = document.getElementById('typeFilter').value;
     const envFilter = document.getElementById('envFilter').value;
     const locationTypeFilter = document.getElementById('locationTypeFilter').value;
     const settingFilter = document.getElementById('settingFilter').value;
@@ -271,6 +289,7 @@ export function applyFilters() {
 
     // Update active filters
     activeFilters = {
+        type: typeFilter,
         environment: envFilter ? [envFilter] : [],
         locationType: locationTypeFilter ? [locationTypeFilter] : [],
         setting: settingFilter ? [settingFilter] : [],
@@ -285,20 +304,117 @@ export function applyFilters() {
 }
 
 /**
+ * Update all filter dropdowns based on current selections
+ */
+function updateAllFilters() {
+    if (!window.locationObjects) return;
+    
+    // Get current selections
+    const currentType = document.getElementById('typeFilter').value;
+    const currentEnv = document.getElementById('envFilter').value;
+    const currentLocationType = document.getElementById('locationTypeFilter').value;
+    const currentSetting = document.getElementById('settingFilter').value;
+    const currentPlane = document.getElementById('planeFilter').value;
+    
+    // Collect all available options based on current filters
+    const availableEnvironments = new Set();
+    const availableLocationTypes = new Set();
+    const availableSettings = new Set();
+    
+    // If type is "encounter", only show environments with encounters
+    if (currentType === 'encounter') {
+        if (window.encounterTitles) {
+            Object.keys(window.encounterTitles).forEach(env => availableEnvironments.add(env));
+        }
+    } 
+    // If type is "location" or no type filter, process locations
+    else if (!currentType || currentType === 'location') {
+        Object.entries(window.locationObjects).forEach(([env, locationTypes]) => {
+            Object.entries(locationTypes).forEach(([locType, locData]) => {
+                // Check if this location matches current filters
+                const matchesEnv = !currentEnv || env === currentEnv;
+                const matchesLocType = !currentLocationType || locType === currentLocationType;
+                const matchesSetting = !currentSetting || (locData.tags && locData.tags.includes(currentSetting));
+                
+                if (matchesEnv && matchesLocType && matchesSetting) {
+                    availableEnvironments.add(env);
+                    availableLocationTypes.add(locType);
+                    if (locData.tags) {
+                        locData.tags.forEach(tag => availableSettings.add(tag));
+                    }
+                }
+            });
+        });
+    }
+    
+    // Update environment dropdown
+    const envFilter = document.getElementById('envFilter');
+    envFilter.innerHTML = '<option value="">All Environments</option>';
+    Array.from(availableEnvironments).sort().forEach(env => {
+        const option = document.createElement('option');
+        option.value = env;
+        option.textContent = env.charAt(0).toUpperCase() + env.slice(1);
+        if (env === currentEnv) option.selected = true;
+        envFilter.appendChild(option);
+    });
+    
+    // Update location type dropdown (only if not showing encounters only)
+    const locationTypeFilter = document.getElementById('locationTypeFilter');
+    if (currentType !== 'encounter') {
+        locationTypeFilter.innerHTML = '<option value="">All Location Types</option>';
+        Array.from(availableLocationTypes).sort().forEach(type => {
+            const option = document.createElement('option');
+            option.value = type;
+            option.textContent = type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            if (type === currentLocationType) option.selected = true;
+            locationTypeFilter.appendChild(option);
+        });
+        locationTypeFilter.disabled = false;
+    } else {
+        locationTypeFilter.innerHTML = '<option value="">All Location Types</option>';
+        locationTypeFilter.disabled = true;
+    }
+    
+    // Update setting dropdown (only if not showing encounters only)
+    const settingFilter = document.getElementById('settingFilter');
+    if (currentType !== 'encounter') {
+        settingFilter.innerHTML = '<option value="">All Settings</option>';
+        Array.from(availableSettings).sort().forEach(setting => {
+            const option = document.createElement('option');
+            option.value = setting;
+            option.textContent = setting.charAt(0).toUpperCase() + setting.slice(1);
+            if (setting === currentSetting) option.selected = true;
+            settingFilter.appendChild(option);
+        });
+        settingFilter.disabled = false;
+    } else {
+        settingFilter.innerHTML = '<option value="">All Settings</option>';
+        settingFilter.disabled = true;
+    }
+}
+
+/**
  * Clear all filters
  */
 export function clearFilters() {
+    document.getElementById('typeFilter').value = '';
     document.getElementById('envFilter').value = '';
     document.getElementById('locationTypeFilter').value = '';
     document.getElementById('settingFilter').value = '';
     document.getElementById('planeFilter').value = '';
     
     activeFilters = {
+        type: '',
         environment: [],
         locationType: [],
         setting: [],
         plane: []
     };
+
+    // Reset dependent dropdowns to show all options
+    if (window.initializeSearchFilters) {
+        window.initializeSearchFilters();
+    }
 
     // Trigger search if there's a search term
     const searchInput = document.getElementById('searchInput');
@@ -313,16 +429,11 @@ export function clearFilters() {
 export function performSearch() {
     const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
     const resultsContainer = document.getElementById('searchResults');
-    
-    if (!searchTerm && !activeFilters.environment.length && !activeFilters.locationType.length && !activeFilters.setting.length && !activeFilters.plane.length) {
-        resultsContainer.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 40px;">Enter a search term or select filters to find encounters and locations</p>';
-        return;
-    }
 
     let results = [];
 
-    // Search through encounters
-    if (window.encounterTitles) {
+    // Search through encounters (only if type filter allows)
+    if (window.encounterTitles && (!activeFilters.type || activeFilters.type === 'encounter')) {
         Object.entries(window.encounterTitles).forEach(([environment, encounters]) => {
             if (Array.isArray(encounters)) {
                 encounters.forEach((encounter, index) => {
@@ -347,8 +458,8 @@ export function performSearch() {
         });
     }
 
-    // Search through locations
-    if (window.locationObjects) {
+    // Search through locations (only if type filter allows)
+    if (window.locationObjects && (!activeFilters.type || activeFilters.type === 'location')) {
         Object.entries(window.locationObjects).forEach(([environment, locationTypes]) => {
             Object.entries(locationTypes).forEach(([locationType, location]) => {
                 const locationName = locationType.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
@@ -378,7 +489,21 @@ export function performSearch() {
     if (results.length === 0) {
         resultsContainer.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 40px;">No results found. Try different search terms or filters.</p>';
     } else {
-        resultsContainer.innerHTML = results.map(result => {
+        // Count encounters and locations
+        const encounterCount = results.filter(r => r.type === 'encounter').length;
+        const locationCount = results.filter(r => r.type === 'location').length;
+        
+        const resultSummary = `
+            <div class="result-summary">
+                <span class="result-count">Found ${results.length} result${results.length !== 1 ? 's' : ''}</span>
+                <span class="result-breakdown">
+                    ${encounterCount > 0 ? `<span class="count-badge encounter-badge">${encounterCount} Encounter${encounterCount !== 1 ? 's' : ''}</span>` : ''}
+                    ${locationCount > 0 ? `<span class="count-badge location-badge">${locationCount} Location${locationCount !== 1 ? 's' : ''}</span>` : ''}
+                </span>
+            </div>
+        `;
+        
+        resultsContainer.innerHTML = resultSummary + results.map(result => {
             if (result.type === 'encounter') {
                 return renderEncounterResult(result);
             } else {
@@ -447,9 +572,16 @@ function renderEncounterResult(result) {
 function renderLocationResult(result) {
     const location = result.data;
     const description = location.description || '';
+    const primary = location.primary || [];
+    const secondary = location.secondary || [];
+    const tertiary = location.tertiary || [];
+    
+    const primaryList = primary.length > 0 ? primary.map(item => `<li>${item}</li>`).join('') : '<li class="empty-list">None listed</li>';
+    const secondaryList = secondary.length > 0 ? secondary.map(item => `<li>${item}</li>`).join('') : '<li class="empty-list">None listed</li>';
+    const tertiaryList = tertiary.length > 0 ? tertiary.map(item => `<li>${item}</li>`).join('') : '<li class="empty-list">None listed</li>';
     
     return `
-        <div class="result-card">
+        <div class="result-card location-result">
             <div class="result-header">
                 <div class="result-title">${result.title}</div>
                 <span class="result-type">📍 Location</span>
@@ -465,6 +597,20 @@ function renderLocationResult(result) {
                     </div>
                 </div>
             ` : ''}
+            <div class="location-features">
+                <div class="feature-column">
+                    <h4>Primary Features</h4>
+                    <ul>${primaryList}</ul>
+                </div>
+                <div class="feature-column">
+                    <h4>Secondary Features</h4>
+                    <ul>${secondaryList}</ul>
+                </div>
+                <div class="feature-column">
+                    <h4>Discoveries</h4>
+                    <ul>${tertiaryList}</ul>
+                </div>
+            </div>
         </div>
     `;
 }
@@ -500,6 +646,11 @@ function attachExpandHandlers() {
  * Check if encounter matches active filters
  */
 function checkEncounterFilters(environment) {
+    // If location-specific filters are set, encounters should not match
+    if (activeFilters.locationType.length || activeFilters.setting.length) {
+        return false;
+    }
+    
     if (activeFilters.environment.length && !activeFilters.environment.includes(environment)) {
         return false;
     }
@@ -543,6 +694,8 @@ window.switchPage = switchPage;
 window.toggleProgressiveReveal = toggleProgressiveReveal;
 window.performSearch = performSearch;
 window.applyFilters = applyFilters;
+window.onEnvironmentChange = onEnvironmentChange;
+window.onFilterChange = onFilterChange;
 window.clearFilters = clearFilters;
 
 // Initialize on DOM ready

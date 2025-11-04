@@ -1361,193 +1361,716 @@
   "space": [
     {
       "title": "Derelict Spelljammer",
-      "tags": [
-        "ship",
-        "vessel",
-        "derelict"
+      "tags": ["ship", "vessel", "derelict"],
+      "descriptions": [
+        "A once-majestic hull drifts in dead silence, its arcane filigree charred and pitted by micrometeors. Lantern-cold phantoms pace behind cracked panes as runes along the keel flicker like a heartbeat running out of beats.",
+        "Frost feathers the rigging from the breath of something that no longer breathes. Gravity wobbles inside the decks, sending tools and teacups into slow orbits around forgotten bunks."
       ],
-      "description": "The husk of a once-majestic spelljammer drifts silently through the void, its hull pitted by micrometeors and arcane scorch marks. Ghostly lights flicker in cracked portholes as if the crew still prowls their shattered decks. The silence is so profound that each footfall rings like a bell. Ancient runes along the keel pulse weakly, begging for rescue or promising a final curse."
+      "weight": 1.1,
+      "resolutions": [
+        {
+          "title": "Keel-Rune Rekindled",
+          "description": "Repairing the ship’s fading engine-glyphs awakens a fragment of the helm’s spirit, which can pilot the wreck to a safe anchorage—if given a memory to replace the one it lost.",
+          "requirements": "Arcana/Tools to restore runes; offer a personal memory or rare residuum.",
+          "rewards": "Mobile base (damaged), helm-spirit guidance, map to a hidden drydock."
+        },
+        {
+          "title": "Put the Dead to Bed",
+          "description": "A ship-oath binds the ghostly crew. Fulfilling the final delivery—or solemnly breaking the oath—releases them and unmasks a stasis-locked vault.",
+          "requirements": "Investigation of logbooks; Religion for rites; social encounter with shades.",
+          "rewards": "Vault salvage, spectral blessing vs. void-fear, fewer hauntings in this lane."
+        }
+      ]
     },
     {
       "title": "Phlogiston Crossing",
-      "tags": [
-        "wildspace",
-        "void",
-        "openspace"
+      "tags": ["wildspace", "void", "openspace"],
+      "descriptions": [
+        "Ribboned auroras slick the hull with liquid fire as charts rewrite themselves mid-glow. Every spark feels like a match struck inside a powder magazine.",
+        "Currents shear at the keel, humming in seven notes that do not exist in mortal throats. A single miscast can turn the ship into a new constellation."
       ],
-      "description": "The rainbow currents of the phlogiston wrap the ship in vibrant auroras that dance across every surface. Trails of elemental fire curl around the hull, eager to ignite the slightest spark. Navigation charts glow with shifting runes that refuse to settle on a single path. One misjudged maneuver could send the vessel cascading into a cosmic bonfire."
+      "weight": 1.15,
+      "resolutions": [
+        {
+          "title": "Flow-Pilot’s Thread",
+          "description": "By harmonizing the helm to the Flow’s song, the navigator stitches a safe seam through the combustive river.",
+          "requirements": "Performance/Arcana to ‘sing’ the helm; precision piloting checks.",
+          "rewards": "Fast passage, reduced fuel, rumor of a calmer back-eddy route."
+        },
+        {
+          "title": "Jettison or Ignite",
+          "description": "A volatile cargo begins to heat. The crew must purge it—or cocoon it in a stasis-ward—before the Flow blooms.",
+          "requirements": "Engineering/Tools for stasis rig; moral choice if cargo is valuable.",
+          "rewards": "Safe ship; if saved, premium sale; if dumped, an owed favor from Flow-wardens."
+        }
+      ]
     },
     {
       "title": "Crystal Sphere Breach",
-      "tags": [
-        "void",
-        "anomaly",
-        "openspace"
+      "tags": ["void", "anomaly", "openspace"],
+      "descriptions": [
+        "A jagged rent bleeds star-motes while arc lightning crawls like living solder across glass-night. Beyond: strangers’ constellations blink back.",
+        "The breach flexes with tidal breaths; approach too fast and you’re swatted like dust on crystal."
       ],
-      "description": "A jagged wound opens in the crystalline barrier, bleeding motes of starlight into the void. Arcane lightning crackles along the rim, seeking to fuse the rupture closed or blast interlopers into powder. Beyond the breach lies a realm of unknown constellations and unclaimed secrets. The ship’s wards groan under the strain, demanding swift action to survive the crossing."
+      "weight": 1.1,
+      "resolutions": [
+        {
+          "title": "Seal the Wound",
+          "description": "Stabilize the breach with a lattice of force and powdered asterite, earning the gratitude of sphere-keepers.",
+          "requirements": "Arcana to tune a ward-mesh; resource expenditure.",
+          "rewards": "Transit permit sigils, safe re-entry point, favor with wardens."
+        },
+        {
+          "title": "Through the Crack",
+          "description": "Ride the surge on the down-beat and slip into a virgin sky—then mark the fold so you can come home.",
+          "requirements": "Pilot timing challenge; beacon-anchoring; risk of hull scoring.",
+          "rewards": "Access to new routes, fresh trade charts, rare stellar specimens."
+        }
+      ]
     },
     {
       "title": "Astral Debris Field",
-      "tags": [
-        "debris",
-        "void",
-        "openspace"
+      "tags": ["debris", "void", "openspace"],
+      "descriptions": [
+        "A crown of knives—broken hulls, ice, shattered stone—tumbles with silent menace. Faint commands echo on the sending-wind: ‘hold the line…’",
+        "Some debris remembers its war. Touch the wrong fragment and it reenacts orders with lethal sincerity."
       ],
-      "description": "A glittering storm of shattered hulls, broken asteroids, and drifting ice encircles the ship like a crown of daggers. Each fragment spins with lethal grace, reflecting the glow of distant suns. Echoes of old battles haunt the field, whispering fragments of unfinished orders. Piloting through this chaos requires nerves of steel and hands steady as a clockwork heart."
+      "weight": 0.95,
+      "resolutions": [
+        {
+          "title": "Thread the Eye",
+          "description": "Map micro-currents and ride them, grazing debris to slingshot past kill-zones.",
+          "requirements": "Navigation + Perception chain; optional mage hand thruster nudges.",
+          "rewards": "Time saved, intact cargo, salvage ping for a valuable locker."
+        },
+        {
+          "title": "Quiet the Echo",
+          "description": "Dispel the field’s psychic residue by completing the last order that was never given.",
+          "requirements": "History to reconstruct battle; creative ‘order’ performance.",
+          "rewards": "Calmed field, access to a flagship vault, veteran spirit ally."
+        }
+      ]
     },
     {
       "title": "Wildspace Anomaly",
-      "tags": [
-        "wildspace",
-        "anomaly",
-        "openspace"
+      "tags": ["wildspace", "anomaly", "openspace"],
+      "descriptions": [
+        "Gravity bows like heated glass and time noodles around your words. Colors argue about their names.",
+        "Memories slide sideways: a crewmate recalls a conversation you haven’t had yet—and they’re annoyed by your future answer."
       ],
-      "description": "A sphere of warped starlight pulses ahead, bending gravity and time like taffy. Colors beyond mortal comprehension ripple across its surface, illuminating strange glyphs that hover in midair. Instruments scream conflicting readings, while the crew feels memories slip sideways. The anomaly beckons with promises of insight—and the risk of never returning whole."
+      "weight": 1.05,
+      "resolutions": [
+        {
+          "title": "Anchor the Self",
+          "description": "Bind crew to identity sigils and ride through, tethered to who you are.",
+          "requirements": "Arcana for identity wards; Wis saves vs. drift.",
+          "rewards": "Resistance vs. time effects, glimpse of future port (cryptic but useful)."
+        },
+        {
+          "title": "Milk the Mirage",
+          "description": "Harvest anomaly energy to power the helm—without letting it harvest you.",
+          "requirements": "Tools/Arcana to bottle chronal charge; risk of paradox.",
+          "rewards": "Free helm days, ‘skip’ maneuver, a temporal IOU that will come due."
+        }
+      ]
     },
     {
       "title": "The Rainbow Flow",
-      "tags": [
-        "phlogiston",
-        "void",
-        "openspace"
+      "tags": ["phlogiston", "void", "openspace"],
+      "descriptions": [
+        "Prismatic torrents sing against the hull; sparks yearn to become suns.",
+        "Creatures of light surf the stream, sketching glyph-graffiti that only shows up in peripheral vision."
       ],
-      "description": "Ribbons of chromatic fire weave an ever-shifting river through the void, humming with raw planar energy. The ship shudders as currents tug at its keel, threatening to hurl it off course. Strange creatures made of pure light ride the flow, leaving contrails of laughter in their wake. Only precise spellwork can keep the vessel from dissolving into the prismatic torrent."
+      "weight": 0.9,
+      "resolutions": [
+        {
+          "title": "Escort of Lumen",
+          "description": "Befriend a lumen-shoal to draft behind their wake through turbulence.",
+          "requirements": "Diplomacy/Performance; offer a story or melody as ‘toll’.",
+          "rewards": "Smooth passage, a lumen guide mark, rumor of a hidden quay."
+        },
+        {
+          "title": "Prism Net",
+          "description": "Cast a refractive web to split a surge before it splits you.",
+          "requirements": "Spellwork synchronization; crew timing.",
+          "rewards": "Reusable prism rig (consumable charges), safer future crossings."
+        }
+      ]
     },
     {
       "title": "Sphere's Edge",
-      "tags": [
-        "boundary",
-        "void",
-        "openspace"
+      "tags": ["boundary", "void", "openspace"],
+      "descriptions": [
+        "A glass horizon curves forever, reflecting foreign skies. Footing feels like a dream you almost wake from.",
+        "Hair stands with static; whispers come back with different accents."
       ],
-      "description": "The boundary of the crystal sphere looms like a glass horizon, reflecting alien stars in its polished curve. Gravity falters at the edge, making every movement feel dreamlike and unsteady. Through the transparent shell, other worlds glitter with silent invitation. Breaching this liminal space requires courage, finesse, and the favor of the cosmos itself."
+      "weight": 0.9,
+      "resolutions": [
+        {
+          "title": "Graceful Breach",
+          "description": "Use a needle-gate ritual to slip without shattering the edge.",
+          "requirements": "Precise Arcana; rare shell-powder; timing on a stellar alignment.",
+          "rewards": "Low-profile transit sign, warden goodwill, reduced customs hassle."
+        },
+        {
+          "title": "Ride the Flex",
+          "description": "Wait for a tidal sigh and ‘surf’ the flexing boundary outward.",
+          "requirements": "Patience; Navigator check; secure rigging.",
+          "rewards": "Fuel saved, bonus distance, a view that rattles the soul (inspiration)."
+        }
+      ]
     },
     {
       "title": "Gravity Well",
-      "tags": [
-        "anomaly",
-        "void",
-        "openspace"
+      "tags": ["anomaly", "void", "openspace"],
+      "descriptions": [
+        "An invisible fist closes; the deck tilts toward a dark swirl of compressed starlight.",
+        "Bolts creep with squeals as wards redline; mugs and men alike slide starboard."
       ],
-      "description": "An invisible fist seizes the ship, dragging it toward a swirling maw of compressed starlight. Loose equipment and crew alike feel the pull, straining harnesses and fraying nerves. The hull groans as arcane wards flare, trying to counter the crushing force. Only quick adjustments and daring spellcraft can free the vessel from the well’s hungry grasp."
+      "weight": 1.2,
+      "resolutions": [
+        {
+          "title": "Slingshot Vector",
+          "description": "Angle in, burn hard, and let the well fling you where you want to go.",
+          "requirements": "High-DC Helm checks; coordinated thruster/magic burst.",
+          "rewards": "Huge time gain, fuel windfall, reputation for daring."
+        },
+        {
+          "title": "Cut the Line",
+          "description": "A stray tether is anchoring the ship; sever it physically or magically.",
+          "requirements": "Spacewalk Athletics/Tools; countergravity spell.",
+          "rewards": "Recovered exotic cable, reduced hull stress, EVA experience for crew."
+        }
+      ]
     },
     {
       "title": "Siege of the Living Voidship",
-      "tags": [
-        "ship",
-        "void",
-        "boarding",
-        "living"
+      "tags": ["ship", "void", "boarding", "living"],
+      "descriptions": [
+        "A cathedral of flesh and chitin blots the stars, its eyes blinking in unsettling unison.",
+        "Boarding pods thump and blossom like seed-pods, disgorging hiss-chanting troopers."
       ],
-      "description": "Organic tendrils lash out from a titanic voidship grown from the flesh of a forgotten god. Bioluminescent eyes line its carapace, tracking every movement with predatory patience. Boarding pods thump against the hull, disgorging chitin-clad warriors with hissing battle chants. Survival hinges on severing the creature’s neural conduits before it consumes the fleet."
+      "weight": 1.25,
+      "resolutions": [
+        {
+          "title": "Sever the Spine",
+          "description": "Hit the neural conduits; the beastship spasms and releases its prey.",
+          "requirements": "Boarding action; Bio-Arcana to find conduits; timed demolition.",
+          "rewards": "Bio-carapace plating, freed captives, enemy retreat."
+        },
+        {
+          "title": "Parley with a Stomach",
+          "description": "Communicate via pheromone sigils to convince the ship you’re symbionts, not food.",
+          "requirements": "Nature/Arcana decoding; creative messaging.",
+          "rewards": "Safe passage inside, organ-grown upgrades, strange new friend."
+        }
+      ]
     },
     {
       "title": "Rescue at the Solar Flare Regatta",
-      "tags": [
-        "ship",
-        "phlogiston",
-        "storm",
-        "rescue"
+      "tags": ["ship", "phlogiston", "storm", "rescue"],
+      "descriptions": [
+        "Sails blaze like phoenix wings as racers skim a star’s knife-edge.",
+        "A competitor spirals toward a blooming flare while spectators cheer, unaware of imminence."
       ],
-      "description": "Solar sails billow like phoenix wings as racing ships skim the edge of a blazing star. A competitor’s vessel trails smoke and shattered rigging, spiraling toward a lethal flare. Crowds of spectators cheer from distant platforms, oblivious to the brewing disaster. The heroes must thread a path through magnetic storms to snatch the crew from a fiery demise."
+      "weight": 1.1,
+      "resolutions": [
+        {
+          "title": "Thread the Flares",
+          "description": "Match the star’s pulse and dive through the safe windows to snatch the crew.",
+          "requirements": "Pilot rhythm checks; heat wards; coordination.",
+          "rewards": "Saved rivals, racing favors, custom solar sailcloth."
+        },
+        {
+          "title": "Shut Down the Star-Howler",
+          "description": "A sabotage device agitates the corona. Disable it mid-race.",
+          "requirements": "Infiltration on moving platforms; Tools/Arcana.",
+          "rewards": "Bounty, evidence against a syndicate, access to elite docks."
+        }
+      ]
     },
     {
       "title": "Moondust Corsair Ambush",
-      "tags": [
-        "asteroid",
-        "ambush",
-        "pirates",
-        "void"
+      "tags": ["asteroid", "ambush", "pirates", "void"],
+      "descriptions": [
+        "Silvery motes cling to the hull, snowing glitter over the deck—perfect cover for corsairs.",
+        "Frost-charged cannons thump from the haze; a voice offers courteous surrender."
       ],
-      "description": "Silvery motes cling to the ship’s hull as it drifts through a cloud of moondust, masking the approach of lurking corsairs. Pirate vessels emerge from the glittering haze, their cannons charged with lunar frost. Cutthroats hail over open channels, offering surrender with mocking courtesy. The slightest hesitation could see the heroes boarded and their cargo plundered."
+      "weight": 1.05,
+      "resolutions": [
+        {
+          "title": "Flip the Field",
+          "description": "Use charged nets to reverse the dust’s polarity and unmask the raiders.",
+          "requirements": "Tools/Arcana; quick helm pivot.",
+          "rewards": "Pirate charts, frozen cannon cores, a grudging pirate truce."
+        },
+        {
+          "title": "Play the Mark",
+          "description": "Feign compliance to lure their flagship into a cross-fire kill-box.",
+          "requirements": "Deception; tight piloting; nerve.",
+          "rewards": "Flagship loot, reputation as ‘smiling sharks,’ fewer future ambushes."
+        }
+      ]
     },
     {
       "title": "Chronal Drift Salvage",
-      "tags": [
-        "anomaly",
-        "time",
-        "salvage",
-        "debris"
+      "tags": ["anomaly", "time", "salvage", "debris"],
+      "descriptions": [
+        "Wreckage flickers between was and will-be; crew echoes mime their ends in reverse.",
+        "Hourglasses pour upward while your instruments swear it’s yesterday and tomorrow."
       ],
-      "description": "Fragments of wreckage shimmer in and out of existence, trapped in a loop of fractured time. Echoes of the crew flicker like ghosts, repeating their final moments in reverse and slow motion. Instruments tick backward while hourglasses pour sand upward into the sky. Salvaging this site means navigating shifting timelines without erasing oneself from history."
+      "weight": 1.2,
+      "resolutions": [
+        {
+          "title": "Phase-Tuned Grapples",
+          "description": "Sync grapples to the loop to snag cargo at the instant it exists.",
+          "requirements": "Arcana timing; concentration saves.",
+          "rewards": "Prime salvage, chronal battery, rumor of a time-port."
+        },
+        {
+          "title": "Set It Right",
+          "description": "Close the loop by completing the doomed crew’s last action.",
+          "requirements": "Reconstruct events; delicate intervention.",
+          "rewards": "Loop collapses, grateful shades, timeline-stable haul."
+        }
+      ]
     },
     {
       "title": "Gith Armada Blockade",
-      "tags": [
-        "armada",
-        "githyanki",
-        "military",
-        "void"
+      "tags": ["armada", "githyanki", "military", "void"],
+      "descriptions": [
+        "Crimson-sailed warships hang in a net of shared intent, thought-whips ready.",
+        "Astral silver bristles from their ballistae; boarding hooks glint like smiles."
       ],
-      "description": "A formation of sleek githyanki warships hangs in disciplined silence, their crimson sails taut against the void. Psychic commands ripple between them, forming a net of intent around trespassers. Each vessel bristles with ballistae and boarding hooks forged from astral silver. To pass requires negotiation, deception, or the courage to shatter the blockade."
+      "weight": 1.15,
+      "resolutions": [
+        {
+          "title": "Parley of Blades",
+          "description": "Offer intel on a mutual foe or a duel of champions to buy passage.",
+          "requirements": "Diplomacy/Insight; optional duel challenge.",
+          "rewards": "Safe corridor token, limited truce, gith contact."
+        },
+        {
+          "title": "Silent Thread",
+          "description": "Mask your thought-wake and slip between their minds.",
+          "requirements": "Psionic/Arcana veil; stealth piloting.",
+          "rewards": "Breakthrough technique, contraband lane marked, no casualties."
+        }
+      ]
     },
     {
       "title": "Phlogiston Bloom Storm",
-      "tags": [
-        "phlogiston",
-        "storm",
-        "hazard",
-        "wildspace"
+      "tags": ["phlogiston", "storm", "hazard", "wildspace"],
+      "descriptions": [
+        "Radiant blossoms erupt, shedding meteoric petals that itch to ignite you.",
+        "Charts flash white-hot before cooling to ash; lightning prefers your flag."
       ],
-      "description": "Flammable vapors coalesce into radiant blossoms that erupt across the void, shedding sparks like meteoric petals. The airless storm seethes with rainbow lightning eager to ignite anything unshielded. Navigational charts flare white-hot before cooling to ash. Only precise timing and protective wards can shepherd the crew through without a fiery end."
+      "weight": 1.1,
+      "resolutions": [
+        {
+          "title": "Petal Herding",
+          "description": "Use decoy drones to ‘graze’ the blooms away from the ship.",
+          "requirements": "Tools; remote piloting; timing.",
+          "rewards": "Reusable decoys, harvested bloom-amber (alchemical), safer route notes."
+        },
+        {
+          "title": "Ride the Stem",
+          "description": "Ascend the storm’s pressure stem to punch out above the worst of it.",
+          "requirements": "Navigation; Con saves vs. vibration; hull checks.",
+          "rewards": "Minimum damage, spectacular vantage, boon to morale."
+        }
+      ]
     },
     {
       "title": "Nebula Sanctuary Negotiation",
-      "tags": [
-        "nebula",
-        "diplomacy",
-        "sanctuary",
-        "void"
+      "tags": ["nebula", "diplomacy", "sanctuary", "void"],
+      "descriptions": [
+        "Crystalline monasteries float on mist-tendrils; choirs sing in your head.",
+        "Refugees breathe easy behind psionic veils tuned to hymns."
       ],
-      "description": "A tranquil eddy within the nebula shelters crystalline monasteries floating on tendrils of mist. Monastic caretakers greet visitors with serene smiles and telepathic hymns. The air hums with the thrum of psionic wards safeguarding refugees hidden within. One misstep in the negotiation could turn sanctuary into prison."
+      "weight": 0.95,
+      "resolutions": [
+        {
+          "title": "Keep the Peace",
+          "description": "Mediate between rival petitioners to preserve the sanctuary’s neutrality.",
+          "requirements": "Persuasion/Insight; oathcraft.",
+          "rewards": "Sanctuary sigil (safe harbor), psionic hymn lesson (+charm saves)."
+        },
+        {
+          "title": "Unmask the Wolf",
+          "description": "Expose a hidden hunter disguised among refugees.",
+          "requirements": "Investigation; telepathic duel or chase.",
+          "rewards": "Gratitude boon, hunted faction’s enmity, intel on a wider plot."
+        }
+      ]
     },
     {
       "title": "Crystal Sphere Siegebreakers",
-      "tags": [
-        "crystalsphere",
-        "siege",
-        "battle",
-        "void"
+      "tags": ["crystalsphere", "siege", "battle", "void"],
+      "descriptions": [
+        "Fortress-engines jackhammer luminous cracks into the world-shell.",
+        "Defenders chant patch-spells while shockwaves threaten to mulch small ships."
       ],
-      "description": "Massive siege engines the size of fortresses anchor themselves to the sphere’s surface, drilling luminous cracks into the cosmic shell. Arcane artillery roars in synchronized volleys while defenders scramble to reinforce failing wards. Shockwaves ripple through wildspace, threatening to hurl smaller ships into lethal debris. The heroes must decide whether to defend the sphere or exploit the chaos."
+      "weight": 1.2,
+      "resolutions": [
+        {
+          "title": "Counter-Battery",
+          "description": "Sabotage drill-anchors from within their maintenance guts.",
+          "requirements": "Infiltration; Tools; tight timer.",
+          "rewards": "Captured siege tech, defender favor, bounty payout."
+        },
+        {
+          "title": "Exploit the Chaos",
+          "description": "Slip through battle to raid a war-vault or evacuate civilians.",
+          "requirements": "Stealth piloting; moral choice.",
+          "rewards": "War-vault spoils or enduring civic gratitude and allies."
+        }
+      ]
     },
     {
       "title": "Starbeast Migration Crossing",
-      "tags": [
-        "wildlife",
-        "migration",
-        "hazard",
-        "void"
+      "tags": ["wildlife", "migration", "hazard", "void"],
+      "descriptions": [
+        "Titans drift, exhaling gravity wells like sleepy sighs.",
+        "Spores trail behind them as little constellations that try to colonize your sails."
       ],
-      "description": "Titanic silhouettes glide silently through the void, their bodies trailing constellations of glowing spores. Each breath they exhale creates gravity wells that tug at nearby ships. Herd guardians swoop around the migration, warning off predators and curious mortals alike. Crossing the path requires deference, patience, and a steady hand on the helm."
+      "weight": 1.05,
+      "resolutions": [
+        {
+          "title": "Bow and Wait",
+          "description": "Power down, show deference, and let the herd flow around you.",
+          "requirements": "Patience; discipline checks; signal etiquette.",
+          "rewards": "Safe crossing, beast-blessing token, spore harvest (alchemical)."
+        },
+        {
+          "title": "Guardian Gift",
+          "description": "Aid herd guardians against predators to earn escorted passage.",
+          "requirements": "Skirmish; piloting amidst wells.",
+          "rewards": "Escort boon, predator trophies, future warning pings."
+        }
+      ]
     },
     {
       "title": "Planar Observatory Heist",
-      "tags": [
-        "observatory",
-        "heist",
-        "structure",
-        "void"
+      "tags": ["observatory", "heist", "structure", "void"],
+      "descriptions": [
+        "Obsidian lenses look into a dozen realities as clockworks march to the universe’s beat.",
+        "Scholars clutch fate-inked charts that hum if you stare too long."
       ],
-      "description": "Floating platforms encircle an obsidian observatory whose lenses peer into a dozen realities at once. Clockwork custodians march along suspended bridges, ticking in time with the universe’s heartbeat. Scholars clutch star charts infused with spells that could rewrite destinies. To steal here is to dance on the edge of revelation and catastrophe."
+      "weight": 1.1,
+      "resolutions": [
+        {
+          "title": "Clockwork Waltz",
+          "description": "Time your steps with the custodians’ ticks to ghost through the beams.",
+          "requirements": "Stealth; timing puzzle; anti-divination.",
+          "rewards": "Star-chart (1 reroute), lens shard (scrying focus), a very annoyed curator."
+        },
+        {
+          "title": "Inside Job",
+          "description": "Recruit a disillusioned scholar to ‘misfile’ your target.",
+          "requirements": "Persuasion/Bribe; cover story.",
+          "rewards": "Clean getaway, informant contact, access schedule."
+        }
+      ]
     },
     {
       "title": "Comet-Tail Skimming",
-      "tags": [
-        "void",
-        "comet",
-        "hazard"
+      "tags": ["void", "comet", "hazard"],
+      "descriptions": [
+        "A god’s veil of ice and dust lashes the hull; instruments frost mid-reading.",
+        "Hitchhiking elementals trace glyphs across sails, begging passage or plotting mischief."
       ],
-      "description": "A luminous tail of ice and dust unfurls for leagues, glittering like a god’s veil. Instruments ice over mid-reading as volatile crystals sandblast the hull. Hitchhiking elementals trace glyphs across the sails, begging for passage or promising sabotage. Ride the wake just right and time itself seems to slingshot."
+      "weight": 1.0,
+      "resolutions": [
+        {
+          "title": "Ride the Wake",
+          "description": "Trim sails to the coma’s slipstream for a speed sling.",
+          "requirements": "Pilot checks; reinforce rigging; cold wards.",
+          "rewards": "Fast transit, comet ice harvest, elementals owing favors."
+        },
+        {
+          "title": "Tail-Sanctuary",
+          "description": "Shelter behind ice spurs to weather a flare and meet a reclusive comet-sage.",
+          "requirements": "Navigation; patience; parley.",
+          "rewards": "Sage counsel, rare frost alchemy, hidden hollow map."
+        }
+      ]
     },
     {
       "title": "Star Map of the Mad Navigator",
-      "tags": [
-        "anomaly",
-        "observatory",
-        "puzzle"
+      "tags": ["anomaly", "observatory", "puzzle"],
+      "descriptions": [
+        "A skiff floats inside a sphere of chart-lines drawn in solid light.",
+        "Every log page is the captain’s hand—and none agree on what happened."
       ],
-      "description": "A derelict skiff drifts inside a sphere of chart-lines drawn in solid light. Constellations reorder at a whisper, locking and unlocking invisible doors between worlds. Journals nailed to the mast are written in overlapping hands—every one the captain’s. Solve the map’s riddle, or become another route scrawled in desperation."
+      "weight": 1.05,
+      "resolutions": [
+        {
+          "title": "Solve the Lock-Sky",
+          "description": "Rearrange constellations to open a route while avoiding dead ends that are literal.",
+          "requirements": "Puzzle/Intelligence challenge; star-lore.",
+          "rewards": "Shortcut corridor, map-key, glimpse of a forbidden port."
+        },
+        {
+          "title": "Break the Loop",
+          "description": "Burn the map’s false star to free the skiff and its trapped idea of a captain.",
+          "requirements": "Sacrifice a chart; Arcana; Will saves.",
+          "rewards": "Grateful ‘idea’, advantage on one future navigation crisis."
+        }
+      ]
+    },
+    {
+      "title": "Astral Whale Graveyard",
+      "tags": ["wildspace", "graveyard", "mystic"],
+      "descriptions": [
+        "Colossal bones arc like bridges between drifting cairn-stones. Each rib hums with lullabies older than gods.",
+        "Pearl-sized memories float in eddies, replaying final migrations to anyone who dares to touch."
+      ],
+      "weight": 1.0,
+      "resolutions": [
+        {
+          "title": "Sing Them Home",
+          "description": "Complete an ancient dirge to quiet the restless pods and earn safe passage.",
+          "requirements": "Performance/Religion; resist grief visions.",
+          "rewards": "Whalebone charm (sound travel), map to a milk-run trade route."
+        },
+        {
+          "title": "Bone-Harvest… Carefully",
+          "description": "Extract resonant bone without profaning the site—or awaken guardians.",
+          "requirements": "Tools; Ethics choice; possible combat.",
+          "rewards": "Resonant instrument (spell focus), or enmity of star-druids."
+        }
+      ]
+    },
+    {
+      "title": "Silver Ladder to Nowhere",
+      "tags": ["anomaly", "structure", "astral"],
+      "descriptions": [
+        "A staircase of moon-metal climbs into blank sky, each step ringing a different note.",
+        "From above comes the smell of rain on stone—a scent that doesn’t exist in space."
+      ],
+      "weight": 0.9,
+      "resolutions": [
+        {
+          "title": "Climb the Tone",
+          "description": "Ascend in the proper musical sequence to reach a pocket-haven.",
+          "requirements": "Pattern recognition; Performance/Intelligence.",
+          "rewards": "Refuge, cache of planar rations, shortcut to a known sphere."
+        },
+        {
+          "title": "Fold It Flat",
+          "description": "Collapse the ladder into a blade-thin bridge you can deploy elsewhere.",
+          "requirements": "Arcana; risk of slicing reality (minor).",
+          "rewards": "Portable ‘step-bridge’ (3 uses), creative traversal options."
+        }
+      ]
+    },
+    {
+      "title": "Spellreef",
+      "tags": ["reef", "magic", "hazard"],
+      "descriptions": [
+        "A living reef of discarded spells calcified into prismatic coral. Casting nearby causes wild polyps to bloom.",
+        "Echo-spells nip at fingers like curious fish, repeating cantrips you didn’t cast."
+      ],
+      "weight": 1.05,
+      "resolutions": [
+        {
+          "title": "Harvest Safely",
+          "description": "Graft a stable polyp onto a focusing rod.",
+          "requirements": "Tools/Arcana; low-level spell bait.",
+          "rewards": "Wand of Echo (copy minor spell), alchemical reagents."
+        },
+        {
+          "title": "Reef Taming",
+          "description": "Balance the reef by feeding it spent scrolls; it stops ‘biting’ passing ships.",
+          "requirements": "Donate or drain scrolls; Nature/Arcana.",
+          "rewards": "Reef’s goodwill, toll-free passage, rumor of a sunken library."
+        }
+      ]
+    },
+    {
+      "title": "Astral Monsoon",
+      "tags": ["storm", "astral", "weather"],
+      "descriptions": [
+        "Rain falls in space—silver droplets that soak thoughts instead of clothes.",
+        "Thunder speaks in remembered voices, arguing with your choices."
+      ],
+      "weight": 1.1,
+      "resolutions": [
+        {
+          "title": "Bottle the Rain",
+          "description": "Catch mind-water in thought-flasks before it washes decisions away.",
+          "requirements": "Will saves; Tools; quick reflexes.",
+          "rewards": "Bottled inspiration (advantage on one plan), saleable curios."
+        },
+        {
+          "title": "Ride the Gust",
+          "description": "Trim sails to an impossible wind and surf to your destination on ‘intent’.",
+          "requirements": "Helm attunement; group focus.",
+          "rewards": "Arrive exactly where you meant, rumors of a monk order who teach this."
+        }
+      ]
+    },
+    {
+      "title": "Githzerai Waystation",
+      "tags": ["station", "psionic", "neutral"],
+      "descriptions": [
+        "Stone huts hover in balanced symmetry; monks practice stillness that moves the air.",
+        "A tea ceremony is conducted in utter silence, the steam forming mandalas."
+      ],
+      "weight": 0.95,
+      "resolutions": [
+        {
+          "title": "Trade for Stillness",
+          "description": "Offer a problem; receive a koan that actually solves it.",
+          "requirements": "Diplomacy; humility.",
+          "rewards": "Psionic mantra (+concentration), safe med-dock."
+        },
+        {
+          "title": "Test of Equilibrium",
+          "description": "Walk a spinning line in null-g while reciting truths.",
+          "requirements": "Acrobatics; Insight.",
+          "rewards": "Token of Passage through a nearby githyanki patrol lane."
+        }
+      ]
+    },
+    {
+      "title": "Starhusk Lantern",
+      "tags": ["artifact", "navigation", "mystic"],
+      "descriptions": [
+        "A lantern grows from fossilized star-wood, its flame pointing to what you need—not always what you want.",
+        "Shadows it casts show possible futures arguing behind your backs."
+      ],
+      "weight": 1.0,
+      "resolutions": [
+        {
+          "title": "Light the Need",
+          "description": "Feed the lantern a memory to chart a path to a vital object.",
+          "requirements": "Memory tithe; Attunement.",
+          "rewards": "Guaranteed lead, but something you wanted drifts further away."
+        },
+        {
+          "title": "Bank the Flame",
+          "description": "Learn to dim it to avoid attracting fate-hungry predators.",
+          "requirements": "Arcana; patience.",
+          "rewards": "Safer travel, minor fate-resistance."
+        }
+      ]
+    },
+    {
+      "title": "Jade Comet Monastery",
+      "tags": ["comet", "monastery", "training"],
+      "descriptions": [
+        "A green ice comet houses halls carved by monks’ hands and meteor heat.",
+        "Bells ring without sound, vibrating bones into calm."
+      ],
+      "weight": 0.9,
+      "resolutions": [
+        {
+          "title": "Take the Vow of Orbit",
+          "description": "Swear to return after one full circuit to learn a powerful technique.",
+          "requirements": "Oath; downtime; sincerity.",
+          "rewards": "Technique: Comet Step (once/day teleport short)."
+        },
+        {
+          "title": "Melt-Forge",
+          "description": "Use comet ice to quench a blade, imbuing it with chill clarity.",
+          "requirements": "Smithing; access to forge.",
+          "rewards": "+1 cold property (or thematically similar boon)."
+        }
+      ]
+    },
+    {
+      "title": "Tears of the Forgotten God",
+      "tags": ["hazard", "divine", "wildspace"],
+      "descriptions": [
+        "Vast droplets of divine brine float, each containing a memory of worship that no one remembers.",
+        "Touch one and you briefly become a priest of someone who never was."
+      ],
+      "weight": 1.1,
+      "resolutions": [
+        {
+          "title": "Console the Sky",
+          "description": "Perform a funeral for a faith, calming the storm of tears.",
+          "requirements": "Religion/Performance; empathy.",
+          "rewards": "Blessing vs. fear; relic seed that may sprout a new domain."
+        },
+        {
+          "title": "Distill the Tear",
+          "description": "Refine a droplet into god-salt—potent, volatile, priceless.",
+          "requirements": "Alchemist’s kit; risk of revelation overload.",
+          "rewards": "God-salt (1 use miracle-adjacent effect)."
+        }
+      ]
+    },
+    {
+      "title": "Clockwork Constellation",
+      "tags": ["construct", "puzzle", "astral"],
+      "descriptions": [
+        "Stars click into gears and springs, ticking destiny forward.",
+        "A missing cog stalls a fate you care about."
+      ],
+      "weight": 1.0,
+      "resolutions": [
+        {
+          "title": "Find the Cog",
+          "description": "Recover the lost piece from a rival’s hoard and restart the sky.",
+          "requirements": "Heist or duel; Tools.",
+          "rewards": "Fate favors one roll; rival made or mended."
+        },
+        {
+          "title": "Break the Tooth",
+          "description": "Shave a gear to change timing—saving one, dooming another.",
+          "requirements": "Hard choice; Tools/Arcana.",
+          "rewards": "Custom destiny tweak; narrative consequence."
+        }
+      ]
+    },
+    {
+      "title": "Dead Suns Market",
+      "tags": ["market", "station", "criminal"],
+      "descriptions": [
+        "A bazaar orbits a cinder star, stalls selling sunlight by the bottle and names by the ounce.",
+        "Every price is fair and terrible."
+      ],
+      "weight": 1.05,
+      "resolutions": [
+        {
+          "title": "Trade for Shadow",
+          "description": "Sell your shadow to pay a debt—buy it back later with interest.",
+          "requirements": "Contract reading; cunning.",
+          "rewards": "Debt cleared; temporary stealth boon; shadow problems later."
+        },
+        {
+          "title": "Bust the Ring",
+          "description": "Expose the market’s soul-laundry and survive the backlash.",
+          "requirements": "Investigation; allies; escape route.",
+          "rewards": "Freed souls, vendor favors, a target on your sails."
+        }
+      ]
+    },
+    {
+      "title": "Aurora Bridge",
+      "tags": ["travel", "phenomenon", "wildspace"],
+      "descriptions": [
+        "A band of living aurora spans two moons like a laughing road.",
+        "Step onto light and it bears you if your heart is brave."
+      ],
+      "weight": 0.9,
+      "resolutions": [
+        {
+          "title": "March of Courage",
+          "description": "Cross with open fears named aloud; the bridge grows solid.",
+          "requirements": "Roleplay; Cha/Con saves.",
+          "rewards": "Swift crossing, boon vs. terror, auroral souvenir."
+        },
+        {
+          "title": "Harvest the Glow",
+          "description": "Bottle a strand without dimming the bridge.",
+          "requirements": "Delicate Tools/Arcana.",
+          "rewards": "Aurora filament (light/teleport focus), local gratitude if left intact."
+        }
+      ]
     }
   ],
   "crypt": [
