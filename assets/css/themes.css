@@ -218,6 +218,34 @@
     border-color: rgba(10, 132, 255, 0.3);
 }
 
+[data-theme="dark"] .pagination-btn {
+    background: transparent;
+    color: var(--accent-blue);
+    border-color: var(--accent-blue);
+}
+
+[data-theme="dark"] .pagination-btn:hover:not(:disabled) {
+    background: var(--accent-blue);
+    color: white;
+}
+
+[data-theme="dark"] .pagination-btn:disabled {
+    border-color: rgba(10, 132, 255, 0.3);
+    color: rgba(10, 132, 255, 0.3);
+    background: transparent;
+}
+
+[data-theme="dark"] .pagination-per-page select {
+    background: rgba(58, 58, 60, 0.6);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .pagination-per-page select:focus {
+    background: rgba(58, 58, 60, 0.8);
+    border-color: var(--accent-blue);
+}
+
 /* Theme toggle button styles */
 .theme-toggle {
     background: var(--accent-blue);

@@ -146,6 +146,124 @@
     border: 1px solid rgba(0, 122, 255, 0.2);
 }
 
+/* Pagination Controls */
+.pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px;
+    margin-bottom: 15px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.pagination-controls.bottom {
+    margin-bottom: 0;
+    margin-top: 15px;
+}
+
+.pagination-info {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pagination-btn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    color: var(--accent-blue);
+    border: 1px solid var(--accent-blue);
+    border-radius: 6px;
+    font-size: 1.6em;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding-bottom: 2px;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: var(--accent-blue);
+    color: white;
+}
+
+.pagination-btn:disabled {
+    border-color: rgba(0, 122, 255, 0.3);
+    color: rgba(0, 122, 255, 0.3);
+    cursor: not-allowed;
+}
+
+.pagination-page {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.95em;
+    min-width: 60px;
+    text-align: center;
+}
+
+.pagination-per-page {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pagination-per-page label {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.pagination-per-page select {
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 0.9em;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination-per-page select:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+.pagination-per-page select:hover {
+    border-color: var(--accent-blue);
+}
+
+@media (max-width: 768px) {
+    .pagination-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .pagination-buttons {
+        justify-content: center;
+    }
+    
+    .pagination-info,
+    .pagination-per-page {
+        justify-content: center;
+    }
+}
+
 .result-title {
     font-size: 1.3em;
     color: var(--text-primary);

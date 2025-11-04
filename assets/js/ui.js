@@ -819,6 +819,11 @@ export function initializeSearchFilters() {
         if (plane.toLowerCase().replace(/\s+/g, '-') === currentPlane) option.selected = true;
         planeFilter.appendChild(option);
     });
+    
+    // Update filter counts after initialization
+    if (window.updateAllFilters) {
+        window.updateAllFilters();
+    }
 }
 
 // Export functions to window for HTML onclick handlers

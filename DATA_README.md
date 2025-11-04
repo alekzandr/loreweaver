@@ -24,65 +24,71 @@ A single-page application for generating D&D 5e exploration encounters with cont
   "environment_name": [
     {
       "title": "Encounter Name",
-      "description": "Rich narrative description that sets the scene and atmosphere",
       "tags": ["tag1", "tag2", "tag3", "tag4"],
+      "descriptions": [
+        "First atmospheric description with rich sensory details",
+        "Second alternative description for variety"
+      ],
       "weight": 1.0,
-      "customLocations": ["location_key_1", "location_key_2", "location_key_3"]
-    }
-  ]
-}
-```
-
-**Best Practices:**
-- **Title**: Evocative, 2-5 words (e.g., "The Shadowed Alley", "Derelict Station")
-- **Description**: 2-4 sentences painting a vivid picture with sensory details
-- **Tags**: 3-5 descriptive tags that match locations, NPCs, and skill checks
-  - Include environment type: `urban`, `dungeon`, `outdoor`, `indoor`
-  - Include themes: `crime`, `mystery`, `supernatural`, `combat`, `social`
-  - Include specific features: `warehouse`, `mansion`, `sewer`, `laboratory`
-- **Weight** (optional): Default is 1.0. Increase for custom/hand-crafted encounters you want to appear more often (e.g., 2.0)
-- **customLocations** (optional): Array of specific location keys to use instead of random selection
-
-**Custom/Hand-Crafted Encounters:**
-
-For scenarios with specific narratives (murder mysteries, heists, investigation scenarios), you can specify exact locations in order:
-
-```json
-{
-  "urban": [
-    {
-      "title": "The Poisoned Playwright",
-      "description": "The city's most celebrated playwright has been found dead in his private theater box...",
-      "tags": ["murder_mystery", "investigation", "urban", "indoor", "social", "poisoned_playwright", "custom_scenario"],
-      "weight": 2.0,
-      "customLocations": [
-        "playwrights_theater",
-        "apothecary_shop", 
-        "rival_estate",
-        "underground_printing_press",
-        "city_morgue"
+      "resolutions": [
+        {
+          "title": "Resolution Title",
+          "description": "How this encounter can be resolved",
+          "requirements": "What the party needs to do",
+          "rewards": "What they gain from this resolution"
+        }
       ]
     }
   ]
 }
 ```
 
-**When to Use Custom Locations:**
-- Murder mysteries with specific crime scenes and investigation sequence
-- Multi-location heists with planned progression
-- Story-driven scenarios where location order matters
-- Any encounter where random locations would break the narrative
+**Best Practices:**
+- **Title**: Evocative, 2-5 words (e.g., "The Shadowed Alley", "Rooftop Chase")
+- **Tags**: 3-5 descriptive tags that match locations, NPCs, and skill checks
+  - Include environment type: `urban`, `dungeon`, `outdoor`, `indoor`
+  - Include themes: `crime`, `mystery`, `supernatural`, `combat`, `social`
+  - Include specific features: `warehouse`, `mansion`, `sewer`, `laboratory`
+- **Descriptions**: Array of 2+ alternative atmospheric descriptions
+  - Each 2-4 sentences painting a vivid picture with sensory details
+  - Focus on what players SEE, HEAR, SMELL, and FEEL
+  - Multiple descriptions provide variety when regenerating
+- **Weight** (optional): Default is 1.0. Increase for custom/hand-crafted encounters you want to appear more often (e.g., 1.1, 1.2)
+- **Resolutions**: Array of 1-3 possible outcomes for the encounter
+  - **Title**: Short name for the resolution path
+  - **Description**: Narrative description of how it plays out
+  - **Requirements**: What checks, actions, or choices lead here
+  - **Rewards**: What the party gains (tangible and intangible)
 
-**Benefits:**
-- Locations appear in the specified order
-- Ensures logical progression through the investigation
-- Works with discovery chains to create guided narratives
-- Can be regenerated for consistent experience
+**Resolution Design:**
 
-**Requirements:**
-- Location keys must exist in `locations.json` under the same environment
-- Recommend adding unique tag (e.g., `"poisoned_playwright"`) to encounter and all its locations for filtering
-- Use with discovery chains in locations for best results
+Resolutions provide multiple ways the encounter can conclude, giving DMs options and players agency:
+
+**Good Resolution Practices:**
+- **Variety**: Offer different approaches (combat, social, stealth, creative solutions)
+- **Consequences**: Each resolution has unique outcomes
+- **Interconnected**: Resolutions can lead to new story hooks
+- **Player Choice**: Requirements should allow for different party compositions
+
+**Example:**
+```json
+{
+  "resolutions": [
+    {
+      "title": "Street Justice",
+      "description": "The confrontation ends with criminals fleeing, dropping evidence of a larger operation...",
+      "requirements": "Successful combat or intimidation checks, investigation of dropped evidence",
+      "rewards": "Gratitude from local residents, information network access, possible guide"
+    },
+    {
+      "title": "Darker Bargains",
+      "description": "The criminals are revealed as desperate refugees being extorted...",
+      "requirements": "Insight checks to uncover truth, persuasion or deception to navigate dilemma",
+      "rewards": "Choice of: bounty money, criminal contacts, evidence against corrupt official"
+    }
+  ]
+}
+```
 
 **Tagging Philosophy**: Tags drive smart content selection - NPCs, locations, and skill checks with matching tags will be prioritized.
 
@@ -204,6 +210,7 @@ This creates a logical clue chain that guides investigation!
 {
   "species": {
     "species_name": {
+      "tags": ["tag1", "tag2", "tag3"],
       "firstNames": ["name1", "name2", ...],
       "surnames": ["surname1", "surname2", ...]
     }
@@ -245,7 +252,10 @@ This creates a logical clue chain that guides investigation!
 
 **Adding New Content:**
 
-**Species**: Add first names and surnames appropriate to the fantasy race. 10-15 names per category recommended.
+**Species**: 
+- **Tags**: General characteristics (e.g., `common`, `versatile`, `civilized` for humans; `fey`, `elegant`, `longlived` for elves)
+- **First Names**: 20+ names appropriate to the fantasy race
+- **Surnames**: 20+ surnames fitting the species culture
 
 **Professions**: 
 - **Name**: Clear job title
@@ -344,14 +354,17 @@ This creates a logical clue chain that guides investigation!
 }
 ```
 
-**Current Counts**: 40 traps, 35 hazards, 35 environmental effects
+**Current Counts**: 40+ traps, 35+ hazards, 35+ environmental effects
 
 **Traps**: Mechanical or magical devices that trigger when disturbed
-- **detectMethod**: Investigation, Perception, or specific observation needed
-- **disarmMethod**: Thieves' Tools, magic, or clever solutions
-- **damageType**: Physical, elemental, or magical damage
-- **resetable**: Can it trigger multiple times?
-- **Severity**: low (1-2d6), medium (3-4d6), high (5-8d6), deadly (9d6+)
+- **name**: Clear, descriptive trap name
+- **description**: What the trap looks like and how it works
+- **detectMethod**: Investigation, Perception, Arcana, or specific observation needed
+- **disarmMethod**: Thieves' Tools, Dispel Magic, or clever solutions
+- **damageType**: Physical (`piercing`, `slashing`, `bludgeoning`), elemental (`fire`, `cold`, `lightning`, `acid`), or special (`poison`, `psychic`, `necrotic`)
+- **tags**: Environment and theme tags for contextual selection
+- **severity**: `low` (1-2d6), `medium` (3-4d6), `high` (5-8d6), `deadly` (9d6+)
+- **resetable**: Boolean - can it trigger multiple times?
 
 **Hazards**: Persistent environmental dangers
 - **saveAbility**: STR, DEX, CON, INT, WIS, or CHA
@@ -414,12 +427,12 @@ The entire system is built on **contextual tag matching**. When generating encou
 
 ### Current Features
 1. **Encounter Generation**: Creates complete encounters with:
-   - Title and atmospheric description
+   - Title and multiple atmospheric descriptions
+   - Multiple resolution paths with requirements and rewards
    - Encounter flow diagram (3-5 steps)
    - NPCs (1-3) with full details
    - Skill challenges (3-4) scaled to party level
    - Level scaling guide
-   - Resolution and rewards
 
 2. **Interactive Elements**:
    - **NPC Detail Panels**: Click any NPC name to see full stats, appearance, secret, personality
@@ -428,7 +441,14 @@ The entire system is built on **contextual tag matching**. When generating encou
    - **Collapsible Sections**: All encounter sections can collapse to reduce scrolling
    - **Progressive Reveal**: Toggle between showing all location details or progressive discovery
 
-3. **Search System**: Browse all encounters and locations with keyword filtering
+3. **Advanced Search System**: 
+   - **Dynamic Filtering**: Type, Environment, Location Type, Setting, and Plane filters
+   - **Live Counts**: Each filter option shows number of matching results
+   - **Smart Updates**: Filters intelligently update based on selections
+   - **Paginated Results**: Display 5, 10, 15, or 20 items per page
+   - **Expandable Cards**: Click descriptions and resolutions to view full details
+   - **Location Features**: Three-column display (Primary/Secondary/Discoveries)
+   - **Result Summary**: Total count with breakdown by Encounters and Locations
 
 4. **Smart Selection**: Content is chosen based on tag matching for coherent, themed encounters
 
@@ -472,8 +492,20 @@ All JSON files must be valid. Common issues:
 ```json
 {
   "title": "Evocative Title",
-  "description": "Rich sensory description creating atmosphere and tension.",
-  "tags": ["environment", "theme", "location_type", "mood", "challenge_type"]
+  "tags": ["environment", "theme", "location_type", "mood", "challenge_type"],
+  "descriptions": [
+    "First rich sensory description creating atmosphere and tension.",
+    "Second alternative description for variety when regenerating."
+  ],
+  "weight": 1.0,
+  "resolutions": [
+    {
+      "title": "Resolution Name",
+      "description": "How this path concludes the encounter",
+      "requirements": "What players must do",
+      "rewards": "What they gain"
+    }
+  ]
 }
 ```
 

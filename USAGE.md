@@ -12,6 +12,11 @@
    - Click "🎲 Generate Encounter" button
    - A complete encounter will be displayed below
 
+3. **Search & Browse**
+   - Use the Search tab to explore all encounters and locations
+   - Apply filters to find specific content types
+   - View detailed information with expandable cards
+
 ## Understanding Generated Encounters
 
 Each encounter includes:
@@ -94,10 +99,49 @@ Each environment has unique characteristics:
 4. **Consequences**: Failed checks should have interesting consequences, not just damage
 5. **Reward Creativity**: Allow players to use abilities in unexpected ways
 
+## Search & Browse Features
+
+### Advanced Filtering
+LoreWeaver includes a powerful search system to explore all content:
+
+#### Filter Options
+- **Type Filter**: Choose between Encounters Only, Locations Only, or All Types
+- **Environment Filter**: Filter by specific environments (Urban, Arctic, Ocean, etc.)
+- **Location Type Filter**: For locations only - filter by type (tavern, shop, landmark, etc.)
+- **Setting Filter**: Filter locations by setting tags (urban, rural, coastal, etc.)
+- **Plane Filter**: Filter by plane of existence
+
+#### Dynamic Filtering
+- Filters update dynamically based on your selections
+- Each option shows a count of available results
+- Select any filter first - the system intelligently updates other filters
+- Clear All Filters button resets everything
+
+#### Search Results
+- **Paginated Display**: Results show 5, 10, 15, or 20 items per page
+- **Result Count**: See total results with breakdown by type
+- **Expandable Cards**: Click on descriptions and resolutions to expand/collapse
+- **Location Details**: Locations show three-column layout with Primary Features, Secondary Features, and Discoveries
+
+#### Pagination Controls
+- Navigate with simple `‹` and `›` buttons
+- See current page (e.g., "1 / 50")
+- Change items per page on the fly
+- Pagination appears at both top and bottom of results
+
+### Quick Tips
+1. Click Search with no filters to see all content
+2. Use Type filter first to narrow to Encounters or Locations
+3. Filter combinations update dynamically - no invalid selections
+4. Click on any result card to expand full details
+5. Use pagination to browse large result sets efficiently
+
 ## Technical Notes
 
 - Works offline - save the HTML file locally
 - No data is collected or sent anywhere
+- Modular ES6 JavaScript architecture
+- Fully responsive design for all screen sizes
 - Refreshing the page resets the generator
 - Each generation creates a unique combination
 - Compatible with all modern browsers (Chrome, Firefox, Safari, Edge)

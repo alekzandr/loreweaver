@@ -13,6 +13,11 @@ export let activeFilters = {
     plane: []
 };
 
+// Pagination state
+let currentPage = 1;
+let itemsPerPage = 5;
+let allResults = [];
+
 /**
  * Initialize the application
  */
@@ -316,56 +321,122 @@ function updateAllFilters() {
     const currentSetting = document.getElementById('settingFilter').value;
     const currentPlane = document.getElementById('planeFilter').value;
     
-    // Collect all available options based on current filters
-    const availableEnvironments = new Set();
-    const availableLocationTypes = new Set();
-    const availableSettings = new Set();
-    
-    // If type is "encounter", only show environments with encounters
-    if (currentType === 'encounter') {
-        if (window.encounterTitles) {
-            Object.keys(window.encounterTitles).forEach(env => availableEnvironments.add(env));
+    // Helper function to collect available options with counts, excluding the filter being updated
+    function collectOptionsWithCounts(excludeFilter) {
+        const environmentCounts = {};
+        const locationTypeCounts = {};
+        const settingCounts = {};
+        
+        // If type is "encounter", count encounters by environment
+        if (currentType === 'encounter') {
+            if (window.encounterTitles) {
+                Object.entries(window.encounterTitles).forEach(([env, encounters]) => {
+                    environmentCounts[env] = (environmentCounts[env] || 0) + encounters.length;
+                });
+            }
+        } 
+        // If type is "location" or no type filter, process locations
+        else if (!currentType || currentType === 'location') {
+            Object.entries(window.locationObjects).forEach(([env, locationTypes_]) => {
+                Object.entries(locationTypes_).forEach(([locType, locData]) => {
+                    // Check if this location matches current filters (excluding the one being updated)
+                    const matchesEnv = excludeFilter === 'environment' || !currentEnv || env === currentEnv;
+                    const matchesLocType = excludeFilter === 'locationType' || !currentLocationType || locType === currentLocationType;
+                    const matchesSetting = excludeFilter === 'setting' || !currentSetting || (locData.tags && locData.tags.includes(currentSetting));
+                    
+                    if (matchesEnv && matchesLocType && matchesSetting) {
+                        environmentCounts[env] = (environmentCounts[env] || 0) + 1;
+                        locationTypeCounts[locType] = (locationTypeCounts[locType] || 0) + 1;
+                        if (locData.tags) {
+                            locData.tags.forEach(tag => {
+                                settingCounts[tag] = (settingCounts[tag] || 0) + 1;
+                            });
+                        }
+                    }
+                });
+            });
         }
-    } 
-    // If type is "location" or no type filter, process locations
-    else if (!currentType || currentType === 'location') {
-        Object.entries(window.locationObjects).forEach(([env, locationTypes]) => {
-            Object.entries(locationTypes).forEach(([locType, locData]) => {
-                // Check if this location matches current filters
+        
+        // If showing both types, also count encounters for environment
+        if (!currentType) {
+            if (window.encounterTitles) {
+                Object.entries(window.encounterTitles).forEach(([env, encounters]) => {
+                    const matchesEnv = excludeFilter === 'environment' || !currentEnv || env === currentEnv;
+                    if (matchesEnv) {
+                        environmentCounts[env] = (environmentCounts[env] || 0) + encounters.length;
+                    }
+                });
+            }
+        }
+        
+        return { environmentCounts, locationTypeCounts, settingCounts };
+    }
+    
+    // Helper function to count total items for Type filter
+    function getTypeCounts() {
+        let encounterCount = 0;
+        let locationCount = 0;
+        
+        // Count encounters
+        if (window.encounterTitles) {
+            Object.entries(window.encounterTitles).forEach(([env, encounters]) => {
+                const matchesEnv = !currentEnv || env === currentEnv;
+                if (matchesEnv) {
+                    encounterCount += encounters.length;
+                }
+            });
+        }
+        
+        // Count locations
+        Object.entries(window.locationObjects).forEach(([env, locationTypes_]) => {
+            Object.entries(locationTypes_).forEach(([locType, locData]) => {
                 const matchesEnv = !currentEnv || env === currentEnv;
                 const matchesLocType = !currentLocationType || locType === currentLocationType;
                 const matchesSetting = !currentSetting || (locData.tags && locData.tags.includes(currentSetting));
                 
                 if (matchesEnv && matchesLocType && matchesSetting) {
-                    availableEnvironments.add(env);
-                    availableLocationTypes.add(locType);
-                    if (locData.tags) {
-                        locData.tags.forEach(tag => availableSettings.add(tag));
-                    }
+                    locationCount++;
                 }
             });
         });
+        
+        return { encounterCount, locationCount };
     }
     
-    // Update environment dropdown
+    // Update Type filter with counts
+    const typeFilter = document.getElementById('typeFilter');
+    const typeCounts = getTypeCounts();
+    const currentTypeValue = typeFilter.value;
+    typeFilter.innerHTML = `
+        <option value="">All Types (${typeCounts.encounterCount + typeCounts.locationCount})</option>
+        <option value="encounter">Encounters Only (${typeCounts.encounterCount})</option>
+        <option value="location">Locations Only (${typeCounts.locationCount})</option>
+    `;
+    typeFilter.value = currentTypeValue;
+    
+    // Update environment dropdown (exclude environment filter when collecting)
+    const counts = collectOptionsWithCounts('environment');
     const envFilter = document.getElementById('envFilter');
-    envFilter.innerHTML = '<option value="">All Environments</option>';
-    Array.from(availableEnvironments).sort().forEach(env => {
+    const totalEnvCount = Object.values(counts.environmentCounts).reduce((sum, count) => sum + count, 0);
+    envFilter.innerHTML = `<option value="">All Environments (${totalEnvCount})</option>`;
+    Array.from(Object.keys(counts.environmentCounts)).sort().forEach(env => {
         const option = document.createElement('option');
         option.value = env;
-        option.textContent = env.charAt(0).toUpperCase() + env.slice(1);
+        option.textContent = `${env.charAt(0).toUpperCase() + env.slice(1)} (${counts.environmentCounts[env]})`;
         if (env === currentEnv) option.selected = true;
         envFilter.appendChild(option);
     });
     
-    // Update location type dropdown (only if not showing encounters only)
+    // Update location type dropdown (exclude locationType filter when collecting)
     const locationTypeFilter = document.getElementById('locationTypeFilter');
     if (currentType !== 'encounter') {
-        locationTypeFilter.innerHTML = '<option value="">All Location Types</option>';
-        Array.from(availableLocationTypes).sort().forEach(type => {
+        const locTypeCounts = collectOptionsWithCounts('locationType');
+        const totalLocTypeCount = Object.values(locTypeCounts.locationTypeCounts).reduce((sum, count) => sum + count, 0);
+        locationTypeFilter.innerHTML = `<option value="">All Location Types (${totalLocTypeCount})</option>`;
+        Array.from(Object.keys(locTypeCounts.locationTypeCounts)).sort().forEach(type => {
             const option = document.createElement('option');
             option.value = type;
-            option.textContent = type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            option.textContent = `${type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} (${locTypeCounts.locationTypeCounts[type]})`;
             if (type === currentLocationType) option.selected = true;
             locationTypeFilter.appendChild(option);
         });
@@ -375,14 +446,16 @@ function updateAllFilters() {
         locationTypeFilter.disabled = true;
     }
     
-    // Update setting dropdown (only if not showing encounters only)
+    // Update setting dropdown (exclude setting filter when collecting)
     const settingFilter = document.getElementById('settingFilter');
     if (currentType !== 'encounter') {
-        settingFilter.innerHTML = '<option value="">All Settings</option>';
-        Array.from(availableSettings).sort().forEach(setting => {
+        const settingCounts = collectOptionsWithCounts('setting');
+        const totalSettingCount = Object.values(settingCounts.settingCounts).reduce((sum, count) => sum + count, 0);
+        settingFilter.innerHTML = `<option value="">All Settings (${totalSettingCount})</option>`;
+        Array.from(Object.keys(settingCounts.settingCounts)).sort().forEach(setting => {
             const option = document.createElement('option');
             option.value = setting;
-            option.textContent = setting.charAt(0).toUpperCase() + setting.slice(1);
+            option.textContent = `${setting.charAt(0).toUpperCase() + setting.slice(1)} (${settingCounts.settingCounts[setting]})`;
             if (setting === currentSetting) option.selected = true;
             settingFilter.appendChild(option);
         });
@@ -485,35 +558,114 @@ export function performSearch() {
         });
     }
 
-    // Display results
-    if (results.length === 0) {
+    // Store results and reset to first page
+    allResults = results;
+    currentPage = 1;
+    
+    // Display paginated results
+    renderPaginatedResults();
+}
+
+/**
+ * Render paginated results
+ */
+function renderPaginatedResults() {
+    const resultsContainer = document.getElementById('searchResults');
+    
+    if (allResults.length === 0) {
         resultsContainer.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 40px;">No results found. Try different search terms or filters.</p>';
-    } else {
-        // Count encounters and locations
-        const encounterCount = results.filter(r => r.type === 'encounter').length;
-        const locationCount = results.filter(r => r.type === 'location').length;
-        
-        const resultSummary = `
-            <div class="result-summary">
-                <span class="result-count">Found ${results.length} result${results.length !== 1 ? 's' : ''}</span>
-                <span class="result-breakdown">
-                    ${encounterCount > 0 ? `<span class="count-badge encounter-badge">${encounterCount} Encounter${encounterCount !== 1 ? 's' : ''}</span>` : ''}
-                    ${locationCount > 0 ? `<span class="count-badge location-badge">${locationCount} Location${locationCount !== 1 ? 's' : ''}</span>` : ''}
-                </span>
-            </div>
-        `;
-        
-        resultsContainer.innerHTML = resultSummary + results.map(result => {
-            if (result.type === 'encounter') {
-                return renderEncounterResult(result);
-            } else {
-                return renderLocationResult(result);
-            }
-        }).join('');
-        
-        // Attach click handlers for expandable cards
-        attachExpandHandlers();
+        return;
     }
+    
+    // Calculate pagination
+    const totalPages = Math.ceil(allResults.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = Math.min(startIndex + itemsPerPage, allResults.length);
+    const paginatedResults = allResults.slice(startIndex, endIndex);
+    
+    // Count encounters and locations
+    const encounterCount = allResults.filter(r => r.type === 'encounter').length;
+    const locationCount = allResults.filter(r => r.type === 'location').length;
+    
+    const resultSummary = `
+        <div class="result-summary">
+            <span class="result-count">Found ${allResults.length} result${allResults.length !== 1 ? 's' : ''}</span>
+            <span class="result-breakdown">
+                ${encounterCount > 0 ? `<span class="count-badge encounter-badge">${encounterCount} Encounter${encounterCount !== 1 ? 's' : ''}</span>` : ''}
+                ${locationCount > 0 ? `<span class="count-badge location-badge">${locationCount} Location${locationCount !== 1 ? 's' : ''}</span>` : ''}
+            </span>
+        </div>
+    `;
+    
+    // Pagination controls (top)
+    const paginationControls = `
+        <div class="pagination-controls">
+            <div class="pagination-info">
+                Showing ${startIndex + 1}-${endIndex} of ${allResults.length}
+            </div>
+            <div class="pagination-buttons">
+                <button class="pagination-btn" onclick="window.previousPage()" ${currentPage === 1 ? 'disabled' : ''}>
+                    ‹
+                </button>
+                <span class="pagination-page">${currentPage} / ${totalPages}</span>
+                <button class="pagination-btn" onclick="window.nextPage()" ${currentPage === totalPages ? 'disabled' : ''}>
+                    ›
+                </button>
+            </div>
+            <div class="pagination-per-page">
+                <label for="itemsPerPageTop">Show:</label>
+                <select id="itemsPerPageTop" onchange="window.changeItemsPerPage(this.value)">
+                    <option value="5" ${itemsPerPage === 5 ? 'selected' : ''}>5</option>
+                    <option value="10" ${itemsPerPage === 10 ? 'selected' : ''}>10</option>
+                    <option value="15" ${itemsPerPage === 15 ? 'selected' : ''}>15</option>
+                    <option value="20" ${itemsPerPage === 20 ? 'selected' : ''}>20</option>
+                </select>
+            </div>
+        </div>
+    `;
+    
+    // Pagination controls (bottom)
+    const bottomPaginationControls = `
+        <div class="pagination-controls bottom">
+            <div class="pagination-info">
+                Showing ${startIndex + 1}-${endIndex} of ${allResults.length}
+            </div>
+            <div class="pagination-buttons">
+                <button class="pagination-btn" onclick="window.previousPage()" ${currentPage === 1 ? 'disabled' : ''}>
+                    ‹
+                </button>
+                <span class="pagination-page">${currentPage} / ${totalPages}</span>
+                <button class="pagination-btn" onclick="window.nextPage()" ${currentPage === totalPages ? 'disabled' : ''}>
+                    ›
+                </button>
+            </div>
+            <div class="pagination-per-page">
+                <label for="itemsPerPageBottom">Show:</label>
+                <select id="itemsPerPageBottom" onchange="window.changeItemsPerPage(this.value)">
+                    <option value="5" ${itemsPerPage === 5 ? 'selected' : ''}>5</option>
+                    <option value="10" ${itemsPerPage === 10 ? 'selected' : ''}>10</option>
+                    <option value="15" ${itemsPerPage === 15 ? 'selected' : ''}>15</option>
+                    <option value="20" ${itemsPerPage === 20 ? 'selected' : ''}>20</option>
+                </select>
+            </div>
+        </div>
+    `;
+    
+    const resultsHTML = paginatedResults.map(result => {
+        if (result.type === 'encounter') {
+            return renderEncounterResult(result);
+        } else {
+            return renderLocationResult(result);
+        }
+    }).join('');
+    
+    resultsContainer.innerHTML = resultSummary + paginationControls + resultsHTML + bottomPaginationControls;
+    
+    // Attach click handlers for expandable cards
+    attachExpandHandlers();
+    
+    // Scroll to top of results
+    resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 /**
@@ -687,6 +839,40 @@ function checkLocationFilters(location, environment, locationType) {
     return true;
 }
 
+/**
+ * Go to next page
+ */
+export function nextPage() {
+    const totalPages = Math.ceil(allResults.length / itemsPerPage);
+    if (currentPage < totalPages) {
+        currentPage++;
+        renderPaginatedResults();
+    }
+}
+
+/**
+ * Go to previous page
+ */
+export function previousPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        renderPaginatedResults();
+    }
+}
+
+/**
+ * Change items per page
+ */
+export function changeItemsPerPage(value) {
+    itemsPerPage = parseInt(value);
+    currentPage = 1; // Reset to first page
+    renderPaginatedResults();
+    
+    // Sync both dropdowns
+    document.getElementById('itemsPerPageTop').value = value;
+    document.getElementById('itemsPerPageBottom').value = value;
+}
+
 // Expose functions to window for HTML onclick handlers
 window.initApp = initApp;
 window.toggleTheme = toggleTheme;
@@ -696,7 +882,11 @@ window.performSearch = performSearch;
 window.applyFilters = applyFilters;
 window.onEnvironmentChange = onEnvironmentChange;
 window.onFilterChange = onFilterChange;
+window.updateAllFilters = updateAllFilters;
 window.clearFilters = clearFilters;
+window.nextPage = nextPage;
+window.previousPage = previousPage;
+window.changeItemsPerPage = changeItemsPerPage;
 
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', initApp);

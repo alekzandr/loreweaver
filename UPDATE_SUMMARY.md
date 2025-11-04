@@ -1,10 +1,24 @@
 # LoreWeaver Update Summary
 
-## What Was Added
+## Latest Updates
+
+### Advanced Search & Filter System (Latest)
+
+The LoreWeaver app now includes a comprehensive search and browse system for exploring all encounters and locations with advanced filtering capabilities.
+
+#### Key Features
+- **Dynamic Filtering**: Intelligent filter system that updates based on selections
+- **Multiple Filter Types**: Type, Environment, Location Type, Setting, and Plane
+- **Live Result Counts**: Each filter option shows how many results match
+- **Paginated Results**: Display 5, 10, 15, or 20 items per page with simple navigation
+- **Expandable Cards**: Click to reveal full descriptions and resolutions
+- **Location Details**: Three-column layout showing Primary Features, Secondary Features, and Discoveries
+- **Smart Filter Updates**: Filters exclude their own category when updating, allowing free selection
+- **Minimal Pagination UI**: Clean `‹ 1 / 50 ›` design with icon buttons
 
 ### New Feature: Highlighted Room Exploration Mode
 
-The LoreWeaver app now includes a second exploration mode called "Highlighted Room" that implements the video game-style interactable approach to exploration.
+The LoreWeaver app includes a second exploration mode called "Highlighted Room" that implements the video game-style interactable approach to exploration.
 
 ## Key Features Added
 
@@ -125,9 +139,42 @@ Examples:
 
 - Fully backward compatible - old Full Encounter mode unchanged
 - Works on all modern browsers
-- No dependencies added
-- Single self-contained HTML file
+- Modular ES6 architecture
+- External JSON data files
 - Works offline
+
+## Search System Implementation Details
+
+### Filter System Architecture
+- **Dynamic Filter Updates**: Uses `updateAllFilters()` function that recalculates available options based on current selections
+- **Smart Exclusion**: When updating a filter dropdown, that filter's current value is excluded from matching logic, allowing free category selection
+- **Result Counting**: Each filter option displays count of matching items in format "Arctic (24)"
+- **Type-Based Logic**: Type filter (Encounters/Locations/All) controls which location-specific filters are available
+
+### Pagination System
+- **State Management**: Maintains `currentPage`, `itemsPerPage`, and `allResults` state
+- **Automatic Reset**: Returns to page 1 when filters change or items per page is updated
+- **Synchronized Controls**: Top and bottom pagination stay in sync
+- **Smooth Navigation**: Auto-scrolls to top of results when changing pages
+
+### Result Display
+- **Expandable Cards**: Separate render functions for encounters (`renderEncounterResult()`) and locations (`renderLocationResult()`)
+- **Encounter Cards**: Multiple expandable description and resolution cards with preview/full view toggle
+- **Location Cards**: Three-column grid displaying Primary Features, Secondary Features, and Discoveries
+- **Click Handlers**: `attachExpandHandlers()` attaches event listeners after rendering
+
+### Data Structure Support
+- **Encounters**: Nested by environment → array of encounter objects
+- **Locations**: Nested by environment → location type → location object
+- **Tags**: Locations support tags for setting-based filtering
+- **Counts**: Real-time calculation of available options based on data
+
+### UI/UX Decisions
+- **Minimal Design**: Pagination uses simple `‹ 1 / 50 ›` format with transparent icon buttons
+- **Filter Counts**: Helps users understand data availability before selecting
+- **No Background**: Pagination controls use transparent background for minimal visual weight
+- **Smart Defaults**: 5 items per page by default, expandable to 5/10/15/20
+- **Responsive**: All controls adapt to mobile screens with column stacking
 
 ## Future Enhancement Ideas
 
@@ -138,3 +185,6 @@ Examples:
 - Loot generation for explored objects
 - NPC generation for urban environments
 - Monster lair generation
+- Advanced search with text queries
+- Favorite/bookmark system for results
+- Export search results to PDF
