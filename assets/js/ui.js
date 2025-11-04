@@ -751,46 +751,63 @@ export function showNPCDetailFromObject(npcJson) {
  * Initialize search filters
  */
 export function initializeSearchFilters() {
-    if (document.getElementById('envFilters').children.length > 0) return;
+    const envFilter = document.getElementById('envFilter');
+    const locationTypeFilter = document.getElementById('locationTypeFilter');
+    const settingFilter = document.getElementById('settingFilter');
+    const planeFilter = document.getElementById('planeFilter');
 
-    const envFilters = document.getElementById('envFilters');
-    const environments = ['urban', 'arctic', 'ocean', 'space', 'crypt', 'forest', 'desert', 'mountain', 'swamp', 'underground'];
-    const envIcons = { urban: '🏛️', arctic: '❄️', ocean: '🌊', space: '🌌', crypt: '💀', forest: '🌲', desert: '🏜️', mountain: '⛰️', swamp: '🐊', underground: '🕳️' };
+    // Check if already populated
+    if (envFilter.options.length > 1) return;
 
-    environments.forEach(env => {
-        const tag = document.createElement('div');
-        tag.className = 'filter-tag';
-        tag.textContent = `${envIcons[env]} ${env.charAt(0).toUpperCase() + env.slice(1)}`;
-        tag.dataset.filter = env;
-        tag.dataset.type = 'environment';
-        tag.onclick = () => window.toggleFilter(tag, 'environment', env);
-        envFilters.appendChild(tag);
+    // Populate environments from data
+    const environments = new Set();
+    const locationTypes = new Set();
+    const settings = new Set();
+
+    if (window.locationObjects) {
+        Object.entries(window.locationObjects).forEach(([env, locations]) => {
+            environments.add(env);
+            Object.entries(locations).forEach(([locType, locData]) => {
+                locationTypes.add(locType);
+                if (locData.tags) {
+                    locData.tags.forEach(tag => settings.add(tag));
+                }
+            });
+        });
+    }
+
+    // Sort and populate environment filter
+    Array.from(environments).sort().forEach(env => {
+        const option = document.createElement('option');
+        option.value = env;
+        option.textContent = env.charAt(0).toUpperCase() + env.slice(1);
+        envFilter.appendChild(option);
     });
 
-    const locationFilters = document.getElementById('locationFilters');
-    const locationTypes = ['indoor', 'outdoor', 'building', 'street', 'cave', 'ruins', 'ship', 'underwater', 'tunnel', 'chamber', 'wilderness', 'path'];
-
-    locationTypes.forEach(type => {
-        const tag = document.createElement('div');
-        tag.className = 'filter-tag';
-        tag.textContent = type.charAt(0).toUpperCase() + type.slice(1);
-        tag.dataset.filter = type;
-        tag.dataset.type = 'locationType';
-        tag.onclick = () => window.toggleFilter(tag, 'locationType', type);
-        locationFilters.appendChild(tag);
+    // Sort and populate location type filter
+    Array.from(locationTypes).sort().forEach(type => {
+        const option = document.createElement('option');
+        option.value = type;
+        option.textContent = type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        locationTypeFilter.appendChild(option);
     });
 
-    const settingFilters = document.getElementById('settingFilters');
-    const settings = ['natural', 'manmade', 'magical', 'tomb', 'void', 'water', 'urban', 'wilderness'];
+    // Sort and populate setting filter (from tags)
+    Array.from(settings).sort().forEach(setting => {
+        const option = document.createElement('option');
+        option.value = setting;
+        option.textContent = setting.charAt(0).toUpperCase() + setting.slice(1);
+        settingFilter.appendChild(option);
+    });
 
-    settings.forEach(setting => {
-        const tag = document.createElement('div');
-        tag.className = 'filter-tag';
-        tag.textContent = setting.charAt(0).toUpperCase() + setting.slice(1);
-        tag.dataset.filter = setting;
-        tag.dataset.type = 'setting';
-        tag.onclick = () => window.toggleFilter(tag, 'setting', setting);
-        settingFilters.appendChild(tag);
+    // Placeholder for future plane data
+    const planes = ['Material Plane', 'Feywild', 'Shadowfell', 'Astral Plane', 'Ethereal Plane'];
+
+    planes.forEach(plane => {
+        const option = document.createElement('option');
+        option.value = plane.toLowerCase().replace(/\s+/g, '-');
+        option.textContent = plane;
+        planeFilter.appendChild(option);
     });
 }
 

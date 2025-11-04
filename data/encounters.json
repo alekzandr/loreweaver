@@ -848,7 +848,25 @@
         "outdoor",
         "path"
       ],
-      "description": "Jagged peaks loom above a narrow trail carved into the mountain’s flank. Fresh fractures zigzag across the snowpack, warning that the slightest vibration could send tons of powder roaring downward. The crunch of boots is muffled by the heavy silence of a world holding its breath. Far below, the valley waits like an open grave for the unwary."
+      "descriptions": [
+        "Jagged peaks loom above a narrow trail carved into the mountain’s flank. Fresh fractures zigzag across the snowpack, warning that the slightest vibration could send tons of powder roaring downward. Even whispers feel loud here, and the valley below waits like an open grave.",
+        "Wind loads the lee slope while cornices sag with dangerous grace. Faint drum-like whumps roll underfoot as the slab settles—an omen that the mountain is listening. Far off, a single crack travels like lightning through snow, then silence returns, heavy and expectant."
+      ],
+      "weight": 1.05,
+      "resolutions": [
+        {
+          "title": "Safe Traverse",
+          "description": "By probing the snowpack, roping up, and staggering movement, the party plots a safe line across the path, triggering small slides intentionally to bleed the slope. Midway, they spot an overturned sled with salvageable gear and a frozen letter naming a missing ranger-post downslope.",
+          "requirements": "Nature/Survival to assess stability, Athletics/Acrobatics for careful movement, use of ropes/pitons or magic",
+          "rewards": "Avalanche safety kit, supplies, map to ranger-post (future hook), reputation for mountain savvy"
+        },
+        {
+          "title": "Controlled Release",
+          "description": "The route cannot be crossed safely. The party instead sets charges (or uses thunderous magic) to trigger a controlled avalanche, clearing the chute. The blast draws a territorial ice troll from a nearby cave, forcing a fight amid shifting debris.",
+          "requirements": "Engineering/Arcana to plan the blast, timed skill challenge, combat on unstable terrain",
+          "rewards": "Troll hoard beneath packed snow, cleared pass for locals (favor), renown with mountaineers"
+        }
+      ]
     },
     {
       "title": "Ice Cave Exploration",
@@ -857,7 +875,25 @@
         "indoor",
         "cavern"
       ],
-      "description": "The cave mouth exhales air colder than the night sky, carrying the scent of mineral-laced water. Vaulted ceilings glitter with stalactites that chime softly as hidden drafts stir their crystalline lengths. Bioluminescent algae trace luminous veins along the walls, revealing tunnels that twist into darkness. Every echo threatens to wake whatever ancient guardian slumbers beneath the ice."
+      "descriptions": [
+        "Cold breath sighs from a vault of blue glass where stalactites ring like crystal bells. Bioluminescent veins thread the ice, revealing tunnels that twist like frozen rivers. Skittering echoes suggest you’re not the only ones beneath the glacier.",
+        "A meltwater stream races under a translucent floor, fish darting like shadows below your boots. Trapped bubbles and ancient pollen specks form strata—history frozen mid-sentence. In the distance, a resonant hum rises and falls, almost like a sleeping giant’s heartbeat."
+      ],
+      "weight": 0.95,
+      "resolutions": [
+        {
+          "title": "Glacial Heart",
+          "description": "Deep within, the party finds a living ice-heart: a pulsing node of elemental frost bound by old runes. Disturbing it could unleash a flood or calm the glacier’s creaks. Local trappers beg them to stabilize the ice to save a village downstream.",
+          "requirements": "Arcana/Religion to decipher runes, skill challenge to rebalance flows, optional negotiation with an ice mephit court",
+          "rewards": "Elemental boon (cold resistance/charge), village gratitude, access tunnel marked for future travel"
+        },
+        {
+          "title": "Echo of the Past",
+          "description": "A perfectly preserved explorer lies within a clear wall, clutching a sealed case. Melting him free risks collapsing the chamber. The party must choose: leave the dead in peace, or attempt a careful extraction against the ticking drip.",
+          "requirements": "Engineering/Nature checks to brace ice, time pressure, potential collapse hazard",
+          "rewards": "Antique gear, expedition journal revealing lost route and a buried cache, historical favor with scholars"
+        }
+      ]
     },
     {
       "title": "Blizzard Survival",
@@ -866,7 +902,25 @@
         "outdoor",
         "openfield"
       ],
-      "description": "Snowflakes the size of daggers whirl in a howling storm that erases horizon and sky alike. Visibility shrinks to arm’s length as the wind scours exposed skin raw. The world becomes a battlefield of instinct and endurance, where shelter is a distant memory. Only the sharpest senses can separate the cries of allies from the wails of the blizzard."
+      "descriptions": [
+        "The world shrinks to a roar and a wall of white. Snow scours skin raw and steals sound, turning companions into vague shapes at arm’s length. Every step risks vanishing tracks and direction alike.",
+        "Ice crust forms on lashes and beards as wind-knives drive sideways snow. Distant shapes circle—wolves, spirits, or tricks of light—and the cold gnaws thought into clumsy panic. A lantern flares, sputters, and dies, swallowed by the storm."
+      ],
+      "weight": 1.25,
+      "resolutions": [
+        {
+          "title": "Hasty Quinzee",
+          "description": "The party carves a snow shelter and rides out the worst, rationing heat and morale. Inside, they discover a buried marker stone pointing to a nearby hunters’ line-cabin they can reach once the wind breaks.",
+          "requirements": "Survival to build shelter, Con saves against hypothermia, group skill challenge to maintain cohesion",
+          "rewards": "Warm rest, minor exhaustion recovery, cache of supplies at the cabin, goodwill of local hunters"
+        },
+        {
+          "title": "Storm-Walker’s Aid",
+          "description": "A frost spirit offers guidance in exchange for a vow: leave an offering at an old shrine the locals forgot. Following its lantern-glow leads to safety—but breaking the vow later will sour the land against them.",
+          "requirements": "Insight/Religion to assess terms, skill checks to keep up with the guide, later pilgrimage",
+          "rewards": "Blessing vs. cold, spirit ally on future arctic travels, reputation (good or ill) with local traditions"
+        }
+      ]
     },
     {
       "title": "Glacier Crossing",
@@ -875,7 +929,25 @@
         "outdoor",
         "openfield"
       ],
-      "description": "A frozen river of blue-white ice stretches ahead, its surface striated with centuries of relentless flow. Deep fissures glimmer with unfathomable depths, bridged only by tenuous snow bridges. Sunlight refracts into prismatic shards, dazzling the eye and hiding treacherous slopes. Each careful step echoes with the groan of ancient ice shifting in protest."
+      "descriptions": [
+        "A river of centuries groans underfoot, its blue-white skin cracked with black mouths of depth. Snow bridges span crevasses like fragile lies. Sun-glitter blinds and hides the next step.",
+        "Flags from an old expedition whip on bamboo wands, marking a route no longer safe. Somewhere ahead, a muffled roar warns of seracs ready to calve. The glacier shifts, impatient with trespassers."
+      ],
+      "weight": 1.15,
+      "resolutions": [
+        {
+          "title": "Rope Team Precision",
+          "description": "With anchors, deadmen, and careful probing, the party negotiates the maze. When a companion plunges through, a split-second rescue decides outcomes and sets bonds that echo forward.",
+          "requirements": "Group Athletics/Acrobatics, tool use (piton, rope, crampons), fast reaction checks",
+          "rewards": "Safe passage, confidence boon for future climbing checks, salvage from a crevasse-lost sledge"
+        },
+        {
+          "title": "Ice Worm Awakens",
+          "description": "Vibrations rouse a titanic remorhaz beneath the ice. The party can distract and lead it to calve a safe channel—or slay it and risk the glacier’s violent collapse.",
+          "requirements": "Stealth/Lure tactics, Nature to read ice stress, or combat on unstable footing",
+          "rewards": "Rare remorhaz chitin (crafting), newly formed safe route (local gratitude), or renown as slayers"
+        }
+      ]
     },
     {
       "title": "The Whiteout",
@@ -884,7 +956,25 @@
         "outdoor",
         "openfield"
       ],
-      "description": "The landscape dissolves into a featureless blur where ground and sky merge into a single blinding sheet. Sound is muffled to a dull hum, leaving travelers alone with their pounding hearts. Footprints vanish moments after they are made, swallowed by swirling powder. Without keen navigation, the party could march in circles until exhaustion claims them."
+      "descriptions": [
+        "Ground and sky merge into a single blank page. Sound dulls; distance lies. Footprints erase themselves as if the snow refuses memory.",
+        "Landmarks dissolve and compasses misbehave. The only constant is the scrape of boots and the drum of blood in the ears, a metronome counting down warmth."
+      ],
+      "weight": 0.9,
+      "resolutions": [
+        {
+          "title": "Dead Reckoning",
+          "description": "By pacing, timing, and star fixes between cloud breaks, the party holds a bearing to a known driftwood ridge. A cairn there hides an old trapper’s notebook with local routes and warnings.",
+          "requirements": "Survival/Navigation checks, improvised instruments, teamwork to maintain interval",
+          "rewards": "Regional map fragments, advantage on future navigation checks, trapper’s contact if followed up"
+        },
+        {
+          "title": "Follow the Ravens",
+          "description": "A flock rides the wind toward a lee hollow where a geothermal vent keeps a patch of willow alive. The party trusts animal wisdom and finds a warm microclimate—and something that’s been feeding on the birds.",
+          "requirements": "Animal Handling/Nature to interpret behavior, cautious approach, potential combat",
+          "rewards": "Hot spring rest, rare herbs, clue trail from predator’s cache"
+        }
+      ]
     },
     {
       "title": "Frostbite Pass",
@@ -893,7 +983,25 @@
         "outdoor",
         "path"
       ],
-      "description": "A knife-edged wind slices through layers of fur and leather as the pass funnels the cold into a vicious gale. Frost feathers cling to every exposed surface, sparkling like malicious jewels. Frozen cairns mark the graves of those who misjudged the crossing. The path ahead is a gauntlet of sheer walls, icy switchbacks, and unseen predators stalking the heights."
+      "descriptions": [
+        "A knife-wind funnels between slate walls frosted white. Cairns like teeth mark the gauntlet ahead; scarves and charms snap from them like warnings.",
+        "Ice feathers grow on every beard and buckle. From the cliffs, watchers—goats or something wearing goats—pace the party’s progress with unsettling patience."
+      ],
+      "weight": 1.1,
+      "resolutions": [
+        {
+          "title": "Waystation Fire",
+          "description": "A half-collapsed snow cave shows soot and old bones. Rekindling the pit and sealing the vents turns the deathtrap into lifesaving shelter. A hidden niche contains a courier’s sealed dispatch.",
+          "requirements": "Survival to rebuild shelter, Medicine to treat frostbite, Investigation to find cache",
+          "rewards": "Courier pay if delivered, guarded passage word for local holdfast, reduced exhaustion"
+        },
+        {
+          "title": "Toll of the Iceborn",
+          "description": "Spirits native to the pass demand a toll: a story told true, a drop of blood, or a vow to carry a lost name to its kin. Refusal means sudden squalls and falling ice.",
+          "requirements": "Religion/Insight to negotiate, social challenge to satisfy conditions",
+          "rewards": "Spirit blessing (resist cold for a day), new quest to deliver the name, safe winds"
+        }
+      ]
     },
     {
       "title": "Icebound Peaks",
@@ -902,7 +1010,25 @@
         "outdoor",
         "peaks"
       ],
-      "description": "Snow-crowned mountains pierce the clouds, their slopes scarred by avalanches and ancient dragon claws. Thin air bites at lungs while the sun dances off fields of jagged ice. Wind-carved statues of heroes and monsters seem to watch every ascent with frozen approval. Somewhere above, the rattle of falling scree warns that the mountain tests all who dare climb it."
+      "descriptions": [
+        "Sunlight shatters on combs of rime, dazzling and cruel. Thin air bites lungs while granite ribs the sky. Far below, cloud-seas roll like a second world.",
+        "Old pitons glitter in cracks beside claw gouges not made by tools. The mountain keeps trophies—feathers of something enormous, frozen mid-molt."
+      ],
+      "weight": 1.0,
+      "resolutions": [
+        {
+          "title": "Summit Omen",
+          "description": "At the top, the party finds a storm-eagle nest with a clutch near hatching. Poachers approach from below. The group can defend the nest, bargain for a single feather, or take everything and face nature’s wrath.",
+          "requirements": "Stealth/Perception to spot poachers, social or combat encounter, ethical choice",
+          "rewards": "Eagle’s favor (mount aid later), a lawful feather (ritual focus), or cursed luck if greed wins"
+        },
+        {
+          "title": "Frozen Monastery",
+          "description": "A ledge hides a hermitage carved into ice, its bells silent. Inside, a lone monk tends wards that hold a storm elemental at bay—but his strength is failing. Relieve him, repair the wards, or release the captive being.",
+          "requirements": "Arcana/Religion to mend seals, endurance to stay exposed, negotiation with elemental",
+          "rewards": "Monk’s teaching (discipline boon), elemental boon/mark, sanctuary access"
+        }
+      ]
     },
     {
       "title": "Aurora-Wreathed Battlefield",
@@ -911,7 +1037,25 @@
         "outdoor",
         "openfield"
       ],
-      "description": "Ribbons of green and violet fire ripple across a sky that refuses to sleep. Frost-rimed armor litters the snow, humming with residual war-magic. Footsteps crunch atop buried banners that twitch like they still remember the charge. The aurora answers spoken oaths with sparks, eager to crown a new victor or curse a coward."
+      "descriptions": [
+        "Green and violet fire crowns a plain strewn with frost-bitten banners. Old armor hums with spent rage; oaths hang in the air like breath.",
+        "When a name is spoken, sparks arc from the aurora to the speaker’s tongue. The lights answer memory with echoes—brief, burning reenactments of what was lost here."
+      ],
+      "weight": 1.2,
+      "resolutions": [
+        {
+          "title": "Lay the Fallen",
+          "description": "The party reads sigils and rights the shields, performing rites to quiet the dead. Ghosts coalesce to bear witness, offering a boon if the last banner is returned to a distant clan.",
+          "requirements": "History/Religion to piece factions, small ritual skill challenge, travel-side quest",
+          "rewards": "Ancestral blessing (once-per-day saving throw advantage), clan favor, hidden cache beneath a cairn"
+        },
+        {
+          "title": "Relight the Standard",
+          "description": "The aurora can rekindle an oath. Raising the commander’s broken standard calls spectral allies for a single coming battle—but reopens the battlefield to wandering wights until it’s set to rest again.",
+          "requirements": "Courageous act beneath aurora, Will saves vs. fear, commitment to later atonement",
+          "rewards": "One-time spectral reinforcements, cursed/heroic reputation, hook to cleanse the site"
+        }
+      ]
     },
     {
       "title": "Hunter on the Black Ice",
@@ -920,7 +1064,25 @@
         "outdoor",
         "ice"
       ],
-      "description": "A mirror-dark lake stretches to the horizon, its glassy surface spiderwebbed with ancient cracks. Below, shadowy shapes glide with predatory grace, tracking every vibration. Wind skates over the ice, carrying the click of claws against the underside. One misstep becomes a plunge into a mouth full of winter."
+      "descriptions": [
+        "A mirror-dark lake lies still, spiderwebbed with white cracks. Shapes glide beneath, matching every footfall with lazy menace. The ice sings—high and thin—when weight shifts wrong.",
+        "At the far shore, a blood-slick hole rims with fresh frost. Claw taps echo from below as if something is testing the ceiling for weak points."
+      ],
+      "weight": 1.1,
+      "resolutions": [
+        {
+          "title": "Silent Crossing",
+          "description": "By spacing out, crawling at stress lines, and using poles to distribute weight, the party ghosts over the lake. A lure tossed far away draws the hunter to break through elsewhere.",
+          "requirements": "Survival/Acrobatics for movement, clever distraction, calm under pressure",
+          "rewards": "Safe passage, a cache of nets and spears at an ice-fishing shanty, local respect"
+        },
+        {
+          "title": "Slay or Drive Off",
+          "description": "A white-shadow leviathan rams from below. Fighting atop flexing ice demands timing: lure it to thinner spots to strand, or to thicker ice to finish the kill without everyone drowning.",
+          "requirements": "Tactics with terrain, Athletics to avoid plunges, ranged/melee coordination",
+          "rewards": "Leviathan fang/skin (cold gear), trophy that impresses northern clans, safer lake for travelers"
+        }
+      ]
     }
   ],
   "ocean": [
@@ -959,7 +1121,25 @@
         "reef",
         "natural"
       ],
-      "description": "A riot of color surrounds the party as living coral spires arch into a cathedral of the sea. Schools of curious fish dart between tunnels lit by shafts of liquid sunlight. Every turn reveals new wonders and lurking predators hidden among the reef’s crevices. Even the water seems to hum with ancient songs that promise both guidance and doom."
+      "descriptions": [
+        "A cathedral of living coral stretches in all directions, teeming with color and life. Fish dart through arches of fan coral, and rays glide like silent phantoms. Shafts of sunlight stab through turquoise water, painting the reef in liquid gold. Somewhere deeper, a song thrums through the stone, almost like a heartbeat.",
+        "The deeper tunnels twist tighter, light fading to dim hues of violet and green. A shimmer of scales flickers just beyond sight—predators or protectors, it’s unclear. The reef hums with an intelligence of its own, shifting subtly as if to guide—or trap—those who wander too far."
+      ],
+      "weight": 0.9,
+      "resolutions": [
+        {
+          "title": "The Singing Coral",
+          "description": "The labyrinth leads to a glowing coral formation that resonates when touched. It contains a trapped elemental spirit begging for release. Freeing it could calm the seas for weeks—or disrupt a delicate magical balance that keeps nearby islands safe from storms.",
+          "requirements": "Arcana/Nature to decipher coral song, investigation of structure, moral choice about freeing the elemental",
+          "rewards": "Calm seas for future voyages, elemental blessing, or island chain destabilization leading to future quest"
+        },
+        {
+          "title": "Predator in the Reef",
+          "description": "The labyrinth’s guardian—a massive reef drake—awakens as the party intrudes. It attacks not out of hunger but to protect clutch and shrine. The party may fight, distract it, or appease it by restoring a desecrated coral idol nearby.",
+          "requirements": "Stealth or diplomacy to avoid battle, combat underwater, insight to recognize protector behavior",
+          "rewards": "Reef drake treasure hoard, pearl of water breathing, or newfound alliance with sea guardians"
+        }
+      ]
     },
     {
       "title": "Derelict Ship Discovery",
@@ -968,7 +1148,25 @@
         "vessel",
         "wreck"
       ],
-      "description": "The shattered silhouette of a once-proud vessel looms through the fog, its rigging hanging like torn shrouds. Waterlogged decks groan underfoot, releasing the scent of salt, pitch, and old ghosts. Barnacles have claimed the figurehead, yet the captain’s cabin still holds a flicker of lantern light. Whatever remains aboard does not rest easy and may resent fresh intruders."
+      "descriptions": [
+        "Fog parts to reveal a corpse of a ship, its timbers groaning like a dying beast. Tattered sails whisper secrets, and barnacles bloom along its ribs. Lanterns flicker in the captain’s cabin, though no crew remains aboard.",
+        "Footsteps echo where none should as shadows sway below deck. The sea laps gently against the hull, but beneath the calm, a tether of spectral energy binds the wreck to something vast and unseen on the ocean floor."
+      ],
+      "weight": 1.1,
+      "resolutions": [
+        {
+          "title": "Ghost Crew Freed",
+          "description": "The party uncovers the cause of the haunting: the captain’s oath to never abandon ship until her treasure was delivered. Returning the lost cargo or performing a sailor’s rite severs the spectral chains, allowing the dead to rest.",
+          "requirements": "Investigation of ship’s log, Religion check for rite, moral choice to keep or return treasure",
+          "rewards": "Haunted gold (cursed or blessed), nautical lore, ship’s ghost ally, or peace for the lost souls"
+        },
+        {
+          "title": "The Leviathan’s Claim",
+          "description": "The wreck is anchored to a slumbering leviathan below. Disturbing it awakens the beast. The party must choose between fleeing, soothing it through offerings, or diving below to cut the spectral chain tethering ship and monster.",
+          "requirements": "Athletics for underwater descent, Arcana/Nature to read the binding sigils, survival during leviathan encounter",
+          "rewards": "Rare leviathan scale, freed sea route, or cursed reputation as leviathan slayers"
+        }
+      ]
     },
     {
       "title": "Island Approach",
@@ -977,7 +1175,25 @@
         "outdoor",
         "beach"
       ],
-      "description": "A palm-lined shore rises from the mist, crowned by cliffs that glitter with waterfalls and hidden caves. The surf hisses across the sand like a warning whispered in an unfamiliar tongue. Exotic birds wheel overhead, their cries echoing off jagged rocks. As the tide pulls back, strange footprints reveal that someone—or something—awaits the landing party."
+      "descriptions": [
+        "Mist thins to reveal a crescent of white sand fringed by palms and jagged cliffs. Waterfalls cascade from unseen springs high above. A chorus of exotic birds greets the ship as footprints in the sand vanish with the tide.",
+        "As the tide ebbs, strange markings emerge on the beach—spirals carved deep into the sand, glimmering faintly under the sun. From the tree line, something watches: patient, silent, and familiar with ships that never returned."
+      ],
+      "weight": 1.0,
+      "resolutions": [
+        {
+          "title": "The Welcome Feast",
+          "description": "Islanders emerge from the trees, offering fruit and fresh water. Hospitality masks tension—their shaman claims the party’s arrival was foretold, tied to an omen of volcanic awakening. Helping them appease the island’s spirit could save everyone.",
+          "requirements": "Social interaction, Religion/Nature to read omens, persuasion to maintain peace",
+          "rewards": "Islanders’ friendship, safe harbor, prophetic insight into future storms, or unique tropical relics"
+        },
+        {
+          "title": "The Silent Village",
+          "description": "No one greets the party because no one remains alive. Huts lie abandoned, offerings rot at seaside altars, and coral idols lie shattered. Something ancient beneath the island feeds on devotion—it now senses new prayers to consume.",
+          "requirements": "Investigation of ruins, combat with coral entity or ritual sealing, endurance vs. psychic whispers",
+          "rewards": "Cleansed idol (holy focus), cursed relic, or awakened sea-spirit hook for future adventure"
+        }
+      ]
     },
     {
       "title": "Deep Water Descent",
@@ -986,7 +1202,25 @@
         "depths",
         "openwater"
       ],
-      "description": "Sunlight dwindles to a turquoise haze as the party sinks into the abyssal chill. Strange bioluminescent creatures drift like lanterns in a submerged night sky. Pressure squeezes armor plates and lungs alike, demanding calm focus. Below, a dark silhouette yawns open, inviting exploration and threatening oblivion."
+      "descriptions": [
+        "Sunlight fades to turquoise twilight as the party descends. Strange silhouettes drift in the haze: ruins, wreckage, or colossal life. Pressure builds like a hand around the lungs, and all sound distorts into a low heartbeat pulse.",
+        "Bioluminescent ribbons of plankton spiral downward, guiding the way to a yawning trench. Glowing runes on the stone hint that the depths were carved by intent, not nature. Something ancient stirs below, aware of their descent."
+      ],
+      "weight": 1.1,
+      "resolutions": [
+        {
+          "title": "Echoes of the Deep",
+          "description": "At the trench floor lies a temple of the Deep Ones. Within, the walls hum with alien song. The party can plunder artifacts, risk a pact with abyssal intelligences, or flee before curiosity drowns reason.",
+          "requirements": "Arcana/Lore to interpret runes, Will saves vs. compulsion, swimming/navigation skill challenges",
+          "rewards": "Deep One relics, cursed whispers of the abyss, or underwater breathing boon from eldritch patron"
+        },
+        {
+          "title": "Collapsed Trench",
+          "description": "The descent triggers instability—boulders grind as the trench begins to cave in. The party must navigate upward while protecting each other, guiding air bubbles and light spells through chaos.",
+          "requirements": "Athletics/Survival for emergency ascent, perception to find clear path, teamwork coordination",
+          "rewards": "Survival acclaim, geological insight (resource find), or respect from seafaring scholars"
+        }
+      ]
     },
     {
       "title": "The Doldrums",
@@ -995,7 +1229,25 @@
         "vessel",
         "deck"
       ],
-      "description": "The sea lies glassy and unmoving, trapping the vessel beneath a pitiless, blazing sun. Sails hang limp while the crew mutters about omens and restless spirits. Mirages dance on the horizon, promising salvation that never arrives. At night the silence is so deep that whispered fears become as loud as cannon fire."
+      "descriptions": [
+        "The ocean lies glassy and unmoving beneath a merciless sun. No wind, no waves—just the endless shimmer of heat. Crew mutter prayers while rationing dwindles and tempers flare. Every reflection looks a heartbeat too slow.",
+        "At night, ghost-lights drift between ships as if the sea itself dreams. A whisper carries across the still water: promises of wind for a price. The silence begins to feel alive, waiting for someone to speak first."
+      ],
+      "weight": 1.0,
+      "resolutions": [
+        {
+          "title": "Wind Bargain",
+          "description": "A spirit of calm seas offers wind in exchange for one crew member’s name erased from memory. The party must decide whether to accept the cost or face starvation. Breaking the bargain later has unforeseen metaphysical consequences.",
+          "requirements": "Insight or Arcana to recognize the spirit, negotiation skill challenge, moral decision",
+          "rewards": "Favorable winds, lost identity subplot, or curse that erases the party from sailors’ stories"
+        },
+        {
+          "title": "Mutiny on the Still Sea",
+          "description": "Desperation drives the crew to mutiny. The party must restore order—through leadership, diplomacy, or force—or the ship will tear itself apart before wind ever returns.",
+          "requirements": "Persuasion/Intimidation to command loyalty, combat or negotiation, maintaining morale",
+          "rewards": "Loyal crew, command of vessel, sea legend of surviving the Still Sea, or grim notoriety"
+        }
+      ]
     },
     {
       "title": "Reef of Bones",
@@ -1004,7 +1256,25 @@
         "reef",
         "wreck"
       ],
-      "description": "Storm-broken masts and the skeletons of colossal sea beasts jut from the shallows like jagged teeth. Water crashes through ribcages and shattered decks, filling the air with a hollow wail. Treasures glint between the wreckage, guarded by territorial scavengers and the ghosts of drowned sailors. Navigating this graveyard demands steady hands and braver hearts."
+      "descriptions": [
+        "A graveyard of ships and leviathans sprawls across the shallows, ribs and masts jutting like a forest of spears. The tide sings through hollow hulls, producing a haunting symphony.",
+        "Shadows weave between wrecks—ghost divers, sharks, or worse. In the center lies a throne of coral and bone, fused around a figure that still grips a captain’s wheel with skeletal determination."
+      ],
+      "weight": 1.1,
+      "resolutions": [
+        {
+          "title": "Crown of the Drowned King",
+          "description": "The skeletal captain still guards a relic crown capable of commanding undead sailors. Claiming it risks awakening his loyal ghost crew. Leaving it untouched preserves the uneasy peace beneath the waves.",
+          "requirements": "Stealth or combat underwater, Religion checks to understand relic, moral choice to claim or leave",
+          "rewards": "Crown of the Drowned King (artifact), undead ally crew, or future haunting consequence"
+        },
+        {
+          "title": "Rest for the Dead",
+          "description": "The party performs a burial ritual or summons sea clerics to sanctify the reef. As the dead disperse, hidden wrecks rise to the surface, offering treasure and closure—but stirring hungry scavengers.",
+          "requirements": "Religion/Performance for rites, time pressure vs. predators, resource management",
+          "rewards": "Recovered treasure, calm passage through haunted waters, improved reputation among sailors"
+        }
+      ]
     },
     {
       "title": "Siren's Channel",
@@ -1013,7 +1283,25 @@
         "passage",
         "natural"
       ],
-      "description": "The current twists into a seductive spiral, drawing ships toward cliffs studded with razor coral. Ethereal voices weave through the mist, promising love, glory, and long-lost companions. Waves shimmer with illusory visions that blur the line between memory and temptation. Those who cannot anchor their minds will join the wrecks that litter the channel floor."
+      "descriptions": [
+        "Fog blankets cliffs carved like faces frozen mid-song. The sea glows faintly green as currents twist into mesmerizing spirals. Voices echo from the mist, singing memories that aren’t your own.",
+        "Ships’ hulls scrape unseen rocks, guided by phantom melodies. The music promises home, love, or redemption, and each note tugs harder at the will until the waves themselves begin to whisper your name."
+      ],
+      "weight": 1.05,
+      "resolutions": [
+        {
+          "title": "Break the Song",
+          "description": "The party uncovers the sirens’ true form—coral-encrusted revenants bound by grief. Disrupting the song with counter-magic or mirrored instruments frees their souls but enrages the ocean spirits who fed on their sorrow.",
+          "requirements": "Arcana/Performance skill challenge, underwater combat or ritual interruption",
+          "rewards": "Pearls of Song (advantage vs. charm), siren gratitude, calmer seas for a season"
+        },
+        {
+          "title": "Join the Choir",
+          "description": "Rather than destroy the song, the party harmonizes with it, becoming temporary conduits of its power. The music grants navigation through perilous seas but brands them with faint marks of the deep.",
+          "requirements": "Performance/Insight, accepting the risk of partial transformation, roleplay consequence",
+          "rewards": "Gift of the Deep Voice (speak underwater), safe passage, lingering curse or boon"
+        }
+      ]
     },
     {
       "title": "Eye of the Maelstrom",
@@ -1022,7 +1310,25 @@
         "sea",
         "hazard"
       ],
-      "description": "Walls of water rise like cathedral buttresses, circling a calm heart where gulls hang frozen in the gale. Lightning crawls along the waves instead of the sky, sketching sigils in foaming arcs. The helm bucks with a will of its own, eager to surrender to the pull. Only a sacrifice or a secret name will buy a way out."
+      "descriptions": [
+        "Walls of roaring water rise around a calm core where gulls hang suspended in eerie stillness. Lightning crawls through foam like veins of living fire. The ship trembles, drawn toward the spiral’s hungry heart.",
+        "At the center floats an impossible calm pool, mirror-flat and glowing with runes. A voice speaks from beneath the surface—neither male nor female, promising passage for a sacrifice."
+      ],
+      "weight": 1.2,
+      "resolutions": [
+        {
+          "title": "The Bargain of Depths",
+          "description": "The maelstrom is a gate powered by offerings. The party may trade an artifact, memory, or life to calm it and escape—or defy the bargain and risk everything in a desperate sail through chaos.",
+          "requirements": "Insight to gauge the entity, Navigation checks, decision under time pressure",
+          "rewards": "Safe passage, artifact lost or transformed, sea god’s notice for future adventures"
+        },
+        {
+          "title": "Into the Vortex",
+          "description": "The ship succumbs, plunging into the whirlpool. Instead of death, the crew awakens in a strange sea beneath alien constellations—the Maelstrom leads to another realm.",
+          "requirements": "Survival/Arcana to endure transit, leadership during crisis, narrative consequence",
+          "rewards": "Entry to new oceanic region or plane, ancient relics from lost travelers, campaign-altering discovery"
+        }
+      ]
     },
     {
       "title": "Kelp Forest Ambush",
@@ -1031,7 +1337,25 @@
         "forest",
         "reef"
       ],
-      "description": "Sun pillars sift through towering fronds that sway like the lungs of the sea. Spear-thin leaves rasp against armor, disguising the approach of silent hunters. Lost harpoons and rusted coins dangle from the kelp like trophies. Disturb the canopy and the forest answers with tangle, tooth, and tide."
+      "descriptions": [
+        "Pillars of kelp sway like cathedral columns, their fronds brushing in rhythmic sighs. Light filters through in golden curtains, revealing shapes moving too deliberately to be mere fish.",
+        "Harpoons, nets, and bones hang tangled among the stalks—offerings or warnings. The water here feels heavy with watchfulness, as though the forest itself chooses who passes unscathed."
+      ],
+      "weight": 1.0,
+      "resolutions": [
+        {
+          "title": "Ambush Averted",
+          "description": "The party notices telltale signs of hunters waiting among the kelp—merrow or pirates in breathing masks. Outsmarting or deceiving them prevents bloodshed and may earn unexpected respect.",
+          "requirements": "Perception/Insight to detect ambush, Deception or Stealth to evade or negotiate",
+          "rewards": "Avoided combat, future alliance or warning network, safe passage through contested waters"
+        },
+        {
+          "title": "Predator’s Feast",
+          "description": "The hunters aren’t mortal—they’re sea hags using illusion to lure prey. Defeating them purges the forest, but their dying curse may awaken something deeper that they were keeping asleep.",
+          "requirements": "Underwater combat, Will saves vs. illusion, tactical positioning in dense kelp",
+          "rewards": "Hag charms (minor magic), freed sea-spirit contact, or looming future consequence"
+        }
+      ]
     }
   ],
   "space": [

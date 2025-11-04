@@ -260,11 +260,290 @@ export function switchPage(page) {
     }
 }
 
+/**
+ * Apply filters to search results
+ */
+export function applyFilters() {
+    const envFilter = document.getElementById('envFilter').value;
+    const locationTypeFilter = document.getElementById('locationTypeFilter').value;
+    const settingFilter = document.getElementById('settingFilter').value;
+    const planeFilter = document.getElementById('planeFilter').value;
+
+    // Update active filters
+    activeFilters = {
+        environment: envFilter ? [envFilter] : [],
+        locationType: locationTypeFilter ? [locationTypeFilter] : [],
+        setting: settingFilter ? [settingFilter] : [],
+        plane: planeFilter ? [planeFilter] : []
+    };
+
+    // Trigger search if there's a search term
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput && searchInput.value.trim()) {
+        window.performSearch();
+    }
+}
+
+/**
+ * Clear all filters
+ */
+export function clearFilters() {
+    document.getElementById('envFilter').value = '';
+    document.getElementById('locationTypeFilter').value = '';
+    document.getElementById('settingFilter').value = '';
+    document.getElementById('planeFilter').value = '';
+    
+    activeFilters = {
+        environment: [],
+        locationType: [],
+        setting: [],
+        plane: []
+    };
+
+    // Trigger search if there's a search term
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput && searchInput.value.trim()) {
+        window.performSearch();
+    }
+}
+
+/**
+ * Perform search based on input and filters
+ */
+export function performSearch() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+    const resultsContainer = document.getElementById('searchResults');
+    
+    if (!searchTerm && !activeFilters.environment.length && !activeFilters.locationType.length && !activeFilters.setting.length && !activeFilters.plane.length) {
+        resultsContainer.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 40px;">Enter a search term or select filters to find encounters and locations</p>';
+        return;
+    }
+
+    let results = [];
+
+    // Search through encounters
+    if (window.encounterTitles) {
+        Object.entries(window.encounterTitles).forEach(([environment, encounters]) => {
+            if (Array.isArray(encounters)) {
+                encounters.forEach((encounter, index) => {
+                    const matchesSearch = !searchTerm || 
+                        encounter.title.toLowerCase().includes(searchTerm) ||
+                        (encounter.descriptions && encounter.descriptions.some(desc => desc.toLowerCase().includes(searchTerm))) ||
+                        (encounter.tags && encounter.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
+                    const matchesFilters = checkEncounterFilters(environment);
+                    
+                    if (matchesSearch && matchesFilters) {
+                        results.push({
+                            type: 'encounter',
+                            title: encounter.title,
+                            key: `${environment}-${index}`,
+                            environment: environment,
+                            description: encounter.descriptions ? encounter.descriptions[0].substring(0, 150) + '...' : 'No description available',
+                            data: encounter
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    // Search through locations
+    if (window.locationObjects) {
+        Object.entries(window.locationObjects).forEach(([environment, locationTypes]) => {
+            Object.entries(locationTypes).forEach(([locationType, location]) => {
+                const locationName = locationType.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                const matchesSearch = !searchTerm || 
+                    locationName.toLowerCase().includes(searchTerm) ||
+                    locationType.toLowerCase().includes(searchTerm) ||
+                    (location.description && location.description.toLowerCase().includes(searchTerm)) ||
+                    (location.tags && location.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
+                const matchesFilters = checkLocationFilters(location, environment, locationType);
+                
+                if (matchesSearch && matchesFilters) {
+                    results.push({
+                        type: 'location',
+                        title: locationName,
+                        key: `${environment}-${locationType}`,
+                        environment: environment,
+                        locationType: locationType,
+                        description: location.description || 'No description available',
+                        data: location
+                    });
+                }
+            });
+        });
+    }
+
+    // Display results
+    if (results.length === 0) {
+        resultsContainer.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 40px;">No results found. Try different search terms or filters.</p>';
+    } else {
+        resultsContainer.innerHTML = results.map(result => {
+            if (result.type === 'encounter') {
+                return renderEncounterResult(result);
+            } else {
+                return renderLocationResult(result);
+            }
+        }).join('');
+        
+        // Attach click handlers for expandable cards
+        attachExpandHandlers();
+    }
+}
+
+/**
+ * Render an encounter result with expandable description cards
+ */
+function renderEncounterResult(result) {
+    const encounter = result.data;
+    const descriptions = encounter.descriptions || (encounter.description ? [encounter.description] : []);
+    const resolutions = encounter.resolutions || [];
+    
+    const descriptionCards = descriptions.map((desc, index) => `
+        <div class="description-card collapsed" data-index="${index}">
+            <div class="description-preview">${desc.substring(0, 150)}...</div>
+            <div class="description-full" style="display: none;">${desc}</div>
+            <div class="expand-hint">Click to expand</div>
+        </div>
+    `).join('');
+    
+    const resolutionCards = resolutions.map((res, index) => `
+        <div class="resolution-card collapsed" data-index="${index}">
+            <div class="resolution-title">${res.title}</div>
+            <div class="resolution-preview">${res.description.substring(0, 100)}...</div>
+            <div class="resolution-full" style="display: none;">
+                <p>${res.description}</p>
+                ${res.requirements ? `<p><strong>Requirements:</strong> ${res.requirements}</p>` : ''}
+                ${res.rewards ? `<p><strong>Rewards:</strong> ${res.rewards}</p>` : ''}
+            </div>
+            <div class="expand-hint">Click to expand</div>
+        </div>
+    `).join('');
+    
+    return `
+        <div class="result-card">
+            <div class="result-header">
+                <div class="result-title">${result.title}</div>
+                <span class="result-type">⚔️ Encounter</span>
+            </div>
+            <div class="result-environment">${result.environment}</div>
+            <div class="descriptions-container">
+                <h4>Descriptions:</h4>
+                ${descriptionCards}
+            </div>
+            ${resolutions.length > 0 ? `
+                <div class="resolutions-container">
+                    <h4>Resolutions:</h4>
+                    ${resolutionCards}
+                </div>
+            ` : ''}
+        </div>
+    `;
+}
+
+/**
+ * Render a location result with expandable description card
+ */
+function renderLocationResult(result) {
+    const location = result.data;
+    const description = location.description || '';
+    
+    return `
+        <div class="result-card">
+            <div class="result-header">
+                <div class="result-title">${result.title}</div>
+                <span class="result-type">📍 Location</span>
+            </div>
+            <div class="result-environment">${result.environment} - ${result.locationType.replace(/_/g, ' ')}</div>
+            ${description ? `
+                <div class="descriptions-container">
+                    <h4>Description:</h4>
+                    <div class="description-card collapsed" data-index="0">
+                        <div class="description-preview">${description.substring(0, 150)}...</div>
+                        <div class="description-full" style="display: none;">${description}</div>
+                        <div class="expand-hint">Click to expand</div>
+                    </div>
+                </div>
+            ` : ''}
+        </div>
+    `;
+}
+
+/**
+ * Attach click handlers to expandable cards
+ */
+function attachExpandHandlers() {
+    document.querySelectorAll('.description-card, .resolution-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const preview = this.querySelector('.description-preview, .resolution-preview');
+            const full = this.querySelector('.description-full, .resolution-full');
+            const hint = this.querySelector('.expand-hint');
+            
+            if (this.classList.contains('collapsed')) {
+                this.classList.remove('collapsed');
+                this.classList.add('expanded');
+                if (preview) preview.style.display = 'none';
+                if (full) full.style.display = 'block';
+                if (hint) hint.textContent = 'Click to collapse';
+            } else {
+                this.classList.remove('expanded');
+                this.classList.add('collapsed');
+                if (preview) preview.style.display = 'block';
+                if (full) full.style.display = 'none';
+                if (hint) hint.textContent = 'Click to expand';
+            }
+        });
+    });
+}
+
+/**
+ * Check if encounter matches active filters
+ */
+function checkEncounterFilters(environment) {
+    if (activeFilters.environment.length && !activeFilters.environment.includes(environment)) {
+        return false;
+    }
+    
+    return true;
+}
+
+/**
+ * Check if location matches active filters
+ */
+function checkLocationFilters(location, environment, locationType) {
+    if (activeFilters.environment.length && !activeFilters.environment.includes(environment)) {
+        return false;
+    }
+    
+    if (activeFilters.locationType.length && !activeFilters.locationType.includes(locationType)) {
+        return false;
+    }
+    
+    if (activeFilters.setting.length) {
+        const locationTags = location.tags || [];
+        if (!locationTags.some(tag => activeFilters.setting.includes(tag))) {
+            return false;
+        }
+    }
+    
+    // TODO: Add plane filter check once plane data is added to locations
+    if (activeFilters.plane && activeFilters.plane.length && location.plane) {
+        if (!activeFilters.plane.includes(location.plane)) {
+            return false;
+        }
+    }
+    
+    return true;
+}
+
 // Expose functions to window for HTML onclick handlers
 window.initApp = initApp;
 window.toggleTheme = toggleTheme;
 window.switchPage = switchPage;
 window.toggleProgressiveReveal = toggleProgressiveReveal;
+window.performSearch = performSearch;
+window.applyFilters = applyFilters;
+window.clearFilters = clearFilters;
 
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', initApp);

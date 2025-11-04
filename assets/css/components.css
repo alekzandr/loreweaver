@@ -373,19 +373,121 @@ button.disabled:hover {
    ==================== */
 
 .result-card {
-    background: rgba(255, 255, 255, 0.9);
-        background: var(--card-bg);
-        padding: 20px;
+    background: var(--card-bg);
+    padding: 20px;
     border-radius: 16px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     border: 1px solid rgba(0, 0, 0, 0.06);
     transition: all 0.2s ease;
 }
 
 .result-card:hover {
-    transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.result-title {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.result-type {
+    font-size: 0.9em;
+    padding: 4px 12px;
+    background: rgba(0, 122, 255, 0.1);
+    border-radius: 12px;
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+.result-environment {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    text-transform: capitalize;
+}
+
+.descriptions-container,
+.resolutions-container {
+    margin-top: 15px;
+}
+
+.descriptions-container h4,
+.resolutions-container h4 {
+    font-size: 1em;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.description-card,
+.resolution-card {
+    background: rgba(58, 58, 60, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.description-card:hover,
+.resolution-card:hover {
+    background: rgba(0, 122, 255, 0.05);
     border-color: rgba(0, 122, 255, 0.2);
+    transform: translateX(4px);
+}
+
+.description-card.expanded,
+.resolution-card.expanded {
+    background: rgba(0, 122, 255, 0.08);
+    border-color: rgba(0, 122, 255, 0.3);
+    padding: 16px 20px;
+}
+
+.description-preview,
+.resolution-preview {
+    color: var(--text-primary);
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.description-full,
+.resolution-full {
+    color: var(--text-primary);
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+.resolution-full p {
+    margin-bottom: 10px;
+}
+
+.resolution-full strong {
+    color: var(--accent-blue);
+}
+
+.resolution-title {
+    font-weight: 600;
+    color: var(--accent-blue);
+    margin-bottom: 6px;
+    font-size: 1em;
+}
+
+.expand-hint {
+    font-size: 0.8em;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    font-style: italic;
+    text-align: right;
 }
 
 .npc-card {

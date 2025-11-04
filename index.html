@@ -152,24 +152,39 @@
                 <div class="search-controls">
                     <div class="search-bar">
                         <input type="text" id="searchInput" placeholder="Search encounters and locations (e.g., 'tomb', 'ship', 'forest')..." />
-                        <button onclick="performSearch()">→ Search</button>
                     </div>
 
                     <div class="filter-section">
-                        <h3>Filter by Tags:</h3>
-                        <div class="filter-group">
-                            <label>Environment:</label>
-                            <div class="filter-tags" id="envFilters"></div>
+                        <div class="filter-dropdowns">
+                            <div class="filter-group">
+                                <label for="envFilter">Environment</label>
+                                <select id="envFilter" onchange="applyFilters()">
+                                    <option value="">All Environments</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="locationTypeFilter">Location Type</label>
+                                <select id="locationTypeFilter" onchange="applyFilters()">
+                                    <option value="">All Location Types</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="settingFilter">Setting</label>
+                                <select id="settingFilter" onchange="applyFilters()">
+                                    <option value="">All Settings</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="planeFilter">Plane</label>
+                                <select id="planeFilter" onchange="applyFilters()">
+                                    <option value="">All Planes</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="filter-group">
-                            <label>Location Type:</label>
-                            <div class="filter-tags" id="locationFilters"></div>
+                        <div class="filter-actions">
+                            <button onclick="clearFilters()" class="btn-small">Clear All Filters</button>
+                            <button onclick="performSearch()" class="btn-small">Search</button>
                         </div>
-                        <div class="filter-group">
-                            <label>Setting:</label>
-                            <div class="filter-tags" id="settingFilters"></div>
-                        </div>
-                        <button onclick="clearFilters()" class="btn-small">Clear All Filters</button>
                     </div>
                 </div>
 
