@@ -1,0 +1,156 @@
+/* LoreWeaver - Theme Styles */
+/* Dark Mode and Theme Variables */
+
+[data-theme="dark"] {
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: rgba(0, 0, 0, 0.3);
+    --accent-blue: #0a84ff;
+    --accent-light: #64d2ff;
+    --text-primary: #f5f5f7;
+    --text-secondary: #98989d;
+    --bg-primary: #000000;
+    --bg-secondary: #1c1c1e;
+    --hover-bg: rgba(10, 132, 255, 0.15);
+    --card-bg: rgba(28, 28, 30, 0.7);
+}
+
+[data-theme="dark"] body {
+    background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #16213e 100%);
+}
+
+[data-theme="dark"] h1 {
+    background: linear-gradient(135deg, #0a84ff 0%, #64d2ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+[data-theme="dark"] select,
+[data-theme="dark"] input[type="number"],
+[data-theme="dark"] textarea {
+    background: rgba(58, 58, 60, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] select:focus,
+[data-theme="dark"] input[type="number"]:focus,
+[data-theme="dark"] textarea:focus {
+    background: rgba(58, 58, 60, 0.8);
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.2);
+}
+
+[data-theme="dark"] header {
+    background: rgba(28, 28, 30, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .controls {
+    background: rgba(28, 28, 30, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] button:hover {
+    background: #0077ed;
+}
+
+[data-theme="dark"] .tag {
+    background: rgba(58, 58, 60, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .encounter-section {
+    background: rgba(58, 58, 60, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .encounter-display {
+    background: rgba(28, 28, 30, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .npc-display {
+    background: rgba(28, 28, 30, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .room-display {
+    background: rgba(28, 28, 30, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .location-detail-panel {
+    background: rgba(28, 28, 30, 0.95);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .npc-detail-panel {
+    background: rgba(28, 28, 30, 0.95);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .flow-navigator {
+    background: rgba(28, 28, 30, 0.95);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .encounter-menu-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .encounter-dropdown {
+    background: rgba(44, 44, 46, 0.98);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .dropdown-section:not(:last-child) {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .saved-encounter-item {
+    background: rgba(58, 58, 60, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .preview-btn {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .search-result {
+    background: rgba(58, 58, 60, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .preview-content {
+    background: rgba(28, 28, 30, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Theme toggle button styles */
+.theme-toggle {
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    font-size: 0.9em;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 122, 255, 0.4);
+}
