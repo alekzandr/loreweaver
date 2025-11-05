@@ -12,6 +12,40 @@ const files = [
 
 let hasErrors = false;
 
+// Helper function to check if first letter of each word is capitalized
+function isProperlyCapitalized(str) {
+  const words = str.split(' ');
+  return words.every(word => {
+    if (word.length === 0) return true;
+    return word[0] === word[0].toUpperCase();
+  });
+}
+
+// Recursive function to validate capitalization in objects
+function validateCapitalization(obj, filePath, locationPath = '') {
+  const errors = [];
+  
+  if (typeof obj === 'object' && obj !== null) {
+    for (const [key, value] of Object.entries(obj)) {
+      const currentPath = locationPath ? `${locationPath}.${key}` : key;
+      
+      // Check if this is a primary, secondary, or tertiary array
+      if ((key === 'primary' || key === 'secondary' || key === 'tertiary') && Array.isArray(value)) {
+        value.forEach((item, index) => {
+          if (typeof item === 'string' && !isProperlyCapitalized(item)) {
+            errors.push(`${currentPath}[${index}]: "${item}" - first letter of each word must be capitalized`);
+          }
+        });
+      } else if (typeof value === 'object') {
+        // Recursively check nested objects
+        errors.push(...validateCapitalization(value, filePath, currentPath));
+      }
+    }
+  }
+  
+  return errors;
+}
+
 console.log('🔍 Validating JSON files...\n');
 
 files.forEach(file => {
@@ -47,6 +81,17 @@ files.forEach(file => {
     if (file === 'npcs.json') {
       if (!data.species || !data.professions || !data.alignments) {
         throw new Error('Missing required NPC data categories');
+      }
+    }
+    
+    // Validate capitalization for locations.json
+    if (file === 'locations.json') {
+      const capitalizationErrors = validateCapitalization(data, file);
+      if (capitalizationErrors.length > 0) {
+        console.error(`❌ ${file} - Capitalization errors:`);
+        capitalizationErrors.forEach(err => console.error(`   ${err}`));
+        hasErrors = true;
+        return;
       }
     }
     
