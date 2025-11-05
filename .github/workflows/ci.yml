@@ -18,10 +18,9 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18'
-        cache: 'npm'
     
     - name: Install dependencies
-      run: npm ci
+      run: npm install
     
     - name: Validate JSON files
       run: npm run test:json
@@ -48,10 +47,11 @@ jobs:
         node-version: '18'
     
     - name: Install dependencies
-      run: npm ci
+      run: npm install
     
     - name: Test local server start
       run: |
-        npm run start &
+        timeout 10s npm run start &
         sleep 5
         curl -f http://localhost:8000 || exit 1
+        pkill -f "http-server" || true
