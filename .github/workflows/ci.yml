@@ -18,10 +18,9 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18'
-        cache: 'npm'
     
     - name: Install dependencies
-      run: npm ci
+      run: npm install
     
     - name: Validate JSON files
       run: npm run test:json
@@ -48,10 +47,24 @@ jobs:
         node-version: '18'
     
     - name: Install dependencies
-      run: npm ci
+      run: npm install
     
     - name: Test local server start
       run: |
-        npm run start &
-        sleep 5
-        curl -f http://localhost:8000 || exit 1
+        npx http-server -p 8000 > server.log 2>&1 &
+        echo $! > server.pid
+        # wait up to ~15s for server to start
+        for i in 1 2 3 4 5; do
+          sleep 2
+          if curl -sSf http://localhost:8000 >/dev/null; then
+            echo "Server started"
+            break
+          fi
+          echo "Waiting for server..."
+        done
+        if ! curl -f http://localhost:8000; then
+          echo "Server failed to start — dumping server.log"
+          cat server.log || true
+          exit 1
+        fi
+        kill $(cat server.pid) || true
