@@ -1,0 +1,57 @@
+name: LoreWeaver CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Validate JSON files
+      run: npm run test:json
+    
+    - name: Lint JavaScript
+      run: npm run lint
+    
+    - name: Validate HTML
+      run: npm run test:html
+    
+    - name: Run all tests
+      run: npm test
+
+  build-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Test local server start
+      run: |
+        npm run start &
+        sleep 5
+        curl -f http://localhost:8000 || exit 1

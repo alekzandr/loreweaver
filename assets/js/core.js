@@ -3,7 +3,7 @@
 // This consolidated module contains all critical application logic
 
 import './data-loader.js';
-import { getRandomElements, calculateDC, getScalingNotes, formatLocationName, getProfessionRoleTip, buildEncounterDescription, random } from './utils.js';
+import { random, formatLocationName } from './utils.js';
 
 // ============================================================================
 // ENCOUNTER GENERATION
@@ -462,7 +462,6 @@ export function generateNPC() {
     
     const firstName = speciesData.firstNames[Math.floor(Math.random() * speciesData.firstNames.length)];
     const surname = speciesData.surnames[Math.floor(Math.random() * speciesData.surnames.length)];
-    const fullName = `${firstName} ${surname}`;
     
     const alignment = selectedAlignment === 'random'
         ? window.npcData.alignments[Math.floor(Math.random() * window.npcData.alignments.length)]
@@ -501,7 +500,6 @@ export function generateNPC() {
  */
 function renderNPCStatBlock(editMode = false) {
     const npc = window.currentGeneratedNPC;
-    const fullName = `${npc.firstName} ${npc.surname}`;
     
     // Build display HTML - Stat Block Style with Edit Button
     let html = `
@@ -519,7 +517,7 @@ function renderNPCStatBlock(editMode = false) {
                 <!-- Header -->
                 <div style="text-align: center; border-bottom: 2px solid var(--accent-blue); padding-bottom: 10px; margin-bottom: 15px;">
                     <h2 style="margin: 0; color: #9b59b6; font-size: 1.8em; display: flex; align-items: center; gap: 10px; justify-content: flex-start;">
-                        <img src="assets/img/character.png" alt="character" class="character-icon"> ${editMode ? `<input type=\"text\" id=\"editFirstName\" value=\"${npc.firstName}\" style=\"width: 120px; background: var(--card-background); color: #9b59b6; border: 1px solid var(--accent-blue); border-radius: 4px; padding: 4px; text-align: left; font-size: 1em; font-family: inherit;\"> <input type=\"text\" id=\"editSurname\" value=\"${npc.surname}\" style=\"width: 150px; background: var(--card-background); color: #9b59b6; border: 1px solid var(--accent-blue); border-radius: 4px; padding: 4px; text-align: left; font-size: 1em; font-family: inherit;\">` : fullName}
+                        <img src="assets/img/character.png" alt="character" class="character-icon"> ${editMode ? `<input type="text" id="editFirstName" value="${npc.firstName}" style="width: 120px; background: var(--card-background); color: #9b59b6; border: 1px solid var(--accent-blue); border-radius: 4px; padding: 4px; text-align: left; font-size: 1em; font-family: inherit;"> <input type="text" id="editSurname" value="${npc.surname}" style="width: 150px; background: var(--card-background); color: #9b59b6; border: 1px solid var(--accent-blue); border-radius: 4px; padding: 4px; text-align: left; font-size: 1em; font-family: inherit;">` : `${npc.firstName} ${npc.surname}`}
                     </h2>
                     <p style="margin: 5px 0 0 0; font-style: italic; color: var(--text-secondary); font-size: 1em;">
                         ${editMode ? `<input type="text" id="editSpecies" value="${npc.species}" style="width: 100px; background: var(--card-background); color: var(--text-secondary); border: 1px solid var(--accent-blue); border-radius: 4px; padding: 4px; text-align: center; font-style: italic;"> <input type="text" id="editProfession" value="${npc.profession.name}" style="width: 150px; background: var(--card-background); color: var(--text-secondary); border: 1px solid var(--accent-blue); border-radius: 4px; padding: 4px; text-align: center; font-style: italic;">, <input type="text" id="editAlignment" value="${npc.alignment.name}" style="width: 120px; background: var(--card-background); color: var(--text-secondary); border: 1px solid var(--accent-blue); border-radius: 4px; padding: 4px; text-align: center; font-style: italic;">` : `${npc.species.charAt(0).toUpperCase() + npc.species.slice(1)} ${npc.profession.name}, ${npc.alignment.name}`}

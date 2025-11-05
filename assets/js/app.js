@@ -1,7 +1,7 @@
 // LoreWeaver - App Initialization
 // Main app initialization, theme management, and page switching
 
-import { loadData, dataLoaded } from './data-loader.js';
+import { loadData } from './data-loader.js';
 
 // Global state
 export let selectedEnvironment = 'urban';
@@ -319,7 +319,6 @@ function updateAllFilters() {
     const currentEnv = document.getElementById('envFilter').value;
     const currentLocationType = document.getElementById('locationTypeFilter').value;
     const currentSetting = document.getElementById('settingFilter').value;
-    const currentPlane = document.getElementById('planeFilter').value;
     
     // Helper function to collect available options with counts, excluding the filter being updated
     function collectOptionsWithCounts(excludeFilter) {
@@ -501,7 +500,6 @@ export function clearFilters() {
  */
 export function performSearch() {
     const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
-    const resultsContainer = document.getElementById('searchResults');
 
     let results = [];
 

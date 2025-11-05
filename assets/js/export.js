@@ -89,7 +89,7 @@ function generateEncounterMarkdown() {
 
     // Encounter Flow
     if (window.currentEncounterFlow && window.currentEncounterFlow.length > 0) {
-        md += `## 🗺️ Encounter Flow\n\n`;
+        md += '## 🗺️ Encounter Flow\n\n';
         window.currentEncounterFlow.forEach((step) => {
             md += `### Step ${step.step}: ${step.title}\n\n`;
             
@@ -105,25 +105,25 @@ function generateEncounterMarkdown() {
             
             // DM Tips
             if (step.dmTips && step.dmTips.length > 0) {
-                md += `**💡 DM Tips:**\n`;
+                md += '**💡 DM Tips:**\n';
                 step.dmTips.forEach(tip => {
                     md += `- ${tip}\n`;
                 });
-                md += `\n`;
+                md += '\n';
             }
             
             // Connections
             if (step.connections && step.connections.length > 0) {
-                md += `**Connections:**\n`;
+                md += '**Connections:**\n';
                 step.connections.forEach(conn => {
                     md += `- ${conn}\n`;
                 });
-                md += `\n`;
+                md += '\n';
             }
             
             // Custom Resolutions
             if (step.customResolutions && step.customResolutions.length > 0) {
-                md += `**Possible Resolutions:**\n\n`;
+                md += '**Possible Resolutions:**\n\n';
                 step.customResolutions.forEach((res, idx) => {
                     md += `${idx + 1}. **${res.title}**\n`;
                     md += `   ${res.description}\n`;
@@ -136,7 +136,7 @@ function generateEncounterMarkdown() {
 
     // Locations
     if (window.currentEncounterLocations && window.currentEncounterLocations.length > 0) {
-        md += `## 📍 Locations\n\n`;
+        md += '## 📍 Locations\n\n';
         window.currentEncounterLocations.forEach((location) => {
             md += `### ${location.name || (window.formatLocationName ? window.formatLocationName(location.key) : location.key)}\n\n`;
             if (location.data?.tags) {
@@ -148,7 +148,7 @@ function generateEncounterMarkdown() {
             
             // Primary Features with nested Secondary/Discovery
             if (location.data?.primaryFeatures && Array.isArray(location.data.primaryFeatures)) {
-                md += `#### Features\n\n`;
+                md += '#### Features\n\n';
                 location.data.primaryFeatures.forEach(primary => {
                     if (typeof primary === 'string') {
                         md += `**🔍 ${primary}** *(Primary - Immediately visible)*\n\n`;
@@ -217,7 +217,7 @@ function generateEncounterMarkdown() {
 
     // NPCs
     if (window.currentEncounterNPCs && window.currentEncounterNPCs.length > 0) {
-        md += `## 👥 NPCs\n\n`;
+        md += '## 👥 NPCs\n\n';
         window.currentEncounterNPCs.forEach((npc) => {
             const profession = npc.profession?.name || npc.profession || 'Unknown';
             const alignment = npc.alignment?.name || npc.alignment || 'Unknown';
@@ -236,7 +236,7 @@ function generateEncounterMarkdown() {
 
     // Skill Checks
     if (window.currentEncounterSkillChecks && window.currentEncounterSkillChecks.length > 0) {
-        md += `## 🎲 Skill Checks\n\n`;
+        md += '## 🎲 Skill Checks\n\n';
         window.currentEncounterSkillChecks.forEach((check) => {
             md += `### ${check.skill} Check\n\n`;
             md += `**Challenge:** ${check.challenge}\n\n`;
@@ -247,7 +247,7 @@ function generateEncounterMarkdown() {
 
     // Traps
     if (window.currentEncounterTraps && window.currentEncounterTraps.length > 0) {
-        md += `## 🪤 Traps\n\n`;
+        md += '## 🪤 Traps\n\n';
         window.currentEncounterTraps.forEach((trap) => {
             md += `### ${trap.name}\n\n`;
             md += `${trap.description}\n\n`;
@@ -261,7 +261,7 @@ function generateEncounterMarkdown() {
 
     // Hazards
     if (window.currentEncounterHazards && window.currentEncounterHazards.length > 0) {
-        md += `## ⚠️ Hazards\n\n`;
+        md += '## ⚠️ Hazards\n\n';
         window.currentEncounterHazards.forEach((hazard) => {
             md += `### ${hazard.name}\n\n`;
             md += `${hazard.description}\n\n`;
@@ -271,7 +271,7 @@ function generateEncounterMarkdown() {
 
     // Environmental Effects
     if (window.currentEncounterEnvironmentalEffects && window.currentEncounterEnvironmentalEffects.length > 0) {
-        md += `## 🌀 Environmental Effects\n\n`;
+        md += '## 🌀 Environmental Effects\n\n';
         window.currentEncounterEnvironmentalEffects.forEach((effect) => {
             md += `### ${effect.name}\n\n`;
             md += `${effect.description}\n\n`;
@@ -297,7 +297,7 @@ function generateEncounterText() {
 
     // Encounter Flow
     if (window.currentEncounterFlow && window.currentEncounterFlow.length > 0) {
-        txt += `ENCOUNTER FLOW\n`;
+        txt += 'ENCOUNTER FLOW\n';
         txt += `${'-'.repeat(50)}\n\n`;
         window.currentEncounterFlow.forEach((step) => {
             txt += `Step ${step.step}: ${step.title}\n`;
@@ -315,25 +315,25 @@ function generateEncounterText() {
             
             // DM Tips
             if (step.dmTips && step.dmTips.length > 0) {
-                txt += `DM Tips:\n`;
+                txt += 'DM Tips:\n';
                 step.dmTips.forEach(tip => {
                     txt += `  - ${tip}\n`;
                 });
-                txt += `\n`;
+                txt += '\n';
             }
             
             // Connections
             if (step.connections && step.connections.length > 0) {
-                txt += `Connections:\n`;
+                txt += 'Connections:\n';
                 step.connections.forEach(conn => {
                     txt += `  - ${conn}\n`;
                 });
-                txt += `\n`;
+                txt += '\n';
             }
             
             // Custom Resolutions
             if (step.customResolutions && step.customResolutions.length > 0) {
-                txt += `Possible Resolutions:\n`;
+                txt += 'Possible Resolutions:\n';
                 step.customResolutions.forEach((res, idx) => {
                     txt += `  ${idx + 1}. ${res.title}\n`;
                     txt += `     ${res.description}\n`;
@@ -342,13 +342,13 @@ function generateEncounterText() {
                 });
             }
             
-            txt += `\n`;
+            txt += '\n';
         });
     }
 
     // Locations
     if (window.currentEncounterLocations && window.currentEncounterLocations.length > 0) {
-        txt += `LOCATIONS\n`;
+        txt += 'LOCATIONS\n';
         txt += `${'-'.repeat(50)}\n\n`;
         window.currentEncounterLocations.forEach((location) => {
             txt += `${location.name || (window.formatLocationName ? window.formatLocationName(location.key) : location.key)}\n`;
@@ -361,7 +361,7 @@ function generateEncounterText() {
             
             // Primary Features with nested Secondary/Discovery
             if (location.data?.primaryFeatures && Array.isArray(location.data.primaryFeatures)) {
-                txt += `FEATURES\n`;
+                txt += 'FEATURES\n';
                 location.data.primaryFeatures.forEach(primary => {
                     if (typeof primary === 'string') {
                         txt += `  [PRIMARY] ${primary} (Immediately visible)\n`;
@@ -423,17 +423,17 @@ function generateEncounterText() {
                             });
                         }
                     }
-                    txt += `\n`;
+                    txt += '\n';
                 });
             }
             
-            txt += `\n`;
+            txt += '\n';
         });
     }
 
     // NPCs
     if (window.currentEncounterNPCs && window.currentEncounterNPCs.length > 0) {
-        txt += `NPCs\n`;
+        txt += 'NPCs\n';
         txt += `${'-'.repeat(50)}\n\n`;
         window.currentEncounterNPCs.forEach((npc) => {
             const profession = npc.profession?.name || npc.profession || 'Unknown';
@@ -453,7 +453,7 @@ function generateEncounterText() {
 
     // Skill Checks
     if (window.currentEncounterSkillChecks && window.currentEncounterSkillChecks.length > 0) {
-        txt += `SKILL CHECKS\n`;
+        txt += 'SKILL CHECKS\n';
         txt += `${'-'.repeat(50)}\n\n`;
         window.currentEncounterSkillChecks.forEach((check) => {
             txt += `${check.skill} Check\n`;
@@ -465,7 +465,7 @@ function generateEncounterText() {
 
     // Traps
     if (window.currentEncounterTraps && window.currentEncounterTraps.length > 0) {
-        txt += `TRAPS\n`;
+        txt += 'TRAPS\n';
         txt += `${'-'.repeat(50)}\n\n`;
         window.currentEncounterTraps.forEach((trap) => {
             txt += `${trap.name}\n`;
@@ -475,13 +475,13 @@ function generateEncounterText() {
             if (trap.damageType || trap.severity) {
                 txt += `Details: ${trap.damageType ? `Damage Type: ${trap.damageType}. ` : ''}${trap.severity ? `Severity: ${trap.severity}.` : ''}\n`;
             }
-            txt += `\n`;
+            txt += '\n';
         });
     }
 
     // Hazards
     if (window.currentEncounterHazards && window.currentEncounterHazards.length > 0) {
-        txt += `HAZARDS\n`;
+        txt += 'HAZARDS\n';
         txt += `${'-'.repeat(50)}\n\n`;
         window.currentEncounterHazards.forEach((hazard) => {
             txt += `${hazard.name}\n`;
@@ -492,7 +492,7 @@ function generateEncounterText() {
 
     // Environmental Effects
     if (window.currentEncounterEnvironmentalEffects && window.currentEncounterEnvironmentalEffects.length > 0) {
-        txt += `ENVIRONMENTAL EFFECTS\n`;
+        txt += 'ENVIRONMENTAL EFFECTS\n';
         txt += `${'-'.repeat(50)}\n\n`;
         window.currentEncounterEnvironmentalEffects.forEach((effect) => {
             txt += `${effect.name}\n`;
@@ -518,9 +518,9 @@ function generateEncounterHTML() {
 
     // Encounter Flow
     if (window.currentEncounterFlow && window.currentEncounterFlow.length > 0) {
-        html += `<h2>🗺️ Encounter Flow</h2>`;
+        html += '<h2>🗺️ Encounter Flow</h2>';
         window.currentEncounterFlow.forEach((step) => {
-            html += `<div class="flow-step">`;
+            html += '<div class="flow-step">';
             html += `<h3>Step ${step.step}: ${step.title}</h3>`;
             
             // Location info
@@ -535,44 +535,44 @@ function generateEncounterHTML() {
             
             // DM Tips
             if (step.dmTips && step.dmTips.length > 0) {
-                html += `<p><strong>💡 DM Tips:</strong></p><ul>`;
+                html += '<p><strong>💡 DM Tips:</strong></p><ul>';
                 step.dmTips.forEach(tip => {
                     html += `<li>${tip}</li>`;
                 });
-                html += `</ul>`;
+                html += '</ul>';
             }
             
             // Connections
             if (step.connections && step.connections.length > 0) {
-                html += `<p><strong>Connections:</strong></p><ul>`;
+                html += '<p><strong>Connections:</strong></p><ul>';
                 step.connections.forEach(conn => {
                     html += `<li>${conn}</li>`;
                 });
-                html += `</ul>`;
+                html += '</ul>';
             }
             
             // Custom Resolutions
             if (step.customResolutions && step.customResolutions.length > 0) {
-                html += `<p><strong>Possible Resolutions:</strong></p>`;
+                html += '<p><strong>Possible Resolutions:</strong></p>';
                 step.customResolutions.forEach((res, idx) => {
-                    html += `<div class="resolution">`;
+                    html += '<div class="resolution">';
                     html += `<h5>${idx + 1}. ${res.title}</h5>`;
                     html += `<p>${res.description}</p>`;
                     html += `<p><strong>Requirements:</strong> ${res.requirements}</p>`;
                     html += `<p><strong>Rewards:</strong> ${res.rewards}</p>`;
-                    html += `</div>`;
+                    html += '</div>';
                 });
             }
             
-            html += `</div>`;
+            html += '</div>';
         });
     }
 
     // Locations
     if (window.currentEncounterLocations && window.currentEncounterLocations.length > 0) {
-        html += `<h2>📍 Locations</h2>`;
+        html += '<h2>📍 Locations</h2>';
         window.currentEncounterLocations.forEach((location) => {
-            html += `<div class="location">`;
+            html += '<div class="location">';
             html += `<h3>${location.name || (window.formatLocationName ? window.formatLocationName(location.key) : location.key)}</h3>`;
             if (location.data?.tags) {
                 html += `<p><strong>Tags:</strong> ${location.data.tags.join(', ')}</p>`;
@@ -583,14 +583,14 @@ function generateEncounterHTML() {
             
             // Primary Features with nested Secondary/Discovery
             if (location.data?.primaryFeatures && Array.isArray(location.data.primaryFeatures)) {
-                html += `<h4>Features</h4>`;
+                html += '<h4>Features</h4>';
                 location.data.primaryFeatures.forEach(primary => {
                     if (typeof primary === 'string') {
-                        html += `<div style="margin-bottom: 15px;">`;
+                        html += '<div style="margin-bottom: 15px;">';
                         html += `<strong>🔍 ${primary}</strong> <em style="color: #666;">(Primary - Immediately visible)</em>`;
-                        html += `</div>`;
+                        html += '</div>';
                     } else if (primary.name) {
-                        html += `<div style="margin-bottom: 15px; padding-left: 0;">`;
+                        html += '<div style="margin-bottom: 15px; padding-left: 0;">';
                         html += `<strong>🔍 ${primary.name}</strong> <em style="color: #666;">(Primary - Immediately visible)</em><br>`;
                         html += `${primary.description || ''}<br>`;
                         
@@ -602,7 +602,7 @@ function generateEncounterHTML() {
                                     (typeof s === 'object' && s.name === secName) || s === secName
                                 );
                                 if (secondary) {
-                                    html += `<div style="margin-left: 20px; margin-top: 10px; padding-left: 10px; border-left: 3px solid #3498db;">`;
+                                    html += '<div style="margin-left: 20px; margin-top: 10px; padding-left: 10px; border-left: 3px solid #3498db;">';
                                     if (typeof secondary === 'string') {
                                         html += `<strong>🔎 ${secondary}</strong> <em style="color: #666;">(Secondary - Requires investigation)</em>`;
                                     } else {
@@ -617,19 +617,19 @@ function generateEncounterHTML() {
                                                     (typeof d === 'object' && d.name === discName) || d === discName
                                                 );
                                                 if (discovery) {
-                                                    html += `<div style="margin-left: 20px; margin-top: 10px; padding-left: 10px; border-left: 3px solid #27ae60;">`;
+                                                    html += '<div style="margin-left: 20px; margin-top: 10px; padding-left: 10px; border-left: 3px solid #27ae60;">';
                                                     if (typeof discovery === 'string') {
                                                         html += `<strong>💡 ${discovery}</strong> <em style="color: #666;">(Discovery)</em>`;
                                                     } else {
                                                         html += `<strong>💡 ${discovery.name}</strong> <em style="color: #666;">(Discovery)</em><br>`;
                                                         html += `${discovery.description || ''}`;
                                                     }
-                                                    html += `</div>`;
+                                                    html += '</div>';
                                                 }
                                             });
                                         }
                                     }
-                                    html += `</div>`;
+                                    html += '</div>';
                                 }
                             });
                         }
@@ -642,37 +642,37 @@ function generateEncounterHTML() {
                                     (typeof d === 'object' && d.name === discName) || d === discName
                                 );
                                 if (discovery) {
-                                    html += `<div style="margin-left: 20px; margin-top: 10px; padding-left: 10px; border-left: 3px solid #27ae60;">`;
+                                    html += '<div style="margin-left: 20px; margin-top: 10px; padding-left: 10px; border-left: 3px solid #27ae60;">';
                                     if (typeof discovery === 'string') {
                                         html += `<strong>💡 ${discovery}</strong> <em style="color: #666;">(Discovery)</em>`;
                                     } else {
                                         html += `<strong>💡 ${discovery.name}</strong> <em style="color: #666;">(Discovery)</em><br>`;
                                         html += `${discovery.description || ''}`;
                                     }
-                                    html += `</div>`;
+                                    html += '</div>';
                                 }
                             });
                         }
                         
-                        html += `</div>`;
+                        html += '</div>';
                     }
                 });
             }
             
-            html += `</div>`;
+            html += '</div>';
         });
     }
 
     // NPCs
     if (window.currentEncounterNPCs && window.currentEncounterNPCs.length > 0) {
-        html += `<h2>👥 NPCs</h2>`;
+        html += '<h2>👥 NPCs</h2>';
         window.currentEncounterNPCs.forEach((npc) => {
             const profession = npc.profession?.name || npc.profession || 'Unknown';
             const alignment = npc.alignment?.name || npc.alignment || 'Unknown';
             const appearance = npc.appearance?.description || npc.appearance || 'Unknown';
             const personality = npc.personality?.trait || npc.personality || 'Unknown';
             const secret = npc.secret?.secret || npc.secret || 'Unknown';
-            html += `<div class="npc">`;
+            html += '<div class="npc">';
             html += `<h3>${npc.name}</h3>`;
             html += `<p><strong>Species:</strong> ${npc.species} | `;
             html += `<strong>Profession:</strong> ${profession} | `;
@@ -680,28 +680,28 @@ function generateEncounterHTML() {
             html += `<p><strong>Appearance:</strong> ${appearance}</p>`;
             html += `<p><strong>Personality:</strong> ${personality}</p>`;
             html += `<div class="secret"><strong>Secret (DM Only):</strong> ${secret}</div>`;
-            html += `</div>`;
+            html += '</div>';
         });
     }
 
     // Skill Checks
     if (window.currentEncounterSkillChecks && window.currentEncounterSkillChecks.length > 0) {
-        html += `<h2>🎲 Skill Checks</h2>`;
+        html += '<h2>🎲 Skill Checks</h2>';
         window.currentEncounterSkillChecks.forEach((check) => {
-            html += `<div class="flow-step">`;
+            html += '<div class="flow-step">';
             html += `<h3>${check.skill} Check</h3>`;
             html += `<p><strong>Challenge:</strong> ${check.challenge}</p>`;
             html += `<p><strong>Success:</strong> ${check.success}</p>`;
             html += `<p><strong>Failure:</strong> ${check.failure}</p>`;
-            html += `</div>`;
+            html += '</div>';
         });
     }
 
     // Traps
     if (window.currentEncounterTraps && window.currentEncounterTraps.length > 0) {
-        html += `<h2>🪤 Traps</h2>`;
+        html += '<h2>🪤 Traps</h2>';
         window.currentEncounterTraps.forEach((trap) => {
-            html += `<div class="flow-step">`;
+            html += '<div class="flow-step">';
             html += `<h3>${trap.name}</h3>`;
             html += `<p>${trap.description}</p>`;
             html += `<p><strong>Detect:</strong> ${trap.detectMethod || 'Perception/Investigation'}</p>`;
@@ -709,31 +709,31 @@ function generateEncounterHTML() {
             if (trap.damageType || trap.severity) {
                 html += `<p><strong>Details:</strong> ${trap.damageType ? `Damage Type: ${trap.damageType}. ` : ''}${trap.severity ? `Severity: ${trap.severity}.` : ''}</p>`;
             }
-            html += `</div>`;
+            html += '</div>';
         });
     }
 
     // Hazards
     if (window.currentEncounterHazards && window.currentEncounterHazards.length > 0) {
-        html += `<h2>⚠️ Hazards</h2>`;
+        html += '<h2>⚠️ Hazards</h2>';
         window.currentEncounterHazards.forEach((hazard) => {
-            html += `<div class="flow-step">`;
+            html += '<div class="flow-step">';
             html += `<h3>${hazard.name}</h3>`;
             html += `<p>${hazard.description}</p>`;
             html += `<p><strong>Save:</strong> ${hazard.saveAbility || 'Varies'}${hazard.severity ? ` | <strong>Severity:</strong> ${hazard.severity}` : ''}</p>`;
-            html += `</div>`;
+            html += '</div>';
         });
     }
 
     // Environmental Effects
     if (window.currentEncounterEnvironmentalEffects && window.currentEncounterEnvironmentalEffects.length > 0) {
-        html += `<h2>🌀 Environmental Effects</h2>`;
+        html += '<h2>🌀 Environmental Effects</h2>';
         window.currentEncounterEnvironmentalEffects.forEach((effect) => {
-            html += `<div class="flow-step">`;
+            html += '<div class="flow-step">';
             html += `<h3>${effect.name}</h3>`;
             html += `<p>${effect.description}</p>`;
             html += `<p><strong>Effect:</strong> ${effect.mechanicalEffect || 'Varies'}</p>`;
-            html += `</div>`;
+            html += '</div>';
         });
     }
 

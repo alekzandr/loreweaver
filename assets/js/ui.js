@@ -3,7 +3,7 @@
 // Note: Due to size constraints, complex encounter rendering functions
 // will remain inline in the new index.html until further modularization
 
-import { calculateDC, formatLocationName, getProfessionRoleTip } from './utils.js';
+import { getProfessionRoleTip } from './utils.js';
 
 // ============================================================================
 // UI INTERACTION FUNCTIONS
@@ -129,11 +129,11 @@ export function populateFlowNavigator(flowSteps) {
         `;
         
         if (!isLastStep) {
-            html += `<div class="flow-connector"></div>`;
+            html += '<div class="flow-connector"></div>';
         }
     });
     
-    html += `</div>`;
+    html += '</div>';
     
     // NPCs Section
     if (window.currentEncounterNPCs && window.currentEncounterNPCs.length > 0) {
@@ -157,11 +157,11 @@ export function populateFlowNavigator(flowSteps) {
             `;
             
             if (!isLastNPC) {
-                html += `<div class="flow-connector"></div>`;
+                html += '<div class="flow-connector"></div>';
             }
         });
         
-        html += `</div>`;
+        html += '</div>';
     }
     
     content.innerHTML = html;
@@ -249,7 +249,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
             `;
         }
         
-        html += `</div>`;
+        html += '</div>';
         
         if (viewLevel === 'primary') {
             if (location.data.primary && location.data.primary.length > 0) {
@@ -272,7 +272,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                     `;
                 });
                 
-                html += `</div>`;
+                html += '</div>';
             }
         } else if (viewLevel === 'secondary' && selectedIndex !== null) {
             if (location.data.secondary && location.data.secondary[selectedIndex] !== undefined) {
@@ -388,7 +388,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                     </div>
                 `;
             });
-            html += `</div>`;
+            html += '</div>';
         }
     }
     
@@ -418,7 +418,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                     </div>
                 `;
             });
-            html += `</div>`;
+            html += '</div>';
         }
     }
     
@@ -445,7 +445,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                     </div>
                 `;
             });
-            html += `</div>`;
+            html += '</div>';
         }
     }
     
@@ -471,7 +471,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                     </div>
                 `;
             });
-            html += `</div>`;
+            html += '</div>';
         }
     }
     
@@ -487,7 +487,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                 <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
                     <h4 style="color: #2ecc71; margin-bottom: 10px;">👥 NPCs in this Location (${encounterLocation.npcs.length})</h4>
             `;
-            encounterLocation.npcs.forEach((npc, idx) => {
+            encounterLocation.npcs.forEach((npc) => {
                 html += `
                     <div style="background: rgba(46, 204, 113, 0.1); padding: 12px; border-radius: 6px; margin-bottom: 10px; border-left: 3px solid #2ecc71;">
                         <strong>${npc.name}</strong><br>
@@ -497,7 +497,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                     </div>
                 `;
             });
-            html += `</div>`;
+            html += '</div>';
         }
     }
     

@@ -1,0 +1,25 @@
+{
+  "name": "loreweaver",
+  "version": "1.0.0",
+  "description": "D&D Exploration Encounter Generator",
+  "scripts": {
+    "start": "npx http-server -p 8000",
+    "test": "npm run test:json && npm run lint && npm run test:html",
+    "test:json": "node tests/validate-json.js",
+    "test:html": "node tests/validate-html.js",
+    "lint": "eslint assets/js/**/*.js",
+    "lint:fix": "eslint assets/js/**/*.js --fix"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "html-validate": "^8.5.0",
+    "http-server": "^14.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alekzandr/loreweaver.git"
+  },
+  "keywords": ["dnd", "rpg", "generator", "encounters"],
+  "author": "alekzandr",
+  "license": "MIT"
+}
