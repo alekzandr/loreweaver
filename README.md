@@ -1,33 +1,21 @@
 # ⚔️ LoreWeaver ⚔️
 
-A comprehensive D&D exploration encounter tool with advanced search and filtering capabilities.
+A tool for Dungeon Masters to generate D&D exploration encounters and browse a library of content.
 
 ## Overview
 
-LoreWeaver generates complete exploration encounters for Dungeons & Dragons and provides a powerful search system to browse encounters and locations. Features skill challenges, traps, hazards, and environmental effects across diverse environments.
+LoreWeaver helps you create rich, non-combat encounters for your D&D games. Generate a complete scenario in seconds, or use the powerful search to find the perfect location or challenge for your next session. It's packed with skill challenges, traps, hazards, and environmental effects for ten different settings.
 
 ## Features
 
-### Core Functionality
-- **10 Unique Environments**: Urban, Arctic, Ocean, Space, Crypt, Forest, Desert, Mountain, Swamp, and Underground
-- **Skill Challenges**: Appropriate skill checks for each environment with dynamic DC scaling
-- **Traps & Hazards**: Environment-specific dangers with detection and disarm mechanics
-- **Environmental Effects**: Persistent conditions that affect the entire encounter area
-- **Level Scaling**: Automatic adjustment of DCs and damage based on party level (1-20)
+### Encounter Generation
+Generate encounters for **10 unique environments**, from city streets to the depths of space. Each scenario comes with level-scaled skill challenges, environment-specific traps and hazards, and persistent environmental effects to make the location feel alive.
 
-### Advanced Search System
-- **Dynamic Filtering**: Intelligent filter system with live option counts
-- **Multiple Filter Types**: Type, Environment, Location Type, Setting, and Plane filters
-- **Paginated Results**: Display 5, 10, 15, or 20 results per page
-- **Expandable Cards**: Click to view full descriptions and resolutions
-- **Location Features**: Three-column display showing Primary Features, Secondary Features, and Discoveries
-- **Smart Updates**: Filters update based on available data combinations
+### Search & Browse
+Browse the entire content library using a powerful search system with **dynamic filtering** by type, environment, setting, and more. Results are paginated and displayed on expandable cards, allowing you to get a quick preview before diving into the full details. Locations are broken down into Primary Features, Secondary Features, and hidden Discoveries.
 
 ### User Interface
-- **Modern Design**: Glassmorphic UI with smooth animations
-- **Dark Mode**: Toggle between light and dark themes
-- **Responsive Layout**: Works seamlessly on desktop, tablet, and mobile
-- **Intuitive Controls**: Clean, minimalist pagination and filter controls
+A clean, intuitive interface that's easy to use on desktop, tablet, and mobile. It features a **dark mode** toggle and minimalist controls for a smooth experience.
 
 ## How to Use
 
@@ -36,14 +24,7 @@ LoreWeaver generates complete exploration encounters for Dungeons & Dragons and 
 2. Select an environment by clicking on one of the environment tags
 3. Set your party's level (1-20)
 4. Click "🎲 Generate Encounter" to create a unique exploration encounter
-5. Each generated encounter includes:
-   - Encounter title with multiple atmospheric descriptions
-   - Encounter flow diagram with 3-5 narrative steps
-   - 1-3 NPCs with detailed profiles (click names to view)
-   - 3-5 explorable locations (click to view interactive details)
-   - 3-4 skill challenges with appropriate DCs scaled to party level
-   - Multiple resolution paths with requirements and rewards
-   - Level-specific scaling guidance
+5. Each generated encounter is a complete package, including a title, atmospheric descriptions, a 3-5 step narrative flow, 1-3 NPCs with detailed profiles, 3-5 explorable locations, skill challenges scaled to your party's level, and multiple resolution paths.
 6. **Interactive Features**:
    - Click NPC names to open detail panels with full stats
    - Click locations to explore primary/secondary/tertiary objects
@@ -51,31 +32,15 @@ LoreWeaver generates complete exploration encounters for Dungeons & Dragons and 
    - Toggle Progressive Reveal mode for gradual discovery
 
 ### Search Tab
-1. Click the "Search" tab to access the search system
-2. **Optional**: Enter search keywords to filter by text
-3. Use filters to narrow down results:
-   - **Type**: Filter between Encounters Only, Locations Only, or All Types
-   - **Environment**: Select specific environments (Urban, Arctic, Ocean, etc.)
-   - **Location Type**: Filter locations by type (tavern, shop, landmark, etc.)
-   - **Setting**: Filter by setting tags (urban, rural, coastal, etc.)
-   - **Plane**: Filter by plane of existence
-4. Click "Search" to view results (or search with no filters to see everything)
-5. Navigate through results:
-   - Use `‹` and `›` buttons to change pages
-   - Current page shown as "1 / 50" format
-   - Adjust items per page: 5, 10, 15, or 20 items
-   - Pagination appears at both top and bottom
+1. Click the "Search" tab.
+2. **Optional**: Type keywords into the search bar.
+3. Use the dropdown filters to narrow results by **Type** (Encounter/Location), **Environment**, **Location Type**, **Setting**, or **Plane**.
+4. Click "Search" to see the results. You can also search with no filters to browse everything.
+5. Navigate through results using the pagination controls at the top and bottom of the page. You can change the number of items displayed per page.
 6. Click on result cards to expand descriptions and view full details
 
 ### Search Features
-- **Dynamic Filter Counts**: Each option shows how many results match (e.g., "Arctic (24)")
-- **Smart Filtering**: Filters intelligently update based on your selections
-- **Independent Selection**: Select any filter first - others update automatically
-- **Expandable Cards**: 
-  - Encounters show multiple descriptions and resolution paths
-  - Locations display three-column feature breakdown
-- **Result Summary**: Total count with badges for Encounters and Locations
-- **Minimal Design**: Clean pagination controls with transparent styling
+The search system includes several smart features. **Live filter counts** show how many results match each option (e.g., "Arctic (24)"), and the filters update as you make selections to prevent empty results. You can select any filter first, and the others will adjust. The results summary gives you a total count broken down by Encounters and Locations.
 
 ## Environments
 
@@ -92,13 +57,7 @@ LoreWeaver generates complete exploration encounters for Dungeons & Dragons and 
 
 ## Technical Details
 
-- **Pure HTML/CSS/JavaScript** - no dependencies or frameworks required
-- **ES6 Modules** - clean, modular architecture
-- **Client-Side Only** - runs entirely in the browser, no server needed
-- **External Data Files** - JSON-based data structure for easy content updates
-- **Responsive Design** - works on desktop, tablet, and mobile devices
-- **Dark Mode Support** - theme toggle with persistent preference stored in localStorage
-- **Offline Capable** - save locally and use without internet connection
+LoreWeaver is built with pure HTML, CSS, and JavaScript, requiring no dependencies or frameworks. It runs entirely in your browser, so no server or internet connection is needed once loaded. All content is stored in easy-to-edit JSON files, making it simple to modify or add your own material. It's fully responsive, supports dark mode, and can be saved locally for offline use.
 
 ### Architecture
 - `index.html` - Main application entry point with tabbed navigation
@@ -125,7 +84,7 @@ LoreWeaver generates complete exploration encounters for Dungeons & Dragons and 
 ## Getting Started
 
 ### Quick Start
-Simply open `index.html` in a web browser - no build process or installation required!
+Just open `index.html` in a web browser. No installation or build process required!
 
 ### Local Development
 For best results during development, use a local web server to avoid CORS issues:
@@ -142,7 +101,7 @@ npx http-server
 
 ## Contributing
 
-Want to add content? All encounter data is stored in easy-to-edit JSON files in the `data/` directory. See `DATA_README.md` for detailed documentation on the data structure and content guidelines.
+Want to add your own content? All data is stored in the `data/` directory as JSON files. Check out `DATA_README.md` for a guide on how to add your own encounters, locations, and more.
 
 ## License
 
