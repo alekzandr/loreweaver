@@ -2,6 +2,54 @@
 // Common helper functions used throughout the app
 
 /**
+ * Seeded Random Number Generator (Mulberry32)
+ * @param {number} seed - Seed value
+ * @returns {Function} Random function that returns values between 0 and 1
+ */
+export function createSeededRandom(seed) {
+    return function() {
+        let t = seed += 0x6D2B79F5;
+        t = Math.imul(t ^ t >>> 15, t | 1);
+        t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+}
+
+/**
+ * Hash string to generate seed number
+ * @param {string} str - Input string
+ * @returns {number} Hash value as seed
+ */
+export function hashStringToSeed(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return Math.abs(hash);
+}
+
+// Global random function that can be overridden with seeded version
+export let currentRandom = Math.random;
+
+/**
+ * Set the random function to use throughout the app
+ * @param {Function} randomFunc - Random function to use
+ */
+export function setRandomFunction(randomFunc) {
+    currentRandom = randomFunc;
+}
+
+/**
+ * Get current random value (uses seeded or Math.random)
+ * @returns {number} Random value between 0 and 1
+ */
+export function random() {
+    return currentRandom();
+}
+
+/**
  * Fisher-Yates shuffle to get random elements from array
  * @param {Array} array - Source array
  * @param {number} count - Number of elements to return
@@ -10,7 +58,7 @@
 export function getRandomElements(array, count) {
     const shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
+        const j = Math.floor(random() * (i + 1));
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     return shuffled.slice(0, count);
@@ -22,10 +70,10 @@ export function getRandomElements(array, count) {
  * @returns {number} Difficulty Class value
  */
 export function calculateDC(partyLevel) {
-    if (partyLevel <= 4) return 10 + Math.floor(Math.random() * 3);
-    if (partyLevel <= 10) return 12 + Math.floor(Math.random() * 4);
-    if (partyLevel <= 16) return 15 + Math.floor(Math.random() * 5);
-    return 18 + Math.floor(Math.random() * 5);
+    if (partyLevel <= 4) return 10 + Math.floor(random() * 3);
+    if (partyLevel <= 10) return 12 + Math.floor(random() * 4);
+    if (partyLevel <= 16) return 15 + Math.floor(random() * 5);
+    return 18 + Math.floor(random() * 5);
 }
 
 /**
@@ -128,3 +176,7 @@ window.getScalingNotes = getScalingNotes;
 window.formatLocationName = formatLocationName;
 window.getProfessionRoleTip = getProfessionRoleTip;
 window.buildEncounterDescription = buildEncounterDescription;
+window.createSeededRandom = createSeededRandom;
+window.hashStringToSeed = hashStringToSeed;
+window.setRandomFunction = setRandomFunction;
+window.random = random;

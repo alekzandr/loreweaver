@@ -28,14 +28,20 @@
 
 [data-theme="dark"] select,
 [data-theme="dark"] input[type="number"],
+[data-theme="dark"] input[type="text"],
 [data-theme="dark"] textarea {
     background: rgba(58, 58, 60, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--text-primary);
 }
 
+[data-theme="dark"] input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
 [data-theme="dark"] select:focus,
 [data-theme="dark"] input[type="number"]:focus,
+[data-theme="dark"] input[type="text"]:focus,
 [data-theme="dark"] textarea:focus {
     background: rgba(58, 58, 60, 0.8);
     border-color: var(--accent-blue);

@@ -3,7 +3,7 @@
 // This consolidated module contains all critical application logic
 
 import './data-loader.js';
-import { getRandomElements, calculateDC, getScalingNotes, formatLocationName, getProfessionRoleTip, buildEncounterDescription } from './utils.js';
+import { getRandomElements, calculateDC, getScalingNotes, formatLocationName, getProfessionRoleTip, buildEncounterDescription, random } from './utils.js';
 
 // ============================================================================
 // ENCOUNTER GENERATION
@@ -22,7 +22,7 @@ export function selectEncounterTemplate(environment, specificTitle = null) {
     
     if (entries && entries.length > 0) {
         const totalWeight = entries.reduce((sum, entry) => sum + (entry.weight ?? 1), 0);
-        let roll = Math.random() * totalWeight;
+        let roll = random() * totalWeight;
         for (const entry of entries) {
             roll -= (entry.weight ?? 1);
             if (roll <= 0) return entry;
@@ -45,7 +45,7 @@ export function selectEncounterTemplate(environment, specificTitle = null) {
     };
     
     const fallback = fallbackTitles[environment] || fallbackTitles.urban;
-    const title = fallback[Math.floor(Math.random() * fallback.length)];
+    const title = fallback[Math.floor(random() * fallback.length)];
     return { title, description: null, tags: [] };
 }
 
@@ -58,7 +58,7 @@ export function selectSkillChecks(encounterTags, locationTags, npcTags, numCheck
     }
 
     if (numChecks === null) {
-        numChecks = Math.random() < 0.6 ? 3 : 4;
+        numChecks = random() < 0.6 ? 3 : 4;
     }
 
     const allTags = [...encounterTags, ...locationTags, ...npcTags];
@@ -69,7 +69,7 @@ export function selectSkillChecks(encounterTags, locationTags, npcTags, numCheck
             if (allTags.includes(tag)) score += 1;
             if (encounterTags.includes(tag)) score += 0.5;
         }
-        score += Math.random() * 0.3;
+        score += random() * 0.3;
         return { check, score };
     });
 
@@ -110,7 +110,7 @@ export function selectTraps(locationTags, numTraps = null) {
     }
 
     if (numTraps === null) {
-        const roll = Math.random();
+        const roll = random();
         if (roll < 0.3) numTraps = 0;
         else if (roll < 0.8) numTraps = 1;
         else numTraps = 2;
@@ -123,7 +123,7 @@ export function selectTraps(locationTags, numTraps = null) {
         for (const tag of trap.tags) {
             if (locationTags.includes(tag)) score += 1;
         }
-        score += Math.random() * 0.5;
+        score += random() * 0.5;
         return { trap, score };
     });
 
@@ -133,7 +133,7 @@ export function selectTraps(locationTags, numTraps = null) {
     const topCandidates = scoredTraps.slice(0, Math.min(10, scoredTraps.length));
 
     for (let i = 0; i < numTraps && topCandidates.length > 0; i++) {
-        const index = Math.floor(Math.random() * Math.min(5, topCandidates.length));
+        const index = Math.floor(random() * Math.min(5, topCandidates.length));
         selected.push(topCandidates.splice(index, 1)[0].trap);
     }
 
@@ -149,7 +149,7 @@ export function selectHazards(environmentTag, locationTags, numHazards = null) {
     }
 
     if (numHazards === null) {
-        numHazards = Math.random() < 0.6 ? 1 : 2;
+        numHazards = random() < 0.6 ? 1 : 2;
     }
 
     const allTags = [environmentTag, ...locationTags];
@@ -160,7 +160,7 @@ export function selectHazards(environmentTag, locationTags, numHazards = null) {
             if (allTags.includes(tag)) score += 1;
         }
         if (hazard.tags.includes(environmentTag)) score += 1;
-        score += Math.random() * 0.5;
+        score += random() * 0.5;
         return { hazard, score };
     });
 
@@ -170,7 +170,7 @@ export function selectHazards(environmentTag, locationTags, numHazards = null) {
     const topCandidates = scoredHazards.slice(0, Math.min(10, scoredHazards.length));
 
     for (let i = 0; i < numHazards && topCandidates.length > 0; i++) {
-        const index = Math.floor(Math.random() * Math.min(5, topCandidates.length));
+        const index = Math.floor(random() * Math.min(5, topCandidates.length));
         selected.push(topCandidates.splice(index, 1)[0].hazard);
     }
 
@@ -186,7 +186,7 @@ export function selectEnvironmentalEffects(environmentTag, encounterTags, numEff
     }
 
     if (numEffects === null) {
-        numEffects = Math.random() < 0.4 ? 1 : 0;
+        numEffects = random() < 0.4 ? 1 : 0;
     }
 
     if (numEffects === 0) return [];
@@ -199,7 +199,7 @@ export function selectEnvironmentalEffects(environmentTag, encounterTags, numEff
             if (allTags.includes(tag)) score += 1;
         }
         if (effect.tags.includes(environmentTag)) score += 1;
-        score += Math.random() * 0.5;
+        score += random() * 0.5;
         return { effect, score };
     });
 
@@ -209,7 +209,7 @@ export function selectEnvironmentalEffects(environmentTag, encounterTags, numEff
     const topCandidates = scoredEffects.slice(0, Math.min(10, scoredEffects.length));
 
     for (let i = 0; i < numEffects && topCandidates.length > 0; i++) {
-        const index = Math.floor(Math.random() * Math.min(3, topCandidates.length));
+        const index = Math.floor(random() * Math.min(3, topCandidates.length));
         selected.push(topCandidates.splice(index, 1)[0].effect);
     }
 
@@ -240,7 +240,7 @@ export function selectLocationsForEncounter(encounterTags, environment, numLocat
     }
     
     if (numLocations === null) {
-        const roll = Math.random();
+        const roll = random();
         if (roll < 0.4) numLocations = 3;
         else if (roll < 0.75) numLocations = 4;
         else numLocations = 5;
@@ -274,7 +274,7 @@ export function selectLocationsForEncounter(encounterTags, environment, numLocat
                     }
                 }
                 
-                score += Math.random() * 0.5;
+                score += random() * 0.5;
                 
                 return { key, location, score };
             });
@@ -283,7 +283,7 @@ export function selectLocationsForEncounter(encounterTags, environment, numLocat
             const availableKeys = locationKeys.filter(k => !usedLocations.has(k));
             if (availableKeys.length === 0) break;
             
-            const randomKey = availableKeys[Math.floor(Math.random() * availableKeys.length)];
+            const randomKey = availableKeys[Math.floor(random() * availableKeys.length)];
             usedLocations.add(randomKey);
             locations.push({
                 key: randomKey,
@@ -296,12 +296,12 @@ export function selectLocationsForEncounter(encounterTags, environment, numLocat
         locationScores.sort((a, b) => b.score - a.score);
         
         const totalScore = locationScores.reduce((sum, l) => sum + Math.max(0.1, l.score), 0);
-        let random = Math.random() * totalScore;
+        let rnd = random() * totalScore;
         
         let selectedLocation = null;
         for (const scored of locationScores) {
-            random -= Math.max(0.1, scored.score);
-            if (random <= 0) {
+            rnd -= Math.max(0.1, scored.score);
+            if (rnd <= 0) {
                 selectedLocation = scored;
                 break;
             }
@@ -336,7 +336,7 @@ export function selectNPCsForEncounter(encounterTags, numNPCs = null) {
     }
     
     if (numNPCs === null) {
-        numNPCs = Math.floor(Math.random() * 3) + 1;
+        numNPCs = Math.floor(random() * 3) + 1;
     }
     
     const npcs = [];
@@ -349,7 +349,7 @@ export function selectNPCsForEncounter(encounterTags, numNPCs = null) {
         let templateName = null;
         
         // Try to use NPC templates (70% chance)
-        if (window.npcData.npcTemplates && window.npcData.npcTemplates.length > 0 && Math.random() < 0.7) {
+        if (window.npcData.npcTemplates && window.npcData.npcTemplates.length > 0 && random() < 0.7) {
             const templateScores = window.npcData.npcTemplates.map(template => {
                 if (usedTemplates.has(template.name)) {
                     return { template, score: -1 };
@@ -370,7 +370,7 @@ export function selectNPCsForEncounter(encounterTags, numNPCs = null) {
             if (validTemplates.length > 0) {
                 const maxScore = Math.max(...validTemplates.map(t => t.score));
                 const topTemplates = validTemplates.filter(t => t.score >= maxScore - 1);
-                const selectedTemplate = topTemplates[Math.floor(Math.random() * topTemplates.length)].template;
+                const selectedTemplate = topTemplates[Math.floor(random() * topTemplates.length)].template;
                 
                 usedTemplates.add(selectedTemplate.name);
                 usingTemplate = true;
@@ -404,11 +404,11 @@ export function selectNPCsForEncounter(encounterTags, numNPCs = null) {
             
             if (validProfessions.length === 0) {
                 const availableProfessions = window.npcData.professions.filter(p => !usedProfessions.has(p.name));
-                selectedProfession = availableProfessions[Math.floor(Math.random() * availableProfessions.length)];
+                selectedProfession = availableProfessions[Math.floor(random() * availableProfessions.length)];
             } else {
                 const maxScore = Math.max(...validProfessions.map(p => p.score));
                 const topProfessions = validProfessions.filter(p => p.score >= maxScore - 1);
-                selectedProfession = topProfessions[Math.floor(Math.random() * topProfessions.length)].profession;
+                selectedProfession = topProfessions[Math.floor(random() * topProfessions.length)].profession;
             }
             
             usedProfessions.add(selectedProfession.name);
@@ -416,11 +416,11 @@ export function selectNPCsForEncounter(encounterTags, numNPCs = null) {
         
         // Generate the NPC
         const speciesKeys = Object.keys(window.npcData.species);
-        const species = speciesKeys[Math.floor(Math.random() * speciesKeys.length)];
+        const species = speciesKeys[Math.floor(random() * speciesKeys.length)];
         const speciesData = window.npcData.species[species];
         
-        const firstName = speciesData.firstNames[Math.floor(Math.random() * speciesData.firstNames.length)];
-        const surname = speciesData.surnames[Math.floor(Math.random() * speciesData.surnames.length)];
+        const firstName = speciesData.firstNames[Math.floor(random() * speciesData.firstNames.length)];
+        const surname = speciesData.surnames[Math.floor(random() * speciesData.surnames.length)];
         const fullName = `${firstName} ${surname}`;
         
         const alignment = window.npcData.alignments?.[Math.floor(Math.random() * window.npcData.alignments.length)] || { name: 'Neutral', description: 'Acts according to circumstance' };

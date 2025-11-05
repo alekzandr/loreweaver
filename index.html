@@ -30,30 +30,64 @@
             <!-- Generate Page -->
             <div id="generatePage" class="page-content">
                 <div class="controls">
-                    <div class="control-group">
-                        <label for="environment">Select Environment:</label>
-                        <div class="environment-tags" id="environmentTags">
-                            <div class="tag" data-env="urban">🏛️ Urban</div>
-                            <div class="tag" data-env="arctic">❄️ Arctic</div>
-                            <div class="tag" data-env="ocean">🌊 Ocean</div>
-                            <div class="tag" data-env="space">🌌 Space</div>
-                            <div class="tag" data-env="crypt">💀 Crypt</div>
-                            <div class="tag" data-env="forest">🌲 Forest</div>
-                            <div class="tag" data-env="desert">🏜️ Desert</div>
-                            <div class="tag" data-env="mountain">⛰️ Mountain</div>
-                            <div class="tag" data-env="swamp">🐊 Swamp</div>
-                            <div class="tag" data-env="underground">🕳️ Underground</div>
+                    <div class="controls-grid">
+                        <div class="control-group">
+                            <label for="environmentSelect">Environment:</label>
+                            <select id="environmentSelect" onchange="window.selectedEnvironment = this.value">
+                                <option value="urban">Urban</option>
+                                <option value="arctic">Arctic</option>
+                                <option value="ocean">Ocean</option>
+                                <option value="space">Space</option>
+                                <option value="crypt">Crypt</option>
+                                <option value="forest">Forest</option>
+                                <option value="desert">Desert</option>
+                                <option value="mountain">Mountain</option>
+                                <option value="swamp">Swamp</option>
+                                <option value="underground">Underground</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="partyLevel">Party Level:</label>
+                            <select id="partyLevel">
+                                <option value="1">Level 1</option>
+                                <option value="2">Level 2</option>
+                                <option value="3">Level 3</option>
+                                <option value="4">Level 4</option>
+                                <option value="5" selected>Level 5</option>
+                                <option value="6">Level 6</option>
+                                <option value="7">Level 7</option>
+                                <option value="8">Level 8</option>
+                                <option value="9">Level 9</option>
+                                <option value="10">Level 10</option>
+                                <option value="11">Level 11</option>
+                                <option value="12">Level 12</option>
+                                <option value="13">Level 13</option>
+                                <option value="14">Level 14</option>
+                                <option value="15">Level 15</option>
+                                <option value="16">Level 16</option>
+                                <option value="17">Level 17</option>
+                                <option value="18">Level 18</option>
+                                <option value="19">Level 19</option>
+                                <option value="20">Level 20</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="numLocations">Locations:</label>
+                            <select id="numLocations">
+                                <option value="1">1 Location</option>
+                                <option value="2">2 Locations</option>
+                                <option value="3" selected>3 Locations</option>
+                                <option value="4">4 Locations</option>
+                                <option value="5">5 Locations</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="control-group">
-                        <label for="partyLevel">Party Level (1-20):</label>
-                        <input type="number" id="partyLevel" min="1" max="20" value="5">
-                    </div>
-
-                    <div class="control-group">
-                        <label for="numLocations">Number of Locations (1-5):</label>
-                        <input type="number" id="numLocations" min="1" max="5" value="3">
+                        <label for="encounterSeed">Seed (optional):</label>
+                        <input type="text" id="encounterSeed" placeholder="Leave empty for random, or paste seed here">
                     </div>
 
                     <button onclick="generateEncounter()">🎲 Generate Encounter</button>
@@ -273,7 +307,7 @@
     <script type="module">
         // Import all modules - they will self-initialize and expose to window
         import './assets/js/data-loader.js';
-        import './assets/js/utils.js';
+        import { setRandomFunction, createSeededRandom, hashStringToSeed, random } from './assets/js/utils.js';
         import './assets/js/storage.js';
         import './assets/js/app.js';
         import './assets/js/export.js';
@@ -302,24 +336,13 @@
         window.currentRoomKey = null;
 
         // ============================================================================
-        // ENVIRONMENT TAG SELECTION
+        // ENVIRONMENT SELECTION
         // ============================================================================
         document.addEventListener('DOMContentLoaded', function() {
-            const envTags = document.querySelectorAll('.environment-tags .tag');
-            
-            envTags.forEach(tag => {
-                tag.addEventListener('click', function() {
-                    envTags.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    window.selectedEnvironment = this.getAttribute('data-env');
-                });
-            });
-
-            // Ensure a default environment is selected (mirrors app.js default)
-            if (!window.selectedEnvironment) {
-                window.selectedEnvironment = 'urban';
-                const defaultTag = document.querySelector('.environment-tags .tag[data-env="urban"]');
-                if (defaultTag) defaultTag.classList.add('active');
+            // Set default environment from dropdown
+            const envSelect = document.getElementById('environmentSelect');
+            if (envSelect) {
+                window.selectedEnvironment = envSelect.value;
             }
         });
 
@@ -340,17 +363,35 @@
             try {
                 const partyLevel = parseInt(document.getElementById('partyLevel').value);
                 const numLocations = parseInt(document.getElementById('numLocations').value);
+                const seedInput = document.getElementById('encounterSeed').value.trim();
+
+                // Handle seed
+                let seed;
+                if (seedInput) {
+                    // Use provided seed
+                    seed = window.hashStringToSeed(seedInput);
+                    const seededRandom = window.createSeededRandom(seed);
+                    window.setRandomFunction(seededRandom);
+                    window.currentSeed = seedInput;
+                } else {
+                    // Generate random seed
+                    window.currentSeed = Date.now().toString(36) + Math.random().toString(36).substr(2);
+                    document.getElementById('encounterSeed').value = window.currentSeed;
+                    seed = window.hashStringToSeed(window.currentSeed);
+                    const seededRandom = window.createSeededRandom(seed);
+                    window.setRandomFunction(seededRandom);
+                }
 
                 // Select encounter template
                 window.encounterTemplate = window.selectEncounterTemplate(window.selectedEnvironment);
                 
                 // Select content using smart selection from core.js
-                window.currentEncounterSkillChecks = window.selectSkillChecks(window.encounterTemplate.tags, [], [], Math.floor(Math.random() * 2) + 3);
-                window.currentEncounterTraps = window.selectTraps(window.encounterTemplate.tags, Math.floor(Math.random() * 3) + 2); // 2-4 traps
-                window.currentEncounterHazards = window.selectHazards(window.selectedEnvironment, window.encounterTemplate.tags, Math.floor(Math.random() * 3) + 2); // 2-4 hazards
-                window.currentEncounterEnvironmentalEffects = window.selectEnvironmentalEffects(window.selectedEnvironment, window.encounterTemplate.tags, Math.floor(Math.random() * 2) + 1); // 1-2 effects
+                window.currentEncounterSkillChecks = window.selectSkillChecks(window.encounterTemplate.tags, [], [], Math.floor(window.random() * 2) + 3);
+                window.currentEncounterTraps = window.selectTraps(window.encounterTemplate.tags, Math.floor(window.random() * 3) + 2); // 2-4 traps
+                window.currentEncounterHazards = window.selectHazards(window.selectedEnvironment, window.encounterTemplate.tags, Math.floor(window.random() * 3) + 2); // 2-4 hazards
+                window.currentEncounterEnvironmentalEffects = window.selectEnvironmentalEffects(window.selectedEnvironment, window.encounterTemplate.tags, Math.floor(window.random() * 2) + 1); // 1-2 effects
                 window.currentEncounterLocations = window.selectLocationsForEncounter(window.encounterTemplate.tags, window.selectedEnvironment, numLocations);
-                window.currentEncounterNPCs = window.selectNPCsForEncounter(window.encounterTemplate.tags, Math.floor(Math.random() * 3) + 2);
+                window.currentEncounterNPCs = window.selectNPCsForEncounter(window.encounterTemplate.tags, Math.floor(window.random() * 3) + 2);
 
                 // Generate encounter flow
                 window.currentEncounterFlow = generateEncounterFlow();
