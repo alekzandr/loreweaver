@@ -12,6 +12,7 @@ npm install
 npm test
 
 # Run specific tests
+npm run test:files   # Validate vital files exist
 npm run test:json    # Validate JSON data files
 npm run test:html    # Validate HTML structure
 npm run lint         # Check JavaScript code quality
@@ -28,23 +29,30 @@ GitHub Actions automatically runs tests on:
 
 ### What Gets Tested
 
-1. **JSON Validation** (`test:json`)
+1. **File Validation** (`test:files`)
+   - Verifies all vital files exist (CSS, JS, HTML, data files, images)
+   - Checks file sizes to ensure they're not empty
+   - Prevents accidental deletion of critical files
+   - Validates configuration and documentation files
+
+2. **JSON Validation** (`test:json`)
    - Validates all JSON files in `/data` directory
    - Checks structure and required fields
    - Verifies encounters have titles, descriptions, and tags
    - Ensures NPCs have required categories
+   - Validates capitalization in locations.json
 
-2. **JavaScript Linting** (`lint`)
+3. **JavaScript Linting** (`lint`)
    - Checks code quality with ESLint
    - Enforces consistent code style
    - Catches common errors
 
-3. **HTML Validation** (`test:html`)
+4. **HTML Validation** (`test:html`)
    - Verifies required page elements exist
    - Checks all JavaScript modules are loaded
    - Validates image references
 
-4. **Build Check** (`build-check`)
+5. **Build Check** (`build-check`)
    - Tests that the local server can start
    - Verifies the site is accessible
 
