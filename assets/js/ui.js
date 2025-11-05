@@ -373,7 +373,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
             const partyLevel = parseInt(document.getElementById('partyLevel')?.value) || 5;
             html += `
                 <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                    <h4 style="color: #9b59b6; margin-bottom: 10px;">🎲 Skill Checks</h4>
+                    <h4 style="color: #9b59b6; margin-bottom: 10px;"><img src="assets/img/d20.png" alt="dice" class="dice-icon"> Skill Checks</h4>
             `;
             relevantSkillChecks.forEach(check => {
                 html += `
@@ -551,7 +551,7 @@ export function showNPCDetail(npcIndex) {
     const content = document.getElementById('npcDetailContent');
     
     let html = `
-        <h3 style="margin-top: 0; color: #9b59b6;">👤 ${npc.name}</h3>
+        <h3 style="margin-top: 0; color: #9b59b6;"><img src="assets/img/character.png" alt="character" class="character-icon"> ${npc.name}</h3>
         <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 20px;">
             ${npc.species} ${npc.profession?.name || npc.profession}
         </p>
@@ -633,7 +633,7 @@ export function showNPCTooltip(event, npcIndex) {
     const tooltip = document.getElementById('npcTooltip');
     
     tooltip.innerHTML = `
-        <div class="npc-tooltip-header">👤 ${npc.name}</div>
+        <div class="npc-tooltip-header"><img src="assets/img/character.png" alt="character" class="character-icon"> ${npc.name}</div>
         <div class="npc-tooltip-row">
             <span class="npc-tooltip-label">Species:</span>
             <span class="npc-tooltip-value">${npc.species || 'Unknown'}</span>
@@ -691,7 +691,7 @@ export function showNPCDetailFromObject(npcJson) {
     const content = document.getElementById('npcDetailContent');
     
     let html = `
-        <h3 style="margin-top: 0; color: #9b59b6;">👤 ${npc.name}</h3>
+        <h3 style="margin-top: 0; color: #9b59b6;"><img src="assets/img/character.png" alt="character" class="character-icon"> ${npc.name}</h3>
         <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 20px;">
             ${npc.species} ${npc.profession?.name || npc.profession}
         </p>

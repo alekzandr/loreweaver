@@ -24,6 +24,24 @@
     --card-bg: rgba(255, 255, 255, 0.9);
 }
 
+/* Dice Icon */
+.dice-icon {
+    width: 1.2em;
+    height: 1.2em;
+    display: inline-block;
+    vertical-align: middle;
+    margin: -0.1em 0.1em 0 0;
+}
+
+/* Character Icon */
+.character-icon {
+    width: 1.2em;
+    height: 1.2em;
+    display: inline-block;
+    vertical-align: middle;
+    margin: -0.1em 0.1em 0 0;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
     background: linear-gradient(135deg, #e8f0fe 0%, #f8f9fa 50%, #fff5f5 100%);

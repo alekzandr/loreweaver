@@ -20,8 +20,8 @@
                 
                 <!-- Navigation Tabs -->
                 <div class="nav-tabs">
-                    <button class="nav-tab active" onclick="switchPage('generate')">🎲 Generate</button>
-                    <button class="nav-tab" onclick="switchPage('npc')">👤 NPCs</button>
+                    <button class="nav-tab active" onclick="switchPage('generate')"><img src="assets/img/d20.png" alt="dice" class="dice-icon"> Generate</button>
+                    <button class="nav-tab" onclick="switchPage('npc')"><img src="assets/img/character.png" alt="character" class="character-icon"> NPCs</button>
                     <button class="nav-tab" onclick="switchPage('search')">🔍 Search</button>
                     <button class="nav-tab" onclick="switchPage('settings')">⚙️ Settings</button>
                 </div>
@@ -90,7 +90,7 @@
                         <input type="text" id="encounterSeed" placeholder="Leave empty for random, or paste seed here">
                     </div>
 
-                    <button onclick="generateEncounter()">🎲 Generate Encounter</button>
+                    <button onclick="generateEncounter()"><img src="assets/img/d20.png" alt="dice" class="dice-icon"> Generate Encounter</button>
                 </div>
 
                 <div class="encounter-display" id="encounterDisplay">
@@ -175,7 +175,7 @@
 
                 <div class="encounter-display" id="npcDisplay">
                     <div class="encounter-section">
-                        <h2>🎲 Your NPC Will Appear Here</h2>
+                        <h2><img src="assets/img/d20.png" alt="dice" class="dice-icon"> Your NPC Will Appear Here</h2>
                         <p class="description">Click "Generate NPC" to create a diverse and interesting character for your campaign!</p>
                     </div>
                 </div>
