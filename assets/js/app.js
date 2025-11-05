@@ -196,7 +196,7 @@ function updateThemeUI(theme) {
  * Load saved theme from localStorage
  */
 function loadTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeUI(savedTheme);
 }
