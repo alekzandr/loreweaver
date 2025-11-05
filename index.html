@@ -85,9 +85,41 @@
                         </div>
                     </div>
 
-                    <div class="control-group">
-                        <label for="encounterSeed">Seed (optional):</label>
-                        <input type="text" id="encounterSeed" placeholder="Leave empty for random, or paste seed here">
+                    <div class="control-group seed-actions-group">
+                        <div class="seed-input-wrapper">
+                            <label for="encounterSeed">Seed (optional):</label>
+                            <input type="text" id="encounterSeed" placeholder="Leave empty for random, or paste seed here">
+                        </div>
+                        <div class="actions-wrapper">
+                            <label style="visibility: hidden;">Actions</label>
+                            <div class="encounter-actions">
+                                <button class="actions-btn" onclick="toggleEncounterMenu(event)" id="mainActionsBtn">
+                                    Actions
+                                </button>
+                                <div class="encounter-menu" id="encounterActionsMenu">
+                                    <button class="menu-item" onclick="window.saveCurrentEncounter(); closeEncounterMenu();">
+                                        <span class="menu-icon">💾</span>
+                                        <span class="menu-text">Save</span>
+                                    </button>
+                                    <button class="menu-item" onclick="window.showSavedEncounters(); closeEncounterMenu();">
+                                        <span class="menu-icon">📂</span>
+                                        <span class="menu-text">Load</span>
+                                    </button>
+                                    <button class="menu-item" onclick="window.exportEncounterMarkdown(); closeEncounterMenu();">
+                                        <span class="menu-icon">📝</span>
+                                        <span class="menu-text">Export as Markdown</span>
+                                    </button>
+                                    <button class="menu-item" onclick="window.exportEncounterText(); closeEncounterMenu();">
+                                        <span class="menu-icon">📄</span>
+                                        <span class="menu-text">Export as Text</span>
+                                    </button>
+                                    <button class="menu-item" onclick="window.exportEncounterPDF(); closeEncounterMenu();">
+                                        <span class="menu-icon">📋</span>
+                                        <span class="menu-text">Export as PDF</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <button onclick="generateEncounter()"><img src="assets/img/d20.png" alt="dice" class="dice-icon"> Generate Encounter</button>
@@ -410,35 +442,8 @@
             
             let html = `
                 <div class="encounter-section">
-                    <div class="section-header-with-actions">
+                    <div class="section-header">
                         <h2 onclick="toggleSection(event)">📜 ${window.encounterTemplate.title} <span class="section-toggle">▼</span></h2>
-                        <div class="encounter-actions">
-                            <button class="actions-btn" onclick="toggleEncounterMenu(event)">
-                                Actions
-                            </button>
-                            <div class="encounter-menu" id="encounterActionsMenu">
-                                <button class="menu-item" onclick="window.saveCurrentEncounter(); closeEncounterMenu();">
-                                    <span class="menu-icon">💾</span>
-                                    <span class="menu-text">Save</span>
-                                </button>
-                                <button class="menu-item" onclick="window.showSavedEncounters(); closeEncounterMenu();">
-                                    <span class="menu-icon">📂</span>
-                                    <span class="menu-text">Load</span>
-                                </button>
-                                <button class="menu-item" onclick="window.exportEncounterMarkdown(); closeEncounterMenu();">
-                                    <span class="menu-icon">📝</span>
-                                    <span class="menu-text">Export as Markdown</span>
-                                </button>
-                                <button class="menu-item" onclick="window.exportEncounterText(); closeEncounterMenu();">
-                                    <span class="menu-icon">📄</span>
-                                    <span class="menu-text">Export as Text</span>
-                                </button>
-                                <button class="menu-item" onclick="window.exportEncounterPDF(); closeEncounterMenu();">
-                                    <span class="menu-icon">📋</span>
-                                    <span class="menu-text">Export as PDF</span>
-                                </button>
-                            </div>
-                        </div>
                     </div>
                     <div class="section-content">
                         <p class="description">${window.buildEncounterDescription(window.selectedEnvironment, window.encounterTemplate.title, window.encounterTemplate.descriptions || window.encounterTemplate.description)}</p>
