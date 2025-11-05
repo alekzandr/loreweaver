@@ -7,28 +7,28 @@
         "building"
       ],
       "primary": [
-        "wooden crate",
-        "loading crane",
-        "storage shelf",
-        "shipping manifest",
-        "rope coil",
-        "tool bench"
+        "Wooden Crate",
+        "Loading Crane",
+        "Storage Shelf",
+        "Shipping Manifest",
+        "Rope Coil",
+        "Tool Bench"
       ],
       "secondary": [
-        "rusted nail",
-        "receipt",
-        "ledger book",
-        "oil lantern",
-        "chain",
-        "pulley"
+        "Rusted Nail",
+        "Receipt",
+        "Ledger Book",
+        "Oil Lantern",
+        "Chain",
+        "Pulley"
       ],
       "tertiary": [
-        "coin purse",
-        "jewelry",
-        "letter",
-        "key",
-        "trap mechanism",
-        "poison vial"
+        "Coin Purse",
+        "Jewelry",
+        "Letter",
+        "Key",
+        "Trap Mechanism",
+        "Poison Vial"
       ],
       "description": "Crates tower in dim rows beneath dusty rafters, their stenciled sigils half-hidden by cobwebs. Rope, oil, and old spice hang in the air. Lantern light pools on scuffed floorboards and fresh marks cross the grain. Something skitters deeper in the stacks when you stop to listen."
     },
@@ -40,28 +40,28 @@
         "district"
       ],
       "primary": [
-        "ornate desk",
-        "locked safe",
-        "bookshelf",
-        "filing cabinet",
-        "portrait painting",
-        "fireplace"
+        "Ornate Desk",
+        "Locked Safe",
+        "Bookshelf",
+        "Filing Cabinet",
+        "Portrait Painting",
+        "Fireplace"
       ],
       "secondary": [
-        "hidden drawer",
-        "secret compartment",
-        "ledger",
-        "correspondence",
-        "seal",
-        "inkwell"
+        "Hidden Drawer",
+        "Secret Compartment",
+        "Ledger",
+        "Correspondence",
+        "Seal",
+        "Inkwell"
       ],
       "tertiary": [
-        "family heirloom",
-        "deed",
-        "treasure map",
-        "incriminating letter",
-        "gold coins",
-        "magic item"
+        "Family Heirloom",
+        "Deed",
+        "Treasure Map",
+        "Incriminating Letter",
+        "Gold Coins",
+        "Magic Item"
       ],
       "description": "Polished stone halls echo with your bootsteps and the rustle of parchment. Stern portraits watch from paneled walls. Warm firelight spills from the hearth while the shadows behind the desk hold still. Ink and wax scent the air as keys rattle in distant doors."
     },
@@ -74,28 +74,28 @@
         "market"
       ],
       "primary": [
-        "market stall",
-        "merchant cart",
-        "street lamp",
-        "notice board",
-        "vendor stand",
-        "fountain"
+        "Market Stall",
+        "Merchant Cart",
+        "Street Lamp",
+        "Notice Board",
+        "Vendor Stand",
+        "Fountain"
       ],
       "secondary": [
-        "loose cobblestone",
-        "rain barrel",
-        "awning",
-        "signpost",
-        "doorway",
-        "window"
+        "Loose Cobblestone",
+        "Rain Barrel",
+        "Awning",
+        "Signpost",
+        "Doorway",
+        "Window"
       ],
       "tertiary": [
-        "dropped coin",
-        "torn poster",
-        "hidden cache",
-        "secret mark",
-        "smuggler sign",
-        "trap"
+        "Dropped Coin",
+        "Torn Poster",
+        "Hidden Cache",
+        "Secret Mark",
+        "Smuggler Sign",
+        "Trap"
       ],
       "description": "Rain-slick cobblestones shine under colorful awnings where vendors call for your attention. Chatter blends with the clatter of hooves and a distant bell. Warm bread, frying fish, and sharp alchemy mix on the breeze. Faces slide past; eyes flick to you and away."
     },
@@ -106,28 +106,28 @@
         "outdoor"
       ],
       "primary": [
-        "shipping crate",
-        "mooring post",
-        "cargo net",
-        "dock crane",
-        "warehouse door",
-        "gangplank"
+        "Shipping Crate",
+        "Mooring Post",
+        "Cargo Net",
+        "Dock Crane",
+        "Warehouse Door",
+        "Gangplank"
       ],
       "secondary": [
-        "rope",
-        "anchor",
-        "barrel",
-        "canvas tarp",
-        "shipping manifest",
-        "oil lamp"
+        "Rope",
+        "Anchor",
+        "Barrel",
+        "Canvas Tarp",
+        "Shipping Manifest",
+        "Oil Lamp"
       ],
       "tertiary": [
-        "smuggled goods",
-        "hidden compartment",
-        "coded message",
-        "stolen treasure",
-        "trap",
-        "key"
+        "Smuggled Goods",
+        "Hidden Compartment",
+        "Coded Message",
+        "Stolen Treasure",
+        "Trap",
+        "Key"
       ],
       "description": "Salt-stained planks creak under cargo and hurried feet. Gull cries tangle with deep ship horns across the water. Lanterns sway in the breeze, throwing nets of moving shadow over bundled lines and coiled rope. Low voices trade quickly beside the piles of gear."
     },
@@ -138,28 +138,28 @@
         "tunnel"
       ],
       "primary": [
-        "drainage pipe",
-        "sewer grate",
-        "maintenance ladder",
-        "brick archway",
-        "water channel",
-        "junction"
+        "Drainage Pipe",
+        "Sewer Grate",
+        "Maintenance Ladder",
+        "Brick Archway",
+        "Water Channel",
+        "Junction"
       ],
       "secondary": [
-        "rat nest",
-        "debris pile",
-        "broken gate",
-        "rusty valve",
-        "slime",
-        "chain"
+        "Rat Nest",
+        "Debris Pile",
+        "Broken Gate",
+        "Rusty Valve",
+        "Slime",
+        "Chain"
       ],
       "tertiary": [
-        "lost valuables",
-        "body",
-        "smuggler cache",
-        "disease",
-        "trap",
-        "monster lair"
+        "Lost Valuables",
+        "Body",
+        "Smuggler Cache",
+        "Disease",
+        "Trap",
+        "Monster Lair"
       ],
       "description": "Stale air clings to brick tunnels where dark water threads along the floor. Condensation beads on the walls, reflecting torchlight in sickly greens. Alchemical runoff mixes with the musk of vermin. Echoes travel far; even a whisper comes back twice."
     },
@@ -170,28 +170,30 @@
         "outdoor",
         "bridge"
       ],
-      "description": "Iron lattice and quiet enchantment span the gap high above the streets. Wind tugs at your cloak while the city unfurls below. Crystal lanterns flicker along the rails when distant thunder grumbles. The metal under your palm hums with a faint, steady vibration.","primary": ["suspension cables humming with latent magic",
-        "ornate stone balustrade etched with duelist crests",
-        "lantern pylons casting rainbows through morning mist",
-        "banner-strewn archway leading into guild towers",
-        "watchpost alcove overlooking the river docks",
-        "emergency winch platform secured with brass locks"
+      "description": "Iron lattice and quiet enchantment span the gap high above the streets. Wind tugs at your cloak while the city unfurls below. Crystal lanterns flicker along the rails when distant thunder grumbles. The metal under your palm hums with a faint, steady vibration.",
+      "primary": [
+        "Suspension Cables Humming With Latent Magic",
+        "Ornate Stone Balustrade Etched With Duelist Crests",
+        "Lantern Pylons Casting Rainbows Through Morning Mist",
+        "Banner-strewn Archway Leading Into Guild Towers",
+        "Watchpost Alcove Overlooking The River Docks",
+        "Emergency Winch Platform Secured With Brass Locks"
       ],
       "secondary": [
-        "tethered dueling harness draped over a railing",
-        "discarded glove stamped with a noble seal",
-        "loose paving stone hiding a grappling hook clamp",
-        "maintenance hatch leading into the tower interior",
-        "chalked boundary line for formal challenges",
-        "sightline to a concealed crossbow perch"
+        "Tethered Dueling Harness Draped Over A Railing",
+        "Discarded Glove Stamped With A Noble Seal",
+        "Loose Paving Stone Hiding A Grappling Hook Clamp",
+        "Maintenance Hatch Leading Into The Tower Interior",
+        "Chalked Boundary Line For Formal Challenges",
+        "Sightline To A Concealed Crossbow Perch"
       ],
       "tertiary": [
-        "folded ransom note weighted by a silver coin",
-        "concealed wand sheath wedged beneath the balustrade",
-        "clockwork raven relay awaiting whispered orders",
-        "spent alchemical flare lodged in the railing",
-        "gemstone dust marking sabotage runes",
-        "coil of silken rope with a dangerously frayed section"
+        "Folded Ransom Note Weighted By A Silver Coin",
+        "Concealed Wand Sheath Wedged Beneath The Balustrade",
+        "Clockwork Raven Relay Awaiting Whispered Orders",
+        "Spent Alchemical Flare Lodged In The Railing",
+        "Gemstone Dust Marking Sabotage Runes",
+        "Coil Of Silken Rope With A Dangerously Frayed Section"
       ]
     },
     "maskmakers_guildhall": {
@@ -200,28 +202,30 @@
         "indoor",
         "artisanal"
       ],
-      "description": "Shelves brim with half-finished masks, each face catching the light as you pass. Lacquer, incense, and warm cloth scent the room. Artisans move with practiced grace, tools tapping out a careful rhythm. Painted eyes seem to follow you from every corner.","primary": ["grand showroom lined with mannequins in seasonal regalia",
-        "engraving studio with mirror-bright tools",
-        "vaulted ceiling mural depicting historic galas",
-        "apprentice workshop buzzing with illusion magic",
-        "sealed vault door embossed with the guild sigil",
-        "ledger table stacked with commission contracts"
+      "description": "Shelves brim with half-finished masks, each face catching the light as you pass. Lacquer, incense, and warm cloth scent the room. Artisans move with practiced grace, tools tapping out a careful rhythm. Painted eyes seem to follow you from every corner.",
+      "primary": [
+        "Grand Showroom Lined With Mannequins In Seasonal Regalia",
+        "Engraving Studio With Mirror-bright Tools",
+        "Vaulted Ceiling Mural Depicting Historic Galas",
+        "Apprentice Workshop Buzzing With Illusion Magic",
+        "Sealed Vault Door Embossed With The Guild Sigil",
+        "Ledger Table Stacked With Commission Contracts"
       ],
       "secondary": [
-        "mask molds carved from rare heartwood",
-        "racks of scented lacquer vials",
-        "discarded ticket stubs from recent performances",
-        "secret trapdoor concealed beneath layered carpet",
-        "whispering illusion that reenacts famous scandals",
-        "spyglass trained on the plaza outside"
+        "Mask Molds Carved From Rare Heartwood",
+        "Racks Of Scented Lacquer Vials",
+        "Discarded Ticket Stubs From Recent Performances",
+        "Secret Trapdoor Concealed Beneath Layered Carpet",
+        "Whispering Illusion That Reenacts Famous Scandals",
+        "Spyglass Trained On The Plaza Outside"
       ],
       "tertiary": [
-        "blackmail ledger tucked inside a gilt mask",
-        "vial of sleep-inducing incense blend",
-        "encrypted invitation to a rival guild soiree",
-        "hidden compartment containing counterfeit seals",
-        "promise note from a debtor noble",
-        "glimmering spirit mask that speaks truths unasked"
+        "Blackmail Ledger Tucked Inside A Gilt Mask",
+        "Vial Of Sleep-inducing Incense Blend",
+        "Encrypted Invitation To A Rival Guild Soiree",
+        "Hidden Compartment Containing Counterfeit Seals",
+        "Promise Note From A Debtor Noble",
+        "Glimmering Spirit Mask That Speaks Truths Unasked"
       ]
     },
     "arcane_tram_depot": {
@@ -230,28 +234,30 @@
         "industrial",
         "indoor"
       ],
-      "description": "Rails hum with latent energy beneath stained-glass constellations. Conductors in rune-stitched uniforms guide commuters through rings of light. The clang of maintenance golems meets the chime of departure bells. Switches clack in tight sequences as the floor thrums underfoot.","primary": ["levitating tram car suspended in maintenance cradle",
-        "conductor's control dais surrounded by safety sigils",
-        "rack of insulated harnesses for line workers",
-        "dispatch board mapping city routes in light",
-        "emergency aether dampener anchored to the floor",
-        "tool trolley bristling with arc-wrenches"
+      "description": "Rails hum with latent energy beneath stained-glass constellations. Conductors in rune-stitched uniforms guide commuters through rings of light. The clang of maintenance golems meets the chime of departure bells. Switches clack in tight sequences as the floor thrums underfoot.",
+      "primary": [
+        "Levitating Tram Car Suspended In Maintenance Cradle",
+        "Conductor's Control Dais Surrounded By Safety Sigils",
+        "Rack Of Insulated Harnesses For Line Workers",
+        "Dispatch Board Mapping City Routes In Light",
+        "Emergency Aether Dampener Anchored To The Floor",
+        "Tool Trolley Bristling With Arc-wrenches"
       ],
       "secondary": [
-        "scorch-marked panel awaiting repair",
-        "stack of commuter complaints bound with ribbon",
-        "arc flash shield leaning against a column",
-        "maintenance log etched into glass tablet",
-        "warning placard listing evacuation procedures",
-        "spare focusing crystals stored in padded cases"
+        "Scorch-marked Panel Awaiting Repair",
+        "Stack Of Commuter Complaints Bound With Ribbon",
+        "Arc Flash Shield Leaning Against A Column",
+        "Maintenance Log Etched Into Glass Tablet",
+        "Warning Placard Listing Evacuation Procedures",
+        "Spare Focusing Crystals Stored In Padded Cases"
       ],
       "tertiary": [
-        "prototype speed governor hidden under a tarp",
-        "smuggled cargo crate mislabeled as scrap",
-        "encrypted schedule chip containing extra stops",
-        "bundle of bribe notes for inspector lookaways",
-        "sympathetic charm binding two tram conductors",
-        "unstable lightning elemental trapped in a flask"
+        "Prototype Speed Governor Hidden Under A Tarp",
+        "Smuggled Cargo Crate Mislabeled As Scrap",
+        "Encrypted Schedule Chip Containing Extra Stops",
+        "Bundle Of Bribe Notes For Inspector Lookaways",
+        "Sympathetic Charm Binding Two Tram Conductors",
+        "Unstable Lightning Elemental Trapped In A Flask"
       ]
     },
     "moonlit_menagerie": {
@@ -260,28 +266,30 @@
         "outdoor",
         "garden"
       ],
-      "description": "Silver moonlight slips through wrought-iron cages tangled in flowering vines. Exotic beasts lounge on enchanted sand, their eyes tracking your movement. Soft music drifts from somewhere unseen. Latches rattle and chains tug when a tail thumps or a wing tests the air.","primary": ["star-lit aviary dome with prismatic glass panes",
-        "serene reflecting pool doubling as a selkie habitat",
-        "caretaker kiosk stocked with calming draughts",
-        "ornamental hedge maze concealing hidden pens",
-        "stone amphitheater for animal training displays",
-        "runed gate that responds to keeper whistles"
+      "description": "Silver moonlight slips through wrought-iron cages tangled in flowering vines. Exotic beasts lounge on enchanted sand, their eyes tracking your movement. Soft music drifts from somewhere unseen. Latches rattle and chains tug when a tail thumps or a wing tests the air.",
+      "primary": [
+        "Star-lit Aviary Dome With Prismatic Glass Panes",
+        "Serene Reflecting Pool Doubling As A Selkie Habitat",
+        "Caretaker Kiosk Stocked With Calming Draughts",
+        "Ornamental Hedge Maze Concealing Hidden Pens",
+        "Stone Amphitheater For Animal Training Displays",
+        "Runed Gate That Responds To Keeper Whistles"
       ],
       "secondary": [
-        "scattered feed buckets tipped by panicked creatures",
-        "broken latch hanging from a griffon roost",
-        "trail of luminescent fur leading into the gardens",
-        "scribbled feeding schedule pinned to a post",
-        "abandoned spectator cloak marked with noble crest",
-        "quiet alarm bell disabled by cut wires"
+        "Scattered Feed Buckets Tipped By Panicked Creatures",
+        "Broken Latch Hanging From A Griffon Roost",
+        "Trail Of Luminescent Fur Leading Into The Gardens",
+        "Scribbled Feeding Schedule Pinned To A Post",
+        "Abandoned Spectator Cloak Marked With Noble Crest",
+        "Quiet Alarm Bell Disabled By Cut Wires"
       ],
       "tertiary": [
-        "cracked crate that once housed a miniature dragon",
-        "tranquilizing blowgun with empty darts",
-        "secret adoption contract for an illegal familiar",
-        "map of underground escape tunnels for beasts",
-        "enchanted collar that compels obedience",
-        "unhatched egg pulsing with latent magic"
+        "Cracked Crate That Once Housed A Miniature Dragon",
+        "Tranquilizing Blowgun With Empty Darts",
+        "Secret Adoption Contract For An Illegal Familiar",
+        "Map Of Underground Escape Tunnels For Beasts",
+        "Enchanted Collar That Compels Obedience",
+        "Unhatched Egg Pulsing With Latent Magic"
       ]
     },
     "stormglass_conservatory": {
@@ -290,28 +298,30 @@
         "arcane",
         "indoor"
       ],
-      "description": "Crystal domes cradle stormclouds above rare, glistening flora. Humid air carries ozone, wet leaves, and sweet blooms. Lightning crawls across the glass with a pop that tingles on your skin. Scholars murmur as gauges tick and petals refract the light.","primary": ["cyclone terrarium contained by sigil-laced glass",
-        "humidity regulator shaped like a silver tree",
-        "research dais covered in pressure gauges",
-        "stormglass petals refracting multicolored light",
-        "spiral staircase leading to observation balcony",
-        "arcane sluice routing rainwater into reservoirs"
+      "description": "Crystal domes cradle stormclouds above rare, glistening flora. Humid air carries ozone, wet leaves, and sweet blooms. Lightning crawls across the glass with a pop that tingles on your skin. Scholars murmur as gauges tick and petals refract the light.",
+      "primary": [
+        "Cyclone Terrarium Contained By Sigil-laced Glass",
+        "Humidity Regulator Shaped Like A Silver Tree",
+        "Research Dais Covered In Pressure Gauges",
+        "Stormglass Petals Refracting Multicolored Light",
+        "Spiral Staircase Leading To Observation Balcony",
+        "Arcane Sluice Routing Rainwater Into Reservoirs"
       ],
       "secondary": [
-        "loose runic clamp sparking erratically",
-        "journal detailing forecast experiments",
-        "protective cloak woven from water-repellent silk",
-        "lantern fueled by bottled lightning",
-        "case of emergency grounding rods",
-        "collection of thunderstone seeds ready to bloom"
+        "Loose Runic Clamp Sparking Erratically",
+        "Journal Detailing Forecast Experiments",
+        "Protective Cloak Woven From Water-repellent Silk",
+        "Lantern Fueled By Bottled Lightning",
+        "Case Of Emergency Grounding Rods",
+        "Collection Of Thunderstone Seeds Ready To Bloom"
       ],
       "tertiary": [
-        "sentient vine specimen seeking new soil",
-        "sealed note from a saboteur demanding funding",
-        "prototype weather wand calibrated for hurricanes",
-        "rare pollen that induces prophetic dreams",
-        "dimensional leak whispering with storm spirits",
-        "booby-trapped toolbox rigged to explode in rain"
+        "Sentient Vine Specimen Seeking New Soil",
+        "Sealed Note From A Saboteur Demanding Funding",
+        "Prototype Weather Wand Calibrated For Hurricanes",
+        "Rare Pollen That Induces Prophetic Dreams",
+        "Dimensional Leak Whispering With Storm Spirits",
+        "Booby-trapped Toolbox Rigged To Explode In Rain"
       ]
     },
     "clockwork_foundry": {
@@ -320,28 +330,30 @@
         "industrial",
         "indoor"
       ],
-      "description": "Massive gears turn with a steady clank while molten metal pours into waiting molds. Sparks hiss through hot air as shouted orders cut the din. Hot brass and machine oil burn the back of your throat. The floor trembles with each press and vented plume of steam.","primary": ["central smelting crucible fed by fire elementals",
-        "assembly line of half-finished guardian constructs",
-        "control balcony overlooking stamping presses",
-        "rack of modular armor plating in various sizes",
-        "cooling trough bubbling with tempering oils",
-        "vault door leading to blueprint archives"
+      "description": "Massive gears turn with a steady clank while molten metal pours into waiting molds. Sparks hiss through hot air as shouted orders cut the din. Hot brass and machine oil burn the back of your throat. The floor trembles with each press and vented plume of steam.",
+      "primary": [
+        "Central Smelting Crucible Fed By Fire Elementals",
+        "Assembly Line Of Half-finished Guardian Constructs",
+        "Control Balcony Overlooking Stamping Presses",
+        "Rack Of Modular Armor Plating In Various Sizes",
+        "Cooling Trough Bubbling With Tempering Oils",
+        "Vault Door Leading To Blueprint Archives"
       ],
       "secondary": [
-        "slag heap glittering with valuable scrap",
-        "abacus tallying production quotas",
-        "overheated pressure gauge venting steam",
-        "worker locker stuffed with protective gear",
-        "toolbox containing precision tuning forks",
-        "work roster with names hastily scratched out"
+        "Slag Heap Glittering With Valuable Scrap",
+        "Abacus Tallying Production Quotas",
+        "Overheated Pressure Gauge Venting Steam",
+        "Worker Locker Stuffed With Protective Gear",
+        "Toolbox Containing Precision Tuning Forks",
+        "Work Roster With Names Hastily Scratched Out"
       ],
       "tertiary": [
-        "rune-stamped schematic revealing forbidden designs",
-        "residual anima crystal craving a new host",
-        "strike fund hidden beneath loose floorboards",
-        "dormant golem heart waiting to ignite",
-        "unpaid invoice to a mercenary company",
-        "emergency shutoff lever jammed with slag"
+        "Rune-stamped Schematic Revealing Forbidden Designs",
+        "Residual Anima Crystal Craving A New Host",
+        "Strike Fund Hidden Beneath Loose Floorboards",
+        "Dormant Golem Heart Waiting To Ignite",
+        "Unpaid Invoice To A Mercenary Company",
+        "Emergency Shutoff Lever Jammed With Slag"
       ]
     },
     "hidden_resistance_safehouse": {
@@ -350,28 +362,30 @@
         "underground",
         "alley"
       ],
-      "description": "An unmarked door opens into rooms lit by shuttered lanterns. Maps sprawl across tables weighted with coded slips and pins. Whispered plans scrape against the steady sound of a whetstone. Hands pause, then resume, as your boots quiet on the floorboards.","primary": ["cellar entrance concealed behind flour sacks",
-        "chalkboard menu masking coded directives",
-        "meeting table carved with insurgent slogans",
-        "lockbox filled with forged travel papers",
-        "narrow tunnel leading to the sewer network",
-        "makeshift infirmary stocked with contraband salves"
+      "description": "An unmarked door opens into rooms lit by shuttered lanterns. Maps sprawl across tables weighted with coded slips and pins. Whispered plans scrape against the steady sound of a whetstone. Hands pause, then resume, as your boots quiet on the floorboards.",
+      "primary": [
+        "Cellar Entrance Concealed Behind Flour Sacks",
+        "Chalkboard Menu Masking Coded Directives",
+        "Meeting Table Carved With Insurgent Slogans",
+        "Lockbox Filled With Forged Travel Papers",
+        "Narrow Tunnel Leading To The Sewer Network",
+        "Makeshift Infirmary Stocked With Contraband Salves"
       ],
       "secondary": [
-        "rotating pantry shelf that opens a hidden passage",
-        "pinned map riddled with colored string routes",
-        "stash of plain cloaks for fast disguises",
-        "listening tube connected to street-level grate",
-        "symbolic relic of a fallen revolutionary",
-        "pair of messenger pigeons cooing softly"
+        "Rotating Pantry Shelf That Opens A Hidden Passage",
+        "Pinned Map Riddled With Colored String Routes",
+        "Stash Of Plain Cloaks For Fast Disguises",
+        "Listening Tube Connected To Street-level Grate",
+        "Symbolic Relic Of A Fallen Revolutionary",
+        "Pair Of Messenger Pigeons Cooing Softly"
       ],
       "tertiary": [
-        "sealed orders naming the next target of sabotage",
-        "coded confession from an embedded spy",
-        "cache of emeralds funding the resistance",
-        "knock sequence engraved on a copper coin",
-        "portable sending stone tuned to allies",
-        "trapdoor rigged with sleeping gas for intruders"
+        "Sealed Orders Naming The Next Target Of Sabotage",
+        "Coded Confession From An Embedded Spy",
+        "Cache Of Emeralds Funding The Resistance",
+        "Knock Sequence Engraved On A Copper Coin",
+        "Portable Sending Stone Tuned To Allies",
+        "Trapdoor Rigged With Sleeping Gas For Intruders"
       ]
     },
     "floating_bazaar": {
@@ -380,28 +394,30 @@
         "floating",
         "outdoor"
       ],
-      "description": "Tethered barges bob in a slow rhythm while awnings snap over the canal. Vendors pass spices, charms, and rumors from boat to boat. Lanterns sway from mastheads, light rippling over piled wares. Coins clink, planks tilt, and hulls bump with each trade.","primary": ["central barter raft stacked with rare spices",
-        "rope bridges connecting brightly painted stalls",
-        "river shamans chanting for calm waters",
-        "entertainers juggling fireflies in glass globes",
-        "driftwood shrine honoring river spirits",
-        "ledger booth for customs inspectors"
+      "description": "Tethered barges bob in a slow rhythm while awnings snap over the canal. Vendors pass spices, charms, and rumors from boat to boat. Lanterns sway from mastheads, light rippling over piled wares. Coins clink, planks tilt, and hulls bump with each trade.",
+      "primary": [
+        "Central Barter Raft Stacked With Rare Spices",
+        "Rope Bridges Connecting Brightly Painted Stalls",
+        "River Shamans Chanting For Calm Waters",
+        "Entertainers Juggling Fireflies In Glass Globes",
+        "Driftwood Shrine Honoring River Spirits",
+        "Ledger Booth For Customs Inspectors"
       ],
       "secondary": [
-        "hidden keelboat loaded with contraband",
-        "clinking string of barter tokens",
-        "net of glittering fish offered as payment",
-        "folding stage for sudden performances",
-        "tethered guard drake dozing beside a post",
-        "weathered chart of shifting sandbars"
+        "Hidden Keelboat Loaded With Contraband",
+        "Clinking String Of Barter Tokens",
+        "Net Of Glittering Fish Offered As Payment",
+        "Folding Stage For Sudden Performances",
+        "Tethered Guard Drake Dozing Beside A Post",
+        "Weathered Chart Of Shifting Sandbars"
       ],
       "tertiary": [
-        "smuggler's code etched beneath a crate",
-        "sealed jar containing a wish-granting minnow",
-        "secret contract binding a merchant prince",
-        "glass ampoule of river curse antidote",
-        "escape rope anchored for a quick getaway",
-        "assassin's garrote hidden in a silk sash"
+        "Smuggler's Code Etched Beneath A Crate",
+        "Sealed Jar Containing A Wish-granting Minnow",
+        "Secret Contract Binding A Merchant Prince",
+        "Glass Ampoule Of River Curse Antidote",
+        "Escape Rope Anchored For A Quick Getaway",
+        "Assassin's Garrote Hidden In A Silk Sash"
       ]
     },
     "city_watch_barracks": {
@@ -410,28 +426,30 @@
         "guard",
         "indoor"
       ],
-      "description": "Armor stands gleam beside tight bunks smelling of oiled leather and strong tea. From the yard come sharp calls and the bite of practice steel. Ink, sweat, and rain drift through open doors. Signal horns and boots wait ready by the threshold.","primary": ["mess hall full of half-finished breakfasts",
-        "armory cage lined with spears and tower shields",
-        "briefing dais showcasing active patrol routes",
-        "evidence locker secured with arcane wards",
-        "sparring ring ringed by practice dummies",
-        "captain's office overlooking the courtyard"
+      "description": "Armor stands gleam beside tight bunks smelling of oiled leather and strong tea. From the yard come sharp calls and the bite of practice steel. Ink, sweat, and rain drift through open doors. Signal horns and boots wait ready by the threshold.",
+      "primary": [
+        "Mess Hall Full Of Half-finished Breakfasts",
+        "Armory Cage Lined With Spears And Tower Shields",
+        "Briefing Dais Showcasing Active Patrol Routes",
+        "Evidence Locker Secured With Arcane Wards",
+        "Sparring Ring Ringed By Practice Dummies",
+        "Captain's Office Overlooking The Courtyard"
       ],
       "secondary": [
-        "disciplinary board listing recent infractions",
-        "locked chest of confiscated contraband",
-        "stack of requisition forms awaiting signatures",
-        "training manuals annotated with field notes",
-        "wall of commendations for brave service",
-        "pigeon coop used for urgent alerts"
+        "Disciplinary Board Listing Recent Infractions",
+        "Locked Chest Of Confiscated Contraband",
+        "Stack Of Requisition Forms Awaiting Signatures",
+        "Training Manuals Annotated With Field Notes",
+        "Wall Of Commendations For Brave Service",
+        "Pigeon Coop Used For Urgent Alerts"
       ],
       "tertiary": [
-        "unsigned arrest warrant implicating a noble",
-        "hidden flask tucked behind a duty roster",
-        "emergency whistle tuned to resonate citywide wards",
-        "favor chit owed by an influential guildmaster",
-        "encoded patrol schedule indicating a planned mutiny",
-        "secret ledger documenting protection rackets"
+        "Unsigned Arrest Warrant Implicating A Noble",
+        "Hidden Flask Tucked Behind A Duty Roster",
+        "Emergency Whistle Tuned To Resonate Citywide Wards",
+        "Favor Chit Owed By An Influential Guildmaster",
+        "Encoded Patrol Schedule Indicating A Planned Mutiny",
+        "Secret Ledger Documenting Protection Rackets"
       ]
     },
     "echoing_basilica": {
@@ -440,28 +458,30 @@
         "indoor",
         "acoustic"
       ],
-      "description": "Vaulted ceilings turn every whisper into a soft chorus. Stained glass paints shifting colors across cool marble. Incense curls lazily around carved pews and confessionals. Your own voice returns to you, clear enough to make you lower it.","primary": ["choir loft suspended above marble nave",
-        "confessional alcoves veiled by velvet curtains",
-        "resonance bell attuned to spoken truths",
-        "mosaic floor depicting civic heroes kneeling",
-        "sacristy cabinet filled with sanctified relics",
-        "archives chamber storing confession transcripts"
+      "description": "Vaulted ceilings turn every whisper into a soft chorus. Stained glass paints shifting colors across cool marble. Incense curls lazily around carved pews and confessionals. Your own voice returns to you, clear enough to make you lower it.",
+      "primary": [
+        "Choir Loft Suspended Above Marble Nave",
+        "Confessional Alcoves Veiled By Velvet Curtains",
+        "Resonance Bell Attuned To Spoken Truths",
+        "Mosaic Floor Depicting Civic Heroes Kneeling",
+        "Sacristy Cabinet Filled With Sanctified Relics",
+        "Archives Chamber Storing Confession Transcripts"
       ],
       "secondary": [
-        "incense brazier that amplifies spoken words",
-        "scribbled sermon notes hinting at scandal",
-        "acoustic focus crystal humming with energy",
-        "collection plate overflowing with anonymous coins",
-        "warden's staff inlaid with silence runes",
-        "hidden stairway to rooftop observation deck"
+        "Incense Brazier That Amplifies Spoken Words",
+        "Scribbled Sermon Notes Hinting At Scandal",
+        "Acoustic Focus Crystal Humming With Energy",
+        "Collection Plate Overflowing With Anonymous Coins",
+        "Warden's Staff Inlaid With Silence Runes",
+        "Hidden Stairway To Rooftop Observation Deck"
       ],
       "tertiary": [
-        "sealed letter threatening public revelation",
-        "atonement mask whispering secrets of past wearers",
-        "banned treatise on manipulating the basilica echoes",
-        "crypt key disguised as rosary beads",
-        "scroll promising absolution in exchange for treachery",
-        "ethereal choir member bound to a silver cage"
+        "Sealed Letter Threatening Public Revelation",
+        "Atonement Mask Whispering Secrets Of Past Wearers",
+        "Banned Treatise On Manipulating The Basilica Echoes",
+        "Crypt Key Disguised As Rosary Beads",
+        "Scroll Promising Absolution In Exchange For Treachery",
+        "Ethereal Choir Member Bound To A Silver Cage"
       ]
     },
     "rooftop_garden": {
@@ -471,28 +491,28 @@
         "outdoor"
       ],
       "primary": [
-        "flowering plants",
-        "herb garden",
-        "secluded bench",
-        "fountain",
-        "bee hives",
-        "gardener's shed"
+        "Flowering Plants",
+        "Herb Garden",
+        "Secluded Bench",
+        "Fountain",
+        "Bee Hives",
+        "Gardener's Shed"
       ],
       "secondary": [
-        "rare flowers",
-        "poisonous herbs",
-        "secret meeting spot",
-        "lovers' carving",
-        "hidden message",
-        "stash of tools"
+        "Rare Flowers",
+        "Poisonous Herbs",
+        "Secret Meeting Spot",
+        "Lovers' Carving",
+        "Hidden Message",
+        "Stash Of Tools"
       ],
       "tertiary": [
-        "alchemist's secret ingredient",
-        "assassin's poison source",
-        "portal to the feywild",
-        "talking statue",
-        "mandrake root",
-        "hidden treasure chest"
+        "Alchemist's Secret Ingredient",
+        "Assassin's Poison Source",
+        "Portal To The Feywild",
+        "Talking Statue",
+        "Mandrake Root",
+        "Hidden Treasure Chest"
       ],
       "description": "Above the city's grime, a hidden oasis of green offers a respite from the chaos. The air is sweet with the scent of flowers and damp earth. It is a place of peace, but also of secrets."
     },
@@ -503,28 +523,28 @@
         "indoor"
       ],
       "primary": [
-        "stalls selling illicit goods",
-        "shady characters",
-        "black market currency",
-        "smuggled items",
-        "dangerous beasts in cages",
-        "illegal fighting pit"
+        "Stalls Selling Illicit Goods",
+        "Shady Characters",
+        "Black Market Currency",
+        "Smuggled Items",
+        "Dangerous Beasts In Cages",
+        "Illegal Fighting Pit"
       ],
       "secondary": [
-        "stolen art",
-        "forbidden magic items",
-        "counterfeit documents",
-        "slaves",
-        "information brokers",
-        "assassins for hire"
+        "Stolen Art",
+        "Forbidden Magic Items",
+        "Counterfeit Documents",
+        "Slaves",
+        "Information Brokers",
+        "Assassins For Hire"
       ],
       "tertiary": [
-        "a powerful artifact",
-        "a map to a hidden treasure",
-        "a captive noble",
-        "a secret entrance to the palace",
-        "a thieves' guild headquarters",
-        "a portal to the abyss"
+        "A Powerful Artifact",
+        "A Map To A Hidden Treasure",
+        "A Captive Noble",
+        "A Secret Entrance To The Palace",
+        "A Thieves' Guild Headquarters",
+        "A Portal To The Abyss"
       ],
       "description": "In the city's sewers and forgotten tunnels, a thriving black market operates outside the law. Here, anything can be bought for a price, from forbidden magic to a person's life."
     },
@@ -535,28 +555,28 @@
         "indoor"
       ],
       "primary": [
-        "hot pools",
-        "cold plunges",
-        "steam rooms",
-        "massage tables",
-        "relaxation areas",
-        "changing rooms"
+        "Hot Pools",
+        "Cold Plunges",
+        "Steam Rooms",
+        "Massage Tables",
+        "Relaxation Areas",
+        "Changing Rooms"
       ],
       "secondary": [
-        "gossiping nobles",
-        "scheming merchants",
-        "secret meetings",
-        "dead drops",
-        "hidden weapons",
-        "scrying pools"
+        "Gossiping Nobles",
+        "Scheming Merchants",
+        "Secret Meetings",
+        "Dead Drops",
+        "Hidden Weapons",
+        "Scrying Pools"
       ],
       "tertiary": [
-        "a politician's secret",
-        "a merchant's illegal deal",
-        "a plot to overthrow the government",
-        "a hidden treasure",
-        "a portal to the plane of water",
-        "a murder mystery"
+        "A Politician's Secret",
+        "A Merchant's Illegal Deal",
+        "A Plot To Overthrow The Government",
+        "A Hidden Treasure",
+        "A Portal To The Plane Of Water",
+        "A Murder Mystery"
       ],
       "description": "The bathhouse is a place of relaxation and socializing for the city's elite. But beneath the steam and scented oils, it is a hotbed of intrigue, where secrets are traded and plots are hatched."
     },
@@ -567,28 +587,28 @@
         "indoor"
       ],
       "primary": [
-        "stage",
-        "backstage area",
-        "audience seating",
-        "orchestra pit",
-        "costume department",
-        "prop room"
+        "Stage",
+        "Backstage Area",
+        "Audience Seating",
+        "Orchestra Pit",
+        "Costume Department",
+        "Prop Room"
       ],
       "secondary": [
-        "jealous actors",
-        "overbearing directors",
-        "secret romances",
-        "scathing reviews",
-        "haunted stage",
-        "a play that predicts the future"
+        "Jealous Actors",
+        "Overbearing Directors",
+        "Secret Romances",
+        "Scathing Reviews",
+        "Haunted Stage",
+        "A Play That Predicts The Future"
       ],
       "tertiary": [
-        "a cursed play",
-        "a real magical artifact used as a prop",
-        "a secret society of actors",
-        "a plot to assassinate a noble in the audience",
-        "a portal to another dimension backstage",
-        "a ghost that demands a final performance"
+        "A Cursed Play",
+        "A Real Magical Artifact Used As A Prop",
+        "A Secret Society Of Actors",
+        "A Plot To Assassinate A Noble In The Audience",
+        "A Portal To Another Dimension Backstage",
+        "A Ghost That Demands A Final Performance"
       ],
       "description": "The grand theater is a place of magic and illusion, where stories come to life on stage. But the drama is not always confined to the performance. Backstage, a world of jealousy, ambition, and intrigue awaits."
     },
@@ -599,28 +619,28 @@
         "indoor"
       ],
       "primary": [
-        "grand ballroom",
-        "opulent dining hall",
-        "manicured gardens",
-        "art gallery",
-        "family crypt",
-        "servants' quarters"
+        "Grand Ballroom",
+        "Opulent Dining Hall",
+        "Manicured Gardens",
+        "Art Gallery",
+        "Family Crypt",
+        "Servants' Quarters"
       ],
       "secondary": [
-        "scheming relatives",
-        "disgruntled servants",
-        "family secrets",
-        "hidden passages",
-        "a cursed heirloom",
-        "a forbidden love affair"
+        "Scheming Relatives",
+        "Disgruntled Servants",
+        "Family Secrets",
+        "Hidden Passages",
+        "A Cursed Heirloom",
+        "A Forbidden Love Affair"
       ],
       "tertiary": [
-        "a will that changes everything",
-        "proof of a dark family secret",
-        "a plot to murder the head of the family",
-        "a hidden treasure",
-        "a portal to a private demiplane",
-        "a deal with a devil"
+        "A Will That Changes Everything",
+        "Proof Of A Dark Family Secret",
+        "A Plot To Murder The Head Of The Family",
+        "A Hidden Treasure",
+        "A Portal To A Private Demiplane",
+        "A Deal With A Devil"
       ],
       "description": "The manor of a powerful noble family is a world of its own, with a strict hierarchy and a web of secrets. The family's wealth and power are on display, but so are their rivalries and dark desires."
     },
@@ -631,28 +651,28 @@
         "outdoor"
       ],
       "primary": [
-        "tombstones",
-        "mausoleums",
-        "gravedigger's shack",
-        "weeping statues",
-        "freshly dug grave",
-        "a flock of crows"
+        "Tombstones",
+        "Mausoleums",
+        "Gravedigger's Shack",
+        "Weeping Statues",
+        "Freshly Dug Grave",
+        "A Flock Of Crows"
       ],
       "secondary": [
-        "grave robbers",
-        "necromancers",
-        "restless spirits",
-        "a secret cult",
-        "a hidden entrance to the underdark",
-        "a talking skull"
+        "Grave Robbers",
+        "Necromancers",
+        "Restless Spirits",
+        "A Secret Cult",
+        "A Hidden Entrance To The Underdark",
+        "A Talking Skull"
       ],
       "tertiary": [
-        "a powerful undead creature",
-        "a cursed grave",
-        "a map to a hidden treasure",
-        "a portal to the shadowfell",
-        "a prophecy of doom",
-        "the ghost of a murdered person seeking justice"
+        "A Powerful Undead Creature",
+        "A Cursed Grave",
+        "A Map To A Hidden Treasure",
+        "A Portal To The Shadowfell",
+        "A Prophecy Of Doom",
+        "The Ghost Of A Murdered Person Seeking Justice"
       ],
       "description": "The city's cemetery is a place of quiet contemplation, but it is also a place of secrets and sorrow. The dead do not always rest easy, and the living who visit have their own stories to tell."
     },
@@ -663,28 +683,30 @@
         "indoor",
         "social"
       ],
-      "description": "Firelight dances across worn tables while laughter and clinking mugs fill the air. The scent of roasted meat and spilled ale mingles with pipe smoke. Patrons huddle in shadowed corners trading whispers, while the barkeep polishes glasses with a knowing eye. Every creak of the floorboards tells a story.","primary": ["scarred oak bar with countless tap handles",
-        "stone fireplace crackling with warmth",
-        "notice board covered in job postings",
-        "gaming tables with dice and cards scattered",
-        "musician's stage with weathered instruments",
-        "private booths with curtains for discretion"
+      "description": "Firelight dances across worn tables while laughter and clinking mugs fill the air. The scent of roasted meat and spilled ale mingles with pipe smoke. Patrons huddle in shadowed corners trading whispers, while the barkeep polishes glasses with a knowing eye. Every creak of the floorboards tells a story.",
+      "primary": [
+        "Scarred Oak Bar With Countless Tap Handles",
+        "Stone Fireplace Crackling With Warmth",
+        "Notice Board Covered In Job Postings",
+        "Gaming Tables With Dice And Cards Scattered",
+        "Musician's Stage With Weathered Instruments",
+        "Private Booths With Curtains For Discretion"
       ],
       "secondary": [
-        "loose floorboard hiding smuggler's cache",
-        "cellar trapdoor secured with iron lock",
-        "wall-mounted trophy from adventurer's tale",
-        "secret mark indicating thieves' guild contact",
-        "ledger book with coded entries",
-        "hidden cubby behind the portrait"
+        "Loose Floorboard Hiding Smuggler's Cache",
+        "Cellar Trapdoor Secured With Iron Lock",
+        "Wall-mounted Trophy From Adventurer's Tale",
+        "Secret Mark Indicating Thieves' Guild Contact",
+        "Ledger Book With Coded Entries",
+        "Hidden Cubby Behind The Portrait"
       ],
       "tertiary": [
-        "map to forgotten treasure",
-        "poison vial slipped into a drink",
-        "letter of recommendation from noble",
-        "key to private room upstairs",
-        "bounty notice for local criminal",
-        "magic ring lost in a bet"
+        "Map To Forgotten Treasure",
+        "Poison Vial Slipped Into A Drink",
+        "Letter Of Recommendation From Noble",
+        "Key To Private Room Upstairs",
+        "Bounty Notice For Local Criminal",
+        "Magic Ring Lost In A Bet"
       ]
     },
     "arena": {
@@ -694,28 +716,30 @@
         "spectacle",
         "outdoor"
       ],
-      "description": "Sand soaks up blood and sweat beneath the roar of thousands. Tiered seats rise in a circle, packed with citizens hungry for glory or death. Sunlight beats down on the killing floor while shadows pool in the archways. The air tastes of iron and anticipation.","primary": ["weapon rack holding dulled training gear",
-        "champion's gate carved with victory tallies",
-        "announcer's podium draped in colorful banners",
-        "sand pit marked with combat circles",
-        "noble's box with cushioned seating",
-        "gladiator holding cells beneath the stands"
+      "description": "Sand soaks up blood and sweat beneath the roar of thousands. Tiered seats rise in a circle, packed with citizens hungry for glory or death. Sunlight beats down on the killing floor while shadows pool in the archways. The air tastes of iron and anticipation.",
+      "primary": [
+        "Weapon Rack Holding Dulled Training Gear",
+        "Champion's Gate Carved With Victory Tallies",
+        "Announcer's Podium Draped In Colorful Banners",
+        "Sand Pit Marked With Combat Circles",
+        "Noble's Box With Cushioned Seating",
+        "Gladiator Holding Cells Beneath The Stands"
       ],
       "secondary": [
-        "healer's station with bandages and salves",
-        "betting ledger tracking crowd favorites",
-        "trap door releasing exotic beasts",
-        "vendor stalls selling food and souvenirs",
-        "hidden escape tunnel for disgraced fighters",
-        "shrine to the god of honorable combat"
+        "Healer's Station With Bandages And Salves",
+        "Betting Ledger Tracking Crowd Favorites",
+        "Trap Door Releasing Exotic Beasts",
+        "Vendor Stalls Selling Food And Souvenirs",
+        "Hidden Escape Tunnel For Disgraced Fighters",
+        "Shrine To The God Of Honorable Combat"
       ],
       "tertiary": [
-        "poisoned blade disguised as practice weapon",
-        "bribe note promising a thrown match",
-        "champion's amulet granting combat prowess",
-        "secret sigil marking underground fight club",
-        "contract for illegal death match",
-        "freedom papers for enslaved gladiator"
+        "Poisoned Blade Disguised As Practice Weapon",
+        "Bribe Note Promising A Thrown Match",
+        "Champion's Amulet Granting Combat Prowess",
+        "Secret Sigil Marking Underground Fight Club",
+        "Contract For Illegal Death Match",
+        "Freedom Papers For Enslaved Gladiator"
       ]
     },
     "library": {
@@ -725,28 +749,30 @@
         "scholarly",
         "arcane"
       ],
-      "description": "Towering shelves march into shadow while dust motes dance in shafts of colored light. Leather and parchment scent the air thick as incense. The scratch of quills and whispered debates echo between the stacks. Knowledge sleeps here, waiting to be awakened.","primary": ["reading desk with enchanted lamp",
-        "card catalog system with arcane sorting",
-        "restricted section behind iron gate",
-        "scribe's workstation with fresh ink",
-        "rolling ladder for high shelves",
-        "curator's office filled with rare volumes"
+      "description": "Towering shelves march into shadow while dust motes dance in shafts of colored light. Leather and parchment scent the air thick as incense. The scratch of quills and whispered debates echo between the stacks. Knowledge sleeps here, waiting to be awakened.",
+      "primary": [
+        "Reading Desk With Enchanted Lamp",
+        "Card Catalog System With Arcane Sorting",
+        "Restricted Section Behind Iron Gate",
+        "Scribe's Workstation With Fresh Ink",
+        "Rolling Ladder For High Shelves",
+        "Curator's Office Filled With Rare Volumes"
       ],
       "secondary": [
-        "bookmark marking forbidden passage",
-        "translation notes in margin",
-        "library card belonging to suspicious patron",
-        "hidden compartment in desk drawer",
-        "coded message between book pages",
-        "preservation ward humming with magic"
+        "Bookmark Marking Forbidden Passage",
+        "Translation Notes In Margin",
+        "Library Card Belonging To Suspicious Patron",
+        "Hidden Compartment In Desk Drawer",
+        "Coded Message Between Book Pages",
+        "Preservation Ward Humming With Magic"
       ],
       "tertiary": [
-        "spell scroll tucked in ancient tome",
-        "map revealing secret passage",
-        "blackmail letter using literature quotes",
-        "portal key disguised as bookend",
-        "cursed manuscript binding souls",
-        "decoder ring for encrypted texts"
+        "Spell Scroll Tucked In Ancient Tome",
+        "Map Revealing Secret Passage",
+        "Blackmail Letter Using Literature Quotes",
+        "Portal Key Disguised As Bookend",
+        "Cursed Manuscript Binding Souls",
+        "Decoder Ring For Encrypted Texts"
       ]
     },
     "apothecary": {
@@ -756,28 +782,30 @@
         "crafting",
         "healing"
       ],
-      "description": "Glass jars line shelves from floor to ceiling, filled with herbs, powders, and stranger things. Mortar and pestle rest beside bubbling alembics. The air is thick with competing scents—lavender, sulfur, mint, and decay. Behind the counter, careful eyes weigh both coin and intent.","primary": ["ingredient shelves organized by effect",
-        "grinding station with brass tools",
-        "distillation apparatus with copper coils",
-        "poison cabinet triple-locked",
-        "healing potion display rack",
-        "examination table for diagnosis"
+      "description": "Glass jars line shelves from floor to ceiling, filled with herbs, powders, and stranger things. Mortar and pestle rest beside bubbling alembics. The air is thick with competing scents—lavender, sulfur, mint, and decay. Behind the counter, careful eyes weigh both coin and intent.",
+      "primary": [
+        "Ingredient Shelves Organized By Effect",
+        "Grinding Station With Brass Tools",
+        "Distillation Apparatus With Copper Coils",
+        "Poison Cabinet Triple-locked",
+        "Healing Potion Display Rack",
+        "Examination Table For Diagnosis"
       ],
       "secondary": [
-        "recipe book with coded formulas",
-        "rare component preserved in amber",
-        "customer logbook noting purchases",
-        "ventilation system filtering toxic fumes",
-        "scales for precise measurements",
-        "apprentice's notes on experiments"
+        "Recipe Book With Coded Formulas",
+        "Rare Component Preserved In Amber",
+        "Customer Logbook Noting Purchases",
+        "Ventilation System Filtering Toxic Fumes",
+        "Scales For Precise Measurements",
+        "Apprentice's Notes On Experiments"
       ],
       "tertiary": [
-        "antidote to rare poison",
-        "illegal alchemical explosive",
-        "love potion commission",
-        "truth serum order",
-        "resurrection component",
-        "cursed tincture causing madness"
+        "Antidote To Rare Poison",
+        "Illegal Alchemical Explosive",
+        "Love Potion Commission",
+        "Truth Serum Order",
+        "Resurrection Component",
+        "Cursed Tincture Causing Madness"
       ]
     },
     "printing_press": {
@@ -787,243 +815,981 @@
         "urban",
         "workshop"
       ],
-      "description": "The rhythmic clatter and hiss of the press fills the air, mingling with the sharp scent of ink and paper. Stacks of fresh broadsheets and pamphlets rise from busy tables. Workers move with practiced efficiency, their hands stained with ink, as the machine devours blank pages and churns out news and decrees.","primary": ["heavy iron printing press",
-        "stacks of blank parchment",
-        "ink-stained workbenches",
-        "drying racks for fresh prints",
-        "typesetting trays with lead letters",
-        "paper reams and cutting tools"
+      "description": "The rhythmic clatter and hiss of the press fills the air, mingling with the sharp scent of ink and paper. Stacks of fresh broadsheets and pamphlets rise from busy tables. Workers move with practiced efficiency, their hands stained with ink, as the machine devours blank pages and churns out news and decrees.",
+      "primary": [
+        "Heavy Iron Printing Press",
+        "Stacks Of Blank Parchment",
+        "Ink-stained Workbenches",
+        "Drying Racks For Fresh Prints",
+        "Typesetting Trays With Lead Letters",
+        "Paper Reams And Cutting Tools"
       ],
       "secondary": [
-        "discarded proofs and misprints",
-        "ink pots and rollers",
-        "bound ledgers of print orders",
-        "hidden compartment for illicit pamphlets",
-        "ventilation shaft for fumes",
-        "small furnace for melting lead type"
+        "Discarded Proofs And Misprints",
+        "Ink Pots And Rollers",
+        "Bound Ledgers Of Print Orders",
+        "Hidden Compartment For Illicit Pamphlets",
+        "Ventilation Shaft For Fumes",
+        "Small Furnace For Melting Lead Type"
       ],
       "tertiary": [
-        "coded message in a newspaper",
-        "forged documents",
-        "rare historical text",
-        "printing plate for counterfeit currency",
-        "secret society manifesto",
-        "poisoned ink vial"
+        "Coded Message In A Newspaper",
+        "Forged Documents",
+        "Rare Historical Text",
+        "Printing Plate For Counterfeit Currency",
+        "Secret Society Manifesto",
+        "Poisoned Ink Vial"
       ]
     },
     "gambling_hall": {
-      "tags": ["gambling", "indoor", "social", "crime"],
+      "tags": [
+        "gambling",
+        "indoor",
+        "social",
+        "crime"
+      ],
       "description": "The clatter of dice and the shuffle of cards are a constant din in this dimly lit, smoke-filled hall. Fortunes are won and lost on the turn of a card, and the air is thick with tension and desperation.",
-      "primary": ["card tables", "dice tables", "roulette wheel", "bar", "stage for performers", "private rooms"],
-      "secondary": ["marked cards", "loaded dice", "hidden cameras", "bouncers", "loan sharks", "bookies"],
-      "tertiary": ["a map to a hidden treasure in the form of a tattoo on a regular patron", "a cursed deck of cards that predicts the future", "a secret society of cheaters", "a high-stakes game where the prize is a person's freedom", "a portal to a pocket dimension where the house always wins", "a ghost who haunts the gambling hall, forever trying to win back their lost soul"]
+      "primary": [
+        "Card Tables",
+        "Dice Tables",
+        "Roulette Wheel",
+        "Bar",
+        "Stage For Performers",
+        "Private Rooms"
+      ],
+      "secondary": [
+        "Marked Cards",
+        "Loaded Dice",
+        "Hidden Cameras",
+        "Bouncers",
+        "Loan Sharks",
+        "Bookies"
+      ],
+      "tertiary": [
+        "A Map To A Hidden Treasure In The Form Of A Tattoo On A Regular Patron",
+        "A Cursed Deck Of Cards That Predicts The Future",
+        "A Secret Society Of Cheaters",
+        "A High-stakes Game Where The Prize Is A Person's Freedom",
+        "A Portal To A Pocket Dimension Where The House Always Wins",
+        "A Ghost Who Haunts The Gambling Hall, Forever Trying To Win Back Their Lost Soul"
+      ]
     },
     "opulent_opera_house": {
-      "tags": ["opera house", "entertainment", "indoor", "social"],
+      "tags": [
+        "opera house",
+        "entertainment",
+        "indoor",
+        "social"
+      ],
       "description": "A grand opera house with velvet seats, golden balconies, and a history of tragic performances. The air is filled with the sound of soaring arias and the scent of expensive perfume. But behind the scenes, a world of jealousy, ambition, and intrigue awaits.",
-      "primary": ["stage", "orchestra pit", "audience seating", "royal box", "backstage area", "dressing rooms"],
-      "secondary": ["a secret passage used by a phantom", "a cursed prop that brings disaster to every production", "a love letter from a diva to her secret lover", "a blackmail note threatening to reveal a scandalous secret", "a trapdoor in the stage used for dramatic entrances and exits", "a ghost who haunts the opera house, forever singing their final aria"],
-      "tertiary": ["a plot to assassinate a noble in the audience", "a real magical artifact used as a prop", "a secret society of actors who are also assassins", "a portal to another dimension backstage", "a cursed play that drives the cast and crew to madness", "the ghost of a murdered performer seeking justice"]
+      "primary": [
+        "Stage",
+        "Orchestra Pit",
+        "Audience Seating",
+        "Royal Box",
+        "Backstage Area",
+        "Dressing Rooms"
+      ],
+      "secondary": [
+        "A Secret Passage Used By A Phantom",
+        "A Cursed Prop That Brings Disaster To Every Production",
+        "A Love Letter From A Diva To Her Secret Lover",
+        "A Blackmail Note Threatening To Reveal A Scandalous Secret",
+        "A Trapdoor In The Stage Used For Dramatic Entrances And Exits",
+        "A Ghost Who Haunts The Opera House, Forever Singing Their Final Aria"
+      ],
+      "tertiary": [
+        "A Plot To Assassinate A Noble In The Audience",
+        "A Real Magical Artifact Used As A Prop",
+        "A Secret Society Of Actors Who Are Also Assassins",
+        "A Portal To Another Dimension Backstage",
+        "A Cursed Play That Drives The Cast And Crew To Madness",
+        "The Ghost Of A Murdered Performer Seeking Justice"
+      ]
     },
     "curio_shop": {
-      "tags": ["shop", "indoor", "arcane"],
+      "tags": [
+        "shop",
+        "indoor",
+        "arcane"
+      ],
       "description": "A dusty shop filled with strange and exotic items from far-off lands. The air is thick with the smell of old books, strange spices, and forgotten magic. The shopkeeper is a mysterious figure who seems to know the history of every item in the shop.",
-      "primary": ["shelves of strange artifacts", "taxidermied beasts", "ancient tomes", "magical trinkets", "cursed items", "a mysterious shopkeeper"],
-      "secondary": ["a shrunken head that whispers secrets", "a music box that plays a haunting melody", "a mirror that shows a different reflection", "a snow globe that contains a miniature, living world", "a puzzle box that has never been opened", "a collection of exotic and dangerous plants"],
-      "tertiary": ["a powerful artifact in disguise", "a map to a lost city hidden in an old book", "a cursed item that brings misfortune to its owner", "a portal to another dimension in the back room", "a secret society that uses the shop as a front", "the shopkeeper is a dragon in human form"]
+      "primary": [
+        "Shelves Of Strange Artifacts",
+        "Taxidermied Beasts",
+        "Ancient Tomes",
+        "Magical Trinkets",
+        "Cursed Items",
+        "A Mysterious Shopkeeper"
+      ],
+      "secondary": [
+        "A Shrunken Head That Whispers Secrets",
+        "A Music Box That Plays A Haunting Melody",
+        "A Mirror That Shows A Different Reflection",
+        "A Snow Globe That Contains A Miniature, Living World",
+        "A Puzzle Box That Has Never Been Opened",
+        "A Collection Of Exotic And Dangerous Plants"
+      ],
+      "tertiary": [
+        "A Powerful Artifact In Disguise",
+        "A Map To A Lost City Hidden In An Old Book",
+        "A Cursed Item That Brings Misfortune To Its Owner",
+        "A Portal To Another Dimension In The Back Room",
+        "A Secret Society That Uses The Shop As A Front",
+        "The Shopkeeper Is A Dragon In Human Form"
+      ]
     },
     "fighting_pit": {
-      "tags": ["arena", "combat", "outdoor", "crime"],
+      "tags": [
+        "arena",
+        "combat",
+        "outdoor",
+        "crime"
+      ],
       "description": "A bloody arena where warriors battle for gold and glory. The roar of the crowd is deafening, and the smell of blood and sweat is thick in the air. The fighters are a mix of desperate souls, glory hounds, and condemned criminals.",
-      "primary": ["a sand-covered arena floor", "cages for the fighters", "a viewing platform for the wealthy", "a betting booth", "a healer's tent", "a stable for the beasts"],
-      "secondary": ["a secret entrance for smuggling in illegal combatants", "a corrupt referee who takes bribes", "a fighter who is being blackmailed into throwing a match", "a beast that has been starved to make it more ferocious", "a group of gamblers who are planning to rig the fights", "a secret escape tunnel for fighters who want to flee"],
-      "tertiary": ["a legendary warrior who is fighting incognito", "a magical weapon that is offered as a prize", "a plot to assassinate a noble who is attending the fights", "a portal to a plane of eternal battle", "a secret society of gladiators who are planning a rebellion", "the owner of the fighting pit is a demon who feeds on the violence"]
+      "primary": [
+        "A Sand-covered Arena Floor",
+        "Cages For The Fighters",
+        "A Viewing Platform For The Wealthy",
+        "A Betting Booth",
+        "A Healer's Tent",
+        "A Stable For The Beasts"
+      ],
+      "secondary": [
+        "A Secret Entrance For Smuggling In Illegal Combatants",
+        "A Corrupt Referee Who Takes Bribes",
+        "A Fighter Who Is Being Blackmailed Into Throwing A Match",
+        "A Beast That Has Been Starved To Make It More Ferocious",
+        "A Group Of Gamblers Who Are Planning To Rig The Fights",
+        "A Secret Escape Tunnel For Fighters Who Want To Flee"
+      ],
+      "tertiary": [
+        "A Legendary Warrior Who Is Fighting Incognito",
+        "A Magical Weapon That Is Offered As A Prize",
+        "A Plot To Assassinate A Noble Who Is Attending The Fights",
+        "A Portal To A Plane Of Eternal Battle",
+        "A Secret Society Of Gladiators Who Are Planning A Rebellion",
+        "The Owner Of The Fighting Pit Is A Demon Who Feeds On The Violence"
+      ]
     },
     "public_square": {
-      "tags": ["square", "outdoor", "social", "market"],
+      "tags": [
+        "square",
+        "outdoor",
+        "social",
+        "market"
+      ],
       "description": "A bustling square at the heart of the city, where people gather to trade, socialize, and protest. The square is surrounded by important buildings, including the courthouse, the city hall, and the grand temple. A fountain in the center of the square is a popular meeting place.",
-      "primary": ["a central fountain", "a statue of a famous hero", "a public notice board", "market stalls", "street performers", "a soapbox for public speeches"],
-      "secondary": ["a pickpocket working the crowd", "a secret meeting between two spies", "a group of protesters demonstrating against the government", "a street preacher warning of the end of the world", "a lost child crying for their parents", "a city guard on patrol"],
-      "tertiary": ["a hidden entrance to the city's underbelly", "a magical fountain that grants wishes", "a statue that comes to life at night", "a secret message hidden on the notice board", "a plot to assassinate a public figure during a speech", "a portal to another dimension that opens at a specific time"]
+      "primary": [
+        "A Central Fountain",
+        "A Statue Of A Famous Hero",
+        "A Public Notice Board",
+        "Market Stalls",
+        "Street Performers",
+        "A Soapbox For Public Speeches"
+      ],
+      "secondary": [
+        "A Pickpocket Working The Crowd",
+        "A Secret Meeting Between Two Spies",
+        "A Group Of Protesters Demonstrating Against The Government",
+        "A Street Preacher Warning Of The End Of The World",
+        "A Lost Child Crying For Their Parents",
+        "A City Guard On Patrol"
+      ],
+      "tertiary": [
+        "A Hidden Entrance To The City's Underbelly",
+        "A Magical Fountain That Grants Wishes",
+        "A Statue That Comes To Life At Night",
+        "A Secret Message Hidden On The Notice Board",
+        "A Plot To Assassinate A Public Figure During A Speech",
+        "A Portal To Another Dimension That Opens At A Specific Time"
+      ]
     },
     "asylum": {
-      "tags": ["asylum", "indoor", "haunting", "medical"],
+      "tags": [
+        "asylum",
+        "indoor",
+        "haunting",
+        "medical"
+      ],
       "description": "A grim and foreboding institution where the city's mad are locked away. The air is thick with the smell of disinfectant and despair. The inmates are a mix of the truly insane and those who have been locked away for political reasons.",
-      "primary": ["cells with barred windows", "a common room with heavily sedated patients", "a treatment room with strange and cruel-looking devices", "a padded cell for the most violent patients", "a garden where the patients are allowed to walk", "a chapel where the patients pray for salvation"],
-      "secondary": ["a patient who is faking their madness to hide from their enemies", "a doctor who is conducting cruel experiments on the patients", "a ghost of a former patient who haunts the asylum", "a secret passage used by the staff to smuggle in contraband", "a patient who has a prophetic vision", "a group of patients who are planning a breakout"],
-      "tertiary": ["a powerful artifact that is driving the patients mad", "a portal to a plane of madness", "a secret society that is using the asylum as a front for their activities", "the head of the asylum is a mind flayer who is feeding on the patients' brains", "a patient who is the key to stopping a great evil", "a cure for madness that is hidden somewhere in the asylum"]
+      "primary": [
+        "Cells With Barred Windows",
+        "A Common Room With Heavily Sedated Patients",
+        "A Treatment Room With Strange And Cruel-looking Devices",
+        "A Padded Cell For The Most Violent Patients",
+        "A Garden Where The Patients Are Allowed To Walk",
+        "A Chapel Where The Patients Pray For Salvation"
+      ],
+      "secondary": [
+        "A Patient Who Is Faking Their Madness To Hide From Their Enemies",
+        "A Doctor Who Is Conducting Cruel Experiments On The Patients",
+        "A Ghost Of A Former Patient Who Haunts The Asylum",
+        "A Secret Passage Used By The Staff To Smuggle In Contraband",
+        "A Patient Who Has A Prophetic Vision",
+        "A Group Of Patients Who Are Planning A Breakout"
+      ],
+      "tertiary": [
+        "A Powerful Artifact That Is Driving The Patients Mad",
+        "A Portal To A Plane Of Madness",
+        "A Secret Society That Is Using The Asylum As A Front For Their Activities",
+        "The Head Of The Asylum Is A Mind Flayer Who Is Feeding On The Patients' Brains",
+        "A Patient Who Is The Key To Stopping A Great Evil",
+        "A Cure For Madness That Is Hidden Somewhere In The Asylum"
+      ]
     },
     "university_campus": {
-      "tags": ["university", "indoor", "outdoor", "scholarly"],
+      "tags": [
+        "university",
+        "indoor",
+        "outdoor",
+        "scholarly"
+      ],
       "description": "A sprawling campus of lecture halls, libraries, and student dormitories. The air is filled with the buzz of intellectual debate and the scent of old books. The students are a mix of bright-eyed idealists and jaded cynics.",
-      "primary": ["a grand library with towering shelves of books", "a lecture hall where a famous professor is giving a speech", "a student dormitory in the midst of a wild party", "a laboratory where students are conducting magical experiments", "a courtyard where students are relaxing and socializing", "a statue of the university's founder"],
-      "secondary": ["a secret society of students who practice forbidden magic", "a professor who is being blackmailed by a student", "a rivalry between two fraternities that is about to turn violent", "a student who has discovered a dangerous secret about the university", "a ghost of a former student who haunts the library", "a portal to another dimension in a forgotten classroom"],
-      "tertiary": ["a powerful artifact hidden somewhere on campus", "a secret that could destroy the university's reputation", "a plot to assassinate a professor who knows too much", "a magical creature that has been accidentally summoned to the campus", "a student who is a chosen one destined to save the world", "the university is a front for a powerful and ancient organization"]
+      "primary": [
+        "A Grand Library With Towering Shelves Of Books",
+        "A Lecture Hall Where A Famous Professor Is Giving A Speech",
+        "A Student Dormitory In The Midst Of A Wild Party",
+        "A Laboratory Where Students Are Conducting Magical Experiments",
+        "A Courtyard Where Students Are Relaxing And Socializing",
+        "A Statue Of The University's Founder"
+      ],
+      "secondary": [
+        "A Secret Society Of Students Who Practice Forbidden Magic",
+        "A Professor Who Is Being Blackmailed By A Student",
+        "A Rivalry Between Two Fraternities That Is About To Turn Violent",
+        "A Student Who Has Discovered A Dangerous Secret About The University",
+        "A Ghost Of A Former Student Who Haunts The Library",
+        "A Portal To Another Dimension In A Forgotten Classroom"
+      ],
+      "tertiary": [
+        "A Powerful Artifact Hidden Somewhere On Campus",
+        "A Secret That Could Destroy The University's Reputation",
+        "A Plot To Assassinate A Professor Who Knows Too Much",
+        "A Magical Creature That Has Been Accidentally Summoned To The Campus",
+        "A Student Who Is A Chosen One Destined To Save The World",
+        "The University Is A Front For A Powerful And Ancient Organization"
+      ]
     },
     "prison": {
-      "tags": ["prison", "indoor", "crime"],
+      "tags": [
+        "prison",
+        "indoor",
+        "crime"
+      ],
       "description": "A high-security prison that houses the city's most dangerous criminals. The air is thick with the smell of sweat, fear, and despair. The guards are a mix of jaded veterans and brutal sadists.",
-      "primary": ["cells with heavily barred doors", "a mess hall where the prisoners eat in silence", "an exercise yard where the prisoners are allowed to walk", "a solitary confinement block for the most dangerous prisoners", "a visitation room where prisoners can meet with their families", "the warden's office"],
-      "secondary": ["a prisoner who is planning a breakout", "a corrupt guard who is smuggling in contraband", "a rivalry between two gangs that is about to turn violent", "a prisoner who has information that could bring down a powerful crime lord", "a ghost of a former prisoner who haunts the prison", "a secret escape tunnel that has been hidden for years"],
-      "tertiary": ["a legendary artifact that is hidden somewhere in the prison", "a secret that could lead to a city-wide riot", "a plot to assassinate the warden", "a magical creature that is being held captive in the prison", "a prisoner who is the key to stopping a great evil", "the prison is a front for a powerful and ancient organization"]
+      "primary": [
+        "Cells With Heavily Barred Doors",
+        "A Mess Hall Where The Prisoners Eat In Silence",
+        "An Exercise Yard Where The Prisoners Are Allowed To Walk",
+        "A Solitary Confinement Block For The Most Dangerous Prisoners",
+        "A Visitation Room Where Prisoners Can Meet With Their Families",
+        "The Warden's Office"
+      ],
+      "secondary": [
+        "A Prisoner Who Is Planning A Breakout",
+        "A Corrupt Guard Who Is Smuggling In Contraband",
+        "A Rivalry Between Two Gangs That Is About To Turn Violent",
+        "A Prisoner Who Has Information That Could Bring Down A Powerful Crime Lord",
+        "A Ghost Of A Former Prisoner Who Haunts The Prison",
+        "A Secret Escape Tunnel That Has Been Hidden For Years"
+      ],
+      "tertiary": [
+        "A Legendary Artifact That Is Hidden Somewhere In The Prison",
+        "A Secret That Could Lead To A City-wide Riot",
+        "A Plot To Assassinate The Warden",
+        "A Magical Creature That Is Being Held Captive In The Prison",
+        "A Prisoner Who Is The Key To Stopping A Great Evil",
+        "The Prison Is A Front For A Powerful And Ancient Organization"
+      ]
     },
     "museum": {
-      "tags": ["museum", "indoor", "scholarly"],
+      "tags": [
+        "museum",
+        "indoor",
+        "scholarly"
+      ],
       "description": "A museum filled with historical artifacts and curiosities. The air is thick with the smell of dust and preservation chemicals. The exhibits range from the mundane to the magical.",
-      "primary": ["a collection of ancient pottery", "a display of medieval armor and weapons", "a taxidermied dragon", "a gallery of portraits of famous historical figures", "an exhibit on the city's history", "a collection of magical artifacts"],
-      "secondary": ["a cursed artifact that brings misfortune to anyone who touches it", "a secret message hidden in a painting", "a ghost of a historical figure who haunts the museum", "a group of thieves who are planning to steal a valuable artifact", "a portal to the past that is hidden in one of the exhibits", "a secret society that uses the museum as a meeting place"],
-      "tertiary": ["a powerful artifact that is hidden in plain sight", "a secret that could rewrite history", "a plot to assassinate a visiting dignitary", "a magical creature that has been brought to life from an exhibit", "a visitor who is a time traveler from the future", "the museum is a front for a powerful and ancient organization"]
+      "primary": [
+        "A Collection Of Ancient Pottery",
+        "A Display Of Medieval Armor And Weapons",
+        "A Taxidermied Dragon",
+        "A Gallery Of Portraits Of Famous Historical Figures",
+        "An Exhibit On The City's History",
+        "A Collection Of Magical Artifacts"
+      ],
+      "secondary": [
+        "A Cursed Artifact That Brings Misfortune To Anyone Who Touches It",
+        "A Secret Message Hidden In A Painting",
+        "A Ghost Of A Historical Figure Who Haunts The Museum",
+        "A Group Of Thieves Who Are Planning To Steal A Valuable Artifact",
+        "A Portal To The Past That Is Hidden In One Of The Exhibits",
+        "A Secret Society That Uses The Museum As A Meeting Place"
+      ],
+      "tertiary": [
+        "A Powerful Artifact That Is Hidden In Plain Sight",
+        "A Secret That Could Rewrite History",
+        "A Plot To Assassinate A Visiting Dignitary",
+        "A Magical Creature That Has Been Brought To Life From An Exhibit",
+        "A Visitor Who Is A Time Traveler From The Future",
+        "The Museum Is A Front For A Powerful And Ancient Organization"
+      ]
     },
     "zoo": {
-      "tags": ["zoo", "outdoor", "animals"],
+      "tags": [
+        "zoo",
+        "outdoor",
+        "animals"
+      ],
       "description": "A zoo that houses a collection of exotic and dangerous beasts. The air is filled with the sounds and smells of the animal kingdom. The enclosures range from the mundane to the magical.",
-      "primary": ["a lion's den", "a snake pit", "an aviary filled with exotic birds", "a pool with a giant squid", "a paddock with a herd of unicorns", "a cage with a captured griffon"],
-      "secondary": ["a zookeeper who is secretly a member of an animal rights extremist group", "a beast that has been magically enhanced to be more dangerous", "a group of poachers who are planning to steal a rare animal", "a portal to a savage dimension that is hidden in one of the enclosures", "a secret society that worships the animals as gods", "the zoo is a front for a powerful and ancient organization"],
-      "tertiary": ["a legendary beast that is hidden in the zoo", "a secret that could lead to the downfall of the city", "a plot to release all the animals from their cages", "a magical creature that can grant wishes", "a visitor who is a shapeshifter in disguise", "the zoo is a place of great magical power"]
+      "primary": [
+        "A Lion's Den",
+        "A Snake Pit",
+        "An Aviary Filled With Exotic Birds",
+        "A Pool With A Giant Squid",
+        "A Paddock With A Herd Of Unicorns",
+        "A Cage With A Captured Griffon"
+      ],
+      "secondary": [
+        "A Zookeeper Who Is Secretly A Member Of An Animal Rights Extremist Group",
+        "A Beast That Has Been Magically Enhanced To Be More Dangerous",
+        "A Group Of Poachers Who Are Planning To Steal A Rare Animal",
+        "A Portal To A Savage Dimension That Is Hidden In One Of The Enclosures",
+        "A Secret Society That Worships The Animals As Gods",
+        "The Zoo Is A Front For A Powerful And Ancient Organization"
+      ],
+      "tertiary": [
+        "A Legendary Beast That Is Hidden In The Zoo",
+        "A Secret That Could Lead To The Downfall Of The City",
+        "A Plot To Release All The Animals From Their Cages",
+        "A Magical Creature That Can Grant Wishes",
+        "A Visitor Who Is A Shapeshifter In Disguise",
+        "The Zoo Is A Place Of Great Magical Power"
+      ]
     },
     "bank": {
-      "tags": ["bank", "indoor", "crime"],
+      "tags": [
+        "bank",
+        "indoor",
+        "crime"
+      ],
       "description": "A heavily guarded bank that holds the wealth of the city's elite. The air is thick with the smell of money and the hum of security systems. The vaults are said to be impenetrable.",
-      "primary": ["a grand lobby with marble floors and teller windows", "a vault with a massive steel door", "a security room with guards monitoring cameras", "a series of safe deposit boxes", "a manager's office with a panoramic view of the city", "a team of heavily armed guards"],
-      "secondary": ["a group of bank robbers who are planning a heist", "a corrupt bank manager who is embezzling money", "a secret passage into the vault", "a magical security system that is impossible to bypass", "a safe deposit box that contains a dangerous artifact", "a ghost of a former bank robber who haunts the vault"],
-      "tertiary": ["a legendary treasure that is hidden in the bank", "a secret that could bring down the city's economy", "a plot to assassinate the bank manager", "a magical creature that is guarding the vault", "a customer who is a powerful wizard in disguise", "the bank is a front for a powerful and ancient organization"]
+      "primary": [
+        "A Grand Lobby With Marble Floors And Teller Windows",
+        "A Vault With A Massive Steel Door",
+        "A Security Room With Guards Monitoring Cameras",
+        "A Series Of Safe Deposit Boxes",
+        "A Manager's Office With A Panoramic View Of The City",
+        "A Team Of Heavily Armed Guards"
+      ],
+      "secondary": [
+        "A Group Of Bank Robbers Who Are Planning A Heist",
+        "A Corrupt Bank Manager Who Is Embezzling Money",
+        "A Secret Passage Into The Vault",
+        "A Magical Security System That Is Impossible To Bypass",
+        "A Safe Deposit Box That Contains A Dangerous Artifact",
+        "A Ghost Of A Former Bank Robber Who Haunts The Vault"
+      ],
+      "tertiary": [
+        "A Legendary Treasure That Is Hidden In The Bank",
+        "A Secret That Could Bring Down The City's Economy",
+        "A Plot To Assassinate The Bank Manager",
+        "A Magical Creature That Is Guarding The Vault",
+        "A Customer Who Is A Powerful Wizard In Disguise",
+        "The Bank Is A Front For A Powerful And Ancient Organization"
+      ]
     },
     "courthouse": {
-      "tags": ["courthouse", "indoor", "social"],
+      "tags": [
+        "courthouse",
+        "indoor",
+        "social"
+      ],
       "description": "A grand courthouse where justice is dispensed, for a price. The air is thick with the smell of old books and the sound of gavels. The judges are a mix of the honorable and the corrupt.",
-      "primary": ["a courtroom where a trial is in session", "a law library with towering shelves of books", "a holding cell for prisoners awaiting trial", "a judge's chambers", "a gallery for spectators", "a team of bailiffs"],
-      "secondary": ["a corrupt judge who is taking bribes", "a lawyer who is willing to do anything to win a case", "a witness who is being intimidated into silence", "a piece of evidence that could change the outcome of a trial", "a ghost of a wrongly convicted person who haunts the courthouse", "a secret society of lawyers and judges who control the city's legal system"],
-      "tertiary": ["a legendary artifact that is hidden in the courthouse", "a secret that could bring down the city's government", "a plot to assassinate a judge", "a magical creature that is being held as evidence", "a defendant who is a powerful wizard in disguise", "the courthouse is a front for a powerful and ancient organization"]
+      "primary": [
+        "A Courtroom Where A Trial Is In Session",
+        "A Law Library With Towering Shelves Of Books",
+        "A Holding Cell For Prisoners Awaiting Trial",
+        "A Judge's Chambers",
+        "A Gallery For Spectators",
+        "A Team Of Bailiffs"
+      ],
+      "secondary": [
+        "A Corrupt Judge Who Is Taking Bribes",
+        "A Lawyer Who Is Willing To Do Anything To Win A Case",
+        "A Witness Who Is Being Intimidated Into Silence",
+        "A Piece Of Evidence That Could Change The Outcome Of A Trial",
+        "A Ghost Of A Wrongly Convicted Person Who Haunts The Courthouse",
+        "A Secret Society Of Lawyers And Judges Who Control The City's Legal System"
+      ],
+      "tertiary": [
+        "A Legendary Artifact That Is Hidden In The Courthouse",
+        "A Secret That Could Bring Down The City's Government",
+        "A Plot To Assassinate A Judge",
+        "A Magical Creature That Is Being Held As Evidence",
+        "A Defendant Who Is A Powerful Wizard In Disguise",
+        "The Courthouse Is A Front For A Powerful And Ancient Organization"
+      ]
     },
     "city_hall": {
-      "tags": ["city hall", "indoor", "social", "political"],
+      "tags": [
+        "city hall",
+        "indoor",
+        "social",
+        "political"
+      ],
       "description": "The seat of the city's government, a place of bureaucracy and political intrigue. The air is thick with the smell of paperwork and the sound of whispered deals. The politicians are a mix of the idealistic and the corrupt.",
-      "primary": ["a grand council chamber where the city's leaders meet", "a records office with towering shelves of documents", "a series of offices for the city's bureaucrats", "a press room where reporters gather for news", "a public gallery for citizens to observe the government at work", "a team of city guards"],
-      "secondary": ["a corrupt politician who is taking bribes", "a bureaucrat who is selling city secrets", "a reporter who is about to break a major scandal", "a group of citizens who are protesting a new law", "a ghost of a former mayor who haunts the city hall", "a secret society of politicians and bureaucrats who control the city"],
-      "tertiary": ["a legendary artifact that is hidden in the city hall", "a secret that could bring down the city's government", "a plot to assassinate the mayor", "a magical creature that is being held captive in the city hall", "a citizen who is a powerful wizard in disguise", "the city hall is a front for a powerful and ancient organization"]
+      "primary": [
+        "A Grand Council Chamber Where The City's Leaders Meet",
+        "A Records Office With Towering Shelves Of Documents",
+        "A Series Of Offices For The City's Bureaucrats",
+        "A Press Room Where Reporters Gather For News",
+        "A Public Gallery For Citizens To Observe The Government At Work",
+        "A Team Of City Guards"
+      ],
+      "secondary": [
+        "A Corrupt Politician Who Is Taking Bribes",
+        "A Bureaucrat Who Is Selling City Secrets",
+        "A Reporter Who Is About To Break A Major Scandal",
+        "A Group Of Citizens Who Are Protesting A New Law",
+        "A Ghost Of A Former Mayor Who Haunts The City Hall",
+        "A Secret Society Of Politicians And Bureaucrats Who Control The City"
+      ],
+      "tertiary": [
+        "A Legendary Artifact That Is Hidden In The City Hall",
+        "A Secret That Could Bring Down The City's Government",
+        "A Plot To Assassinate The Mayor",
+        "A Magical Creature That Is Being Held Captive In The City Hall",
+        "A Citizen Who Is A Powerful Wizard In Disguise",
+        "The City Hall Is A Front For A Powerful And Ancient Organization"
+      ]
     },
     "orphanage": {
-      "tags": ["orphanage", "indoor", "social"],
+      "tags": [
+        "orphanage",
+        "indoor",
+        "social"
+      ],
       "description": "A grim orphanage that is home to the city's unwanted children. The air is thick with the smell of cheap stew and despair. The children are a mix of the hopeful and the broken.",
-      "primary": ["a dormitory with rows of narrow beds", "a classroom where the children are taught basic literacy and numeracy", "a playground with rusty swings and a broken slide", "a dining hall where the children eat their meager meals", "the headmistress's office", "a small shrine to a forgotten god"],
-      "secondary": ["a cruel headmistress who abuses the children", "a group of bullies who terrorize the other children", "a child who has a secret magical ability", "a hidden stash of food that the children have been saving", "a ghost of a former orphan who haunts the orphanage", "a secret society of orphans who are planning to escape"],
-      "tertiary": ["a legendary artifact that is hidden in the orphanage", "a secret that could bring down a powerful noble family", "a plot to sell the children into slavery", "a magical creature that is protecting the children", "a child who is the heir to a lost kingdom", "the orphanage is a front for a powerful and ancient organization"]
+      "primary": [
+        "A Dormitory With Rows Of Narrow Beds",
+        "A Classroom Where The Children Are Taught Basic Literacy And Numeracy",
+        "A Playground With Rusty Swings And A Broken Slide",
+        "A Dining Hall Where The Children Eat Their Meager Meals",
+        "The Headmistress's Office",
+        "A Small Shrine To A Forgotten God"
+      ],
+      "secondary": [
+        "A Cruel Headmistress Who Abuses The Children",
+        "A Group Of Bullies Who Terrorize The Other Children",
+        "A Child Who Has A Secret Magical Ability",
+        "A Hidden Stash Of Food That The Children Have Been Saving",
+        "A Ghost Of A Former Orphan Who Haunts The Orphanage",
+        "A Secret Society Of Orphans Who Are Planning To Escape"
+      ],
+      "tertiary": [
+        "A Legendary Artifact That Is Hidden In The Orphanage",
+        "A Secret That Could Bring Down A Powerful Noble Family",
+        "A Plot To Sell The Children Into Slavery",
+        "A Magical Creature That Is Protecting The Children",
+        "A Child Who Is The Heir To A Lost Kingdom",
+        "The Orphanage Is A Front For A Powerful And Ancient Organization"
+      ]
     },
     "brothel": {
-      "tags": ["brothel", "indoor", "social", "crime"],
+      "tags": [
+        "brothel",
+        "indoor",
+        "social",
+        "crime"
+      ],
       "description": "A lavish brothel that caters to the city's elite. The air is thick with the smell of expensive perfume and the sound of whispered secrets. The courtesans are a mix of the beautiful and the cunning.",
-      "primary": ["a series of opulent bedrooms", "a common room with a bar and a stage for performers", "a private garden for the courtesans and their clients", "a secret entrance for discreet clients", "a team of bouncers", "the madam's office"],
-      "secondary": ["a courtesan who is a spy for a foreign power", "a client who is a powerful politician with a dark secret", "a rivalry between two courtesans that is about to turn violent", "a courtesan who has information that could bring down a powerful noble family", "a ghost of a former courtesan who haunts the brothel", "a secret society of courtesans who control the city's underworld"],
-      "tertiary": ["a legendary artifact that is hidden in the brothel", "a secret that could bring down the city's government", "a plot to assassinate a powerful client", "a magical creature that is being held captive in the brothel", "a courtesan who is a powerful wizard in disguise", "the brothel is a front for a powerful and ancient organization"]
+      "primary": [
+        "A Series Of Opulent Bedrooms",
+        "A Common Room With A Bar And A Stage For Performers",
+        "A Private Garden For The Courtesans And Their Clients",
+        "A Secret Entrance For Discreet Clients",
+        "A Team Of Bouncers",
+        "The Madam's Office"
+      ],
+      "secondary": [
+        "A Courtesan Who Is A Spy For A Foreign Power",
+        "A Client Who Is A Powerful Politician With A Dark Secret",
+        "A Rivalry Between Two Courtesans That Is About To Turn Violent",
+        "A Courtesan Who Has Information That Could Bring Down A Powerful Noble Family",
+        "A Ghost Of A Former Courtesan Who Haunts The Brothel",
+        "A Secret Society Of Courtesans Who Control The City's Underworld"
+      ],
+      "tertiary": [
+        "A Legendary Artifact That Is Hidden In The Brothel",
+        "A Secret That Could Bring Down The City's Government",
+        "A Plot To Assassinate A Powerful Client",
+        "A Magical Creature That Is Being Held Captive In The Brothel",
+        "A Courtesan Who Is A Powerful Wizard In Disguise",
+        "The Brothel Is A Front For A Powerful And Ancient Organization"
+      ]
     },
     "pawn_shop": {
-      "tags": ["shop", "indoor", "crime"],
+      "tags": [
+        "shop",
+        "indoor",
+        "crime"
+      ],
       "description": "A cluttered pawn shop where people trade their possessions for a handful of coins. The air is thick with the smell of dust and desperation. The shopkeeper is a shrewd and ruthless businessman.",
-      "primary": ["shelves of second-hand goods", "a counter with a scale for weighing gold and silver", "a back room where the shopkeeper stores his most valuable items", "a series of cages for small animals", "a collection of strange and unusual weapons", "a mysterious shopkeeper"],
-      "secondary": ["a stolen item that is being fenced at the shop", "a cursed item that brings misfortune to its owner", "a secret message hidden in an old book", "a map to a hidden treasure that is being sold for a pittance", "a ghost of a former customer who haunts the shop", "a secret society that uses the shop as a front for their activities"],
-      "tertiary": ["a powerful artifact that is hidden in plain sight", "a secret that could bring down a powerful noble family", "a plot to rob the shop", "a magical creature that is being held captive in the shop", "a customer who is a powerful wizard in disguise", "the pawn shop is a front for a powerful and ancient organization"]
+      "primary": [
+        "Shelves Of Second-hand Goods",
+        "A Counter With A Scale For Weighing Gold And Silver",
+        "A Back Room Where The Shopkeeper Stores His Most Valuable Items",
+        "A Series Of Cages For Small Animals",
+        "A Collection Of Strange And Unusual Weapons",
+        "A Mysterious Shopkeeper"
+      ],
+      "secondary": [
+        "A Stolen Item That Is Being Fenced At The Shop",
+        "A Cursed Item That Brings Misfortune To Its Owner",
+        "A Secret Message Hidden In An Old Book",
+        "A Map To A Hidden Treasure That Is Being Sold For A Pittance",
+        "A Ghost Of A Former Customer Who Haunts The Shop",
+        "A Secret Society That Uses The Shop As A Front For Their Activities"
+      ],
+      "tertiary": [
+        "A Powerful Artifact That Is Hidden In Plain Sight",
+        "A Secret That Could Bring Down A Powerful Noble Family",
+        "A Plot To Rob The Shop",
+        "A Magical Creature That Is Being Held Captive In The Shop",
+        "A Customer Who Is A Powerful Wizard In Disguise",
+        "The Pawn Shop Is A Front For A Powerful And Ancient Organization"
+      ]
     },
     "stables": {
-      "tags": ["stables", "outdoor", "animals"],
+      "tags": [
+        "stables",
+        "outdoor",
+        "animals"
+      ],
       "description": "A bustling stables where horses are bought, sold, and cared for. The air is thick with the smell of hay and manure. The stable hands are a mix of the hardworking and the lazy.",
-      "primary": ["a series of stalls for the horses", "a training yard where the horses are exercised", "a blacksmith's forge for shoeing the horses", "a carriage house with a collection of fine carriages", "a hayloft for storing feed", "the stable master's office"],
-      "secondary": ["a prize-winning racehorse that is being targeted by a rival stable", "a stable hand who is secretly a member of a horse-thieving gang", "a magical horse that can talk", "a hidden stash of stolen goods in the hayloft", "a ghost of a former stable master who haunts the stables", "a secret society of horse breeders who are trying to create the perfect steed"],
-      "tertiary": ["a legendary horse that is hidden in the stables", "a secret that could bring down a powerful noble family", "a plot to poison the city's water supply through the stables", "a magical creature that is disguised as a horse", "a stable hand who is the heir to a lost kingdom", "the stables are a front for a powerful and ancient organization"]
+      "primary": [
+        "A Series Of Stalls For The Horses",
+        "A Training Yard Where The Horses Are Exercised",
+        "A Blacksmith's Forge For Shoeing The Horses",
+        "A Carriage House With A Collection Of Fine Carriages",
+        "A Hayloft For Storing Feed",
+        "The Stable Master's Office"
+      ],
+      "secondary": [
+        "A Prize-winning Racehorse That Is Being Targeted By A Rival Stable",
+        "A Stable Hand Who Is Secretly A Member Of A Horse-thieving Gang",
+        "A Magical Horse That Can Talk",
+        "A Hidden Stash Of Stolen Goods In The Hayloft",
+        "A Ghost Of A Former Stable Master Who Haunts The Stables",
+        "A Secret Society Of Horse Breeders Who Are Trying To Create The Perfect Steed"
+      ],
+      "tertiary": [
+        "A Legendary Horse That Is Hidden In The Stables",
+        "A Secret That Could Bring Down A Powerful Noble Family",
+        "A Plot To Poison The City's Water Supply Through The Stables",
+        "A Magical Creature That Is Disguised As A Horse",
+        "A Stable Hand Who Is The Heir To A Lost Kingdom",
+        "The Stables Are A Front For A Powerful And Ancient Organization"
+      ]
     },
     "tannery": {
-      "tags": ["tannery", "indoor", "industrial"],
+      "tags": [
+        "tannery",
+        "indoor",
+        "industrial"
+      ],
       "description": "A foul-smelling tannery where animal hides are turned into leather. The air is thick with the smell of chemicals and rotting flesh. The workers are a mix of the desperate and the hardened.",
-      "primary": ["vats of tanning solution", "racks of drying hides", "a fleshing beam for scraping the hides", "a series of pools for washing the hides", "a furnace for heating the tanning solution", "a pile of discarded animal parts"],
-      "secondary": ["a worker who has fallen into a vat of tanning solution", "a group of workers who are planning to go on strike", "a secret ingredient that is used to create a superior type of leather", "a hidden stash of illegal goods", "a ghost of a former worker who haunts the tannery", "a secret society of tanners who are also assassins"],
-      "tertiary": ["a legendary hide that is being tanned at the tannery", "a secret that could bring down a powerful guild", "a plot to poison the city's water supply through the tannery", "a magical creature that is being held captive in the tannery", "a worker who is a powerful wizard in disguise", "the tannery is a front for a powerful and ancient organization"]
+      "primary": [
+        "Vats Of Tanning Solution",
+        "Racks Of Drying Hides",
+        "A Fleshing Beam For Scraping The Hides",
+        "A Series Of Pools For Washing The Hides",
+        "A Furnace For Heating The Tanning Solution",
+        "A Pile Of Discarded Animal Parts"
+      ],
+      "secondary": [
+        "A Worker Who Has Fallen Into A Vat Of Tanning Solution",
+        "A Group Of Workers Who Are Planning To Go On Strike",
+        "A Secret Ingredient That Is Used To Create A Superior Type Of Leather",
+        "A Hidden Stash Of Illegal Goods",
+        "A Ghost Of A Former Worker Who Haunts The Tannery",
+        "A Secret Society Of Tanners Who Are Also Assassins"
+      ],
+      "tertiary": [
+        "A Legendary Hide That Is Being Tanned At The Tannery",
+        "A Secret That Could Bring Down A Powerful Guild",
+        "A Plot To Poison The City's Water Supply Through The Tannery",
+        "A Magical Creature That Is Being Held Captive In The Tannery",
+        "A Worker Who Is A Powerful Wizard In Disguise",
+        "The Tannery Is A Front For A Powerful And Ancient Organization"
+      ]
     },
     "blacksmith": {
-      "tags": ["blacksmith", "indoor", "industrial"],
+      "tags": [
+        "blacksmith",
+        "indoor",
+        "industrial"
+      ],
       "description": "A busy blacksmith's forge, where the clang of hammer on anvil is a constant sound. The air is thick with the smell of coal smoke and hot metal. The blacksmith is a master of their craft.",
-      "primary": ["a forge with a roaring fire", "an anvil and a collection of hammers", "a quenching trough filled with water", "a rack of finished weapons and armor", "a pile of scrap metal", "a powerful and muscular blacksmith"],
-      "secondary": ["a magical hammer that can shape any metal", "a secret formula for creating a new type of alloy", "a weapon that is cursed to betray its wielder", "a hidden compartment in the forge that contains a stash of illegal weapons", "a ghost of a former blacksmith who haunts the forge", "a secret society of blacksmiths who are also warriors"],
-
-      "tertiary": ["a legendary weapon that is being forged at the blacksmith's", "a secret that could bring down a powerful kingdom", "a plot to assassinate a noble with a poisoned weapon", "a magical creature that is being held captive in the forge", "the blacksmith is a demigod in disguise", "the blacksmith's forge is a front for a powerful and ancient organization"]
+      "primary": [
+        "A Forge With A Roaring Fire",
+        "An Anvil And A Collection Of Hammers",
+        "A Quenching Trough Filled With Water",
+        "A Rack Of Finished Weapons And Armor",
+        "A Pile Of Scrap Metal",
+        "A Powerful And Muscular Blacksmith"
+      ],
+      "secondary": [
+        "A Magical Hammer That Can Shape Any Metal",
+        "A Secret Formula For Creating A New Type Of Alloy",
+        "A Weapon That Is Cursed To Betray Its Wielder",
+        "A Hidden Compartment In The Forge That Contains A Stash Of Illegal Weapons",
+        "A Ghost Of A Former Blacksmith Who Haunts The Forge",
+        "A Secret Society Of Blacksmiths Who Are Also Warriors"
+      ],
+      "tertiary": [
+        "A Legendary Weapon That Is Being Forged At The Blacksmith's",
+        "A Secret That Could Bring Down A Powerful Kingdom",
+        "A Plot To Assassinate A Noble With A Poisoned Weapon",
+        "A Magical Creature That Is Being Held Captive In The Forge",
+        "The Blacksmith Is A Demigod In Disguise",
+        "The Blacksmith's Forge Is A Front For A Powerful And Ancient Organization"
+      ]
     },
     "bakery": {
-      "tags": ["bakery", "indoor", "social"],
+      "tags": [
+        "bakery",
+        "indoor",
+        "social"
+      ],
       "description": "A warm and inviting bakery that fills the street with the smell of fresh bread. The baker is a cheerful and friendly person who is always happy to chat with their customers.",
-      "primary": ["a brick oven with a roaring fire", "a counter with a display of fresh bread and pastries", "a series of shelves with bags of flour and sugar", "a kneading table covered in flour", "a friendly and talkative baker", "a cat sleeping in a patch of sunlight"],
-      "secondary": ["a secret recipe for a magical bread that can heal any ailment", "a batch of poisoned pastries that are intended for a noble", "a hidden compartment in the oven that contains a stash of smuggled goods", "a ghost of a former baker who haunts the bakery", "a secret society of bakers who are also spies", "the bakery is a front for a powerful and ancient organization"],
-      "tertiary": ["a legendary bread that can grant eternal life", "a secret that could bring down a powerful guild", "a plot to poison the city's water supply through the bakery", "a magical creature that is disguised as a cat", "the baker is a powerful wizard in disguise", "the bakery is a place of great magical power"]
+      "primary": [
+        "A Brick Oven With A Roaring Fire",
+        "A Counter With A Display Of Fresh Bread And Pastries",
+        "A Series Of Shelves With Bags Of Flour And Sugar",
+        "A Kneading Table Covered In Flour",
+        "A Friendly And Talkative Baker",
+        "A Cat Sleeping In A Patch Of Sunlight"
+      ],
+      "secondary": [
+        "A Secret Recipe For A Magical Bread That Can Heal Any Ailment",
+        "A Batch Of Poisoned Pastries That Are Intended For A Noble",
+        "A Hidden Compartment In The Oven That Contains A Stash Of Smuggled Goods",
+        "A Ghost Of A Former Baker Who Haunts The Bakery",
+        "A Secret Society Of Bakers Who Are Also Spies",
+        "The Bakery Is A Front For A Powerful And Ancient Organization"
+      ],
+      "tertiary": [
+        "A Legendary Bread That Can Grant Eternal Life",
+        "A Secret That Could Bring Down A Powerful Guild",
+        "A Plot To Poison The City's Water Supply Through The Bakery",
+        "A Magical Creature That Is Disguised As A Cat",
+        "The Baker Is A Powerful Wizard In Disguise",
+        "The Bakery Is A Place Of Great Magical Power"
+      ]
     },
     "playwrights_theater": {
-      "tags": ["theater", "indoor", "murder_mystery", "poisoned_playwright", "investigation", "custom_scenario"],
-      "primary": ["velvet-lined private box where the body was found", "poisoned wine glass with residue on the rim", "playbill showing tonight's performance schedule", "scattered theater tickets from the victim's pocket", "stage below with actors continuing their performance", "gilded chair knocked askew in the death struggle"],
-      "secondary": ["torn invitation card bearing a rival playwright's seal", "backstage pass granting access to the green room", "powder compact dropped beneath the seat", "program notes with handwritten corrections", "wine bottle label from 'The Silver Serpent Apothecary'", "mysterious love letter tucked in the armrest"],
-      "tertiary": ["receipt from apothecary shop dated three days ago", "encoded diary entry describing a blackmail plot", "theatrical poison prop that's actually real", "key to underground printing press hidden in seat cushion"],
+      "tags": [
+        "theater",
+        "indoor",
+        "murder_mystery",
+        "poisoned_playwright",
+        "investigation",
+        "custom_scenario"
+      ],
+      "primary": [
+        "Velvet-lined Private Box Where The Body Was Found",
+        "Poisoned Wine Glass With Residue On The Rim",
+        "Playbill Showing Tonight's Performance Schedule",
+        "Scattered Theater Tickets From The Victim's Pocket",
+        "Stage Below With Actors Continuing Their Performance",
+        "Gilded Chair Knocked Askew In The Death Struggle"
+      ],
+      "secondary": [
+        "Torn Invitation Card Bearing A Rival Playwright's Seal",
+        "Backstage Pass Granting Access To The Green Room",
+        "Powder Compact Dropped Beneath The Seat",
+        "Program Notes With Handwritten Corrections",
+        "Wine Bottle Label From 'the Silver Serpent Apothecary'",
+        "Mysterious Love Letter Tucked In The Armrest"
+      ],
+      "tertiary": [
+        "Receipt From Apothecary Shop Dated Three Days Ago",
+        "Encoded Diary Entry Describing A Blackmail Plot",
+        "Theatrical Poison Prop That's Actually Real",
+        "Key To Underground Printing Press Hidden In Seat Cushion"
+      ],
       "discoveryChains": {
-        "0": {"secondary": 2, "tertiary": 1},
-        "1": {"secondary": 4, "tertiary": 0},
-        "2": {"secondary": 3, "tertiary": 1},
-        "3": {"secondary": 2, "tertiary": 3},
-        "4": {"secondary": 1, "tertiary": 1},
-        "5": {"secondary": 0, "tertiary": 0}
+        "0": {
+          "secondary": 2,
+          "tertiary": 1
+        },
+        "1": {
+          "secondary": 4,
+          "tertiary": 0
+        },
+        "2": {
+          "secondary": 3,
+          "tertiary": 1
+        },
+        "3": {
+          "secondary": 2,
+          "tertiary": 3
+        },
+        "4": {
+          "secondary": 1,
+          "tertiary": 1
+        },
+        "5": {
+          "secondary": 0,
+          "tertiary": 0
+        }
       },
       "description": "Gaslight flickers across gilt railings and crimson velvet as the play continues below, oblivious to the still figure slumped in the private box. The sweet scent of poisoned wine mingles with greasepaint and perfume. Programs rustle and the audience applauds, masking the silence of death. A half-written review lies on the armrest, ink still wet."
     },
     "apothecary_shop": {
-      "tags": ["apothecary", "shop", "indoor", "murder_mystery", "poisoned_playwright", "investigation", "alchemy", "custom_scenario"],
-      "primary": ["shelves lined with labeled poison bottles", "brass scales for measuring precise doses", "mortar and pestle with purple residue", "customer ledger lying open on the counter", "locked cabinet of restricted substances", "distillation apparatus still warm from recent use"],
-      "secondary": ["receipt book showing wine delivery to theater", "note about special order for 'theatrical purposes'", "advertisement for rival estate's garden party", "empty vial matching the poison used", "merchant's guild license on the wall", "apprentice's diary mentioning suspicious purchases"],
-      "tertiary": ["hidden compartment containing blackmail letters about estate owner", "coded correspondence with underground press", "antidote formula that could have saved the victim", "love token from the rival estate's lady"],
+      "tags": [
+        "apothecary",
+        "shop",
+        "indoor",
+        "murder_mystery",
+        "poisoned_playwright",
+        "investigation",
+        "alchemy",
+        "custom_scenario"
+      ],
+      "primary": [
+        "Shelves Lined With Labeled Poison Bottles",
+        "Brass Scales For Measuring Precise Doses",
+        "Mortar And Pestle With Purple Residue",
+        "Customer Ledger Lying Open On The Counter",
+        "Locked Cabinet Of Restricted Substances",
+        "Distillation Apparatus Still Warm From Recent Use"
+      ],
+      "secondary": [
+        "Receipt Book Showing Wine Delivery To Theater",
+        "Note About Special Order For 'theatrical Purposes'",
+        "Advertisement For Rival Estate's Garden Party",
+        "Empty Vial Matching The Poison Used",
+        "Merchant's Guild License On The Wall",
+        "Apprentice's Diary Mentioning Suspicious Purchases"
+      ],
+      "tertiary": [
+        "Hidden Compartment Containing Blackmail Letters About Estate Owner",
+        "Coded Correspondence With Underground Press",
+        "Antidote Formula That Could Have Saved The Victim",
+        "Love Token From The Rival Estate's Lady"
+      ],
       "discoveryChains": {
-        "0": {"secondary": 3, "tertiary": 2},
-        "1": {"secondary": 1, "tertiary": 2},
-        "2": {"secondary": 3, "tertiary": 2},
-        "3": {"secondary": 0, "tertiary": 0},
-        "4": {"secondary": 1, "tertiary": 1},
-        "5": {"secondary": 5, "tertiary": 1}
+        "0": {
+          "secondary": 3,
+          "tertiary": 2
+        },
+        "1": {
+          "secondary": 1,
+          "tertiary": 2
+        },
+        "2": {
+          "secondary": 3,
+          "tertiary": 2
+        },
+        "3": {
+          "secondary": 0,
+          "tertiary": 0
+        },
+        "4": {
+          "secondary": 1,
+          "tertiary": 1
+        },
+        "5": {
+          "secondary": 5,
+          "tertiary": 1
+        }
       },
       "description": "Glass vials catch the lamplight in rainbow glints while dried herbs hang from rafters, filling the air with bitter medicine and sweet decay. The brass scale gleams beside careful measurements inked in flowing script. A mortar holds purple powder that matches the wine-stain on theater velvet. Behind the counter, locked drawers promise darker wares."
     },
     "rival_estate": {
-      "tags": ["estate", "manor", "indoor", "murder_mystery", "poisoned_playwright", "investigation", "noble", "custom_scenario"],
-      "primary": ["study desk covered with rejected play manuscripts", "wall of theatrical awards and newspaper clippings", "recent review savaging the rival's latest work", "invitation to the victim's premiere with wine stains", "fireplace with partially burned letters", "trophy case displaying past triumphs now overshadowed"],
-      "secondary": ["correspondence with the apothecary about a 'special request'", "rehearsal schedule showing conflict with victim's opening night", "receipt for theater box seats for that fatal evening", "draft of scathing response to a bad review", "servant's testimony notes about master's whereabouts", "perfume-scented handkerchief monogrammed with victim's initials"],
-      "tertiary": ["map to underground printing press with annotations", "contract offering the victim's theatrical company at discount", "love letters from both playwright rivals to the same person", "city morgue pass signed by a corrupt official"],
+      "tags": [
+        "estate",
+        "manor",
+        "indoor",
+        "murder_mystery",
+        "poisoned_playwright",
+        "investigation",
+        "noble",
+        "custom_scenario"
+      ],
+      "primary": [
+        "Study Desk Covered With Rejected Play Manuscripts",
+        "Wall Of Theatrical Awards And Newspaper Clippings",
+        "Recent Review Savaging The Rival's Latest Work",
+        "Invitation To The Victim's Premiere With Wine Stains",
+        "Fireplace With Partially Burned Letters",
+        "Trophy Case Displaying Past Triumphs Now Overshadowed"
+      ],
+      "secondary": [
+        "Correspondence With The Apothecary About A 'special Request'",
+        "Rehearsal Schedule Showing Conflict With Victim's Opening Night",
+        "Receipt For Theater Box Seats For That Fatal Evening",
+        "Draft Of Scathing Response To A Bad Review",
+        "Servant's Testimony Notes About Master's Whereabouts",
+        "Perfume-scented Handkerchief Monogrammed With Victim's Initials"
+      ],
+      "tertiary": [
+        "Map To Underground Printing Press With Annotations",
+        "Contract Offering The Victim's Theatrical Company At Discount",
+        "Love Letters From Both Playwright Rivals To The Same Person",
+        "City Morgue Pass Signed By A Corrupt Official"
+      ],
       "discoveryChains": {
-        "0": {"secondary": 3, "tertiary": 1},
-        "1": {"secondary": 1, "tertiary": 1},
-        "2": {"secondary": 3, "tertiary": 1},
-        "3": {"secondary": 2, "tertiary": 0},
-        "4": {"secondary": 0, "tertiary": 0},
-        "5": {"secondary": 5, "tertiary": 2}
+        "0": {
+          "secondary": 3,
+          "tertiary": 1
+        },
+        "1": {
+          "secondary": 1,
+          "tertiary": 1
+        },
+        "2": {
+          "secondary": 3,
+          "tertiary": 1
+        },
+        "3": {
+          "secondary": 2,
+          "tertiary": 0
+        },
+        "4": {
+          "secondary": 0,
+          "tertiary": 0
+        },
+        "5": {
+          "secondary": 5,
+          "tertiary": 2
+        }
       },
       "description": "Polished mahogany and leather-bound plays line walls that reek of old success and fresh desperation. Framed reviews yellow beside newer clippings that praise a rival's genius. A desk drawer sits ajar, revealing crumpled drafts and inkwell fury. The fireplace holds ash and secrets, while a wine decanter—now empty—matches the one from the theater."
     },
     "underground_printing_press": {
-      "tags": ["printing_press", "underground", "indoor", "murder_mystery", "poisoned_playwright", "investigation", "criminal", "custom_scenario"],
-      "primary": ["printing press still warm with fresh ink", "scandalous broadsheet about the victim's secret life", "compositor's tray holding damning headlines", "bundles of printed libel ready for distribution", "editor's desk covered in research notes", "locked strongbox containing source documents"],
-      "secondary": ["payment ledger showing who commissioned the exposé", "reporter's notes describing apothecary shop visit", "witness statement from rival estate's servant", "photograph of victim with compromising companion", "schedule showing print run timed to victim's premiere", "correspondence with multiple suspects"],
-      "tertiary": ["contract from rival playwright paying for the scandal sheet", "confession letter from someone who knew the murder plan", "documents proving the victim's discovery of the press", "map to city morgue where final evidence waits"],
+      "tags": [
+        "printing_press",
+        "underground",
+        "indoor",
+        "murder_mystery",
+        "poisoned_playwright",
+        "investigation",
+        "criminal",
+        "custom_scenario"
+      ],
+      "primary": [
+        "Printing Press Still Warm With Fresh Ink",
+        "Scandalous Broadsheet About The Victim's Secret Life",
+        "Compositor's Tray Holding Damning Headlines",
+        "Bundles Of Printed Libel Ready For Distribution",
+        "Editor's Desk Covered In Research Notes",
+        "Locked Strongbox Containing Source Documents"
+      ],
+      "secondary": [
+        "Payment Ledger Showing Who Commissioned The Exposé",
+        "Reporter's Notes Describing Apothecary Shop Visit",
+        "Witness Statement From Rival Estate's Servant",
+        "Photograph Of Victim With Compromising Companion",
+        "Schedule Showing Print Run Timed To Victim's Premiere",
+        "Correspondence With Multiple Suspects"
+      ],
+      "tertiary": [
+        "Contract From Rival Playwright Paying For The Scandal Sheet",
+        "Confession Letter From Someone Who Knew The Murder Plan",
+        "Documents Proving The Victim's Discovery Of The Press",
+        "Map To City Morgue Where Final Evidence Waits"
+      ],
       "discoveryChains": {
-        "0": {"secondary": 4, "tertiary": 2},
-        "1": {"secondary": 3, "tertiary": 1},
-        "2": {"secondary": 4, "tertiary": 0},
-        "3": {"secondary": 0, "tertiary": 0},
-        "4": {"secondary": 1, "tertiary": 2},
-        "5": {"secondary": 5, "tertiary": 3}
+        "0": {
+          "secondary": 4,
+          "tertiary": 2
+        },
+        "1": {
+          "secondary": 3,
+          "tertiary": 1
+        },
+        "2": {
+          "secondary": 4,
+          "tertiary": 0
+        },
+        "3": {
+          "secondary": 0,
+          "tertiary": 0
+        },
+        "4": {
+          "secondary": 1,
+          "tertiary": 2
+        },
+        "5": {
+          "secondary": 5,
+          "tertiary": 3
+        }
       },
       "description": "The mechanical clatter echoes through brick vaults where lamplight barely reaches. Fresh ink stains fingers and broadsheets, while the air tastes of metal and secrets. Headlines scream scandal beside stacks of libel, each word a dagger aimed at reputation. The press master's desk overflows with informants' tips and blood money receipts."
     },
     "city_morgue": {
-      "tags": ["morgue", "death", "indoor", "murder_mystery", "poisoned_playwright", "investigation", "medical", "custom_scenario"],
-      "primary": ["examination table bearing the playwright's corpse", "coroner's report detailing exotic poison", "tray of extracted stomach contents", "medical instruments laid out with precision", "ledger of recent deaths showing pattern", "locked cabinet of autopsy records"],
-      "secondary": ["toxicology results matching apothecary's rare poison", "timeline establishing poison administration window", "witness testimony from theater staff", "personal effects from the victim's pockets", "coroner's notes about similar historical case", "visitor log showing suspicious late-night entry"],
-      "tertiary": ["final piece of evidence conclusively identifying the murderer", "victim's last will revealing blackmail victim", "poison sample traceable to specific batch from apothecary", "deathbed confession letter found in victim's coat lining", "photograph proving who had means, motive, and opportunity"],
+      "tags": [
+        "morgue",
+        "death",
+        "indoor",
+        "murder_mystery",
+        "poisoned_playwright",
+        "investigation",
+        "medical",
+        "custom_scenario"
+      ],
+      "primary": [
+        "Examination Table Bearing The Playwright's Corpse",
+        "Coroner's Report Detailing Exotic Poison",
+        "Tray Of Extracted Stomach Contents",
+        "Medical Instruments Laid Out With Precision",
+        "Ledger Of Recent Deaths Showing Pattern",
+        "Locked Cabinet Of Autopsy Records"
+      ],
+      "secondary": [
+        "Toxicology Results Matching Apothecary's Rare Poison",
+        "Timeline Establishing Poison Administration Window",
+        "Witness Testimony From Theater Staff",
+        "Personal Effects From The Victim's Pockets",
+        "Coroner's Notes About Similar Historical Case",
+        "Visitor Log Showing Suspicious Late-night Entry"
+      ],
+      "tertiary": [
+        "Final Piece Of Evidence Conclusively Identifying The Murderer",
+        "Victim's Last Will Revealing Blackmail Victim",
+        "Poison Sample Traceable To Specific Batch From Apothecary",
+        "Deathbed Confession Letter Found In Victim's Coat Lining",
+        "Photograph Proving Who Had Means, Motive, And Opportunity"
+      ],
       "discoveryChains": {
-        "0": {"secondary": 0, "tertiary": 2},
-        "1": {"secondary": 0, "tertiary": 2},
-        "2": {"secondary": 0, "tertiary": 2},
-        "3": {"secondary": 3, "tertiary": 3},
-        "4": {"secondary": 4, "tertiary": 1},
-        "5": {"secondary": 5, "tertiary": 0}
+        "0": {
+          "secondary": 0,
+          "tertiary": 2
+        },
+        "1": {
+          "secondary": 0,
+          "tertiary": 2
+        },
+        "2": {
+          "secondary": 0,
+          "tertiary": 2
+        },
+        "3": {
+          "secondary": 3,
+          "tertiary": 3
+        },
+        "4": {
+          "secondary": 4,
+          "tertiary": 1
+        },
+        "5": {
+          "secondary": 5,
+          "tertiary": 0
+        }
       },
       "description": "Formaldehyde and carbolic acid sting your nose in the chill stone chamber. The playwright lies pale on metal, theatrical makeup now tragic in death. Glass jars hold viscera while the coroner's quill scratches conclusions. Lantern light gleams on steel instruments and the truth they've cut free. All threads lead here, to cold proof and final revelation."
     },
@@ -1036,28 +1802,28 @@
         "clockwork"
       ],
       "primary": [
-        "massive clock gear",
-        "timing mechanism",
-        "brass pendulum",
-        "gear assembly",
-        "maintenance catwalk",
-        "clock face (interior)"
+        "Massive Clock Gear",
+        "Timing Mechanism",
+        "Brass Pendulum",
+        "Gear Assembly",
+        "Maintenance Catwalk",
+        "Clock Face (interior)"
       ],
       "secondary": [
-        "oil can",
-        "gear teeth fragment",
-        "timing chart",
-        "adjustment wrench",
-        "synchronization rod",
-        "mechanism blueprint"
+        "Oil Can",
+        "Gear Teeth Fragment",
+        "Timing Chart",
+        "Adjustment Wrench",
+        "Synchronization Rod",
+        "Mechanism Blueprint"
       ],
       "tertiary": [
-        "chronometer (precision)",
-        "temporal anomaly device",
-        "saboteur's toolkit",
-        "time-keeper's journal",
-        "arcane timing crystal",
-        "guild master's seal"
+        "Chronometer (precision)",
+        "Temporal Anomaly Device",
+        "Saboteur's Toolkit",
+        "Time-keeper's Journal",
+        "Arcane Timing Crystal",
+        "Guild Master's Seal"
       ],
       "description": "Towering clock faces dominate the skyline while massive brass gears grind their eternal rhythm. The district pulses with mechanical precision—shops open by the chime, workers shift on the hour, and steam vents hiss in synchronized bursts. Maintenance catwalks web between towers where clock-keepers tend their charges. But today the synchronization falters, and the city's temporal heartbeat stutters ominously."
     },
@@ -1070,28 +1836,28 @@
         "entrance"
       ],
       "primary": [
-        "massive iron-bound gates",
-        "guard checkpoint booth",
-        "merchant caravan waiting",
-        "refugee camp forming",
-        "customs inspection station",
-        "wanted poster board"
+        "Massive Iron-bound Gates",
+        "Guard Checkpoint Booth",
+        "Merchant Caravan Waiting",
+        "Refugee Camp Forming",
+        "Customs Inspection Station",
+        "Wanted Poster Board"
       ],
       "secondary": [
-        "travel permits and papers",
-        "confiscated contraband",
-        "guard duty roster",
-        "merchant manifests",
-        "asylum petition documents",
-        "city watch orders"
+        "Travel Permits And Papers",
+        "Confiscated Contraband",
+        "Guard Duty Roster",
+        "Merchant Manifests",
+        "Asylum Petition Documents",
+        "City Watch Orders"
       ],
       "tertiary": [
-        "shapeshifter detection amulet",
-        "noble's sealed orders",
-        "refugee leader's plea",
-        "smuggler's tunnel map",
-        "guard captain's conscience",
-        "hidden passage key"
+        "Shapeshifter Detection Amulet",
+        "Noble's Sealed Orders",
+        "Refugee Leader's Plea",
+        "Smuggler's Tunnel Map",
+        "Guard Captain's Conscience",
+        "Hidden Passage Key"
       ],
       "description": "The great gates loom like judging titans while humanity presses against their authority. Guards in city colors scrutinize every face, every cart, every desperate story. The refugee camp sprawls in chaos beyond the walls while merchant goods rot in the sun. A doomsday prophet's voice rises above the murmur of the crowd, and tension thickens like the dust kicked up by a thousand anxious feet."
     },
@@ -1104,28 +1870,28 @@
         "brutal"
       ],
       "primary": [
-        "blood-stained fighting ring",
-        "roaring crowd on makeshift stands",
-        "betting ledger and coin purse",
-        "fighter waiting in corner",
-        "crime boss's elevated throne",
-        "torch-lit shadows beyond ring"
+        "Blood-stained Fighting Ring",
+        "Roaring Crowd On Makeshift Stands",
+        "Betting Ledger And Coin Purse",
+        "Fighter Waiting In Corner",
+        "Crime Boss's Elevated Throne",
+        "Torch-lit Shadows Beyond Ring"
       ],
       "secondary": [
-        "fighter's contract (debt slavery)",
-        "fixed match instructions",
-        "healing poultice and bandages",
-        "underground arena map",
-        "bookie's coded messages",
-        "previous fighter's teeth"
+        "Fighter's Contract (debt Slavery)",
+        "Fixed Match Instructions",
+        "Healing Poultice And Bandages",
+        "Underground Arena Map",
+        "Bookie's Coded Messages",
+        "Previous Fighter's Teeth"
       ],
       "tertiary": [
-        "demon summoning circle (hidden)",
-        "sacrificial tally marks",
-        "freedom papers (forged)",
-        "crime syndicate seal",
-        "desperate fighter's family letter",
-        "escape tunnel entrance"
+        "Demon Summoning Circle (hidden)",
+        "Sacrificial Tally Marks",
+        "Freedom Papers (forged)",
+        "Crime Syndicate Seal",
+        "Desperate Fighter's Family Letter",
+        "Escape Tunnel Entrance"
       ],
       "description": "The sewer chamber echoes with savage cheers as fists meet flesh under flickering torchlight. Blood spatters the crude ring while desperate fighters trade pain for coin—or freedom, or survival. The crime boss watches from above, fingers drumming on armrests, already counting profits. But in the shadows beyond the crowd, something moves that isn't human, drawn by violence and desperation like a shark to blood."
     }
@@ -1138,28 +1904,28 @@
         "indoor"
       ],
       "primary": [
-        "stone sarcophagus",
-        "altar",
-        "statue",
-        "burial niche",
-        "stone column",
-        "brazier"
+        "Stone Sarcophagus",
+        "Altar",
+        "Statue",
+        "Burial Niche",
+        "Stone Column",
+        "Brazier"
       ],
       "secondary": [
-        "burial offering",
-        "inscription",
-        "sealed urn",
-        "canopic jar",
-        "ritual item",
-        "relic"
+        "Burial Offering",
+        "Inscription",
+        "Sealed Urn",
+        "Canopic Jar",
+        "Ritual Item",
+        "Relic"
       ],
       "tertiary": [
-        "cursed item",
-        "treasure",
-        "magic weapon",
-        "ancient scroll",
-        "undead",
-        "trap"
+        "Cursed Item",
+        "Treasure",
+        "Magic Weapon",
+        "Ancient Scroll",
+        "Undead",
+        "Trap"
       ],
       "description": "Carved stone lies heavy with incense long burned away, a sarcophagus draped in crumbling silk. Candles gutter in iron sconces, wax pooling around old offerings. The air is thick and still. Each footfall echoes and lingers against the walls."
     },
@@ -1171,28 +1937,28 @@
         "depths"
       ],
       "primary": [
-        "bone wall",
-        "burial alcove",
-        "stone pillar",
-        "ancient archway",
-        "ossuary",
-        "memorial plaque"
+        "Bone Wall",
+        "Burial Alcove",
+        "Stone Pillar",
+        "Ancient Archway",
+        "Ossuary",
+        "Memorial Plaque"
       ],
       "secondary": [
-        "skull pile",
-        "grave goods",
-        "ancient torch",
-        "carved symbol",
-        "sealed niche",
-        "offering bowl"
+        "Skull Pile",
+        "Grave Goods",
+        "Ancient Torch",
+        "Carved Symbol",
+        "Sealed Niche",
+        "Offering Bowl"
       ],
       "tertiary": [
-        "hidden treasure",
-        "secret passage",
-        "cursed relic",
-        "undead guardian",
-        "trap",
-        "ritual chamber"
+        "Hidden Treasure",
+        "Secret Passage",
+        "Cursed Relic",
+        "Undead Guardian",
+        "Trap",
+        "Ritual Chamber"
       ],
       "description": "Narrow corridors run into darkness, their niches stacked with orderly bones. Moisture drips from the ceiling in a steady tap on cold stone. Faded frescoes ghost along the walls. The air presses close; even a breath sounds too loud."
     },
@@ -1203,28 +1969,28 @@
         "indoor"
       ],
       "primary": [
-        "family crypt",
-        "marble statue",
-        "bronze door",
-        "stone bench",
-        "memorial wall",
-        "vaulted ceiling"
+        "Family Crypt",
+        "Marble Statue",
+        "Bronze Door",
+        "Stone Bench",
+        "Memorial Wall",
+        "Vaulted Ceiling"
       ],
       "secondary": [
-        "inscription plaque",
-        "offering table",
-        "sealed vault",
-        "stained glass",
-        "iron gate",
-        "torch sconce"
+        "Inscription Plaque",
+        "Offering Table",
+        "Sealed Vault",
+        "Stained Glass",
+        "Iron Gate",
+        "Torch Sconce"
       ],
       "tertiary": [
-        "family treasure",
-        "ancient relic",
-        "magic item",
-        "hidden crypt",
-        "undead",
-        "protective ward"
+        "Family Treasure",
+        "Ancient Relic",
+        "Magic Item",
+        "Hidden Crypt",
+        "Undead",
+        "Protective Ward"
       ],
       "description": "Marble pillars hold a painted dome that shimmers in torchlight. Stone effigies recline on sarcophagi with hands folded in calm. Dust hangs in the still air until a faint draft cools your knuckles. The flame shivers, and the silence settles again."
     },
@@ -1235,28 +2001,28 @@
         "indoor"
       ],
       "primary": [
-        "sealed door",
-        "guardian statue",
-        "treasure chest",
-        "magical ward",
-        "puzzle lock",
-        "pillar"
+        "Sealed Door",
+        "Guardian Statue",
+        "Treasure Chest",
+        "Magical Ward",
+        "Puzzle Lock",
+        "Pillar"
       ],
       "secondary": [
-        "pressure plate",
-        "glyph",
-        "keyhole",
-        "offering pedestal",
-        "ancient mechanism",
-        "rune"
+        "Pressure Plate",
+        "Glyph",
+        "Keyhole",
+        "Offering Pedestal",
+        "Ancient Mechanism",
+        "Rune"
       ],
       "tertiary": [
-        "legendary treasure",
-        "artifact",
-        "curse",
-        "powerful undead",
-        "deadly trap",
-        "magic seal"
+        "Legendary Treasure",
+        "Artifact",
+        "Curse",
+        "Powerful Undead",
+        "Deadly Trap",
+        "Magic Seal"
       ],
       "description": "Iron-banded doors seal a hall of reliquaries and locked chests. Pale sigils flicker along the walls and fade when you look away. Old parchment and polished metal scent the air. Metal answers with a soft groan somewhere beyond the door."
     }
@@ -1269,28 +2035,28 @@
         "outdoor"
       ],
       "primary": [
-        "ancient tree",
-        "moss-covered boulder",
-        "trail marker",
-        "fallen log",
-        "clearing",
-        "stream crossing"
+        "Ancient Tree",
+        "Moss-covered Boulder",
+        "Trail Marker",
+        "Fallen Log",
+        "Clearing",
+        "Stream Crossing"
       ],
       "secondary": [
-        "animal track",
-        "carved mark",
-        "abandoned camp",
-        "broken branch",
-        "root system",
-        "mushroom circle"
+        "Animal Track",
+        "Carved Mark",
+        "Abandoned Camp",
+        "Broken Branch",
+        "Root System",
+        "Mushroom Circle"
       ],
       "tertiary": [
-        "hidden cache",
-        "druid sign",
-        "fey marking",
-        "treasure",
-        "trap",
-        "monster lair"
+        "Hidden Cache",
+        "Druid Sign",
+        "Fey Marking",
+        "Treasure",
+        "Trap",
+        "Monster Lair"
       ],
       "description": "A winding path slips between tall oaks beneath a patchwork canopy. Fallen leaves hush your steps with the smell of earth and moss. Sun shafts pick out deer tracks and bright mushrooms. Nearby, a brook chatters over stones."
     },
@@ -1301,28 +2067,28 @@
         "outdoor"
       ],
       "primary": [
-        "crumbling wall",
-        "stone foundation",
-        "overgrown statue",
-        "collapsed archway",
-        "broken column",
-        "moss-covered altar"
+        "Crumbling Wall",
+        "Stone Foundation",
+        "Overgrown Statue",
+        "Collapsed Archway",
+        "Broken Column",
+        "Moss-covered Altar"
       ],
       "secondary": [
-        "ancient inscription",
-        "carved relief",
-        "pottery shard",
-        "rusted weapon",
-        "stone fragment",
-        "hidden chamber"
+        "Ancient Inscription",
+        "Carved Relief",
+        "Pottery Shard",
+        "Rusted Weapon",
+        "Stone Fragment",
+        "Hidden Chamber"
       ],
       "tertiary": [
-        "buried treasure",
-        "magic item",
-        "ancient knowledge",
-        "guardian spirit",
-        "trap",
-        "secret passage"
+        "Buried Treasure",
+        "Magic Item",
+        "Ancient Knowledge",
+        "Guardian Spirit",
+        "Trap",
+        "Secret Passage"
       ],
       "description": "Vines wrap toppled columns and cracked statues speckled with lichen. Birds nest in crumbling arches; a cool draft rises from shadowed stairs. Stone chips under your hand and leaves stain your palms green. A faint prickle lifts the hair on your arms."
     },
@@ -1334,28 +2100,28 @@
         "outdoor"
       ],
       "primary": [
-        "fairy ring",
-        "natural spring",
-        "ancient tree circle",
-        "flower meadow",
-        "stone circle",
-        "sacred grove"
+        "Fairy Ring",
+        "Natural Spring",
+        "Ancient Tree Circle",
+        "Flower Meadow",
+        "Stone Circle",
+        "Sacred Grove"
       ],
       "secondary": [
-        "unusual plant",
-        "animal den",
-        "bird nest",
-        "mushroom cluster",
-        "water source",
-        "wildflower patch"
+        "Unusual Plant",
+        "Animal Den",
+        "Bird Nest",
+        "Mushroom Cluster",
+        "Water Source",
+        "Wildflower Patch"
       ],
       "tertiary": [
-        "fey presence",
-        "magic spring",
-        "druid treasure",
-        "nature spirit",
-        "blessing",
-        "curse"
+        "Fey Presence",
+        "Magic Spring",
+        "Druid Treasure",
+        "Nature Spirit",
+        "Blessing",
+        "Curse"
       ],
       "description": "A breeze stirs tall grasses in a sunlit ring of trees. Wildflowers freckle the ground as butterflies wobble through warm air. A stag’s distant call hangs over the open space. For a moment the place holds still, every leaf listening."
     },
@@ -1366,28 +2132,28 @@
         "outdoor"
       ],
       "primary": [
-        "thick undergrowth",
-        "tangled thicket",
-        "hollow log",
-        "dense canopy",
-        "bramble patch",
-        "ancient trunk"
+        "Thick Undergrowth",
+        "Tangled Thicket",
+        "Hollow Log",
+        "Dense Canopy",
+        "Bramble Patch",
+        "Ancient Trunk"
       ],
       "secondary": [
-        "animal burrow",
-        "spider web",
-        "vine tangle",
-        "thorny bush",
-        "concealed pit",
-        "hidden path"
+        "Animal Burrow",
+        "Spider Web",
+        "Vine Tangle",
+        "Thorny Bush",
+        "Concealed Pit",
+        "Hidden Path"
       ],
       "tertiary": [
-        "monster lair",
-        "hidden treasure",
-        "trap",
-        "rare plant",
-        "secret passage",
-        "predator nest"
+        "Monster Lair",
+        "Hidden Treasure",
+        "Trap",
+        "Rare Plant",
+        "Secret Passage",
+        "Predator Nest"
       ],
       "description": "Thick underbrush grips your legs, bramble tips tugging at cloth and skin. Layered canopy turns midday to dim green. Wings rustle, a twig snaps, something shifts just out of sight. Landmarks vanish a few paces away."
     }
@@ -1401,28 +2167,28 @@
         "wasteland"
       ],
       "primary": [
-        "sand dune",
-        "wind-carved formation",
-        "buried skeleton",
-        "abandoned cart",
-        "rock outcrop",
-        "shifting sand"
+        "Sand Dune",
+        "Wind-carved Formation",
+        "Buried Skeleton",
+        "Abandoned Cart",
+        "Rock Outcrop",
+        "Shifting Sand"
       ],
       "secondary": [
-        "sun-bleached bones",
-        "tattered cloth",
-        "broken wheel",
-        "empty waterskin",
-        "scorpion nest",
-        "sand ripples"
+        "Sun-bleached Bones",
+        "Tattered Cloth",
+        "Broken Wheel",
+        "Empty Waterskin",
+        "Scorpion Nest",
+        "Sand Ripples"
       ],
       "tertiary": [
-        "buried treasure",
-        "ancient artifact",
-        "oasis map",
-        "cursed item",
-        "monster lair",
-        "quicksand trap"
+        "Buried Treasure",
+        "Ancient Artifact",
+        "Oasis Map",
+        "Cursed Item",
+        "Monster Lair",
+        "Quicksand Trap"
       ],
       "description": "Golden waves of sand roll to the horizon, wind carving sharp backs and soft hollows. Sun heat shimmers the air and stings your eyes. Footprints blur and fade as soon as you make them. Far off, a wavering shape swims over the light."
     },
@@ -1433,28 +2199,28 @@
         "structure"
       ],
       "primary": [
-        "weathered stone pillar",
-        "collapsed wall",
-        "buried entrance",
-        "ancient altar",
-        "sandstone block",
-        "hieroglyph"
+        "Weathered Stone Pillar",
+        "Collapsed Wall",
+        "Buried Entrance",
+        "Ancient Altar",
+        "Sandstone Block",
+        "Hieroglyph"
       ],
       "secondary": [
-        "carved relief",
-        "broken statue",
-        "pottery fragment",
-        "ritual vessel",
-        "stone tablet",
-        "sealed chamber"
+        "Carved Relief",
+        "Broken Statue",
+        "Pottery Fragment",
+        "Ritual Vessel",
+        "Stone Tablet",
+        "Sealed Chamber"
       ],
       "tertiary": [
-        "ancient treasure",
-        "magic artifact",
-        "curse tablet",
-        "mummy",
-        "deadly trap",
-        "hidden vault"
+        "Ancient Treasure",
+        "Magic Artifact",
+        "Curse Tablet",
+        "Mummy",
+        "Deadly Trap",
+        "Hidden Vault"
       ],
       "description": "Half-buried pillars jut from sand like ribs, their carvings worn smooth by grit. Cool shadows pool under fallen walls while foxes flick through gaps. Sand rasps along stone and against your boots. A thin breath of air leaks from cracks below."
     },
@@ -1465,28 +2231,28 @@
         "outdoor"
       ],
       "primary": [
-        "oasis pool",
-        "palm tree",
-        "water source",
-        "desert plants",
-        "rock formation",
-        "shade"
+        "Oasis Pool",
+        "Palm Tree",
+        "Water Source",
+        "Desert Plants",
+        "Rock Formation",
+        "Shade"
       ],
       "secondary": [
-        "animal track",
-        "fruit tree",
-        "medicinal herb",
-        "cool cave",
-        "traveler marker",
-        "campsite"
+        "Animal Track",
+        "Fruit Tree",
+        "Medicinal Herb",
+        "Cool Cave",
+        "Traveler Marker",
+        "Campsite"
       ],
       "tertiary": [
-        "hidden spring",
-        "rare plant",
-        "treasure cache",
-        "spirit guardian",
-        "blessing",
-        "mirage"
+        "Hidden Spring",
+        "Rare Plant",
+        "Treasure Cache",
+        "Spirit Guardian",
+        "Blessing",
+        "Mirage"
       ],
       "description": "Palms ring a clear pool where dragonflies skim the surface. Jasmine and damp earth cool your lungs after the waste. Water glugs into skins while weary feet ease into shade. Fronds clack softly overhead as ripples dimple the light."
     },
@@ -1497,28 +2263,28 @@
         "outdoor"
       ],
       "primary": [
-        "caravan marker",
-        "desert trail",
-        "way stone",
-        "traveler's shrine",
-        "cairn",
-        "directional sign"
+        "Caravan Marker",
+        "Desert Trail",
+        "Way Stone",
+        "Traveler's Shrine",
+        "Cairn",
+        "Directional Sign"
       ],
       "secondary": [
-        "campfire remains",
-        "discarded item",
-        "footprints",
-        "warning marker",
-        "supply cache",
-        "shelter"
+        "Campfire Remains",
+        "Discarded Item",
+        "Footprints",
+        "Warning Marker",
+        "Supply Cache",
+        "Shelter"
       ],
       "tertiary": [
-        "buried treasure",
-        "ambush site",
-        "hidden oasis map",
-        "bandit cache",
-        "trap",
-        "ancient relic"
+        "Buried Treasure",
+        "Ambush Site",
+        "Hidden Oasis Map",
+        "Bandit Cache",
+        "Trap",
+        "Ancient Relic"
       ],
       "description": "A hard-packed track threads between rock and dune, marked by sun-bleached cairns. Prayer flags snap in the hot wind. The rattle of distant wagons blends with circling calls. Step off the hardpack and your boots sink to the ankle."
     }
@@ -1532,28 +2298,28 @@
         "nest"
       ],
       "primary": [
-        "mountain peak",
-        "rocky outcrop",
-        "ice formation",
-        "summit cairn",
-        "wind-swept stone",
-        "precipice"
+        "Mountain Peak",
+        "Rocky Outcrop",
+        "Ice Formation",
+        "Summit Cairn",
+        "Wind-swept Stone",
+        "Precipice"
       ],
       "secondary": [
-        "prayer flags",
-        "climber's anchor",
-        "eagle nest",
-        "ice crystal",
-        "rock shelter",
-        "marker stone"
+        "Prayer Flags",
+        "Climber's Anchor",
+        "Eagle Nest",
+        "Ice Crystal",
+        "Rock Shelter",
+        "Marker Stone"
       ],
       "tertiary": [
-        "legendary treasure",
-        "dragon hoard",
-        "ancient relic",
-        "rare mineral",
-        "spirit shrine",
-        "trap"
+        "Legendary Treasure",
+        "Dragon Hoard",
+        "Ancient Relic",
+        "Rare Mineral",
+        "Spirit Shrine",
+        "Trap"
       ],
       "description": "Snow-dusted pinnacles cut the sky so close you could brush the clouds. Air razors the lungs and turns your breath to glitter. Valleys sprawl below in miniature ridges and rivers. Stone underfoot bites cold through your soles."
     },
@@ -1566,28 +2332,28 @@
         "stairs"
       ],
       "primary": [
-        "mountain pass",
-        "narrow ledge",
-        "switchback trail",
-        "rock bridge",
-        "stone steps",
-        "guard post"
+        "Mountain Pass",
+        "Narrow Ledge",
+        "Switchback Trail",
+        "Rock Bridge",
+        "Stone Steps",
+        "Guard Post"
       ],
       "secondary": [
-        "rope anchor",
-        "safety rope",
-        "trail marker",
-        "shelter cave",
-        "warning sign",
-        "avalanche zone"
+        "Rope Anchor",
+        "Safety Rope",
+        "Trail Marker",
+        "Shelter Cave",
+        "Warning Sign",
+        "Avalanche Zone"
       ],
       "tertiary": [
-        "hidden cache",
-        "bandit treasure",
-        "ancient marker",
-        "trap",
-        "monster ambush",
-        "secret passage"
+        "Hidden Cache",
+        "Bandit Treasure",
+        "Ancient Marker",
+        "Trap",
+        "Monster Ambush",
+        "Secret Passage"
       ],
       "description": "Steep walls hem a narrow pass scarred by old slides. Cairns and fluttering ribbons mark the safer line through. Wind whistles between the cliffs and carries grit across your cheeks. Each step tests the rock before you trust your weight."
     },
@@ -1598,28 +2364,28 @@
         "outdoor"
       ],
       "primary": [
-        "hidden valley",
-        "mountain stream",
-        "alpine meadow",
-        "sheltered grove",
-        "rocky basin",
-        "waterfall"
+        "Hidden Valley",
+        "Mountain Stream",
+        "Alpine Meadow",
+        "Sheltered Grove",
+        "Rocky Basin",
+        "Waterfall"
       ],
       "secondary": [
-        "wildflower field",
-        "grazing area",
-        "mineral deposit",
-        "hot spring",
-        "cave entrance",
-        "ancient tree"
+        "Wildflower Field",
+        "Grazing Area",
+        "Mineral Deposit",
+        "Hot Spring",
+        "Cave Entrance",
+        "Ancient Tree"
       ],
       "tertiary": [
-        "hidden sanctuary",
-        "hermit dwelling",
-        "rare herb",
-        "treasure cache",
-        "spirit guardian",
-        "secret entrance"
+        "Hidden Sanctuary",
+        "Hermit Dwelling",
+        "Rare Herb",
+        "Treasure Cache",
+        "Spirit Guardian",
+        "Secret Entrance"
       ],
       "description": "Between sheer ridges lies a soft floor of alpine flowers and tall grass. A silver stream threads the meadow, cold and sweet on the tongue. Hoofed shapes graze at the edges while peaks watch from above. Sound falls quiet in the shelter of the slopes."
     },
@@ -1630,28 +2396,28 @@
         "path"
       ],
       "primary": [
-        "precarious ledge",
-        "cliff face",
-        "sheer drop",
-        "rock overhang",
-        "narrow path",
-        "vertical wall"
+        "Precarious Ledge",
+        "Cliff Face",
+        "Sheer Drop",
+        "Rock Overhang",
+        "Narrow Path",
+        "Vertical Wall"
       ],
       "secondary": [
-        "climbing anchor",
-        "bird nest",
-        "cave opening",
-        "rock shelf",
-        "erosion crack",
-        "loose stone"
+        "Climbing Anchor",
+        "Bird Nest",
+        "Cave Opening",
+        "Rock Shelf",
+        "Erosion Crack",
+        "Loose Stone"
       ],
       "tertiary": [
-        "hidden cave",
-        "eagle treasure",
-        "ancient carving",
-        "trap",
-        "monster lair",
-        "secret passage"
+        "Hidden Cave",
+        "Eagle Treasure",
+        "Ancient Carving",
+        "Trap",
+        "Monster Lair",
+        "Secret Passage"
       ],
       "description": "A sheer drop yawns beside the path, stone layers painted by time. Updrafts carry the keen of eagles and the resin of pine. Edges crumble under probing fingers, dusting your hands. One glance down kicks your heart into your throat."
     }
@@ -1664,28 +2430,28 @@
         "outdoor"
       ],
       "primary": [
-        "murky pool",
-        "mud mound",
-        "gnarled tree",
-        "quicksand",
-        "stagnant water",
-        "dead vegetation"
+        "Murky Pool",
+        "Mud Mound",
+        "Gnarled Tree",
+        "Quicksand",
+        "Stagnant Water",
+        "Dead Vegetation"
       ],
       "secondary": [
-        "marsh gas bubble",
-        "sunken log",
-        "lily pad",
-        "insect swarm",
-        "muddy bank",
-        "rotting vegetation"
+        "Marsh Gas Bubble",
+        "Sunken Log",
+        "Lily Pad",
+        "Insect Swarm",
+        "Muddy Bank",
+        "Rotting Vegetation"
       ],
       "tertiary": [
-        "sunken treasure",
-        "body",
-        "monster lair",
-        "disease",
-        "trap",
-        "cursed area"
+        "Sunken Treasure",
+        "Body",
+        "Monster Lair",
+        "Disease",
+        "Trap",
+        "Cursed Area"
       ],
       "description": "Peat-slick ground sags under each step and coughs up sour bubbles. Cypresses loom with roots knotted like fists. Mist clings to black pools and hides the slide of something beneath. The place exhales in slow, damp breaths."
     },
@@ -1698,28 +2464,28 @@
         "wilderness"
       ],
       "primary": [
-        "marsh grass",
-        "water channel",
-        "raised hummock",
-        "dead tree",
-        "reed bed",
-        "shallow pool"
+        "Marsh Grass",
+        "Water Channel",
+        "Raised Hummock",
+        "Dead Tree",
+        "Reed Bed",
+        "Shallow Pool"
       ],
       "secondary": [
-        "bird nest",
-        "fish trap",
-        "willow tree",
-        "stepping stone",
-        "floating debris",
-        "vegetation mat"
+        "Bird Nest",
+        "Fish Trap",
+        "Willow Tree",
+        "Stepping Stone",
+        "Floating Debris",
+        "Vegetation Mat"
       ],
       "tertiary": [
-        "hidden path",
-        "hermit hut",
-        "rare plant",
-        "treasure cache",
-        "hag marker",
-        "trap"
+        "Hidden Path",
+        "Hermit Hut",
+        "Rare Plant",
+        "Treasure Cache",
+        "Hag Marker",
+        "Trap"
       ],
       "description": "Wide marshes stretch under a haze that hums with insects. Reeds rasp against your legs and the planks of an old walkway. Water shines shallow and still, then drops away without warning. Sunlight turns the surface to bright, shifting glass."
     },
@@ -1730,28 +2496,28 @@
         "wetland"
       ],
       "primary": [
-        "dark water",
-        "stagnant pool",
-        "flowing stream",
-        "deep channel",
-        "murky pond",
-        "water source"
+        "Dark Water",
+        "Stagnant Pool",
+        "Flowing Stream",
+        "Deep Channel",
+        "Murky Pond",
+        "Water Source"
       ],
       "secondary": [
-        "submerged log",
-        "floating vegetation",
-        "water plant",
-        "ripple",
-        "current",
-        "shallow ford"
+        "Submerged Log",
+        "Floating Vegetation",
+        "Water Plant",
+        "Ripple",
+        "Current",
+        "Shallow Ford"
       ],
       "tertiary": [
-        "sunken boat",
-        "underwater cave",
-        "monster lair",
-        "treasure",
-        "trap",
-        "cursed water"
+        "Sunken Boat",
+        "Underwater Cave",
+        "Monster Lair",
+        "Treasure",
+        "Trap",
+        "Cursed Water"
       ],
       "description": "Slow channels wind between islands of roots and hanging moss. Lantern light wobbles on murk, catching schools of fish and darker shapes below. The air is heavy with wet earth. Any splash nearby snaps every head around."
     }
@@ -1766,28 +2532,28 @@
         "chamber"
       ],
       "primary": [
-        "crystal formation",
-        "stone pillar",
-        "underground lake",
-        "stalactite cluster",
-        "rock formation",
-        "cavern floor"
+        "Crystal Formation",
+        "Stone Pillar",
+        "Underground Lake",
+        "Stalactite Cluster",
+        "Rock Formation",
+        "Cavern Floor"
       ],
       "secondary": [
-        "mineral vein",
-        "bat colony",
-        "mushroom grove",
-        "limestone deposit",
-        "water drip",
-        "echo chamber"
+        "Mineral Vein",
+        "Bat Colony",
+        "Mushroom Grove",
+        "Limestone Deposit",
+        "Water Drip",
+        "Echo Chamber"
       ],
       "tertiary": [
-        "rare crystal",
-        "underground river",
-        "monster lair",
-        "treasure deposit",
-        "trap",
-        "secret passage"
+        "Rare Crystal",
+        "Underground River",
+        "Monster Lair",
+        "Treasure Deposit",
+        "Trap",
+        "Secret Passage"
       ],
       "description": "Stone daggers drip into echoing pools under a ceiling lost to dark. Cool, still air carries the faint breath of lichen. Pale fungi glow over old petroglyphs. Every sound blooms wide and comes back changed."
     },
@@ -1798,28 +2564,28 @@
         "manmade"
       ],
       "primary": [
-        "mine shaft",
-        "carved tunnel",
-        "support beams",
-        "rail tracks",
-        "tool marks",
-        "ventilation shaft"
+        "Mine Shaft",
+        "Carved Tunnel",
+        "Support Beams",
+        "Rail Tracks",
+        "Tool Marks",
+        "Ventilation Shaft"
       ],
       "secondary": [
-        "mining cart",
-        "pickaxe",
-        "lantern hook",
-        "ore vein",
-        "support pillar",
-        "wooden brace"
+        "Mining Cart",
+        "Pickaxe",
+        "Lantern Hook",
+        "Ore Vein",
+        "Support Pillar",
+        "Wooden Brace"
       ],
       "tertiary": [
-        "ore deposit",
-        "abandoned equipment",
-        "collapsed section",
-        "monster nest",
-        "trap",
-        "hidden passage"
+        "Ore Deposit",
+        "Abandoned Equipment",
+        "Collapsed Section",
+        "Monster Nest",
+        "Trap",
+        "Hidden Passage"
       ],
       "description": "A narrow passage runs forward under age-black timbers. The floor is uneven and damp, rails and ruts catching your boots. A thin draft threads past your cheek from somewhere ahead. Whispers outpace footfalls down here."
     },
@@ -1830,28 +2596,28 @@
         "cave"
       ],
       "primary": [
-        "underground stream",
-        "water channel",
-        "rock bridge",
-        "waterfall",
-        "river bank",
-        "current"
+        "Underground Stream",
+        "Water Channel",
+        "Rock Bridge",
+        "Waterfall",
+        "River Bank",
+        "Current"
       ],
       "secondary": [
-        "stepping stone",
-        "water pool",
-        "mineral deposit",
-        "moisture",
-        "echo",
-        "fish"
+        "Stepping Stone",
+        "Water Pool",
+        "Mineral Deposit",
+        "Moisture",
+        "Echo",
+        "Fish"
       ],
       "tertiary": [
-        "underwater passage",
-        "treasure",
-        "monster lair",
-        "rare mineral",
-        "trap",
-        "secret cave"
+        "Underwater Passage",
+        "Treasure",
+        "Monster Lair",
+        "Rare Mineral",
+        "Trap",
+        "Secret Cave"
       ],
       "description": "An underground river saws through bedrock, its surface flashing in crystal glow. Spray cools your face while the current roars. Slick ledges give grudging purchase beside the water. You judge the jump twice before you try it."
     }
@@ -1864,28 +2630,28 @@
         "deck"
       ],
       "primary": [
-        "ship wheel",
-        "mast rigging",
-        "cargo hold",
-        "captain's quarters",
-        "main deck",
-        "anchor"
+        "Ship Wheel",
+        "Mast Rigging",
+        "Cargo Hold",
+        "Captain's Quarters",
+        "Main Deck",
+        "Anchor"
       ],
       "secondary": [
-        "rope coil",
-        "barrel",
-        "sail",
-        "navigation tool",
-        "ship bell",
-        "cannon"
+        "Rope Coil",
+        "Barrel",
+        "Sail",
+        "Navigation Tool",
+        "Ship Bell",
+        "Cannon"
       ],
       "tertiary": [
-        "treasure chest",
-        "ship's log",
-        "hidden cargo",
-        "secret compartment",
-        "trap",
-        "contraband"
+        "Treasure Chest",
+        "Ship's Log",
+        "Hidden Cargo",
+        "Secret Compartment",
+        "Trap",
+        "Contraband"
       ],
       "description": "Deck planks rise and fall under salted boots as sails pull steady. Ropes creak and gulls wheel while crew move with practiced ease. Tar and sea spray sharpen the air. The horizon draws a straight, shining line ahead."
     },
@@ -1897,28 +2663,28 @@
         "underwater"
       ],
       "primary": [
-        "broken hull",
-        "sunken cargo",
-        "ship's skeleton",
-        "barnacle-covered mast",
-        "debris field",
-        "coral growth"
+        "Broken Hull",
+        "Sunken Cargo",
+        "Ship's Skeleton",
+        "Barnacle-covered Mast",
+        "Debris Field",
+        "Coral Growth"
       ],
       "secondary": [
-        "rotted sail",
-        "rusted chain",
-        "broken rudder",
-        "scattered cargo",
-        "ship bell",
-        "anchor"
+        "Rotted Sail",
+        "Rusted Chain",
+        "Broken Rudder",
+        "Scattered Cargo",
+        "Ship Bell",
+        "Anchor"
       ],
       "tertiary": [
-        "treasure chest",
-        "ship's safe",
-        "captain's loot",
-        "cursed cargo",
-        "monster lair",
-        "trap"
+        "Treasure Chest",
+        "Ship's Safe",
+        "Captain's Loot",
+        "Cursed Cargo",
+        "Monster Lair",
+        "Trap"
       ],
       "description": "Broken timbers stab from the waves, seaweed streaming from splinters. Barnacles glitter under a skin of water when the sun hits. Inside, rooms sigh and surge with each swell. Every breath tastes of salt and old wood."
     },
@@ -1932,28 +2698,28 @@
         "passage"
       ],
       "primary": [
-        "coral reef",
-        "underwater cave",
-        "kelp forest",
-        "rock formation",
-        "sea floor",
-        "current"
+        "Coral Reef",
+        "Underwater Cave",
+        "Kelp Forest",
+        "Rock Formation",
+        "Sea Floor",
+        "Current"
       ],
       "secondary": [
-        "sea plant",
-        "anemone",
-        "shell cluster",
-        "fish school",
-        "underwater cliff",
-        "sand bed"
+        "Sea Plant",
+        "Anemone",
+        "Shell Cluster",
+        "Fish School",
+        "Underwater Cliff",
+        "Sand Bed"
       ],
       "tertiary": [
-        "pearl bed",
-        "sunken treasure",
-        "monster lair",
-        "ancient ruin",
-        "trap",
-        "magic current"
+        "Pearl Bed",
+        "Sunken Treasure",
+        "Monster Lair",
+        "Ancient Ruin",
+        "Trap",
+        "Magic Current"
       ],
       "description": "Sun spears down through blue to wake swaying coral and kelp. Shoals scatter like coin when you pass. The world narrows to bubbles, slow heartbeat, and distant whale-song. Pressure hugs your ribs as the seafloor drops away."
     },
@@ -1964,28 +2730,28 @@
         "outdoor"
       ],
       "primary": [
-        "beach shore",
-        "tide pool",
-        "driftwood pile",
-        "rock outcrop",
-        "sand beach",
-        "wave line"
+        "Beach Shore",
+        "Tide Pool",
+        "Driftwood Pile",
+        "Rock Outcrop",
+        "Sand Beach",
+        "Wave Line"
       ],
       "secondary": [
-        "seashell",
-        "seaweed",
-        "crab",
-        "beach rock",
-        "sand dune",
-        "flotsam"
+        "Seashell",
+        "Seaweed",
+        "Crab",
+        "Beach Rock",
+        "Sand Dune",
+        "Flotsam"
       ],
       "tertiary": [
-        "message bottle",
-        "shipwreck debris",
-        "treasure chest",
-        "rare shell",
-        "trap",
-        "hidden cave"
+        "Message Bottle",
+        "Shipwreck Debris",
+        "Treasure Chest",
+        "Rare Shell",
+        "Trap",
+        "Hidden Cave"
       ],
       "description": "Waves comb a crescent of sand strewn with driftwood and shells. Gulls cry on a salt wind that cools sweat from your neck. Tide pools teem, skittering away beneath your shadow. Foam hisses at your boots and then slides back."
     }
@@ -1998,28 +2764,28 @@
         "outdoor"
       ],
       "primary": [
-        "ice field",
-        "snow plain",
-        "frozen tundra",
-        "ice wall",
-        "snowdrift",
-        "frost formation"
+        "Ice Field",
+        "Snow Plain",
+        "Frozen Tundra",
+        "Ice Wall",
+        "Snowdrift",
+        "Frost Formation"
       ],
       "secondary": [
-        "animal track",
-        "ice crack",
-        "wind pattern",
-        "snow hole",
-        "frozen plant",
-        "ice shard"
+        "Animal Track",
+        "Ice Crack",
+        "Wind Pattern",
+        "Snow Hole",
+        "Frozen Plant",
+        "Ice Shard"
       ],
       "tertiary": [
-        "frozen corpse",
-        "buried treasure",
-        "rare resource",
-        "monster lair",
-        "trap",
-        "ancient relic"
+        "Frozen Corpse",
+        "Buried Treasure",
+        "Rare Resource",
+        "Monster Lair",
+        "Trap",
+        "Ancient Relic"
       ],
       "description": "Snow fields run to a pale horizon where the sun hangs low. Wind cuts like glass and carries a far-off howl. Shrubs bow under ice crust and crunch under your glove. Breath burns and then fogs your scarf."
     },
@@ -2030,28 +2796,28 @@
         "indoor"
       ],
       "primary": [
-        "ice cave",
-        "snow shelter",
-        "frozen cavern",
-        "ice tunnel",
-        "frost wall",
-        "icicle"
+        "Ice Cave",
+        "Snow Shelter",
+        "Frozen Cavern",
+        "Ice Tunnel",
+        "Frost Wall",
+        "Icicle"
       ],
       "secondary": [
-        "ice formation",
-        "frozen pool",
-        "ice pillar",
-        "snow drift",
-        "frost pattern",
-        "wind tunnel"
+        "Ice Formation",
+        "Frozen Pool",
+        "Ice Pillar",
+        "Snow Drift",
+        "Frost Pattern",
+        "Wind Tunnel"
       ],
       "tertiary": [
-        "frozen treasure",
-        "ancient remains",
-        "rare ice",
-        "monster den",
-        "trap",
-        "magic ice"
+        "Frozen Treasure",
+        "Ancient Remains",
+        "Rare Ice",
+        "Monster Den",
+        "Trap",
+        "Magic Ice"
       ],
       "description": "Icicles frame the mouth like crystal teeth and a cold draft whispers out. Inside, frozen stalactites glitter with stolen starlight. Every sound ricochets along slick walls, doubling your steps. Frost smokes under your lamp."
     },
@@ -2062,28 +2828,28 @@
         "outdoor"
       ],
       "primary": [
-        "ice peak",
-        "frozen summit",
-        "glacier slope",
-        "ice cliff",
-        "snow ridge",
-        "avalanche path"
+        "Ice Peak",
+        "Frozen Summit",
+        "Glacier Slope",
+        "Ice Cliff",
+        "Snow Ridge",
+        "Avalanche Path"
       ],
       "secondary": [
-        "ice bridge",
-        "crevasse",
-        "snow cornice",
-        "ice wall",
-        "frozen waterfall",
-        "wind gap"
+        "Ice Bridge",
+        "Crevasse",
+        "Snow Cornice",
+        "Ice Wall",
+        "Frozen Waterfall",
+        "Wind Gap"
       ],
       "tertiary": [
-        "legendary treasure",
-        "dragon lair",
-        "ancient shrine",
-        "rare mineral",
-        "trap",
-        "avalanche trigger"
+        "Legendary Treasure",
+        "Dragon Lair",
+        "Ancient Shrine",
+        "Rare Mineral",
+        "Trap",
+        "Avalanche Trigger"
       ],
       "description": "Snow-blown ridges carve a skyline lost in a crown of cloud. Ice hides under powder and slides under heel. Air thins to sharp knives at the lungs. The world below shrinks to white and shadow."
     },
@@ -2094,28 +2860,28 @@
         "outdoor"
       ],
       "primary": [
-        "frozen trail",
-        "ice path",
-        "snow route",
-        "marked way",
-        "passage",
-        "crossing"
+        "Frozen Trail",
+        "Ice Path",
+        "Snow Route",
+        "Marked Way",
+        "Passage",
+        "Crossing"
       ],
       "secondary": [
-        "trail marker",
-        "shelter",
-        "supply cache",
-        "warning sign",
-        "rope line",
-        "cairn"
+        "Trail Marker",
+        "Shelter",
+        "Supply Cache",
+        "Warning Sign",
+        "Rope Line",
+        "Cairn"
       ],
       "tertiary": [
-        "hidden cache",
-        "abandoned camp",
-        "treasure",
-        "trap",
-        "monster ambush",
-        "shortcut"
+        "Hidden Cache",
+        "Abandoned Camp",
+        "Treasure",
+        "Trap",
+        "Monster Ambush",
+        "Shortcut"
       ],
       "description": "A narrow way threads between ice-choked ravines, cairns buried to the shoulder. Frost skins every surface into a bright mirror. Wind moans through the gap and steals the heat from your teeth. You test each foothold before the next step."
     }
@@ -2128,28 +2894,28 @@
         "derelict"
       ],
       "primary": [
-        "spelljamming helm",
-        "navigation altar",
-        "air envelope",
-        "gravity plane",
-        "helm chamber",
-        "main deck"
+        "Spelljamming Helm",
+        "Navigation Altar",
+        "Air Envelope",
+        "Gravity Plane",
+        "Helm Chamber",
+        "Main Deck"
       ],
       "secondary": [
-        "star chart",
-        "planar compass",
-        "magic anchor",
-        "air pump",
-        "gravity ring",
-        "void seal"
+        "Star Chart",
+        "Planar Compass",
+        "Magic Anchor",
+        "Air Pump",
+        "Gravity Ring",
+        "Void Seal"
       ],
       "tertiary": [
-        "arcane treasure",
-        "planar map",
-        "magic artifact",
-        "ship secret",
-        "trap",
-        "hidden cargo"
+        "Arcane Treasure",
+        "Planar Map",
+        "Magic Artifact",
+        "Ship Secret",
+        "Trap",
+        "Hidden Cargo"
       ],
       "description": "Arcane sails hold trapped starlight as the hull glides through wildspace. Crystal helms hum at a steady pitch under your fingertips. Gravity tilts between decks and sets tools drifting if you let them go. The void presses close beyond the rail."
     },
@@ -2162,28 +2928,28 @@
         "boundary"
       ],
       "primary": [
-        "phlogiston flow",
-        "wildspace debris",
-        "crystal sphere",
-        "planar barrier",
-        "void current",
-        "star field"
+        "Phlogiston Flow",
+        "Wildspace Debris",
+        "Crystal Sphere",
+        "Planar Barrier",
+        "Void Current",
+        "Star Field"
       ],
       "secondary": [
-        "asteroid",
-        "void eddy",
-        "magic field",
-        "planar echo",
-        "cosmic dust",
-        "light phenomenon"
+        "Asteroid",
+        "Void Eddy",
+        "Magic Field",
+        "Planar Echo",
+        "Cosmic Dust",
+        "Light Phenomenon"
       ],
       "tertiary": [
-        "ancient wreck",
-        "planar rift",
-        "cosmic treasure",
-        "void entity",
-        "trap",
-        "portal"
+        "Ancient Wreck",
+        "Planar Rift",
+        "Cosmic Treasure",
+        "Void Entity",
+        "Trap",
+        "Portal"
       ],
       "description": "Black stretches in every direction, stars sharp as pinpricks. The hull creaks in the silence and breath sounds loud in your helmet. A flicker slides at the edge of vision and is gone. Time feels thin out here."
     },
@@ -2195,28 +2961,28 @@
         "wildspace"
       ],
       "primary": [
-        "gravity well",
-        "magic vortex",
-        "planar rift",
-        "time distortion",
-        "space fold",
-        "reality tear"
+        "Gravity Well",
+        "Magic Vortex",
+        "Planar Rift",
+        "Time Distortion",
+        "Space Fold",
+        "Reality Tear"
       ],
       "secondary": [
-        "energy field",
-        "temporal echo",
-        "spatial loop",
-        "magic surge",
-        "void pulse",
-        "reality fragment"
+        "Energy Field",
+        "Temporal Echo",
+        "Spatial Loop",
+        "Magic Surge",
+        "Void Pulse",
+        "Reality Fragment"
       ],
       "tertiary": [
-        "legendary artifact",
-        "planar gateway",
-        "cosmic secret",
-        "powerful entity",
-        "deadly trap",
-        "reality breach"
+        "Legendary Artifact",
+        "Planar Gateway",
+        "Cosmic Secret",
+        "Powerful Entity",
+        "Deadly Trap",
+        "Reality Breach"
       ],
       "description": "A knot of impossible color twists ahead, bending the sightlines around it. Instruments trill warnings as the deck lists without moving. The thing sings in glassy harmonics that prickle your teeth. Every gauge disagrees with the next."
     },
@@ -2227,28 +2993,28 @@
         "openspace"
       ],
       "primary": [
-        "wrecked ship",
-        "floating rock",
-        "debris field",
-        "broken hull",
-        "scattered cargo",
-        "void junk"
+        "Wrecked Ship",
+        "Floating Rock",
+        "Debris Field",
+        "Broken Hull",
+        "Scattered Cargo",
+        "Void Junk"
       ],
       "secondary": [
-        "ship fragment",
-        "asteroid chunk",
-        "twisted metal",
-        "broken mast",
-        "cargo container",
-        "escape pod"
+        "Ship Fragment",
+        "Asteroid Chunk",
+        "Twisted Metal",
+        "Broken Mast",
+        "Cargo Container",
+        "Escape Pod"
       ],
       "tertiary": [
-        "salvage treasure",
-        "ship log",
-        "hidden cargo",
-        "survivor",
-        "trap",
-        "monster nest"
+        "Salvage Treasure",
+        "Ship Log",
+        "Hidden Cargo",
+        "Survivor",
+        "Trap",
+        "Monster Nest"
       ],
       "description": "Shattered hull plates and rock drift in slow, shining curls. Old charge still crawls along a bent cannon. Navigation beacons cut narrow tunnels through ice sparkles and frozen air. Scars of a fight float all around you."
     },
@@ -2260,28 +3026,28 @@
         "void"
       ],
       "primary": [
-        "spelljamming helm dais",
-        "captain's astrolabe",
-        "constellation chart table",
-        "command sigil console",
-        "panoramic crystal viewport",
-        "gravity plane ladder"
+        "Spelljamming Helm Dais",
+        "Captain's Astrolabe",
+        "Constellation Chart Table",
+        "Command Sigil Console",
+        "Panoramic Crystal Viewport",
+        "Gravity Plane Ladder"
       ],
       "secondary": [
-        "star chart vellum",
-        "arcane relay conduit",
-        "whispering sending stone",
-        "captain's log sphere",
-        "emergency aether lever",
-        "battle standard rack"
+        "Star Chart Vellum",
+        "Arcane Relay Conduit",
+        "Whispering Sending Stone",
+        "Captain's Log Sphere",
+        "Emergency Aether Lever",
+        "Battle Standard Rack"
       ],
       "tertiary": [
-        "hidden mutiny cache",
-        "encrypted orders cylinder",
-        "prototype helm core",
-        "loyalty geas seal",
-        "arcane sabotage rune",
-        "stasis-cocooned prisoner"
+        "Hidden Mutiny Cache",
+        "Encrypted Orders Cylinder",
+        "Prototype Helm Core",
+        "Loyalty Geas Seal",
+        "Arcane Sabotage Rune",
+        "Stasis-cocooned Prisoner"
       ],
       "description": "Glass arches open wildspace in a single sweep of stars. Charts hover and shift with a thought from the helm. Ozone and polished brass scent the air. Standing here, you feel the ship answer the smallest touch."
     },
@@ -2293,28 +3059,28 @@
         "void"
       ],
       "primary": [
-        "hollowed asteroid plaza",
-        "defensive ballista platform",
-        "docking claw gantry",
-        "radiant crystal beacon",
-        "market canopy webbing",
-        "gravity stabilizer pylon"
+        "Hollowed Asteroid Plaza",
+        "Defensive Ballista Platform",
+        "Docking Claw Gantry",
+        "Radiant Crystal Beacon",
+        "Market Canopy Webbing",
+        "Gravity Stabilizer Pylon"
       ],
       "secondary": [
-        "salvaged hull plating",
-        "makeshift barracks",
-        "void-garden planter",
-        "contraband locker",
-        "signal flag array",
-        "guard post brazier"
+        "Salvaged Hull Plating",
+        "Makeshift Barracks",
+        "Void-garden Planter",
+        "Contraband Locker",
+        "Signal Flag Array",
+        "Guard Post Brazier"
       ],
       "tertiary": [
-        "hidden smuggler vault",
-        "encrypted trade contract",
-        "spyglass attuned to sphere",
-        "githyanki sleeper agent",
-        "phlogiston flare trap",
-        "void-sickness cure ampoule"
+        "Hidden Smuggler Vault",
+        "Encrypted Trade Contract",
+        "Spyglass Attuned To Sphere",
+        "Githyanki Sleeper Agent",
+        "Phlogiston Flare Trap",
+        "Void-sickness Cure Ampoule"
       ],
       "description": "A honeycomb of tunnels throbs with miners, merchants, and hired guards. Airlocks cycle, thumping through the stone as ships nose in. Stalls crowd a central cavern under dangling lanterns. The rock smells of dust, metal, and cooked spice."
     },
@@ -2326,28 +3092,28 @@
         "void"
       ],
       "primary": [
-        "luminescent mist chamber",
-        "drift anchor spire",
-        "pilgrim shrine alcove",
-        "meditation prism garden",
-        "resupply kiosk",
-        "guardian lantern array"
+        "Luminescent Mist Chamber",
+        "Drift Anchor Spire",
+        "Pilgrim Shrine Alcove",
+        "Meditation Prism Garden",
+        "Resupply Kiosk",
+        "Guardian Lantern Array"
       ],
       "secondary": [
-        "incense brazier",
-        "nebula water condenser",
-        "song crystal choir",
-        "navigation bell pull",
-        "tranquil hammocks",
-        "visitation ledger"
+        "Incense Brazier",
+        "Nebula Water Condenser",
+        "Song Crystal Choir",
+        "Navigation Bell Pull",
+        "Tranquil Hammocks",
+        "Visitation Ledger"
       ],
       "tertiary": [
-        "secret refuge passage",
-        "peace accord treaty",
-        "unbound star elemental",
-        "contraband etherwine",
-        "astral thieves guildmark",
-        "memory-draining mist trap"
+        "Secret Refuge Passage",
+        "Peace Accord Treaty",
+        "Unbound Star Elemental",
+        "Contraband Etherwine",
+        "Astral Thieves Guildmark",
+        "Memory-draining Mist Trap"
       ],
       "description": "Pastel gas curls outside the pane, washing the room in shifting color. Ships rest in cradles that flower open and shut. Steam from teahouses spices the air. The hum here settles nerves frayed by long jumps."
     },
@@ -2359,28 +3125,28 @@
         "void"
       ],
       "primary": [
-        "sphere breach arch",
-        "guardian obelisk ring",
-        "ritual focus platform",
-        "anchor rune circle",
-        "prismatic seal curtain",
-        "sentinel golem niche"
+        "Sphere Breach Arch",
+        "Guardian Obelisk Ring",
+        "Ritual Focus Platform",
+        "Anchor Rune Circle",
+        "Prismatic Seal Curtain",
+        "Sentinel Golem Niche"
       ],
       "secondary": [
-        "ancient script panel",
-        "attunement pedestal",
-        "warning sigil chain",
-        "patrol brazier",
-        "etheric measurement rod",
-        "crystal resonance fork"
+        "Ancient Script Panel",
+        "Attunement Pedestal",
+        "Warning Sigil Chain",
+        "Patrol Brazier",
+        "Etheric Measurement Rod",
+        "Crystal Resonance Fork"
       ],
       "tertiary": [
-        "sealed portal key",
-        "sphere-cartographer journal",
-        "latent planar breach",
-        "arcane contagion ward",
-        "cosmic gatekeeper spirit",
-        "catastrophic seal release"
+        "Sealed Portal Key",
+        "Sphere-cartographer Journal",
+        "Latent Planar Breach",
+        "Arcane Contagion Ward",
+        "Cosmic Gatekeeper Spirit",
+        "Catastrophic Seal Release"
       ],
       "description": "A translucent arch grips the inner shell of the sphere. Glyphs flare when you present the right sigils and the gap blooms open. Ward-constructs hover nearby with eyes bright as coals. Crossing feels like stepping through cool glass."
     },
@@ -2392,28 +3158,28 @@
         "void"
       ],
       "primary": [
-        "floating fire eddy",
-        "tidepool observation ring",
-        "safety tether gantry",
-        "emberproof shelter",
-        "pressure release valve",
-        "warning lantern buoy"
+        "Floating Fire Eddy",
+        "Tidepool Observation Ring",
+        "Safety Tether Gantry",
+        "Emberproof Shelter",
+        "Pressure Release Valve",
+        "Warning Lantern Buoy"
       ],
       "secondary": [
-        "heat-scorched tools",
-        "volatile sample vials",
-        "fire-retardant cloak rack",
-        "alchemical damping rod",
-        "burned logbook",
-        "spill containment mesh"
+        "Heat-scorched Tools",
+        "Volatile Sample Vials",
+        "Fire-retardant Cloak Rack",
+        "Alchemical Damping Rod",
+        "Burned Logbook",
+        "Spill Containment Mesh"
       ],
       "tertiary": [
-        "ignition chain trap",
-        "rare phlogiston crystal",
-        "fire elemental prisoner",
-        "secret smugglers cache",
-        "emergency planar gateway",
-        "experimental ignition engine"
+        "Ignition Chain Trap",
+        "Rare Phlogiston Crystal",
+        "Fire Elemental Prisoner",
+        "Secret Smugglers Cache",
+        "Emergency Planar Gateway",
+        "Experimental Ignition Engine"
       ],
       "description": "Liquid rainbow fire eddies in a sheltered pocket and throws prisms across the hull. Heatless tongues lick at gloves and leave a faint buzz. Warded charts rustle as the current stirs. The air tastes sweet, sharp, and wrong."
     },
@@ -2425,28 +3191,28 @@
         "void"
       ],
       "primary": [
-        "bioluminescent helm blossom",
-        "sungrown canopy corridor",
-        "sap-infused control tendril",
-        "photosynthetic ward pod",
-        "drifting pollen lantern",
-        "rooted crew cradle"
+        "Bioluminescent Helm Blossom",
+        "Sungrown Canopy Corridor",
+        "Sap-infused Control Tendril",
+        "Photosynthetic Ward Pod",
+        "Drifting Pollen Lantern",
+        "Rooted Crew Cradle"
       ],
       "secondary": [
-        "symbiotic tool niche",
-        "healing resin pool",
-        "spore communication node",
-        "caretaker chant circle",
-        "grafted weapon rack",
-        "sap-scribed logbook"
+        "Symbiotic Tool Niche",
+        "Healing Resin Pool",
+        "Spore Communication Node",
+        "Caretaker Chant Circle",
+        "Grafted Weapon Rack",
+        "Sap-scribed Logbook"
       ],
       "tertiary": [
-        "rebellious growth tumor",
-        "dormant star seed",
-        "mutiny pheromone cache",
-        "feywild graft portal",
-        "curative nectar vial",
-        "predatory vine trap"
+        "Rebellious Growth Tumor",
+        "Dormant Star Seed",
+        "Mutiny Pheromone Cache",
+        "Feywild Graft Portal",
+        "Curative Nectar Vial",
+        "Predatory Vine Trap"
       ],
       "description": "Vined pylons cradle living hulls among leaves the size of sails. Sap threads through clear tubes with a slow, steady pulse. Caretakers sing, and plates of grown wood knit along a seam. The grove beats with a patient heart."
     },
@@ -2458,28 +3224,28 @@
         "anomaly"
       ],
       "primary": [
-        "rotating scrying dome",
-        "calibrated ether telescope",
-        "chronometer dais",
-        "constellation mosaic floor",
-        "gravity-inverted balcony",
-        "arcane calculation engine"
+        "Rotating Scrying Dome",
+        "Calibrated Ether Telescope",
+        "Chronometer Dais",
+        "Constellation Mosaic Floor",
+        "Gravity-inverted Balcony",
+        "Arcane Calculation Engine"
       ],
       "secondary": [
-        "star ledger scroll case",
-        "phase-adjustment tools",
-        "astral alignment gong",
-        "protective ward lattice",
-        "assistant homunculus alcove",
-        "sealed research cabinet"
+        "Star Ledger Scroll Case",
+        "Phase-adjustment Tools",
+        "Astral Alignment Gong",
+        "Protective Ward Lattice",
+        "Assistant Homunculus Alcove",
+        "Sealed Research Cabinet"
       ],
       "tertiary": [
-        "forbidden planar map",
-        "time-locked experiment",
-        "stolen imperial cipher",
-        "malfunctioning prediction orb",
-        "portal to future echo",
-        "runaway summoned entity"
+        "Forbidden Planar Map",
+        "Time-locked Experiment",
+        "Stolen Imperial Cipher",
+        "Malfunctioning Prediction Orb",
+        "Portal To Future Echo",
+        "Runaway Summoned Entity"
       ],
       "description": "Bronze astrolabes and floating lenses align to drink light from distant planes. Scholars murmur counts while constellations slide across the floor. Sigils underfoot shift as portals wink open and close. Chalk dust and old ink hang in the air."
     },
@@ -2491,28 +3257,28 @@
         "floating"
       ],
       "primary": [
-        "gravity-tethered bazaar ring",
-        "merchant pennant canopy",
-        "arcane auction dais",
-        "cargo barge dock",
-        "psionic negotiation booth",
-        "floating tavern pavilion"
+        "Gravity-tethered Bazaar Ring",
+        "Merchant Pennant Canopy",
+        "Arcane Auction Dais",
+        "Cargo Barge Dock",
+        "Psionic Negotiation Booth",
+        "Floating Tavern Pavilion"
       ],
       "secondary": [
-        "spice vapor diffuser",
-        "contract scribes alcove",
-        "barter token fountain",
-        "mercenary guard post",
-        "cage of exotic familiars",
-        "contraband inspection table"
+        "Spice Vapor Diffuser",
+        "Contract Scribes Alcove",
+        "Barter Token Fountain",
+        "Mercenary Guard Post",
+        "Cage Of Exotic Familiars",
+        "Contraband Inspection Table"
       ],
       "tertiary": [
-        "hidden price-fixing ledger",
-        "rival guild sabotage kit",
-        "rare starwine crate",
-        "secret escape portal",
-        "assassin's staging perch",
-        "cursed trade charm"
+        "Hidden Price-fixing Ledger",
+        "Rival Guild Sabotage Kit",
+        "Rare Starwine Crate",
+        "Secret Escape Portal",
+        "Assassin's Staging Perch",
+        "Cursed Trade Charm"
       ],
       "description": "Barges tether to a rotating ring, each stall held weightless in place. Spices and psionic perfumes thread the recycled air. Hands clasp, coins pass, and a brief brush of minds seals the deal. The ring’s slow spin pulls everything along."
     },
@@ -2524,28 +3290,28 @@
         "void"
       ],
       "primary": [
-        "gravity-anchored anvil",
-        "molten starmetal crucible",
-        "levitating tool rack",
-        "runic cooling pool",
-        "spell lattice loom",
-        "shielding glyph wall"
+        "Gravity-anchored Anvil",
+        "Molten Starmetal Crucible",
+        "Levitating Tool Rack",
+        "Runic Cooling Pool",
+        "Spell Lattice Loom",
+        "Shielding Glyph Wall"
       ],
       "secondary": [
-        "apprentice workbench",
-        "schematic scroll tubes",
-        "ingot storage locker",
-        "etheric hammer rack",
-        "protective aprons",
-        "hazard rune panel"
+        "Apprentice Workbench",
+        "Schematic Scroll Tubes",
+        "Ingot Storage Locker",
+        "Etheric Hammer Rack",
+        "Protective Aprons",
+        "Hazard Rune Panel"
       ],
       "tertiary": [
-        "unstable prototype weapon",
-        "forbidden forge pact",
-        "volatile slag cache",
-        "hidden guild contract",
-        "sentient forge spirit",
-        "detonation fail-safe trap"
+        "Unstable Prototype Weapon",
+        "Forbidden Forge Pact",
+        "Volatile Slag Cache",
+        "Hidden Guild Contract",
+        "Sentient Forge Spirit",
+        "Detonation Fail-safe Trap"
       ],
       "description": "Sparks of raw magic shower from anvils of meteor iron. Molten starmetal sings under tools that hum against the grain. Wards flare as a prototype bucks in its cradle. Each hammer blow lands like distant thunder."
     },
@@ -2557,28 +3323,28 @@
         "void"
       ],
       "primary": [
-        "colossal rib arch",
-        "fossilized heart chamber",
-        "drifting bone field",
-        "memorial totem pole",
-        "salvager camp scaffold",
-        "soul lantern cairn"
+        "Colossal Rib Arch",
+        "Fossilized Heart Chamber",
+        "Drifting Bone Field",
+        "Memorial Totem Pole",
+        "Salvager Camp Scaffold",
+        "Soul Lantern Cairn"
       ],
       "secondary": [
-        "necromantic residue",
-        "scavenger tether lines",
-        "spore-choked crevice",
-        "bone-harp wind chime",
-        "ritual chalk circle",
-        "starbeast tooth pile"
+        "Necromantic Residue",
+        "Scavenger Tether Lines",
+        "Spore-choked Crevice",
+        "Bone-harp Wind Chime",
+        "Ritual Chalk Circle",
+        "Starbeast Tooth Pile"
       ],
       "tertiary": [
-        "haunting astral echo",
-        "ancient captain's log",
-        "predatory bone swarm",
-        "guardian revenant spirit",
-        "legendary marrow relic",
-        "planar seal fracture"
+        "Haunting Astral Echo",
+        "Ancient Captain's Log",
+        "Predatory Bone Swarm",
+        "Guardian Revenant Spirit",
+        "Legendary Marrow Relic",
+        "Planar Seal Fracture"
       ],
       "description": "Vast bones drift in lines, rib arches big enough to swallow ships. Cold light pools in hollows and clings to teeth. Salvage rigs hang back on taut lines while prayers murmur over open channels. The void feels solemn here."
     }
