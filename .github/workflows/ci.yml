@@ -51,7 +51,20 @@ jobs:
     
     - name: Test local server start
       run: |
-        timeout 10s npm run start &
-        sleep 5
-        curl -f http://localhost:8000 || exit 1
-        pkill -f "http-server" || true
+        npx http-server -p 8000 > server.log 2>&1 &
+        echo $! > server.pid
+        # wait up to ~15s for server to start
+        for i in 1 2 3 4 5; do
+          sleep 2
+          if curl -sSf http://localhost:8000 >/dev/null; then
+            echo "Server started"
+            break
+          fi
+          echo "Waiting for server..."
+        done
+        if ! curl -f http://localhost:8000; then
+          echo "Server failed to start — dumping server.log"
+          cat server.log || true
+          exit 1
+        fi
+        kill $(cat server.pid) || true
