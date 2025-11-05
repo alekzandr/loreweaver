@@ -4,7 +4,7 @@
 
 ### Step 1: Enable GitHub Pages
 
-1. Go to your repository: https://github.com/alekzandr/loreweaver
+1. Go to your repository settings
 2. Click **Settings** (top right)
 3. Click **Pages** (left sidebar)
 4. Under "Build and deployment":
@@ -28,7 +28,7 @@ git push origin main
 ### Step 4: Visit Your Site
 
 Your site will be live at:
-**https://alekzandr.github.io/loreweaver/**
+**https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/**
 
 ## How It Works
 

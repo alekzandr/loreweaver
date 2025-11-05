@@ -33,7 +33,7 @@
 ### Option 1: Automatic Setup (Recommended)
 ```bash
 # In WSL terminal, run:
-cd /home/gravemind/loreweaver
+cd /path/to/loreweaver
 chmod +x setup-tests.sh
 ./setup-tests.sh
 ```
@@ -66,7 +66,7 @@ npm start             # Start local server (http://localhost:8000)
 
 To enforce tests before merging to main:
 
-1. Go to your GitHub repository: https://github.com/alekzandr/loreweaver
+1. Go to your GitHub repository settings
 2. Click **Settings** → **Branches**
 3. Click **Add branch protection rule**
 4. Configure:
