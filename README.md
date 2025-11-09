@@ -23,7 +23,7 @@ A clean, intuitive interface that's easy to use on desktop, tablet, and mobile. 
 1. Open `index.html` in any modern web browser
 2. Select an environment by clicking on one of the environment tags
 3. Set your party's level (1-20)
-4. Click "🎲 Generate Encounter" to create a unique exploration encounter
+4. Click "Generate Encounter" to create a unique exploration encounter
 5. Each generated encounter is a complete package, including a title, atmospheric descriptions, a 3-5 step narrative flow, 1-3 NPCs with detailed profiles, 3-5 explorable locations, skill challenges scaled to your party's level, and multiple resolution paths.
 6. **Interactive Features**:
    - Click NPC names to open detail panels with full stats
@@ -44,16 +44,16 @@ The search system includes several smart features. **Live filter counts** show h
 
 ## Environments
 
-- 🏛️ **Urban**: Navigate cities, alleys, rooftops, and sewers
-- ❄️ **Arctic**: Survive blizzards, ice, and extreme cold
-- 🌊 **Ocean**: Face storms, currents, and marine dangers
-- 🌌 **Space**: Explore the void with cosmic hazards
-- 💀 **Crypt**: Delve into tombs with undead and curses
-- 🌲 **Forest**: Trek through dense wilderness
-- 🏜️ **Desert**: Endure heat, sand, and dehydration
-- ⛰️ **Mountain**: Climb peaks and navigate altitude
-- 🐊 **Swamp**: Wade through murky wetlands
-- 🕳️ **Underground**: Explore caves and caverns in darkness
+- **Urban**: Navigate cities, alleys, rooftops, and sewers
+- **Arctic**: Survive blizzards, ice, and extreme cold
+- **Ocean**: Face storms, currents, and marine dangers
+- **Space**: Explore the void with cosmic hazards
+- **Crypt**: Delve into tombs with undead and curses
+- **Forest**: Trek through dense wilderness
+- **Desert**: Endure heat, sand, and dehydration
+- **Mountain**: Climb peaks and navigate altitude
+- **Swamp**: Wade through murky wetlands
+- **Underground**: Explore caves and caverns in darkness
 
 ## Technical Details
 
@@ -102,7 +102,3 @@ npx http-server
 ## Contributing
 
 Want to add your own content? All data is stored in the `data/` directory as JSON files. Check out `DATA_README.md` for a guide on how to add your own encounters, locations, and more.
-
-## License
-
-Open source - feel free to use and modify for your D&D campaigns!
