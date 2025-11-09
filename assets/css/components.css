@@ -27,6 +27,9 @@ header {
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06),
                 0 1px 3px rgba(0, 0, 0, 0.02);
+    isolation: isolate;
+    position: relative;
+    z-index: 100;
 }
 
 /* ====================
@@ -668,6 +671,7 @@ button.disabled:hover {
 .encounter-actions {
     position: relative;
     display: inline-block;
+    z-index: 15002;
 }
 
 .encounter-menu-btn,
@@ -715,7 +719,7 @@ button.disabled:hover {
     visibility: hidden;
     transform: translateY(-10px);
     transition: all 0.2s ease;
-    z-index: 1000;
+    z-index: 10003;
     overflow: hidden;
 }
 

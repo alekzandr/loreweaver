@@ -163,6 +163,8 @@ textarea:focus {
     grid-template-columns: 2fr 1fr;
     gap: 15px;
     align-items: end;
+    position: relative;
+    z-index: 10001;
 }
 
 .seed-input-wrapper {
