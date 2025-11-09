@@ -129,11 +129,11 @@ export function populateFlowNavigator(flowSteps) {
         `;
         
         if (!isLastStep) {
-            html += `<div class="flow-connector"></div>`;
+            html += '<div class="flow-connector"></div>';
         }
     });
     
-    html += `</div>`;
+    html += '</div>';
     
     // NPCs Section
     if (window.currentEncounterNPCs && window.currentEncounterNPCs.length > 0) {
@@ -157,11 +157,11 @@ export function populateFlowNavigator(flowSteps) {
             `;
             
             if (!isLastNPC) {
-                html += `<div class="flow-connector"></div>`;
+                html += '<div class="flow-connector"></div>';
             }
         });
         
-        html += `</div>`;
+        html += '</div>';
     }
     
     content.innerHTML = html;
@@ -249,7 +249,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
             `;
         }
         
-        html += `</div>`;
+        html += '</div>';
         
         if (viewLevel === 'primary') {
             if (location.data.primary && location.data.primary.length > 0) {
@@ -272,7 +272,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                     `;
                 });
                 
-                html += `</div>`;
+                html += '</div>';
             }
         } else if (viewLevel === 'secondary' && selectedIndex !== null) {
             if (location.data.secondary && location.data.secondary[selectedIndex] !== undefined) {
@@ -388,7 +388,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                     </div>
                 `;
             });
-            html += `</div>`;
+            html += '</div>';
         }
     }
     
@@ -418,7 +418,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                     </div>
                 `;
             });
-            html += `</div>`;
+            html += '</div>';
         }
     }
     
@@ -445,7 +445,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                     </div>
                 `;
             });
-            html += `</div>`;
+            html += '</div>';
         }
     }
     
@@ -471,7 +471,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                     </div>
                 `;
             });
-            html += `</div>`;
+            html += '</div>';
         }
     }
     
@@ -497,7 +497,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                     </div>
                 `;
             });
-            html += `</div>`;
+            html += '</div>';
         }
     }
     
