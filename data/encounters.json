@@ -148,7 +148,9 @@
         "building",
         "mechanical"
       ],
-      "customLocations": ["clocktower_district"],
+      "customLocations": [
+        "clocktower_district"
+      ],
       "descriptions": [
         "Clockwork towers toll the hour as brass gears grind against a troubling misalignment. Steam shrouds the streets in a warm haze that tastes of oil. Spires linked by maintenance catwalks demand careful timing, or a misstep will fling you toward spinning weights. Below, onlookers watch with heads tilted back and hands over ears.",
         "The great clock faces show different times—a mechanical impossibility that has the district's chronologists in a panic. Gears the size of wagons stutter and reverse while temporal anomalies ripple through the air like heat shimmer. Workers are trapped on frozen catwalks between grinding mechanisms, and somewhere in the tower's heart, something is deliberately sabotaging the synchronized timepieces that regulate the entire city's schedule."
@@ -283,7 +285,9 @@
     },
     {
       "title": "Basilica of Echoing Confessions",
-      "customLocations": ["echoing_basilica"],
+      "customLocations": [
+        "echoing_basilica"
+      ],
       "tags": [
         "temple",
         "indoor",
@@ -340,7 +344,9 @@
     },
     {
       "title": "Skybridge Duel at Dawn",
-      "customLocations": ["skybridge"],
+      "customLocations": [
+        "skybridge"
+      ],
       "tags": [
         "rooftop",
         "bridge",
@@ -369,7 +375,9 @@
     },
     {
       "title": "Arcane Tram Derailment",
-      "customLocations": ["arcane_tram_depot"],
+      "customLocations": [
+        "arcane_tram_depot"
+      ],
       "tags": [
         "transit",
         "arcane",
@@ -398,7 +406,9 @@
     },
     {
       "title": "Stormglass Conservatory Siege",
-      "customLocations": ["stormglass_conservatory"],
+      "customLocations": [
+        "stormglass_conservatory"
+      ],
       "tags": [
         "conservatory",
         "indoor",
@@ -507,7 +517,9 @@
     },
     {
       "title": "The Rooftop Garden",
-      "customLocations": ["rooftop_garden"],
+      "customLocations": [
+        "rooftop_garden"
+      ],
       "tags": [
         "rooftop",
         "garden",
@@ -536,7 +548,9 @@
     },
     {
       "title": "The Undercity Fight Club",
-      "customLocations": ["undercity_fight_club"],
+      "customLocations": [
+        "undercity_fight_club"
+      ],
       "tags": [
         "underground",
         "combat",
@@ -565,7 +579,9 @@
     },
     {
       "title": "The Public Bathhouse",
-      "customLocations": ["public_bathhouse"],
+      "customLocations": [
+        "public_bathhouse"
+      ],
       "tags": [
         "bathhouse",
         "social",
@@ -594,7 +610,9 @@
     },
     {
       "title": "The Grand Theater",
-      "customLocations": ["theater"],
+      "customLocations": [
+        "theater"
+      ],
       "tags": [
         "theater",
         "entertainment",
@@ -623,7 +641,9 @@
     },
     {
       "title": "The City Gates",
-      "customLocations": ["city_gates"],
+      "customLocations": [
+        "city_gates"
+      ],
       "tags": [
         "gate",
         "outdoor",
@@ -1361,7 +1381,11 @@
   "space": [
     {
       "title": "Derelict Spelljammer",
-      "tags": ["ship", "vessel", "derelict"],
+      "tags": [
+        "ship",
+        "vessel",
+        "derelict"
+      ],
       "descriptions": [
         "A once-majestic hull drifts in dead silence, its arcane filigree charred and pitted by micrometeors. Lantern-cold phantoms pace behind cracked panes as runes along the keel flicker like a heartbeat running out of beats.",
         "Frost feathers the rigging from the breath of something that no longer breathes. Gravity wobbles inside the decks, sending tools and teacups into slow orbits around forgotten bunks."
@@ -1384,7 +1408,11 @@
     },
     {
       "title": "Phlogiston Crossing",
-      "tags": ["wildspace", "void", "openspace"],
+      "tags": [
+        "wildspace",
+        "void",
+        "openspace"
+      ],
       "descriptions": [
         "Ribboned auroras slick the hull with liquid fire as charts rewrite themselves mid-glow. Every spark feels like a match struck inside a powder magazine.",
         "Currents shear at the keel, humming in seven notes that do not exist in mortal throats. A single miscast can turn the ship into a new constellation."
@@ -1407,7 +1435,11 @@
     },
     {
       "title": "Crystal Sphere Breach",
-      "tags": ["void", "anomaly", "openspace"],
+      "tags": [
+        "void",
+        "anomaly",
+        "openspace"
+      ],
       "descriptions": [
         "A jagged rent bleeds star-motes while arc lightning crawls like living solder across glass-night. Beyond: strangers’ constellations blink back.",
         "The breach flexes with tidal breaths; approach too fast and you’re swatted like dust on crystal."
@@ -1430,7 +1462,11 @@
     },
     {
       "title": "Astral Debris Field",
-      "tags": ["debris", "void", "openspace"],
+      "tags": [
+        "debris",
+        "void",
+        "openspace"
+      ],
       "descriptions": [
         "A crown of knives—broken hulls, ice, shattered stone—tumbles with silent menace. Faint commands echo on the sending-wind: ‘hold the line…’",
         "Some debris remembers its war. Touch the wrong fragment and it reenacts orders with lethal sincerity."
@@ -1453,7 +1489,11 @@
     },
     {
       "title": "Wildspace Anomaly",
-      "tags": ["wildspace", "anomaly", "openspace"],
+      "tags": [
+        "wildspace",
+        "anomaly",
+        "openspace"
+      ],
       "descriptions": [
         "Gravity bows like heated glass and time noodles around your words. Colors argue about their names.",
         "Memories slide sideways: a crewmate recalls a conversation you haven’t had yet—and they’re annoyed by your future answer."
@@ -1476,7 +1516,11 @@
     },
     {
       "title": "The Rainbow Flow",
-      "tags": ["phlogiston", "void", "openspace"],
+      "tags": [
+        "phlogiston",
+        "void",
+        "openspace"
+      ],
       "descriptions": [
         "Prismatic torrents sing against the hull; sparks yearn to become suns.",
         "Creatures of light surf the stream, sketching glyph-graffiti that only shows up in peripheral vision."
@@ -1499,7 +1543,11 @@
     },
     {
       "title": "Sphere's Edge",
-      "tags": ["boundary", "void", "openspace"],
+      "tags": [
+        "boundary",
+        "void",
+        "openspace"
+      ],
       "descriptions": [
         "A glass horizon curves forever, reflecting foreign skies. Footing feels like a dream you almost wake from.",
         "Hair stands with static; whispers come back with different accents."
@@ -1522,7 +1570,11 @@
     },
     {
       "title": "Gravity Well",
-      "tags": ["anomaly", "void", "openspace"],
+      "tags": [
+        "anomaly",
+        "void",
+        "openspace"
+      ],
       "descriptions": [
         "An invisible fist closes; the deck tilts toward a dark swirl of compressed starlight.",
         "Bolts creep with squeals as wards redline; mugs and men alike slide starboard."
@@ -1545,7 +1597,12 @@
     },
     {
       "title": "Siege of the Living Voidship",
-      "tags": ["ship", "void", "boarding", "living"],
+      "tags": [
+        "ship",
+        "void",
+        "boarding",
+        "living"
+      ],
       "descriptions": [
         "A cathedral of flesh and chitin blots the stars, its eyes blinking in unsettling unison.",
         "Boarding pods thump and blossom like seed-pods, disgorging hiss-chanting troopers."
@@ -1568,7 +1625,12 @@
     },
     {
       "title": "Rescue at the Solar Flare Regatta",
-      "tags": ["ship", "phlogiston", "storm", "rescue"],
+      "tags": [
+        "ship",
+        "phlogiston",
+        "storm",
+        "rescue"
+      ],
       "descriptions": [
         "Sails blaze like phoenix wings as racers skim a star’s knife-edge.",
         "A competitor spirals toward a blooming flare while spectators cheer, unaware of imminence."
@@ -1591,7 +1653,12 @@
     },
     {
       "title": "Moondust Corsair Ambush",
-      "tags": ["asteroid", "ambush", "pirates", "void"],
+      "tags": [
+        "asteroid",
+        "ambush",
+        "pirates",
+        "void"
+      ],
       "descriptions": [
         "Silvery motes cling to the hull, snowing glitter over the deck—perfect cover for corsairs.",
         "Frost-charged cannons thump from the haze; a voice offers courteous surrender."
@@ -1614,7 +1681,12 @@
     },
     {
       "title": "Chronal Drift Salvage",
-      "tags": ["anomaly", "time", "salvage", "debris"],
+      "tags": [
+        "anomaly",
+        "time",
+        "salvage",
+        "debris"
+      ],
       "descriptions": [
         "Wreckage flickers between was and will-be; crew echoes mime their ends in reverse.",
         "Hourglasses pour upward while your instruments swear it’s yesterday and tomorrow."
@@ -1637,7 +1709,12 @@
     },
     {
       "title": "Gith Armada Blockade",
-      "tags": ["armada", "githyanki", "military", "void"],
+      "tags": [
+        "armada",
+        "githyanki",
+        "military",
+        "void"
+      ],
       "descriptions": [
         "Crimson-sailed warships hang in a net of shared intent, thought-whips ready.",
         "Astral silver bristles from their ballistae; boarding hooks glint like smiles."
@@ -1660,7 +1737,12 @@
     },
     {
       "title": "Phlogiston Bloom Storm",
-      "tags": ["phlogiston", "storm", "hazard", "wildspace"],
+      "tags": [
+        "phlogiston",
+        "storm",
+        "hazard",
+        "wildspace"
+      ],
       "descriptions": [
         "Radiant blossoms erupt, shedding meteoric petals that itch to ignite you.",
         "Charts flash white-hot before cooling to ash; lightning prefers your flag."
@@ -1683,7 +1765,12 @@
     },
     {
       "title": "Nebula Sanctuary Negotiation",
-      "tags": ["nebula", "diplomacy", "sanctuary", "void"],
+      "tags": [
+        "nebula",
+        "diplomacy",
+        "sanctuary",
+        "void"
+      ],
       "descriptions": [
         "Crystalline monasteries float on mist-tendrils; choirs sing in your head.",
         "Refugees breathe easy behind psionic veils tuned to hymns."
@@ -1706,7 +1793,12 @@
     },
     {
       "title": "Crystal Sphere Siegebreakers",
-      "tags": ["crystalsphere", "siege", "battle", "void"],
+      "tags": [
+        "crystalsphere",
+        "siege",
+        "battle",
+        "void"
+      ],
       "descriptions": [
         "Fortress-engines jackhammer luminous cracks into the world-shell.",
         "Defenders chant patch-spells while shockwaves threaten to mulch small ships."
@@ -1729,7 +1821,12 @@
     },
     {
       "title": "Starbeast Migration Crossing",
-      "tags": ["wildlife", "migration", "hazard", "void"],
+      "tags": [
+        "wildlife",
+        "migration",
+        "hazard",
+        "void"
+      ],
       "descriptions": [
         "Titans drift, exhaling gravity wells like sleepy sighs.",
         "Spores trail behind them as little constellations that try to colonize your sails."
@@ -1752,7 +1849,12 @@
     },
     {
       "title": "Planar Observatory Heist",
-      "tags": ["observatory", "heist", "structure", "void"],
+      "tags": [
+        "observatory",
+        "heist",
+        "structure",
+        "void"
+      ],
       "descriptions": [
         "Obsidian lenses look into a dozen realities as clockworks march to the universe’s beat.",
         "Scholars clutch fate-inked charts that hum if you stare too long."
@@ -1775,7 +1877,11 @@
     },
     {
       "title": "Comet-Tail Skimming",
-      "tags": ["void", "comet", "hazard"],
+      "tags": [
+        "void",
+        "comet",
+        "hazard"
+      ],
       "descriptions": [
         "A god’s veil of ice and dust lashes the hull; instruments frost mid-reading.",
         "Hitchhiking elementals trace glyphs across sails, begging passage or plotting mischief."
@@ -1798,7 +1904,11 @@
     },
     {
       "title": "Star Map of the Mad Navigator",
-      "tags": ["anomaly", "observatory", "puzzle"],
+      "tags": [
+        "anomaly",
+        "observatory",
+        "puzzle"
+      ],
       "descriptions": [
         "A skiff floats inside a sphere of chart-lines drawn in solid light.",
         "Every log page is the captain’s hand—and none agree on what happened."
@@ -1821,7 +1931,11 @@
     },
     {
       "title": "Astral Whale Graveyard",
-      "tags": ["wildspace", "graveyard", "mystic"],
+      "tags": [
+        "wildspace",
+        "graveyard",
+        "mystic"
+      ],
       "descriptions": [
         "Colossal bones arc like bridges between drifting cairn-stones. Each rib hums with lullabies older than gods.",
         "Pearl-sized memories float in eddies, replaying final migrations to anyone who dares to touch."
@@ -1844,7 +1958,11 @@
     },
     {
       "title": "Silver Ladder to Nowhere",
-      "tags": ["anomaly", "structure", "astral"],
+      "tags": [
+        "anomaly",
+        "structure",
+        "astral"
+      ],
       "descriptions": [
         "A staircase of moon-metal climbs into blank sky, each step ringing a different note.",
         "From above comes the smell of rain on stone—a scent that doesn’t exist in space."
@@ -1867,7 +1985,11 @@
     },
     {
       "title": "Spellreef",
-      "tags": ["reef", "magic", "hazard"],
+      "tags": [
+        "reef",
+        "magic",
+        "hazard"
+      ],
       "descriptions": [
         "A living reef of discarded spells calcified into prismatic coral. Casting nearby causes wild polyps to bloom.",
         "Echo-spells nip at fingers like curious fish, repeating cantrips you didn’t cast."
@@ -1890,7 +2012,11 @@
     },
     {
       "title": "Astral Monsoon",
-      "tags": ["storm", "astral", "weather"],
+      "tags": [
+        "storm",
+        "astral",
+        "weather"
+      ],
       "descriptions": [
         "Rain falls in space—silver droplets that soak thoughts instead of clothes.",
         "Thunder speaks in remembered voices, arguing with your choices."
@@ -1913,7 +2039,11 @@
     },
     {
       "title": "Githzerai Waystation",
-      "tags": ["station", "psionic", "neutral"],
+      "tags": [
+        "station",
+        "psionic",
+        "neutral"
+      ],
       "descriptions": [
         "Stone huts hover in balanced symmetry; monks practice stillness that moves the air.",
         "A tea ceremony is conducted in utter silence, the steam forming mandalas."
@@ -1936,7 +2066,11 @@
     },
     {
       "title": "Starhusk Lantern",
-      "tags": ["artifact", "navigation", "mystic"],
+      "tags": [
+        "artifact",
+        "navigation",
+        "mystic"
+      ],
       "descriptions": [
         "A lantern grows from fossilized star-wood, its flame pointing to what you need—not always what you want.",
         "Shadows it casts show possible futures arguing behind your backs."
@@ -1959,7 +2093,11 @@
     },
     {
       "title": "Jade Comet Monastery",
-      "tags": ["comet", "monastery", "training"],
+      "tags": [
+        "comet",
+        "monastery",
+        "training"
+      ],
       "descriptions": [
         "A green ice comet houses halls carved by monks’ hands and meteor heat.",
         "Bells ring without sound, vibrating bones into calm."
@@ -1982,7 +2120,11 @@
     },
     {
       "title": "Tears of the Forgotten God",
-      "tags": ["hazard", "divine", "wildspace"],
+      "tags": [
+        "hazard",
+        "divine",
+        "wildspace"
+      ],
       "descriptions": [
         "Vast droplets of divine brine float, each containing a memory of worship that no one remembers.",
         "Touch one and you briefly become a priest of someone who never was."
@@ -2005,7 +2147,11 @@
     },
     {
       "title": "Clockwork Constellation",
-      "tags": ["construct", "puzzle", "astral"],
+      "tags": [
+        "construct",
+        "puzzle",
+        "astral"
+      ],
       "descriptions": [
         "Stars click into gears and springs, ticking destiny forward.",
         "A missing cog stalls a fate you care about."
@@ -2028,7 +2174,11 @@
     },
     {
       "title": "Dead Suns Market",
-      "tags": ["market", "station", "criminal"],
+      "tags": [
+        "market",
+        "station",
+        "criminal"
+      ],
       "descriptions": [
         "A bazaar orbits a cinder star, stalls selling sunlight by the bottle and names by the ounce.",
         "Every price is fair and terrible."
@@ -2051,7 +2201,11 @@
     },
     {
       "title": "Aurora Bridge",
-      "tags": ["travel", "phenomenon", "wildspace"],
+      "tags": [
+        "travel",
+        "phenomenon",
+        "wildspace"
+      ],
       "descriptions": [
         "A band of living aurora spans two moons like a laughing road.",
         "Step onto light and it bears you if your heart is brave."
@@ -2069,6 +2223,49 @@
           "description": "Bottle a strand without dimming the bridge.",
           "requirements": "Delicate Tools/Arcana.",
           "rewards": "Aurora filament (light/teleport focus), local gratitude if left intact."
+        }
+      ]
+    },
+    {
+      "title": "The Emberglass Wreck",
+      "tags": [
+        "ship",
+        "vessel",
+        "derelict",
+        "rescue",
+        "cargo",
+        "danger",
+        "salvage"
+      ],
+      "descriptions": [
+        "A battered spelljamming skiff—The Emberglass—drifts in a slow spiral, its helm flickering weakly. A molten scar burns along the starboard side, like something inside detonated. Faint distress lanterns pulse in the void while a weak voice crackles through proximity crystals: 'Any... anyone... this is First Mate Cindra Vell... we're losing air... crew injured... please respond...' The ship's cargo hold radiates waves of heat that shimmer against the darkness.",
+        "The courier ship tumbles through wildspace like a wounded bird, trailing debris and crystallized air. Scorch marks radiate from amidships where containment runes have failed, and feathers of radiant light drift from breaches in the hull like dying embers. Through cracked viewports you glimpse desperate shadows moving, and the ship's distress beacon pulses with increasing urgency. Something powerful and volatile is tearing the vessel apart from within."
+      ],
+      "weight": 1.2,
+      "resolutions": [
+        {
+          "title": "Heroic Rescue",
+          "description": "The party stabilizes the Phoenix Embercore and saves the crew. First Mate Cindra Vell and her survivors are profoundly grateful, offering an Emberglass Company Marker that grants docking rights, waived port fees, and future quest opportunities. The crew shares navigation charts and each party member receives a Phoenix-Touched Trinket (+1 to fire saves once per day). The company remembers those who saved their people.",
+          "requirements": "Successful skill challenge to stabilize the Embercore (Arcana/Athletics/Druidcraft), aid to injured crew members, repair helm or provide alternative power",
+          "rewards": "Emberglass Company Marker (docking rights and future quests), navigation charts (advantage on astral navigation), Phoenix-Touched Trinket for each PC, grateful allies in shipping guild"
+        },
+        {
+          "title": "Profitable Salvage",
+          "description": "The party secures the volatile Phoenix Embercore for themselves, worth 800-1200 gold to the right buyer. However, the Emberglass Company places a bounty on the thieves, and the core pulses unpredictably (once per day roll: on a 1, deals heat burst to carrier). Crew survivors spread tales of pirate cruelty across the shipping lanes. The stolen heart of a solar phoenix may also attract unwanted attention from those who know what it truly is.",
+          "requirements": "Steal or negotiate for the Embercore, deal with or abandon the crew, escape before ship explodes",
+          "rewards": "Phoenix Embercore (800-1200 gp, volatile), 1d3 Emberglass Shards (weapon enhancement: +1d6 radiant once/day then shatter), reputation as pirates, company bounty and potential phoenix spirit pursuit"
+        },
+        {
+          "title": "Desperate Bargain",
+          "description": "Unable to fully stabilize the core, the party must make hard choices. They can evacuate the crew while sacrificing the ship and cargo, attempt a partial salvage that risks everyone's lives, or try to contain the Embercore long enough to reach a safe haven. The crew may help or hinder depending on how they've been treated. Whatever they choose, debris and floating bodies mark their attempt, leaving them with a reputation as either unlucky saviors or dangerous incompetents.",
+          "requirements": "Failed or partial success on Embercore stabilization, evacuation procedures, potential combat with Radiant Emberlings (CR 1 constructs)",
+          "rewards": "Scattered salvage (healing potions, spelljammer tools worth 50 gp, 45 gp in coins), researcher's notes on Phoenix Embercores, mixed reputation, potential survivor witnesses"
+        },
+        {
+          "title": "Something Worse Unleashed",
+          "description": "The Phoenix Embercore fully ruptures, birthing 2-4 Radiant Emberlings—fiery constructs of living phoenix energy. The ship begins to tear itself apart as radiant fire spreads through the hold. The party must fight or flee while the crew scrambles for escape pods. If they save anyone, they're heroes. If they escape alone, they're survivors haunted by what they left behind. A phoenix spirit may mark those who let its offspring burn unchecked, manifesting as random fire hauntings until purified.",
+          "requirements": "Combat with Radiant Emberlings (HP 18, AC 14, resist nonmagical damage, explode on death for 2d6 fire), escape ship before catastrophic explosion (4 rounds)",
+          "rewards": "Survival, possible Emberglass Shards from debris (if successful in combat), disturbing memories, potential phoenix curse if crew perished, astral navy attention"
         }
       ]
     }
