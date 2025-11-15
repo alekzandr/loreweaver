@@ -1181,14 +1181,10 @@
                 
                 // Set environment
                 selectedEnvironment = environment;
-                const envTags = document.querySelectorAll('.environment-tags .tag');
-                envTags.forEach(tag => {
-                    if (tag.getAttribute('data-env') === environment) {
-                        tag.classList.add('active');
-                    } else {
-                        tag.classList.remove('active');
-                    }
-                });
+                const envSelect = document.getElementById('environmentSelect');
+                if (envSelect) {
+                    envSelect.value = environment;
+                }
                 
                 // Find and use specific encounter
                 const encounters = window.encounterTitles[environment];
@@ -1196,14 +1192,35 @@
                 
                 if (encounterTemplate) {
                     const partyLevel = parseInt(document.getElementById('partyLevel').value);
-                    const numLocations = parseInt(document.getElementById('numLocations').value);
                     
-                    currentEncounterSkillChecks = window.selectSkillChecks(encounterTemplate.tags, [], [], Math.floor(Math.random() * 2) + 3);
-                    currentEncounterTraps = window.selectTraps([], Math.random() < 0.3 ? 0 : Math.random() < 0.5 ? 1 : 2);
-                    currentEncounterHazards = window.selectHazards(environment, [], Math.random() < 0.6 ? 1 : 2);
-                    currentEncounterEnvironmentalEffects = window.selectEnvironmentalEffects(environment, encounterTemplate.tags, Math.random() < 0.4 ? 1 : 0);
-                    currentEncounterLocations = window.selectLocationsForEncounter(encounterTemplate.tags, environment, numLocations);
-                    currentEncounterNPCs = window.selectNPCsForEncounter(encounterTemplate.tags, Math.floor(Math.random() * 3) + 2);
+                    // Generate a seed for this encounter
+                    window.currentSeed = Date.now().toString(36) + Math.random().toString(36).substr(2);
+                    document.getElementById('encounterSeed').value = window.currentSeed;
+                    const seed = window.hashStringToSeed(window.currentSeed);
+                    const seededRandom = window.createSeededRandom(seed);
+                    window.setRandomFunction(seededRandom);
+                    
+                    currentEncounterSkillChecks = window.selectSkillChecks(encounterTemplate.tags, [], [], Math.floor(window.random() * 2) + 3);
+                    currentEncounterTraps = window.selectTraps([], window.random() < 0.3 ? 0 : window.random() < 0.5 ? 1 : 2);
+                    currentEncounterHazards = window.selectHazards(environment, [], window.random() < 0.6 ? 1 : 2);
+                    currentEncounterEnvironmentalEffects = window.selectEnvironmentalEffects(environment, encounterTemplate.tags, window.random() < 0.4 ? 1 : 0);
+                    
+                    // Handle custom locations if they exist
+                    if (encounterTemplate.customLocations && encounterTemplate.customLocations.length > 0) {
+                        // Use custom locations for this encounter
+                        currentEncounterLocations = window.selectLocationsForEncounter(
+                            encounterTemplate.tags, 
+                            environment, 
+                            encounterTemplate.customLocations.length,
+                            encounterTemplate.customLocations
+                        );
+                    } else {
+                        // Use normal location selection
+                        const numLocations = parseInt(document.getElementById('numLocations').value);
+                        currentEncounterLocations = window.selectLocationsForEncounter(encounterTemplate.tags, environment, numLocations);
+                    }
+                    
+                    currentEncounterNPCs = window.selectNPCsForEncounter(encounterTemplate.tags, Math.floor(window.random() * 3) + 2);
                     currentEncounterFlow = generateEncounterFlow();
                     
                     displayEncounter();
