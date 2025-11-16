@@ -414,15 +414,43 @@
                     window.setRandomFunction(seededRandom);
                 }
 
-                // Select encounter template
-                window.encounterTemplate = window.selectEncounterTemplate(window.selectedEnvironment);
+                // Select encounter template - use preselected if available
+                if (window.preselectedEncounter && window.preselectedEncounter.template) {
+                    console.log('✨ Using preselected encounter:', window.preselectedEncounter.template.title);
+                    window.encounterTemplate = window.preselectedEncounter.template;
+                    window.selectedEnvironment = window.preselectedEncounter.environment;
+                    // Clear the preselected encounter after use
+                    window.preselectedEncounter = null;
+                    // Remove the banner if it exists
+                    const banner = document.getElementById('encounterSelectedBanner');
+                    if (banner) banner.remove();
+                } else {
+                    window.encounterTemplate = window.selectEncounterTemplate(window.selectedEnvironment);
+                }
                 
                 // Select content using smart selection from core.js
                 window.currentEncounterSkillChecks = window.selectSkillChecks(window.encounterTemplate.tags, [], [], Math.floor(window.random() * 2) + 3);
                 window.currentEncounterTraps = window.selectTraps(window.encounterTemplate.tags, Math.floor(window.random() * 3) + 2); // 2-4 traps
                 window.currentEncounterHazards = window.selectHazards(window.selectedEnvironment, window.encounterTemplate.tags, Math.floor(window.random() * 3) + 2); // 2-4 hazards
                 window.currentEncounterEnvironmentalEffects = window.selectEnvironmentalEffects(window.selectedEnvironment, window.encounterTemplate.tags, Math.floor(window.random() * 2) + 1); // 1-2 effects
-                window.currentEncounterLocations = window.selectLocationsForEncounter(window.encounterTemplate.tags, window.selectedEnvironment, numLocations);
+                
+                // Use custom locations if encounter specifies them, otherwise generate random locations
+                if (window.encounterTemplate.customLocations && window.encounterTemplate.customLocations.length > 0) {
+                    console.log('📍 Using custom locations for encounter:', window.encounterTemplate.customLocations);
+                    window.currentEncounterLocations = window.selectLocationsForEncounter(
+                        window.encounterTemplate.tags, 
+                        window.selectedEnvironment, 
+                        null, 
+                        window.encounterTemplate.customLocations
+                    );
+                } else {
+                    window.currentEncounterLocations = window.selectLocationsForEncounter(
+                        window.encounterTemplate.tags, 
+                        window.selectedEnvironment, 
+                        numLocations
+                    );
+                }
+                
                 window.currentEncounterNPCs = window.selectNPCsForEncounter(window.encounterTemplate.tags, Math.floor(window.random() * 3) + 2);
 
                 // Generate encounter flow
