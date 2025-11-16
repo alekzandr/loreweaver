@@ -3,7 +3,7 @@
 // This consolidated module contains all critical application logic
 
 import './data-loader.js';
-import { random, formatLocationName } from './utils.js';
+import { random, formatLocationName, capitalizeSpecies } from './utils.js';
 
 // ============================================================================
 // ENCOUNTER GENERATION
@@ -520,7 +520,7 @@ function renderNPCStatBlock(editMode = false) {
                         <img src="assets/img/character.png" alt="character" class="character-icon"> ${editMode ? `<input type="text" id="editFirstName" value="${npc.firstName}" style="width: 120px; background: var(--card-background); color: #9b59b6; border: 1px solid var(--accent-blue); border-radius: 4px; padding: 4px; text-align: left; font-size: 1em; font-family: inherit;"> <input type="text" id="editSurname" value="${npc.surname}" style="width: 150px; background: var(--card-background); color: #9b59b6; border: 1px solid var(--accent-blue); border-radius: 4px; padding: 4px; text-align: left; font-size: 1em; font-family: inherit;">` : `${npc.firstName} ${npc.surname}`}
                     </h2>
                     <p style="margin: 5px 0 0 0; font-style: italic; color: var(--text-secondary); font-size: 1em;">
-                        ${editMode ? `<input type="text" id="editSpecies" value="${npc.species}" style="width: 100px; background: var(--card-background); color: var(--text-secondary); border: 1px solid var(--accent-blue); border-radius: 4px; padding: 4px; text-align: center; font-style: italic;"> <input type="text" id="editProfession" value="${npc.profession.name}" style="width: 150px; background: var(--card-background); color: var(--text-secondary); border: 1px solid var(--accent-blue); border-radius: 4px; padding: 4px; text-align: center; font-style: italic;">, <input type="text" id="editAlignment" value="${npc.alignment.name}" style="width: 120px; background: var(--card-background); color: var(--text-secondary); border: 1px solid var(--accent-blue); border-radius: 4px; padding: 4px; text-align: center; font-style: italic;">` : `${npc.species.charAt(0).toUpperCase() + npc.species.slice(1)} ${npc.profession.name}, ${npc.alignment.name}`}
+                        ${editMode ? `<input type="text" id="editSpecies" value="${npc.species}" style="width: 100px; background: var(--card-background); color: var(--text-secondary); border: 1px solid var(--accent-blue); border-radius: 4px; padding: 4px; text-align: center; font-style: italic;"> <input type="text" id="editProfession" value="${npc.profession.name}" style="width: 150px; background: var(--card-background); color: var(--text-secondary); border: 1px solid var(--accent-blue); border-radius: 4px; padding: 4px; text-align: center; font-style: italic;">, <input type="text" id="editAlignment" value="${npc.alignment.name}" style="width: 120px; background: var(--card-background); color: var(--text-secondary); border: 1px solid var(--accent-blue); border-radius: 4px; padding: 4px; text-align: center; font-style: italic;">` : `${capitalizeSpecies(npc.species)} ${npc.profession.name}, ${npc.alignment.name}`}
                     </p>
                 </div>
 
