@@ -50,6 +50,23 @@ export function random() {
 }
 
 /**
+ * Capitalize species names properly, including hyphenated names
+ * @param {string} species - Species name (e.g., "human", "half-elf", "shadow-fey")
+ * @returns {string} Capitalized species name (e.g., "Human", "Half-Elf", "Shadow-Fey")
+ */
+export function capitalizeSpecies(species) {
+    if (!species || typeof species !== 'string') {
+        return species;
+    }
+    
+    // Split by hyphen and capitalize each part
+    return species
+        .split('-')
+        .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+        .join('-');
+}
+
+/**
  * Fisher-Yates shuffle to get random elements from array
  * @param {Array} array - Source array
  * @param {number} count - Number of elements to return
@@ -180,3 +197,4 @@ window.createSeededRandom = createSeededRandom;
 window.hashStringToSeed = hashStringToSeed;
 window.setRandomFunction = setRandomFunction;
 window.random = random;
+window.capitalizeSpecies = capitalizeSpecies;

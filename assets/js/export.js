@@ -1,6 +1,8 @@
 // LoreWeaver - Export Module
 // Handles exporting encounters in various formats
 
+import { capitalizeSpecies } from './utils.js';
+
 /**
  * Export encounter as Markdown
  */
@@ -225,7 +227,7 @@ function generateEncounterMarkdown() {
             const personality = npc.personality?.trait || npc.personality || 'Unknown';
             const secret = npc.secret?.secret || npc.secret || 'Unknown';
             md += `### ${npc.name}\n\n`;
-            md += `**Species:** ${npc.species} | `;
+            md += `**Species:** ${capitalizeSpecies(npc.species)} | `;
             md += `**Profession:** ${profession} | `;
             md += `**Alignment:** ${alignment}\n\n`;
             md += `**Appearance:** ${appearance}\n\n`;
@@ -442,7 +444,7 @@ function generateEncounterText() {
             const personality = npc.personality?.trait || npc.personality || 'Unknown';
             const secret = npc.secret?.secret || npc.secret || 'Unknown';
             txt += `${npc.name}\n`;
-            txt += `Species: ${npc.species} | `;
+            txt += `Species: ${capitalizeSpecies(npc.species)} | `;
             txt += `Profession: ${profession} | `;
             txt += `Alignment: ${alignment}\n`;
             txt += `Appearance: ${appearance}\n`;
@@ -674,7 +676,7 @@ function generateEncounterHTML() {
             const secret = npc.secret?.secret || npc.secret || 'Unknown';
             html += '<div class="npc">';
             html += `<h3>${npc.name}</h3>`;
-            html += `<p><strong>Species:</strong> ${npc.species} | `;
+            html += `<p><strong>Species:</strong> ${capitalizeSpecies(npc.species)} | `;
             html += `<strong>Profession:</strong> ${profession} | `;
             html += `<strong>Alignment:</strong> ${alignment}</p>`;
             html += `<p><strong>Appearance:</strong> ${appearance}</p>`;

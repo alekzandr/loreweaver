@@ -3,7 +3,7 @@
 // Note: Due to size constraints, complex encounter rendering functions
 // will remain inline in the new index.html until further modularization
 
-import { getProfessionRoleTip } from './utils.js';
+import { getProfessionRoleTip, capitalizeSpecies } from './utils.js';
 
 // ============================================================================
 // UI INTERACTION FUNCTIONS
@@ -150,7 +150,7 @@ export function populateFlowNavigator(flowSteps) {
                     <div class="flow-step-node" style="padding: 8px 12px;">
                         <div class="flow-step-title" style="font-size: 0.9em;">${npc.name}</div>
                         <div class="flow-step-location" style="font-size: 0.75em;">
-                            ${npc.species} | ${npc.profession?.name || npc.profession}
+                            ${capitalizeSpecies(npc.species)} | ${npc.profession?.name || npc.profession}
                         </div>
                     </div>
                 </div>
@@ -491,7 +491,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                 html += `
                     <div style="background: rgba(46, 204, 113, 0.1); padding: 12px; border-radius: 6px; margin-bottom: 10px; border-left: 3px solid #2ecc71;">
                         <strong>${npc.name}</strong><br>
-                        <p style="margin: 4px 0; font-size: 0.9em;">${npc.species} ${npc.profession?.name || npc.profession}</p>
+                        <p style="margin: 4px 0; font-size: 0.9em;">${capitalizeSpecies(npc.species)} ${npc.profession?.name || npc.profession}</p>
                         <p style="margin: 4px 0; font-size: 0.85em; color: var(--text-secondary);">${npc.appearance?.description || npc.appearance || ''}</p>
                         ${npc.personality ? `<p style="margin: 4px 0; font-size: 0.85em; font-style: italic;">${npc.personality?.trait || npc.personality}</p>` : ''}
                     </div>
@@ -553,7 +553,7 @@ export function showNPCDetail(npcIndex) {
     let html = `
         <h3 style="margin-top: 0; color: #9b59b6;"><img src="assets/img/character.png" alt="character" class="character-icon"> ${npc.name}</h3>
         <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 20px;">
-            ${npc.species} ${npc.profession?.name || npc.profession}
+            ${capitalizeSpecies(npc.species)} ${npc.profession?.name || npc.profession}
         </p>
 
         <div style="margin-bottom: 20px;">
@@ -563,7 +563,7 @@ export function showNPCDetail(npcIndex) {
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
                 <div>
                     <strong style="color: var(--text-secondary);">Species:</strong>
-                    <div style="color: var(--text-primary);">${npc.species || 'Unknown'}</div>
+                    <div style="color: var(--text-primary);">${capitalizeSpecies(npc.species) || 'Unknown'}</div>
                 </div>
                 <div>
                     <strong style="color: var(--text-secondary);">Profession:</strong>
@@ -636,7 +636,7 @@ export function showNPCTooltip(event, npcIndex) {
         <div class="npc-tooltip-header"><img src="assets/img/character.png" alt="character" class="character-icon"> ${npc.name}</div>
         <div class="npc-tooltip-row">
             <span class="npc-tooltip-label">Species:</span>
-            <span class="npc-tooltip-value">${npc.species || 'Unknown'}</span>
+            <span class="npc-tooltip-value">${capitalizeSpecies(npc.species) || 'Unknown'}</span>
         </div>
         <div class="npc-tooltip-row">
             <span class="npc-tooltip-label">Profession:</span>
@@ -693,7 +693,7 @@ export function showNPCDetailFromObject(npcJson) {
     let html = `
         <h3 style="margin-top: 0; color: #9b59b6;"><img src="assets/img/character.png" alt="character" class="character-icon"> ${npc.name}</h3>
         <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 20px;">
-            ${npc.species} ${npc.profession?.name || npc.profession}
+            ${capitalizeSpecies(npc.species)} ${npc.profession?.name || npc.profession}
         </p>
 
         <div style="margin-bottom: 20px;">
@@ -703,7 +703,7 @@ export function showNPCDetailFromObject(npcJson) {
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
                 <div>
                     <strong style="color: var(--text-secondary);">Species:</strong>
-                    <div style="color: var(--text-primary);">${npc.species || 'Unknown'}</div>
+                    <div style="color: var(--text-primary);">${capitalizeSpecies(npc.species) || 'Unknown'}</div>
                 </div>
                 <div>
                     <strong style="color: var(--text-secondary);">Profession:</strong>
