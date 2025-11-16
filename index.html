@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="description" content="D&D Exploration Encounter Generator for creating rich, detailed encounters">
+    <link rel="manifest" href="manifest.json">
     <title>LoreWeaver - D&D Exploration Encounter Generator</title>
     
     <!-- CSS Modules -->
@@ -10,6 +15,7 @@
     <link rel="stylesheet" href="assets/css/themes.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/pages.css">
+    <link rel="stylesheet" href="assets/css/mobile.css">
 </head>
 <body>
     <div class="main-content" id="mainContent">
@@ -345,6 +351,12 @@
         import './assets/js/export.js';
         import './assets/js/core.js';
         import './assets/js/ui.js';
+        import { initMobileGestures } from './assets/js/mobile.js';
+        
+        // Initialize mobile gestures after DOM is loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            initMobileGestures();
+        });
         
         // Note: initApp is called automatically by app.js on DOMContentLoaded
     </script>

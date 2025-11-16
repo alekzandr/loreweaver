@@ -1,0 +1,807 @@
+/* LoreWeaver - Mobile Optimization CSS
+ * Responsive design and mobile-specific styles
+ * Mobile-first approach with progressive enhancement
+ */
+
+/* ============================================================================
+   MOBILE BREAKPOINTS
+   ============================================================================ */
+:root {
+    --mobile-small: 320px;
+    --mobile: 375px;
+    --mobile-large: 425px;
+    --tablet: 768px;
+    --desktop: 1024px;
+    --desktop-large: 1440px;
+    
+    /* Mobile-specific spacing */
+    --mobile-padding: 16px;
+    --mobile-margin: 12px;
+    --touch-target-min: 44px;
+}
+
+/* ============================================================================
+   CORE MOBILE INFRASTRUCTURE
+   ============================================================================ */
+
+/* Touch action optimization */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a,
+.btn,
+.nav-tab {
+    touch-action: manipulation; /* Prevents double-tap zoom */
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+input,
+textarea,
+select {
+    touch-action: manipulation;
+}
+
+/* Prevent text size adjustments on orientation change */
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+/* iOS-specific fixes */
+@supports (-webkit-touch-callout: none) {
+    /* iOS Safari */
+    input,
+    textarea,
+    select {
+        font-size: 16px !important; /* Prevents zoom on focus */
+    }
+}
+
+/* ============================================================================
+   MOBILE NAVIGATION (< 768px)
+   ============================================================================ */
+@media (max-width: 768px) {
+    /* Header adjustments */
+    header h1 {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    header .subtitle {
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Convert tabs to bottom navigation */
+    .nav-tabs {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-around;
+        background: var(--surface);
+        border-top: 2px solid var(--accent-blue);
+        padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+        z-index: 1000;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .nav-tab {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        padding: 6px 8px;
+        min-width: 60px;
+        min-height: var(--touch-target-min);
+        border-radius: 8px;
+        background: transparent;
+        border: none;
+        transition: background 0.2s;
+    }
+    
+    .nav-tab .dice-icon,
+    .nav-tab .character-icon {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 4px;
+        display: block;
+    }
+    
+    .nav-tab.active {
+        background: rgba(52, 152, 219, 0.2);
+        color: var(--accent-blue);
+    }
+    
+    /* Add bottom padding to pages to account for bottom nav */
+    .page-content {
+        padding-bottom: calc(70px + env(safe-area-inset-bottom));
+    }
+    
+    /* Container padding adjustments */
+    .container {
+        padding: var(--mobile-padding);
+        max-width: 100%;
+    }
+}
+
+/* ============================================================================
+   TOUCH TARGETS & BUTTONS
+   ============================================================================ */
+@media (max-width: 768px) {
+    /* Ensure all interactive elements meet minimum touch target */
+    button,
+    .btn,
+    a.btn,
+    input[type="submit"],
+    input[type="button"],
+    .card-action,
+    .section-toggle {
+        min-height: var(--touch-target-min);
+        min-width: var(--touch-target-min);
+        padding: 12px 20px;
+    }
+    
+    /* Full-width buttons on mobile */
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    /* Button grid for multiple buttons */
+    .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .button-group .btn {
+        width: 100%;
+    }
+    
+    /* Action buttons */
+    .encounter-actions .btn {
+        font-size: 0.875rem;
+        padding: 10px 16px;
+    }
+    
+    /* Icon buttons */
+    .icon-btn {
+        min-width: var(--touch-target-min);
+        min-height: var(--touch-target-min);
+        padding: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* ============================================================================
+   RESPONSIVE PANELS & MODALS
+   ============================================================================ */
+@media (max-width: 768px) {
+    /* Side panels become full-screen modals */
+    .side-panel {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        max-width: 100%;
+        transform: translateX(100%);
+        z-index: 2000;
+        overflow-y: auto;
+        padding: 20px;
+        padding-bottom: calc(20px + env(safe-area-inset-bottom));
+    }
+    
+    .side-panel.active {
+        transform: translateX(0);
+    }
+    
+    /* Panel close buttons */
+    .panel-close {
+        position: sticky;
+        top: 10px;
+        right: 10px;
+        z-index: 10;
+        min-width: var(--touch-target-min);
+        min-height: var(--touch-target-min);
+    }
+    
+    /* Flow Navigator as bottom sheet */
+    #flowNavigator {
+        position: fixed;
+        bottom: calc(70px + env(safe-area-inset-bottom));
+        left: 0;
+        right: 0;
+        max-height: 40vh;
+        width: 100%;
+        transform: translateY(100%);
+        transition: transform 0.3s ease-out;
+        border-radius: 16px 16px 0 0;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    #flowNavigator.active {
+        transform: translateY(0);
+    }
+    
+    #flowNavigatorToggle {
+        position: fixed;
+        bottom: calc(80px + env(safe-area-inset-bottom));
+        right: 16px;
+        z-index: 999;
+        min-width: var(--touch-target-min);
+        min-height: var(--touch-target-min);
+        border-radius: 50%;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Modal overlays */
+    .modal-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1999;
+        display: none;
+    }
+    
+    .modal-backdrop.active {
+        display: block;
+    }
+}
+
+/* ============================================================================
+   FORMS & INPUTS
+   ============================================================================ */
+@media (max-width: 768px) {
+    /* Full-width form controls */
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"],
+    input[type="search"],
+    select,
+    textarea {
+        width: 100%;
+        font-size: 16px; /* Prevents iOS zoom */
+        padding: 12px;
+        min-height: var(--touch-target-min);
+        border-radius: 8px;
+    }
+    
+    /* Control groups */
+    .control-group {
+        margin-bottom: 16px;
+    }
+    
+    .controls-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    /* Labels */
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+    
+    /* Number inputs with better touch targets */
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+    
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    
+    /* Custom number input wrapper */
+    .number-input-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .number-input-wrapper input {
+        flex: 1;
+        text-align: center;
+    }
+    
+    .number-input-wrapper button {
+        min-width: var(--touch-target-min);
+        min-height: var(--touch-target-min);
+        padding: 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    
+    /* Select dropdowns */
+    select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        padding-right: 40px;
+    }
+}
+
+/* ============================================================================
+   SEARCH & RESULTS
+   ============================================================================ */
+@media (max-width: 768px) {
+    /* Search bar */
+    #searchInput {
+        width: 100%;
+        font-size: 16px;
+        padding: 14px 40px 14px 14px;
+        border-radius: 12px;
+    }
+    
+    /* Search filters */
+    .search-filters {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+    
+    .filter-group {
+        width: 100%;
+    }
+    
+    /* Filter chips */
+    .filter-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+    
+    .filter-chip {
+        padding: 8px 16px;
+        border-radius: 20px;
+        background: var(--surface);
+        border: 1px solid var(--accent-blue);
+        font-size: 0.875rem;
+        cursor: pointer;
+        touch-action: manipulation;
+        white-space: nowrap;
+    }
+    
+    .filter-chip.active {
+        background: var(--accent-blue);
+        color: var(--background);
+    }
+    
+    /* Search results */
+    #searchResults {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    /* Result cards */
+    .search-result-card {
+        width: 100%;
+        padding: 16px;
+        border-radius: 12px;
+        background: var(--surface);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .search-result-card .card-title {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+    
+    .search-result-card .card-description {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 12px;
+    }
+    
+    .search-result-card .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 12px;
+    }
+    
+    .search-result-card .tag {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        border-radius: 4px;
+        background: rgba(52, 152, 219, 0.2);
+    }
+    
+    /* Pagination */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+    
+    .pagination button {
+        min-width: var(--touch-target-min);
+        min-height: var(--touch-target-min);
+        padding: 8px 16px;
+    }
+}
+
+/* ============================================================================
+   ENCOUNTER DISPLAY
+   ============================================================================ */
+@media (max-width: 768px) {
+    /* Encounter sections */
+    .encounter-section {
+        margin-bottom: 16px;
+        border-radius: 12px;
+    }
+    
+    .section-header {
+        padding: 14px;
+        font-size: 1rem;
+        min-height: var(--touch-target-min);
+    }
+    
+    .section-content {
+        padding: 16px;
+    }
+    
+    /* Collapse sections by default on mobile */
+    .section-content {
+        max-height: none;
+    }
+    
+    .section-content.collapsed {
+        max-height: 0;
+        padding: 0 16px;
+        overflow: hidden;
+    }
+    
+    /* Flow steps */
+    .flow-step {
+        margin-bottom: 12px;
+    }
+    
+    .flow-step-node {
+        padding: 14px;
+        border-radius: 10px;
+        min-height: var(--touch-target-min);
+    }
+    
+    .flow-step-title {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+    
+    .flow-step-location {
+        font-size: 0.85rem;
+        margin-top: 4px;
+    }
+    
+    /* Cards */
+    .card {
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 12px;
+    }
+    
+    /* NPC cards */
+    .npc-card {
+        padding: 14px;
+        border-radius: 10px;
+    }
+    
+    .npc-card-header {
+        font-size: 1.05rem;
+        margin-bottom: 8px;
+    }
+    
+    .npc-card-details {
+        font-size: 0.875rem;
+        line-height: 1.5;
+    }
+}
+
+/* ============================================================================
+   TABLES & DATA DISPLAY
+   ============================================================================ */
+@media (max-width: 768px) {
+    /* Make tables scrollable */
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 16px;
+    }
+    
+    table {
+        min-width: 100%;
+        font-size: 0.875rem;
+    }
+    
+    th,
+    td {
+        padding: 10px 8px;
+    }
+    
+    /* Or convert tables to cards on mobile */
+    .table-card-view {
+        display: block;
+    }
+    
+    .table-card-view thead {
+        display: none;
+    }
+    
+    .table-card-view tr {
+        display: block;
+        margin-bottom: 12px;
+        padding: 12px;
+        background: var(--surface);
+        border-radius: 8px;
+    }
+    
+    .table-card-view td {
+        display: block;
+        text-align: left;
+        padding: 8px 0;
+        border: none;
+    }
+    
+    .table-card-view td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 120px;
+    }
+}
+
+/* ============================================================================
+   SAVED ENCOUNTERS
+   ============================================================================ */
+@media (max-width: 768px) {
+    .saved-encounters-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .saved-encounter-item {
+        padding: 14px;
+        border-radius: 10px;
+        background: var(--surface);
+        position: relative;
+    }
+    
+    .saved-encounter-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+    }
+    
+    .saved-encounter-meta {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        margin-bottom: 10px;
+    }
+    
+    .saved-encounter-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    
+    .saved-encounter-actions .btn {
+        flex: 1;
+        min-width: 100px;
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+}
+
+/* ============================================================================
+   TOUCH FEEDBACK & ANIMATIONS
+   ============================================================================ */
+@media (max-width: 768px) {
+    /* Active/pressed state for touch feedback */
+    button:active,
+    .btn:active,
+    .nav-tab:active {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+    
+    /* Ripple effect (optional) */
+    .ripple {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .ripple::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+    
+    .ripple:active::after {
+        width: 200px;
+        height: 200px;
+    }
+    
+    /* Smooth scrolling */
+    * {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Reduce motion for users who prefer it */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
+
+/* ============================================================================
+   LANDSCAPE ORIENTATION
+   ============================================================================ */
+@media (max-width: 768px) and (orientation: landscape) {
+    /* Adjust header */
+    header h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    header .subtitle {
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Reduce padding */
+    .container {
+        padding: 12px;
+    }
+    
+    .page-content {
+        padding-bottom: calc(60px + env(safe-area-inset-bottom));
+    }
+    
+    /* Smaller bottom nav */
+    .nav-tabs {
+        padding: 4px 0 max(4px, env(safe-area-inset-bottom));
+    }
+    
+    .nav-tab {
+        font-size: 0.65rem;
+        padding: 4px 6px;
+    }
+}
+
+/* ============================================================================
+   SMALL PHONES (< 375px)
+   ============================================================================ */
+@media (max-width: 375px) {
+    /* Even smaller text */
+    html {
+        font-size: 14px;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .nav-tab {
+        font-size: 0.65rem;
+        min-width: 50px;
+        padding: 5px 4px;
+    }
+    
+    .container {
+        padding: 12px;
+    }
+    
+    /* Smaller buttons */
+    .btn {
+        padding: 10px 16px;
+        font-size: 0.875rem;
+    }
+}
+
+/* ============================================================================
+   TABLET (768px - 1024px)
+   ============================================================================ */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        max-width: 720px;
+        padding: 24px;
+    }
+    
+    /* Two-column layouts */
+    .controls-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    /* Side panels at 50% width */
+    .side-panel {
+        max-width: 50%;
+    }
+    
+    /* Search results in two columns */
+    #searchResults {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+/* ============================================================================
+   SAFE AREA INSETS (for notched devices)
+   ============================================================================ */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: max(0px, env(safe-area-inset-left));
+        padding-right: max(0px, env(safe-area-inset-right));
+    }
+    
+    .nav-tabs {
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
+    }
+    
+    .side-panel {
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+}
+
+/* ============================================================================
+   PRINT STYLES (for mobile printing)
+   ============================================================================ */
+@media print {
+    .nav-tabs,
+    .controls,
+    .btn,
+    button,
+    #flowNavigator,
+    #flowNavigatorToggle,
+    .side-panel,
+    .modal-backdrop {
+        display: none !important;
+    }
+    
+    .page-content {
+        padding-bottom: 0 !important;
+    }
+    
+    .section-content.collapsed {
+        max-height: none !important;
+        padding: 16px !important;
+    }
+}

@@ -11,6 +11,7 @@ const vitalFiles = [
   'assets/css/components.css',
   'assets/css/pages.css',
   'assets/css/themes.css',
+  'assets/css/mobile.css',
   
   // JavaScript
   'assets/js/app.js',
@@ -20,6 +21,7 @@ const vitalFiles = [
   'assets/js/storage.js',
   'assets/js/ui.js',
   'assets/js/utils.js',
+  'assets/js/mobile.js',
   
   // Data files
   'data/encounters.json',

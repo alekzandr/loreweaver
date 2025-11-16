@@ -1,0 +1,47 @@
+{
+  "name": "LoreWeaver - D&D Encounter Generator",
+  "short_name": "LoreWeaver",
+  "description": "D&D Exploration Encounter Generator for creating rich, detailed encounters",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#1a1a2e",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "assets/img/d20.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["entertainment", "games", "utilities"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Generate Encounter",
+      "short_name": "Generate",
+      "description": "Create a new random encounter",
+      "url": "/?page=generate",
+      "icons": [
+        {
+          "src": "assets/img/d20.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Search Encounters",
+      "short_name": "Search",
+      "description": "Search for specific encounters",
+      "url": "/?page=search",
+      "icons": [
+        {
+          "src": "assets/img/d20.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false
+}
