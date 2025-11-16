@@ -712,6 +712,13 @@ function renderEncounterResult(result) {
                     ${resolutionCards}
                 </div>
             ` : ''}
+            <div class="result-actions">
+                <button class="result-btn use-for-gen-btn" 
+                        data-environment="${result.environment}" 
+                        data-encounter='${JSON.stringify(encounter).replace(/'/g, '&apos;')}'>
+                    <img src="assets/img/d20.png" alt="dice" class="dice-icon"> Use for Generation
+                </button>
+            </div>
         </div>
     `;
 }
@@ -769,6 +776,7 @@ function renderLocationResult(result) {
  * Attach click handlers to expandable cards
  */
 function attachExpandHandlers() {
+    // Attach handlers for expandable cards
     document.querySelectorAll('.description-card, .resolution-card').forEach(card => {
         card.addEventListener('click', function() {
             const preview = this.querySelector('.description-preview, .resolution-preview');
@@ -787,6 +795,27 @@ function attachExpandHandlers() {
                 if (preview) preview.style.display = 'block';
                 if (full) full.style.display = 'none';
                 if (hint) hint.textContent = 'Click to expand';
+            }
+        });
+    });
+    
+    // Attach handlers for "Use for Generation" buttons
+    document.querySelectorAll('.use-for-gen-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const environment = this.getAttribute('data-environment');
+            const encounterJson = this.getAttribute('data-encounter');
+            
+            if (environment && encounterJson) {
+                try {
+                    const encounter = JSON.parse(encounterJson.replace(/&apos;/g, "'"));
+                    window.useEncounterForGeneration(environment, encounter);
+                } catch (error) {
+                    console.error('Error parsing encounter data:', error);
+                    alert('Error loading encounter. Please try again.');
+                }
             }
         });
     });
@@ -871,6 +900,80 @@ export function changeItemsPerPage(value) {
     document.getElementById('itemsPerPageBottom').value = value;
 }
 
+/**
+ * Use an encounter from search results for generation
+ * @param {string} environment - The environment of the encounter
+ * @param {object} encounterData - The encounter data object
+ */
+export function useEncounterForGeneration(environment, encounterData) {
+    console.log('🎲 Using encounter for generation:', encounterData.title);
+    
+    // Store the preselected encounter
+    window.preselectedEncounter = {
+        environment: environment,
+        template: encounterData
+    };
+    
+    // Update the environment selector
+    window.selectedEnvironment = environment;
+    const envSelect = document.getElementById('environmentSelect');
+    if (envSelect) {
+        envSelect.value = environment;
+    }
+    
+    // Clear any existing seed to allow for randomization
+    const seedInput = document.getElementById('encounterSeed');
+    if (seedInput) {
+        seedInput.value = '';
+    }
+    
+    // Switch to the Generate page
+    switchPage('generate');
+    
+    // Show a notification banner
+    showEncounterSelectedBanner(encounterData.title);
+    
+    console.log('✅ Generate page prepared with encounter:', encounterData.title);
+}
+
+/**
+ * Show a temporary banner indicating which encounter was selected
+ * @param {string} encounterTitle - The title of the selected encounter
+ */
+function showEncounterSelectedBanner(encounterTitle) {
+    // Remove any existing banner
+    const existingBanner = document.getElementById('encounterSelectedBanner');
+    if (existingBanner) {
+        existingBanner.remove();
+    }
+    
+    // Create and show the banner
+    const banner = document.createElement('div');
+    banner.id = 'encounterSelectedBanner';
+    banner.className = 'encounter-selected-banner';
+    banner.innerHTML = `
+        <div class="banner-content">
+            <span class="banner-icon">✨</span>
+            <span class="banner-text">Ready to generate: <strong>${encounterTitle}</strong></span>
+            <button class="banner-close" onclick="this.parentElement.parentElement.remove()">×</button>
+        </div>
+    `;
+    
+    // Insert at the top of the generate page
+    const generatePage = document.getElementById('generatePage');
+    if (generatePage) {
+        generatePage.insertBefore(banner, generatePage.firstChild);
+        
+        // Auto-remove after 8 seconds
+        setTimeout(() => {
+            if (banner.parentElement) {
+                banner.style.opacity = '0';
+                setTimeout(() => banner.remove(), 300);
+            }
+        }, 8000);
+    }
+}
+
 // Expose functions to window for HTML onclick handlers
 window.initApp = initApp;
 window.toggleTheme = toggleTheme;
@@ -884,6 +987,8 @@ window.updateAllFilters = updateAllFilters;
 window.clearFilters = clearFilters;
 window.nextPage = nextPage;
 window.previousPage = previousPage;
+window.changeItemsPerPage = changeItemsPerPage;
+window.useEncounterForGeneration = useEncounterForGeneration;
 window.changeItemsPerPage = changeItemsPerPage;
 
 // Initialize on DOM ready
