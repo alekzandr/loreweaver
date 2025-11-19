@@ -12,10 +12,12 @@ npm install
 npm test
 
 # Run specific tests
-npm run test:files   # Validate vital files exist
-npm run test:json    # Validate JSON data files
-npm run test:html    # Validate HTML structure
-npm run lint         # Check JavaScript code quality
+npm run test:files      # Validate vital files exist
+npm run test:json       # Validate JSON data files
+npm run test:html       # Validate HTML structure
+npm run test:species    # Test species capitalization
+npm run test:bugfixes   # Run bug fix regression tests
+npm run lint            # Check JavaScript code quality
 
 # Fix linting issues automatically
 npm run lint:fix
@@ -52,7 +54,20 @@ GitHub Actions automatically runs tests on:
    - Checks all JavaScript modules are loaded
    - Validates image references
 
-5. **Build Check** (`build-check`)
+5. **Species Capitalization** (`test:species`)
+   - Tests species name capitalization function
+   - Validates all species in NPC data
+   - Ensures consistent formatting
+
+6. **Bug Fix Regression Tests** (`test:bugfixes`)
+   - Memory leak prevention (event listeners)
+   - localStorage quota error handling
+   - Race condition prevention (data loading)
+   - Duplicate function export detection
+   - Panel closing transitions (Chrome fix)
+   - See [CI_INTEGRATION_SUMMARY.md](CI_INTEGRATION_SUMMARY.md) for details
+
+7. **Build Check** (`build-check`)
    - Tests that the local server can start
    - Verifies the site is accessible
 
@@ -96,6 +111,31 @@ npm start
 ### JSON validation errors
 - Use a JSON validator (like jsonlint.com) to check syntax
 - Verify all required fields are present
+
+### Bug fix tests showing warnings/skips
+- Some tests are browser-specific and skip in Node.js (expected)
+- For comprehensive testing, open browser console and run `runAllTests()`
+- See [CI_INTEGRATION_SUMMARY.md](CI_INTEGRATION_SUMMARY.md) for details
+
+## Browser Console Testing
+
+The bug fix tests can also be run directly in the browser for comprehensive testing:
+
+```javascript
+// Open index.html in a browser, then in DevTools Console:
+
+// Run all bug fix tests
+runAllTests()
+
+// Run specific test suites
+runMemoryLeakTests()
+runLocalStorageTests()
+runRaceConditionTests()
+runDuplicateExportsTests()
+runPanelClosingTests()
+```
+
+Browser testing provides full event handling, CSS transitions, and browser APIs that can't be fully mocked in Node.js.
 
 ## Adding New Tests
 
