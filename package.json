@@ -1,15 +1,16 @@
 {
   "name": "loreweaver",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "D&D Exploration Encounter Generator",
   "scripts": {
     "start": "npx http-server -p 8000",
-    "test": "npm run test:files && npm run test:json && npm run lint && npm run test:html && npm run test:species && npm run test:bugfixes && npm run test:version",
+    "test": "npm run test:files && npm run test:json && npm run lint && npm run test:html && npm run test:species && npm run test:bugfixes && npm run test:command && npm run test:version",
     "test:files": "node tests/validate-files.js",
     "test:json": "node tests/validate-json.js",
     "test:html": "node tests/validate-html.js",
     "test:species": "node tests/test-species-capitalization.js",
     "test:bugfixes": "node tests/run-bug-fix-tests.js",
+    "test:command": "node tests/run-command-history-tests.mjs",
     "test:version": "node tests/validate-version.js",
     "lint": "eslint assets/js/**/*.js",
     "lint:fix": "eslint assets/js/**/*.js --fix"

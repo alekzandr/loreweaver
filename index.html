@@ -24,6 +24,7 @@
     <script type="module" src="tests/test-panel-closing-chrome.js"></script>
     <script type="module" src="tests/test-changelog.js"></script>
     <script type="module" src="tests/test-event-bus.js"></script>
+    <script type="module" src="tests/test-command-history.mjs"></script>
 </head>
 <body>
     <div class="main-content" id="mainContent">
@@ -39,7 +40,51 @@
                     <button class="nav-tab" onclick="switchPage('search')">🔍 Search</button>
                     <button class="nav-tab" onclick="switchPage('settings')">⚙️ Settings</button>
                 </div>
+                
+                <!-- Undo/Redo Controls -->
+                <div class="history-controls">
+                    <button 
+                        id="undoButton" 
+                        class="history-btn" 
+                        onclick="undoLastAction()" 
+                        disabled 
+                        title="Undo (Ctrl+Z)"
+                        aria-label="Undo last action">
+                        ↶ Undo
+                    </button>
+                    <button 
+                        id="redoButton" 
+                        class="history-btn" 
+                        onclick="redoLastAction()" 
+                        disabled 
+                        title="Redo (Ctrl+Shift+Z)"
+                        aria-label="Redo last action">
+                        ↷ Redo
+                    </button>
+                    <button 
+                        id="historyButton" 
+                        class="history-btn" 
+                        onclick="toggleHistoryPanel()" 
+                        title="View history"
+                        aria-label="View command history">
+                        📋 History
+                    </button>
+                </div>
             </header>
+            
+            <!-- History Panel (Hidden by default) -->
+            <div id="historyPanel" class="history-panel" style="display: none;">
+                <div class="history-panel-header">
+                    <h3>Command History</h3>
+                    <button onclick="toggleHistoryPanel()" class="close-btn" aria-label="Close history panel">✕</button>
+                </div>
+                <div id="historyList" class="history-list">
+                    <!-- Populated dynamically -->
+                </div>
+                <div class="history-panel-footer">
+                    <button onclick="clearHistory()" class="btn-secondary">Clear History</button>
+                </div>
+            </div>
 
             <!-- Generate Page -->
             <div id="generatePage" class="page-content">
@@ -1340,6 +1385,201 @@
         } else {
             // DOM already loaded
             initializeChangelog();
+        }
+    </script>
+    
+    <!-- Initialize Command History System -->
+    <script type="module">
+        import {
+            commandHistory,
+            GenerateEncounterCommand,
+            FilterChangeCommand,
+            SearchCommand
+        } from './assets/js/command-history.mjs';
+        
+        // Initialize command history UI
+        function initializeCommandHistory() {
+            const undoButton = document.getElementById('undoButton');
+            const redoButton = document.getElementById('redoButton');
+            const historyPanel = document.getElementById('historyPanel');
+            const historyList = document.getElementById('historyList');
+            
+            // Update UI based on history state
+            function updateUI(metadata) {
+                if (undoButton) {
+                    undoButton.disabled = !metadata.canUndo;
+                }
+                if (redoButton) {
+                    redoButton.disabled = !metadata.canRedo;
+                }
+                
+                // Update history list if panel is open
+                if (historyPanel && historyPanel.style.display !== 'none') {
+                    updateHistoryList();
+                }
+            }
+            
+            // Subscribe to history changes
+            commandHistory.subscribe(updateUI);
+            
+            // Initial UI update
+            updateUI(commandHistory.getMetadata());
+            
+            // Setup keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                // Ctrl+Z for undo
+                if (e.ctrlKey && e.key === 'z' && !e.shiftKey) {
+                    e.preventDefault();
+                    window.undoLastAction();
+                }
+                // Ctrl+Shift+Z or Ctrl+Y for redo
+                if ((e.ctrlKey && e.shiftKey && e.key === 'Z') || (e.ctrlKey && e.key === 'y')) {
+                    e.preventDefault();
+                    window.redoLastAction();
+                }
+            });
+        }
+        
+        // Undo last action
+        window.undoLastAction = function() {
+            const success = commandHistory.undo();
+            if (success) {
+                console.log('✅ Undo successful');
+            } else {
+                console.log('⚠️ Nothing to undo');
+            }
+        };
+        
+        // Redo last action
+        window.redoLastAction = function() {
+            const success = commandHistory.redo();
+            if (success) {
+                console.log('✅ Redo successful');
+            } else {
+                console.log('⚠️ Nothing to redo');
+            }
+        };
+        
+        // Toggle history panel
+        window.toggleHistoryPanel = function() {
+            const panel = document.getElementById('historyPanel');
+            if (panel) {
+                const isVisible = panel.style.display !== 'none';
+                panel.style.display = isVisible ? 'none' : 'block';
+                if (!isVisible) {
+                    updateHistoryList();
+                }
+            }
+        };
+        
+        // Update history list display
+        function updateHistoryList() {
+            const historyList = document.getElementById('historyList');
+            if (!historyList) return;
+            
+            const history = commandHistory.getHistory();
+            const metadata = commandHistory.getMetadata();
+            
+            if (history.length === 0) {
+                historyList.innerHTML = '<p class="empty-history">No actions in history</p>';
+                return;
+            }
+            
+            historyList.innerHTML = history.map((cmd, index) => {
+                const isCurrent = index === metadata.currentIndex;
+                const timestamp = new Date(cmd.timestamp).toLocaleTimeString();
+                return `
+                    <div class="history-item ${isCurrent ? 'current' : ''}">
+                        <span class="history-description">${cmd.getDescription()}</span>
+                        <span class="history-time">${timestamp}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Clear history
+        window.clearHistory = function() {
+            if (confirm('Are you sure you want to clear the command history? This cannot be undone.')) {
+                commandHistory.clear();
+                updateHistoryList();
+                console.log('✅ History cleared');
+            }
+        };
+        
+        // Wrap original generateEncounter to use command pattern
+        const originalGenerateEncounter = window.generateEncounter;
+        window.generateEncounter = function() {
+            const currentEncounter = window.currentEncounterFlow || null;
+            
+            const command = new GenerateEncounterCommand(
+                () => originalGenerateEncounter(),
+                (encounter) => {
+                    if (encounter) {
+                        window.currentEncounterFlow = encounter;
+                        // Trigger UI update
+                        const event = new CustomEvent('encounterRestored', { detail: encounter });
+                        document.dispatchEvent(event);
+                    } else {
+                        // Clear encounter display
+                        const display = document.getElementById('encounterDisplay');
+                        if (display) display.innerHTML = '';
+                        window.currentEncounterFlow = null;
+                    }
+                },
+                currentEncounter
+            );
+            
+            commandHistory.execute(command);
+        };
+        
+        // Wrap filter changes to use command pattern
+        const originalToggleFilter = window.toggleFilter;
+        window.toggleFilter = function(type, value) {
+            const filterMap = {
+                'environment': 'env',
+                'locationType': 'location',
+                'setting': 'setting'
+            };
+            const filterKey = filterMap[type] || type;
+            const oldFilters = { ...window.activeFilters };
+            
+            // Execute original function
+            originalToggleFilter(type, value);
+            
+            const command = new FilterChangeCommand(
+                type,
+                oldFilters,
+                { ...window.activeFilters },
+                (filterType, filters) => {
+                    window.activeFilters = filters;
+                    // Update UI
+                    document.querySelectorAll('.filter-tags .filter-tag').forEach(tag => {
+                        const tagType = tag.dataset.type;
+                        const tagValue = tag.dataset.value;
+                        const filterKey = filterMap[tagType] || tagType;
+                        const isActive = filters[filterKey]?.includes(tagValue);
+                        tag.classList.toggle('active', isActive);
+                    });
+                    window.performSearch();
+                }
+            );
+            
+            // Add to history (not executing since we already executed original)
+            commandHistory.history.push(command);
+            commandHistory.currentIndex++;
+            commandHistory.notifyListeners();
+        };
+        
+        // Initialize after DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeCommandHistory);
+        } else {
+            initializeCommandHistory();
+        }
+        
+        // Expose for debugging
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            window.__commandHistory = commandHistory;
         }
     </script>
 </body>
