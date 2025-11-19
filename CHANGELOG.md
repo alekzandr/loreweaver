@@ -7,7 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2025-11-19
+
 ### Added
+- **Command Pattern for Undo/Redo**: Full undo/redo functionality with keyboard shortcuts
+- CommandHistory class with history stack management (max 50 commands)
+- Undo/Redo UI controls in header with visual state indicators
+- History panel showing all executed commands with timestamps
+- GenerateEncounterCommand for undoing encounter generations
+- FilterChangeCommand for reverting filter changes
+- SearchCommand for undoing search operations
+- BatchCommand for atomic multi-command operations
+- Keyboard shortcuts: Ctrl+Z (undo), Ctrl+Shift+Z/Ctrl+Y (redo)
+- Command history test suite with 16 comprehensive tests
+- Memory leak prevention in command history
+- Security validation for command inputs (XSS prevention)
+- Event subscription system for history state changes
 - EventBus (Observer Pattern) for decoupled component communication
 - Publish/Subscribe system for application-wide event management
 - Standard event constants (Events) to prevent typos
@@ -16,6 +31,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Event publishing for page switching, search, filters, and theme changes
 
 ### Changed
+- Wrapped generateEncounter() to use Command Pattern
+- Wrapped filter changes to use Command Pattern
+- Enhanced header with history controls (Undo/Redo/History buttons)
 - Integrated EventBus into app.js for better component decoupling
 - Updated switchPage() to publish PAGE_SWITCHED events
 - Updated performSearch() to publish SEARCH_STARTED and SEARCH_COMPLETED events  
