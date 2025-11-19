@@ -36,7 +36,8 @@ const requiredScripts = [
   'app.js',
   'export.js',
   'core.js',
-  'ui.js'
+  'ui.js',
+  'changelog.js'
 ];
 
 requiredScripts.forEach(script => {
