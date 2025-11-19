@@ -98,7 +98,12 @@ export class CommandHistory {
         const command = this.history[this.currentIndex];
         
         try {
-            command.execute();
+            // Call redo() if available, otherwise fall back to execute()
+            if (typeof command.redo === 'function') {
+                command.redo();
+            } else {
+                command.execute();
+            }
             this.notifyListeners();
             return true;
         } catch (error) {
@@ -252,6 +257,13 @@ export class GenerateEncounterCommand extends Command {
         }
     }
     
+    redo() {
+        // Restore the generated encounter instead of generating a new one
+        if (this.generatedEncounter) {
+            this.restoreFn(this.generatedEncounter);
+        }
+    }
+    
     /**
      * Deep clone an object to prevent reference issues
      * @private
@@ -315,6 +327,10 @@ export class FilterChangeCommand extends Command {
     undo() {
         this.applyFn(this.filterType, this.oldValue);
     }
+    
+    redo() {
+        this.applyFn(this.filterType, this.newValue);
+    }
 }
 
 /**
@@ -346,6 +362,10 @@ export class SearchCommand extends Command {
     
     undo() {
         this.searchFn(this.oldQuery);
+    }
+    
+    redo() {
+        this.searchFn(this.newQuery);
     }
     
     /**
@@ -411,6 +431,21 @@ export class BatchCommand extends Command {
                 this.commands[i].undo();
             } catch (error) {
                 console.error(`Error undoing command ${i}:`, error);
+            }
+        }
+    }
+    
+    redo() {
+        // Redo in forward order
+        for (let i = 0; i < this.commands.length; i++) {
+            try {
+                if (typeof this.commands[i].redo === 'function') {
+                    this.commands[i].redo();
+                } else {
+                    this.commands[i].execute();
+                }
+            } catch (error) {
+                console.error(`Error redoing command ${i}:`, error);
             }
         }
     }

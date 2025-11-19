@@ -160,15 +160,22 @@ function testRedoFunctionality() {
     
     const history = new CommandHistory();
     let value = 0;
+    let executeCount = 0;
     
     const incrementCommand = {
-        execute: () => { value++; },
-        undo: () => { value--; }
+        execute: () => { 
+            value++; 
+            executeCount++;
+        },
+        undo: () => { value--; },
+        redo: () => { value++; } // Redo restores state without incrementing executeCount
     };
     
     history.execute(incrementCommand);
+    assert(value === 1 && executeCount === 1, 'Initial execute should work');
+    
     history.execute(incrementCommand);
-    assert(value === 2, 'Value should be 2');
+    assert(value === 2 && executeCount === 2, 'Second execute should work');
     
     history.undo();
     assert(value === 1, 'Value should be 1 after undo');
@@ -176,6 +183,7 @@ function testRedoFunctionality() {
     const redoResult1 = history.redo();
     assert(redoResult1 === true, 'Redo should return true');
     assert(value === 2, 'Value should be 2 after redo');
+    assert(executeCount === 2, 'Redo should not call execute() again');
     
     const redoResult2 = history.redo();
     assert(redoResult2 === false, 'Redo should return false when no more redos');
@@ -309,9 +317,11 @@ function testGenerateEncounterCommand() {
     console.log('🧪 Test: GenerateEncounterCommand');
     
     let currentEncounter = { id: 1, name: 'Old Encounter' };
+    let generateCount = 0;
     
     const generateFn = () => {
-        currentEncounter = { id: 2, name: 'New Encounter' };
+        generateCount++;
+        currentEncounter = { id: 2, name: 'New Encounter', generatedAt: generateCount };
         return currentEncounter;
     };
     
@@ -324,9 +334,16 @@ function testGenerateEncounterCommand() {
     
     command.execute();
     assert(currentEncounter.id === 2, 'New encounter should be generated');
+    assert(generateCount === 1, 'Generate should be called once');
     
     command.undo();
     assert(currentEncounter.id === 1, 'Old encounter should be restored');
+    assert(generateCount === 1, 'Undo should not call generate');
+    
+    command.redo();
+    assert(currentEncounter.id === 2, 'New encounter should be restored');
+    assert(currentEncounter.generatedAt === 1, 'Should restore same encounter');
+    assert(generateCount === 1, 'Redo should not call generate again');
     
     console.log('  ✅ PASS: GenerateEncounterCommand works correctly\n');
 }
@@ -350,6 +367,9 @@ function testFilterChangeCommand() {
     
     command.undo();
     assert(currentFilter === 'all', 'Filter should be restored to all');
+    
+    command.redo();
+    assert(currentFilter === 'forest', 'Filter should be changed to forest again');
     
     console.log('  ✅ PASS: FilterChangeCommand works correctly\n');
 }

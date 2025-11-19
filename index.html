@@ -1446,15 +1446,25 @@
                 'setting': 'setting'
             };
             
-            // Capture old state
+            // Capture old state BEFORE any changes
             const oldFilters = JSON.parse(JSON.stringify(window.activeFilters));
             
+            // Call original to compute new state
+            originalToggleFilter(type, value);
+            
+            // Capture new state AFTER the toggle
+            const newFilters = JSON.parse(JSON.stringify(window.activeFilters));
+            
+            // Restore to old state (so execute() can apply the change)
+            window.activeFilters = oldFilters;
+            
+            // Create command with both states
             const command = new FilterChangeCommand(
                 type,
                 oldFilters,
-                null, // Will be set after execution
+                newFilters,
                 (filterType, filters) => {
-                    // This function both executes and restores
+                    // This function applies a filter state
                     window.activeFilters = filters;
                     // Update UI
                     document.querySelectorAll('.filter-tags .filter-tag').forEach(tag => {
@@ -1468,24 +1478,8 @@
                 }
             );
             
-            // First, execute the original to get new state
-            originalToggleFilter(type, value);
-            
-            // Capture the new state after toggle
-            command.newValue = JSON.parse(JSON.stringify(window.activeFilters));
-            
-            // Add to history without re-executing
-            commandHistory.history = commandHistory.history.slice(0, commandHistory.currentIndex + 1);
-            commandHistory.history.push(command);
-            commandHistory.currentIndex++;
-            
-            // Limit history size
-            if (commandHistory.history.length > commandHistory.maxHistorySize) {
-                commandHistory.history.shift();
-                commandHistory.currentIndex--;
-            }
-            
-            commandHistory.notifyListeners();
+            // Execute command through history (this applies the change properly)
+            commandHistory.execute(command);
         };
         
         // Initialize after DOM is ready
