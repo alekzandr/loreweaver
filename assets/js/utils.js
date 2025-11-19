@@ -2,6 +2,24 @@
 // Common helper functions used throughout the app
 
 /**
+ * Debounce function to limit rate of function calls
+ * @param {Function} func - Function to debounce
+ * @param {number} wait - Milliseconds to wait before calling function
+ * @returns {Function} Debounced function
+ */
+export function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+/**
  * Seeded Random Number Generator (Mulberry32)
  * @param {number} seed - Seed value
  * @returns {Function} Random function that returns values between 0 and 1
@@ -198,3 +216,4 @@ window.hashStringToSeed = hashStringToSeed;
 window.setRandomFunction = setRandomFunction;
 window.random = random;
 window.capitalizeSpecies = capitalizeSpecies;
+window.debounce = debounce;
