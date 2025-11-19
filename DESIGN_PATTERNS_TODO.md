@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.2.0] - 2024-11-18
+## [1.2.0] - 2025-11-18
 
 ### Added
 - Performance optimizations: search debouncing, DOM caching, image preloading
@@ -46,7 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Filter state persistence issues
 - Search result pagination edge cases
 
-## [1.1.0] - 2024-11-10
+## [1.1.0] - 2025-11-10
 
 ### Added
 - NPC generator with personality traits
@@ -57,7 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Redesigned search interface
 - Improved mobile responsiveness
 
-## [1.0.0] - 2024-11-01
+## [1.0.0] - 2025-11-01
 
 ### Added
 - Initial release
@@ -1835,6 +1835,127 @@ function testExportOptions() {
 - Can be integrated into existing CI pipeline
 - Backward compatible with current code
 - Each pattern can be implemented incrementally
+
+---
+
+## 🔄 Additional Enhancements
+
+### Version Display in UI
+- **Current Issue**: Users cannot see which version of LoreWeaver they're using
+- **Proposed Solution**: Display version number in the footer or header
+  - Show version from `data/version.json`
+  - Format: "v1.3.0" with subtle styling
+  - Make it clickable to open changelog modal
+  - Consider adding "What's New" badge when new version available
+
+#### Implementation:
+```javascript
+// In app.js - Add version display
+async function displayVersion() {
+    const response = await fetch('data/version.json');
+    const data = await response.json();
+    const versionElement = document.getElementById('app-version');
+    if (versionElement) {
+        versionElement.textContent = `v${data.version}`;
+        versionElement.title = 'Click to view changelog';
+        versionElement.style.cursor = 'pointer';
+        versionElement.addEventListener('click', () => {
+            // Manually trigger changelog modal
+            import('./changelog.js').then(module => {
+                const modal = new module.ChangelogModal(versionManager);
+                const element = modal.createModal();
+                if (element) modal.show();
+            });
+        });
+    }
+}
+```
+
+#### HTML Changes:
+```html
+<!-- In footer or header -->
+<div class="app-version-container">
+    <span id="app-version" class="app-version">Loading...</span>
+</div>
+```
+
+#### CSS:
+```css
+.app-version {
+    font-size: 12px;
+    color: var(--text-muted);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.app-version:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+```
+
+### Manual Changelog Access
+- **Current Issue**: Users can only see changelog on version updates, no way to view it manually
+- **Proposed Solution**: Add "What's New" or "Changelog" link in settings/menu
+  - Add button/link in Settings page
+  - Add menu item in header navigation (optional)
+  - Clicking opens the changelog modal with full history
+  - No localStorage check - always shows all versions
+
+#### Implementation:
+```javascript
+// In ui.js - Add manual changelog trigger
+export function showChangelogManual() {
+    import('./changelog.js').then(async module => {
+        const versionManager = await new module.VersionManager().initialize();
+        
+        // Show all changes regardless of last seen version
+        const tempLastSeen = versionManager.lastSeenVersion;
+        versionManager.lastSeenVersion = '0.0.0'; // Show all versions
+        
+        const modal = new module.ChangelogModal(versionManager);
+        const element = modal.createModal();
+        
+        if (element) {
+            modal.show();
+        }
+        
+        // Restore original last seen version
+        versionManager.lastSeenVersion = tempLastSeen;
+    });
+}
+
+// Expose to window
+window.showChangelogManual = showChangelogManual;
+```
+
+#### HTML Changes:
+```html
+<!-- In Settings page -->
+<div class="settings-section">
+    <h3>About</h3>
+    <button onclick="showChangelogManual()" class="btn-secondary">
+        📋 View Changelog
+    </button>
+    <p class="settings-description">
+        See what's new in LoreWeaver and view version history
+    </p>
+</div>
+```
+
+#### Benefits:
+- ✅ Users can see current version at a glance
+- ✅ Quick access to changelog without waiting for updates
+- ✅ Better transparency about app version
+- ✅ Helps users report bugs with version info
+- ✅ Improves user trust and communication
+
+#### Test Cases:
+1. Version displays correctly on page load
+2. Clicking version opens changelog modal
+3. Manual changelog shows all versions
+4. Changelog closes properly
+5. Version updates when version.json changes
 
 ---
 
