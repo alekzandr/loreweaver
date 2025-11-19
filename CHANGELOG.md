@@ -7,10 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2024-11-18
+
 ### Added
 - Changelog display screen with semantic versioning
 - Automatic overlay on major/minor version updates
 - Version tracking with localStorage persistence
+- Beautiful modal with gradient badges for update types
+- Dark theme support for changelog modal
+- Mobile-responsive changelog design
+- Keyboard shortcuts (Escape to close)
+- Link to full changelog in modal footer
+- Comprehensive test suite for changelog functionality
+
+### Changed
+- Updated HTML validation to include changelog module
+- Enhanced project with design pattern documentation
 
 ## [1.2.0] - 2024-11-18
 
