@@ -1049,7 +1049,6 @@ window.nextPage = nextPage;
 window.previousPage = previousPage;
 window.changeItemsPerPage = changeItemsPerPage;
 window.useEncounterForGeneration = useEncounterForGeneration;
-window.changeItemsPerPage = changeItemsPerPage;
 
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', initApp);
