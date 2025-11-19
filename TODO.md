@@ -1,337 +1,185 @@
 # LoreWeaver - TODO List
 
-## 🐛 BUGS (Critical Issues)
+## 🎨 DESIGN PATTERNS (Architecture Improvements)
 
-### 1. **Memory Leak - Event Listeners Not Cleaned Up**
-**Location:** `assets/js/ui.js` (lines 512-541)
-**Issue:** Every time `renderNPCStatBlock()` is called, new event listeners are added to the stat block without removing old ones. If a user generates multiple NPCs, these listeners accumulate, causing memory leaks.
-**Priority:** HIGH
-**Fix Required:**
-- Remove old event listeners before adding new ones
-- Use event delegation instead of direct element listeners
-- Consider using `{ once: true }` option for one-time listeners
+### ✅ Pattern #0: Changelog Display Screen (COMPLETED)
+**Status:** ✅ **IMPLEMENTED** (v1.3.0, merged to main)
+**Implementation:**
+- Created `assets/js/changelog.js` with VersionManager and ChangelogModal
+- Semantic versioning system (major.minor.patch)
+- Auto-displays on major/minor version updates
+- Parses CHANGELOG.md using Keep a Changelog format
+- Modal with keyboard navigation and ARIA labels
+- Test suite: 7/7 tests passing
+- Version validation test enforces consistency across files
 
-### 2. **localStorage Quota Exceeded Error - No Error Handling**
-**Location:** `assets/js/storage.js` (lines 34-36, 134)
-**Issue:** No try-catch blocks around `localStorage.setItem()` calls. If localStorage quota is exceeded (typically 5-10MB), the app will crash with an uncaught exception.
-**Priority:** HIGH
-**Fix Required:**
-```javascript
-try {
-    localStorage.setItem('savedEncounters', JSON.stringify(saved));
-} catch (e) {
-    if (e.name === 'QuotaExceededError') {
-        alert('Storage limit reached! Please delete some saved encounters.');
-    }
-}
-```
+### ✅ Pattern #1: Observer Pattern (EventBus) - COMPLETED
+**Status:** ✅ **IMPLEMENTED** (v1.3.0, feature branch pushed)
+**Implementation:**
+- Created `assets/js/event-bus.js` with EventBus singleton
+- 20+ predefined event constants (PAGE_SWITCHED, SEARCH_COMPLETED, etc.)
+- Pub/sub system for decoupled component communication
+- Integrated into `app.js` for key actions
+- Features: subscribe(), once(), publish(), unsubscribe(), event history
+- Memory leak prevention and error handling
+- Test suite: 13/13 tests passing
 
-### 3. **Race Condition in Data Loading**
-**Location:** `assets/js/app.js` (initApp function)
-**Issue:** The app attempts to populate NPC dropdowns and generate encounters before verifying that `window.dataLoaded` is true. If data loading is slow, functions may execute with undefined data.
-**Priority:** HIGH
-**Fix Required:**
-- Add explicit checks for `window.dataLoaded` before using data
-- Add loading spinner while data is being fetched
-- Disable generate button until data is loaded
+### 📋 Pattern #2: Command Pattern for Undo/Redo History
+**Priority:** MEDIUM | **Estimated Effort:** 6-8 hours
 
-### 4. **Duplicate Function Definitions in app.js**
-**Location:** `assets/js/app.js` (line 996)
-**Issue:** `window.changeItemsPerPage` is exported twice (lines 961 and 996), which could cause confusion and potential bugs.
-**Priority:** MEDIUM
-**Fix Required:**
-- Remove duplicate export on line 996
+**Current Problem:**
+- No way to undo generated encounters
+- Users can't revert filter changes
+- No history of search queries
+- Difficult to implement "Previous Encounter" functionality
 
-### 5. **NPC Panel Not Closing Properly on Chrome**
-**Location:** `assets/js/ui.js` (lines 207-213)
-**Issue:** The code includes a "force reflow" hack (`void npcPanel.offsetHeight`) specifically for Chrome, indicating a browser-specific bug with CSS transitions not applying immediately.
-**Priority:** MEDIUM
-**Fix Required:**
-- Investigate root cause (likely CSS animation timing)
-- Consider using `requestAnimationFrame()` instead of forcing reflow
-- Add proper z-index management for overlapping panels
+**Proposed Solution:**
+Implement Command Pattern with history stack for undoable actions.
+
+**Implementation Plan:**
+1. Create `assets/js/command-history.js` with CommandHistory class
+2. Implement command classes: GenerateEncounterCommand, FilterChangeCommand
+3. Add Undo/Redo buttons to header
+4. Keyboard shortcuts (Ctrl+Z, Ctrl+Shift+Z)
+5. Show history in dropdown menu
+6. Visual indicator when undo/redo is available
+
+**Test Suite:**
+- Test command execution
+- Test undo/redo functionality
+- Test history size limits (50 commands max)
+- Test canUndo/canRedo state management
+- Test command chaining
+- Test memory cleanup
+
+**Success Metrics:**
+- ✅ Users can undo/redo at least 10 actions
+- ✅ Keyboard shortcuts work
+- ✅ History persists in session storage
+- ✅ Memory usage <5MB for 50 commands
+
+### 📋 Pattern #3: Strategy Pattern for Export Formats
+**Priority:** LOW | **Estimated Effort:** 3-4 hours
+
+**Current Problem:**
+- Export logic tightly coupled in `export.js`
+- Hard to add new export formats
+- Duplicate code for similar formats
+- No way to customize export options
+
+**Proposed Solution:**
+Implement Strategy Pattern to encapsulate export algorithms.
+
+**Implementation Plan:**
+1. Create `assets/js/export-strategies.js` with base ExportStrategy class
+2. Implement concrete strategies: MarkdownExportStrategy, JSONExportStrategy, HTMLExportStrategy, PDFExportStrategy
+3. Create ExportManager context class
+4. Refactor existing export.js to use strategies
+5. Add export options UI (format dropdown, customization)
+
+**Test Suite:**
+- Test strategy registration
+- Test each export format (Markdown, JSON, HTML)
+- Test strategy swapping
+- Test invalid strategy handling
+- Test export options
+- Test format consistency
+
+**Success Metrics:**
+- ✅ Can add new export format in <30 minutes
+- ✅ All formats have consistent API
+- ✅ Export options work correctly
+- ✅ No duplicate code between formats
+
+### 📋 UI Enhancement: Version Display & Manual Changelog
+**Priority:** LOW | **Estimated Effort:** 1-2 hours
+
+**Proposed Additions:**
+1. **Version Display in Footer/Header:**
+   - Show current version from `data/version.json`
+   - Format: "v1.3.0" with subtle styling
+   - Clickable to open changelog modal
+   - Helps users report bugs with version info
+
+2. **Manual Changelog Access:**
+   - Add "What's New" button in Settings page
+   - Add optional menu item in header
+   - Opens changelog modal showing all versions
+   - No localStorage check - always shows full history
+
+**Implementation:**
+- Add `displayVersion()` function in app.js
+- Add `showChangelogManual()` function in ui.js
+- Update footer/header HTML with version element
+- Add changelog button to Settings page
 
 ---
 
-## ⚡ OPTIMIZATIONS (Performance & UX Improvements)
+## 📊 COMPLETED WORK
 
-### 1. **✅ COMPLETED - Search Input Debouncing**
-**Location:** `assets/js/app.js` (search input setup)
-**Status:** ✅ **OPTIMIZED** (Commit: df143d2)
-**Implementation:**
-- Added `debounce()` utility function to `utils.js`
-- Applied 300ms debounce to search input
-- Enter key still triggers immediate search
-- Reduces excessive `performSearch()` calls on every keystroke
+### ✅ Bugs Fixed (5/5)
+All critical bugs have been resolved with test suites:
 
-### 2. **✅ COMPLETED - DOM Element Caching**
-**Location:** All JS files (100+ `getElementById` calls)
-**Status:** ✅ **OPTIMIZED** (Commit: 554cb75)
-**Implementation:**
-- Created `domCache` object for frequently-accessed elements
-- Added `cacheDOMElements()` function called on init
-- Cached 20+ elements (pages, filters, NPC dropdowns, settings)
-- Reduced repeated DOM queries to single cache lookups
+1. ✅ Memory Leak - Event Listeners (Commit: c004022)
+2. ✅ localStorage Quota Error Handling (Commit: a754c5a)
+3. ✅ Race Condition in Data Loading (Commit: 078a6b2)
+4. ✅ Duplicate Function Export (Commit: 1af9dca)
+5. ✅ Chrome Panel Closing Issue (Commit: 96b198a)
 
-### 3. **✅ COMPLETED - Image Preloading**
-**Location:** `index.html`
-**Status:** ✅ **OPTIMIZED** (Commit: 58e82cd)
-**Implementation:**
-- Added `<link rel="preload">` for d20.png and character.png
-- Browser loads critical images earlier in page lifecycle
-- Reduces visible image loading delay on first render
+### ✅ Optimizations Implemented (4/5)
+Performance improvements completed:
 
-### 4. **✅ COMPLETED - Filter Calculation Memoization**
-**Location:** `assets/js/app.js` (updateAllFilters function)
-**Status:** ✅ **OPTIMIZED** (Commit: 7455c77)
-**Implementation:**
-- Added `filterCache` object to store calculated filter counts
-- Cache invalidates when data changes (checks `dataLoadedTimestamp`)
-- Prevents redundant calculations when filters change
-- Caches type counts based on current filter state
+1. ✅ Search Input Debouncing (Commit: df143d2)
+2. ✅ DOM Element Caching (Commit: 554cb75)
+3. ✅ Image Preloading (Commit: 58e82cd)
+4. ✅ Filter Calculation Memoization (Commit: 7455c77)
+5. ⚠️ String Concatenation - DEFERRED (low priority)
 
-### 5. **String Concatenation Optimization - Deferred**
-**Location:** `assets/js/export.js`, `assets/js/ui.js`
-**Status:** ⚠️ **DEFERRED** (Low priority - export functions not called frequently)
-**Note:** These functions are only called on explicit user actions (export, detail panel open), so performance impact is minimal. The O(n²) complexity with string concatenation is acceptable for the typical data sizes.
+### ✅ Design Patterns Implemented (2/4)
+Architecture improvements:
 
-**Original Proposal:**
-```javascript
-// BEFORE (slow)
-let html = '';
-locations.forEach(loc => {
-    html += `<div>${loc.name}</div>`;
-});
-
-// AFTER (fast)
-const htmlParts = locations.map(loc => `<div>${loc.name}</div>`);
-const html = htmlParts.join('');
-```
-
----
-
-## 🎯 OPTIMIZATION RESULTS
-
-**Completed:** 4/5 major optimizations
-**Impact:**
-- **Search Performance:** 300ms debounce prevents excessive filtering (reduces calls by ~90% during typing)
-- **DOM Query Performance:** 40+ getElementById calls eliminated per operation
-- **Image Loading:** Critical images preloaded, reducing perceived load time
-- **Filter Updates:** Memoized calculations prevent redundant work
-
-**Measured Improvements:**
-- Search responsiveness: Dramatically improved (no lag while typing)
-- Filter dropdown updates: Faster due to caching
-- Initial page load: Smoother due to image preloading
-- Memory usage: Reduced DOM queries decrease allocation pressure
-
----
-
-## 📋 BUGS - ALL FIXED ✅
-
-All 5 critical bugs have been resolved and tested:
-
-### 1. **✅ FIXED - Memory Leak - Event Listeners**
-**Status:** ✅ **RESOLVED** (Commit: c004022)
-- Fixed by cloning DOM element before adding new listeners
-- Test suite validates no listener accumulation
-
-### 2. **✅ FIXED - localStorage Quota Error Handling**
-**Status:** ✅ **RESOLVED** (Commit: a754c5a)
-- Added try-catch blocks around all `localStorage.setItem()` calls
-- User-friendly error messages with cleanup suggestions
-- Test suite validates error handling
-
-### 3. **✅ FIXED - Race Condition in Data Loading**
-**Status:** ✅ **RESOLVED** (Commit: 078a6b2)
-- Added data availability checks before operations
-- Disabled generate button until data loaded
-- Loading indicator shows "⏳ Loading data..."
-- Test suite validates loading order
-
-### 4. **✅ FIXED - Duplicate Function Export**
-**Status:** ✅ **RESOLVED** (Commit: 1af9dca)
-- Removed duplicate `window.changeItemsPerPage` export
-- Test suite scans for duplicate exports
-
-### 5. **✅ FIXED - Chrome Panel Closing Issue**
-**Status:** ✅ **RESOLVED** (Commit: 96b198a)
-- Removed forced reflow hack (`void element.offsetHeight`)
-- Improved CSS with `will-change` and `backface-visibility`
-- Test suite validates panel transitions
+1. ✅ Changelog Display Screen (v1.3.0, merged)
+2. ✅ Observer Pattern / EventBus (v1.3.0, pushed)
 
 ---
 
 ## 📊 PROJECT STATUS
 
-**All Critical Work Complete** ✅
+**Current Version:** v1.3.0
 
-- ✅ 5/5 Bugs Fixed
-- ✅ 4/5 Optimizations Implemented (1 deferred as low priority)
-- ✅ Test Suites Created (5 files, 26 tests)
-- ✅ CI Integration Complete
-- ✅ Documentation Updated
-
-**Test Coverage:**
+### Test Coverage
 - 15 total assertions in CI
 - 6 passing (critical structural checks)
 - 1 expected fail (requires full browser module loading)
 - 8 skipped (browser-specific features)
 
-**Commits:**
-- 11 total commits for bug fixes and optimizations
+### Commits Summary
+- 11 commits for bug fixes and optimizations
 - Each bug fix committed separately with test suite
 - Individual commits for each optimization
+- Changelog and EventBus patterns on feature branches
 
 ---
 
-## ⚡ ORIGINAL OPTIMIZATION PROPOSALS (ARCHIVE)
+## 🎯 NEXT PRIORITIES
 
-Below are the original optimization proposals from the initial analysis:
+1. **Command Pattern Implementation** (MEDIUM priority, 6-8 hours)
+   - Undo/Redo functionality
+   - History stack with 50 command limit
+   - Keyboard shortcuts (Ctrl+Z/Shift+Ctrl+Z)
+   
+2. **Strategy Pattern for Exports** (LOW priority, 3-4 hours)
+   - Refactor export.js to use strategy pattern
+   - Add new export formats (HTML, PDF)
+   - Customizable export options
 
-### 1. **Inefficient Search Algorithm - O(n²) Complexity**
-**Location:** `assets/js/app.js` (performSearch function, lines 500-565)
-**Issue:** The search iterates through all encounters AND all locations on every keystroke, then filters again in the render function. For large datasets, this causes noticeable lag.
-**Priority:** HIGH
-**Optimization:**
-- Implement debouncing (300ms delay) on search input
-- Index data by searchable fields on load
-- Cache search results
-- Use Web Workers for large search operations
-
-**Example:**
-```javascript
-// Add debounce utility
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func(...args), wait);
-    };
-}
-
-// Apply to search
-const debouncedSearch = debounce(performSearch, 300);
-searchInput.addEventListener('input', debouncedSearch);
-```
-
-### 2. **Redundant DOM Queries - getElementById Called Repeatedly**
-**Location:** Throughout all JS files (100+ instances)
-**Issue:** Elements like `partyLevel`, `environmentSelect`, etc. are queried with `document.getElementById()` on every function call instead of being cached.
-**Priority:** HIGH
-**Optimization:**
-- Cache frequently-used DOM elements in module-level variables
-- Update cache when page changes
-
-**Example:**
-```javascript
-// At module top
-let cachedElements = {};
-
-function cacheElements() {
-    cachedElements = {
-        partyLevel: document.getElementById('partyLevel'),
-        environmentSelect: document.getElementById('environmentSelect'),
-        encounterSeed: document.getElementById('encounterSeed'),
-        // ... etc
-    };
-}
-
-// Call on page load and page switch
-```
-
-### 3. **Large HTML String Concatenation in Loops**
-**Location:** `assets/js/export.js`, `assets/js/ui.js`, `index.html` (multiple locations)
-**Issue:** Building HTML strings using `+=` in loops is slow because strings are immutable in JavaScript, causing repeated memory allocations.
-**Priority:** MEDIUM
-**Optimization:**
-- Use array.push() and join() instead
-- Consider template literals with map/filter
-
-**Example:**
-```javascript
-// BEFORE (slow)
-let html = '';
-locations.forEach(loc => {
-    html += `<div>${loc.name}</div>`;
-});
-
-// AFTER (fast)
-const htmlParts = locations.map(loc => `<div>${loc.name}</div>`);
-const html = htmlParts.join('');
-```
-
-### 4. **No Progressive Image Loading for Icons**
-**Location:** `index.html` and CSS files
-**Issue:** Dice and character icons (`assets/img/d20.png`, `assets/img/character.png`) are loaded on every render without caching, preloading, or lazy loading.
-**Priority:** LOW
-**Optimization:**
-- Add `<link rel="preload">` for critical images in `<head>`
-- Use CSS sprites for small icons
-- Consider inline SVG for icons (eliminates HTTP requests)
-
-**Example:**
-```html
-<head>
-    <link rel="preload" href="assets/img/d20.png" as="image">
-    <link rel="preload" href="assets/img/character.png" as="image">
-</head>
-```
-
-### 5. **Filter Dropdown Recalculation on Every Change**
-**Location:** `assets/js/app.js` (updateAllFilters function, lines 300-450)
-**Issue:** Every time a filter changes, ALL dropdowns are recalculated by iterating through the entire dataset, even if that dropdown's options haven't changed.
-**Priority:** MEDIUM
-**Optimization:**
-- Only recalculate affected dropdowns
-- Cache filter counts and only update when data changes
-- Use memoization for expensive calculations
-
-**Example:**
-```javascript
-// Cache counts on data load
-let filterCache = {
-    environmentCounts: {},
-    locationTypeCounts: {},
-    settingCounts: {},
-    lastUpdate: null
-};
-
-function updateAllFilters() {
-    // Only recalculate if data has changed
-    if (filterCache.lastUpdate !== window.dataLoaded) {
-        calculateFilterCounts();
-        filterCache.lastUpdate = window.dataLoaded;
-    }
-    // Use cached values...
-}
-```
-
----
-
-## 📋 ADDITIONAL RECOMMENDATIONS
-
-### Code Quality
-- Add JSDoc comments to all exported functions
-- Implement unit tests for core logic (encounter generation, NPC selection)
-- Add TypeScript for better type safety
-
-### Security
-- Sanitize user input in seed field before using in hash function
-- Add Content Security Policy (CSP) headers
-- Validate JSON data files on load
-
-### Accessibility
-- Add ARIA labels to interactive elements
-- Ensure keyboard navigation works throughout the app
-- Add screen reader support for dynamic content updates
-
-### Performance Monitoring
-- Add performance.now() timing to track slow functions
-- Consider adding error tracking (Sentry, etc.)
-- Monitor localStorage usage and warn users before quota is reached
+3. **Version Display UI** (LOW priority, 1-2 hours)
+   - Show version in footer/header
+   - Manual changelog access button
+   - "What's New" in Settings
 
 ---
 
 **Last Updated:** November 18, 2025
-**Priority Legend:** HIGH (fix immediately) | MEDIUM (fix soon) | LOW (nice to have)
+**Status:** 2/4 design patterns implemented, all critical bugs fixed, major optimizations complete
+

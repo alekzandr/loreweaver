@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- EventBus (Observer Pattern) for decoupled component communication
+- Publish/Subscribe system for application-wide event management
+- Standard event constants (Events) to prevent typos
+- Event history tracking for debugging
+- Comprehensive EventBus test suite with 13 tests
+- Event publishing for page switching, search, filters, and theme changes
+
+### Changed
+- Integrated EventBus into app.js for better component decoupling
+- Updated switchPage() to publish PAGE_SWITCHED events
+- Updated performSearch() to publish SEARCH_STARTED and SEARCH_COMPLETED events  
+- Updated filter functions to publish FILTERS_UPDATED and FILTERS_CLEARED events
+- Updated toggleTheme() to publish THEME_TOGGLED events
+- Consolidated DESIGN_PATTERNS_TODO.md into main TODO.md
+- Updated TODO.md to reflect completed work (bugs, optimizations, patterns)
+- Added remaining design patterns (Command, Strategy) to TODO
+
+### Removed
+- BUG_FIXES_SUMMARY.md (work now documented in CHANGELOG and git history)
+- OPTIMIZATION_SUMMARY.md (work now documented in CHANGELOG and git history)
+- IMPLEMENTATION_SUMMARY.md (outdated implementation notes)
+- UPDATE_SUMMARY.md (outdated update notes)
+- SPECIES_CAPITALIZATION.md (feature already implemented)
+- ENCOUNTER_SELECTION_FEATURE.md (feature already implemented)
+- CI_INTEGRATION_SUMMARY.md (CI already integrated)
+- CI_SETUP.md (CI already set up)
+- DESIGN_PATTERNS_TODO.md (consolidated into TODO.md)
+
 ## [1.3.0] - 2025-11-18
 
 ### Added
