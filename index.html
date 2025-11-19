@@ -10,6 +10,13 @@
     <link rel="stylesheet" href="assets/css/themes.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/pages.css">
+    
+    <!-- Test Suites (only loaded in development) -->
+    <script type="module" src="tests/test-memory-leak-event-listeners.js"></script>
+    <script type="module" src="tests/test-localstorage-quota.js"></script>
+    <script type="module" src="tests/test-race-condition-data-loading.js"></script>
+    <script type="module" src="tests/test-duplicate-exports.js"></script>
+    <script type="module" src="tests/test-panel-closing-chrome.js"></script>
 </head>
 <body>
     <div class="main-content" id="mainContent">

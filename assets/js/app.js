@@ -24,6 +24,19 @@ let allResults = [];
 export async function initApp() {
     console.log('🚀 Initializing LoreWeaver...');
     
+    // Show loading indicator on generate button
+    const generateBtns = document.querySelectorAll('button[onclick*="generateEncounter"]');
+    generateBtns.forEach(btn => {
+        btn.disabled = true;
+        btn.textContent = '⏳ Loading data...';
+    });
+    
+    // Disable NPC generate button
+    const npcGenerateBtn = document.querySelector('button[onclick*="generateNPC"]');
+    if (npcGenerateBtn) {
+        npcGenerateBtn.disabled = true;
+    }
+    
     // Load saved theme
     loadTheme();
     
@@ -41,6 +54,29 @@ export async function initApp() {
         skillChecksData: window.skillChecksData?.skillChecks?.length || 0,
         dangersData: window.dangersData ? 'loaded' : 'missing'
     });
+    
+    // Re-enable generate buttons after data loads
+    if (window.dataLoaded) {
+        generateBtns.forEach(btn => {
+            btn.disabled = false;
+            // Restore original button text by checking for dice icon
+            const hasDiceIcon = btn.querySelector('.dice-icon');
+            if (hasDiceIcon) {
+                btn.innerHTML = '<img src="assets/img/d20.png" alt="dice" class="dice-icon"> Generate Encounter';
+            } else {
+                btn.textContent = 'Generate';
+            }
+        });
+        
+        if (npcGenerateBtn) {
+            npcGenerateBtn.disabled = false;
+        }
+    } else {
+        console.error('❌ Data failed to load properly');
+        generateBtns.forEach(btn => {
+            btn.textContent = '❌ Data load failed - Refresh page';
+        });
+    }
     
     // Setup Enter key for search input
     const searchInput = document.getElementById('searchInput');
@@ -76,7 +112,10 @@ export async function initApp() {
  * Populate NPC generator dropdowns from loaded data
  */
 function populateNPCDropdowns() {
-    if (!window.npcData) return;
+    if (!window.npcData || !window.dataLoaded) {
+        console.warn('NPC data not loaded yet, skipping dropdown population');
+        return;
+    }
     
     // Populate Species dropdown
     const speciesSelect = document.getElementById('npcSpecies');
@@ -166,7 +205,13 @@ export function toggleTheme() {
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     
     html.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
+    
+    try {
+        localStorage.setItem('theme', newTheme);
+    } catch (e) {
+        console.warn('Could not save theme preference:', e);
+        // Non-critical error, continue without saving
+    }
     
     updateThemeUI(newTheme);
 }
@@ -208,7 +253,13 @@ export function toggleProgressiveReveal() {
     const currentSetting = localStorage.getItem('progressiveReveal') === 'true';
     const newSetting = !currentSetting;
     
-    localStorage.setItem('progressiveReveal', newSetting);
+    try {
+        localStorage.setItem('progressiveReveal', newSetting);
+    } catch (e) {
+        console.warn('Could not save progressive reveal preference:', e);
+        // Non-critical error, continue without saving
+    }
+    
     updateProgressiveRevealUI(newSetting);
 }
 
@@ -499,6 +550,15 @@ export function clearFilters() {
  * Perform search based on input and filters
  */
 export function performSearch() {
+    // Check if data is loaded
+    if (!window.dataLoaded) {
+        const resultsContainer = document.getElementById('searchResults');
+        if (resultsContainer) {
+            resultsContainer.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 40px;">⏳ Data is still loading. Please wait a moment...</p>';
+        }
+        return;
+    }
+    
     const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
 
     let results = [];
@@ -989,7 +1049,6 @@ window.nextPage = nextPage;
 window.previousPage = previousPage;
 window.changeItemsPerPage = changeItemsPerPage;
 window.useEncounterForGeneration = useEncounterForGeneration;
-window.changeItemsPerPage = changeItemsPerPage;
 
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', initApp);

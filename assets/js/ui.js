@@ -175,12 +175,10 @@ export function populateFlowNavigator(flowSteps) {
  * Show location detail in side panel
  */
 export function showLocationDetail(locationKey, viewLevel = 'primary', selectedIndex = null, environment = null) {
-    // Close NPC panel if open (force immediate DOM update for Chrome)
+    // Close NPC panel if open - use requestAnimationFrame for proper transition
     const npcPanel = document.getElementById('npcDetailPanel');
     if (npcPanel && npcPanel.classList.contains('active')) {
         npcPanel.classList.remove('active');
-        // Force reflow to ensure Chrome applies the change immediately
-        void npcPanel.offsetHeight;
     }
 
     // Determine environment and locate the raw location data from loaded JSON
@@ -532,12 +530,10 @@ export function hideLocationDetail() {
  * Show NPC detail in side panel
  */
 export function showNPCDetail(npcIndex) {
-    // Close location panel if open (force immediate DOM update for Chrome)
+    // Close location panel if open
     const locationPanel = document.getElementById('locationDetailPanel');
     if (locationPanel && locationPanel.classList.contains('active')) {
         locationPanel.classList.remove('active');
-        // Force reflow to ensure Chrome applies the change immediately
-        void locationPanel.offsetHeight;
     }
 
     const npc = window.currentEncounterNPCs[npcIndex];
@@ -677,7 +673,6 @@ export function showNPCDetailFromObject(npcJson) {
     const locationPanel = document.getElementById('locationDetailPanel');
     if (locationPanel && locationPanel.classList.contains('active')) {
         locationPanel.classList.remove('active');
-        void locationPanel.offsetHeight;
     }
 
     const npc = JSON.parse(npcJson);

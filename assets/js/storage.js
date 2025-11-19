@@ -33,10 +33,21 @@ export function saveCurrentEncounter() {
 
     const saved = JSON.parse(localStorage.getItem('savedEncounters') || '[]');
     saved.push(savedEncounter);
-    localStorage.setItem('savedEncounters', JSON.stringify(saved));
-
-    alert(`✅ Encounter "${encounterName}" saved successfully!`);
-    return true;
+    
+    try {
+        localStorage.setItem('savedEncounters', JSON.stringify(saved));
+        alert(`✅ Encounter "${encounterName}" saved successfully!`);
+        return true;
+    } catch (e) {
+        if (e.name === 'QuotaExceededError' || e.code === 22) {
+            alert('❌ Storage limit reached! Please delete some saved encounters to free up space.\n\nYou can manage saved encounters from the Actions menu.');
+            console.error('localStorage quota exceeded:', e);
+        } else {
+            alert('❌ Error saving encounter: ' + e.message);
+            console.error('Error saving to localStorage:', e);
+        }
+        return false;
+    }
 }
 
 /**
@@ -131,7 +142,14 @@ export function deleteSavedEncounter(index) {
     }
     
     saved.splice(index, 1);
-    localStorage.setItem('savedEncounters', JSON.stringify(saved));
+    
+    try {
+        localStorage.setItem('savedEncounters', JSON.stringify(saved));
+    } catch (e) {
+        console.error('Error saving to localStorage:', e);
+        alert('Error updating saved encounters: ' + e.message);
+        return;
+    }
     
     // Close and refresh
     const modal = document.querySelector('[style*="position: fixed"]');
