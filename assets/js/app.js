@@ -2,6 +2,7 @@
 // Main app initialization, theme management, and page switching
 
 import { loadData } from './data-loader.js';
+import { debounce } from './utils.js';
 
 // Global state
 export let selectedEnvironment = 'urban';
@@ -18,11 +19,86 @@ let currentPage = 1;
 let itemsPerPage = 5;
 let allResults = [];
 
+// Filter calculation cache
+let filterCache = {
+    lastDataTimestamp: null,
+    typeCountsCache: null,
+    optionsCache: {}
+};
+
+// DOM element cache
+let domCache = {
+    // Pages
+    generatePage: null,
+    npcPage: null,
+    searchPage: null,
+    settingsPage: null,
+    // Search elements
+    searchInput: null,
+    searchResults: null,
+    // Filter elements
+    typeFilter: null,
+    envFilter: null,
+    locationTypeFilter: null,
+    settingFilter: null,
+    planeFilter: null,
+    // NPC elements
+    npcSpecies: null,
+    npcProfession: null,
+    npcAlignment: null,
+    npcPersonality: null,
+    // Settings
+    themeSwitch: null,
+    progressiveRevealSwitch: null,
+    // Pagination
+    itemsPerPageTop: null,
+    itemsPerPageBottom: null
+};
+
+/**
+ * Cache DOM elements for reuse
+ */
+function cacheDOMElements() {
+    // Pages
+    domCache.generatePage = document.getElementById('generatePage');
+    domCache.npcPage = document.getElementById('npcPage');
+    domCache.searchPage = document.getElementById('searchPage');
+    domCache.settingsPage = document.getElementById('settingsPage');
+    
+    // Search elements
+    domCache.searchInput = document.getElementById('searchInput');
+    domCache.searchResults = document.getElementById('searchResults');
+    
+    // Filter elements
+    domCache.typeFilter = document.getElementById('typeFilter');
+    domCache.envFilter = document.getElementById('envFilter');
+    domCache.locationTypeFilter = document.getElementById('locationTypeFilter');
+    domCache.settingFilter = document.getElementById('settingFilter');
+    domCache.planeFilter = document.getElementById('planeFilter');
+    
+    // NPC elements
+    domCache.npcSpecies = document.getElementById('npcSpecies');
+    domCache.npcProfession = document.getElementById('npcProfession');
+    domCache.npcAlignment = document.getElementById('npcAlignment');
+    domCache.npcPersonality = document.getElementById('npcPersonality');
+    
+    // Settings
+    domCache.themeSwitch = document.getElementById('themeSwitch');
+    domCache.progressiveRevealSwitch = document.getElementById('progressiveRevealSwitch');
+    
+    // Pagination
+    domCache.itemsPerPageTop = document.getElementById('itemsPerPageTop');
+    domCache.itemsPerPageBottom = document.getElementById('itemsPerPageBottom');
+}
+
 /**
  * Initialize the application
  */
 export async function initApp() {
     console.log('🚀 Initializing LoreWeaver...');
+    
+    // Cache DOM elements
+    cacheDOMElements();
     
     // Show loading indicator on generate button
     const generateBtns = document.querySelectorAll('button[onclick*="generateEncounter"]');
@@ -78,10 +154,16 @@ export async function initApp() {
         });
     }
     
-    // Setup Enter key for search input
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        searchInput.addEventListener('keypress', function(e) {
+    // Setup search input with debouncing
+    if (domCache.searchInput) {
+        // Create debounced version of performSearch (300ms delay)
+        const debouncedSearch = debounce(window.performSearch, 300);
+        
+        // Listen for input events (typing)
+        domCache.searchInput.addEventListener('input', debouncedSearch);
+        
+        // Keep Enter key for immediate search
+        domCache.searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 window.performSearch();
             }
@@ -118,10 +200,9 @@ function populateNPCDropdowns() {
     }
     
     // Populate Species dropdown
-    const speciesSelect = document.getElementById('npcSpecies');
-    if (speciesSelect && window.npcData.species) {
+    if (domCache.npcSpecies && window.npcData.species) {
         // Keep the Random option
-        speciesSelect.innerHTML = '<option value="random">Random</option>';
+        domCache.npcSpecies.innerHTML = '<option value="random">Random</option>';
         
         // Get all species keys and sort alphabetically
         const speciesKeys = Object.keys(window.npcData.species).sort();
@@ -131,17 +212,16 @@ function populateNPCDropdowns() {
             option.value = key;
             // Capitalize first letter for display
             option.textContent = key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' ');
-            speciesSelect.appendChild(option);
+            domCache.npcSpecies.appendChild(option);
         });
         
         console.log('✓ Populated species dropdown with', speciesKeys.length, 'options');
     }
     
     // Populate Profession dropdown
-    const professionSelect = document.getElementById('npcProfession');
-    if (professionSelect && window.npcData.professions) {
+    if (domCache.npcProfession && window.npcData.professions) {
         // Keep the Random option
-        professionSelect.innerHTML = '<option value="random">Random</option>';
+        domCache.npcProfession.innerHTML = '<option value="random">Random</option>';
         
         // Sort professions alphabetically by name
         const sortedProfessions = [...window.npcData.professions].sort((a, b) => 
@@ -152,33 +232,31 @@ function populateNPCDropdowns() {
             const option = document.createElement('option');
             option.value = profession.name;
             option.textContent = profession.name;
-            professionSelect.appendChild(option);
+            domCache.npcProfession.appendChild(option);
         });
         
         console.log('✓ Populated profession dropdown with', sortedProfessions.length, 'options');
     }
     
     // Populate Alignment dropdown
-    const alignmentSelect = document.getElementById('npcAlignment');
-    if (alignmentSelect && window.npcData.alignments) {
+    if (domCache.npcAlignment && window.npcData.alignments) {
         // Keep the Random option
-        alignmentSelect.innerHTML = '<option value="random">Random</option>';
+        domCache.npcAlignment.innerHTML = '<option value="random">Random</option>';
         
         window.npcData.alignments.forEach(alignment => {
             const option = document.createElement('option');
             option.value = alignment.name;
             option.textContent = alignment.name;
-            alignmentSelect.appendChild(option);
+            domCache.npcAlignment.appendChild(option);
         });
         
         console.log('✓ Populated alignment dropdown with', window.npcData.alignments.length, 'options');
     }
     
     // Populate Personality dropdown
-    const personalitySelect = document.getElementById('npcPersonality');
-    if (personalitySelect && window.npcData.personalities) {
+    if (domCache.npcPersonality && window.npcData.personalities) {
         // Keep the Random option
-        personalitySelect.innerHTML = '<option value="random">Random</option>';
+        domCache.npcPersonality.innerHTML = '<option value="random">Random</option>';
         
         // Sort personalities alphabetically by trait
         const sortedPersonalities = [...window.npcData.personalities].sort((a, b) => 
@@ -189,7 +267,7 @@ function populateNPCDropdowns() {
             const option = document.createElement('option');
             option.value = personality.trait;
             option.textContent = personality.trait;
-            personalitySelect.appendChild(option);
+            domCache.npcPersonality.appendChild(option);
         });
         
         console.log('✓ Populated personality dropdown with', sortedPersonalities.length, 'options');
@@ -222,17 +300,16 @@ export function toggleTheme() {
  */
 function updateThemeUI(theme) {
     const icons = document.querySelectorAll('.theme-icon');
-    const themeSwitch = document.getElementById('themeSwitch');
     
     icons.forEach(icon => {
         icon.textContent = theme === 'dark' ? '☀️' : '🌙';
     });
     
-    if (themeSwitch) {
+    if (domCache.themeSwitch) {
         if (theme === 'dark') {
-            themeSwitch.classList.add('active');
+            domCache.themeSwitch.classList.add('active');
         } else {
-            themeSwitch.classList.remove('active');
+            domCache.themeSwitch.classList.remove('active');
         }
     }
 }
@@ -295,25 +372,25 @@ function loadProgressiveReveal() {
  * @param {string} page - Page name ('generate', 'npc', 'search', 'settings')
  */
 export function switchPage(page) {
-    document.getElementById('generatePage').style.display = 'none';
-    document.getElementById('npcPage').style.display = 'none';
-    document.getElementById('searchPage').style.display = 'none';
-    document.getElementById('settingsPage').style.display = 'none';
+    domCache.generatePage.style.display = 'none';
+    domCache.npcPage.style.display = 'none';
+    domCache.searchPage.style.display = 'none';
+    domCache.settingsPage.style.display = 'none';
     
     document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
 
     if (page === 'generate') {
-        document.getElementById('generatePage').style.display = 'block';
+        domCache.generatePage.style.display = 'block';
         document.querySelectorAll('.nav-tab')[0].classList.add('active');
     } else if (page === 'npc') {
-        document.getElementById('npcPage').style.display = 'block';
+        domCache.npcPage.style.display = 'block';
         document.querySelectorAll('.nav-tab')[1].classList.add('active');
     } else if (page === 'search') {
-        document.getElementById('searchPage').style.display = 'block';
+        domCache.searchPage.style.display = 'block';
         document.querySelectorAll('.nav-tab')[2].classList.add('active');
         if (window.initializeSearchFilters) window.initializeSearchFilters();
     } else if (page === 'settings') {
-        document.getElementById('settingsPage').style.display = 'block';
+        domCache.settingsPage.style.display = 'block';
         document.querySelectorAll('.nav-tab')[3].classList.add('active');
     }
 }
@@ -337,11 +414,11 @@ export function onFilterChange() {
  * Apply filters to search results
  */
 export function applyFilters() {
-    const typeFilter = document.getElementById('typeFilter').value;
-    const envFilter = document.getElementById('envFilter').value;
-    const locationTypeFilter = document.getElementById('locationTypeFilter').value;
-    const settingFilter = document.getElementById('settingFilter').value;
-    const planeFilter = document.getElementById('planeFilter').value;
+    const typeFilter = domCache.typeFilter.value;
+    const envFilter = domCache.envFilter.value;
+    const locationTypeFilter = domCache.locationTypeFilter.value;
+    const settingFilter = domCache.settingFilter.value;
+    const planeFilter = domCache.planeFilter.value;
 
     // Update active filters
     activeFilters = {
@@ -353,8 +430,7 @@ export function applyFilters() {
     };
 
     // Trigger search if there's a search term
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput && searchInput.value.trim()) {
+    if (domCache.searchInput && domCache.searchInput.value.trim()) {
         window.performSearch();
     }
 }
@@ -365,11 +441,19 @@ export function applyFilters() {
 function updateAllFilters() {
     if (!window.locationObjects) return;
     
-    // Get current selections
-    const currentType = document.getElementById('typeFilter').value;
-    const currentEnv = document.getElementById('envFilter').value;
-    const currentLocationType = document.getElementById('locationTypeFilter').value;
-    const currentSetting = document.getElementById('settingFilter').value;
+    // Check if data has changed - invalidate cache if so
+    const currentTimestamp = window.dataLoadedTimestamp || Date.now();
+    if (filterCache.lastDataTimestamp !== currentTimestamp) {
+        filterCache.lastDataTimestamp = currentTimestamp;
+        filterCache.typeCountsCache = null;
+        filterCache.optionsCache = {};
+    }
+    
+    // Get current selections from cached elements
+    const currentType = domCache.typeFilter.value;
+    const currentEnv = domCache.envFilter.value;
+    const currentLocationType = domCache.locationTypeFilter.value;
+    const currentSetting = domCache.settingFilter.value;
     
     // Helper function to collect available options with counts, excluding the filter being updated
     function collectOptionsWithCounts(excludeFilter) {
@@ -424,6 +508,12 @@ function updateAllFilters() {
     
     // Helper function to count total items for Type filter
     function getTypeCounts() {
+        // Return cached value if available
+        const cacheKey = `type-${currentEnv}-${currentLocationType}-${currentSetting}`;
+        if (filterCache.optionsCache[cacheKey]) {
+            return filterCache.optionsCache[cacheKey];
+        }
+        
         let encounterCount = 0;
         let locationCount = 0;
         
@@ -450,69 +540,68 @@ function updateAllFilters() {
             });
         });
         
-        return { encounterCount, locationCount };
+        const result = { encounterCount, locationCount };
+        // Cache the result
+        filterCache.optionsCache[cacheKey] = result;
+        return result;
     }
     
     // Update Type filter with counts
-    const typeFilter = document.getElementById('typeFilter');
     const typeCounts = getTypeCounts();
-    const currentTypeValue = typeFilter.value;
-    typeFilter.innerHTML = `
+    const currentTypeValue = domCache.typeFilter.value;
+    domCache.typeFilter.innerHTML = `
         <option value="">All Types (${typeCounts.encounterCount + typeCounts.locationCount})</option>
         <option value="encounter">Encounters Only (${typeCounts.encounterCount})</option>
         <option value="location">Locations Only (${typeCounts.locationCount})</option>
     `;
-    typeFilter.value = currentTypeValue;
+    domCache.typeFilter.value = currentTypeValue;
     
     // Update environment dropdown (exclude environment filter when collecting)
     const counts = collectOptionsWithCounts('environment');
-    const envFilter = document.getElementById('envFilter');
     const totalEnvCount = Object.values(counts.environmentCounts).reduce((sum, count) => sum + count, 0);
-    envFilter.innerHTML = `<option value="">All Environments (${totalEnvCount})</option>`;
+    domCache.envFilter.innerHTML = `<option value="">All Environments (${totalEnvCount})</option>`;
     Array.from(Object.keys(counts.environmentCounts)).sort().forEach(env => {
         const option = document.createElement('option');
         option.value = env;
         option.textContent = `${env.charAt(0).toUpperCase() + env.slice(1)} (${counts.environmentCounts[env]})`;
         if (env === currentEnv) option.selected = true;
-        envFilter.appendChild(option);
+        domCache.envFilter.appendChild(option);
     });
     
     // Update location type dropdown (exclude locationType filter when collecting)
-    const locationTypeFilter = document.getElementById('locationTypeFilter');
     if (currentType !== 'encounter') {
         const locTypeCounts = collectOptionsWithCounts('locationType');
         const totalLocTypeCount = Object.values(locTypeCounts.locationTypeCounts).reduce((sum, count) => sum + count, 0);
-        locationTypeFilter.innerHTML = `<option value="">All Location Types (${totalLocTypeCount})</option>`;
+        domCache.locationTypeFilter.innerHTML = `<option value="">All Location Types (${totalLocTypeCount})</option>`;
         Array.from(Object.keys(locTypeCounts.locationTypeCounts)).sort().forEach(type => {
             const option = document.createElement('option');
             option.value = type;
             option.textContent = `${type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} (${locTypeCounts.locationTypeCounts[type]})`;
             if (type === currentLocationType) option.selected = true;
-            locationTypeFilter.appendChild(option);
+            domCache.locationTypeFilter.appendChild(option);
         });
-        locationTypeFilter.disabled = false;
+        domCache.locationTypeFilter.disabled = false;
     } else {
-        locationTypeFilter.innerHTML = '<option value="">All Location Types</option>';
-        locationTypeFilter.disabled = true;
+        domCache.locationTypeFilter.innerHTML = '<option value="">All Location Types</option>';
+        domCache.locationTypeFilter.disabled = true;
     }
     
     // Update setting dropdown (exclude setting filter when collecting)
-    const settingFilter = document.getElementById('settingFilter');
     if (currentType !== 'encounter') {
         const settingCounts = collectOptionsWithCounts('setting');
         const totalSettingCount = Object.values(settingCounts.settingCounts).reduce((sum, count) => sum + count, 0);
-        settingFilter.innerHTML = `<option value="">All Settings (${totalSettingCount})</option>`;
+        domCache.settingFilter.innerHTML = `<option value="">All Settings (${totalSettingCount})</option>`;
         Array.from(Object.keys(settingCounts.settingCounts)).sort().forEach(setting => {
             const option = document.createElement('option');
             option.value = setting;
             option.textContent = `${setting.charAt(0).toUpperCase() + setting.slice(1)} (${settingCounts.settingCounts[setting]})`;
             if (setting === currentSetting) option.selected = true;
-            settingFilter.appendChild(option);
+            domCache.settingFilter.appendChild(option);
         });
-        settingFilter.disabled = false;
+        domCache.settingFilter.disabled = false;
     } else {
-        settingFilter.innerHTML = '<option value="">All Settings</option>';
-        settingFilter.disabled = true;
+        domCache.settingFilter.innerHTML = '<option value="">All Settings</option>';
+        domCache.settingFilter.disabled = true;
     }
 }
 
@@ -520,11 +609,11 @@ function updateAllFilters() {
  * Clear all filters
  */
 export function clearFilters() {
-    document.getElementById('typeFilter').value = '';
-    document.getElementById('envFilter').value = '';
-    document.getElementById('locationTypeFilter').value = '';
-    document.getElementById('settingFilter').value = '';
-    document.getElementById('planeFilter').value = '';
+    domCache.typeFilter.value = '';
+    domCache.envFilter.value = '';
+    domCache.locationTypeFilter.value = '';
+    domCache.settingFilter.value = '';
+    domCache.planeFilter.value = '';
     
     activeFilters = {
         type: '',
@@ -552,14 +641,13 @@ export function clearFilters() {
 export function performSearch() {
     // Check if data is loaded
     if (!window.dataLoaded) {
-        const resultsContainer = document.getElementById('searchResults');
-        if (resultsContainer) {
-            resultsContainer.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 40px;">⏳ Data is still loading. Please wait a moment...</p>';
+        if (domCache.searchResults) {
+            domCache.searchResults.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 40px;">⏳ Data is still loading. Please wait a moment...</p>';
         }
         return;
     }
     
-    const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+    const searchTerm = domCache.searchInput.value.toLowerCase().trim();
 
     let results = [];
 
