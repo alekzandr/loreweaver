@@ -40,51 +40,7 @@
                     <button class="nav-tab" onclick="switchPage('search')">🔍 Search</button>
                     <button class="nav-tab" onclick="switchPage('settings')">⚙️ Settings</button>
                 </div>
-                
-                <!-- Undo/Redo Controls -->
-                <div class="history-controls">
-                    <button 
-                        id="undoButton" 
-                        class="history-btn" 
-                        onclick="undoLastAction()" 
-                        disabled 
-                        title="Undo (Ctrl+Z)"
-                        aria-label="Undo last action">
-                        ↶ Undo
-                    </button>
-                    <button 
-                        id="redoButton" 
-                        class="history-btn" 
-                        onclick="redoLastAction()" 
-                        disabled 
-                        title="Redo (Ctrl+Shift+Z)"
-                        aria-label="Redo last action">
-                        ↷ Redo
-                    </button>
-                    <button 
-                        id="historyButton" 
-                        class="history-btn" 
-                        onclick="toggleHistoryPanel()" 
-                        title="View history"
-                        aria-label="View command history">
-                        📋 History
-                    </button>
-                </div>
             </header>
-            
-            <!-- History Panel (Hidden by default) -->
-            <div id="historyPanel" class="history-panel" style="display: none;">
-                <div class="history-panel-header">
-                    <h3>Command History</h3>
-                    <button onclick="toggleHistoryPanel()" class="close-btn" aria-label="Close history panel">✕</button>
-                </div>
-                <div id="historyList" class="history-list">
-                    <!-- Populated dynamically -->
-                </div>
-                <div class="history-panel-footer">
-                    <button onclick="clearHistory()" class="btn-secondary">Clear History</button>
-                </div>
-            </div>
 
             <!-- Generate Page -->
             <div id="generatePage" class="page-content">
@@ -1391,40 +1347,23 @@
     <!-- Initialize Command History System -->
     <script type="module">
         import {
-            commandHistory,
+            generateHistory,
+            npcHistory,
+            searchHistory,
             GenerateEncounterCommand,
+            GenerateNPCCommand,
             FilterChangeCommand,
-            SearchCommand
+            SearchCommand,
+            getActiveHistory,
+            executeInContext,
+            undoInContext,
+            redoInContext,
+            canUndoInContext,
+            canRedoInContext
         } from './assets/js/command-history.mjs';
         
         // Initialize command history UI
         function initializeCommandHistory() {
-            const undoButton = document.getElementById('undoButton');
-            const redoButton = document.getElementById('redoButton');
-            const historyPanel = document.getElementById('historyPanel');
-            const historyList = document.getElementById('historyList');
-            
-            // Update UI based on history state
-            function updateUI(metadata) {
-                if (undoButton) {
-                    undoButton.disabled = !metadata.canUndo;
-                }
-                if (redoButton) {
-                    redoButton.disabled = !metadata.canRedo;
-                }
-                
-                // Update history list if panel is open
-                if (historyPanel && historyPanel.style.display !== 'none') {
-                    updateHistoryList();
-                }
-            }
-            
-            // Subscribe to history changes
-            commandHistory.subscribe(updateUI);
-            
-            // Initial UI update
-            updateUI(commandHistory.getMetadata());
-            
             // Setup keyboard shortcuts
             document.addEventListener('keydown', (e) => {
                 // Ctrl+Z for undo
@@ -1440,97 +1379,197 @@
             });
         }
         
-        // Undo last action
+        // Undo last action in current context
         window.undoLastAction = function() {
-            const success = commandHistory.undo();
+            const success = undoInContext();
+            const context = window.currentPage || 'generate';
             if (success) {
-                console.log('✅ Undo successful');
+                console.log(`✅ Undo successful (${context} context)`);
             } else {
-                console.log('⚠️ Nothing to undo');
+                console.log(`⚠️ Nothing to undo in ${context} context`);
             }
         };
         
-        // Redo last action
+        // Redo last action in current context
         window.redoLastAction = function() {
-            const success = commandHistory.redo();
+            const success = redoInContext();
+            const context = window.currentPage || 'generate';
             if (success) {
-                console.log('✅ Redo successful');
+                console.log(`✅ Redo successful (${context} context)`);
             } else {
-                console.log('⚠️ Nothing to redo');
+                console.log(`⚠️ Nothing to redo in ${context} context`);
             }
         };
         
-        // Toggle history panel
-        window.toggleHistoryPanel = function() {
-            const panel = document.getElementById('historyPanel');
-            if (panel) {
-                const isVisible = panel.style.display !== 'none';
-                panel.style.display = isVisible ? 'none' : 'block';
-                if (!isVisible) {
-                    updateHistoryList();
-                }
-            }
-        };
+        // Function to capture complete encounter state
+        function captureEncounterState() {
+            const encounterDisplay = document.getElementById('encounterDisplay');
+            const npcInfoDisplay = document.getElementById('npcInfoDisplay');
+            
+            return {
+                // Capture the actual generated data
+                encounterFlow: window.currentEncounterFlow ? JSON.parse(JSON.stringify(window.currentEncounterFlow)) : null,
+                // Capture the HTML content for exact restoration
+                encounterHTML: encounterDisplay ? encounterDisplay.innerHTML : '',
+                npcHTML: npcInfoDisplay ? npcInfoDisplay.innerHTML : '',
+                // Capture current page state if needed
+                currentPage: window.currentPage || 'generate',
+                timestamp: Date.now()
+            };
+        }
         
-        // Update history list display
-        function updateHistoryList() {
-            const historyList = document.getElementById('historyList');
-            if (!historyList) return;
-            
-            const history = commandHistory.getHistory();
-            const metadata = commandHistory.getMetadata();
-            
-            if (history.length === 0) {
-                historyList.innerHTML = '<p class="empty-history">No actions in history</p>';
+        // Function to restore complete encounter state
+        function restoreEncounterState(state) {
+            if (!state) {
+                // Clear everything
+                const encounterDisplay = document.getElementById('encounterDisplay');
+                const npcInfoDisplay = document.getElementById('npcInfoDisplay');
+                if (encounterDisplay) encounterDisplay.innerHTML = '';
+                if (npcInfoDisplay) npcInfoDisplay.innerHTML = '';
+                window.currentEncounterFlow = null;
                 return;
             }
             
-            historyList.innerHTML = history.map((cmd, index) => {
-                const isCurrent = index === metadata.currentIndex;
-                const timestamp = new Date(cmd.timestamp).toLocaleTimeString();
-                return `
-                    <div class="history-item ${isCurrent ? 'current' : ''}">
-                        <span class="history-description">${cmd.getDescription()}</span>
-                        <span class="history-time">${timestamp}</span>
-                    </div>
-                `;
-            }).join('');
+            // Restore the data
+            window.currentEncounterFlow = state.encounterFlow;
+            
+            // Restore the HTML displays
+            const encounterDisplay = document.getElementById('encounterDisplay');
+            const npcInfoDisplay = document.getElementById('npcInfoDisplay');
+            
+            if (encounterDisplay) {
+                encounterDisplay.innerHTML = state.encounterHTML;
+                
+                // Re-attach event listeners for any interactive elements
+                const generateButtons = encounterDisplay.querySelectorAll('.generate-npc-btn');
+                generateButtons.forEach(btn => {
+                    const locationIndex = parseInt(btn.dataset.locationIndex);
+                    const npcIndex = parseInt(btn.dataset.npcIndex);
+                    btn.addEventListener('click', function() {
+                        if (window.currentEncounterFlow && 
+                            window.currentEncounterFlow.locations && 
+                            window.currentEncounterFlow.locations[locationIndex] &&
+                            window.currentEncounterFlow.locations[locationIndex].npcs &&
+                            window.currentEncounterFlow.locations[locationIndex].npcs[npcIndex]) {
+                            const npc = window.currentEncounterFlow.locations[locationIndex].npcs[npcIndex];
+                            generateNPCFromEncounter(npc.species, npc.subspecies);
+                        }
+                    });
+                });
+                
+                // Re-attach location detail click handlers
+                const locationCards = encounterDisplay.querySelectorAll('.location-card');
+                locationCards.forEach(card => {
+                    const locationIndex = parseInt(card.dataset.locationIndex);
+                    card.addEventListener('click', function(e) {
+                        if (!e.target.closest('.generate-npc-btn')) {
+                            if (window.currentEncounterFlow && 
+                                window.currentEncounterFlow.locations && 
+                                window.currentEncounterFlow.locations[locationIndex]) {
+                                showLocationDetail(window.currentEncounterFlow.locations[locationIndex], locationIndex);
+                            }
+                        }
+                    });
+                });
+            }
+            
+            if (npcInfoDisplay) {
+                npcInfoDisplay.innerHTML = state.npcHTML;
+            }
         }
         
-        // Clear history
-        window.clearHistory = function() {
-            if (confirm('Are you sure you want to clear the command history? This cannot be undone.')) {
-                commandHistory.clear();
-                updateHistoryList();
-                console.log('✅ History cleared');
-            }
-        };
-        
-        // Wrap original generateEncounter to use command pattern
+        // Wrap original generateEncounter to use command pattern with state capture
         const originalGenerateEncounter = window.generateEncounter;
         window.generateEncounter = function() {
-            const currentEncounter = window.currentEncounterFlow || null;
-            
             const command = new GenerateEncounterCommand(
-                () => originalGenerateEncounter(),
-                (encounter) => {
-                    if (encounter) {
-                        window.currentEncounterFlow = encounter;
-                        // Trigger UI update
-                        const event = new CustomEvent('encounterRestored', { detail: encounter });
-                        document.dispatchEvent(event);
-                    } else {
-                        // Clear encounter display
-                        const display = document.getElementById('encounterDisplay');
-                        if (display) display.innerHTML = '';
-                        window.currentEncounterFlow = null;
-                    }
+                () => {
+                    // Call original generate function
+                    const result = originalGenerateEncounter();
+                    return result;
                 },
-                currentEncounter
+                captureEncounterState,
+                restoreEncounterState
             );
             
-            commandHistory.execute(command);
+            // Execute the command in generate context (this will capture before/after states)
+            return generateHistory.execute(command);
         };
+        
+        // Function to capture complete NPC state
+        function captureNPCState() {
+            const npcDisplay = document.getElementById('npcDisplay');
+            const npcInfoDisplay = document.getElementById('npcInfoDisplay');
+            
+            return {
+                // Capture the actual generated NPC data
+                npcData: window.currentNPC ? JSON.parse(JSON.stringify(window.currentNPC)) : null,
+                // Capture the HTML content for exact restoration
+                npcHTML: npcDisplay ? npcDisplay.innerHTML : '',
+                npcInfoHTML: npcInfoDisplay ? npcInfoDisplay.innerHTML : '',
+                timestamp: Date.now()
+            };
+        }
+        
+        // Function to restore complete NPC state
+        function restoreNPCState(state) {
+            if (!state) {
+                // Clear everything
+                const npcDisplay = document.getElementById('npcDisplay');
+                const npcInfoDisplay = document.getElementById('npcInfoDisplay');
+                if (npcDisplay) npcDisplay.innerHTML = '';
+                if (npcInfoDisplay) npcInfoDisplay.innerHTML = '';
+                window.currentNPC = null;
+                return;
+            }
+            
+            // Restore the data
+            window.currentNPC = state.npcData;
+            
+            // Restore the HTML displays
+            const npcDisplay = document.getElementById('npcDisplay');
+            const npcInfoDisplay = document.getElementById('npcInfoDisplay');
+            
+            if (npcDisplay) {
+                npcDisplay.innerHTML = state.npcHTML;
+            }
+            
+            if (npcInfoDisplay) {
+                npcInfoDisplay.innerHTML = state.npcInfoHTML;
+            }
+        }
+        
+        // Wrap NPC generation to use command pattern with state capture
+        // Store original function reference
+        let originalGenerateNPC = null;
+        
+        // Wait for generateNPC to be defined, then wrap it
+        function wrapNPCGeneration() {
+            if (typeof window.generateNPC === 'function' && !originalGenerateNPC) {
+                originalGenerateNPC = window.generateNPC;
+                
+                window.generateNPC = function() {
+                    const command = new GenerateNPCCommand(
+                        () => {
+                            // Call original generate function
+                            const result = originalGenerateNPC.apply(this, arguments);
+                            return result;
+                        },
+                        captureNPCState,
+                        restoreNPCState
+                    );
+                    
+                    // Execute the command in NPC context
+                    return npcHistory.execute(command);
+                };
+                
+                console.log('✅ NPC generation wrapped with command pattern');
+            }
+        }
+        
+        // Try to wrap immediately and also after a delay
+        wrapNPCGeneration();
+        setTimeout(wrapNPCGeneration, 100);
+        setTimeout(wrapNPCGeneration, 500);
         
         // Wrap filter changes to use command pattern
         const originalToggleFilter = window.toggleFilter;
@@ -1540,17 +1579,26 @@
                 'locationType': 'location',
                 'setting': 'setting'
             };
-            const filterKey = filterMap[type] || type;
-            const oldFilters = { ...window.activeFilters };
             
-            // Execute original function
+            // Capture old state BEFORE any changes
+            const oldFilters = JSON.parse(JSON.stringify(window.activeFilters));
+            
+            // Call original to compute new state
             originalToggleFilter(type, value);
             
+            // Capture new state AFTER the toggle
+            const newFilters = JSON.parse(JSON.stringify(window.activeFilters));
+            
+            // Restore to old state (so execute() can apply the change)
+            window.activeFilters = oldFilters;
+            
+            // Create command with both states
             const command = new FilterChangeCommand(
                 type,
                 oldFilters,
-                { ...window.activeFilters },
+                newFilters,
                 (filterType, filters) => {
+                    // This function applies a filter state
                     window.activeFilters = filters;
                     // Update UI
                     document.querySelectorAll('.filter-tags .filter-tag').forEach(tag => {
@@ -1564,10 +1612,8 @@
                 }
             );
             
-            // Add to history (not executing since we already executed original)
-            commandHistory.history.push(command);
-            commandHistory.currentIndex++;
-            commandHistory.notifyListeners();
+            // Execute command through search history (filters affect search)
+            searchHistory.execute(command);
         };
         
         // Initialize after DOM is ready

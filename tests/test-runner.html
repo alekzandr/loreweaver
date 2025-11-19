@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context-Aware Undo/Redo Tests</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+        }
+        
+        h1 {
+            color: #4ec9b0;
+            border-bottom: 2px solid #4ec9b0;
+            padding-bottom: 10px;
+        }
+        
+        #output {
+            background: #252526;
+            padding: 20px;
+            border: 1px solid #3c3c3c;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            font-size: 14px;
+            line-height: 1.6;
+            max-height: 800px;
+            overflow-y: auto;
+        }
+        
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            background: #0e639c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        button:hover {
+            background: #1177bb;
+        }
+        
+        button:active {
+            background: #0d527a;
+        }
+        
+        .pass {
+            color: #4ec9b0;
+        }
+        
+        .fail {
+            color: #f48771;
+        }
+        
+        .section {
+            color: #569cd6;
+            font-weight: bold;
+        }
+        
+        .summary {
+            background: #2d2d30;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #4ec9b0;
+            border-radius: 4px;
+        }
+        
+        .summary.failed {
+            border-left-color: #f48771;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Context-Aware Undo/Redo Test Suite</h1>
+    
+    <div class="controls">
+        <button onclick="runAllTests()">Run All Tests</button>
+        <button onclick="runCommandHistoryTests()">Run Command History Tests</button>
+        <button onclick="runContextTests()">Run Context Awareness Tests</button>
+        <button onclick="clearOutput()">Clear Output</button>
+    </div>
+    
+    <div id="output">Click "Run All Tests" to start...</div>
+    
+    <script type="module">
+        import { runCommandHistoryTests } from './test-command-history.mjs';
+        import { runContextAwarenessTests } from './test-context-awareness.mjs';
+        
+        const output = document.getElementById('output');
+        
+        // Override console.log to capture output
+        const originalLog = console.log;
+        const originalError = console.error;
+        let logBuffer = [];
+        
+        function captureConsole() {
+            logBuffer = [];
+            console.log = function(...args) {
+                const message = args.join(' ');
+                logBuffer.push(message);
+                originalLog.apply(console, args);
+            };
+            console.error = function(...args) {
+                const message = args.join(' ');
+                logBuffer.push(message);
+                originalError.apply(console, args);
+            };
+        }
+        
+        function restoreConsole() {
+            console.log = originalLog;
+            console.error = originalError;
+        }
+        
+        function formatOutput(text) {
+            return text
+                .replace(/✅ PASS/g, '<span class="pass">✅ PASS</span>')
+                .replace(/❌ FAIL/g, '<span class="fail">❌ FAIL</span>')
+                .replace(/✅ Passed/g, '<span class="pass">✅ Passed</span>')
+                .replace(/❌ Failed/g, '<span class="fail">❌ Failed</span>')
+                .replace(/🧪 Testing/g, '<span class="section">🧪 Testing</span>')
+                .replace(/🧪 Test:/g, '<span class="section">🧪 Test:</span>')
+                .replace(/📊 TEST SUMMARY/g, '<span class="section">📊 TEST SUMMARY</span>');
+        }
+        
+        function displayOutput() {
+            const text = logBuffer.join('\n');
+            output.innerHTML = formatOutput(text);
+            output.scrollTop = output.scrollHeight;
+        }
+        
+        window.runAllTests = async function() {
+            output.textContent = 'Running tests...\n';
+            captureConsole();
+            
+            try {
+                // Initialize window.currentPage for tests
+                window.currentPage = 'generate';
+                
+                const historyResults = runCommandHistoryTests();
+                const contextResults = runContextAwarenessTests();
+                
+                // Summary
+                console.log('\n' + '='.repeat(80));
+                console.log('📊 TEST SUMMARY');
+                console.log('='.repeat(80));
+                
+                const totalPassed = historyResults.passed + contextResults.passed;
+                const totalFailed = historyResults.failed + contextResults.failed;
+                const totalTests = historyResults.total + contextResults.total;
+                
+                console.log(`Command History Tests: ${historyResults.passed}/${historyResults.total} passed`);
+                console.log(`Context Awareness Tests: ${contextResults.passed}/${contextResults.total} passed`);
+                console.log('');
+                console.log(`TOTAL: ${totalPassed}/${totalTests} tests passed`);
+                
+                if (totalFailed > 0) {
+                    console.log(`❌ ${totalFailed} tests failed`);
+                } else {
+                    console.log('✅ All tests passed!');
+                }
+                console.log('='.repeat(80));
+                
+            } catch (error) {
+                console.error('Test execution error:', error);
+            } finally {
+                restoreConsole();
+                displayOutput();
+            }
+        };
+        
+        window.runCommandHistoryTests = function() {
+            output.textContent = 'Running command history tests...\n';
+            captureConsole();
+            
+            try {
+                window.currentPage = 'generate';
+                const results = runCommandHistoryTests();
+                console.log(`\n✅ ${results.passed}/${results.total} tests passed`);
+                if (results.failed > 0) {
+                    console.log(`❌ ${results.failed} tests failed`);
+                }
+            } catch (error) {
+                console.error('Test execution error:', error);
+            } finally {
+                restoreConsole();
+                displayOutput();
+            }
+        };
+        
+        window.runContextTests = function() {
+            output.textContent = 'Running context awareness tests...\n';
+            captureConsole();
+            
+            try {
+                window.currentPage = 'generate';
+                const results = runContextAwarenessTests();
+                console.log(`\n✅ ${results.passed}/${results.total} tests passed`);
+                if (results.failed > 0) {
+                    console.log(`❌ ${results.failed} tests failed`);
+                }
+            } catch (error) {
+                console.error('Test execution error:', error);
+            } finally {
+                restoreConsole();
+                displayOutput();
+            }
+        };
+        
+        window.clearOutput = function() {
+            output.textContent = 'Click "Run All Tests" to start...';
+        };
+    </script>
+</body>
+</html>

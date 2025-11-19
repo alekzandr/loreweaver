@@ -98,7 +98,8 @@ export class CommandHistory {
         const command = this.history[this.currentIndex];
         
         try {
-            command.execute();
+            // Always use redo() which should restore the saved state
+            command.redo();
             this.notifyListeners();
             return true;
         } catch (error) {
@@ -206,6 +207,10 @@ export class Command {
         throw new Error('Undo method must be implemented');
     }
     
+    redo() {
+        throw new Error('Redo method must be implemented');
+    }
+    
     getDescription() {
         return this.description;
     }
@@ -213,43 +218,169 @@ export class Command {
 
 /**
  * Command to generate an encounter
- * Stores the previous and new encounter for undo/redo
+ * Captures and stores the actual generated content for proper undo/redo
  */
 export class GenerateEncounterCommand extends Command {
     /**
      * @param {Function} generateFn - Function that generates an encounter
-     * @param {Function} restoreFn - Function that restores an encounter
-     * @param {Object} currentEncounter - Current encounter before generation
+     * @param {Function} getStateFn - Function that captures current state
+     * @param {Function} setStateFn - Function that restores a saved state
      */
-    constructor(generateFn, restoreFn, currentEncounter = null) {
+    constructor(generateFn, getStateFn, setStateFn) {
         super('Generate Encounter');
         
         if (typeof generateFn !== 'function') {
             throw new Error('generateFn must be a function');
         }
-        if (typeof restoreFn !== 'function') {
-            throw new Error('restoreFn must be a function');
+        if (typeof getStateFn !== 'function') {
+            throw new Error('getStateFn must be a function');
+        }
+        if (typeof setStateFn !== 'function') {
+            throw new Error('setStateFn must be a function');
         }
         
         this.generateFn = generateFn;
-        this.restoreFn = restoreFn;
-        this.previousEncounter = currentEncounter ? this.deepClone(currentEncounter) : null;
-        this.generatedEncounter = null;
+        this.getStateFn = getStateFn;
+        this.setStateFn = setStateFn;
+        
+        // Capture the state BEFORE generation
+        this.previousState = this.captureState();
+        this.newState = null;
     }
     
     execute() {
-        // Generate and store new encounter
-        this.generatedEncounter = this.generateFn();
-        return this.generatedEncounter;
+        // Generate new content
+        const result = this.generateFn();
+        
+        // Capture the state AFTER generation
+        this.newState = this.captureState();
+        
+        return result;
     }
     
     undo() {
-        if (this.previousEncounter) {
-            this.restoreFn(this.previousEncounter);
-        } else {
-            // Clear the display if there was no previous encounter
-            this.restoreFn(null);
+        // Restore the previous state
+        this.restoreState(this.previousState);
+    }
+    
+    redo() {
+        // Restore the generated state
+        this.restoreState(this.newState);
+    }
+    
+    /**
+     * Capture current state
+     * @private
+     */
+    captureState() {
+        const state = this.getStateFn();
+        return this.deepClone(state);
+    }
+    
+    /**
+     * Restore a saved state
+     * @private
+     */
+    restoreState(state) {
+        this.setStateFn(state);
+    }
+    
+    /**
+     * Deep clone an object to prevent reference issues
+     * @private
+     */
+    deepClone(obj) {
+        if (obj === null || typeof obj !== 'object') {
+            return obj;
         }
+        
+        // Security: Don't clone functions or DOM elements
+        if (typeof obj === 'function' || obj instanceof HTMLElement) {
+            return null;
+        }
+        
+        try {
+            // Use structuredClone if available (modern browsers)
+            if (typeof structuredClone === 'function') {
+                return structuredClone(obj);
+            }
+            
+            // Fallback to JSON clone (has limitations but safe)
+            return JSON.parse(JSON.stringify(obj));
+        } catch (error) {
+            console.error('Error cloning object:', error);
+            return null;
+        }
+    }
+}
+
+/**
+ * Command to generate an NPC
+ * Captures and stores the actual generated NPC for proper undo/redo
+ */
+export class GenerateNPCCommand extends Command {
+    /**
+     * @param {Function} generateFn - Function that generates an NPC
+     * @param {Function} getStateFn - Function that captures current state
+     * @param {Function} setStateFn - Function that restores a saved state
+     */
+    constructor(generateFn, getStateFn, setStateFn) {
+        super('Generate NPC');
+        
+        if (typeof generateFn !== 'function') {
+            throw new Error('generateFn must be a function');
+        }
+        if (typeof getStateFn !== 'function') {
+            throw new Error('getStateFn must be a function');
+        }
+        if (typeof setStateFn !== 'function') {
+            throw new Error('setStateFn must be a function');
+        }
+        
+        this.generateFn = generateFn;
+        this.getStateFn = getStateFn;
+        this.setStateFn = setStateFn;
+        
+        // Capture the state BEFORE generation
+        this.previousState = this.captureState();
+        this.newState = null;
+    }
+    
+    execute() {
+        // Generate new NPC
+        const result = this.generateFn();
+        
+        // Capture the state AFTER generation
+        this.newState = this.captureState();
+        
+        return result;
+    }
+    
+    undo() {
+        // Restore the previous state
+        this.restoreState(this.previousState);
+    }
+    
+    redo() {
+        // Restore the generated state
+        this.restoreState(this.newState);
+    }
+    
+    /**
+     * Capture current state
+     * @private
+     */
+    captureState() {
+        const state = this.getStateFn();
+        return this.deepClone(state);
+    }
+    
+    /**
+     * Restore a saved state
+     * @private
+     */
+    restoreState(state) {
+        this.setStateFn(state);
     }
     
     /**
@@ -303,8 +434,8 @@ export class FilterChangeCommand extends Command {
         }
         
         this.filterType = filterType;
-        this.oldValue = oldValue;
-        this.newValue = newValue;
+        this.oldValue = this.deepClone(oldValue);
+        this.newValue = this.deepClone(newValue);
         this.applyFn = applyFn;
     }
     
@@ -314,6 +445,30 @@ export class FilterChangeCommand extends Command {
     
     undo() {
         this.applyFn(this.filterType, this.oldValue);
+    }
+    
+    redo() {
+        this.applyFn(this.filterType, this.newValue);
+    }
+    
+    /**
+     * Deep clone for safety
+     * @private
+     */
+    deepClone(obj) {
+        if (obj === null || typeof obj !== 'object') {
+            return obj;
+        }
+        
+        try {
+            if (typeof structuredClone === 'function') {
+                return structuredClone(obj);
+            }
+            return JSON.parse(JSON.stringify(obj));
+        } catch (error) {
+            console.error('Error cloning:', error);
+            return obj;
+        }
     }
 }
 
@@ -346,6 +501,10 @@ export class SearchCommand extends Command {
     
     undo() {
         this.searchFn(this.oldQuery);
+    }
+    
+    redo() {
+        this.searchFn(this.newQuery);
     }
     
     /**
@@ -414,12 +573,139 @@ export class BatchCommand extends Command {
             }
         }
     }
+    
+    redo() {
+        // Redo in forward order
+        for (let i = 0; i < this.commands.length; i++) {
+            try {
+                if (typeof this.commands[i].redo === 'function') {
+                    this.commands[i].redo();
+                } else {
+                    this.commands[i].execute();
+                }
+            } catch (error) {
+                console.error(`Error redoing command ${i}:`, error);
+            }
+        }
+    }
 }
 
-// Create singleton instance for global use
-export const commandHistory = new CommandHistory(50);
+// Create separate history instances for different contexts
+export const generateHistory = new CommandHistory(50);
+export const npcHistory = new CommandHistory(50);
+export const searchHistory = new CommandHistory(30);
+
+// Legacy alias for backward compatibility
+export const commandHistory = generateHistory;
+
+/**
+ * Get the appropriate history for the current page context
+ * @returns {CommandHistory}
+ */
+export function getActiveHistory() {
+    if (typeof window === 'undefined') {
+        return generateHistory;
+    }
+    
+    const currentPage = window.currentPage || 'generate';
+    
+    switch (currentPage) {
+        case 'npc':
+            return npcHistory;
+        case 'search':
+            return searchHistory;
+        case 'generate':
+        default:
+            return generateHistory;
+    }
+}
+
+/**
+ * Execute a command in the appropriate context
+ * @param {Command} command - Command to execute
+ * @param {string} context - Optional context override ('generate', 'npc', 'search')
+ * @returns {*} Result of command execution
+ */
+export function executeInContext(command, context = null) {
+    if (context) {
+        // Use specified context
+        switch (context) {
+            case 'npc':
+                return npcHistory.execute(command);
+            case 'search':
+                return searchHistory.execute(command);
+            case 'generate':
+            default:
+                return generateHistory.execute(command);
+        }
+    }
+    
+    // Use active page context
+    return getActiveHistory().execute(command);
+}
+
+/**
+ * Undo in the active context
+ * @returns {boolean}
+ */
+export function undoInContext() {
+    return getActiveHistory().undo();
+}
+
+/**
+ * Redo in the active context
+ * @returns {boolean}
+ */
+export function redoInContext() {
+    return getActiveHistory().redo();
+}
+
+/**
+ * Check if undo is available in active context
+ * @returns {boolean}
+ */
+export function canUndoInContext() {
+    return getActiveHistory().canUndo();
+}
+
+/**
+ * Check if redo is available in active context
+ * @returns {boolean}
+ */
+export function canRedoInContext() {
+    return getActiveHistory().canRedo();
+}
+
+/**
+ * Clear history for a specific context
+ * @param {string} context - Context to clear ('generate', 'npc', 'search', 'all')
+ */
+export function clearContext(context = 'all') {
+    if (context === 'all') {
+        generateHistory.clear();
+        npcHistory.clear();
+        searchHistory.clear();
+    } else if (context === 'npc') {
+        npcHistory.clear();
+    } else if (context === 'search') {
+        searchHistory.clear();
+    } else {
+        generateHistory.clear();
+    }
+}
 
 // Expose to window for debugging (dev mode only)
 if (typeof window !== 'undefined' && window.location && window.location.hostname === 'localhost') {
-    window.__commandHistory = commandHistory;
+    window.__commandHistory = {
+        generate: generateHistory,
+        npc: npcHistory,
+        search: searchHistory,
+        getActive: getActiveHistory,
+        executeInContext,
+        undoInContext,
+        redoInContext,
+        canUndoInContext,
+        canRedoInContext,
+        clearContext
+    };
 }

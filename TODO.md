@@ -25,24 +25,29 @@
 - Test suite: 13/13 tests passing
 
 ### ✅ Pattern #2: Command Pattern for Undo/Redo History - COMPLETED
-**Status:** ✅ **IMPLEMENTED** (v1.4.0, feature branch pushed)
+**Status:** ✅ **IMPLEMENTED** (v1.4.0, feature branch ready to push)
 **Implementation:**
 - Created `assets/js/command-history.mjs` with CommandHistory class
-- Implemented command classes: GenerateEncounterCommand, FilterChangeCommand, SearchCommand, BatchCommand
-- Added Undo/Redo/History buttons to header
-- Keyboard shortcuts: Ctrl+Z (undo), Ctrl+Shift+Z/Ctrl+Y (redo)
-- History panel with command list and timestamps
-- Visual state indicators (disabled buttons when can't undo/redo)
-- Test suite: 16/16 tests passing
-- Memory leak prevention with max 50 command limit
+- Implemented command classes: GenerateEncounterCommand, GenerateNPCCommand, FilterChangeCommand, SearchCommand, BatchCommand
+- Context-aware undo/redo: Separate history stacks for Generate, NPC, and Search pages
+- State capture system: Before/after snapshots with HTML and event listeners
+- Automatic context detection via window.currentPage tracking
+- Context helper functions: getActiveHistory(), undoInContext(), redoInContext(), executeInContext()
+- Keyboard shortcuts: Ctrl+Z (undo), Ctrl+Shift+Z/Ctrl+Y (redo) - context-aware
+- Removed UI buttons (History/Undo/Redo) - keyboard shortcuts only
+- Test suite: 30/30 tests passing (18 command pattern + 12 context awareness)
+- Browser-based test runner: tests/test-runner.html with colored output
+- Memory leak prevention with max 50 commands per context
 - Security: Input sanitization and XSS prevention
 - Event subscription system for UI updates
 
 **Success Metrics:**
-- ✅ Users can undo/redo up to 50 actions
+- ✅ Users can undo/redo up to 50 actions per page context
 - ✅ Keyboard shortcuts work (Ctrl+Z, Ctrl+Shift+Z, Ctrl+Y)
-- ✅ History tracked in memory (session-based)
-- ✅ Memory managed with FIFO eviction after 50 commands
+- ✅ Context isolation: Undo on Generate doesn't affect NPC page
+- ✅ State properly captured and restored (handles randomness)
+- ✅ History tracked in memory (session-based, per context)
+- ✅ Memory managed with FIFO eviction after 50 commands per context
 
 ### 📋 Pattern #3: Strategy Pattern for Export Formats
 **Priority:** LOW | **Estimated Effort:** 3-4 hours

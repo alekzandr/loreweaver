@@ -7,9 +7,20 @@ import {
     CommandHistory,
     Command,
     GenerateEncounterCommand,
+    GenerateNPCCommand,
     FilterChangeCommand,
     SearchCommand,
-    BatchCommand
+    BatchCommand,
+    generateHistory,
+    npcHistory,
+    searchHistory,
+    getActiveHistory,
+    executeInContext,
+    undoInContext,
+    redoInContext,
+    canUndoInContext,
+    canRedoInContext,
+    clearContext
 } from '../assets/js/command-history.mjs';
 
 /**
@@ -29,9 +40,11 @@ export function runCommandHistoryTests() {
         testHistoryClear,
         testCommandChaining,
         testGenerateEncounterCommand,
+        testGenerateNPCCommand,
         testFilterChangeCommand,
         testSearchCommand,
         testBatchCommand,
+        testContextAwareHistory,
         testErrorHandling,
         testMemoryManagement,
         testHistorySubscription,
@@ -160,15 +173,22 @@ function testRedoFunctionality() {
     
     const history = new CommandHistory();
     let value = 0;
+    let executeCount = 0;
     
     const incrementCommand = {
-        execute: () => { value++; },
-        undo: () => { value--; }
+        execute: () => { 
+            value++; 
+            executeCount++;
+        },
+        undo: () => { value--; },
+        redo: () => { value++; } // Redo restores state without incrementing executeCount
     };
     
     history.execute(incrementCommand);
+    assert(value === 1 && executeCount === 1, 'Initial execute should work');
+    
     history.execute(incrementCommand);
-    assert(value === 2, 'Value should be 2');
+    assert(value === 2 && executeCount === 2, 'Second execute should work');
     
     history.undo();
     assert(value === 1, 'Value should be 1 after undo');
@@ -176,6 +196,7 @@ function testRedoFunctionality() {
     const redoResult1 = history.redo();
     assert(redoResult1 === true, 'Redo should return true');
     assert(value === 2, 'Value should be 2 after redo');
+    assert(executeCount === 2, 'Redo should not call execute() again');
     
     const redoResult2 = history.redo();
     assert(redoResult2 === false, 'Redo should return false when no more redos');
@@ -192,7 +213,8 @@ function testCanUndoCanRedo() {
     const history = new CommandHistory();
     const dummyCommand = {
         execute: () => {},
-        undo: () => {}
+        undo: () => {},
+        redo: () => {}
     };
     
     assert(!history.canUndo(), 'Should not be able to undo empty history');
@@ -274,12 +296,14 @@ function testCommandChaining() {
     
     const addCommand = {
         execute: () => { value += 5; },
-        undo: () => { value -= 5; }
+        undo: () => { value -= 5; },
+        redo: () => { value += 5; }
     };
     
     const multiplyCommand = {
         execute: () => { value *= 2; },
-        undo: () => { value /= 2; }
+        undo: () => { value /= 2; },
+        redo: () => { value *= 2; }
     };
     
     history.execute(addCommand);    // value = 5
@@ -309,26 +333,81 @@ function testGenerateEncounterCommand() {
     console.log('🧪 Test: GenerateEncounterCommand');
     
     let currentEncounter = { id: 1, name: 'Old Encounter' };
+    let generateCount = 0;
     
     const generateFn = () => {
-        currentEncounter = { id: 2, name: 'New Encounter' };
+        generateCount++;
+        currentEncounter = { id: 2, name: 'New Encounter', generatedAt: generateCount };
         return currentEncounter;
     };
     
-    const restoreFn = (encounter) => {
-        currentEncounter = encounter;
+    const getStateFn = () => {
+        return currentEncounter;
     };
     
-    const oldEncounter = { ...currentEncounter };
-    const command = new GenerateEncounterCommand(generateFn, restoreFn, oldEncounter);
+    const setStateFn = (state) => {
+        currentEncounter = state ? { ...state } : null;
+    };
+    
+    const command = new GenerateEncounterCommand(generateFn, getStateFn, setStateFn);
     
     command.execute();
     assert(currentEncounter.id === 2, 'New encounter should be generated');
+    assert(generateCount === 1, 'Generate should be called once');
     
     command.undo();
     assert(currentEncounter.id === 1, 'Old encounter should be restored');
+    assert(generateCount === 1, 'Undo should not call generate');
+    
+    command.redo();
+    assert(currentEncounter.id === 2, 'New encounter should be restored');
+    assert(currentEncounter.generatedAt === 1, 'Should restore same encounter');
+    assert(generateCount === 1, 'Redo should not call generate again');
     
     console.log('  ✅ PASS: GenerateEncounterCommand works correctly\n');
+}
+
+/**
+ * Test: GenerateNPCCommand
+ */
+function testGenerateNPCCommand() {
+    console.log('🧪 Test: GenerateNPCCommand');
+    
+    let currentNPC = { id: 1, name: 'Old NPC', species: 'human' };
+    let generateCount = 0;
+    
+    const generateFn = () => {
+        generateCount++;
+        currentNPC = { id: 2, name: 'New NPC', species: 'elf', generatedAt: generateCount };
+        return currentNPC;
+    };
+    
+    const getStateFn = () => {
+        return currentNPC;
+    };
+    
+    const setStateFn = (state) => {
+        currentNPC = state ? { ...state } : null;
+    };
+    
+    const command = new GenerateNPCCommand(generateFn, getStateFn, setStateFn);
+    
+    command.execute();
+    assert(currentNPC.id === 2, 'New NPC should be generated');
+    assert(currentNPC.species === 'elf', 'NPC should be an elf');
+    assert(generateCount === 1, 'Generate should be called once');
+    
+    command.undo();
+    assert(currentNPC.id === 1, 'Old NPC should be restored');
+    assert(currentNPC.species === 'human', 'NPC should be human again');
+    assert(generateCount === 1, 'Undo should not call generate');
+    
+    command.redo();
+    assert(currentNPC.id === 2, 'New NPC should be restored');
+    assert(currentNPC.generatedAt === 1, 'Should restore same NPC');
+    assert(generateCount === 1, 'Redo should not call generate again');
+    
+    console.log('  ✅ PASS: GenerateNPCCommand works correctly\n');
 }
 
 /**
@@ -350,6 +429,9 @@ function testFilterChangeCommand() {
     
     command.undo();
     assert(currentFilter === 'all', 'Filter should be restored to all');
+    
+    command.redo();
+    assert(currentFilter === 'forest', 'Filter should be changed to forest again');
     
     console.log('  ✅ PASS: FilterChangeCommand works correctly\n');
 }
@@ -409,6 +491,73 @@ function testBatchCommand() {
     assert(value === 0, 'Batch command should undo all commands in reverse');
     
     console.log('  ✅ PASS: BatchCommand works correctly\n');
+}
+
+/**
+ * Test: Context-aware history
+ */
+function testContextAwareHistory() {
+    console.log('🧪 Test: Context-Aware History');
+    
+    // Clear all contexts first
+    clearContext('all');
+    
+    // Verify separate instances
+    assert(generateHistory !== npcHistory, 'Generate and NPC histories should be separate');
+    assert(generateHistory !== searchHistory, 'Generate and Search histories should be separate');
+    assert(npcHistory !== searchHistory, 'NPC and Search histories should be separate');
+    
+    // Test generate context
+    let value = 0;
+    const incrementCommand = {
+        execute: () => { value++; },
+        undo: () => { value--; },
+        redo: () => { value++; }
+    };
+    
+    generateHistory.execute(incrementCommand);
+    assert(value === 1, 'Value should be 1');
+    assert(generateHistory.canUndo(), 'Generate history should have undo');
+    assert(!npcHistory.canUndo(), 'NPC history should not have undo');
+    
+    // Test NPC context
+    let npcValue = 0;
+    const npcCommand = {
+        execute: () => { npcValue++; },
+        undo: () => { npcValue--; },
+        redo: () => { npcValue++; }
+    };
+    
+    npcHistory.execute(npcCommand);
+    assert(npcValue === 1, 'NPC value should be 1');
+    assert(npcHistory.canUndo(), 'NPC history should have undo');
+    assert(generateHistory.canUndo(), 'Generate history should still have undo');
+    
+    // Test undo in NPC context doesn't affect generate
+    npcHistory.undo();
+    assert(npcValue === 0, 'NPC value should be 0 after undo');
+    assert(value === 1, 'Generate value should still be 1');
+    
+    // Test context clearing
+    clearContext('npc');
+    assert(!npcHistory.canUndo(), 'NPC history should be cleared');
+    assert(!npcHistory.canRedo(), 'NPC history should have no redo');
+    assert(generateHistory.canUndo(), 'Generate history should not be affected');
+    
+    // Test executeInContext
+    const testCommand = {
+        execute: () => { value += 10; },
+        undo: () => { value -= 10; },
+        redo: () => { value += 10; }
+    };
+    
+    executeInContext(testCommand, 'search');
+    assert(value === 11, 'Value should be 11');
+    assert(searchHistory.canUndo(), 'Search history should have undo');
+    
+    clearContext('all');
+    
+    console.log('  ✅ PASS: Context-aware history works correctly\n');
 }
 
 /**
