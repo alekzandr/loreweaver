@@ -40,51 +40,7 @@
                     <button class="nav-tab" onclick="switchPage('search')">🔍 Search</button>
                     <button class="nav-tab" onclick="switchPage('settings')">⚙️ Settings</button>
                 </div>
-                
-                <!-- Undo/Redo Controls -->
-                <div class="history-controls">
-                    <button 
-                        id="undoButton" 
-                        class="history-btn" 
-                        onclick="undoLastAction()" 
-                        disabled 
-                        title="Undo (Ctrl+Z)"
-                        aria-label="Undo last action">
-                        ↶ Undo
-                    </button>
-                    <button 
-                        id="redoButton" 
-                        class="history-btn" 
-                        onclick="redoLastAction()" 
-                        disabled 
-                        title="Redo (Ctrl+Shift+Z)"
-                        aria-label="Redo last action">
-                        ↷ Redo
-                    </button>
-                    <button 
-                        id="historyButton" 
-                        class="history-btn" 
-                        onclick="toggleHistoryPanel()" 
-                        title="View history"
-                        aria-label="View command history">
-                        📋 History
-                    </button>
-                </div>
             </header>
-            
-            <!-- History Panel (Hidden by default) -->
-            <div id="historyPanel" class="history-panel" style="display: none;">
-                <div class="history-panel-header">
-                    <h3>Command History</h3>
-                    <button onclick="toggleHistoryPanel()" class="close-btn" aria-label="Close history panel">✕</button>
-                </div>
-                <div id="historyList" class="history-list">
-                    <!-- Populated dynamically -->
-                </div>
-                <div class="history-panel-footer">
-                    <button onclick="clearHistory()" class="btn-secondary">Clear History</button>
-                </div>
-            </div>
 
             <!-- Generate Page -->
             <div id="generatePage" class="page-content">
@@ -1399,32 +1355,6 @@
         
         // Initialize command history UI
         function initializeCommandHistory() {
-            const undoButton = document.getElementById('undoButton');
-            const redoButton = document.getElementById('redoButton');
-            const historyPanel = document.getElementById('historyPanel');
-            const historyList = document.getElementById('historyList');
-            
-            // Update UI based on history state
-            function updateUI(metadata) {
-                if (undoButton) {
-                    undoButton.disabled = !metadata.canUndo;
-                }
-                if (redoButton) {
-                    redoButton.disabled = !metadata.canRedo;
-                }
-                
-                // Update history list if panel is open
-                if (historyPanel && historyPanel.style.display !== 'none') {
-                    updateHistoryList();
-                }
-            }
-            
-            // Subscribe to history changes
-            commandHistory.subscribe(updateUI);
-            
-            // Initial UI update
-            updateUI(commandHistory.getMetadata());
-            
             // Setup keyboard shortcuts
             document.addEventListener('keydown', (e) => {
                 // Ctrl+Z for undo
@@ -1460,65 +1390,39 @@
             }
         };
         
-        // Toggle history panel
-        window.toggleHistoryPanel = function() {
-            const panel = document.getElementById('historyPanel');
-            if (panel) {
-                const isVisible = panel.style.display !== 'none';
-                panel.style.display = isVisible ? 'none' : 'block';
-                if (!isVisible) {
-                    updateHistoryList();
-                }
-            }
-        };
-        
-        // Update history list display
-        function updateHistoryList() {
-            const historyList = document.getElementById('historyList');
-            if (!historyList) return;
-            
-            const history = commandHistory.getHistory();
-            const metadata = commandHistory.getMetadata();
-            
-            if (history.length === 0) {
-                historyList.innerHTML = '<p class="empty-history">No actions in history</p>';
-                return;
-            }
-            
-            historyList.innerHTML = history.map((cmd, index) => {
-                const isCurrent = index === metadata.currentIndex;
-                const timestamp = new Date(cmd.timestamp).toLocaleTimeString();
-                return `
-                    <div class="history-item ${isCurrent ? 'current' : ''}">
-                        <span class="history-description">${cmd.getDescription()}</span>
-                        <span class="history-time">${timestamp}</span>
-                    </div>
-                `;
-            }).join('');
-        }
-        
-        // Clear history
-        window.clearHistory = function() {
-            if (confirm('Are you sure you want to clear the command history? This cannot be undone.')) {
-                commandHistory.clear();
-                updateHistoryList();
-                console.log('✅ History cleared');
-            }
-        };
-        
         // Wrap original generateEncounter to use command pattern
         const originalGenerateEncounter = window.generateEncounter;
         window.generateEncounter = function() {
-            const currentEncounter = window.currentEncounterFlow || null;
+            // Store current state before generating
+            const currentEncounter = window.currentEncounterFlow ? 
+                JSON.parse(JSON.stringify(window.currentEncounterFlow)) : null;
             
             const command = new GenerateEncounterCommand(
-                () => originalGenerateEncounter(),
+                () => {
+                    // Call original and capture result
+                    const result = originalGenerateEncounter();
+                    return window.currentEncounterFlow; // Return the newly generated encounter
+                },
                 (encounter) => {
+                    // Restore function - actually restore the encounter state
                     if (encounter) {
                         window.currentEncounterFlow = encounter;
-                        // Trigger UI update
-                        const event = new CustomEvent('encounterRestored', { detail: encounter });
-                        document.dispatchEvent(event);
+                        // Re-render the encounter display
+                        const display = document.getElementById('encounterDisplay');
+                        if (display && encounter.locations) {
+                            // Trigger a re-render of the encounter
+                            let html = '<div class="encounter-flow">';
+                            encounter.locations.forEach((location, index) => {
+                                html += `
+                                    <div class="flow-step">
+                                        <h3>Location ${index + 1}: ${location.name}</h3>
+                                        <p>${location.description}</p>
+                                    </div>
+                                `;
+                            });
+                            html += '</div>';
+                            display.innerHTML = html;
+                        }
                     } else {
                         // Clear encounter display
                         const display = document.getElementById('encounterDisplay');
@@ -1529,6 +1433,7 @@
                 currentEncounter
             );
             
+            // Execute the command (this will call the generate function)
             commandHistory.execute(command);
         };
         
@@ -1540,17 +1445,16 @@
                 'locationType': 'location',
                 'setting': 'setting'
             };
-            const filterKey = filterMap[type] || type;
-            const oldFilters = { ...window.activeFilters };
             
-            // Execute original function
-            originalToggleFilter(type, value);
+            // Capture old state
+            const oldFilters = JSON.parse(JSON.stringify(window.activeFilters));
             
             const command = new FilterChangeCommand(
                 type,
                 oldFilters,
-                { ...window.activeFilters },
+                null, // Will be set after execution
                 (filterType, filters) => {
+                    // This function both executes and restores
                     window.activeFilters = filters;
                     // Update UI
                     document.querySelectorAll('.filter-tags .filter-tag').forEach(tag => {
@@ -1564,9 +1468,23 @@
                 }
             );
             
-            // Add to history (not executing since we already executed original)
+            // First, execute the original to get new state
+            originalToggleFilter(type, value);
+            
+            // Capture the new state after toggle
+            command.newValue = JSON.parse(JSON.stringify(window.activeFilters));
+            
+            // Add to history without re-executing
+            commandHistory.history = commandHistory.history.slice(0, commandHistory.currentIndex + 1);
             commandHistory.history.push(command);
             commandHistory.currentIndex++;
+            
+            // Limit history size
+            if (commandHistory.history.length > commandHistory.maxHistorySize) {
+                commandHistory.history.shift();
+                commandHistory.currentIndex--;
+            }
+            
             commandHistory.notifyListeners();
         };
         
