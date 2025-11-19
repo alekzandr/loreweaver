@@ -315,6 +315,104 @@ export class GenerateEncounterCommand extends Command {
 }
 
 /**
+ * Command to generate an NPC
+ * Captures and stores the actual generated NPC for proper undo/redo
+ */
+export class GenerateNPCCommand extends Command {
+    /**
+     * @param {Function} generateFn - Function that generates an NPC
+     * @param {Function} getStateFn - Function that captures current state
+     * @param {Function} setStateFn - Function that restores a saved state
+     */
+    constructor(generateFn, getStateFn, setStateFn) {
+        super('Generate NPC');
+        
+        if (typeof generateFn !== 'function') {
+            throw new Error('generateFn must be a function');
+        }
+        if (typeof getStateFn !== 'function') {
+            throw new Error('getStateFn must be a function');
+        }
+        if (typeof setStateFn !== 'function') {
+            throw new Error('setStateFn must be a function');
+        }
+        
+        this.generateFn = generateFn;
+        this.getStateFn = getStateFn;
+        this.setStateFn = setStateFn;
+        
+        // Capture the state BEFORE generation
+        this.previousState = this.captureState();
+        this.newState = null;
+    }
+    
+    execute() {
+        // Generate new NPC
+        const result = this.generateFn();
+        
+        // Capture the state AFTER generation
+        this.newState = this.captureState();
+        
+        return result;
+    }
+    
+    undo() {
+        // Restore the previous state
+        this.restoreState(this.previousState);
+    }
+    
+    redo() {
+        // Restore the generated state
+        this.restoreState(this.newState);
+    }
+    
+    /**
+     * Capture current state
+     * @private
+     */
+    captureState() {
+        const state = this.getStateFn();
+        return this.deepClone(state);
+    }
+    
+    /**
+     * Restore a saved state
+     * @private
+     */
+    restoreState(state) {
+        this.setStateFn(state);
+    }
+    
+    /**
+     * Deep clone an object to prevent reference issues
+     * @private
+     */
+    deepClone(obj) {
+        if (obj === null || typeof obj !== 'object') {
+            return obj;
+        }
+        
+        // Security: Don't clone functions or DOM elements
+        if (typeof obj === 'function' || obj instanceof HTMLElement) {
+            return null;
+        }
+        
+        try {
+            // Use structuredClone if available (modern browsers)
+            if (typeof structuredClone === 'function') {
+                return structuredClone(obj);
+            }
+            
+            // Fallback to JSON clone (has limitations but safe)
+            return JSON.parse(JSON.stringify(obj));
+        } catch (error) {
+            console.error('Error cloning object:', error);
+            return null;
+        }
+    }
+}
+
+/**
  * Command to change filter values
  * Allows undoing filter changes
  */
@@ -492,10 +590,122 @@ export class BatchCommand extends Command {
     }
 }
 
-// Create singleton instance for global use
-export const commandHistory = new CommandHistory(50);
+// Create separate history instances for different contexts
+export const generateHistory = new CommandHistory(50);
+export const npcHistory = new CommandHistory(50);
+export const searchHistory = new CommandHistory(30);
+
+// Legacy alias for backward compatibility
+export const commandHistory = generateHistory;
+
+/**
+ * Get the appropriate history for the current page context
+ * @returns {CommandHistory}
+ */
+export function getActiveHistory() {
+    if (typeof window === 'undefined') {
+        return generateHistory;
+    }
+    
+    const currentPage = window.currentPage || 'generate';
+    
+    switch (currentPage) {
+        case 'npc':
+            return npcHistory;
+        case 'search':
+            return searchHistory;
+        case 'generate':
+        default:
+            return generateHistory;
+    }
+}
+
+/**
+ * Execute a command in the appropriate context
+ * @param {Command} command - Command to execute
+ * @param {string} context - Optional context override ('generate', 'npc', 'search')
+ * @returns {*} Result of command execution
+ */
+export function executeInContext(command, context = null) {
+    if (context) {
+        // Use specified context
+        switch (context) {
+            case 'npc':
+                return npcHistory.execute(command);
+            case 'search':
+                return searchHistory.execute(command);
+            case 'generate':
+            default:
+                return generateHistory.execute(command);
+        }
+    }
+    
+    // Use active page context
+    return getActiveHistory().execute(command);
+}
+
+/**
+ * Undo in the active context
+ * @returns {boolean}
+ */
+export function undoInContext() {
+    return getActiveHistory().undo();
+}
+
+/**
+ * Redo in the active context
+ * @returns {boolean}
+ */
+export function redoInContext() {
+    return getActiveHistory().redo();
+}
+
+/**
+ * Check if undo is available in active context
+ * @returns {boolean}
+ */
+export function canUndoInContext() {
+    return getActiveHistory().canUndo();
+}
+
+/**
+ * Check if redo is available in active context
+ * @returns {boolean}
+ */
+export function canRedoInContext() {
+    return getActiveHistory().canRedo();
+}
+
+/**
+ * Clear history for a specific context
+ * @param {string} context - Context to clear ('generate', 'npc', 'search', 'all')
+ */
+export function clearContext(context = 'all') {
+    if (context === 'all') {
+        generateHistory.clear();
+        npcHistory.clear();
+        searchHistory.clear();
+    } else if (context === 'npc') {
+        npcHistory.clear();
+    } else if (context === 'search') {
+        searchHistory.clear();
+    } else {
+        generateHistory.clear();
+    }
+}
 
 // Expose to window for debugging (dev mode only)
 if (typeof window !== 'undefined' && window.location && window.location.hostname === 'localhost') {
-    window.__commandHistory = commandHistory;
+    window.__commandHistory = {
+        generate: generateHistory,
+        npc: npcHistory,
+        search: searchHistory,
+        getActive: getActiveHistory,
+        executeInContext,
+        undoInContext,
+        redoInContext,
+        canUndoInContext,
+        canRedoInContext,
+        clearContext
+    };
 }

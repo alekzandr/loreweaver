@@ -1347,10 +1347,19 @@
     <!-- Initialize Command History System -->
     <script type="module">
         import {
-            commandHistory,
+            generateHistory,
+            npcHistory,
+            searchHistory,
             GenerateEncounterCommand,
+            GenerateNPCCommand,
             FilterChangeCommand,
-            SearchCommand
+            SearchCommand,
+            getActiveHistory,
+            executeInContext,
+            undoInContext,
+            redoInContext,
+            canUndoInContext,
+            canRedoInContext
         } from './assets/js/command-history.mjs';
         
         // Initialize command history UI
@@ -1370,23 +1379,25 @@
             });
         }
         
-        // Undo last action
+        // Undo last action in current context
         window.undoLastAction = function() {
-            const success = commandHistory.undo();
+            const success = undoInContext();
+            const context = window.currentPage || 'generate';
             if (success) {
-                console.log('✅ Undo successful');
+                console.log(`✅ Undo successful (${context} context)`);
             } else {
-                console.log('⚠️ Nothing to undo');
+                console.log(`⚠️ Nothing to undo in ${context} context`);
             }
         };
         
-        // Redo last action
+        // Redo last action in current context
         window.redoLastAction = function() {
-            const success = commandHistory.redo();
+            const success = redoInContext();
+            const context = window.currentPage || 'generate';
             if (success) {
-                console.log('✅ Redo successful');
+                console.log(`✅ Redo successful (${context} context)`);
             } else {
-                console.log('⚠️ Nothing to redo');
+                console.log(`⚠️ Nothing to redo in ${context} context`);
             }
         };
         
@@ -1480,9 +1491,85 @@
                 restoreEncounterState
             );
             
-            // Execute the command (this will capture before/after states)
-            return commandHistory.execute(command);
+            // Execute the command in generate context (this will capture before/after states)
+            return generateHistory.execute(command);
         };
+        
+        // Function to capture complete NPC state
+        function captureNPCState() {
+            const npcDisplay = document.getElementById('npcDisplay');
+            const npcInfoDisplay = document.getElementById('npcInfoDisplay');
+            
+            return {
+                // Capture the actual generated NPC data
+                npcData: window.currentNPC ? JSON.parse(JSON.stringify(window.currentNPC)) : null,
+                // Capture the HTML content for exact restoration
+                npcHTML: npcDisplay ? npcDisplay.innerHTML : '',
+                npcInfoHTML: npcInfoDisplay ? npcInfoDisplay.innerHTML : '',
+                timestamp: Date.now()
+            };
+        }
+        
+        // Function to restore complete NPC state
+        function restoreNPCState(state) {
+            if (!state) {
+                // Clear everything
+                const npcDisplay = document.getElementById('npcDisplay');
+                const npcInfoDisplay = document.getElementById('npcInfoDisplay');
+                if (npcDisplay) npcDisplay.innerHTML = '';
+                if (npcInfoDisplay) npcInfoDisplay.innerHTML = '';
+                window.currentNPC = null;
+                return;
+            }
+            
+            // Restore the data
+            window.currentNPC = state.npcData;
+            
+            // Restore the HTML displays
+            const npcDisplay = document.getElementById('npcDisplay');
+            const npcInfoDisplay = document.getElementById('npcInfoDisplay');
+            
+            if (npcDisplay) {
+                npcDisplay.innerHTML = state.npcHTML;
+            }
+            
+            if (npcInfoDisplay) {
+                npcInfoDisplay.innerHTML = state.npcInfoHTML;
+            }
+        }
+        
+        // Wrap NPC generation to use command pattern with state capture
+        // Store original function reference
+        let originalGenerateNPC = null;
+        
+        // Wait for generateNPC to be defined, then wrap it
+        function wrapNPCGeneration() {
+            if (typeof window.generateNPC === 'function' && !originalGenerateNPC) {
+                originalGenerateNPC = window.generateNPC;
+                
+                window.generateNPC = function() {
+                    const command = new GenerateNPCCommand(
+                        () => {
+                            // Call original generate function
+                            const result = originalGenerateNPC.apply(this, arguments);
+                            return result;
+                        },
+                        captureNPCState,
+                        restoreNPCState
+                    );
+                    
+                    // Execute the command in NPC context
+                    return npcHistory.execute(command);
+                };
+                
+                console.log('✅ NPC generation wrapped with command pattern');
+            }
+        }
+        
+        // Try to wrap immediately and also after a delay
+        wrapNPCGeneration();
+        setTimeout(wrapNPCGeneration, 100);
+        setTimeout(wrapNPCGeneration, 500);
         
         // Wrap filter changes to use command pattern
         const originalToggleFilter = window.toggleFilter;
@@ -1525,8 +1612,8 @@
                 }
             );
             
-            // Execute command through history (this applies the change properly)
-            commandHistory.execute(command);
+            // Execute command through search history (filters affect search)
+            searchHistory.execute(command);
         };
         
         // Initialize after DOM is ready
