@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="assets/css/themes.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/pages.css">
+    <link rel="stylesheet" href="assets/css/changelog.css">
     
     <!-- Test Suites (only loaded in development) -->
     <script type="module" src="tests/test-memory-leak-event-listeners.js"></script>
@@ -21,6 +22,7 @@
     <script type="module" src="tests/test-race-condition-data-loading.js"></script>
     <script type="module" src="tests/test-duplicate-exports.js"></script>
     <script type="module" src="tests/test-panel-closing-chrome.js"></script>
+    <script type="module" src="tests/test-changelog.js"></script>
 </head>
 <body>
     <div class="main-content" id="mainContent">
@@ -1323,6 +1325,21 @@
         window.regenerateFlowLocation = regenerateFlowLocation;
         window.regenerateNPC = regenerateNPC;
         window.removeNPC = removeNPC;
+    </script>
+
+    <!-- Initialize Changelog System -->
+    <script type="module">
+        import { initializeChangelog } from './assets/js/changelog.js';
+        
+        // Initialize changelog after DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                initializeChangelog();
+            });
+        } else {
+            // DOM already loaded
+            initializeChangelog();
+        }
     </script>
 </body>
 </html>
