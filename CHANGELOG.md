@@ -11,18 +11,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - **Command Pattern for Undo/Redo**: Full undo/redo functionality with keyboard shortcuts
+- **Context-Aware Undo/Redo**: Separate history stacks for Generate, NPC, and Search pages
 - CommandHistory class with history stack management (max 50 commands)
-- Undo/Redo UI controls in header with visual state indicators
-- History panel showing all executed commands with timestamps
-- GenerateEncounterCommand for undoing encounter generations
+- GenerateEncounterCommand with state capture for randomness handling
+- GenerateNPCCommand for NPC page undo/redo functionality
 - FilterChangeCommand for reverting filter changes
 - SearchCommand for undoing search operations
 - BatchCommand for atomic multi-command operations
-- Keyboard shortcuts: Ctrl+Z (undo), Ctrl+Shift+Z/Ctrl+Y (redo)
-- Command history test suite with 16 comprehensive tests
+- Context helper functions: getActiveHistory(), undoInContext(), redoInContext()
+- Three separate history instances: generateHistory, npcHistory, searchHistory
+- Automatic context detection via window.currentPage tracking
+- Keyboard shortcuts: Ctrl+Z (undo), Ctrl+Shift+Z/Ctrl+Y (redo) - context-aware
+- Command history test suite with 18 comprehensive tests
+- Context awareness test suite with 12 comprehensive tests (30 total)
+- Browser-based test runner with colored output (tests/test-runner.html)
 - Memory leak prevention in command history
 - Security validation for command inputs (XSS prevention)
 - Event subscription system for history state changes
+- State capture system for before/after snapshots including HTML and event listeners
 - EventBus (Observer Pattern) for decoupled component communication
 - Publish/Subscribe system for application-wide event management
 - Standard event constants (Events) to prevent typos
@@ -31,9 +37,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Event publishing for page switching, search, filters, and theme changes
 
 ### Changed
-- Wrapped generateEncounter() to use Command Pattern
+- Wrapped generateEncounter() to use Command Pattern with state capture
+- Wrapped generateNPC() to use Command Pattern with context awareness
 - Wrapped filter changes to use Command Pattern
-- Enhanced header with history controls (Undo/Redo/History buttons)
+- Removed History, Undo, and Redo UI buttons (keyboard shortcuts only)
+- Fixed undo/redo to restore state instead of re-executing commands
+- Enhanced switchPage() to track window.currentPage for context detection
+- Added window.currentPage initialization in initApp()
 - Integrated EventBus into app.js for better component decoupling
 - Updated switchPage() to publish PAGE_SWITCHED events
 - Updated performSearch() to publish SEARCH_STARTED and SEARCH_COMPLETED events  

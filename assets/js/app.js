@@ -187,6 +187,9 @@ export async function initApp() {
     // Populate NPC dropdowns
     populateNPCDropdowns();
     
+    // Set initial page context for undo/redo
+    window.currentPage = 'generate';
+    
     console.log('✅ LoreWeaver initialized');
     console.log('Ready to generate encounters!');
 }
@@ -385,6 +388,9 @@ export function switchPage(page) {
     domCache.settingsPage.style.display = 'none';
     
     document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+
+    // Set current page for context-aware undo/redo
+    window.currentPage = page;
 
     if (page === 'generate') {
         domCache.generatePage.style.display = 'block';
