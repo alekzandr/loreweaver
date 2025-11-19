@@ -166,7 +166,13 @@ export function toggleTheme() {
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     
     html.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
+    
+    try {
+        localStorage.setItem('theme', newTheme);
+    } catch (e) {
+        console.warn('Could not save theme preference:', e);
+        // Non-critical error, continue without saving
+    }
     
     updateThemeUI(newTheme);
 }
@@ -208,7 +214,13 @@ export function toggleProgressiveReveal() {
     const currentSetting = localStorage.getItem('progressiveReveal') === 'true';
     const newSetting = !currentSetting;
     
-    localStorage.setItem('progressiveReveal', newSetting);
+    try {
+        localStorage.setItem('progressiveReveal', newSetting);
+    } catch (e) {
+        console.warn('Could not save progressive reveal preference:', e);
+        // Non-critical error, continue without saving
+    }
+    
     updateProgressiveRevealUI(newSetting);
 }
 
