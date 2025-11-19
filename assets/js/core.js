@@ -559,9 +559,15 @@ function renderNPCStatBlock(editMode = false) {
     `;
     
     const npcDisplay = document.getElementById('npcDisplay');
-    npcDisplay.innerHTML = html;
-    npcDisplay.classList.add('active');
-    npcDisplay.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    
+    // Remove old event listeners by cloning and replacing the element
+    // This prevents memory leaks from accumulating listeners
+    const npcDisplayClone = npcDisplay.cloneNode(false);
+    npcDisplay.parentNode.replaceChild(npcDisplayClone, npcDisplay);
+    
+    npcDisplayClone.innerHTML = html;
+    npcDisplayClone.classList.add('active');
+    npcDisplayClone.scrollIntoView({ behavior: 'smooth', block: 'start' });
     
     // Add hover effect for buttons (only in view mode)
     if (!editMode) {
@@ -572,19 +578,28 @@ function renderNPCStatBlock(editMode = false) {
         // Use the parent container for hover detection
         const hoverTarget = statBlock.parentElement;
         
-        hoverTarget.addEventListener('mouseenter', () => {
+        // Define named functions for listeners so they can be removed later
+        const handleMouseEnter = () => {
             editBtn.style.opacity = '1';
             editBtn.style.transform = 'scale(1.1)';
             addBtn.style.opacity = '1';
             addBtn.style.transform = 'scale(1.1)';
-        });
+        };
         
-        hoverTarget.addEventListener('mouseleave', () => {
+        const handleMouseLeave = () => {
             editBtn.style.opacity = '0';
             editBtn.style.transform = 'scale(1)';
             addBtn.style.opacity = '0';
             addBtn.style.transform = 'scale(1)';
-        });
+        };
+        
+        // Store references for potential cleanup
+        hoverTarget._mouseEnterHandler = handleMouseEnter;
+        hoverTarget._mouseLeaveHandler = handleMouseLeave;
+        
+        // Add event listeners with named functions
+        hoverTarget.addEventListener('mouseenter', handleMouseEnter);
+        hoverTarget.addEventListener('mouseleave', handleMouseLeave);
     }
 }
 
