@@ -98,12 +98,8 @@ export class CommandHistory {
         const command = this.history[this.currentIndex];
         
         try {
-            // Call redo() if available, otherwise fall back to execute()
-            if (typeof command.redo === 'function') {
-                command.redo();
-            } else {
-                command.execute();
-            }
+            // Always use redo() which should restore the saved state
+            command.redo();
             this.notifyListeners();
             return true;
         } catch (error) {
@@ -211,6 +207,10 @@ export class Command {
         throw new Error('Undo method must be implemented');
     }
     
+    redo() {
+        throw new Error('Redo method must be implemented');
+    }
+    
     getDescription() {
         return this.description;
     }
@@ -218,50 +218,71 @@ export class Command {
 
 /**
  * Command to generate an encounter
- * Stores the previous and new encounter for undo/redo
+ * Captures and stores the actual generated content for proper undo/redo
  */
 export class GenerateEncounterCommand extends Command {
     /**
      * @param {Function} generateFn - Function that generates an encounter
-     * @param {Function} restoreFn - Function that restores an encounter
-     * @param {Object} currentEncounter - Current encounter before generation
+     * @param {Function} getStateFn - Function that captures current state
+     * @param {Function} setStateFn - Function that restores a saved state
      */
-    constructor(generateFn, restoreFn, currentEncounter = null) {
+    constructor(generateFn, getStateFn, setStateFn) {
         super('Generate Encounter');
         
         if (typeof generateFn !== 'function') {
             throw new Error('generateFn must be a function');
         }
-        if (typeof restoreFn !== 'function') {
-            throw new Error('restoreFn must be a function');
+        if (typeof getStateFn !== 'function') {
+            throw new Error('getStateFn must be a function');
+        }
+        if (typeof setStateFn !== 'function') {
+            throw new Error('setStateFn must be a function');
         }
         
         this.generateFn = generateFn;
-        this.restoreFn = restoreFn;
-        this.previousEncounter = currentEncounter ? this.deepClone(currentEncounter) : null;
-        this.generatedEncounter = null;
+        this.getStateFn = getStateFn;
+        this.setStateFn = setStateFn;
+        
+        // Capture the state BEFORE generation
+        this.previousState = this.captureState();
+        this.newState = null;
     }
     
     execute() {
-        // Generate and store new encounter
-        this.generatedEncounter = this.generateFn();
-        return this.generatedEncounter;
+        // Generate new content
+        const result = this.generateFn();
+        
+        // Capture the state AFTER generation
+        this.newState = this.captureState();
+        
+        return result;
     }
     
     undo() {
-        if (this.previousEncounter) {
-            this.restoreFn(this.previousEncounter);
-        } else {
-            // Clear the display if there was no previous encounter
-            this.restoreFn(null);
-        }
+        // Restore the previous state
+        this.restoreState(this.previousState);
     }
     
     redo() {
-        // Restore the generated encounter instead of generating a new one
-        if (this.generatedEncounter) {
-            this.restoreFn(this.generatedEncounter);
-        }
+        // Restore the generated state
+        this.restoreState(this.newState);
+    }
+    
+    /**
+     * Capture current state
+     * @private
+     */
+    captureState() {
+        const state = this.getStateFn();
+        return this.deepClone(state);
+    }
+    
+    /**
+     * Restore a saved state
+     * @private
+     */
+    restoreState(state) {
+        this.setStateFn(state);
     }
     
     /**
@@ -315,8 +336,8 @@ export class FilterChangeCommand extends Command {
         }
         
         this.filterType = filterType;
-        this.oldValue = oldValue;
-        this.newValue = newValue;
+        this.oldValue = this.deepClone(oldValue);
+        this.newValue = this.deepClone(newValue);
         this.applyFn = applyFn;
     }
     
@@ -330,6 +351,26 @@ export class FilterChangeCommand extends Command {
     
     redo() {
         this.applyFn(this.filterType, this.newValue);
+    }
+    
+    /**
+     * Deep clone for safety
+     * @private
+     */
+    deepClone(obj) {
+        if (obj === null || typeof obj !== 'object') {
+            return obj;
+        }
+        
+        try {
+            if (typeof structuredClone === 'function') {
+                return structuredClone(obj);
+            }
+            return JSON.parse(JSON.stringify(obj));
+        } catch (error) {
+            console.error('Error cloning:', error);
+            return obj;
+        }
     }
 }
 

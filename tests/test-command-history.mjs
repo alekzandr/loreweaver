@@ -200,7 +200,8 @@ function testCanUndoCanRedo() {
     const history = new CommandHistory();
     const dummyCommand = {
         execute: () => {},
-        undo: () => {}
+        undo: () => {},
+        redo: () => {}
     };
     
     assert(!history.canUndo(), 'Should not be able to undo empty history');
@@ -282,12 +283,14 @@ function testCommandChaining() {
     
     const addCommand = {
         execute: () => { value += 5; },
-        undo: () => { value -= 5; }
+        undo: () => { value -= 5; },
+        redo: () => { value += 5; }
     };
     
     const multiplyCommand = {
         execute: () => { value *= 2; },
-        undo: () => { value /= 2; }
+        undo: () => { value /= 2; },
+        redo: () => { value *= 2; }
     };
     
     history.execute(addCommand);    // value = 5
@@ -325,12 +328,15 @@ function testGenerateEncounterCommand() {
         return currentEncounter;
     };
     
-    const restoreFn = (encounter) => {
-        currentEncounter = encounter;
+    const getStateFn = () => {
+        return currentEncounter;
     };
     
-    const oldEncounter = { ...currentEncounter };
-    const command = new GenerateEncounterCommand(generateFn, restoreFn, oldEncounter);
+    const setStateFn = (state) => {
+        currentEncounter = state ? { ...state } : null;
+    };
+    
+    const command = new GenerateEncounterCommand(generateFn, getStateFn, setStateFn);
     
     command.execute();
     assert(currentEncounter.id === 2, 'New encounter should be generated');

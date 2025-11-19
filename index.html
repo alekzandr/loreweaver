@@ -1390,51 +1390,98 @@
             }
         };
         
-        // Wrap original generateEncounter to use command pattern
+        // Function to capture complete encounter state
+        function captureEncounterState() {
+            const encounterDisplay = document.getElementById('encounterDisplay');
+            const npcInfoDisplay = document.getElementById('npcInfoDisplay');
+            
+            return {
+                // Capture the actual generated data
+                encounterFlow: window.currentEncounterFlow ? JSON.parse(JSON.stringify(window.currentEncounterFlow)) : null,
+                // Capture the HTML content for exact restoration
+                encounterHTML: encounterDisplay ? encounterDisplay.innerHTML : '',
+                npcHTML: npcInfoDisplay ? npcInfoDisplay.innerHTML : '',
+                // Capture current page state if needed
+                currentPage: window.currentPage || 'generate',
+                timestamp: Date.now()
+            };
+        }
+        
+        // Function to restore complete encounter state
+        function restoreEncounterState(state) {
+            if (!state) {
+                // Clear everything
+                const encounterDisplay = document.getElementById('encounterDisplay');
+                const npcInfoDisplay = document.getElementById('npcInfoDisplay');
+                if (encounterDisplay) encounterDisplay.innerHTML = '';
+                if (npcInfoDisplay) npcInfoDisplay.innerHTML = '';
+                window.currentEncounterFlow = null;
+                return;
+            }
+            
+            // Restore the data
+            window.currentEncounterFlow = state.encounterFlow;
+            
+            // Restore the HTML displays
+            const encounterDisplay = document.getElementById('encounterDisplay');
+            const npcInfoDisplay = document.getElementById('npcInfoDisplay');
+            
+            if (encounterDisplay) {
+                encounterDisplay.innerHTML = state.encounterHTML;
+                
+                // Re-attach event listeners for any interactive elements
+                const generateButtons = encounterDisplay.querySelectorAll('.generate-npc-btn');
+                generateButtons.forEach(btn => {
+                    const locationIndex = parseInt(btn.dataset.locationIndex);
+                    const npcIndex = parseInt(btn.dataset.npcIndex);
+                    btn.addEventListener('click', function() {
+                        if (window.currentEncounterFlow && 
+                            window.currentEncounterFlow.locations && 
+                            window.currentEncounterFlow.locations[locationIndex] &&
+                            window.currentEncounterFlow.locations[locationIndex].npcs &&
+                            window.currentEncounterFlow.locations[locationIndex].npcs[npcIndex]) {
+                            const npc = window.currentEncounterFlow.locations[locationIndex].npcs[npcIndex];
+                            generateNPCFromEncounter(npc.species, npc.subspecies);
+                        }
+                    });
+                });
+                
+                // Re-attach location detail click handlers
+                const locationCards = encounterDisplay.querySelectorAll('.location-card');
+                locationCards.forEach(card => {
+                    const locationIndex = parseInt(card.dataset.locationIndex);
+                    card.addEventListener('click', function(e) {
+                        if (!e.target.closest('.generate-npc-btn')) {
+                            if (window.currentEncounterFlow && 
+                                window.currentEncounterFlow.locations && 
+                                window.currentEncounterFlow.locations[locationIndex]) {
+                                showLocationDetail(window.currentEncounterFlow.locations[locationIndex], locationIndex);
+                            }
+                        }
+                    });
+                });
+            }
+            
+            if (npcInfoDisplay) {
+                npcInfoDisplay.innerHTML = state.npcHTML;
+            }
+        }
+        
+        // Wrap original generateEncounter to use command pattern with state capture
         const originalGenerateEncounter = window.generateEncounter;
         window.generateEncounter = function() {
-            // Store current state before generating
-            const currentEncounter = window.currentEncounterFlow ? 
-                JSON.parse(JSON.stringify(window.currentEncounterFlow)) : null;
-            
             const command = new GenerateEncounterCommand(
                 () => {
-                    // Call original and capture result
+                    // Call original generate function
                     const result = originalGenerateEncounter();
-                    return window.currentEncounterFlow; // Return the newly generated encounter
+                    return result;
                 },
-                (encounter) => {
-                    // Restore function - actually restore the encounter state
-                    if (encounter) {
-                        window.currentEncounterFlow = encounter;
-                        // Re-render the encounter display
-                        const display = document.getElementById('encounterDisplay');
-                        if (display && encounter.locations) {
-                            // Trigger a re-render of the encounter
-                            let html = '<div class="encounter-flow">';
-                            encounter.locations.forEach((location, index) => {
-                                html += `
-                                    <div class="flow-step">
-                                        <h3>Location ${index + 1}: ${location.name}</h3>
-                                        <p>${location.description}</p>
-                                    </div>
-                                `;
-                            });
-                            html += '</div>';
-                            display.innerHTML = html;
-                        }
-                    } else {
-                        // Clear encounter display
-                        const display = document.getElementById('encounterDisplay');
-                        if (display) display.innerHTML = '';
-                        window.currentEncounterFlow = null;
-                    }
-                },
-                currentEncounter
+                captureEncounterState,
+                restoreEncounterState
             );
             
-            // Execute the command (this will call the generate function)
-            commandHistory.execute(command);
+            // Execute the command (this will capture before/after states)
+            return commandHistory.execute(command);
         };
         
         // Wrap filter changes to use command pattern
