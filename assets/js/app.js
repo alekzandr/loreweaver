@@ -19,6 +19,13 @@ let currentPage = 1;
 let itemsPerPage = 5;
 let allResults = [];
 
+// Filter calculation cache
+let filterCache = {
+    lastDataTimestamp: null,
+    typeCountsCache: null,
+    optionsCache: {}
+};
+
 // DOM element cache
 let domCache = {
     // Pages
@@ -434,6 +441,14 @@ export function applyFilters() {
 function updateAllFilters() {
     if (!window.locationObjects) return;
     
+    // Check if data has changed - invalidate cache if so
+    const currentTimestamp = window.dataLoadedTimestamp || Date.now();
+    if (filterCache.lastDataTimestamp !== currentTimestamp) {
+        filterCache.lastDataTimestamp = currentTimestamp;
+        filterCache.typeCountsCache = null;
+        filterCache.optionsCache = {};
+    }
+    
     // Get current selections from cached elements
     const currentType = domCache.typeFilter.value;
     const currentEnv = domCache.envFilter.value;
@@ -493,6 +508,12 @@ function updateAllFilters() {
     
     // Helper function to count total items for Type filter
     function getTypeCounts() {
+        // Return cached value if available
+        const cacheKey = `type-${currentEnv}-${currentLocationType}-${currentSetting}`;
+        if (filterCache.optionsCache[cacheKey]) {
+            return filterCache.optionsCache[cacheKey];
+        }
+        
         let encounterCount = 0;
         let locationCount = 0;
         
@@ -519,7 +540,10 @@ function updateAllFilters() {
             });
         });
         
-        return { encounterCount, locationCount };
+        const result = { encounterCount, locationCount };
+        // Cache the result
+        filterCache.optionsCache[cacheKey] = result;
+        return result;
     }
     
     // Update Type filter with counts
