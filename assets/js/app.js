@@ -3,6 +3,7 @@
 
 import { loadData } from './data-loader.js';
 import { debounce } from './utils.js';
+import { eventBus, Events } from './event-bus.js';
 
 // Global state
 export let selectedEnvironment = 'urban';
@@ -292,6 +293,12 @@ export function toggleTheme() {
     }
     
     updateThemeUI(newTheme);
+    
+    // Publish theme toggled event
+    eventBus.publish(Events.THEME_TOGGLED, { 
+        theme: newTheme,
+        timestamp: Date.now() 
+    });
 }
 
 /**
@@ -393,6 +400,9 @@ export function switchPage(page) {
         domCache.settingsPage.style.display = 'block';
         document.querySelectorAll('.nav-tab')[3].classList.add('active');
     }
+    
+    // Publish page switched event
+    eventBus.publish(Events.PAGE_SWITCHED, { page, timestamp: Date.now() });
 }
 
 /**
@@ -603,6 +613,12 @@ function updateAllFilters() {
         domCache.settingFilter.innerHTML = '<option value="">All Settings</option>';
         domCache.settingFilter.disabled = true;
     }
+    
+    // Publish filters updated event
+    eventBus.publish(Events.FILTERS_UPDATED, { 
+        filters: activeFilters,
+        timestamp: Date.now() 
+    });
 }
 
 /**
@@ -622,6 +638,9 @@ export function clearFilters() {
         setting: [],
         plane: []
     };
+    
+    // Publish filters cleared event
+    eventBus.publish(Events.FILTERS_CLEARED, { timestamp: Date.now() });
 
     // Reset dependent dropdowns to show all options
     if (window.initializeSearchFilters) {
@@ -647,7 +666,9 @@ export function performSearch() {
         return;
     }
     
+    // Publish search started event
     const searchTerm = domCache.searchInput.value.toLowerCase().trim();
+    eventBus.publish(Events.SEARCH_STARTED, { searchTerm, timestamp: Date.now() });
 
     let results = [];
 
@@ -707,6 +728,13 @@ export function performSearch() {
     // Store results and reset to first page
     allResults = results;
     currentPage = 1;
+    
+    // Publish search completed event
+    eventBus.publish(Events.SEARCH_COMPLETED, { 
+        searchTerm, 
+        resultCount: results.length,
+        timestamp: Date.now() 
+    });
     
     // Display paginated results
     renderPaginatedResults();

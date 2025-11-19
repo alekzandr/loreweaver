@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- EventBus (Observer Pattern) for decoupled component communication
+- Publish/Subscribe system for application-wide event management
+- Standard event constants (Events) to prevent typos
+- Event history tracking for debugging
+- Comprehensive EventBus test suite with 13 tests
+- Event publishing for page switching, search, filters, and theme changes
+
+### Changed
+- Integrated EventBus into app.js for better component decoupling
+- Updated switchPage() to publish PAGE_SWITCHED events
+- Updated performSearch() to publish SEARCH_STARTED and SEARCH_COMPLETED events  
+- Updated filter functions to publish FILTERS_UPDATED and FILTERS_CLEARED events
+- Updated toggleTheme() to publish THEME_TOGGLED events
+
 ## [1.3.0] - 2025-11-18
 
 ### Added
