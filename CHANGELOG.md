@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.3.0] - 2024-11-18
+## [1.3.0] - 2025-11-18
 
 ### Added
 - Changelog display screen with semantic versioning
@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated HTML validation to include changelog module
 - Enhanced project with design pattern documentation
 
-## [1.2.0] - 2024-11-18
+## [1.2.0] - 2025-11-18
 
 ### Added
 - Performance optimizations: search debouncing, DOM caching, image preloading
@@ -40,7 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Filter state persistence issues
 - Search result pagination edge cases
 
-## [1.1.0] - 2024-11-10
+## [1.1.0] - 2025-11-10
 
 ### Added
 - NPC generator with personality traits
@@ -51,7 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Redesigned search interface
 - Improved mobile responsiveness
 
-## [1.0.0] - 2024-11-01
+## [1.0.0] - 2025-11-01
 
 ### Added
 - Initial release
