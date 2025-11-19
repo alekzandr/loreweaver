@@ -2,6 +2,7 @@
 // Main app initialization, theme management, and page switching
 
 import { loadData } from './data-loader.js';
+import { debounce } from './utils.js';
 
 // Global state
 export let selectedEnvironment = 'urban';
@@ -78,9 +79,16 @@ export async function initApp() {
         });
     }
     
-    // Setup Enter key for search input
+    // Setup search input with debouncing
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
+        // Create debounced version of performSearch (300ms delay)
+        const debouncedSearch = debounce(window.performSearch, 300);
+        
+        // Listen for input events (typing)
+        searchInput.addEventListener('input', debouncedSearch);
+        
+        // Keep Enter key for immediate search
         searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 window.performSearch();
