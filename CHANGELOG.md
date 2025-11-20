@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.1] - 2025-11-19
+
+### Fixed
+- **Location Count Dropdown**: Fixed bug where the number of locations dropdown was ignored for encounters with custom locations. Users can now control the number of locations generated even when an encounter has predefined location options.
+- **Resolution Counting**: Fixed bug where the Resolution step was incorrectly counted as a location in the "unfolds across X locations" text. The display now accurately reflects only explorable locations.
+
+### Tests
+- Added comprehensive test suite for location generation bugs (tests/test-location-count-bugs.js)
+- Tests verify dropdown behavior with and without custom locations
+- Tests verify Resolution is not counted as a location
+
 ## [1.5.0] - 2025-11-19
 
 ### Added

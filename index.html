@@ -471,11 +471,13 @@
                 // Use custom locations if encounter specifies them, otherwise generate random locations
                 if (window.encounterTemplate.customLocations && window.encounterTemplate.customLocations.length > 0) {
                     console.log('📍 Using custom locations for encounter:', window.encounterTemplate.customLocations);
+                    // Respect the numLocations dropdown even with custom locations
+                    const limitedCustomLocations = window.encounterTemplate.customLocations.slice(0, numLocations);
                     window.currentEncounterLocations = window.selectLocationsForEncounter(
                         window.encounterTemplate.tags, 
                         window.selectedEnvironment, 
                         null, 
-                        window.encounterTemplate.customLocations
+                        limitedCustomLocations
                     );
                 } else {
                     window.currentEncounterLocations = window.selectLocationsForEncounter(
@@ -513,11 +515,13 @@
                 </div>`;
 
             // Encounter Flow
+            // Count actual locations (exclude Resolution step)
+            const actualLocationCount = window.currentEncounterLocations.length;
             html += `
                 <div class="encounter-section">
                     <h2 onclick="toggleSection(event)">🗺️ Encounter Flow <span class="section-toggle">▼</span></h2>
                     <div class="section-content">
-                        <p class="description">This encounter unfolds across ${window.currentEncounterFlow.length} key locations, each with unique challenges and discoveries.</p>
+                        <p class="description">This encounter unfolds across ${actualLocationCount} key location${actualLocationCount !== 1 ? 's' : ''}, each with unique challenges and discoveries.</p>
                         <button class="btn-primary" onclick="addNewLocation()" style="margin-bottom: 15px;">➕ Add Another Location</button>
                         <div id="flowStepsContainer">`;
             
