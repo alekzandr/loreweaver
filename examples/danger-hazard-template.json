@@ -1,0 +1,17 @@
+{
+  "category": "hazard",
+  "name": "Thick Fog Bank",
+  "description": "A supernatural fog rolls through the area, reducing visibility to a few feet and deadening all sounds. The fog seems to move with purpose, separating party members.",
+  "effect": "Heavy obscurement (effectively blinded beyond 5 feet), disadvantage on Wisdom (Perception) checks relying on hearing, party members easily become separated",
+  "avoidMethod": "Rope or chain linking party members, Navigation skill checks, magic to disperse fog temporarily, wait for fog to pass",
+  "tags": [
+    "environmental",
+    "weather",
+    "wilderness",
+    "supernatural",
+    "disorienting",
+    "vision"
+  ],
+  "severity": "medium",
+  "recurring": true
+}

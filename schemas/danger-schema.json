@@ -1,0 +1,159 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://loreweaver.app/schemas/danger-schema.json",
+  "title": "Danger",
+  "description": "Schema for traps, hazards, and environmental dangers",
+  "oneOf": [
+    {
+      "$ref": "#/definitions/trap"
+    },
+    {
+      "$ref": "#/definitions/hazard"
+    }
+  ],
+  "definitions": {
+    "trap": {
+      "type": "object",
+      "required": ["category", "name", "description", "detectMethod", "disarmMethod", "damageType", "tags", "severity", "resetable"],
+      "properties": {
+        "category": {
+          "const": "trap",
+          "description": "Danger category identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Trap name",
+          "pattern": "^[A-Z]",
+          "minLength": 5,
+          "maxLength": 80
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of how the trap works",
+          "minLength": 30,
+          "maxLength": 400
+        },
+        "detectMethod": {
+          "type": "string",
+          "description": "How to detect the trap (skill checks, spells)",
+          "minLength": 5,
+          "maxLength": 150
+        },
+        "disarmMethod": {
+          "type": "string",
+          "description": "How to disarm or bypass the trap",
+          "minLength": 5,
+          "maxLength": 150
+        },
+        "damageType": {
+          "type": "string",
+          "description": "Type of damage dealt",
+          "enum": [
+            "piercing",
+            "slashing",
+            "bludgeoning",
+            "fire",
+            "cold",
+            "lightning",
+            "thunder",
+            "poison",
+            "acid",
+            "necrotic",
+            "radiant",
+            "psychic",
+            "force",
+            "none",
+            "varies"
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "description": "Categorization tags",
+          "minItems": 3,
+          "maxItems": 10,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z-]*[a-z]$",
+            "minLength": 2,
+            "maxLength": 30
+          }
+        },
+        "severity": {
+          "type": "string",
+          "description": "Trap danger level",
+          "enum": ["low", "medium", "high", "deadly"]
+        },
+        "resetable": {
+          "type": "boolean",
+          "description": "Can the trap reset automatically?"
+        },
+        "damage": {
+          "type": "string",
+          "description": "Damage dice notation (e.g., '2d10')",
+          "pattern": "^\\d+d\\d+(\\s*\\+\\s*\\d+)?$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "hazard": {
+      "type": "object",
+      "required": ["category", "name", "description", "effect", "avoidMethod", "tags", "severity"],
+      "properties": {
+        "category": {
+          "const": "hazard",
+          "description": "Danger category identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Hazard name",
+          "pattern": "^[A-Z]",
+          "minLength": 5,
+          "maxLength": 80
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the environmental hazard",
+          "minLength": 30,
+          "maxLength": 400
+        },
+        "effect": {
+          "type": "string",
+          "description": "What happens when exposed to the hazard",
+          "minLength": 20,
+          "maxLength": 300
+        },
+        "avoidMethod": {
+          "type": "string",
+          "description": "How to avoid or mitigate the hazard",
+          "minLength": 10,
+          "maxLength": 200
+        },
+        "tags": {
+          "type": "array",
+          "description": "Categorization tags",
+          "minItems": 3,
+          "maxItems": 10,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z-]*[a-z]$",
+            "minLength": 2,
+            "maxLength": 30
+          }
+        },
+        "severity": {
+          "type": "string",
+          "description": "Hazard danger level",
+          "enum": ["low", "medium", "high", "deadly"]
+        },
+        "recurring": {
+          "type": "boolean",
+          "description": "Does the hazard affect characters repeatedly?",
+          "default": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

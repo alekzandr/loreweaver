@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://loreweaver.app/schemas/skillcheck-schema.json",
+  "title": "Skill Check",
+  "description": "Schema for D&D skill check challenges",
+  "type": "object",
+  "required": ["skill", "challenge", "description", "success", "failure", "tags"],
+  "properties": {
+    "skill": {
+      "type": "string",
+      "description": "D&D 5e skill name",
+      "enum": [
+        "Acrobatics",
+        "Animal Handling",
+        "Arcana",
+        "Athletics",
+        "Deception",
+        "History",
+        "Insight",
+        "Intimidation",
+        "Investigation",
+        "Medicine",
+        "Nature",
+        "Perception",
+        "Performance",
+        "Persuasion",
+        "Religion",
+        "Sleight of Hand",
+        "Stealth",
+        "Survival"
+      ]
+    },
+    "challenge": {
+      "type": "string",
+      "description": "Brief challenge description (shown to players)",
+      "minLength": 10,
+      "maxLength": 100
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed context and situation for the DM",
+      "minLength": 30,
+      "maxLength": 300
+    },
+    "success": {
+      "type": "string",
+      "description": "Outcome on successful check",
+      "minLength": 10,
+      "maxLength": 200
+    },
+    "failure": {
+      "type": "string",
+      "description": "Outcome on failed check",
+      "minLength": 10,
+      "maxLength": 200
+    },
+    "tags": {
+      "type": "array",
+      "description": "Categorization tags for filtering",
+      "minItems": 3,
+      "maxItems": 10,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z-]*[a-z]$",
+        "minLength": 2,
+        "maxLength": 30
+      }
+    },
+    "dc": {
+      "type": "integer",
+      "description": "Suggested difficulty class (optional)",
+      "minimum": 5,
+      "maximum": 30
+    }
+  },
+  "additionalProperties": false
+}

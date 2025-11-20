@@ -1,0 +1,19 @@
+{
+  "category": "trap",
+  "name": "Enchanted Doorway Trap",
+  "description": "An ornate doorway inscribed with glowing runes. When someone passes through without speaking the command word, magical energy bursts from the frame.",
+  "detectMethod": "Arcana check to notice magical aura, Investigation to spot rune patterns",
+  "disarmMethod": "Speak correct command word, Dispel Magic, or Thieves' Tools to scratch out key runes",
+  "damageType": "force",
+  "damage": "3d8",
+  "tags": [
+    "magical",
+    "dungeon",
+    "ancient",
+    "arcane",
+    "sophisticated",
+    "puzzle"
+  ],
+  "severity": "medium",
+  "resetable": true
+}

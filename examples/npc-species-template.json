@@ -1,0 +1,53 @@
+{
+  "type": "species",
+  "key": "tiefling",
+  "tags": [
+    "infernal",
+    "charismatic",
+    "misunderstood"
+  ],
+  "firstNames": [
+    "Azazel",
+    "Brimstone",
+    "Crimson",
+    "Damakos",
+    "Ember",
+    "Faust",
+    "Gloriana",
+    "Havoc",
+    "Inferna",
+    "Jezebel",
+    "Kairon",
+    "Lilith",
+    "Mordai",
+    "Nemeia",
+    "Orianna",
+    "Pyre",
+    "Quintus",
+    "Rune",
+    "Saffron",
+    "Therai"
+  ],
+  "surnames": [
+    "Ashenclaw",
+    "Bloodhorn",
+    "Cindersoul",
+    "Darkflame",
+    "Emberwing",
+    "Fellheart",
+    "Grimfire",
+    "Hellscorn",
+    "Ironpact",
+    "Shadowbane",
+    "Nightfall",
+    "Doomwhisper",
+    "Blackthorn",
+    "Soulforged",
+    "Voidheart",
+    "Ravencurse",
+    "Ashmoor",
+    "Thornspire",
+    "Stormscar",
+    "Darkmantle"
+  ]
+}

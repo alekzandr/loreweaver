@@ -202,8 +202,8 @@ Architecture improvements:
 
 **Proposed Solution:**
 
-**Phase 1: Content Submission System (4-6 hours)**
-- Create `/content-submissions/` directory structure:
+**Phase 1: Content Submission System (4-6 hours)** ✅ **IMPLEMENTED** (v1.7.0, November 19, 2025)
+- ✅ Created `/content-submissions/` directory structure:
   ```
   content-submissions/
     encounters/
@@ -212,26 +212,35 @@ Architecture improvements:
     skillchecks/
     dangers/
   ```
-- Define content schemas in `/schemas/`:
+- ✅ Defined content schemas in `/schemas/`:
   - `encounter-schema.json` - Validation rules for encounters
   - `location-schema.json` - Validation rules for locations
-  - `npc-schema.json` - Validation rules for NPCs
+  - `npc-schema.json` - Validation rules for NPCs (species, professions, alignments, personalities)
   - `skillcheck-schema.json` - Validation rules for skill checks
-  - `danger-schema.json` - Validation rules for dangers
+  - `danger-schema.json` - Validation rules for dangers (traps and hazards)
+- ✅ Created validation script `scripts/validate-content.js`:
+  - Schema validation using Ajv
+  - Duplicate ID detection
+  - Custom validation rules per content type
+  - Colored terminal output with detailed error messages
+- ✅ Created 7 example templates in `/examples/`
+- ✅ Created comprehensive content author guide (`CONTRIBUTING_CONTENT.md`)
+- ✅ Added `npm run validate:content` script
+- ✅ Test suite: 12/12 tests passing
 
-**Phase 2: Local Validation Tools (3-4 hours)**
-- Create `scripts/validate-content.js`:
-  - Parse JSON submission files
-  - Validate against schemas (using Ajv or similar)
-  - Check for duplicate IDs
-  - Verify required fields
-  - Validate tag consistency
-  - Check for balanced CR ratings
-- Create `npm run validate:content` script
-- Create content author guide (`CONTRIBUTING_CONTENT.md`)
-- Example content templates in `/examples/`
+**Phase 2: Local Validation Tools (3-4 hours)** ⚠️ **PARTIALLY COMPLETE**
+- ✅ Created `scripts/validate-content.js`:
+  - ✅ Parse JSON submission files
+  - ✅ Validate against schemas (using Ajv)
+  - ✅ Check for duplicate IDs
+  - ✅ Verify required fields
+  - ❌ Validate tag consistency (TODO: Cross-reference with production tags)
+  - ❌ Check for balanced CR ratings (TODO: For encounters)
+- ✅ Created `npm run validate:content` script
+- ✅ Created content author guide (`CONTRIBUTING_CONTENT.md`)
+- ✅ Example content templates in `/examples/`
 
-**Phase 3: CI/CD Integration (3-4 hours)**
+**Phase 3: CI/CD Integration (3-4 hours)** ⏳ **PENDING**
 - GitHub Actions workflow (`.github/workflows/content-validation.yml`):
   - Trigger on PR to main with changes in `/content-submissions/`
   - Run schema validation
