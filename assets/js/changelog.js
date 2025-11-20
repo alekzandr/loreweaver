@@ -235,6 +235,132 @@ export class ChangelogModal {
     }
 }
 
+/**
+ * Show changelog manually without version checking
+ * Used for "What's New" button in Settings
+ * @param {boolean} showAllVersions - If true, shows all versions instead of just new ones
+ */
+export async function showChangelogManual(showAllVersions = true) {
+    try {
+        const versionManager = await new VersionManager().initialize();
+        
+        // Get versions to display
+        const versions = showAllVersions ? 
+            versionManager.changelogData : 
+            versionManager.getChangesSinceLastVersion();
+        
+        if (!versions || versions.length === 0) {
+            console.warn('No changelog data available');
+            return;
+        }
+        
+        // Create a custom modal that shows all versions
+        const overlay = document.createElement('div');
+        overlay.className = 'changelog-overlay';
+        overlay.innerHTML = `
+            <div class="changelog-modal">
+                <div class="changelog-header">
+                    <h2>📋 LoreWeaver Changelog</h2>
+                    <button class="changelog-close" aria-label="Close">&times;</button>
+                </div>
+                <div class="changelog-content">
+                    ${renderVersionsManual(versions, versionManager)}
+                </div>
+                <div class="changelog-footer">
+                    <button class="changelog-btn-primary" id="changelog-close-manual">Close</button>
+                    <a href="CHANGELOG.md" target="_blank" class="changelog-link">View Full Changelog File</a>
+                </div>
+            </div>
+        `;
+        
+        // Attach event listeners
+        const closeBtn = overlay.querySelector('.changelog-close');
+        const closeManualBtn = overlay.querySelector('#changelog-close-manual');
+        
+        const close = () => {
+            overlay.classList.add('changelog-fade-out');
+            setTimeout(() => overlay.remove(), 300);
+        };
+        
+        closeBtn.addEventListener('click', close);
+        closeManualBtn.addEventListener('click', close);
+        
+        // Close on overlay click (but not modal content)
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) close();
+        });
+        
+        // Close on Escape key
+        const escapeHandler = (e) => {
+            if (e.key === 'Escape' && overlay && overlay.parentElement) {
+                close();
+                document.removeEventListener('keydown', escapeHandler);
+            }
+        };
+        document.addEventListener('keydown', escapeHandler);
+        
+        // Show modal
+        document.body.appendChild(overlay);
+        requestAnimationFrame(() => {
+            overlay.classList.add('changelog-show');
+        });
+        
+    } catch (error) {
+        console.error('Failed to show changelog:', error);
+        alert('Unable to load changelog. Please check the console for details.');
+    }
+}
+
+/**
+ * Render versions for manual display
+ * @param {Array} versions - Array of version objects
+ * @param {VersionManager} versionManager - Version manager instance
+ * @returns {string} HTML string
+ */
+function renderVersionsManual(versions, versionManager) {
+    return versions.map(version => {
+        const v = versionManager.parseVersion(version.version);
+        const badge = v.minor === 0 && v.patch === 0 ? 
+            '<span class="version-badge major">MAJOR UPDATE</span>' : 
+            v.patch === 0 ?
+            '<span class="version-badge minor">NEW FEATURES</span>' :
+            '<span class="version-badge patch">BUG FIX</span>';
+        
+        return `
+            <div class="changelog-version">
+                <div class="version-header">
+                    <h3>Version ${version.version} ${badge}</h3>
+                    <span class="version-date">${version.date}</span>
+                </div>
+                ${renderSectionManual('Added', version.added, '✨')}
+                ${renderSectionManual('Changed', version.changed, '🔄')}
+                ${renderSectionManual('Fixed', version.fixed, '🐛')}
+                ${renderSectionManual('Removed', version.removed, '🗑️')}
+            </div>
+        `;
+    }).join('');
+}
+
+/**
+ * Render a changelog section for manual display
+ * @param {string} title - Section title
+ * @param {Array} items - Array of items
+ * @param {string} emoji - Section emoji
+ * @returns {string} HTML string
+ */
+function renderSectionManual(title, items, emoji) {
+    if (items.length === 0) return '';
+    
+    return `
+        <div class="changelog-section">
+            <h4>${emoji} ${title}</h4>
+            <ul>
+                ${items.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+        </div>
+    `;
+}
+
 // Auto-initialize on page load
 export async function initializeChangelog() {
     try {

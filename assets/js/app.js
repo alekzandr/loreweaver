@@ -192,6 +192,31 @@ export async function initApp() {
     
     console.log('✅ LoreWeaver initialized');
     console.log('Ready to generate encounters!');
+    
+    // Display version in footer
+    displayVersion();
+}
+
+/**
+ * Display current version in footer
+ * Loads version from version.json and displays it in the footer element
+ */
+async function displayVersion() {
+    try {
+        const response = await fetch('data/version.json');
+        const versionData = await response.json();
+        const versionElement = document.getElementById('versionDisplay');
+        
+        if (versionElement && versionData.version) {
+            versionElement.textContent = `v${versionData.version}`;
+        }
+    } catch (error) {
+        console.error('Failed to load version:', error);
+        const versionElement = document.getElementById('versionDisplay');
+        if (versionElement) {
+            versionElement.textContent = 'v?.?.?';
+        }
+    }
 }
 
 /**

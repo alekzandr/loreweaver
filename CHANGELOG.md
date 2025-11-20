@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2025-11-19
+
+### Added
+- **Version Display in Footer**: Current version is now displayed in the footer of every page
+  - Clickable version number opens changelog modal
+  - Keyboard accessible with Enter/Space keys
+  - ARIA labels for screen reader support
+  - Graceful error handling if version.json fails to load
+- **Manual Changelog Access**: "What's New" button added to Settings page
+  - Opens full changelog history in modal
+  - Shows all versions with proper categorization (Major/Minor/Patch badges)
+  - Does not require version update trigger
+  - Keyboard navigation with Escape to close
+- **Enhanced Changelog Modal**: Improved changelog display for manual access
+  - Displays all historical versions, not just new ones
+  - Patch version badge styling (light gradient)
+  - Separate rendering for manual vs automatic display
+  - Full changelog file link for reference
+- **Version Display Function**: New `displayVersion()` function in app.js
+  - Automatically fetches and displays version on page load
+  - Updates footer element with current version number
+  - Error handling with fallback display
+
+### Changed
+- Updated changelog.js to export `showChangelogManual()` function
+- Enhanced ChangelogModal to support both auto-display and manual modes
+- Footer now includes version information and app description
+- Settings page "About" section now includes interactive button
+
+### Technical
+- Version display integrates with existing version management system
+- Reuses VersionManager and ChangelogModal classes
+- Maintains separation of concerns (auto vs manual display)
+- No changes to localStorage or version tracking logic
+- Full test coverage with 12 automated tests
+
 ## [1.5.1] - 2025-11-19
 
 ### Fixed
