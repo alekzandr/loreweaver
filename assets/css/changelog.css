@@ -129,6 +129,11 @@
     color: white;
 }
 
+.version-badge.patch {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    color: #333;
+}
+
 .version-date {
     font-size: 14px;
     color: var(--text-muted, #999999);
