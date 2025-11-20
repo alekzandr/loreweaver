@@ -128,6 +128,10 @@
                                         <span class="menu-icon">📄</span>
                                         <span class="menu-text">Export as Text</span>
                                     </button>
+                                    <button class="menu-item" onclick="window.exportEncounterJSON(); closeEncounterMenu();">
+                                        <span class="menu-icon">🔗</span>
+                                        <span class="menu-text">Export as JSON</span>
+                                    </button>
                                     <button class="menu-item" onclick="window.exportEncounterPDF(); closeEncounterMenu();">
                                         <span class="menu-icon">📋</span>
                                         <span class="menu-text">Export as PDF</span>
@@ -357,9 +361,24 @@
         import { setRandomFunction, createSeededRandom, hashStringToSeed, random } from './assets/js/utils.js';
         import './assets/js/storage.js';
         import './assets/js/app.js';
-        import './assets/js/export.js';
+        import { 
+            exportEncounterMarkdown, 
+            exportEncounterText, 
+            exportEncounterPDF, 
+            exportEncounterJSON,
+            exportEncounter,
+            getAvailableFormats 
+        } from './assets/js/export.js';
         import './assets/js/core.js';
         import './assets/js/ui.js';
+        
+        // Expose export functions globally
+        window.exportEncounterMarkdown = exportEncounterMarkdown;
+        window.exportEncounterText = exportEncounterText;
+        window.exportEncounterPDF = exportEncounterPDF;
+        window.exportEncounterJSON = exportEncounterJSON;
+        window.exportEncounter = exportEncounter;
+        window.getAvailableFormats = getAvailableFormats;
         
         // Note: initApp is called automatically by app.js on DOMContentLoaded
     </script>

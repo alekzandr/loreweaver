@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2025-11-19
+
+### Added
+- **Strategy Pattern for Export Formats**: Flexible export system with encapsulated algorithms
+- ExportStrategy base class for defining export interfaces
+- MarkdownExportStrategy for Markdown format exports
+- TextExportStrategy for plain text exports with line wrapping
+- HTMLExportStrategy for HTML/PDF exports with built-in styles
+- JSONExportStrategy for structured JSON exports
+- ExportManager context class for strategy registration and execution
+- Export format dropdown in encounter actions menu
+- JSON export option added to UI
+- Export strategy test suite with 14 comprehensive tests
+- Strategy-specific options (includeMetadata, includeIcons, pretty, lineLength, etc.)
+- Filename generation with sanitization
+- XSS protection with content sanitization
+- MIME type handling for each format
+
+### Changed
+- Refactored export.js to use Strategy Pattern
+- Simplified export functions to use ExportManager
+- Reduced export.js from 767 lines to 164 lines (78% reduction)
+- Export functions now use centralized strategy selection
+- Improved error handling in export operations
+- Enhanced security with input sanitization
+
+### Technical
+- Abstract base class pattern for extensibility
+- Factory pattern for strategy instantiation
+- Singleton ExportManager for global access
+- Options pattern for strategy customization
+- Consistent API across all export formats
+- Easy addition of new export formats (<30 minutes)
+
 ## [1.4.0] - 2025-11-19
 
 ### Added
