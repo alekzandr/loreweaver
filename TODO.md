@@ -228,17 +228,27 @@ Architecture improvements:
 - ✅ Added `npm run validate:content` script
 - ✅ Test suite: 12/12 tests passing
 
-**Phase 2: Local Validation Tools (3-4 hours)** ⚠️ **PARTIALLY COMPLETE**
-- ✅ Created `scripts/validate-content.js`:
+**Phase 2: Local Validation Tools (3-4 hours)** ✅ **IMPLEMENTED** (v1.7.0, November 19, 2025)
+- ✅ Enhanced `scripts/validate-content.js`:
   - ✅ Parse JSON submission files
   - ✅ Validate against schemas (using Ajv)
-  - ✅ Check for duplicate IDs
-  - ✅ Verify required fields
-  - ❌ Validate tag consistency (TODO: Cross-reference with production tags)
-  - ❌ Check for balanced CR ratings (TODO: For encounters)
-- ✅ Created `npm run validate:content` script
-- ✅ Created content author guide (`CONTRIBUTING_CONTENT.md`)
+  - ✅ Check for duplicate IDs within submissions
+  - ✅ Check for duplicate content in production data (`--check-production` flag)
+  - ✅ Verify required fields and field constraints
+  - ✅ Validate tag consistency against production tags
+  - ✅ Check encounter weight balance with suggestions
+  - ✅ Quality checks: description length, resolution detail, DC ranges
+  - ✅ Auto-fix capability (`--fix` flag) for common issues:
+    - Trim whitespace from strings
+    - Normalize tags to lowercase-hyphenated
+    - Fix location/NPC keys
+    - Clamp weights to valid range (0.5-2.0)
+  - ✅ Detailed reporting (`--report` flag) with warnings and suggestions
+  - ✅ Production cross-check to prevent duplicates
+- ✅ Enhanced `npm run validate:content` script with CLI options
+- ✅ Updated content author guide (`CONTRIBUTING_CONTENT.md`) with advanced validation
 - ✅ Example content templates in `/examples/`
+- ✅ Test suite: 27/27 tests passing (12 Phase 1 + 15 Phase 2)
 
 **Phase 3: CI/CD Integration (3-4 hours)** ⏳ **PENDING**
 - GitHub Actions workflow (`.github/workflows/content-validation.yml`):

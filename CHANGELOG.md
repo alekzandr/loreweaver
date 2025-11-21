@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - `danger-schema.json` - Validates traps and environmental hazards
   - Created `/examples/` directory with 7 complete template files for content creators
   - Created `/scripts/` directory with validation tooling
-- **Content Validation Script**: Automated validation for submissions
+- **Content Validation Script (Phase 1)**: Basic automated validation
   - `scripts/validate-content.js` - Full validation with AJV schema validator
   - JSON syntax validation
   - Schema compliance checking
@@ -29,12 +29,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Custom validation rules per content type
   - Colored terminal output with detailed error messages
   - Support for file or directory validation
+- **Enhanced Validation (Phase 2)**: Advanced quality checks and auto-fixes
+  - **`--fix` flag**: Automatic correction of common issues
+    - Trims whitespace from all string fields
+    - Normalizes tags to lowercase-hyphenated format
+    - Fixes location/NPC keys to proper format
+    - Clamps encounter weights to valid range (0.5-2.0)
+  - **`--report` flag**: Detailed validation reports
+    - Quality warnings for description length
+    - Suggestions for content improvement
+    - Best practice recommendations
+    - Weight/difficulty balance advice
+    - Resolution quality checks
+  - **`--check-production` flag**: Production data cross-referencing
+    - Loads production JSON files for comparison
+    - Detects duplicate encounter titles
+    - Detects duplicate location/NPC keys
+    - Warns about unknown tags not in production
+    - Prevents content duplication
+  - **Quality Validation**: Content-specific checks
+    - Encounter: Weight balance, description length, resolution variety
+    - Location: Detail uniqueness, progressive reveal quality
+    - NPC: Name variety, tag completeness
+    - Skillcheck: DC range validation, description detail
+    - Danger: Detection/disarm method detail
 - **Content Author Guide**: Comprehensive documentation
-  - `CONTRIBUTING_CONTENT.md` - 300+ line guide for content creators
+  - `CONTRIBUTING_CONTENT.md` - 500+ line guide for content creators
   - Quick start instructions
   - Complete workflow documentation
   - Content type specifications with examples
-  - Validation guide with troubleshooting
+  - Validation guide with advanced options
   - Style guide for descriptions and JSON formatting
   - Best practices for evocative writing
   - Common issues and solutions
@@ -42,14 +66,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **NPM Scripts**: New validation commands
   - `npm run validate:content` - Validate all submissions
   - `npm run validate:content [file]` - Validate specific file
-  - `npm run test:content-validation` - Run test suite
-- **Test Suite**: 12 automated tests for content validation system
+  - `npm run test:content-validation` - Run Phase 1 test suite
+  - `npm run test:content-validation-phase2` - Run Phase 2 test suite
+- **Test Suite**: 27 automated tests (12 Phase 1 + 15 Phase 2)
   - Directory structure validation
   - Schema file validation
   - JSON syntax validation
   - Template validation
   - Script functionality checks
   - Dependency verification
+  - Auto-fix functionality tests
+  - Production cross-check tests
+  - Tag consistency tests
+  - Quality validation tests
 
 ### Changed
 - Updated `package.json` to version 1.7.0
@@ -80,10 +109,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ✅ 100% schema coverage for all content types
 - ✅ Comprehensive examples for every content type
 - ✅ Clear error messages for validation failures
-- ✅ 12/12 automated tests passing
+- ✅ 27/27 automated tests passing (12 Phase 1 + 15 Phase 2)
 - ✅ Zero configuration required for contributors
+- ✅ Auto-fix capability for common formatting issues
+- ✅ Production duplicate detection prevents conflicts
+- ✅ Quality suggestions improve content standards
 
-**Note:** This is Phase 1 of the CI Pipeline pattern. Future phases will add CI/CD integration with GitHub Actions and automated content merging.
+**Note:** This completes Phases 1-2 of the CI Pipeline pattern. Phase 3 (GitHub Actions CI/CD) and Phase 4 (Additional Testing) remain.
 
 ## [1.6.0] - 2025-11-19
 

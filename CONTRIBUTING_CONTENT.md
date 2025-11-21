@@ -303,6 +303,59 @@ npm run validate:content content-submissions/encounters/
 ✅ Fix: Use exact environment name
 ```
 
+### Advanced Validation Options
+
+The validation script supports several command-line options for enhanced checking:
+
+#### Auto-Fix (`--fix`)
+
+Automatically fixes common formatting issues:
+
+```bash
+npm run validate:content -- --fix
+```
+
+**Auto-fixes include:**
+- Trimming whitespace from all strings
+- Converting tags to lowercase-hyphenated format
+- Normalizing location/NPC keys to proper format
+- Clamping encounter weights to valid range (0.5-2.0)
+
+#### Detailed Reports (`--report`)
+
+Generate comprehensive validation reports with warnings and suggestions:
+
+```bash
+npm run validate:content -- --report
+```
+
+**Report includes:**
+- Quality warnings (description length, tag usage, etc.)
+- Improvement suggestions for content quality
+- Best practice recommendations
+
+#### Production Cross-Check (`--check-production`)
+
+Validate against existing production data to avoid duplicates:
+
+```bash
+npm run validate:content -- --check-production
+```
+
+**Checks for:**
+- Duplicate encounter titles
+- Duplicate location keys  
+- Duplicate NPC species keys
+- Unknown tags not used in production
+
+#### Combined Options
+
+Use multiple flags together:
+
+```bash
+npm run validate:content -- --fix --report --check-production
+```
+
 ---
 
 ## 🎯 Best Practices
