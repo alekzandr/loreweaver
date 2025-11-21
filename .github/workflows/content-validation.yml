@@ -44,11 +44,11 @@ jobs:
         run: |
           echo "## Schema Validation" >> $GITHUB_STEP_SUMMARY
           
-          # Find changed files in content-submissions
-          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^content-submissions/' || echo "")
+          # Find changed JSON files in content-submissions
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^content-submissions/.*\.json$' || echo "")
           
           if [ -z "$CHANGED_FILES" ]; then
-            echo "ℹ️ No content files changed - skipping content validation" >> $GITHUB_STEP_SUMMARY
+            echo "ℹ️ No content JSON files changed - skipping content validation" >> $GITHUB_STEP_SUMMARY
             echo "This PR modifies CI/CD infrastructure or documentation only." >> $GITHUB_STEP_SUMMARY
             exit 0
           fi
@@ -79,11 +79,11 @@ jobs:
         run: |
           echo "## Production Cross-Check" >> $GITHUB_STEP_SUMMARY
           
-          # Check if there are content submissions
-          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^content-submissions/' || echo "")
+          # Check if there are content JSON submissions
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^content-submissions/.*\.json$' || echo "")
           
           if [ -z "$CHANGED_FILES" ]; then
-            echo "ℹ️ No content files to cross-check - skipping" >> $GITHUB_STEP_SUMMARY
+            echo "ℹ️ No content JSON files to cross-check - skipping" >> $GITHUB_STEP_SUMMARY
             exit 0
           fi
           
@@ -110,11 +110,11 @@ jobs:
         run: |
           echo "## Quality Report" >> $GITHUB_STEP_SUMMARY
           
-          # Check if there are content submissions
-          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^content-submissions/' || echo "")
+          # Check if there are content JSON submissions
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^content-submissions/.*\.json$' || echo "")
           
           if [ -z "$CHANGED_FILES" ]; then
-            echo "ℹ️ No content files to analyze - skipping quality report" >> $GITHUB_STEP_SUMMARY
+            echo "ℹ️ No content JSON files to analyze - skipping quality report" >> $GITHUB_STEP_SUMMARY
             exit 0
           fi
           
@@ -139,14 +139,15 @@ jobs:
             const fs = require('fs');
             const { execSync } = require('child_process');
             
-            // Check if there are content submissions
+            // Check if there are content JSON submissions
             let hasContentChanges = false;
             try {
               const changedFiles = execSync('git diff --name-only origin/main...HEAD', {
                 encoding: 'utf8',
                 stdio: 'pipe'
               });
-              hasContentChanges = changedFiles.includes('content-submissions/');
+              // Check for .json files in content-submissions, not .gitkeep files
+              hasContentChanges = /content-submissions\/.*\.json/m.test(changedFiles);
             } catch (error) {
               console.log('Could not check for changed files');
             }
@@ -271,11 +272,11 @@ jobs:
       - name: Check validation status
         if: always()
         run: |
-          # Check if there are content submissions
-          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^content-submissions/' || echo "")
+          # Check if there are content JSON submissions
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^content-submissions/.*\.json$' || echo "")
           
           if [ -z "$CHANGED_FILES" ]; then
-            echo "ℹ️ No content files to validate - skipping final check"
+            echo "ℹ️ No content JSON files to validate - skipping final check"
             exit 0
           fi
           
