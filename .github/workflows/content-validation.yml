@@ -9,6 +9,10 @@ jobs:
   validate-content:
     name: Validate Submitted Content
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
     
     steps:
       - name: Checkout repository
@@ -20,10 +24,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
       
       - name: Install dependencies
-        run: npm ci
+        run: npm install
       
       - name: Run JSON linting
         id: json-lint
@@ -288,6 +291,8 @@ jobs:
   test-validation-suite:
     name: Run Validation Test Suite
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     
     steps:
       - name: Checkout repository
@@ -297,10 +302,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
       
       - name: Install dependencies
-        run: npm ci
+        run: npm install
       
       - name: Run validation tests
         run: |
