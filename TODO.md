@@ -250,39 +250,69 @@ Architecture improvements:
 - ✅ Example content templates in `/examples/`
 - ✅ Test suite: 27/27 tests passing (12 Phase 1 + 15 Phase 2)
 
-**Phase 3: CI/CD Integration (3-4 hours)** ⏳ **PENDING**
-- GitHub Actions workflow (`.github/workflows/content-validation.yml`):
-  - Trigger on PR to main with changes in `/content-submissions/`
-  - Run schema validation
-  - Run duplicate ID checks
-  - Run format validation (JSON lint)
-  - Comment on PR with validation results
+**Phase 3: CI/CD Integration (3-4 hours)** ✅ **IMPLEMENTED** (v1.7.0, November 19, 2025)
+- ✅ GitHub Actions workflow (`.github/workflows/content-validation.yml`):
+  - Trigger on PR to main with changes in `/content-submissions/`, `/schemas/`, or validation scripts
+  - Two jobs: `validate-content` and `test-validation-suite`
+  - Run JSON linting with summary
+  - Run schema validation on changed files
+  - Run production cross-check with duplicate detection
+  - Run quality report with improvement suggestions
+  - Comment on PR with detailed validation results
+  - Update existing comment on new commits
   - Block merge if validation fails
-- Auto-merge script (`scripts/merge-content.js`):
-  - Parse validated submissions
-  - Add to appropriate production JSON
-  - Maintain alphabetical/logical ordering
-  - Update content counts
-  - Commit with standardized message
+  - Pass with warnings allowed (suggestions don't block)
+- ✅ Auto-merge script (`scripts/merge-content.js`):
+  - Parse validated submissions with type detection
+  - Add to appropriate production JSON (encounters, locations, npcs, skillchecks, dangers)
+  - Generate IDs automatically if not present
+  - Maintain alphabetical ordering by ID
+  - Update metadata (lastUpdated, totalCount)
+  - Duplicate detection before merge
+  - Dry-run mode (`--dry-run`) for preview
+  - Specific file merge (`--file PATH`)
+  - Merge all submissions (`--all`)
+  - Commit preparation (doesn't auto-commit)
+- ✅ NPM script added: `npm run merge:content`
+- ✅ Maintainer documentation (`MAINTAINING_CI.md`):
+  - Workflow architecture and triggers
+  - Validation process details
+  - Manual merge procedures
+  - Troubleshooting guide (10+ scenarios)
+  - Maintenance tasks (weekly, monthly, quarterly)
+  - Schema update procedures
+  - Best practices for maintainers
+- ✅ Enhanced contributor documentation (`CONTRIBUTING_CONTENT.md`):
+  - CI/CD workflow explanation
+  - PR validation process
+  - Understanding PR comments (success, warnings, errors)
+  - Responding to validation failures
+  - Tips for passing CI
+  - Troubleshooting guide
 
-**Phase 4: Testing & Documentation (2-3 hours)**
-- Test suite for validation logic
-- Test suite for merge logic
-- Documentation for content authors
-- Documentation for CI maintainers
+**Phase 4: Testing & Documentation (2-3 hours)** ⏳ **PENDING**
+- Integration tests for GitHub Actions workflow
+- Test merge script with sample submissions
+- End-to-end workflow testing (local → PR → merge)
+- Verify PR comment formatting and updates
+- Test merge blocking on validation failures
+- Documentation review and final updates
+- Update version display and changelog
 
 **Success Metrics:**
 - ✅ Content authors can validate locally before PR
-- ✅ CI blocks invalid content automatically
-- ✅ Production JSONs never manually edited
-- ✅ Merge conflicts eliminated through automation
-- ✅ Content submission time reduced by 80%
-- ✅ Zero production JSON corruption incidents
+- ✅ CI blocks invalid content automatically (Phases 1-3)
+- ✅ Production JSONs never manually edited (Phase 3)
+- ✅ Merge conflicts eliminated through automation (Phase 3)
+- ⏳ Content submission time reduced by 80% (Phase 4 verification)
+- ⏳ Zero production JSON corruption incidents (Phase 4 verification)
+
+**Current Status:** Phases 1-3 complete and committed. Ready for Phase 4 integration testing.
 
 **Dependencies:**
-- Ajv JSON Schema validator
-- GitHub Actions knowledge
-- Node.js scripting
+- ✅ Ajv JSON Schema validator (installed)
+- ✅ GitHub Actions knowledge (workflow implemented)
+- ✅ Node.js scripting (validation and merge scripts)
 
 ---
 

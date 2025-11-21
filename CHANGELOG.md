@@ -114,8 +114,83 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ✅ Auto-fix capability for common formatting issues
 - ✅ Production duplicate detection prevents conflicts
 - ✅ Quality suggestions improve content standards
+- ✅ Automated CI/CD validation on pull requests
+- ✅ Merge blocking prevents invalid content from entering production
+- ✅ Automated PR comments guide contributors
 
-**Note:** This completes Phases 1-2 of the CI Pipeline pattern. Phase 3 (GitHub Actions CI/CD) and Phase 4 (Additional Testing) remain.
+**Note:** This includes Phases 1-3 of the CI Pipeline pattern. Phase 4 (Final Testing & Documentation) remains.
+
+### CI/CD Integration (Phase 3)
+
+#### GitHub Actions Workflow
+- **`.github/workflows/content-validation.yml`**: Automated PR validation
+  - Triggers on PRs targeting `main` with changes to `content-submissions/`, `schemas/`, or validation scripts
+  - Two jobs: `validate-content` and `test-validation-suite`
+  - Uses Node.js 18 with npm caching
+  - Runs full validation pipeline on all changed files
+
+#### Workflow Steps
+1. **JSON Linting** - Validates JSON syntax
+2. **Schema Validation** - Checks schema compliance
+3. **Production Cross-Check** - Detects duplicates
+4. **Quality Report** - Generates improvement suggestions
+5. **PR Comment** - Posts results to pull request
+6. **Status Check** - Blocks merge on validation failure
+7. **Test Suite** - Runs validation tests (27 tests)
+
+#### PR Comment Features
+- ✅ **Success Comment**: Shows all validations passed
+- ⚠️ **Warning Comment**: Shows quality suggestions (merge allowed)
+- ❌ **Error Comment**: Shows blocking issues with helpful tips
+- 📚 **Resource Links**: Links to guides, schemas, examples
+- 💡 **Fix Suggestions**: Recommends auto-fix command when appropriate
+- **Smart Updates**: Updates existing comment on new commits
+
+#### Merge Protection
+- **Blocks merge** on:
+  - Invalid JSON syntax
+  - Schema validation failures
+  - Duplicate content detection
+  - Validation script errors
+- **Allows merge** on:
+  - All validations pass
+  - Only warnings/suggestions present
+
+#### Content Merge Script
+- **`scripts/merge-content.js`**: Tool for merging approved content
+  - `--dry-run` flag for preview
+  - `--all` flag to merge all submissions
+  - `--file PATH` to merge specific file
+  - Automatic ID generation
+  - Alphabetical sorting
+  - Metadata updates (lastUpdated, totalCount)
+  - Duplicate detection before merge
+  - Content type auto-detection
+
+#### NPM Scripts Added
+- `npm run merge:content` - Run merge script with options
+
+#### Maintainer Documentation
+- **`MAINTAINING_CI.md`**: Comprehensive guide for CI/CD maintenance
+  - Workflow overview and architecture
+  - Validation process details
+  - Manual and automated merge procedures
+  - Troubleshooting guide (10+ common issues)
+  - Maintenance tasks (weekly, monthly, quarterly)
+  - Schema update procedures
+  - Workflow modification best practices
+  - CI health monitoring
+
+#### Contributor Documentation Enhanced
+- **`CONTRIBUTING_CONTENT.md`** updated with CI/CD section:
+  - Automated validation explanation
+  - PR workflow diagram
+  - Understanding PR comments
+  - Responding to validation failures
+  - Tips for passing CI
+  - Troubleshooting CI issues
+
+**Note:** This completes Phases 1-3 of the CI Pipeline pattern. Phase 4 (Final Testing & Documentation) remains.
 
 ## [1.6.0] - 2025-11-19
 

@@ -537,12 +537,121 @@ Before submitting, verify:
 
 ---
 
+## 🤖 Automated Validation (CI/CD)
+
+### GitHub Actions Integration
+
+When you submit a pull request, **automated validation runs automatically**:
+
+#### What Gets Validated
+
+1. **JSON Syntax** - Ensures your files are valid JSON
+2. **Schema Compliance** - Checks all required fields and data types
+3. **Quality Checks** - Reviews tags, weights, descriptions, DCs
+4. **Production Cross-Check** - Detects duplicate content
+5. **Test Suite** - Runs full validation test suite
+
+#### PR Validation Workflow
+
+```
+You submit PR → GitHub Actions runs validation → Results posted as PR comment
+                                                           ↓
+                                                    ✅ Pass → Merge allowed
+                                                    ⚠️  Warnings → Merge allowed (consider fixing)
+                                                    ❌ Fail → Merge blocked
+```
+
+#### Understanding PR Comments
+
+After submitting your PR, a bot will comment with validation results:
+
+**✅ All Validations Passed**
+```markdown
+## 🛡️ Content Validation Results
+
+### ✅ All validations passed!
+Your content submission looks great. No issues detected.
+```
+→ Your PR is ready to merge (after maintainer review)
+
+**⚠️ Passed with Warnings**
+```markdown
+### ⚠️ Validation Passed with Warnings
+Your content is valid but has some quality suggestions:
+
+- Description could be more detailed (current: 75 chars, ideal: 100-500)
+- Tag "ancient-ruins" not found in production (might be new)
+- Weight 1.8 is high; consider 1.0-1.5 for balanced encounters
+```
+→ Your PR can merge, but consider addressing suggestions for better quality
+
+**❌ Validation Failed**
+```markdown
+### ❌ Validation Failed
+Please fix the following issues before merging:
+
+- Missing required field: "description"
+- Invalid DC value: 35 (must be 1-30)
+- Duplicate content: "Goblin Ambush" already exists in production
+```
+→ You must fix errors and push updates before merge
+
+#### Responding to Validation Failures
+
+1. **Read the error message carefully**
+   - Identifies the exact issue
+   - Often suggests how to fix it
+
+2. **Fix locally**
+   ```bash
+   # Use auto-fix for common issues
+   npm run validate:content -- --fix
+   
+   # Or manually edit the file
+   ```
+
+3. **Validate locally**
+   ```bash
+   npm run validate:content -- --check-production --report
+   ```
+
+4. **Commit and push**
+   ```bash
+   git add content-submissions/
+   git commit -m "fix: Address validation errors"
+   git push
+   ```
+
+5. **Wait for re-validation**
+   - Workflow runs automatically on new commits
+   - Check PR comment for updated results
+
+#### Tips for Passing CI
+
+- **Validate locally first** - Catches issues before PR
+- **Use auto-fix** - Fixes common formatting issues
+- **Read schemas** - Understand what's required
+- **Check examples** - Follow working patterns
+- **Ask for help** - Comment on PR if stuck
+
+### CI Won't Start?
+
+If validation doesn't run on your PR:
+
+1. **Check file paths** - Must be in `content-submissions/`
+2. **Check PR target** - Must target `main` branch
+3. **Wait a moment** - Can take 10-30 seconds to trigger
+4. **Check Actions tab** - See if workflow is queued
+
+---
+
 ## 🤝 Getting Help
 
 - **Documentation Issues:** Create an issue labeled `documentation`
 - **Schema Questions:** Reference schema files in `/schemas/`
 - **Content Feedback:** Ask in pull request comments
 - **Technical Problems:** Create issue labeled `content-submission`
+- **Validation Errors:** Check [CI/CD Maintainer Guide](MAINTAINING_CI.md) or ask in PR
 
 ---
 
