@@ -1,0 +1,29 @@
+{
+  "title": "The Mysterious Shop",
+  "environment": "urban",
+  "tags": [
+    "shop",
+    "indoor",
+    "building",
+    "mystery"
+  ],
+  "descriptions": [
+    "The bell above the door chimes as you enter a cramped shop filled with dusty shelves and peculiar artifacts. Candlelight flickers across bronze instruments and leather-bound tomes while the shopkeeper watches you with knowing eyes. The air smells of old parchment and exotic spices, and every surface holds curiosities that seem to whisper forgotten secrets.",
+    "Glass cases line the walls, each containing objects that shouldn't exist together—a dragon's tooth next to a clockwork butterfly, ancient coins beside fresh flowers that never wilt. The shopkeeper moves between the shelves like smoke, always exactly where you don't expect them. Everything here has a story, and every story has a price."
+  ],
+  "weight": 1.0,
+  "resolutions": [
+    {
+      "title": "The Fair Deal",
+      "description": "The shopkeeper reveals that they collect stories, not coin. In exchange for sharing a significant personal memory or secret, they offer an item perfectly suited to your current needs. However, once traded, the memory becomes hazy and distant, as if it happened to someone else.",
+      "requirements": "Willingness to trade a memory, insight check to understand the bargain's true cost",
+      "rewards": "Useful magic item or information, but permanent memory alteration"
+    },
+    {
+      "title": "The Curse Unveiled",
+      "description": "Investigation reveals the shop exists in multiple places simultaneously. The shopkeeper is trapped by an ancient contract and seeks someone brave enough to break it. This requires finding three hidden keys scattered across the city, each guarded by a creature bound to the same curse.",
+      "requirements": "Investigation checks, combat encounters with cursed guardians, puzzle-solving",
+      "rewards": "Shopkeeper's gratitude, rare magic items, knowledge of planar magic, potential recurring ally"
+    }
+  ]
+}

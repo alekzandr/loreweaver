@@ -1,0 +1,182 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://loreweaver.app/schemas/npc-schema.json",
+  "title": "NPC Content",
+  "description": "Schema for NPC species, professions, alignments, and personality traits",
+  "oneOf": [
+    {
+      "$ref": "#/definitions/species"
+    },
+    {
+      "$ref": "#/definitions/profession"
+    },
+    {
+      "$ref": "#/definitions/alignment"
+    },
+    {
+      "$ref": "#/definitions/personality"
+    }
+  ],
+  "definitions": {
+    "species": {
+      "type": "object",
+      "required": ["type", "key", "tags", "firstNames", "surnames"],
+      "properties": {
+        "type": {
+          "const": "species",
+          "description": "Content type identifier"
+        },
+        "key": {
+          "type": "string",
+          "description": "Unique species identifier (lowercase-with-hyphens)",
+          "pattern": "^[a-z][a-z-]*[a-z]$",
+          "minLength": 3,
+          "maxLength": 30
+        },
+        "tags": {
+          "type": "array",
+          "description": "Descriptive tags for the species",
+          "minItems": 2,
+          "maxItems": 6,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z-]*[a-z]$",
+            "minLength": 2,
+            "maxLength": 30
+          }
+        },
+        "firstNames": {
+          "type": "array",
+          "description": "List of first names (15-30 names recommended)",
+          "minItems": 15,
+          "maxItems": 50,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z\u00c0-\u017f]",
+            "minLength": 2,
+            "maxLength": 30
+          }
+        },
+        "surnames": {
+          "type": "array",
+          "description": "List of surnames (15-30 names recommended)",
+          "minItems": 15,
+          "maxItems": 50,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z\u00c0-\u017f]",
+            "minLength": 2,
+            "maxLength": 30
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "profession": {
+      "type": "object",
+      "required": ["type", "name", "tags"],
+      "properties": {
+        "type": {
+          "const": "profession",
+          "description": "Content type identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Profession name",
+          "pattern": "^[A-Z]",
+          "minLength": 3,
+          "maxLength": 50
+        },
+        "tags": {
+          "type": "array",
+          "description": "Tags describing the profession and where it's found",
+          "minItems": 3,
+          "maxItems": 10,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z-]*[a-z]$",
+            "minLength": 2,
+            "maxLength": 30
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "alignment": {
+      "type": "object",
+      "required": ["type", "name", "abbreviation", "description", "examples"],
+      "properties": {
+        "type": {
+          "const": "alignment",
+          "description": "Content type identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full alignment name (e.g., 'Lawful Good')",
+          "enum": [
+            "Lawful Good",
+            "Neutral Good",
+            "Chaotic Good",
+            "Lawful Neutral",
+            "True Neutral",
+            "Chaotic Neutral",
+            "Lawful Evil",
+            "Neutral Evil",
+            "Chaotic Evil"
+          ]
+        },
+        "abbreviation": {
+          "type": "string",
+          "description": "Two-letter abbreviation (e.g., 'LG')",
+          "pattern": "^[LNCE][GNEC]$"
+        },
+        "description": {
+          "type": "string",
+          "description": "Explanation of the alignment",
+          "minLength": 50,
+          "maxLength": 500
+        },
+        "examples": {
+          "type": "array",
+          "description": "Example character archetypes",
+          "minItems": 2,
+          "maxItems": 5,
+          "items": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 100
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "personality": {
+      "type": "object",
+      "required": ["type", "trait", "description"],
+      "properties": {
+        "type": {
+          "const": "personality",
+          "description": "Content type identifier"
+        },
+        "trait": {
+          "type": "string",
+          "description": "Personality trait name",
+          "pattern": "^[A-Z]",
+          "minLength": 3,
+          "maxLength": 50
+        },
+        "description": {
+          "type": "string",
+          "description": "Brief description of how this trait manifests",
+          "minLength": 20,
+          "maxLength": 300
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

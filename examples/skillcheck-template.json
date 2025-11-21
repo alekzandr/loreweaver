@@ -1,0 +1,16 @@
+{
+  "skill": "Arcana",
+  "challenge": "Decipher an ancient magical rune",
+  "description": "A glowing rune etched into stone pulses with arcane energy. Understanding its purpose requires knowledge of magical theory and ancient languages.",
+  "success": "Identify the rune's purpose and safely interact with it",
+  "failure": "Misinterpret the rune, potentially triggering a magical trap or effect",
+  "tags": [
+    "intelligence",
+    "magic",
+    "dungeon",
+    "ancient",
+    "puzzle",
+    "arcane"
+  ],
+  "dc": 15
+}

@@ -1,0 +1,41 @@
+{
+  "key": "curiosity-shop",
+  "name": "Curiosity Shop",
+  "environment": "urban",
+  "tags": [
+    "shop",
+    "indoor",
+    "building",
+    "merchant"
+  ],
+  "primary": [
+    "Glass Display Case",
+    "Wooden Counter",
+    "Oil Lantern",
+    "Brass Bell",
+    "Leather-Bound Ledger",
+    "Coin Purse",
+    "Price Tags",
+    "Shop Sign"
+  ],
+  "secondary": [
+    "Hidden Drawer",
+    "Magnifying Glass",
+    "Receipt Book",
+    "Merchant's Scale",
+    "Lockbox",
+    "Inventory List",
+    "Key Ring",
+    "Security Charm"
+  ],
+  "tertiary": [
+    "Secret Compartment",
+    "Forged Documents",
+    "Stolen Goods",
+    "Hidden Safe",
+    "Coded Message",
+    "Magic Item (Minor)",
+    "Smuggler's Map",
+    "Blackmail Letters"
+  ]
+}

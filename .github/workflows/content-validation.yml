@@ -1,0 +1,319 @@
+name: Content Validation
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate-content:
+    name: Validate Submitted Content
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Run JSON linting
+        id: json-lint
+        run: |
+          echo "## JSON Validation" >> $GITHUB_STEP_SUMMARY
+          if npm run test:json; then
+            echo "✅ All JSON files are valid" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ JSON validation failed" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+      
+      - name: Run schema validation
+        id: schema-validation
+        run: |
+          echo "## Schema Validation" >> $GITHUB_STEP_SUMMARY
+          
+          # Find changed JSON files in content-submissions
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^content-submissions/.*\.json$' || echo "")
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "ℹ️ No content JSON files changed - skipping content validation" >> $GITHUB_STEP_SUMMARY
+            echo "This PR modifies CI/CD infrastructure or documentation only." >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+          
+          echo "Changed files:" >> $GITHUB_STEP_SUMMARY
+          echo "$CHANGED_FILES" | while read file; do
+            echo "- $file" >> $GITHUB_STEP_SUMMARY
+          done
+          
+          # Validate changed files
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Validation Results" >> $GITHUB_STEP_SUMMARY
+          
+          VALIDATION_OUTPUT=$(npm run validate:content 2>&1 || true)
+          
+          if echo "$VALIDATION_OUTPUT" | grep -q "All validations passed"; then
+            echo "✅ All content validated successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Validation failed" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            echo "$VALIDATION_OUTPUT" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+      
+      - name: Run production cross-check
+        id: production-check
+        run: |
+          echo "## Production Cross-Check" >> $GITHUB_STEP_SUMMARY
+          
+          # Check if there are content JSON submissions
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^content-submissions/.*\.json$' || echo "")
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "ℹ️ No content JSON files to cross-check - skipping" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+          
+          # Run validation with production check
+          CROSS_CHECK_OUTPUT=$(npm run validate:content -- --check-production 2>&1 || true)
+          
+          if echo "$CROSS_CHECK_OUTPUT" | grep -q "All validations passed"; then
+            echo "✅ No duplicate content detected" >> $GITHUB_STEP_SUMMARY
+          elif echo "$CROSS_CHECK_OUTPUT" | grep -q "Validation passed with warnings"; then
+            echo "⚠️ Validation passed with warnings" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            echo "$CROSS_CHECK_OUTPUT" | grep -A 20 "Warnings Summary" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Production cross-check failed" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            echo "$CROSS_CHECK_OUTPUT" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+      
+      - name: Run quality report
+        id: quality-report
+        run: |
+          echo "## Quality Report" >> $GITHUB_STEP_SUMMARY
+          
+          # Check if there are content JSON submissions
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^content-submissions/.*\.json$' || echo "")
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "ℹ️ No content JSON files to analyze - skipping quality report" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+          
+          # Run validation with detailed report
+          REPORT_OUTPUT=$(npm run validate:content -- --report --check-production 2>&1 || true)
+          
+          # Extract suggestions if any
+          if echo "$REPORT_OUTPUT" | grep -q "Improvement Suggestions"; then
+            echo "### 💡 Improvement Suggestions" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            echo "$REPORT_OUTPUT" | grep -A 50 "Improvement Suggestions" | head -30 >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ No quality issues detected" >> $GITHUB_STEP_SUMMARY
+          fi
+      
+      - name: Post validation results to PR
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const { execSync } = require('child_process');
+            
+            // Check if there are content JSON submissions
+            let hasContentChanges = false;
+            try {
+              const changedFiles = execSync('git diff --name-only origin/main...HEAD', {
+                encoding: 'utf8',
+                stdio: 'pipe'
+              });
+              // Check for .json files in content-submissions, not .gitkeep files
+              hasContentChanges = /content-submissions\/.*\.json/m.test(changedFiles);
+            } catch (error) {
+              console.log('Could not check for changed files');
+            }
+            
+            // If no content changes, post informational comment and exit
+            if (!hasContentChanges) {
+              let commentBody = '## 🛡️ Content Validation Results\n\n';
+              commentBody += '### ℹ️ No Content Submissions\n\n';
+              commentBody += 'This PR does not contain any content submissions in `content-submissions/`.\n\n';
+              commentBody += 'Content validation is skipped for infrastructure and documentation changes.\n\n';
+              commentBody += '---\n';
+              commentBody += '📚 **Resources:**\n';
+              commentBody += '- [Content Contribution Guide](../blob/main/CONTRIBUTING_CONTENT.md)\n';
+              commentBody += '- [CI/CD Maintainer Guide](../blob/main/MAINTAINING_CI.md)\n';
+              
+              // Find existing bot comment
+              const { data: comments } = await github.rest.issues.listComments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+              });
+              
+              const botComment = comments.find(comment => 
+                comment.user.type === 'Bot' && 
+                comment.body.includes('Content Validation Results')
+              );
+              
+              // Create or update comment
+              if (botComment) {
+                await github.rest.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: botComment.id,
+                  body: commentBody
+                });
+              } else {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  body: commentBody
+                });
+              }
+              
+              return; // Exit early
+            }
+            
+            // Get validation results for content submissions
+            let validationOutput = '';
+            try {
+              validationOutput = execSync('npm run validate:content -- --report --check-production', {
+                encoding: 'utf8',
+                stdio: 'pipe'
+              });
+            } catch (error) {
+              validationOutput = error.stdout || error.stderr || 'Validation failed';
+            }
+            
+            // Parse results
+            const hasErrors = validationOutput.includes('❌') || validationOutput.includes('Validation failed');
+            const hasWarnings = validationOutput.includes('⚠️') || validationOutput.includes('Warnings:');
+            
+            // Create comment body
+            let commentBody = '## 🛡️ Content Validation Results\n\n';
+            
+            if (!hasErrors && !hasWarnings) {
+              commentBody += '### ✅ All validations passed!\n\n';
+              commentBody += 'Your content submission looks great. No issues detected.\n';
+            } else if (hasErrors) {
+              commentBody += '### ❌ Validation Failed\n\n';
+              commentBody += 'Please fix the following issues before merging:\n\n';
+            } else {
+              commentBody += '### ⚠️ Validation Passed with Warnings\n\n';
+              commentBody += 'Your content is valid but has some quality suggestions:\n\n';
+            }
+            
+            // Add validation output
+            commentBody += '<details>\n<summary>Detailed Validation Output</summary>\n\n```\n';
+            commentBody += validationOutput.substring(0, 60000); // GitHub comment limit
+            commentBody += '\n```\n</details>\n\n';
+            
+            // Add helpful links
+            commentBody += '---\n';
+            commentBody += '📚 **Resources:**\n';
+            commentBody += '- [Content Contribution Guide](../blob/main/CONTRIBUTING_CONTENT.md)\n';
+            commentBody += '- [Validation Schemas](../tree/main/schemas)\n';
+            commentBody += '- [Example Templates](../tree/main/examples)\n\n';
+            
+            if (hasErrors) {
+              commentBody += '💡 **Tip:** Run `npm run validate:content -- --fix` locally to auto-fix common issues.\n';
+            }
+            
+            // Find existing bot comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('Content Validation Results')
+            );
+            
+            // Create or update comment
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: commentBody
+              });
+            }
+      
+      - name: Check validation status
+        if: always()
+        run: |
+          # Check if there are content JSON submissions
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^content-submissions/.*\.json$' || echo "")
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "ℹ️ No content JSON files to validate - skipping final check"
+            exit 0
+          fi
+          
+          # Run final validation check
+          if npm run validate:content -- --check-production; then
+            echo "✅ All validations passed"
+            exit 0
+          else
+            echo "❌ Validation failed - blocking merge"
+            exit 1
+          fi
+
+  test-validation-suite:
+    name: Run Validation Test Suite
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Run validation tests
+        run: |
+          npm run test:content-validation
+          npm run test:content-validation-phase2
+      
+      - name: Report test results
+        if: always()
+        run: |
+          echo "## Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Content validation test suite completed" >> $GITHUB_STEP_SUMMARY

@@ -1,10 +1,10 @@
 {
   "name": "loreweaver",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "D&D Exploration Encounter Generator",
   "scripts": {
     "start": "npx http-server -p 8000",
-    "test": "npm run test:files && npm run test:json && npm run lint && npm run test:html && npm run test:species && npm run test:bugfixes && npm run test:command && npm run test:context && npm run test:export && npm run test:location-bugs && npm run test:version-display && npm run test:version",
+    "test": "npm run test:files && npm run test:json && npm run lint && npm run test:html && npm run test:species && npm run test:bugfixes && npm run test:command && npm run test:context && npm run test:export && npm run test:location-bugs && npm run test:version-display && npm run test:content-validation && npm run test:content-validation-phase2 && npm run test:ci-integration && npm run test:version",
     "test:files": "node tests/validate-files.js",
     "test:json": "node tests/validate-json.js",
     "test:html": "node tests/validate-html.js",
@@ -15,11 +15,18 @@
     "test:export": "node tests/run-export-strategy-tests.mjs",
     "test:location-bugs": "node tests/test-location-count-bugs.js",
     "test:version-display": "node tests/test-version-display.js",
+    "test:content-validation": "node tests/test-content-validation.js",
+    "test:content-validation-phase2": "node tests/test-content-validation-phase2.js",
+    "test:ci-integration": "node tests/test-ci-integration.js",
     "test:version": "node tests/validate-version.js",
+    "validate:content": "node scripts/validate-content.js",
+    "merge:content": "node scripts/merge-content.js",
     "lint": "eslint assets/js/**/*.js",
     "lint:fix": "eslint assets/js/**/*.js --fix"
   },
   "devDependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
     "eslint": "^8.50.0",
     "html-validate": "^8.5.0",
     "http-server": "^14.1.1"

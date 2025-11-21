@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://loreweaver.app/schemas/location-schema.json",
+  "title": "Location",
+  "description": "Schema for location content with progressive reveal detail levels",
+  "type": "object",
+  "required": ["key", "tags", "primary", "secondary", "tertiary"],
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Unique identifier for the location (lowercase-with-hyphens)",
+      "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$",
+      "minLength": 3,
+      "maxLength": 50
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable location name (auto-generated from key if omitted)",
+      "minLength": 3,
+      "maxLength": 80
+    },
+    "tags": {
+      "type": "array",
+      "description": "Categorization tags for filtering",
+      "minItems": 2,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z-]*[a-z]$",
+        "minLength": 2,
+        "maxLength": 30
+      }
+    },
+    "primary": {
+      "type": "array",
+      "description": "Primary details - immediately visible/obvious (6-10 items)",
+      "minItems": 6,
+      "maxItems": 15,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 100
+      }
+    },
+    "secondary": {
+      "type": "array",
+      "description": "Secondary details - require closer inspection (6-10 items)",
+      "minItems": 6,
+      "maxItems": 15,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 100
+      }
+    },
+    "tertiary": {
+      "type": "array",
+      "description": "Hidden details - require investigation/search (4-8 items)",
+      "minItems": 4,
+      "maxItems": 12,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 100
+      }
+    },
+    "environment": {
+      "type": "string",
+      "description": "Environment this location belongs to",
+      "enum": ["urban", "undercity", "wilderness", "dungeon", "planar"]
+    }
+  },
+  "additionalProperties": false
+}
