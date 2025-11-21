@@ -1,0 +1,30 @@
+{
+  "title": "The Mysterious Merchant",
+  "environment": "wilderness",
+  "tags": ["social", "roleplay", "merchant", "mystery"],
+  "descriptions": [
+    "A weathered cart sits at the roadside, its canvas covering rippling in the breeze. The air carries scents of exotic spices and unfamiliar incense.",
+    "Behind makeshift stalls displaying curious wares, a cloaked figure watches travelers with keen, knowing eyes. Their goods seem to shift and shimmer in the light."
+  ],
+  "weight": 2,
+  "resolutions": [
+    {
+      "title": "Successful Trade",
+      "description": "The merchant opens up, revealing rare artifacts and valuable information about dangers ahead. They seem pleased to have found worthy customers.",
+      "requirements": "Persuasion DC 12 or offer fair payment for goods",
+      "rewards": "Rare magic item at 75% market price, map showing safe passage ahead, and warning about upcoming threat"
+    },
+    {
+      "title": "Cautious Exchange",
+      "description": "The merchant conducts business but remains guarded, unwilling to share deeper secrets. The transaction feels rushed and incomplete.",
+      "requirements": "Any interaction without hostility",
+      "rewards": "Standard goods at normal prices and vague hints about the region"
+    },
+    {
+      "title": "Lost Opportunity",
+      "description": "Suspicion or hostility causes the merchant to pack up hastily. They vanish down the road, leaving only dust and the lingering scent of incense.",
+      "requirements": "Intimidation attempt, Insight check failure, or hostile action",
+      "rewards": "None - the merchant disappears"
+    }
+  ]
+}

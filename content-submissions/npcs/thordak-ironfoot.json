@@ -1,0 +1,39 @@
+{
+  "type": "species",
+  "key": "mountain-dwarf",
+  "tags": ["hardy", "craftsmanship", "stubborn", "loyal"],
+  "firstNames": [
+    "Thordak",
+    "Bruenor",
+    "Gimli",
+    "Thorin",
+    "Balin",
+    "Dwalin",
+    "Fargrim",
+    "Harbek",
+    "Kildrak",
+    "Rurik",
+    "Oskar",
+    "Eberk",
+    "Tordek",
+    "Vondal",
+    "Taklinn"
+  ],
+  "surnames": [
+    "Ironfoot",
+    "Stonefist",
+    "Battlehammer",
+    "Fireforge",
+    "Steelshield",
+    "Rockseeker",
+    "Deepdelver",
+    "Goldborn",
+    "Anvilstrike",
+    "Silverbeard",
+    "Graniteheart",
+    "Bronzebrow",
+    "Oreseeker",
+    "Ironfist",
+    "Stonehammer"
+  ]
+}
