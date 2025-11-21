@@ -2,10 +2,6 @@ name: Content Validation
 
 on:
   pull_request:
-    paths:
-      - 'content-submissions/**'
-      - 'schemas/**'
-      - 'scripts/validate-content.js'
     branches:
       - main
 
@@ -49,7 +45,8 @@ jobs:
           CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^content-submissions/' || echo "")
           
           if [ -z "$CHANGED_FILES" ]; then
-            echo "No content files changed" >> $GITHUB_STEP_SUMMARY
+            echo "ℹ️ No content files changed - skipping content validation" >> $GITHUB_STEP_SUMMARY
+            echo "This PR modifies CI/CD infrastructure or documentation only." >> $GITHUB_STEP_SUMMARY
             exit 0
           fi
           
@@ -79,6 +76,14 @@ jobs:
         run: |
           echo "## Production Cross-Check" >> $GITHUB_STEP_SUMMARY
           
+          # Check if there are content submissions
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^content-submissions/' || echo "")
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "ℹ️ No content files to cross-check - skipping" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+          
           # Run validation with production check
           CROSS_CHECK_OUTPUT=$(npm run validate:content -- --check-production 2>&1 || true)
           
@@ -102,6 +107,14 @@ jobs:
         run: |
           echo "## Quality Report" >> $GITHUB_STEP_SUMMARY
           
+          # Check if there are content submissions
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^content-submissions/' || echo "")
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "ℹ️ No content files to analyze - skipping quality report" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+          
           # Run validation with detailed report
           REPORT_OUTPUT=$(npm run validate:content -- --report --check-production 2>&1 || true)
           
@@ -123,7 +136,62 @@ jobs:
             const fs = require('fs');
             const { execSync } = require('child_process');
             
-            // Get validation results
+            // Check if there are content submissions
+            let hasContentChanges = false;
+            try {
+              const changedFiles = execSync('git diff --name-only origin/main...HEAD', {
+                encoding: 'utf8',
+                stdio: 'pipe'
+              });
+              hasContentChanges = changedFiles.includes('content-submissions/');
+            } catch (error) {
+              console.log('Could not check for changed files');
+            }
+            
+            // If no content changes, post informational comment and exit
+            if (!hasContentChanges) {
+              let commentBody = '## 🛡️ Content Validation Results\n\n';
+              commentBody += '### ℹ️ No Content Submissions\n\n';
+              commentBody += 'This PR does not contain any content submissions in `content-submissions/`.\n\n';
+              commentBody += 'Content validation is skipped for infrastructure and documentation changes.\n\n';
+              commentBody += '---\n';
+              commentBody += '📚 **Resources:**\n';
+              commentBody += '- [Content Contribution Guide](../blob/main/CONTRIBUTING_CONTENT.md)\n';
+              commentBody += '- [CI/CD Maintainer Guide](../blob/main/MAINTAINING_CI.md)\n';
+              
+              // Find existing bot comment
+              const { data: comments } = await github.rest.issues.listComments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+              });
+              
+              const botComment = comments.find(comment => 
+                comment.user.type === 'Bot' && 
+                comment.body.includes('Content Validation Results')
+              );
+              
+              // Create or update comment
+              if (botComment) {
+                await github.rest.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: botComment.id,
+                  body: commentBody
+                });
+              } else {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  body: commentBody
+                });
+              }
+              
+              return; // Exit early
+            }
+            
+            // Get validation results for content submissions
             let validationOutput = '';
             try {
               validationOutput = execSync('npm run validate:content -- --report --check-production', {
@@ -200,6 +268,14 @@ jobs:
       - name: Check validation status
         if: always()
         run: |
+          # Check if there are content submissions
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep '^content-submissions/' || echo "")
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "ℹ️ No content files to validate - skipping final check"
+            exit 0
+          fi
+          
           # Run final validation check
           if npm run validate:content -- --check-production; then
             echo "✅ All validations passed"
