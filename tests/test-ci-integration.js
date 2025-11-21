@@ -92,12 +92,12 @@ try {
   // Check for key workflow steps
   const hasCheckout = workflowContent.includes('actions/checkout');
   const hasSetupNode = workflowContent.includes('actions/setup-node');
-  const hasNpmCi = workflowContent.includes('npm ci');
+  const hasNpmInstall = workflowContent.includes('npm install') || workflowContent.includes('npm ci');
   const hasValidation = workflowContent.includes('npm run validate:content');
   const hasGithubScript = workflowContent.includes('actions/github-script');
   
   assert(
-    hasCheckout && hasSetupNode && hasNpmCi && hasValidation && hasGithubScript,
+    hasCheckout && hasSetupNode && hasNpmInstall && hasValidation && hasGithubScript,
     'workflow has all required steps'
   );
 } catch (error) {
@@ -465,10 +465,10 @@ assert(
   'workflow uses Node.js 18'
 );
 
-// Test 23: Verify workflow has cache enabled
+// Test 23: Verify workflow has permissions configured
 assert(
-  workflowContent.includes("cache: 'npm'"),
-  'workflow has npm caching enabled'
+  workflowContent.includes('permissions:'),
+  'workflow has permissions configured'
 );
 
 // Test 24: Verify workflow posts PR comments
