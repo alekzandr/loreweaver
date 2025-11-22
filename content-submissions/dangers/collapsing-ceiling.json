@@ -1,0 +1,12 @@
+{
+  "category": "trap",
+  "name": "Collapsing Stone Ceiling",
+  "description": "Ancient support beams groan under the weight of cracked stone ceiling tiles. Pressure plates hidden beneath rubble on the floor trigger the collapse when stepped on, sending tons of stone crashing down.",
+  "detectMethod": "Perception check to notice weakened supports and suspicious floor tiles, Investigation to identify pressure plate mechanisms",
+  "disarmMethod": "Thieves' Tools to disable pressure plates, or brace weakened supports with wooden beams and stone wedges",
+  "damageType": "bludgeoning",
+  "damage": "4d10",
+  "tags": ["environmental", "dungeon", "ancient", "structural", "deadly"],
+  "severity": "high",
+  "resetable": false
+}

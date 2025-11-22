@@ -95,7 +95,7 @@ jobs:
           elif echo "$CROSS_CHECK_OUTPUT" | grep -q "Validation passed with warnings"; then
             echo "⚠️ Validation passed with warnings" >> $GITHUB_STEP_SUMMARY
             echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-            echo "$CROSS_CHECK_OUTPUT" | grep -A 20 "Warnings Summary" >> $GITHUB_STEP_SUMMARY
+            echo "$CROSS_CHECK_OUTPUT" | grep -A 5 "⚠️  Warnings:" || echo "$CROSS_CHECK_OUTPUT" | tail -20
             echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           else
             echo "❌ Production cross-check failed" >> $GITHUB_STEP_SUMMARY

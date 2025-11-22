@@ -1,0 +1,9 @@
+{
+  "skill": "Arcana",
+  "challenge": "Decode ancient magical runes etched into a stone door",
+  "description": "Glowing runes pulse with arcane energy across a sealed stone entrance. The symbols are written in an ancient magical language, their patterns suggesting both warning and invitation. Deciphering them requires deep knowledge of magical theory and historical linguistics.",
+  "success": "Reveal the runes' meaning and the command word to safely open the door without triggering protective wards",
+  "failure": "Misinterpret the runes and trigger a defensive ward that deals 2d8 force damage to everyone within 10 feet",
+  "tags": ["intelligence", "magic", "ancient", "puzzle", "arcane", "dungeon"],
+  "dc": 15
+}
