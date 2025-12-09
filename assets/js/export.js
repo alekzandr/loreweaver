@@ -4,32 +4,32 @@
 import { exportManager } from './export-strategies.mjs';
 
 /**
- * Gather current encounter data from window globals
- * @returns {Object} Encounter data object
+ * Gather current adventure data from window globals
+ * @returns {Object} Adventure data object
  */
-function gatherEncounterData() {
+function gatherAdventureData() {
     return {
-        encounterTemplate: window.encounterTemplate,
+        adventureTemplate: window.adventureTemplate,
         selectedEnvironment: window.selectedEnvironment,
         partyLevel: document.getElementById('partyLevel')?.value,
-        currentEncounterFlow: window.currentEncounterFlow,
-        currentEncounterLocations: window.currentEncounterLocations,
-        currentEncounterNPCs: window.currentEncounterNPCs,
-        currentEncounterSkillChecks: window.currentEncounterSkillChecks,
-        currentEncounterDangers: window.currentEncounterDangers
+        currentAdventureFlow: window.currentAdventureFlow,
+        currentAdventureLocations: window.currentAdventureLocations,
+        currentAdventureNPCs: window.currentAdventureNPCs,
+        currentAdventureSkillChecks: window.currentAdventureSkillChecks,
+        currentAdventureDangers: window.currentAdventureDangers
     };
 }
 
 /**
- * Export encounter as Markdown
+ * Export adventure as Markdown
  * Uses Strategy Pattern with MarkdownExportStrategy
  */
-export function exportEncounterMarkdown() {
+export function exportAdventureMarkdown() {
     console.log('🔍 Export Markdown called');
     try {
-        const encounterData = gatherEncounterData();
-        console.log('Encounter data gathered:', encounterData);
-        exportManager.exportAndDownload(encounterData, 'markdown');
+        const adventureData = gatherAdventureData();
+        console.log('Adventure data gathered:', adventureData);
+        exportManager.exportAndDownload(adventureData, 'markdown');
         console.log('✅ Markdown export successful');
     } catch (error) {
         console.error('❌ Markdown export failed:', error);
@@ -38,14 +38,14 @@ export function exportEncounterMarkdown() {
 }
 
 /**
- * Export encounter as plain text
+ * Export adventure as plain text
  * Uses Strategy Pattern with TextExportStrategy
  */
-export function exportEncounterText() {
+export function exportAdventureText() {
     console.log('🔍 Export Text called');
     try {
-        const encounterData = gatherEncounterData();
-        exportManager.exportAndDownload(encounterData, 'text');
+        const adventureData = gatherAdventureData();
+        exportManager.exportAndDownload(adventureData, 'text');
         console.log('✅ Text export successful');
     } catch (error) {
         console.error('❌ Text export failed:', error);
@@ -54,25 +54,25 @@ export function exportEncounterText() {
 }
 
 /**
- * Export encounter as PDF (opens print dialog)
+ * Export adventure as PDF (opens print dialog)
  * Uses Strategy Pattern with HTMLExportStrategy
  */
-export function exportEncounterPDF() {
+export function exportAdventurePDF() {
     console.log('🔍 Export PDF called');
     try {
-        const encounterData = gatherEncounterData();
-        const result = exportManager.export(encounterData, 'html', {
+        const adventureData = gatherAdventureData();
+        const result = exportManager.export(adventureData, 'html', {
             includeStyles: true,
             printMode: true
         });
-        
+
         // Open print window with generated HTML
         const printWindow = window.open('', '_blank');
         printWindow.document.write(`
             <!DOCTYPE html>
             <html>
             <head>
-                <title>Encounter - ${encounterData.encounterTemplate?.title || 'Unknown'}</title>
+                <title>Adventure - ${adventureData.adventureTemplate?.title || 'Unknown'}</title>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
             </head>
@@ -99,14 +99,14 @@ export function exportEncounterPDF() {
 }
 
 /**
- * Export encounter as JSON
+ * Export adventure as JSON
  * Uses Strategy Pattern with JSONExportStrategy
  */
-export function exportEncounterJSON() {
+export function exportAdventureJSON() {
     console.log('🔍 Export JSON called');
     try {
-        const encounterData = gatherEncounterData();
-        exportManager.exportAndDownload(encounterData, 'json', {
+        const adventureData = gatherAdventureData();
+        exportManager.exportAndDownload(adventureData, 'json', {
             pretty: true,
             includeMetadata: true
         });
@@ -118,22 +118,22 @@ export function exportEncounterJSON() {
 }
 
 /**
- * Export encounter using a specific strategy
+ * Export adventure using a specific strategy
  * @param {string} strategyKey - The strategy to use ('markdown', 'text', 'html', 'json')
  * @param {Object} [options] - Strategy-specific options
  */
-export function exportEncounter(strategyKey = 'markdown', options = {}) {
+export function exportAdventure(strategyKey = 'markdown', options = {}) {
     console.log(`🔍 Export called with strategy: ${strategyKey}`);
     try {
-        const encounterData = gatherEncounterData();
-        
+        const adventureData = gatherAdventureData();
+
         // Special handling for PDF (HTML + print dialog)
         if (strategyKey === 'pdf' || strategyKey === 'html') {
-            exportEncounterPDF();
+            exportAdventurePDF();
             return;
         }
-        
-        exportManager.exportAndDownload(encounterData, strategyKey, options);
+
+        exportManager.exportAndDownload(adventureData, strategyKey, options);
         console.log(`✅ Export successful: ${strategyKey}`);
     } catch (error) {
         console.error(`❌ Export failed (${strategyKey}):`, error);

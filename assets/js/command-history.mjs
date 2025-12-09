@@ -22,13 +22,13 @@ export class CommandHistory {
         if (maxHistorySize < 1 || maxHistorySize > 200) {
             throw new Error('maxHistorySize must be between 1 and 200');
         }
-        
+
         this.history = [];
         this.currentIndex = -1;
         this.maxHistorySize = maxHistorySize;
         this.listeners = new Set();
     }
-    
+
     /**
      * Execute a command and add it to history
      * @param {Command} command - Command to execute
@@ -38,31 +38,31 @@ export class CommandHistory {
         if (!command || typeof command.execute !== 'function') {
             throw new Error('Command must have an execute method');
         }
-        
+
         if (typeof command.undo !== 'function') {
             throw new Error('Command must have an undo method');
         }
-        
+
         // Execute the command
         const result = command.execute();
-        
+
         // Remove any "future" commands (after undo)
         this.history = this.history.slice(0, this.currentIndex + 1);
-        
+
         // Add to history
         this.history.push(command);
         this.currentIndex++;
-        
+
         // Limit history size (FIFO - remove oldest)
         if (this.history.length > this.maxHistorySize) {
             this.history.shift();
             this.currentIndex--;
         }
-        
+
         this.notifyListeners();
         return result;
     }
-    
+
     /**
      * Undo the last command
      * @returns {boolean} True if undo was successful
@@ -71,9 +71,9 @@ export class CommandHistory {
         if (!this.canUndo()) {
             return false;
         }
-        
+
         const command = this.history[this.currentIndex];
-        
+
         try {
             command.undo();
             this.currentIndex--;
@@ -84,7 +84,7 @@ export class CommandHistory {
             return false;
         }
     }
-    
+
     /**
      * Redo the next command
      * @returns {boolean} True if redo was successful
@@ -93,10 +93,10 @@ export class CommandHistory {
         if (!this.canRedo()) {
             return false;
         }
-        
+
         this.currentIndex++;
         const command = this.history[this.currentIndex];
-        
+
         try {
             // Always use redo() which should restore the saved state
             command.redo();
@@ -108,7 +108,7 @@ export class CommandHistory {
             return false;
         }
     }
-    
+
     /**
      * Check if undo is possible
      * @returns {boolean}
@@ -116,7 +116,7 @@ export class CommandHistory {
     canUndo() {
         return this.currentIndex >= 0;
     }
-    
+
     /**
      * Check if redo is possible
      * @returns {boolean}
@@ -124,7 +124,7 @@ export class CommandHistory {
     canRedo() {
         return this.currentIndex < this.history.length - 1;
     }
-    
+
     /**
      * Get the current history (up to current index)
      * @returns {Array<Command>}
@@ -132,7 +132,7 @@ export class CommandHistory {
     getHistory() {
         return this.history.slice(0, this.currentIndex + 1);
     }
-    
+
     /**
      * Clear all history
      */
@@ -141,7 +141,7 @@ export class CommandHistory {
         this.currentIndex = -1;
         this.notifyListeners();
     }
-    
+
     /**
      * Get history metadata (for debugging/UI)
      * @returns {Object}
@@ -155,7 +155,7 @@ export class CommandHistory {
             maxSize: this.maxHistorySize
         };
     }
-    
+
     /**
      * Subscribe to history changes
      * @param {Function} listener - Callback when history changes
@@ -165,14 +165,14 @@ export class CommandHistory {
         if (typeof listener !== 'function') {
             throw new Error('Listener must be a function');
         }
-        
+
         this.listeners.add(listener);
-        
+
         return () => {
             this.listeners.delete(listener);
         };
     }
-    
+
     /**
      * Notify all listeners of history changes
      * @private
@@ -198,37 +198,37 @@ export class Command {
         this.description = description;
         this.timestamp = Date.now();
     }
-    
+
     execute() {
         throw new Error('Execute method must be implemented');
     }
-    
+
     undo() {
         throw new Error('Undo method must be implemented');
     }
-    
+
     redo() {
         throw new Error('Redo method must be implemented');
     }
-    
+
     getDescription() {
         return this.description;
     }
 }
 
 /**
- * Command to generate an encounter
+ * Command to generate an adventure
  * Captures and stores the actual generated content for proper undo/redo
  */
-export class GenerateEncounterCommand extends Command {
+export class GenerateAdventureCommand extends Command {
     /**
-     * @param {Function} generateFn - Function that generates an encounter
+     * @param {Function} generateFn - Function that generates an adventure
      * @param {Function} getStateFn - Function that captures current state
      * @param {Function} setStateFn - Function that restores a saved state
      */
     constructor(generateFn, getStateFn, setStateFn) {
-        super('Generate Encounter');
-        
+        super('Generate Adventure');
+
         if (typeof generateFn !== 'function') {
             throw new Error('generateFn must be a function');
         }
@@ -238,36 +238,36 @@ export class GenerateEncounterCommand extends Command {
         if (typeof setStateFn !== 'function') {
             throw new Error('setStateFn must be a function');
         }
-        
+
         this.generateFn = generateFn;
         this.getStateFn = getStateFn;
         this.setStateFn = setStateFn;
-        
+
         // Capture the state BEFORE generation
         this.previousState = this.captureState();
         this.newState = null;
     }
-    
+
     execute() {
         // Generate new content
         const result = this.generateFn();
-        
+
         // Capture the state AFTER generation
         this.newState = this.captureState();
-        
+
         return result;
     }
-    
+
     undo() {
         // Restore the previous state
         this.restoreState(this.previousState);
     }
-    
+
     redo() {
         // Restore the generated state
         this.restoreState(this.newState);
     }
-    
+
     /**
      * Capture current state
      * @private
@@ -276,7 +276,7 @@ export class GenerateEncounterCommand extends Command {
         const state = this.getStateFn();
         return this.deepClone(state);
     }
-    
+
     /**
      * Restore a saved state
      * @private
@@ -284,7 +284,7 @@ export class GenerateEncounterCommand extends Command {
     restoreState(state) {
         this.setStateFn(state);
     }
-    
+
     /**
      * Deep clone an object to prevent reference issues
      * @private
@@ -293,18 +293,18 @@ export class GenerateEncounterCommand extends Command {
         if (obj === null || typeof obj !== 'object') {
             return obj;
         }
-        
+
         // Security: Don't clone functions or DOM elements
         if (typeof obj === 'function' || obj instanceof HTMLElement) {
             return null;
         }
-        
+
         try {
             // Use structuredClone if available (modern browsers)
             if (typeof structuredClone === 'function') {
                 return structuredClone(obj);
             }
-            
+
             // Fallback to JSON clone (has limitations but safe)
             return JSON.parse(JSON.stringify(obj));
         } catch (error) {
@@ -326,7 +326,7 @@ export class GenerateNPCCommand extends Command {
      */
     constructor(generateFn, getStateFn, setStateFn) {
         super('Generate NPC');
-        
+
         if (typeof generateFn !== 'function') {
             throw new Error('generateFn must be a function');
         }
@@ -336,36 +336,36 @@ export class GenerateNPCCommand extends Command {
         if (typeof setStateFn !== 'function') {
             throw new Error('setStateFn must be a function');
         }
-        
+
         this.generateFn = generateFn;
         this.getStateFn = getStateFn;
         this.setStateFn = setStateFn;
-        
+
         // Capture the state BEFORE generation
         this.previousState = this.captureState();
         this.newState = null;
     }
-    
+
     execute() {
         // Generate new NPC
         const result = this.generateFn();
-        
+
         // Capture the state AFTER generation
         this.newState = this.captureState();
-        
+
         return result;
     }
-    
+
     undo() {
         // Restore the previous state
         this.restoreState(this.previousState);
     }
-    
+
     redo() {
         // Restore the generated state
         this.restoreState(this.newState);
     }
-    
+
     /**
      * Capture current state
      * @private
@@ -374,7 +374,7 @@ export class GenerateNPCCommand extends Command {
         const state = this.getStateFn();
         return this.deepClone(state);
     }
-    
+
     /**
      * Restore a saved state
      * @private
@@ -382,7 +382,7 @@ export class GenerateNPCCommand extends Command {
     restoreState(state) {
         this.setStateFn(state);
     }
-    
+
     /**
      * Deep clone an object to prevent reference issues
      * @private
@@ -391,18 +391,18 @@ export class GenerateNPCCommand extends Command {
         if (obj === null || typeof obj !== 'object') {
             return obj;
         }
-        
+
         // Security: Don't clone functions or DOM elements
         if (typeof obj === 'function' || obj instanceof HTMLElement) {
             return null;
         }
-        
+
         try {
             // Use structuredClone if available (modern browsers)
             if (typeof structuredClone === 'function') {
                 return structuredClone(obj);
             }
-            
+
             // Fallback to JSON clone (has limitations but safe)
             return JSON.parse(JSON.stringify(obj));
         } catch (error) {
@@ -425,32 +425,32 @@ export class FilterChangeCommand extends Command {
      */
     constructor(filterType, oldValue, newValue, applyFn) {
         super(`Change ${filterType} filter`);
-        
+
         if (!filterType || typeof filterType !== 'string') {
             throw new Error('filterType must be a non-empty string');
         }
         if (typeof applyFn !== 'function') {
             throw new Error('applyFn must be a function');
         }
-        
+
         this.filterType = filterType;
         this.oldValue = this.deepClone(oldValue);
         this.newValue = this.deepClone(newValue);
         this.applyFn = applyFn;
     }
-    
+
     execute() {
         this.applyFn(this.filterType, this.newValue);
     }
-    
+
     undo() {
         this.applyFn(this.filterType, this.oldValue);
     }
-    
+
     redo() {
         this.applyFn(this.filterType, this.newValue);
     }
-    
+
     /**
      * Deep clone for safety
      * @private
@@ -459,7 +459,7 @@ export class FilterChangeCommand extends Command {
         if (obj === null || typeof obj !== 'object') {
             return obj;
         }
-        
+
         try {
             if (typeof structuredClone === 'function') {
                 return structuredClone(obj);
@@ -484,29 +484,29 @@ export class SearchCommand extends Command {
      */
     constructor(oldQuery, newQuery, searchFn) {
         super('Search');
-        
+
         if (typeof searchFn !== 'function') {
             throw new Error('searchFn must be a function');
         }
-        
+
         // Sanitize search queries to prevent XSS
         this.oldQuery = this.sanitizeString(oldQuery);
         this.newQuery = this.sanitizeString(newQuery);
         this.searchFn = searchFn;
     }
-    
+
     execute() {
         this.searchFn(this.newQuery);
     }
-    
+
     undo() {
         this.searchFn(this.oldQuery);
     }
-    
+
     redo() {
         this.searchFn(this.newQuery);
     }
-    
+
     /**
      * Sanitize string input to prevent XSS
      * @private
@@ -515,7 +515,7 @@ export class SearchCommand extends Command {
         if (typeof str !== 'string') {
             return '';
         }
-        
+
         // Remove any HTML tags and trim
         return str.replace(/<[^>]*>/g, '').trim();
     }
@@ -532,24 +532,24 @@ export class BatchCommand extends Command {
      */
     constructor(commands, description = 'Batch Operation') {
         super(description);
-        
+
         if (!Array.isArray(commands) || commands.length === 0) {
             throw new Error('commands must be a non-empty array');
         }
-        
+
         // Validate all commands
         commands.forEach((cmd, index) => {
             if (!cmd || typeof cmd.execute !== 'function' || typeof cmd.undo !== 'function') {
                 throw new Error(`Invalid command at index ${index}`);
             }
         });
-        
+
         this.commands = commands;
     }
-    
+
     execute() {
         const results = [];
-        
+
         try {
             for (const command of this.commands) {
                 results.push(command.execute());
@@ -562,7 +562,7 @@ export class BatchCommand extends Command {
             throw error;
         }
     }
-    
+
     undo() {
         // Undo in reverse order
         for (let i = this.commands.length - 1; i >= 0; i--) {
@@ -573,7 +573,7 @@ export class BatchCommand extends Command {
             }
         }
     }
-    
+
     redo() {
         // Redo in forward order
         for (let i = 0; i < this.commands.length; i++) {
@@ -606,9 +606,9 @@ export function getActiveHistory() {
     if (typeof window === 'undefined') {
         return generateHistory;
     }
-    
+
     const currentPage = window.currentPage || 'generate';
-    
+
     switch (currentPage) {
         case 'npc':
             return npcHistory;
@@ -639,7 +639,7 @@ export function executeInContext(command, context = null) {
                 return generateHistory.execute(command);
         }
     }
-    
+
     // Use active page context
     return getActiveHistory().execute(command);
 }

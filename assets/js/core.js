@@ -6,20 +6,20 @@ import './data-loader.js';
 import { random, formatLocationName, capitalizeSpecies } from './utils.js';
 
 // ============================================================================
-// ENCOUNTER GENERATION
+// ADVENTURE GENERATION
 // ============================================================================
 
 /**
- * Select encounter template based on environment and optional specific title
+ * Select adventure template based on environment and optional specific title
  */
-export function selectEncounterTemplate(environment, specificTitle = null) {
-    const entries = window.encounterTitles && window.encounterTitles[environment];
-    
+export function selectAdventureTemplate(environment, specificTitle = null) {
+    const entries = window.adventureTemplates && window.adventureTemplates[environment];
+
     if (specificTitle && entries) {
-        const specificEncounter = entries.find(entry => entry.title === specificTitle);
-        if (specificEncounter) return specificEncounter;
+        const specificAdventure = entries.find(entry => entry.title === specificTitle);
+        if (specificAdventure) return specificAdventure;
     }
-    
+
     if (entries && entries.length > 0) {
         const totalWeight = entries.reduce((sum, entry) => sum + (entry.weight ?? 1), 0);
         let roll = random() * totalWeight;
@@ -43,7 +43,7 @@ export function selectEncounterTemplate(environment, specificTitle = null) {
         swamp: ['The Mire', 'Bog of Despair'],
         underground: ['Cavern Depths', 'Crystal Caves']
     };
-    
+
     const fallback = fallbackTitles[environment] || fallbackTitles.urban;
     const title = fallback[Math.floor(random() * fallback.length)];
     return { title, description: null, tags: [] };
@@ -52,7 +52,7 @@ export function selectEncounterTemplate(environment, specificTitle = null) {
 /**
  * Smart selection of skill checks based on tags
  */
-export function selectSkillChecks(encounterTags, locationTags, npcTags, numChecks = null) {
+export function selectSkillChecks(adventureTags, locationTags, npcTags, numChecks = null) {
     if (!window.skillChecksData || !window.skillChecksData.skillChecks || window.skillChecksData.skillChecks.length === 0) {
         return [];
     }
@@ -61,13 +61,13 @@ export function selectSkillChecks(encounterTags, locationTags, npcTags, numCheck
         numChecks = random() < 0.6 ? 3 : 4;
     }
 
-    const allTags = [...encounterTags, ...locationTags, ...npcTags];
+    const allTags = [...adventureTags, ...locationTags, ...npcTags];
 
     const scoredChecks = window.skillChecksData.skillChecks.map(check => {
         let score = 0;
         for (const tag of check.tags) {
             if (allTags.includes(tag)) score += 1;
-            if (encounterTags.includes(tag)) score += 0.5;
+            if (adventureTags.includes(tag)) score += 0.5;
         }
         score += random() * 0.3;
         return { check, score };
@@ -87,7 +87,7 @@ export function selectSkillChecks(encounterTags, locationTags, npcTags, numCheck
                 break;
             }
         }
-        
+
         if (!selectedCheck && topCandidates.length > 0) {
             selectedCheck = topCandidates.shift();
         }
@@ -180,7 +180,7 @@ export function selectHazards(environmentTag, locationTags, numHazards = null) {
 /**
  * Smart selection of environmental effects
  */
-export function selectEnvironmentalEffects(environmentTag, encounterTags, numEffects = null) {
+export function selectEnvironmentalEffects(environmentTag, adventureTags, numEffects = null) {
     if (!window.dangersData || !window.dangersData.environmentalEffects || window.dangersData.environmentalEffects.length === 0) {
         return [];
     }
@@ -191,7 +191,7 @@ export function selectEnvironmentalEffects(environmentTag, encounterTags, numEff
 
     if (numEffects === 0) return [];
 
-    const allTags = [environmentTag, ...encounterTags];
+    const allTags = [environmentTag, ...adventureTags];
 
     const scoredEffects = window.dangersData.environmentalEffects.map(effect => {
         let score = 0;
@@ -221,13 +221,13 @@ export function selectEnvironmentalEffects(environmentTag, encounterTags, numEff
 // ============================================================================
 
 /**
- * Select locations for encounter based on tags
+ * Select locations for adventure based on tags
  */
-export function selectLocationsForEncounter(encounterTags, environment, numLocations = null, customLocationKeys = null) {
+export function selectLocationsForAdventure(adventureTags, environment, numLocations = null, customLocationKeys = null) {
     if (customLocationKeys && customLocationKeys.length > 0) {
         const environmentLocations = window.locationObjects[environment];
         if (!environmentLocations) return [];
-        
+
         return customLocationKeys.map(key => {
             const locationData = environmentLocations[key];
             if (!locationData) return null;
@@ -238,51 +238,51 @@ export function selectLocationsForEncounter(encounterTags, environment, numLocat
             };
         }).filter(loc => loc !== null);
     }
-    
+
     if (numLocations === null) {
         const roll = random();
         if (roll < 0.4) numLocations = 3;
         else if (roll < 0.75) numLocations = 4;
         else numLocations = 5;
     }
-    
+
     const environmentLocations = window.locationObjects[environment];
     if (!environmentLocations) return [];
-    
+
     const locations = [];
     const locationKeys = Object.keys(environmentLocations);
     const usedLocations = new Set();
-    
+
     for (let i = 0; i < numLocations && locationKeys.length > 0; i++) {
         const locationScores = locationKeys
             .filter(key => !usedLocations.has(key))
             .map(key => {
                 const location = environmentLocations[key];
                 let score = 0;
-                
-                for (const tag of encounterTags) {
+
+                for (const tag of adventureTags) {
                     if (location.tags && location.tags.includes(tag)) {
                         score += 2;
                     }
                 }
-                
+
                 if (location.tags) {
                     for (const tag of location.tags) {
-                        if (encounterTags.includes(tag)) {
+                        if (adventureTags.includes(tag)) {
                             score += 1;
                         }
                     }
                 }
-                
+
                 score += random() * 0.5;
-                
+
                 return { key, location, score };
             });
-        
+
         if (locationScores.every(l => l.score < 0.5)) {
             const availableKeys = locationKeys.filter(k => !usedLocations.has(k));
             if (availableKeys.length === 0) break;
-            
+
             const randomKey = availableKeys[Math.floor(random() * availableKeys.length)];
             usedLocations.add(randomKey);
             locations.push({
@@ -292,12 +292,12 @@ export function selectLocationsForEncounter(encounterTags, environment, numLocat
             });
             continue;
         }
-        
+
         locationScores.sort((a, b) => b.score - a.score);
-        
+
         const totalScore = locationScores.reduce((sum, l) => sum + Math.max(0.1, l.score), 0);
         let rnd = random() * totalScore;
-        
+
         let selectedLocation = null;
         for (const scored of locationScores) {
             rnd -= Math.max(0.1, scored.score);
@@ -306,11 +306,11 @@ export function selectLocationsForEncounter(encounterTags, environment, numLocat
                 break;
             }
         }
-        
+
         if (!selectedLocation) {
             selectedLocation = locationScores[0];
         }
-        
+
         usedLocations.add(selectedLocation.key);
         locations.push({
             key: selectedLocation.key,
@@ -318,7 +318,7 @@ export function selectLocationsForEncounter(encounterTags, environment, numLocat
             data: selectedLocation.location
         });
     }
-    
+
     return locations;
 }
 
@@ -327,81 +327,81 @@ export function selectLocationsForEncounter(encounterTags, environment, numLocat
 // ============================================================================
 
 /**
- * Select NPCs for encounter based on tags
+ * Select NPCs for adventure based on tags
  */
-export function selectNPCsForEncounter(encounterTags, numNPCs = null) {
+export function selectNPCsForAdventure(adventureTags, numNPCs = null) {
     if (!window.npcData || !window.npcData.professions || !window.npcData.species) {
         console.error('NPC data not loaded yet!');
         return [];
     }
-    
+
     if (numNPCs === null) {
         numNPCs = Math.floor(random() * 3) + 1;
     }
-    
+
     const npcs = [];
     const usedProfessions = new Set();
     const usedTemplates = new Set();
-    
+
     for (let i = 0; i < numNPCs; i++) {
         let selectedProfession = null;
         let usingTemplate = false;
         let templateName = null;
-        
+
         // Try to use NPC templates (70% chance)
         if (window.npcData.npcTemplates && window.npcData.npcTemplates.length > 0 && random() < 0.7) {
             const templateScores = window.npcData.npcTemplates.map(template => {
                 if (usedTemplates.has(template.name)) {
                     return { template, score: -1 };
                 }
-                
+
                 let score = 0;
-                for (const tag of encounterTags) {
+                for (const tag of adventureTags) {
                     if (template.tags && template.tags.includes(tag)) {
                         score++;
                     }
                 }
-                
+
                 return { template, score };
             });
-            
+
             const validTemplates = templateScores.filter(t => t.score >= 2);
-            
+
             if (validTemplates.length > 0) {
                 const maxScore = Math.max(...validTemplates.map(t => t.score));
                 const topTemplates = validTemplates.filter(t => t.score >= maxScore - 1);
                 const selectedTemplate = topTemplates[Math.floor(random() * topTemplates.length)].template;
-                
+
                 usedTemplates.add(selectedTemplate.name);
                 usingTemplate = true;
                 templateName = selectedTemplate.name;
-                
+
                 selectedProfession = {
                     name: selectedTemplate.role,
                     tags: selectedTemplate.tags
                 };
             }
         }
-        
+
         // Fall back to profession-based generation
         if (!usingTemplate) {
             const professionScores = window.npcData.professions.map(profession => {
                 if (usedProfessions.has(profession.name)) {
                     return { profession, score: -1 };
                 }
-                
+
                 let score = 0;
-                for (const tag of encounterTags) {
+                for (const tag of adventureTags) {
                     if (profession.tags.includes(tag)) {
                         score++;
                     }
                 }
-                
+
                 return { profession, score };
             });
-            
+
             const validProfessions = professionScores.filter(p => p.score > 0);
-            
+
             if (validProfessions.length === 0) {
                 const availableProfessions = window.npcData.professions.filter(p => !usedProfessions.has(p.name));
                 selectedProfession = availableProfessions[Math.floor(random() * availableProfessions.length)];
@@ -410,24 +410,24 @@ export function selectNPCsForEncounter(encounterTags, numNPCs = null) {
                 const topProfessions = validProfessions.filter(p => p.score >= maxScore - 1);
                 selectedProfession = topProfessions[Math.floor(random() * topProfessions.length)].profession;
             }
-            
+
             usedProfessions.add(selectedProfession.name);
         }
-        
+
         // Generate the NPC
         const speciesKeys = Object.keys(window.npcData.species);
         const species = speciesKeys[Math.floor(random() * speciesKeys.length)];
         const speciesData = window.npcData.species[species];
-        
+
         const firstName = speciesData.firstNames[Math.floor(random() * speciesData.firstNames.length)];
         const surname = speciesData.surnames[Math.floor(random() * speciesData.surnames.length)];
         const fullName = `${firstName} ${surname}`;
-        
+
         const alignment = window.npcData.alignments?.[Math.floor(Math.random() * window.npcData.alignments.length)] || { name: 'Neutral', description: 'Acts according to circumstance' };
         const personality = window.npcData.personalities?.[Math.floor(Math.random() * window.npcData.personalities.length)] || { trait: 'Reserved', description: 'Keeps to themselves' };
         const secretObj = window.npcData.secrets?.[Math.floor(Math.random() * window.npcData.secrets.length)] || { secret: 'Has a hidden past', tags: [] };
         const appearanceObj = window.npcData.appearances?.[Math.floor(Math.random() * window.npcData.appearances.length)] || { description: 'Unremarkable appearance', tags: [] };
-        
+
         npcs.push({
             name: fullName,
             species,
@@ -440,7 +440,7 @@ export function selectNPCsForEncounter(encounterTags, numNPCs = null) {
             secret: secretObj
         });
     }
-    
+
     return npcs;
 }
 
@@ -452,32 +452,32 @@ export function generateNPC() {
     const selectedProfession = document.getElementById('npcProfession').value;
     const selectedAlignment = document.getElementById('npcAlignment').value;
     const selectedPersonality = document.getElementById('npcPersonality').value;
-    
+
     const speciesKeys = Object.keys(window.npcData.species);
-    const species = selectedSpecies === 'random' 
+    const species = selectedSpecies === 'random'
         ? speciesKeys[Math.floor(Math.random() * speciesKeys.length)]
         : selectedSpecies;
-    
+
     const speciesData = window.npcData.species[species];
-    
+
     const firstName = speciesData.firstNames[Math.floor(Math.random() * speciesData.firstNames.length)];
     const surname = speciesData.surnames[Math.floor(Math.random() * speciesData.surnames.length)];
-    
+
     const alignment = selectedAlignment === 'random'
         ? window.npcData.alignments[Math.floor(Math.random() * window.npcData.alignments.length)]
         : window.npcData.alignments.find(a => a.name === selectedAlignment);
-    
+
     const personality = selectedPersonality === 'random'
         ? window.npcData.personalities[Math.floor(Math.random() * window.npcData.personalities.length)]
         : window.npcData.personalities.find(p => p.trait === selectedPersonality);
-    
+
     const profession = selectedProfession === 'random'
         ? window.npcData.professions[Math.floor(Math.random() * window.npcData.professions.length)]
         : window.npcData.professions.find(p => p.name === selectedProfession);
-    
+
     const secret = window.npcData.secrets[Math.floor(Math.random() * window.npcData.secrets.length)];
     const appearance = window.npcData.appearances[Math.floor(Math.random() * window.npcData.appearances.length)];
-    
+
     // Store current NPC data for editing
     window.currentGeneratedNPC = {
         firstName,
@@ -490,7 +490,7 @@ export function generateNPC() {
         appearance,
         secret
     };
-    
+
     // Render the NPC stat block
     renderNPCStatBlock();
 }
@@ -500,7 +500,7 @@ export function generateNPC() {
  */
 function renderNPCStatBlock(editMode = false) {
     const npc = window.currentGeneratedNPC;
-    
+
     // Build display HTML - Stat Block Style with Edit Button
     let html = `
         <div class="encounter-section npc-stat-block-hover" style="position: relative;">
@@ -510,8 +510,8 @@ function renderNPCStatBlock(editMode = false) {
                     ${editMode ? '✓' : '✎'}
                 </button>
                 
-                <!-- Add to Encounter Button (inside stat block) -->
-                <button id="npcAddBtn" class="stat-block-action" onclick="window.showAddNPCToEncounterMenu()" title="Add to Encounter" style="position: absolute; top: 12px; right: 12px; background: gainsboro; border: none; cursor: pointer; font-size: 1em; opacity: 0; transition: opacity 0.3s; z-index: 10; padding: 4px 6px; line-height: 1; width: 28px; min-width: 28px; height: 28px; border-radius: 4px; color: var(--accent-blue); display: flex; align-items: center; justify-content: center;">
+                <!-- Add to Adventure Button (inside stat block) -->
+                <button id="npcAddBtn" class="stat-block-action" onclick="window.showAddNPCToAdventureMenu()" title="Add to Adventure" style="position: absolute; top: 12px; right: 12px; background: gainsboro; border: none; cursor: pointer; font-size: 1em; opacity: 0; transition: opacity 0.3s; z-index: 10; padding: 4px 6px; line-height: 1; width: 28px; min-width: 28px; height: 28px; border-radius: 4px; color: var(--accent-blue); display: flex; align-items: center; justify-content: center;">
                     +
                 </button>
                 <!-- Header -->
@@ -557,27 +557,27 @@ function renderNPCStatBlock(editMode = false) {
             </div>
         </div>
     `;
-    
+
     const npcDisplay = document.getElementById('npcDisplay');
-    
+
     // Remove old event listeners by cloning and replacing the element
     // This prevents memory leaks from accumulating listeners
     const npcDisplayClone = npcDisplay.cloneNode(false);
     npcDisplay.parentNode.replaceChild(npcDisplayClone, npcDisplay);
-    
+
     npcDisplayClone.innerHTML = html;
     npcDisplayClone.classList.add('active');
     npcDisplayClone.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    
+
     // Add hover effect for buttons (only in view mode)
     if (!editMode) {
         const statBlock = document.getElementById('npcStatBlock');
         const editBtn = document.getElementById('npcEditBtn');
         const addBtn = document.getElementById('npcAddBtn');
-        
+
         // Use the parent container for hover detection
         const hoverTarget = statBlock.parentElement;
-        
+
         // Define named functions for listeners so they can be removed later
         const handleMouseEnter = () => {
             editBtn.style.opacity = '1';
@@ -585,18 +585,18 @@ function renderNPCStatBlock(editMode = false) {
             addBtn.style.opacity = '1';
             addBtn.style.transform = 'scale(1.1)';
         };
-        
+
         const handleMouseLeave = () => {
             editBtn.style.opacity = '0';
             editBtn.style.transform = 'scale(1)';
             addBtn.style.opacity = '0';
             addBtn.style.transform = 'scale(1)';
         };
-        
+
         // Store references for potential cleanup
         hoverTarget._mouseEnterHandler = handleMouseEnter;
         hoverTarget._mouseLeaveHandler = handleMouseLeave;
-        
+
         // Add event listeners with named functions
         hoverTarget.addEventListener('mouseenter', handleMouseEnter);
         hoverTarget.addEventListener('mouseleave', handleMouseLeave);
@@ -604,53 +604,53 @@ function renderNPCStatBlock(editMode = false) {
 }
 
 /**
- * Show menu to add NPC to encounter
+ * Show menu to add NPC to adventure
  */
-function showAddNPCToEncounterMenu() {
+function showAddNPCToAdventureMenu() {
     const npc = window.currentGeneratedNPC;
-    
+
     if (!npc) {
         alert('Please generate an NPC first!');
         return;
     }
-    
-    // Check if there's an active encounter
-    if (!window.currentEncounterLocations || window.currentEncounterLocations.length === 0) {
-        alert('Please generate an encounter first on the Encounter page!');
+
+    // Check if there's an active adventure
+    if (!window.currentAdventureLocations || window.currentAdventureLocations.length === 0) {
+        alert('Please generate an adventure first on the Generate page!');
         return;
     }
-    
+
     // Build menu HTML
     let menuHTML = `
         <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1a1a1a; border: 2px solid var(--accent-blue); border-radius: 8px; padding: 20px; z-index: 1000; max-width: 400px; max-height: 80vh; overflow-y: auto; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
-            <h3 style="margin-top: 0; color: #9b59b6;">Add ${npc.firstName} ${npc.surname} to Encounter</h3>
+            <h3 style="margin-top: 0; color: #9b59b6;">Add ${npc.firstName} ${npc.surname} to Adventure</h3>
             <p style="color: var(--text-secondary); margin-bottom: 15px;">Choose where to add this NPC:</p>
             
-            <button onclick="addNPCToEncounter('general')" style="width: 100%; padding: 12px; margin-bottom: 10px; background: rgba(155, 89, 182, 0.2); border: 1px solid #9b59b6; color: #9b59b6; border-radius: 6px; cursor: pointer; font-size: 1em;">
+            <button onclick="addNPCToAdventure('general')" style="width: 100%; padding: 12px; margin-bottom: 10px; background: rgba(155, 89, 182, 0.2); border: 1px solid #9b59b6; color: #9b59b6; border-radius: 6px; cursor: pointer; font-size: 1em;">
                 ➕ Add to General NPCs Section
             </button>`;
-    
+
     // Show replace options if there are existing NPCs
-    if (window.currentEncounterNPCs && window.currentEncounterNPCs.length > 0) {
+    if (window.currentAdventureNPCs && window.currentAdventureNPCs.length > 0) {
         menuHTML += `
             <div style="margin: 15px 0; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 15px;">
                 <strong style="color: #f39c12; font-size: 0.9em;">Replace existing NPC:</strong>
             </div>
             
-            ${window.currentEncounterNPCs.map((existingNpc, idx) => `
-                <button onclick="addNPCToEncounter('replace', ${idx})" style="width: 100%; padding: 10px; margin-bottom: 8px; background: rgba(243, 156, 18, 0.2); border: 1px solid #f39c12; color: #f39c12; border-radius: 6px; cursor: pointer; font-size: 0.9em; text-align: left;">
+            ${window.currentAdventureNPCs.map((existingNpc, idx) => `
+                <button onclick="addNPCToAdventure('replace', ${idx})" style="width: 100%; padding: 10px; margin-bottom: 8px; background: rgba(243, 156, 18, 0.2); border: 1px solid #f39c12; color: #f39c12; border-radius: 6px; cursor: pointer; font-size: 0.9em; text-align: left;">
                     🔄 Replace ${existingNpc.name}
                 </button>
             `).join('')}`;
     }
-    
+
     menuHTML += `
             <div style="margin: 15px 0; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 15px;">
                 <strong style="color: var(--accent-blue); font-size: 0.9em;">Add to a specific location:</strong>
             </div>
             
-            ${window.currentEncounterLocations.map((loc, idx) => `
-                <button onclick="addNPCToEncounter('location', ${idx})" style="width: 100%; padding: 10px; margin-bottom: 8px; background: rgba(0, 122, 255, 0.2); border: 1px solid var(--accent-blue); color: var(--accent-blue); border-radius: 6px; cursor: pointer; font-size: 0.9em; text-align: left;">
+            ${window.currentAdventureLocations.map((loc, idx) => `
+                <button onclick="addNPCToAdventure('location', ${idx})" style="width: 100%; padding: 10px; margin-bottom: 8px; background: rgba(0, 122, 255, 0.2); border: 1px solid var(--accent-blue); color: var(--accent-blue); border-radius: 6px; cursor: pointer; font-size: 0.9em; text-align: left;">
                     📍 ${loc.name}
                 </button>
             `).join('')}
@@ -661,7 +661,7 @@ function showAddNPCToEncounterMenu() {
         </div>
         <div id="npcMenuOverlay" onclick="closeAddNPCMenu()" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.7); z-index: 999;"></div>
     `;
-    
+
     // Create menu container
     const menuContainer = document.createElement('div');
     menuContainer.id = 'addNPCMenuContainer';
@@ -670,15 +670,15 @@ function showAddNPCToEncounterMenu() {
 }
 
 /**
- * Add NPC to encounter
+ * Add NPC to adventure
  */
-function addNPCToEncounter(target, locationIndex = null) {
+function addNPCToAdventure(target, locationIndex = null) {
     const npc = window.currentGeneratedNPC;
-    
-    console.log('Adding NPC to encounter:', { target, locationIndex, npc });
-    
-    // Create NPC object in the format used by encounters
-    const encounterNPC = {
+
+    console.log('Adding NPC to adventure:', { target, locationIndex, npc });
+
+    // Create NPC object in the format used by adventures
+    const adventureNPC = {
         name: `${npc.firstName} ${npc.surname}`,
         species: npc.species,
         profession: npc.profession,
@@ -687,51 +687,51 @@ function addNPCToEncounter(target, locationIndex = null) {
         appearance: npc.appearance,
         secret: npc.secret
     };
-    
+
     if (target === 'general') {
         // Add to general NPCs section
-        if (!window.currentEncounterNPCs) {
-            window.currentEncounterNPCs = [];
+        if (!window.currentAdventureNPCs) {
+            window.currentAdventureNPCs = [];
         }
-        window.currentEncounterNPCs.push(encounterNPC);
-        console.log('Added to general NPCs. Total NPCs:', window.currentEncounterNPCs.length);
-        console.log('currentEncounterNPCs array:', window.currentEncounterNPCs);
-        alert(`Added ${encounterNPC.name} to the encounter's NPC section!`);
+        window.currentAdventureNPCs.push(adventureNPC);
+        console.log('Added to general NPCs. Total NPCs:', window.currentAdventureNPCs.length);
+        console.log('currentAdventureNPCs array:', window.currentAdventureNPCs);
+        alert(`Added ${adventureNPC.name} to the adventure's NPC section!`);
     } else if (target === 'replace' && locationIndex !== null) {
         // Replace an existing NPC
-        const oldNPC = window.currentEncounterNPCs[locationIndex];
-        window.currentEncounterNPCs[locationIndex] = encounterNPC;
+        const oldNPC = window.currentAdventureNPCs[locationIndex];
+        window.currentAdventureNPCs[locationIndex] = adventureNPC;
         console.log('Replaced NPC at index', locationIndex);
-        alert(`Replaced ${oldNPC.name} with ${encounterNPC.name}!`);
+        alert(`Replaced ${oldNPC.name} with ${adventureNPC.name}!`);
     } else if (target === 'location' && locationIndex !== null) {
         // Add to specific location
-        const location = window.currentEncounterLocations[locationIndex];
+        const location = window.currentAdventureLocations[locationIndex];
         if (!location.npcs) {
             location.npcs = [];
         }
-        location.npcs.push(encounterNPC);
+        location.npcs.push(adventureNPC);
         console.log('Added to location. Location NPCs:', location.npcs);
-        alert(`Added ${encounterNPC.name} to ${location.name}!`);
+        alert(`Added ${adventureNPC.name} to ${location.name}!`);
     }
-    
+
     closeAddNPCMenu();
-    
-    // Regenerate the encounter flow to update NPC references in DM Tips
-    console.log('Regenerating encounter flow...');
-    if (window.generateEncounterFlow) {
-        window.currentEncounterFlow = window.generateEncounterFlow();
-        console.log('Encounter flow regenerated');
+
+    // Regenerate the adventure flow to update NPC references in DM Tips
+    console.log('Regenerating adventure flow...');
+    if (window.generateAdventureFlow) {
+        window.currentAdventureFlow = window.generateAdventureFlow();
+        console.log('Adventure flow regenerated');
     } else {
-        console.error('window.generateEncounterFlow is not defined!');
+        console.warn('window.generateAdventureFlow is not defined');
     }
-    
-    // Refresh the encounter display to show the new NPC
-    console.log('Calling displayEncounter...');
-    if (window.displayEncounter) {
-        window.displayEncounter();
-        console.log('displayEncounter called successfully');
+
+    // Refresh the adventure display to show the new NPC
+    console.log('Calling displayAdventure...');
+    if (window.displayAdventure) {
+        window.displayAdventure();
+        console.log('displayAdventure called successfully');
     } else {
-        console.error('window.displayEncounter is not defined!');
+        console.error('window.displayAdventure is not defined!');
     }
 }
 
@@ -751,7 +751,7 @@ function closeAddNPCMenu() {
 function toggleNPCEdit() {
     const npc = window.currentGeneratedNPC;
     const editBtn = document.getElementById('npcEditBtn');
-    
+
     // Use aria-label or title for mode detection, or check for ✓ (save) icon
     if (editBtn.title === 'Edit NPC' || editBtn.textContent.trim() === '✎') {
         // Enter edit mode
@@ -761,38 +761,38 @@ function toggleNPCEdit() {
         npc.firstName = document.getElementById('editFirstName').value.trim() || npc.firstName;
         npc.surname = document.getElementById('editSurname').value.trim() || npc.surname;
         npc.species = document.getElementById('editSpecies').value.trim().toLowerCase() || npc.species;
-        
+
         const professionName = document.getElementById('editProfession').value.trim();
         if (professionName) {
             // Try to find existing profession or create custom one
             const foundProfession = window.npcData.professions.find(p => p.name === professionName);
             npc.profession = foundProfession || { name: professionName, tags: [] };
         }
-        
+
         const alignmentName = document.getElementById('editAlignment').value.trim();
         if (alignmentName) {
             const foundAlignment = window.npcData.alignments.find(a => a.name === alignmentName);
             npc.alignment = foundAlignment || { name: alignmentName, tags: [] };
         }
-        
+
         const personalityTrait = document.getElementById('editPersonality').value.trim();
         if (personalityTrait) {
             const foundPersonality = window.npcData.personalities.find(p => p.trait === personalityTrait);
             npc.personality = foundPersonality || { trait: personalityTrait, tags: [] };
         }
-        
+
         const appearanceDesc = document.getElementById('editAppearance').value.trim();
         if (appearanceDesc) {
             const foundAppearance = window.npcData.appearances.find(a => a.description === appearanceDesc);
             npc.appearance = foundAppearance || { description: appearanceDesc, tags: [] };
         }
-        
+
         const secretText = document.getElementById('editSecret').value.trim();
         if (secretText) {
             const foundSecret = window.npcData.secrets.find(s => s.secret === secretText);
             npc.secret = foundSecret || { secret: secretText, tags: [] };
         }
-        
+
         // Re-render in view mode
         renderNPCStatBlock(false);
     }
@@ -801,14 +801,21 @@ function toggleNPCEdit() {
 // Export all functions to window for HTML onclick handlers
 window.generateNPC = generateNPC;
 window.toggleNPCEdit = toggleNPCEdit;
-window.showAddNPCToEncounterMenu = showAddNPCToEncounterMenu;
-window.addNPCToEncounter = addNPCToEncounter;
+window.showAddNPCToAdventureMenu = showAddNPCToAdventureMenu;
+window.addNPCToAdventure = addNPCToAdventure;
 window.closeAddNPCMenu = closeAddNPCMenu;
-window.selectNPCsForEncounter = selectNPCsForEncounter;
-window.selectLocationsForEncounter = selectLocationsForEncounter;
-window.selectEncounterTemplate = selectEncounterTemplate;
+window.selectNPCsForAdventure = selectNPCsForAdventure;
+window.selectLocationsForAdventure = selectLocationsForAdventure;
+window.selectAdventureTemplate = selectAdventureTemplate;
 window.selectSkillChecks = selectSkillChecks;
 window.selectTraps = selectTraps;
 window.selectHazards = selectHazards;
 window.selectEnvironmentalEffects = selectEnvironmentalEffects;
+
+// Backward Compatibility Aliases
+window.showAddNPCToEncounterMenu = showAddNPCToAdventureMenu;
+window.addNPCToEncounter = addNPCToAdventure;
+window.selectNPCsForEncounter = selectNPCsForAdventure;
+window.selectLocationsForEncounter = selectLocationsForAdventure;
+window.selectEncounterTemplate = selectAdventureTemplate;
 

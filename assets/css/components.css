@@ -282,7 +282,7 @@ button.disabled:hover {
    ENCOUNTER DISPLAY
    ==================== */
 
-.encounter-display {
+.adventure-display {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -296,7 +296,7 @@ button.disabled:hover {
     margin: 0 auto;
 }
 
-.encounter-display.active {
+.adventure-display.active {
     display: block;
 }
 

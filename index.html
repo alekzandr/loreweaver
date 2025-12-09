@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LoreWeaver - D&D Exploration Encounter Generator</title>
-    
+    <title>LoreWeaver - D&D Exploration Adventure Generator</title>
+
     <!-- Preload critical images -->
     <link rel="preload" href="assets/img/d20.png" as="image">
     <link rel="preload" href="assets/img/character.png" as="image">
-    
+
     <!-- CSS Modules -->
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/themes.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/pages.css">
+    <link rel="stylesheet" href="assets/css/adventures.css">
     <link rel="stylesheet" href="assets/css/changelog.css">
-    
+
     <!-- Test Suites (only loaded in development) -->
     <script type="module" src="tests/test-memory-leak-event-listeners.js"></script>
     <script type="module" src="tests/test-localstorage-quota.js"></script>
@@ -26,17 +28,21 @@
     <script type="module" src="tests/test-event-bus.js"></script>
     <script type="module" src="tests/test-command-history.mjs"></script>
 </head>
+
 <body>
     <div class="main-content" id="mainContent">
         <div class="container">
             <header>
                 <h1>⚔️ LoreWeaver ⚔️</h1>
-                <p class="subtitle">D&D Exploration Encounter Generator</p>
-                
+                <p class="subtitle">D&D Exploration Adventure Generator</p>
+
                 <!-- Navigation Tabs -->
                 <div class="nav-tabs">
-                    <button class="nav-tab active" onclick="switchPage('generate')"><img src="assets/img/d20.png" alt="dice" class="dice-icon"> Generate</button>
-                    <button class="nav-tab" onclick="switchPage('npc')"><img src="assets/img/character.png" alt="character" class="character-icon"> NPCs</button>
+                    <button class="nav-tab active" onclick="switchPage('generate')"><img src="assets/img/d20.png"
+                            alt="dice" class="dice-icon"> Generate</button>
+                    <button class="nav-tab" onclick="switchPage('adventures')">⚔️ Adventures</button>
+                    <button class="nav-tab" onclick="switchPage('npc')"><img src="assets/img/character.png"
+                            alt="character" class="character-icon"> NPCs</button>
                     <button class="nav-tab" onclick="switchPage('search')">🔍 Search</button>
                     <button class="nav-tab" onclick="switchPage('settings')">⚙️ Settings</button>
                 </div>
@@ -102,37 +108,44 @@
 
                     <div class="control-group seed-actions-group">
                         <div class="seed-input-wrapper">
-                            <label for="encounterSeed">Seed (optional):</label>
-                            <input type="text" id="encounterSeed" placeholder="Leave empty for random, or paste seed here">
+                            <label for="adventureSeed">Seed (optional):</label>
+                            <input type="text" id="adventureSeed"
+                                placeholder="Leave empty for random, or paste seed here">
                         </div>
                         <div class="actions-wrapper">
                             <label style="visibility: hidden;">Actions</label>
                             <div class="encounter-actions">
-                                <button class="actions-btn" onclick="toggleEncounterMenu(event)" id="mainActionsBtn">
+                                <button class="actions-btn" onclick="toggleAdventureMenu(event)" id="mainActionsBtn">
                                     Actions
                                 </button>
                                 <div class="encounter-menu" id="encounterActionsMenu">
-                                    <button class="menu-item" onclick="window.saveCurrentEncounter(); closeEncounterMenu();">
+                                    <button class="menu-item"
+                                        onclick="window.saveCurrentAdventure(); closeAdventureMenu();">
                                         <span class="menu-icon">💾</span>
                                         <span class="menu-text">Save</span>
                                     </button>
-                                    <button class="menu-item" onclick="window.showSavedEncounters(); closeEncounterMenu();">
+                                    <button class="menu-item"
+                                        onclick="window.showSavedAdventures(); closeAdventureMenu();">
                                         <span class="menu-icon">📂</span>
                                         <span class="menu-text">Load</span>
                                     </button>
-                                    <button class="menu-item" onclick="window.exportEncounterMarkdown(); closeEncounterMenu();">
+                                    <button class="menu-item"
+                                        onclick="window.exportAdventureMarkdown(); closeAdventureMenu();">
                                         <span class="menu-icon">📝</span>
                                         <span class="menu-text">Export as Markdown</span>
                                     </button>
-                                    <button class="menu-item" onclick="window.exportEncounterText(); closeEncounterMenu();">
+                                    <button class="menu-item"
+                                        onclick="window.exportAdventureText(); closeAdventureMenu();">
                                         <span class="menu-icon">📄</span>
                                         <span class="menu-text">Export as Text</span>
                                     </button>
-                                    <button class="menu-item" onclick="window.exportEncounterJSON(); closeEncounterMenu();">
+                                    <button class="menu-item"
+                                        onclick="window.exportAdventureJSON(); closeAdventureMenu();">
                                         <span class="menu-icon">🔗</span>
                                         <span class="menu-text">Export as JSON</span>
                                     </button>
-                                    <button class="menu-item" onclick="window.exportEncounterPDF(); closeEncounterMenu();">
+                                    <button class="menu-item"
+                                        onclick="window.exportAdventurePDF(); closeAdventureMenu();">
                                         <span class="menu-icon">📋</span>
                                         <span class="menu-text">Export as PDF</span>
                                     </button>
@@ -141,20 +154,103 @@
                         </div>
                     </div>
 
-                    <button onclick="generateEncounter()"><img src="assets/img/d20.png" alt="dice" class="dice-icon"> Generate Encounter</button>
+                    <button onclick="generateAdventure()"><img src="assets/img/d20.png" alt="dice" class="dice-icon">
+                        Generate Adventure</button>
                 </div>
 
-                <div class="encounter-display" id="encounterDisplay">
-                    <div id="encounterContent"></div>
+                <div class="adventure-display" id="adventureDisplay">
+                    <div id="adventureContent"></div>
                 </div>
 
                 <!-- Room Display -->
                 <div class="room-display" id="roomDisplay" style="display: none;">
-                    <button onclick="returnToEncounter()" class="btn-danger btn-medium">
-                        ← Back to Encounter
+                    <button onclick="returnToAdventure()" class="btn-danger btn-medium">
+                        ← Back to Adventure
                     </button>
                     <div id="roomContent"></div>
                 </div>
+            </div>
+
+            <!-- Adventures Page -->
+            <div id="adventuresPage" class="page-content" style="display: none;">
+                <!-- Hero Banner -->
+                <div class="hero-banner">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <h1 class="hero-title">The Shadow of Drakon's Keep</h1>
+                        <p class="hero-description">
+                            An ancient evil stirs within the ruins of a once-great fortress. Brave the depths,
+                            face the guardian, and uncover the secrets lost to time in this high-stakes adventure.
+                        </p>
+                        <div class="hero-actions">
+                            <button class="btn-hero-primary">
+                                <span class="play-icon">▶</span> Play Adventure
+                            </button>
+                            <button class="btn-hero-secondary">
+                                <span class="info-icon">ℹ</span> More Info
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categories -->
+                <div class="category-section">
+                    <h2 class="category-title">New Stories</h2>
+                    <div class="carousel-container">
+                        <div class="adventure-row">
+                            <div class="adventure-card">
+                                <div class="card-image">
+                                    <img src="assets/img/d20.png" alt="Adventure">
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">The Whispering Woods</h3>
+                                    <div class="card-meta">
+                                        <span class="card-badge">Forest</span>
+                                        <span class="card-badge">Lvl 3-5</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="adventure-card">
+                                <div class="card-image">
+                                    <img src="assets/img/d20.png" alt="Adventure">
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Crypt of the Lich</h3>
+                                    <div class="card-meta">
+                                        <span class="card-badge">Dungeon</span>
+                                        <span class="card-badge">Lvl 8-10</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="adventure-card">
+                                <div class="card-image">
+                                    <img src="assets/img/d20.png" alt="Adventure">
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Storm Giant's Peak</h3>
+                                    <div class="card-meta">
+                                        <span class="card-badge">Mountain</span>
+                                        <span class="card-badge">Lvl 12+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="adventure-card">
+                                <div class="card-image">
+                                    <img src="assets/img/d20.png" alt="Adventure">
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">City of Brass</h3>
+                                    <div class="card-meta">
+                                        <span class="card-badge">Planar</span>
+                                        <span class="card-badge">Lvl 15+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
             <!-- Location Detail Panel (Sticky) -->
@@ -188,28 +284,28 @@
                     <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 0.95em;">
                         Choose specific traits or leave as "Random" for a surprise character!
                     </p>
-                    
+
                     <!-- First Row: Species, Profession, Alignment -->
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 15px;">
                         <div class="control-group">
                             <label for="npcSpecies">Species:</label>
-                        <select id="npcSpecies">
-                            <option value="random">Random</option>
-                        </select>
+                            <select id="npcSpecies">
+                                <option value="random">Random</option>
+                            </select>
                         </div>
 
                         <div class="control-group">
                             <label for="npcProfession">Profession:</label>
-                        <select id="npcProfession">
-                            <option value="random">Random</option>
-                        </select>
+                            <select id="npcProfession">
+                                <option value="random">Random</option>
+                            </select>
                         </div>
 
                         <div class="control-group">
                             <label for="npcAlignment">Alignment:</label>
-                        <select id="npcAlignment">
-                            <option value="random">Random</option>
-                        </select>
+                            <select id="npcAlignment">
+                                <option value="random">Random</option>
+                            </select>
                         </div>
                     </div>
 
@@ -224,10 +320,11 @@
                     <button onclick="generateNPC()">⚡ Generate NPC</button>
                 </div>
 
-                <div class="encounter-display" id="npcDisplay">
+                <div class="adventure-display" id="npcDisplay">
                     <div class="encounter-section">
                         <h2><img src="assets/img/d20.png" alt="dice" class="dice-icon"> Your NPC Will Appear Here</h2>
-                        <p class="description">Click "Generate NPC" to create a diverse and interesting character for your campaign!</p>
+                        <p class="description">Click "Generate NPC" to create a diverse and interesting character for
+                            your campaign!</p>
                     </div>
                 </div>
             </div>
@@ -236,7 +333,8 @@
             <div id="searchPage" class="page-content" style="display: none;">
                 <div class="search-controls">
                     <div class="search-bar">
-                        <input type="text" id="searchInput" placeholder="Search encounters and locations (e.g., 'tomb', 'ship', 'forest')..." />
+                        <input type="text" id="searchInput"
+                            placeholder="Search adventures and locations (e.g., 'tomb', 'ship', 'forest')..." />
                     </div>
 
                     <div class="filter-section">
@@ -251,7 +349,7 @@
                                 <label for="typeFilter">Type</label>
                                 <select id="typeFilter" onchange="onFilterChange()">
                                     <option value="">All Types</option>
-                                    <option value="encounter">Encounters</option>
+                                    <option value="adventure">Adventures</option>
                                     <option value="location">Locations</option>
                                 </select>
                             </div>
@@ -282,7 +380,8 @@
                 </div>
 
                 <div class="search-results" id="searchResults">
-                    <p style="text-align: center; color: var(--text-secondary); padding: 40px;">Enter a search term or select tags to find encounters and locations</p>
+                    <p style="text-align: center; color: var(--text-secondary); padding: 40px;">Enter a search term or
+                        select tags to find adventures and locations</p>
                 </div>
             </div>
 
@@ -290,10 +389,10 @@
             <div id="settingsPage" class="page-content" style="display: none;">
                 <div class="controls">
                     <h2 style="margin-bottom: 30px; color: var(--text-primary); font-size: 2em;">⚙️ Settings</h2>
-                    
+
                     <div class="settings-section">
                         <h2>Appearance</h2>
-                        
+
                         <div class="setting-item">
                             <div class="setting-info">
                                 <h3>Dark Mode</h3>
@@ -309,11 +408,12 @@
 
                     <div class="settings-section">
                         <h2>Location Details Display</h2>
-                        
+
                         <div class="setting-item">
                             <div class="setting-info">
                                 <h3>Progressive Reveal</h3>
-                                <p>When enabled, location details are revealed progressively (Primary → Secondary → Hidden). When disabled, all information is shown at once.</p>
+                                <p>When enabled, location details are revealed progressively (Primary → Secondary →
+                                    Hidden). When disabled, all information is shown at once.</p>
                             </div>
                             <div class="theme-switch" id="progressiveRevealSwitch" onclick="toggleProgressiveReveal()">
                                 <div class="theme-switch-slider">
@@ -326,16 +426,19 @@
                     <div class="settings-section">
                         <h2>About</h2>
                         <p style="color: var(--text-secondary); line-height: 1.8;">
-                            <strong style="color: var(--text-primary);">LoreWeaver</strong> is a D&D exploration encounter generator designed to help Dungeon Masters create engaging and dynamic encounters across various environments.
+                            <strong style="color: var(--text-primary);">LoreWeaver</strong> is a D&D exploration
+                            adventure generator designed to help Dungeon Masters create engaging and dynamic adventures
+                            across various environments.
                         </p>
                         <p style="color: var(--text-secondary); margin-top: 16px; line-height: 1.8;">
-                            Generate random encounters and locations, or search through the library to find exactly what you need for your campaign.
+                            Generate random encounters and locations, or search through the library to find exactly what
+                            you need for your campaign.
                         </p>
-                        <button onclick="window.showChangelogManual()" 
-                                style="margin-top: 20px; padding: 12px 24px; background: var(--accent-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1em; font-weight: 500; transition: background 0.2s;"
-                                onmouseover="this.style.background='#2980b9'"
-                                onmouseout="this.style.background='var(--accent-blue)'"
-                                aria-label="View what's new in LoreWeaver">
+                        <button onclick="window.showChangelogManual()"
+                            style="margin-top: 20px; padding: 12px 24px; background: var(--accent-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1em; font-weight: 500; transition: background 0.2s;"
+                            onmouseover="this.style.background='#2980b9'"
+                            onmouseout="this.style.background='var(--accent-blue)'"
+                            aria-label="View what's new in LoreWeaver">
                             📋 What's New
                         </button>
                     </div>
@@ -350,12 +453,13 @@
                 </div>
             </div>
 
-            <!-- Saved Encounters Modal -->
-            <div id="savedEncountersModal" class="preview-modal">
+            <!-- Saved Adventures Modal -->
+            <div id="savedAdventuresModal" class="preview-modal">
                 <div class="preview-content">
-                    <button class="preview-close" onclick="document.getElementById('savedEncountersModal').style.display='none'">✕</button>
-                    <h2 style="margin-bottom: 20px;">📚 Saved Encounters</h2>
-                    <div id="savedEncountersList"></div>
+                    <button class="preview-close"
+                        onclick="document.getElementById('savedAdventuresModal').style.display='none'">✕</button>
+                    <h2 style="margin-bottom: 20px;">📚 Saved Adventures</h2>
+                    <div id="savedAdventuresList"></div>
                 </div>
             </div>
         </div>
@@ -368,25 +472,25 @@
         import { setRandomFunction, createSeededRandom, hashStringToSeed, random } from './assets/js/utils.js';
         import './assets/js/storage.js';
         import './assets/js/app.js';
-        import { 
-            exportEncounterMarkdown, 
-            exportEncounterText, 
-            exportEncounterPDF, 
-            exportEncounterJSON,
-            exportEncounter,
-            getAvailableFormats 
+        import {
+            exportAdventureMarkdown,
+            exportAdventureText,
+            exportAdventurePDF,
+            exportAdventureJSON,
+            exportAdventure,
+            getAvailableFormats
         } from './assets/js/export.js';
         import './assets/js/core.js';
         import './assets/js/ui.js';
-        
+
         // Expose export functions globally
-        window.exportEncounterMarkdown = exportEncounterMarkdown;
-        window.exportEncounterText = exportEncounterText;
-        window.exportEncounterPDF = exportEncounterPDF;
-        window.exportEncounterJSON = exportEncounterJSON;
-        window.exportEncounter = exportEncounter;
+        window.exportAdventureMarkdown = exportAdventureMarkdown;
+        window.exportAdventureText = exportAdventureText;
+        window.exportAdventurePDF = exportAdventurePDF;
+        window.exportAdventureJSON = exportAdventureJSON;
+        window.exportAdventure = exportAdventure;
         window.getAvailableFormats = getAvailableFormats;
-        
+
         // Note: initApp is called automatically by app.js on DOMContentLoaded
     </script>
 
@@ -398,20 +502,20 @@
         // Global state variables (exposed to window for export functions)
         window.selectedEnvironment = null;
         window.activeFilters = { env: [], location: [], setting: [] };
-        window.encounterTemplate = null;
-        window.currentEncounterLocations = [];
-        window.currentEncounterNPCs = [];
-        window.currentEncounterSkillChecks = [];
-        window.currentEncounterTraps = [];
-        window.currentEncounterHazards = [];
-        window.currentEncounterEnvironmentalEffects = [];
-        window.currentEncounterFlow = [];
+        window.adventureTemplate = null;
+        window.currentAdventureLocations = [];
+        window.currentAdventureNPCs = [];
+        window.currentAdventureSkillChecks = [];
+        window.currentAdventureTraps = [];
+        window.currentAdventureHazards = [];
+        window.currentAdventureEnvironmentalEffects = [];
+        window.currentAdventureFlow = [];
         window.currentRoomKey = null;
 
         // ============================================================================
         // ENVIRONMENT SELECTION
         // ============================================================================
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Set default environment from dropdown
             const envSelect = document.getElementById('environmentSelect');
             if (envSelect) {
@@ -420,9 +524,9 @@
         });
 
         // ============================================================================
-        // MAIN ENCOUNTER GENERATION
+        // MAIN ADVENTURE GENERATION
         // ============================================================================
-        async function generateEncounter() {
+        async function generateAdventureLogic() {
             if (!window.dataLoaded) {
                 alert('Data is still loading. Please wait a moment and try again.');
                 return;
@@ -436,7 +540,7 @@
             try {
                 const partyLevel = parseInt(document.getElementById('partyLevel').value);
                 const numLocations = parseInt(document.getElementById('numLocations').value);
-                const seedInput = document.getElementById('encounterSeed').value.trim();
+                const seedInput = document.getElementById('adventureSeed').value.trim();
 
                 // Handle seed
                 let seed;
@@ -449,81 +553,81 @@
                 } else {
                     // Generate random seed
                     window.currentSeed = Date.now().toString(36) + Math.random().toString(36).substr(2);
-                    document.getElementById('encounterSeed').value = window.currentSeed;
+                    document.getElementById('adventureSeed').value = window.currentSeed;
                     seed = window.hashStringToSeed(window.currentSeed);
                     const seededRandom = window.createSeededRandom(seed);
                     window.setRandomFunction(seededRandom);
                 }
 
                 // Select encounter template - use preselected if available
-                if (window.preselectedEncounter && window.preselectedEncounter.template) {
-                    console.log('✨ Using preselected encounter:', window.preselectedEncounter.template.title);
-                    window.encounterTemplate = window.preselectedEncounter.template;
-                    window.selectedEnvironment = window.preselectedEncounter.environment;
+                if (window.preselectedAdventure && window.preselectedAdventure.template) {
+                    console.log('✨ Using preselected encounter:', window.preselectedAdventure.template.title);
+                    window.adventureTemplate = window.preselectedAdventure.template;
+                    window.selectedEnvironment = window.preselectedAdventure.environment;
                     // Clear the preselected encounter after use
-                    window.preselectedEncounter = null;
+                    window.preselectedAdventure = null;
                     // Remove the banner if it exists
                     const banner = document.getElementById('encounterSelectedBanner');
                     if (banner) banner.remove();
                 } else {
-                    window.encounterTemplate = window.selectEncounterTemplate(window.selectedEnvironment);
+                    window.adventureTemplate = window.selectAdventureTemplate(window.selectedEnvironment);
                 }
-                
+
                 // Select content using smart selection from core.js
-                window.currentEncounterSkillChecks = window.selectSkillChecks(window.encounterTemplate.tags, [], [], Math.floor(window.random() * 2) + 3);
-                window.currentEncounterTraps = window.selectTraps(window.encounterTemplate.tags, Math.floor(window.random() * 3) + 2); // 2-4 traps
-                window.currentEncounterHazards = window.selectHazards(window.selectedEnvironment, window.encounterTemplate.tags, Math.floor(window.random() * 3) + 2); // 2-4 hazards
-                window.currentEncounterEnvironmentalEffects = window.selectEnvironmentalEffects(window.selectedEnvironment, window.encounterTemplate.tags, Math.floor(window.random() * 2) + 1); // 1-2 effects
-                
+                window.currentAdventureSkillChecks = window.selectSkillChecks(window.adventureTemplate.tags, [], [], Math.floor(window.random() * 2) + 3);
+                window.currentAdventureTraps = window.selectTraps(window.adventureTemplate.tags, Math.floor(window.random() * 3) + 2); // 2-4 traps
+                window.currentAdventureHazards = window.selectHazards(window.selectedEnvironment, window.adventureTemplate.tags, Math.floor(window.random() * 3) + 2); // 2-4 hazards
+                window.currentAdventureEnvironmentalEffects = window.selectEnvironmentalEffects(window.selectedEnvironment, window.adventureTemplate.tags, Math.floor(window.random() * 2) + 1); // 1-2 effects
+
                 // Use custom locations if encounter specifies them, otherwise generate random locations
-                if (window.encounterTemplate.customLocations && window.encounterTemplate.customLocations.length > 0) {
-                    console.log('📍 Using custom locations for encounter:', window.encounterTemplate.customLocations);
+                if (window.adventureTemplate.customLocations && window.adventureTemplate.customLocations.length > 0) {
+                    console.log('📍 Using custom locations for encounter:', window.adventureTemplate.customLocations);
                     // Respect the numLocations dropdown even with custom locations
-                    const limitedCustomLocations = window.encounterTemplate.customLocations.slice(0, numLocations);
-                    window.currentEncounterLocations = window.selectLocationsForEncounter(
-                        window.encounterTemplate.tags, 
-                        window.selectedEnvironment, 
-                        null, 
+                    const limitedCustomLocations = window.adventureTemplate.customLocations.slice(0, numLocations);
+                    window.currentAdventureLocations = window.selectLocationsForAdventure(
+                        window.adventureTemplate.tags,
+                        window.selectedEnvironment,
+                        null,
                         limitedCustomLocations
                     );
                 } else {
-                    window.currentEncounterLocations = window.selectLocationsForEncounter(
-                        window.encounterTemplate.tags, 
-                        window.selectedEnvironment, 
+                    window.currentAdventureLocations = window.selectLocationsForAdventure(
+                        window.adventureTemplate.tags,
+                        window.selectedEnvironment,
                         numLocations
                     );
                 }
-                
-                window.currentEncounterNPCs = window.selectNPCsForEncounter(window.encounterTemplate.tags, Math.floor(window.random() * 3) + 2);
+
+                window.currentAdventureNPCs = window.selectNPCsForAdventure(window.adventureTemplate.tags, Math.floor(window.random() * 3) + 2);
 
                 // Generate encounter flow
-                window.currentEncounterFlow = generateEncounterFlow();
+                window.currentAdventureFlow = generateAdventureFlow();
 
                 // Display encounter
-                displayEncounter();
+                displayAdventure();
             } catch (error) {
                 console.error('❌ Error during encounter generation:', error);
                 alert('Error generating encounter: ' + error.message);
             }
         }
 
-        function displayEncounter() {
-            const container = document.getElementById('encounterContent');
+        function displayAdventure() {
+            const container = document.getElementById('adventureContent');
             const partyLevel = parseInt(document.getElementById('partyLevel').value);
-            
+
             let html = `
                 <div class="encounter-section">
                     <div class="section-header">
-                        <h2 onclick="toggleSection(event)">📜 ${window.encounterTemplate.title} <span class="section-toggle">▼</span></h2>
+                        <h2 onclick="toggleSection(event)">📜 ${window.adventureTemplate.title} <span class="section-toggle">▼</span></h2>
                     </div>
                     <div class="section-content">
-                        <p class="description">${window.buildEncounterDescription(window.selectedEnvironment, window.encounterTemplate.title, window.encounterTemplate.descriptions || window.encounterTemplate.description)}</p>
+                        <p class="description">${window.buildAdventureDescription(window.selectedEnvironment, window.adventureTemplate.title, window.adventureTemplate.descriptions || window.adventureTemplate.description)}</p>
                     </div>
                 </div>`;
 
             // Encounter Flow
             // Count actual locations (exclude Resolution step)
-            const actualLocationCount = window.currentEncounterLocations.length;
+            const actualLocationCount = window.currentAdventureLocations.length;
             html += `
                 <div class="encounter-section">
                     <h2 onclick="toggleSection(event)">🗺️ Encounter Flow <span class="section-toggle">▼</span></h2>
@@ -531,13 +635,13 @@
                         <p class="description">This encounter unfolds across ${actualLocationCount} key location${actualLocationCount !== 1 ? 's' : ''}, each with unique challenges and discoveries.</p>
                         <button class="btn-primary" onclick="addNewLocation()" style="margin-bottom: 15px;">➕ Add Another Location</button>
                         <div id="flowStepsContainer">`;
-            
-            window.currentEncounterFlow.forEach((step, index) => {
+
+            window.currentAdventureFlow.forEach((step, index) => {
                 const isResolution = step.title === "Resolution";
                 const isBranching = step.title === "Branching Paths & Optional Areas";
                 const isNormalStep = !isResolution && !isBranching;
-                const isLastStep = index === window.currentEncounterFlow.length - 1;
-                
+                const isLastStep = index === window.currentAdventureFlow.length - 1;
+
                 if (isBranching) {
                     // Branching paths styling
                     html += `
@@ -605,13 +709,13 @@
                                 ${step.locationIndex !== undefined && step.locationIndex > 0 ? `<button onclick="moveLocationUp(${step.locationIndex})" 
                                         style="background: gainsboro; border: none; color: var(--accent-blue); padding: 4px 6px; cursor: pointer; font-size: 1em; line-height: 1; width: auto; min-width: 0; border-radius: 4px;"
                                         title="Move location up">↑</button>` : ''}
-                                ${step.locationIndex !== undefined && step.locationIndex < window.currentEncounterLocations.length - 1 ? `<button onclick="moveLocationDown(${step.locationIndex})" 
+                                ${step.locationIndex !== undefined && step.locationIndex < window.currentAdventureLocations.length - 1 ? `<button onclick="moveLocationDown(${step.locationIndex})" 
                                         style="background: gainsboro; border: none; color: var(--accent-blue); padding: 4px 6px; cursor: pointer; font-size: 1em; line-height: 1; width: auto; min-width: 0; border-radius: 4px;"
                                         title="Move location down">↓</button>` : ''}
                                 ${step.locationIndex !== undefined ? `<button onclick="regenerateFlowLocation(${step.locationIndex})" 
                                         style="background: gainsboro; border: none; color: var(--accent-blue); padding: 4px 6px; cursor: pointer; font-size: 1em; line-height: 1; width: auto; min-width: 0; border-radius: 4px;"
                                         title="Regenerate this location">⟳</button>` : ''}
-                                ${step.locationIndex !== undefined && window.currentEncounterLocations.length > 1 ? `<button onclick="removeLocation(${step.locationIndex})" 
+                                ${step.locationIndex !== undefined && window.currentAdventureLocations.length > 1 ? `<button onclick="removeLocation(${step.locationIndex})" 
                                         style="background: gainsboro; border: none; color: #e74c3c; padding: 4px 6px; cursor: pointer; font-size: 1em; line-height: 1; width: auto; min-width: 0; border-radius: 4px;"
                                         title="Remove this location">✕</button>` : ''}
                             </div>
@@ -645,7 +749,7 @@
                             </div>
                         </div>`;
                 }
-                
+
                 // Add connector arrow between steps (except after last step)
                 if (!isLastStep) {
                     html += `
@@ -661,15 +765,15 @@
                 </div>`;
 
             // NPCs
-            console.log('displayEncounter - currentEncounterNPCs:', window.currentEncounterNPCs);
-            console.log('displayEncounter - NPC count:', window.currentEncounterNPCs?.length);
-            if (window.currentEncounterNPCs && window.currentEncounterNPCs.length > 0) {
+            console.log('displayAdventure - currentAdventureNPCs:', window.currentAdventureNPCs);
+            console.log('displayAdventure - NPC count:', window.currentAdventureNPCs?.length);
+            if (window.currentAdventureNPCs && window.currentAdventureNPCs.length > 0) {
                 html += `
                     <div class="encounter-section">
-                        <h2 onclick="toggleSection(event)">👥 NPCs (${window.currentEncounterNPCs.length}) <span class="section-toggle">▼</span></h2>
+                        <h2 onclick="toggleSection(event)">👥 NPCs (${window.currentAdventureNPCs.length}) <span class="section-toggle">▼</span></h2>
                         <div class="section-content" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">`;
-                
-                window.currentEncounterNPCs.forEach((npc, idx) => {
+
+                window.currentAdventureNPCs.forEach((npc, idx) => {
                     html += `
                         <div class="card npc-card npc-card-hover" 
                              onmouseenter="window.showNPCTooltip(event, ${idx})" 
@@ -689,33 +793,33 @@
                             </button>
                         </div>`;
                 });
-                
+
                 html += `
                         </div>
                     </div>`;
             }
 
             container.innerHTML = html;
-            
+
             // Make sure the encounter display is visible
-            const encounterDisplay = document.getElementById('encounterDisplay');
+            const encounterDisplay = document.getElementById('adventureDisplay');
             if (encounterDisplay) {
                 encounterDisplay.classList.add('active');
             }
-            
+
             // Populate flow navigator
-            window.populateFlowNavigator(window.currentEncounterFlow);
+            window.populateFlowNavigator(window.currentAdventureFlow);
         }
 
-        // Expose displayEncounter to window for cross-module access
-        window.displayEncounter = displayEncounter;
+        // Expose displayAdventure to window for cross-module access
+        window.displayAdventure = displayAdventure;
 
         // ============================================================================
         // ENCOUNTER FLOW GENERATION
         // ============================================================================
-        function generateEncounterFlow() {
-            if (window.currentEncounterLocations.length === 0) return [];
-            
+        function generateAdventureFlow() {
+            if (window.currentAdventureLocations.length === 0) return [];
+
             // Helper function to wrap NPC name with interactive elements
             function wrapNPCName(npc, index) {
                 return `<span class="npc-link" 
@@ -723,7 +827,7 @@
                              onmouseenter="window.showNPCTooltip(event, ${index})"
                              onmouseleave="window.hideNPCTooltip()">${npc.name}</span>`;
             }
-            
+
             // Helper function to wrap location-specific NPC with interactive elements
             function wrapLocationNPCName(npc) {
                 const npcDataJson = JSON.stringify(npc).replace(/"/g, '&quot;');
@@ -731,112 +835,112 @@
                              onclick="window.showNPCDetailFromObject(this.getAttribute('data-npc'))" 
                              data-npc="${npcDataJson}">${npc.name}</span>`;
             }
-            
+
             const flowSteps = [];
-            
+
             // Step 1: Initial encounter setup
             const step1Tips = [
                 "Set the atmosphere with sensory details from the location description",
                 "Introduce environmental effects or hazards to establish tension",
-                window.currentEncounterNPCs.length > 0 ? `Consider having ${wrapNPCName(window.currentEncounterNPCs[0], 0)} (${window.currentEncounterNPCs[0].profession?.name || window.currentEncounterNPCs[0].profession}) present here` : "Consider adding ambient sounds or NPC activity"
+                window.currentAdventureNPCs.length > 0 ? `Consider having ${wrapNPCName(window.currentAdventureNPCs[0], 0)} (${window.currentAdventureNPCs[0].profession?.name || window.currentAdventureNPCs[0].profession}) present here` : "Consider adding ambient sounds or NPC activity"
             ];
-            
+
             // Add location-specific NPCs to DM Tips
-            if (window.currentEncounterLocations[0].npcs && window.currentEncounterLocations[0].npcs.length > 0) {
-                window.currentEncounterLocations[0].npcs.forEach(npc => {
+            if (window.currentAdventureLocations[0].npcs && window.currentAdventureLocations[0].npcs.length > 0) {
+                window.currentAdventureLocations[0].npcs.forEach(npc => {
                     step1Tips.push(`${wrapLocationNPCName(npc)} (${npc.profession?.name || npc.profession}) is present at this location`);
                 });
             }
-            
+
             flowSteps.push({
                 step: 1,
                 locationIndex: 0,
                 title: "Initial Discovery",
-                location: window.currentEncounterLocations[0],
-                description: `The party first encounters ${window.encounterTemplate.title.toLowerCase()}. They arrive at ${window.currentEncounterLocations[0].name}, where the situation begins to unfold.`,
+                location: window.currentAdventureLocations[0],
+                description: `The party first encounters ${window.adventureTemplate.title.toLowerCase()}. They arrive at ${window.currentAdventureLocations[0].name}, where the situation begins to unfold.`,
                 dmTips: step1Tips
             });
-            
+
             // Step 2: Investigation/Complication (if there's a second location)
-            if (window.currentEncounterLocations.length > 1) {
+            if (window.currentAdventureLocations.length > 1) {
                 const step2Tips = [
-                    `Primary features from ${window.currentEncounterLocations[0].name} can provide hints or connections to this location`,
+                    `Primary features from ${window.currentAdventureLocations[0].name} can provide hints or connections to this location`,
                     "Introduce skill challenges or traps as the party moves between locations",
-                    window.currentEncounterNPCs.length > 1 ? `${wrapNPCName(window.currentEncounterNPCs[1], 1)} might provide information, create obstacles, or offer assistance` : "Add tension through environmental effects"
+                    window.currentAdventureNPCs.length > 1 ? `${wrapNPCName(window.currentAdventureNPCs[1], 1)} might provide information, create obstacles, or offer assistance` : "Add tension through environmental effects"
                 ];
-                
+
                 // Add location-specific NPCs to DM Tips
-                if (window.currentEncounterLocations[1].npcs && window.currentEncounterLocations[1].npcs.length > 0) {
-                    window.currentEncounterLocations[1].npcs.forEach(npc => {
+                if (window.currentAdventureLocations[1].npcs && window.currentAdventureLocations[1].npcs.length > 0) {
+                    window.currentAdventureLocations[1].npcs.forEach(npc => {
                         step2Tips.push(`${wrapLocationNPCName(npc)} (${npc.profession?.name || npc.profession}) is present at this location`);
                     });
                 }
-                
+
                 flowSteps.push({
                     step: 2,
                     locationIndex: 1,
                     title: "Investigation & Complications",
-                    location: window.currentEncounterLocations[1],
-                    description: `Clues, encounters, or circumstances lead the party to ${window.currentEncounterLocations[1].name}. The situation deepens as they uncover more details.`,
+                    location: window.currentAdventureLocations[1],
+                    description: `Clues, encounters, or circumstances lead the party to ${window.currentAdventureLocations[1].name}. The situation deepens as they uncover more details.`,
                     dmTips: step2Tips,
                     connections: [
-                        `Evidence at ${window.currentEncounterLocations[0].name} points to activity here`,
+                        `Evidence at ${window.currentAdventureLocations[0].name} points to activity here`,
                         `NPCs or witnesses mention this location`,
                         `A discovered map, key, or clue leads directly here`
                     ]
                 });
             }
-            
+
             // Step 3: Escalation (if there's a third location)
-            if (window.currentEncounterLocations.length > 2) {
+            if (window.currentAdventureLocations.length > 2) {
                 const step3Tips = [
                     "This is where major conflict, revelations, or challenges should occur",
                     "Combine multiple hazards or environmental effects for maximum drama",
-                    window.currentEncounterNPCs.length > 2 ? `${wrapNPCName(window.currentEncounterNPCs[2], 2)}'s secret or motivations might be revealed here` : "Consider adding a time-pressure element"
+                    window.currentAdventureNPCs.length > 2 ? `${wrapNPCName(window.currentAdventureNPCs[2], 2)}'s secret or motivations might be revealed here` : "Consider adding a time-pressure element"
                 ];
-                
+
                 // Add location-specific NPCs to DM Tips
-                if (window.currentEncounterLocations[2].npcs && window.currentEncounterLocations[2].npcs.length > 0) {
-                    window.currentEncounterLocations[2].npcs.forEach(npc => {
+                if (window.currentAdventureLocations[2].npcs && window.currentAdventureLocations[2].npcs.length > 0) {
+                    window.currentAdventureLocations[2].npcs.forEach(npc => {
                         step3Tips.push(`${wrapLocationNPCName(npc)} (${npc.profession?.name || npc.profession}) is present at this location`);
                     });
                 }
-                
+
                 flowSteps.push({
                     step: 3,
                     locationIndex: 2,
                     title: "Escalation Point",
-                    location: window.currentEncounterLocations[2],
-                    description: `The encounter intensifies at ${window.currentEncounterLocations[2].name}. Stakes are raised and the party must make crucial decisions.`,
+                    location: window.currentAdventureLocations[2],
+                    description: `The encounter intensifies at ${window.currentAdventureLocations[2].name}. Stakes are raised and the party must make crucial decisions.`,
                     dmTips: step3Tips,
                     connections: [
-                        `Chase, pursuit, or urgency drives the party from ${window.currentEncounterLocations[1].name}`,
+                        `Chase, pursuit, or urgency drives the party from ${window.currentAdventureLocations[1].name}`,
                         `A discovered tertiary object reveals the true nature of the situation`,
                         `Environmental hazards force movement to this location`
                     ]
                 });
             }
-            
+
             // Step 4+: Additional locations become individual optional steps
-            if (window.currentEncounterLocations.length > 3) {
-                const remainingLocations = window.currentEncounterLocations.slice(3);
+            if (window.currentAdventureLocations.length > 3) {
+                const remainingLocations = window.currentAdventureLocations.slice(3);
                 remainingLocations.forEach((loc, i) => {
                     const actualIndex = 3 + i;
                     const stepNumber = 4 + i;
-                    
+
                     const additionalTips = [
                         "This location can be explored at any point during the encounter",
                         "Use this as a reward for good investigation or clever thinking",
                         "Can provide alternative solutions, shortcuts, or additional complications"
                     ];
-                    
+
                     // Add location-specific NPCs to DM Tips
                     if (loc.npcs && loc.npcs.length > 0) {
                         loc.npcs.forEach(npc => {
                             additionalTips.push(`${wrapLocationNPCName(npc)} (${npc.profession?.name || npc.profession}) is present at this location`);
                         });
                     }
-                    
+
                     flowSteps.push({
                         step: stepNumber,
                         locationIndex: actualIndex,
@@ -853,21 +957,21 @@
                     });
                 });
             }
-            
+
             // Final step: Resolution
-            const finalLocation = currentEncounterLocations.length > 2 ? currentEncounterLocations[2] : currentEncounterLocations[currentEncounterLocations.length - 1];
-            
-            // Check if encounter has custom resolutions
-            const hasCustomResolutions = encounterTemplate && encounterTemplate.resolutions && encounterTemplate.resolutions.length > 0;
-            
+            const finalLocation = window.currentAdventureLocations.length > 2 ? window.currentAdventureLocations[2] : window.currentAdventureLocations[window.currentAdventureLocations.length - 1];
+
+            // Check if adventure has custom resolutions
+            const hasCustomResolutions = window.adventureTemplate && window.adventureTemplate.resolutions && window.adventureTemplate.resolutions.length > 0;
+
             if (hasCustomResolutions) {
-                // Use custom resolutions from encounter template
+                // Use custom resolutions from adventure template
                 flowSteps.push({
                     step: flowSteps.length + 1,
                     title: "Resolution",
                     location: finalLocation,
-                    description: `The encounter concludes with multiple possible outcomes based on the party's investigation and choices.`,
-                    customResolutions: encounterTemplate.resolutions,
+                    description: `The adventure concludes with multiple possible outcomes based on the party's investigation and choices.`,
+                    customResolutions: window.adventureTemplate.resolutions,
                     dmTips: [
                         "Review the party's investigation - which locations did they visit?",
                         "Which clues and evidence did they discover?",
@@ -890,115 +994,115 @@
                     ]
                 });
             }
-            
+
             return flowSteps;
         }
 
-        // Expose generateEncounterFlow to window for cross-module access
-        window.generateEncounterFlow = generateEncounterFlow;
+        // Expose generateAdventureFlow to window for cross-module access
+        window.generateAdventureFlow = generateAdventureFlow;
 
         // ============================================================================
         // FLOW MANIPULATION FUNCTIONS
         // ============================================================================
         function addNewLocation() {
-            console.log('addNewLocation - Before:', window.currentEncounterLocations.length);
-            const newLoc = window.selectLocationsForEncounter(window.encounterTemplate.tags, window.selectedEnvironment, 1)[0];
-            window.currentEncounterLocations.push(newLoc);
-            console.log('addNewLocation - After:', window.currentEncounterLocations.length);
+            console.log('addNewLocation - Before:', window.currentAdventureLocations.length);
+            const newLoc = window.selectLocationsForAdventure(window.adventureTemplate.tags, window.selectedEnvironment, 1)[0];
+            window.currentAdventureLocations.push(newLoc);
+            console.log('addNewLocation - After:', window.currentAdventureLocations.length);
             console.log('addNewLocation - New location:', newLoc.name);
-            window.currentEncounterFlow = generateEncounterFlow();
-            console.log('addNewLocation - Flow steps:', window.currentEncounterFlow.length);
-            displayEncounter();
+            window.currentAdventureFlow = generateAdventureFlow();
+            console.log('addNewLocation - Flow steps:', window.currentAdventureFlow.length);
+            displayAdventure();
         }
 
         function removeLocation(index) {
-            if (window.currentEncounterLocations.length <= 1) {
+            if (window.currentAdventureLocations.length <= 1) {
                 alert('You must have at least one location!');
                 return;
             }
-            
-            const locationToRemove = window.currentEncounterLocations[index];
-            
+
+            const locationToRemove = window.currentAdventureLocations[index];
+
             // If this location had NPCs assigned to it, they stay in the general NPC pool
             // but we remove them from the location.npcs array (which will be deleted anyway)
             // No action needed as we're removing the entire location
-            
+
             // Remove the location from the array
-            window.currentEncounterLocations.splice(index, 1);
-            
+            window.currentAdventureLocations.splice(index, 1);
+
             // Regenerate flow and display
-            window.currentEncounterFlow = generateEncounterFlow();
-            displayEncounter();
+            window.currentAdventureFlow = generateAdventureFlow();
+            displayAdventure();
         }
 
         function moveLocationUp(index) {
             if (index === 0) return;
-            [window.currentEncounterLocations[index], window.currentEncounterLocations[index - 1]] = 
-            [window.currentEncounterLocations[index - 1], window.currentEncounterLocations[index]];
-            window.currentEncounterFlow = generateEncounterFlow();
-            displayEncounter();
+            [window.currentAdventureLocations[index], window.currentAdventureLocations[index - 1]] =
+                [window.currentAdventureLocations[index - 1], window.currentAdventureLocations[index]];
+            window.currentAdventureFlow = generateAdventureFlow();
+            displayAdventure();
         }
 
         function moveLocationDown(index) {
-            if (index === window.currentEncounterLocations.length - 1) return;
-            [window.currentEncounterLocations[index], window.currentEncounterLocations[index + 1]] = 
-            [window.currentEncounterLocations[index + 1], window.currentEncounterLocations[index]];
-            window.currentEncounterFlow = generateEncounterFlow();
-            displayEncounter();
+            if (index === window.currentAdventureLocations.length - 1) return;
+            [window.currentAdventureLocations[index], window.currentAdventureLocations[index + 1]] =
+                [window.currentAdventureLocations[index + 1], window.currentAdventureLocations[index]];
+            window.currentAdventureFlow = generateAdventureFlow();
+            displayAdventure();
         }
 
         function regenerateFlowLocation(index) {
-            const newLoc = window.selectLocationsForEncounter(window.encounterTemplate.tags, window.selectedEnvironment, 1)[0];
-            window.currentEncounterLocations[index] = newLoc;
-            window.currentEncounterFlow = generateEncounterFlow();
-            displayEncounter();
+            const newLoc = window.selectLocationsForAdventure(window.adventureTemplate.tags, window.selectedEnvironment, 1)[0];
+            window.currentAdventureLocations[index] = newLoc;
+            window.currentAdventureFlow = generateAdventureFlow();
+            displayAdventure();
         }
 
         function regenerateNPC(index) {
-            const newNPC = window.selectNPCsForEncounter(window.encounterTemplate.tags, 1)[0];
-            window.currentEncounterNPCs[index] = newNPC;
-            window.currentEncounterFlow = generateEncounterFlow();
-            displayEncounter();
+            const newNPC = window.selectNPCsForAdventure(window.adventureTemplate.tags, 1)[0];
+            window.currentAdventureNPCs[index] = newNPC;
+            window.currentAdventureFlow = generateAdventureFlow();
+            displayAdventure();
         }
 
         function removeNPC(index) {
-            const npcToRemove = window.currentEncounterNPCs[index];
-            
+            const npcToRemove = window.currentAdventureNPCs[index];
+
             // Remove the NPC from the main array
-            window.currentEncounterNPCs.splice(index, 1);
-            
+            window.currentAdventureNPCs.splice(index, 1);
+
             // Remove this NPC from any location-specific NPC arrays
-            window.currentEncounterLocations.forEach(location => {
+            window.currentAdventureLocations.forEach(location => {
                 if (location.npcs && location.npcs.length > 0) {
-                    location.npcs = location.npcs.filter(npc => 
-                        npc.name !== npcToRemove.name || 
+                    location.npcs = location.npcs.filter(npc =>
+                        npc.name !== npcToRemove.name ||
                         npc.species !== npcToRemove.species ||
                         (npc.profession?.name || npc.profession) !== (npcToRemove.profession?.name || npcToRemove.profession)
                     );
                 }
             });
-            
+
             // Regenerate flow and display
-            window.currentEncounterFlow = generateEncounterFlow();
-            displayEncounter();
+            window.currentAdventureFlow = generateAdventureFlow();
+            displayAdventure();
         }
 
         // ============================================================================
         // REBUILD ENCOUNTER FROM SAVED DATA
         // ============================================================================
-        function rebuildEncounterDisplay(savedData) {
-            window.encounterTemplate = savedData.template;
+        function rebuildAdventureDisplay(savedData) {
+            window.adventureTemplate = savedData.template;
             window.selectedEnvironment = savedData.environment;
-            window.currentEncounterLocations = savedData.locations;
-            window.currentEncounterNPCs = savedData.npcs;
-            window.currentEncounterSkillChecks = savedData.skillChecks;
-            window.currentEncounterTraps = savedData.traps;
-            window.currentEncounterHazards = savedData.hazards;
-            window.currentEncounterEnvironmentalEffects = savedData.environmentalEffects;
-            window.currentEncounterFlow = savedData.flow;
-            
+            window.currentAdventureLocations = savedData.locations;
+            window.currentAdventureNPCs = savedData.npcs;
+            window.currentAdventureSkillChecks = savedData.skillChecks;
+            window.currentAdventureTraps = savedData.traps;
+            window.currentAdventureHazards = savedData.hazards;
+            window.currentAdventureEnvironmentalEffects = savedData.environmentalEffects;
+            window.currentAdventureFlow = savedData.flow;
+
             document.getElementById('partyLevel').value = savedData.partyLevel;
-            
+
             const envTags = document.querySelectorAll('.environment-tags .tag');
             envTags.forEach(tag => {
                 if (tag.getAttribute('data-env') === window.selectedEnvironment) {
@@ -1007,12 +1111,12 @@
                     tag.classList.remove('active');
                 }
             });
-            
-            displayEncounter();
+
+            displayAdventure();
         }
 
-        // Make rebuildEncounterDisplay available globally for storage.js
-        window.rebuildEncounterDisplay = rebuildEncounterDisplay;
+        // Make rebuildAdventureDisplay available globally for storage.js
+        window.rebuildAdventureDisplay = rebuildAdventureDisplay;
 
         // ============================================================================
         // ROOM EXPLORATION (Progressive Reveal)
@@ -1020,13 +1124,13 @@
         function generateRoom(locationKey) {
             const location = (window.locationObjects?.[selectedEnvironment] || {})[locationKey];
             if (!location) return;
-            
+
             currentRoomKey = locationKey;
-            
-            const encounterDisplay = document.getElementById('encounterDisplay');
+
+            const encounterDisplay = document.getElementById('adventureDisplay');
             const roomDisplay = document.getElementById('roomDisplay');
             const roomContent = document.getElementById('roomContent');
-            
+
             let html = `
                 <div class="room-header">
                     <h2>🚪 Exploring: ${window.formatLocationName(locationKey)}</h2>
@@ -1035,7 +1139,7 @@
                 
                 <div class="room-objects">
                     <h3>🔍 Objects in the Room:</h3>`;
-            
+
             if (Array.isArray(location.primary) && location.primary.length > 0) {
                 location.primary.forEach((objName, idx) => {
                     html += `
@@ -1049,11 +1153,11 @@
             } else {
                 html += `<p style="color: var(--text-secondary); padding: 20px;">The room appears empty at first glance...</p>`;
             }
-            
+
             html += `
                 </div>
                 <div id="explorationResults"></div>`;
-            
+
             roomContent.innerHTML = html;
             encounterDisplay.style.display = 'none';
             roomDisplay.style.display = 'block';
@@ -1062,15 +1166,15 @@
         function exploreObject(locationKey, level, objectIndex) {
             const location = (window.locationObjects?.[selectedEnvironment] || {})[locationKey];
             const resultsDiv = document.getElementById('explorationResults');
-            
+
             let html = `
                 <div class="exploration-result">
                     <h3>📖 Discovery: ${Array.isArray(location.primary) ? location.primary[objectIndex] : 'Object'}</h3>`;
-            
+
             if (level === 'primary' && Array.isArray(location.primary) && location.primary[objectIndex] !== undefined) {
                 const primaryDesc = location.primary[objectIndex];
                 html += `<p class="description">${primaryDesc}</p>`;
-                
+
                 if (Array.isArray(location.secondary) && location.secondary[objectIndex] !== undefined) {
                     html += `
                         <button onclick="exploreObject('${locationKey}', 'secondary', ${objectIndex})" class="btn-primary" style="margin-top: 12px;">
@@ -1080,7 +1184,7 @@
             } else if (level === 'secondary' && Array.isArray(location.secondary) && location.secondary[objectIndex] !== undefined) {
                 const secondaryDesc = location.secondary[objectIndex];
                 html += `<p class="description">${secondaryDesc}</p>`;
-                
+
                 if (Array.isArray(location.tertiary) && location.tertiary[objectIndex] !== undefined) {
                     html += `
                         <button onclick="exploreObject('${locationKey}', 'tertiary', ${objectIndex})" class="btn-primary" style="margin-top: 12px;">
@@ -1092,13 +1196,13 @@
                 html += `<p class="description">${tertiaryDesc}</p>`;
                 html += `<p style="margin-top: 12px; color: var(--accent-blue);"><em>You've discovered everything about this object!</em></p>`;
             }
-            
+
             html += `</div>`;
             resultsDiv.innerHTML = html;
         }
 
-        function returnToEncounter() {
-            document.getElementById('encounterDisplay').style.display = 'block';
+        function returnToAdventure() {
+            document.getElementById('adventureDisplay').style.display = 'block';
             document.getElementById('roomDisplay').style.display = 'none';
             currentRoomKey = null;
         }
@@ -1109,28 +1213,28 @@
         function performSearch() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
             const resultsDiv = document.getElementById('searchResults');
-            
+
             if (searchTerm.length === 0 && activeFilters.env.length === 0 && activeFilters.location.length === 0 && activeFilters.setting.length === 0) {
                 resultsDiv.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 40px;">Enter a search term or select tags to find encounters and locations</p>';
                 return;
             }
-            
+
             const results = [];
-            
+
             // Search encounters
-            Object.entries(window.encounterTitles).forEach(([env, encounters]) => {
+            Object.entries(window.adventureTemplates).forEach(([env, encounters]) => {
                 if (activeFilters.env.length > 0 && !activeFilters.env.includes(env)) return;
-                
+
                 encounters.forEach(encounter => {
-                    const matchesSearch = searchTerm.length === 0 || 
+                    const matchesSearch = searchTerm.length === 0 ||
                         encounter.title.toLowerCase().includes(searchTerm) ||
                         encounter.description.toString().toLowerCase().includes(searchTerm) ||
                         encounter.tags.some(tag => tag.toLowerCase().includes(searchTerm));
-                    
-                    const matchesTags = 
+
+                    const matchesTags =
                         (activeFilters.env.length === 0 || activeFilters.env.includes(env)) &&
                         (activeFilters.setting.length === 0 || encounter.tags.some(tag => activeFilters.setting.includes(tag)));
-                    
+
                     if (matchesSearch && matchesTags) {
                         results.push({
                             type: 'encounter',
@@ -1141,7 +1245,7 @@
                     }
                 });
             });
-            
+
             // Search locations (iterate environments and their locations)
             Object.entries(window.locationObjects || {}).forEach(([env, envLocations]) => {
                 Object.entries(envLocations || {}).forEach(([locKey, locData]) => {
@@ -1168,22 +1272,22 @@
                     }
                 });
             });
-            
+
             displaySearchResults(results);
         }
 
         function displaySearchResults(results) {
             const resultsDiv = document.getElementById('searchResults');
-            
+
             if (results.length === 0) {
                 resultsDiv.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 40px;">No results found. Try different search terms or filters.</p>';
                 return;
             }
-            
+
             let html = `<h3 style="margin-bottom: 20px; color: var(--text-primary);">Found ${results.length} result${results.length === 1 ? '' : 's'}:</h3>`;
-            
+
             results.forEach((result, idx) => {
-                if (result.type === 'encounter') {
+                if (result.type === 'encounter' || result.type === 'adventure') {
                     html += `
                         <div class="result-card">
                             <div class="result-header">
@@ -1194,10 +1298,10 @@
                                 ${result.data.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                             </div>
                             <div class="result-actions">
-                                <button onclick="previewResult(${idx}, ${JSON.stringify(results).replace(/"/g, '&quot;')})" class="btn-small" style="background: gainsboro; color: var(--accent-blue);">
+                                <button onclick="previewResult(${idx}, results)" class="btn-small" style="background: gainsboro; color: var(--accent-blue);">
                                     ◉ Preview
                                 </button>
-                                <button onclick="openResult('encounter', '${result.environment}', '${result.title.replace(/'/g, "\\'")}')" class="btn-small btn-primary">
+                                <button onclick="openResult('adventure', '${result.environment}', '${result.title.replace(/'/g, "\\'")}')" class="btn-small btn-primary">
                                     ⚡ Generate
                                 </button>
                             </div>
@@ -1219,7 +1323,7 @@
                         </div>`;
                 }
             });
-            
+
             resultsDiv.innerHTML = html;
         }
 
@@ -1227,18 +1331,18 @@
             const result = results[index];
             const modal = document.getElementById('previewModal');
             const body = document.getElementById('previewBody');
-            
+
             let html = `<h2>${result.title}</h2>`;
-            
-            if (result.type === 'encounter') {
+
+            if (result.type === 'adventure') {
                 html += `
                     <div style="margin: 20px 0;">
                         <span class="tag">${result.environment}</span>
                         ${result.data.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                     </div>
-                    <p class="description">${window.buildEncounterDescription(result.environment, result.title, result.data.descriptions || result.data.description)}</p>`;
+                    <p class="description">${window.buildAdventureDescription(result.environment, result.title, result.data.descriptions || result.data.description)}</p>`;
             }
-            
+
             body.innerHTML = html;
             modal.style.display = 'flex';
         }
@@ -1251,52 +1355,52 @@
             if (type === 'encounter') {
                 // Switch to generate page
                 window.switchPage('generate');
-                
+
                 // Set environment
                 selectedEnvironment = environment;
                 const envSelect = document.getElementById('environmentSelect');
                 if (envSelect) {
                     envSelect.value = environment;
                 }
-                
+
                 // Find and use specific encounter
-                const encounters = window.encounterTitles[environment];
-                encounterTemplate = encounters.find(e => e.title === title);
-                
-                if (encounterTemplate) {
+                const encounters = window.adventureTemplates[environment];
+                window.adventureTemplate = encounters.find(e => e.title === title);
+
+                if (window.adventureTemplate) {
                     const partyLevel = parseInt(document.getElementById('partyLevel').value);
-                    
-                    // Generate a seed for this encounter
+
+                    // Generate a seed for this adventure
                     window.currentSeed = Date.now().toString(36) + Math.random().toString(36).substr(2);
-                    document.getElementById('encounterSeed').value = window.currentSeed;
+                    document.getElementById('adventureSeed').value = window.currentSeed;
                     const seed = window.hashStringToSeed(window.currentSeed);
                     const seededRandom = window.createSeededRandom(seed);
                     window.setRandomFunction(seededRandom);
-                    
-                    currentEncounterSkillChecks = window.selectSkillChecks(encounterTemplate.tags, [], [], Math.floor(window.random() * 2) + 3);
-                    currentEncounterTraps = window.selectTraps([], window.random() < 0.3 ? 0 : window.random() < 0.5 ? 1 : 2);
-                    currentEncounterHazards = window.selectHazards(environment, [], window.random() < 0.6 ? 1 : 2);
-                    currentEncounterEnvironmentalEffects = window.selectEnvironmentalEffects(environment, encounterTemplate.tags, window.random() < 0.4 ? 1 : 0);
-                    
+
+                    window.currentAdventureSkillChecks = window.selectSkillChecks(window.adventureTemplate.tags, [], [], Math.floor(window.random() * 2) + 3);
+                    window.currentAdventureTraps = window.selectTraps([], window.random() < 0.3 ? 0 : window.random() < 0.5 ? 1 : 2);
+                    window.currentAdventureHazards = window.selectHazards(environment, [], window.random() < 0.6 ? 1 : 2);
+                    window.currentAdventureEnvironmentalEffects = window.selectEnvironmentalEffects(environment, window.adventureTemplate.tags, window.random() < 0.4 ? 1 : 0);
+
                     // Handle custom locations if they exist
-                    if (encounterTemplate.customLocations && encounterTemplate.customLocations.length > 0) {
-                        // Use custom locations for this encounter
-                        currentEncounterLocations = window.selectLocationsForEncounter(
-                            encounterTemplate.tags, 
-                            environment, 
-                            encounterTemplate.customLocations.length,
-                            encounterTemplate.customLocations
+                    if (window.adventureTemplate.customLocations && window.adventureTemplate.customLocations.length > 0) {
+                        // Use custom locations for this adventure
+                        window.currentAdventureLocations = window.selectLocationsForAdventure(
+                            window.adventureTemplate.tags,
+                            environment,
+                            window.adventureTemplate.customLocations.length,
+                            window.adventureTemplate.customLocations
                         );
                     } else {
                         // Use normal location selection
                         const numLocations = parseInt(document.getElementById('numLocations').value);
-                        currentEncounterLocations = window.selectLocationsForEncounter(encounterTemplate.tags, environment, numLocations);
+                        window.currentAdventureLocations = window.selectLocationsForAdventure(window.adventureTemplate.tags, environment, numLocations);
                     }
-                    
-                    currentEncounterNPCs = window.selectNPCsForEncounter(encounterTemplate.tags, Math.floor(window.random() * 3) + 2);
-                    currentEncounterFlow = generateEncounterFlow();
-                    
-                    displayEncounter();
+
+                    window.currentAdventureNPCs = window.selectNPCsForAdventure(window.adventureTemplate.tags, Math.floor(window.random() * 3) + 2);
+                    window.currentAdventureFlow = generateAdventureFlow();
+
+                    displayAdventure();
                 }
             }
         }
@@ -1313,7 +1417,7 @@
 
             const filterKey = filterMap[type] || type;
             const index = activeFilters[filterKey].indexOf(value);
-            
+
             if (index > -1) {
                 activeFilters[filterKey].splice(index, 1);
             } else {
@@ -1333,17 +1437,17 @@
         }
 
         // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (!e.target.closest('.encounter-actions')) {
-                window.closeEncounterMenu();
+                window.closeAdventureMenu();
             }
         });
 
         // Make functions globally available for the modules and HTML onclick
-        window.generateEncounter = generateEncounter;
+        window.generateAdventureLogic = generateAdventureLogic;
         window.generateRoom = generateRoom;
         window.exploreObject = exploreObject;
-        window.returnToEncounter = returnToEncounter;
+        window.returnToAdventure = returnToAdventure;
         window.performSearch = performSearch;
         window.toggleFilter = toggleFilter;
         window.clearFilters = clearFilters;
@@ -1362,10 +1466,10 @@
     <!-- Initialize Changelog System -->
     <script type="module">
         import { initializeChangelog, showChangelogManual } from './assets/js/changelog.js';
-        
+
         // Expose showChangelogManual to window for onclick handlers
         window.showChangelogManual = showChangelogManual;
-        
+
         // Initialize changelog after DOM is ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
@@ -1376,14 +1480,14 @@
             initializeChangelog();
         }
     </script>
-    
+
     <!-- Initialize Command History System -->
     <script type="module">
         import {
             generateHistory,
             npcHistory,
             searchHistory,
-            GenerateEncounterCommand,
+            GenerateAdventureCommand,
             GenerateNPCCommand,
             FilterChangeCommand,
             SearchCommand,
@@ -1394,7 +1498,7 @@
             canUndoInContext,
             canRedoInContext
         } from './assets/js/command-history.mjs';
-        
+
         // Initialize command history UI
         function initializeCommandHistory() {
             // Setup keyboard shortcuts
@@ -1411,9 +1515,9 @@
                 }
             });
         }
-        
+
         // Undo last action in current context
-        window.undoLastAction = function() {
+        window.undoLastAction = function () {
             const success = undoInContext();
             const context = window.currentPage || 'generate';
             if (success) {
@@ -1422,9 +1526,9 @@
                 console.log(`⚠️ Nothing to undo in ${context} context`);
             }
         };
-        
+
         // Redo last action in current context
-        window.redoLastAction = function() {
+        window.redoLastAction = function () {
             const success = redoInContext();
             const context = window.currentPage || 'generate';
             if (success) {
@@ -1433,106 +1537,115 @@
                 console.log(`⚠️ Nothing to redo in ${context} context`);
             }
         };
-        
-        // Function to capture complete encounter state
-        function captureEncounterState() {
-            const encounterDisplay = document.getElementById('encounterDisplay');
+
+        // Function to capture complete adventure state
+        function captureAdventureState() {
+            const adventureDisplay = document.getElementById('adventureDisplay');
             const npcInfoDisplay = document.getElementById('npcInfoDisplay');
-            
+
             return {
                 // Capture the actual generated data
-                encounterFlow: window.currentEncounterFlow ? JSON.parse(JSON.stringify(window.currentEncounterFlow)) : null,
+                adventureFlow: window.currentAdventureFlow ? JSON.parse(JSON.stringify(window.currentAdventureFlow)) : null,
                 // Capture the HTML content for exact restoration
-                encounterHTML: encounterDisplay ? encounterDisplay.innerHTML : '',
+                adventureHTML: adventureDisplay ? adventureDisplay.innerHTML : '',
                 npcHTML: npcInfoDisplay ? npcInfoDisplay.innerHTML : '',
                 // Capture current page state if needed
                 currentPage: window.currentPage || 'generate',
                 timestamp: Date.now()
             };
         }
-        
-        // Function to restore complete encounter state
-        function restoreEncounterState(state) {
+
+        // Function to restore complete adventure state
+        function restoreAdventureState(state) {
             if (!state) {
                 // Clear everything
-                const encounterDisplay = document.getElementById('encounterDisplay');
+                const adventureDisplay = document.getElementById('adventureDisplay');
                 const npcInfoDisplay = document.getElementById('npcInfoDisplay');
-                if (encounterDisplay) encounterDisplay.innerHTML = '';
+                if (adventureDisplay) adventureDisplay.innerHTML = '';
                 if (npcInfoDisplay) npcInfoDisplay.innerHTML = '';
-                window.currentEncounterFlow = null;
+                window.currentAdventureFlow = null;
                 return;
             }
-            
+
             // Restore the data
-            window.currentEncounterFlow = state.encounterFlow;
-            
+            window.currentAdventureFlow = state.adventureFlow;
+
             // Restore the HTML displays
-            const encounterDisplay = document.getElementById('encounterDisplay');
+            const adventureDisplay = document.getElementById('adventureDisplay');
             const npcInfoDisplay = document.getElementById('npcInfoDisplay');
-            
-            if (encounterDisplay) {
-                encounterDisplay.innerHTML = state.encounterHTML;
-                
+
+            if (adventureDisplay) {
+                adventureDisplay.innerHTML = state.adventureHTML;
+
                 // Re-attach event listeners for any interactive elements
-                const generateButtons = encounterDisplay.querySelectorAll('.generate-npc-btn');
+                const generateButtons = adventureDisplay.querySelectorAll('.generate-npc-btn');
                 generateButtons.forEach(btn => {
                     const locationIndex = parseInt(btn.dataset.locationIndex);
                     const npcIndex = parseInt(btn.dataset.npcIndex);
-                    btn.addEventListener('click', function() {
-                        if (window.currentEncounterFlow && 
-                            window.currentEncounterFlow.locations && 
-                            window.currentEncounterFlow.locations[locationIndex] &&
-                            window.currentEncounterFlow.locations[locationIndex].npcs &&
-                            window.currentEncounterFlow.locations[locationIndex].npcs[npcIndex]) {
-                            const npc = window.currentEncounterFlow.locations[locationIndex].npcs[npcIndex];
-                            generateNPCFromEncounter(npc.species, npc.subspecies);
+                    btn.addEventListener('click', function () {
+                        if (window.currentAdventureFlow &&
+                            window.currentAdventureFlow.locations &&
+                            window.currentAdventureFlow.locations[locationIndex] &&
+                            window.currentAdventureFlow.locations[locationIndex].npcs &&
+                            window.currentAdventureFlow.locations[locationIndex].npcs[npcIndex]) {
+                            const npc = window.currentAdventureFlow.locations[locationIndex].npcs[npcIndex];
+                            // Check for generator function (support both names during migration)
+                            if (typeof window.generateNPCFromAdventure === 'function') {
+                                window.generateNPCFromAdventure(npc.species, npc.subspecies);
+                            } else if (typeof window.generateNPCFromEncounter === 'function') {
+                                window.generateNPCFromEncounter(npc.species, npc.subspecies);
+                            }
                         }
                     });
                 });
-                
+
                 // Re-attach location detail click handlers
-                const locationCards = encounterDisplay.querySelectorAll('.location-card');
+                const locationCards = adventureDisplay.querySelectorAll('.location-card');
                 locationCards.forEach(card => {
                     const locationIndex = parseInt(card.dataset.locationIndex);
-                    card.addEventListener('click', function(e) {
+                    card.addEventListener('click', function (e) {
                         if (!e.target.closest('.generate-npc-btn')) {
-                            if (window.currentEncounterFlow && 
-                                window.currentEncounterFlow.locations && 
-                                window.currentEncounterFlow.locations[locationIndex]) {
-                                showLocationDetail(window.currentEncounterFlow.locations[locationIndex], locationIndex);
+                            if (window.currentAdventureFlow &&
+                                window.currentAdventureFlow.locations &&
+                                window.currentAdventureFlow.locations[locationIndex]) {
+                                window.showLocationDetail(window.currentAdventureFlow.locations[locationIndex], 'primary');
                             }
                         }
                     });
                 });
             }
-            
+
             if (npcInfoDisplay) {
                 npcInfoDisplay.innerHTML = state.npcHTML;
             }
         }
-        
-        // Wrap original generateEncounter to use command pattern with state capture
-        const originalGenerateEncounter = window.generateEncounter;
-        window.generateEncounter = function() {
-            const command = new GenerateEncounterCommand(
+
+        // Wrap original generateAdventureLogic to use command pattern with state capture
+        window.generateAdventure = function () {
+            // Check if logic function exists
+            if (typeof window.generateAdventureLogic !== 'function') {
+                console.error('generateAdventureLogic not found. Cannot generate adventure.');
+                return;
+            }
+
+            const command = new GenerateAdventureCommand(
                 () => {
-                    // Call original generate function
-                    const result = originalGenerateEncounter();
-                    return result;
+                    // Call logical generate function
+                    return window.generateAdventureLogic();
                 },
-                captureEncounterState,
-                restoreEncounterState
+                captureAdventureState,
+                restoreAdventureState
             );
-            
-            // Execute the command in generate context (this will capture before/after states)
+
+            // Execute the command in generate context
             return generateHistory.execute(command);
         };
-        
+
         // Function to capture complete NPC state
         function captureNPCState() {
             const npcDisplay = document.getElementById('npcDisplay');
             const npcInfoDisplay = document.getElementById('npcInfoDisplay');
-            
+
             return {
                 // Capture the actual generated NPC data
                 npcData: window.currentNPC ? JSON.parse(JSON.stringify(window.currentNPC)) : null,
@@ -1542,7 +1655,7 @@
                 timestamp: Date.now()
             };
         }
-        
+
         // Function to restore complete NPC state
         function restoreNPCState(state) {
             if (!state) {
@@ -1554,33 +1667,33 @@
                 window.currentNPC = null;
                 return;
             }
-            
+
             // Restore the data
             window.currentNPC = state.npcData;
-            
+
             // Restore the HTML displays
             const npcDisplay = document.getElementById('npcDisplay');
             const npcInfoDisplay = document.getElementById('npcInfoDisplay');
-            
+
             if (npcDisplay) {
                 npcDisplay.innerHTML = state.npcHTML;
             }
-            
+
             if (npcInfoDisplay) {
                 npcInfoDisplay.innerHTML = state.npcInfoHTML;
             }
         }
-        
+
         // Wrap NPC generation to use command pattern with state capture
         // Store original function reference
         let originalGenerateNPC = null;
-        
+
         // Wait for generateNPC to be defined, then wrap it
         function wrapNPCGeneration() {
             if (typeof window.generateNPC === 'function' && !originalGenerateNPC) {
                 originalGenerateNPC = window.generateNPC;
-                
-                window.generateNPC = function() {
+
+                window.generateNPC = function () {
                     const command = new GenerateNPCCommand(
                         () => {
                             // Call original generate function
@@ -1590,41 +1703,41 @@
                         captureNPCState,
                         restoreNPCState
                     );
-                    
+
                     // Execute the command in NPC context
                     return npcHistory.execute(command);
                 };
-                
+
                 console.log('✅ NPC generation wrapped with command pattern');
             }
         }
-        
+
         // Try to wrap immediately and also after a delay
         wrapNPCGeneration();
         setTimeout(wrapNPCGeneration, 100);
         setTimeout(wrapNPCGeneration, 500);
-        
+
         // Wrap filter changes to use command pattern
         const originalToggleFilter = window.toggleFilter;
-        window.toggleFilter = function(type, value) {
+        window.toggleFilter = function (type, value) {
             const filterMap = {
                 'environment': 'env',
                 'locationType': 'location',
                 'setting': 'setting'
             };
-            
+
             // Capture old state BEFORE any changes
             const oldFilters = JSON.parse(JSON.stringify(window.activeFilters));
-            
+
             // Call original to compute new state
             originalToggleFilter(type, value);
-            
+
             // Capture new state AFTER the toggle
             const newFilters = JSON.parse(JSON.stringify(window.activeFilters));
-            
+
             // Restore to old state (so execute() can apply the change)
             window.activeFilters = oldFilters;
-            
+
             // Create command with both states
             const command = new FilterChangeCommand(
                 type,
@@ -1644,38 +1757,40 @@
                     window.performSearch();
                 }
             );
-            
+
             // Execute command through search history (filters affect search)
             searchHistory.execute(command);
         };
-        
+
         // Initialize after DOM is ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initializeCommandHistory);
         } else {
             initializeCommandHistory();
         }
-        
+
         // Expose for debugging
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            window.__commandHistory = commandHistory;
+            window.__commandHistory = {
+                generateHistory,
+                npcHistory,
+                searchHistory
+            };
         }
     </script>
-    
+
     <!-- Footer with Version Display -->
-    <footer style="text-align: center; padding: 20px; color: var(--text-secondary); font-size: 0.85em; border-top: 1px solid var(--border-color); margin-top: 40px;">
-        <span id="versionDisplay" 
-              style="cursor: pointer; transition: color 0.2s; text-decoration: underline;" 
-              onclick="window.showChangelogManual()" 
-              onkeypress="if(event.key==='Enter'||event.key===' ') window.showChangelogManual()" 
-              tabindex="0"
-              role="button"
-              aria-label="View changelog"
-              title="Click to view changelog">
+    <footer
+        style="text-align: center; padding: 20px; color: var(--text-secondary); font-size: 0.85em; border-top: 1px solid var(--border-color); margin-top: 40px;">
+        <span id="versionDisplay" style="cursor: pointer; transition: color 0.2s; text-decoration: underline;"
+            onclick="window.showChangelogManual()"
+            onkeypress="if(event.key==='Enter'||event.key===' ') window.showChangelogManual()" tabindex="0"
+            role="button" aria-label="View changelog" title="Click to view changelog">
             Loading version...
         </span>
         <br>
-        <span style="font-size: 0.9em; opacity: 0.8;">D&D Exploration Encounter Generator</span>
+        <span style="font-size: 0.9em; opacity: 0.8;">D&D Exploration Adventure Generator</span>
     </footer>
 </body>
+
 </html>

@@ -25,7 +25,7 @@ export function debounce(func, wait) {
  * @returns {Function} Random function that returns values between 0 and 1
  */
 export function createSeededRandom(seed) {
-    return function() {
+    return function () {
         let t = seed += 0x6D2B79F5;
         t = Math.imul(t ^ t >>> 15, t | 1);
         t ^= t + Math.imul(t ^ t >>> 7, t | 61);
@@ -76,7 +76,7 @@ export function capitalizeSpecies(species) {
     if (!species || typeof species !== 'string') {
         return species;
     }
-    
+
     // Split by hyphen and capitalize each part
     return species
         .split('-')
@@ -118,7 +118,7 @@ export function calculateDC(partyLevel) {
  */
 export function getScalingNotes(partyLevel) {
     const notes = [];
-    
+
     if (partyLevel <= 4) {
         notes.push('Low-level party: Reduce trap damage by 50%, lower DCs by 2-3.');
         notes.push('Focus on exploration and puzzle-solving over combat danger.');
@@ -190,18 +190,18 @@ export function getProfessionRoleTip(profession) {
 }
 
 /**
- * Build encounter description from template data
+ * Build adventure description from template data
  * @param {string} environment - Environment type
- * @param {string} title - Encounter title
+ * @param {string} title - Adventure title
  * @param {string|Array<string>} descriptionSource - Description string or array
- * @returns {string} Final encounter description
+ * @returns {string} Final adventure description
  */
-export function buildEncounterDescription(environment, title, descriptionSource) {
+export function buildAdventureDescription(environment, title, descriptionSource) {
     if (Array.isArray(descriptionSource)) {
         const randomIndex = Math.floor(Math.random() * descriptionSource.length);
         return descriptionSource[randomIndex];
     }
-    return descriptionSource || `An exploration encounter set in ${environment}.`;
+    return descriptionSource || `An exploration adventure set in ${environment}.`;
 }
 
 // Expose utility functions to window for inline HTML usage
@@ -210,7 +210,7 @@ window.calculateDC = calculateDC;
 window.getScalingNotes = getScalingNotes;
 window.formatLocationName = formatLocationName;
 window.getProfessionRoleTip = getProfessionRoleTip;
-window.buildEncounterDescription = buildEncounterDescription;
+window.buildAdventureDescription = buildAdventureDescription;
 window.createSeededRandom = createSeededRandom;
 window.hashStringToSeed = hashStringToSeed;
 window.setRandomFunction = setRandomFunction;

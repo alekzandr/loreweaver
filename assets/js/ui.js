@@ -1,6 +1,6 @@
 // LoreWeaver - UI & Flow Module
 // User interface interactions, flow navigation, panels, search, and rendering
-// Note: Due to size constraints, complex encounter rendering functions
+// Note: Due to size constraints, complex adventure rendering functions
 // will remain inline in the new index.html until further modularization
 
 import { getProfessionRoleTip, capitalizeSpecies } from './utils.js';
@@ -17,7 +17,7 @@ export function toggleSection(event) {
     const section = header.closest('.encounter-section');
     const content = section.querySelector('.section-content');
     const toggle = header.querySelector('.section-toggle');
-    
+
     if (content) {
         content.classList.toggle('collapsed');
         if (toggle) {
@@ -27,20 +27,20 @@ export function toggleSection(event) {
 }
 
 /**
- * Toggle encounter actions dropdown menu
+ * Toggle adventure actions dropdown menu
  */
-export function toggleEncounterMenu(event) {
+export function toggleAdventureMenu(event) {
     event.stopPropagation();
     const button = event.currentTarget;
     const menu = button.nextElementSibling;
-    
+
     // Close other open menus
     document.querySelectorAll('.encounter-menu.show').forEach(m => {
         if (m !== menu) {
             m.classList.remove('show');
         }
     });
-    
+
     // Toggle this menu
     if (menu) {
         menu.classList.toggle('show');
@@ -48,9 +48,9 @@ export function toggleEncounterMenu(event) {
 }
 
 /**
- * Close encounter menu
+ * Close adventure menu
  */
-export function closeEncounterMenu() {
+export function closeAdventureMenu() {
     document.querySelectorAll('.encounter-menu.show').forEach(m => {
         m.classList.remove('show');
     });
@@ -63,11 +63,11 @@ export function toggleFlowNavigator() {
     const navigator = document.getElementById('flowNavigator');
     const toggle = document.getElementById('flowNavigatorToggle');
     const mainContent = document.getElementById('mainContent');
-    
+
     navigator.classList.toggle('active');
     toggle.classList.toggle('active');
     mainContent?.classList.toggle('nav-active');
-    
+
     toggle.textContent = navigator.classList.contains('active') ? '◀' : '▶';
 }
 
@@ -86,29 +86,29 @@ export function scrollToFlowStep(stepNumber) {
  */
 export function populateFlowNavigator(flowSteps) {
     const content = document.getElementById('flowNavigatorContent');
-    
+
     if (!flowSteps || flowSteps.length === 0) {
-        content.innerHTML = '<p style="color: var(--text-secondary); font-size: 0.9em;">No encounter available</p>';
+        content.innerHTML = '<p style="color: var(--text-secondary); font-size: 0.9em;">No adventure available</p>';
         return;
     }
-    
+
     let html = '';
-    
+
     // Encounter Flow Section
     html += `<div style="margin-bottom: 20px;">
-        <div style="font-size: 0.75em; font-weight: bold; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 10px; padding: 0 5px;">🗺️ Encounter Flow</div>
+        <div style="font-size: 0.75em; font-weight: bold; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 10px; padding: 0 5px;">🗺️ Adventure Flow</div>
     `;
-    
+
     flowSteps.forEach((step, index) => {
         const isLastStep = index === flowSteps.length - 1;
-        
+
         html += `
             <div class="flow-step" onclick="scrollToFlowStep(${step.step})">
                 <div class="flow-step-node">
                     <div class="flow-step-number">${step.step}</div>
                     <div class="flow-step-title">${step.title}</div>
         `;
-        
+
         if (step.location) {
             html += `
                     <div class="flow-step-location">
@@ -122,29 +122,29 @@ export function populateFlowNavigator(flowSteps) {
                     </div>
             `;
         }
-        
+
         html += `
                 </div>
             </div>
         `;
-        
+
         if (!isLastStep) {
             html += '<div class="flow-connector"></div>';
         }
     });
-    
+
     html += '</div>';
-    
+
     // NPCs Section
-    if (window.currentEncounterNPCs && window.currentEncounterNPCs.length > 0) {
+    if (window.currentAdventureNPCs && window.currentAdventureNPCs.length > 0) {
         html += `
             <div style="margin-bottom: 20px;">
                 <div style="font-size: 0.75em; font-weight: bold; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 10px; padding: 0 5px;">👥 NPCs</div>
         `;
-        
-        window.currentEncounterNPCs.forEach((npc, idx) => {
-            const isLastNPC = idx === window.currentEncounterNPCs.length - 1;
-            
+
+        window.currentAdventureNPCs.forEach((npc, idx) => {
+            const isLastNPC = idx === window.currentAdventureNPCs.length - 1;
+
             html += `
                 <div class="flow-step" onclick="window.showNPCDetail(${idx})" style="cursor: pointer;">
                     <div class="flow-step-node" style="padding: 8px 12px;">
@@ -155,15 +155,15 @@ export function populateFlowNavigator(flowSteps) {
                     </div>
                 </div>
             `;
-            
+
             if (!isLastNPC) {
                 html += '<div class="flow-connector"></div>';
             }
         });
-        
+
         html += '</div>';
     }
-    
+
     content.innerHTML = html;
 }
 
@@ -196,7 +196,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
         key: locationKey,
         name: window.formatLocationName ? window.formatLocationName(locationKey) : locationKey,
         data: {
-            description: raw.description || 'A location of interest in the encounter.',
+            description: raw.description || 'A location of interest in the adventure.',
             tags: raw.tags || [],
             primary: raw.primary || [],
             secondary: raw.secondary || [],
@@ -207,17 +207,17 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
     const panel = document.getElementById('locationDetailPanel');
     const content = document.getElementById('locationDetailContent');
     const progressiveReveal = localStorage.getItem('progressiveReveal') === 'true';
-    
+
     // Get contextual content for this location
     const locationTags = location.data.tags || [];
-    
+
     let html = `
         <h3 style="margin-top: 0;">🗺️ ${location.name}</h3>
         <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 20px;">
-            ${location.data.description || 'A location of interest in the encounter.'}
+            ${location.data.description || 'A location of interest in the adventure.'}
         </p>
     `;
-    
+
     if (progressiveReveal) {
         // Progressive reveal mode - interactive drill-down
         html += `
@@ -227,7 +227,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                     🔍 Primary
                 </span>
         `;
-        
+
         if (viewLevel === 'secondary' || viewLevel === 'tertiary') {
             html += `
                 <span class="breadcrumb-separator">→</span>
@@ -237,7 +237,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                 </span>
             `;
         }
-        
+
         if (viewLevel === 'tertiary') {
             html += `
                 <span class="breadcrumb-separator">→</span>
@@ -246,9 +246,9 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                 </span>
             `;
         }
-        
+
         html += '</div>';
-        
+
         if (viewLevel === 'primary') {
             if (location.data.primary && location.data.primary.length > 0) {
                 html += `
@@ -260,7 +260,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                             Click a feature to investigate further...
                         </p>
                 `;
-                
+
                 location.data.primary.forEach((item, index) => {
                     html += `
                         <div class="feature-item primary-feature" 
@@ -269,7 +269,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                         </div>
                     `;
                 });
-                
+
                 html += '</div>';
             }
         } else if (viewLevel === 'secondary' && selectedIndex !== null) {
@@ -333,7 +333,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                 </div>
             `;
         }
-        
+
         if (location.data.secondary && location.data.secondary.length > 0) {
             html += `
                 <div style="margin-bottom: 20px;">
@@ -346,7 +346,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
                 </div>
             `;
         }
-        
+
         if (location.data.tertiary && location.data.tertiary.length > 0) {
             html += `
                 <div style="margin-bottom: 20px;">
@@ -360,13 +360,13 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
             `;
         }
     }
-    
+
     // Skill Checks - filter by location tags (must have at least one matching tag)
-    if (window.currentEncounterSkillChecks && window.currentEncounterSkillChecks.length > 0) {
-        const relevantSkillChecks = window.currentEncounterSkillChecks.filter(check => 
+    if (window.currentAdventureSkillChecks && window.currentAdventureSkillChecks.length > 0) {
+        const relevantSkillChecks = window.currentAdventureSkillChecks.filter(check =>
             check.tags && check.tags.some(tag => locationTags.includes(tag))
         );
-        
+
         if (relevantSkillChecks.length > 0) {
             const partyLevel = parseInt(document.getElementById('partyLevel')?.value) || 5;
             html += `
@@ -389,13 +389,13 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
             html += '</div>';
         }
     }
-    
+
     // Traps - filter by location tags (must have at least one matching tag)
-    if (window.currentEncounterTraps && window.currentEncounterTraps.length > 0) {
-        const relevantTraps = window.currentEncounterTraps.filter(trap => 
+    if (window.currentAdventureTraps && window.currentAdventureTraps.length > 0) {
+        const relevantTraps = window.currentAdventureTraps.filter(trap =>
             trap.tags && trap.tags.some(tag => locationTags.includes(tag))
         );
-        
+
         if (relevantTraps.length > 0) {
             html += `
                 <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
@@ -419,13 +419,13 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
             html += '</div>';
         }
     }
-    
+
     // Hazards - filter by location tags (must have at least one matching tag)
-    if (window.currentEncounterHazards && window.currentEncounterHazards.length > 0) {
-        const relevantHazards = window.currentEncounterHazards.filter(hazard => 
+    if (window.currentAdventureHazards && window.currentAdventureHazards.length > 0) {
+        const relevantHazards = window.currentAdventureHazards.filter(hazard =>
             hazard.tags && hazard.tags.some(tag => locationTags.includes(tag))
         );
-        
+
         if (relevantHazards.length > 0) {
             html += `
                 <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
@@ -446,13 +446,13 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
             html += '</div>';
         }
     }
-    
+
     // Environmental Effects - filter by location tags (must have at least one matching tag)
-    if (window.currentEncounterEnvironmentalEffects && window.currentEncounterEnvironmentalEffects.length > 0) {
-        const relevantEffects = window.currentEncounterEnvironmentalEffects.filter(effect => 
+    if (window.currentAdventureEnvironmentalEffects && window.currentAdventureEnvironmentalEffects.length > 0) {
+        const relevantEffects = window.currentAdventureEnvironmentalEffects.filter(effect =>
             effect.tags && effect.tags.some(tag => locationTags.includes(tag))
         );
-        
+
         if (relevantEffects.length > 0) {
             html += `
                 <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
@@ -472,14 +472,14 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
             html += '</div>';
         }
     }
-    
+
     // NPCs in this location - check if any NPCs have been added to this location
-    if (window.currentEncounterLocations && window.currentEncounterLocations.length > 0) {
-        // Find the location in the encounter's location array
-        const encounterLocation = window.currentEncounterLocations.find(loc => 
+    if (window.currentAdventureLocations && window.currentAdventureLocations.length > 0) {
+        // Find the location in the adventure's location array
+        const encounterLocation = window.currentAdventureLocations.find(loc =>
             (loc.key === locationKey) || (loc.name && loc.name.toLowerCase() === location.name.toLowerCase())
         );
-        
+
         if (encounterLocation && encounterLocation.npcs && encounterLocation.npcs.length > 0) {
             html += `
                 <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
@@ -498,7 +498,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
             html += '</div>';
         }
     }
-    
+
     // Tags
     if (locationTags.length > 0) {
         html += `
@@ -513,7 +513,7 @@ export function showLocationDetail(locationKey, viewLevel = 'primary', selectedI
             </div>
         `;
     }
-    
+
     content.innerHTML = html;
     panel.classList.add('active');
 }
@@ -536,8 +536,8 @@ export function showNPCDetail(npcIndex) {
         locationPanel.classList.remove('active');
     }
 
-    const npc = window.currentEncounterNPCs[npcIndex];
-    
+    const npc = window.currentAdventureNPCs[npcIndex];
+
     if (!npc) {
         console.error('NPC not found at index:', npcIndex);
         return;
@@ -545,7 +545,7 @@ export function showNPCDetail(npcIndex) {
 
     const panel = document.getElementById('npcDetailPanel');
     const content = document.getElementById('npcDetailContent');
-    
+
     let html = `
         <h3 style="margin-top: 0; color: #9b59b6;"><img src="assets/img/character.png" alt="character" class="character-icon"> ${npc.name}</h3>
         <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 20px;">
@@ -585,7 +585,7 @@ export function showNPCDetail(npcIndex) {
 
         <div style="margin-bottom: 20px;">
             <h4 style="color: #9b59b6; margin-bottom: 10px;">
-                🎭 Role in Encounter
+                🎭 Role in Adventure
             </h4>
             <p style="color: var(--text-secondary);">${npc.profession?.description || 'A ' + (npc.profession?.name || npc.profession) + ' in the area.'}</p>
             <p style="color: var(--text-secondary); margin-top: 8px;"><strong>Can:</strong> ${getProfessionRoleTip(npc.profession?.name || npc.profession)}</p>
@@ -605,7 +605,7 @@ export function showNPCDetail(npcIndex) {
             <p style="color: var(--text-secondary); margin: 0;">${npc.alignment?.description || 'Alignment: ' + (npc.alignment?.name || npc.alignment || 'Unknown')}</p>
         </div>
     `;
-    
+
     content.innerHTML = html;
     panel.classList.add('active');
 }
@@ -622,12 +622,12 @@ export function hideNPCDetail() {
  * Show NPC tooltip on hover
  */
 export function showNPCTooltip(event, npcIndex) {
-    const npc = window.currentEncounterNPCs?.[npcIndex];
-    
+    const npc = window.currentAdventureNPCs?.[npcIndex];
+
     if (!npc) return;
 
     const tooltip = document.getElementById('npcTooltip');
-    
+
     tooltip.innerHTML = `
         <div class="npc-tooltip-header"><img src="assets/img/character.png" alt="character" class="character-icon"> ${npc.name}</div>
         <div class="npc-tooltip-row">
@@ -648,10 +648,10 @@ export function showNPCTooltip(event, npcIndex) {
         </div>
         <div class="npc-tooltip-hint">Click for full details</div>
     `;
-    
+
     const x = event.clientX + 15;
     const y = event.clientY + 15;
-    
+
     tooltip.style.left = x + 'px';
     tooltip.style.top = y + 'px';
     tooltip.classList.add('active');
@@ -676,7 +676,7 @@ export function showNPCDetailFromObject(npcJson) {
     }
 
     const npc = JSON.parse(npcJson);
-    
+
     if (!npc) {
         console.error('Invalid NPC data');
         return;
@@ -684,7 +684,7 @@ export function showNPCDetailFromObject(npcJson) {
 
     const panel = document.getElementById('npcDetailPanel');
     const content = document.getElementById('npcDetailContent');
-    
+
     let html = `
         <h3 style="margin-top: 0; color: #9b59b6;"><img src="assets/img/character.png" alt="character" class="character-icon"> ${npc.name}</h3>
         <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 20px;">
@@ -733,7 +733,7 @@ export function showNPCDetailFromObject(npcJson) {
             </p>
         </div>
     `;
-    
+
     content.innerHTML = html;
     panel.classList.add('active');
 }
@@ -814,7 +814,7 @@ export function initializeSearchFilters() {
         if (plane.toLowerCase().replace(/\s+/g, '-') === currentPlane) option.selected = true;
         planeFilter.appendChild(option);
     });
-    
+
     // Update filter counts after initialization
     if (window.updateAllFilters) {
         window.updateAllFilters();

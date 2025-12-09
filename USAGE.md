@@ -6,23 +6,23 @@
    - Simply open `index.html` in any modern web browser
    - No installation, server, or build process required
 
-2. **Generate an Encounter**
+2. **Generate an Adventure**
    - Click on an environment tag to select it (it will highlight)
    - Set your party's level (1-20) using the number input
-   - Click "🎲 Generate Encounter" button
-   - A complete encounter will be displayed below
+   - Click "🎲 Generate Adventure" button
+   - A complete adventure will be displayed below
 
 3. **Search & Browse**
-   - Use the Search tab to explore all encounters and locations
+   - Use the Search tab to explore all adventures and locations
    - Apply filters to find specific content types
    - View detailed information with expandable cards
 
-## Understanding Generated Encounters
+## Understanding Generated Adventures
 
-Each encounter includes:
+Each adventure includes:
 
 ### 1. Title & Description
-- Unique encounter name based on the environment
+- Unique adventure name based on the environment
 - Thematic description setting the scene
 
 ### 2. Skill Challenges (3-4 per encounter)
@@ -54,7 +54,7 @@ Each encounter includes:
 ### 7. Resolution & Rewards
 - Success criteria
 - Suggested rewards
-- DM tips for running the encounter
+- DM tips for running the adventure
 
 ## Environment Types
 
@@ -77,7 +77,7 @@ Each environment has unique characteristics:
 - **Easier**: Lower all DCs by 2-3, halve damage dice
 - **Harder**: Raise all DCs by 2-3, add 50% to damage dice
 - **Time Pressure**: Add countdown timers to increase tension
-- **Complications**: Layer multiple hazards for complex encounters
+- **Complications**: Layer multiple hazards for complex adventures
 
 ### Adapting to Your Party
 - If party lacks certain skills, provide alternative solutions
@@ -86,15 +86,15 @@ Each environment has unique characteristics:
 - Combine with combat encounters for variety
 
 ### Using in Your Campaign
-- Generate encounters for random travel
+- Generate adventures for random travel
 - Create location-specific challenges
-- Build multi-encounter sequences
+- Build multi-adventure sequences
 - Use as inspiration for custom scenarios
 
 ## Pro Tips
 
-1. **Generate Multiple Options**: Create 2-3 encounters and pick the best fit
-2. **Mix and Match**: Combine elements from different generated encounters
+1. **Generate Multiple Options**: Create 2-3 adventures and pick the best fit
+2. **Mix and Match**: Combine elements from different generated adventures
 3. **Add NPCs**: Drop in friendly or hostile NPCs to complicate situations
 4. **Consequences**: Failed checks should have interesting consequences, not just damage
 5. **Reward Creativity**: Allow players to use abilities in unexpected ways
@@ -105,7 +105,7 @@ Each environment has unique characteristics:
 LoreWeaver includes a powerful search system to explore all content:
 
 #### Filter Options
-- **Type Filter**: Choose between Encounters Only, Locations Only, or All Types
+- **Type Filter**: Choose between Adventures Only, Locations Only, or All Types
 - **Environment Filter**: Filter by specific environments (Urban, Arctic, Ocean, etc.)
 - **Location Type Filter**: For locations only - filter by type (tavern, shop, landmark, etc.)
 - **Setting Filter**: Filter locations by setting tags (urban, rural, coastal, etc.)
@@ -131,7 +131,7 @@ LoreWeaver includes a powerful search system to explore all content:
 
 ### Quick Tips
 1. Click Search with no filters to see all content
-2. Use Type filter first to narrow to Encounters or Locations
+2. Use Type filter first to narrow to Adventures or Locations
 3. Filter combinations update dynamically - no invalid selections
 4. Click on any result card to expand full details
 5. Use pagination to browse large result sets efficiently
@@ -146,4 +146,4 @@ LoreWeaver includes a powerful search system to explore all content:
 - Each generation creates a unique combination
 - Compatible with all modern browsers (Chrome, Firefox, Safari, Edge)
 
-Enjoy creating memorable exploration encounters!
+Enjoy creating memorable exploration adventures!
