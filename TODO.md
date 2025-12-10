@@ -342,8 +342,8 @@ Architecture improvements:
 
 ---
 
-### 🎭 Pattern #5: Terminology Update - Adventure System
-**Priority:** MEDIUM | **Estimated Effort:** 6-8 hours | **Version:** v1.6.0
+### ✅ Pattern #5: Terminology Update - Adventure System - COMPLETED
+**Status:** ✅ **IMPLEMENTED** (v1.6.0, merged)
 
 **Intent:** Align nomenclature with expanded project scope (encounters → adventures)
 

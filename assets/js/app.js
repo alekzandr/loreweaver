@@ -31,9 +31,11 @@ let filterCache = {
 let domCache = {
     // Pages
     generatePage: null,
+    adventuresPage: null,
     npcPage: null,
     searchPage: null,
     settingsPage: null,
+    playPage: null,
     // Search elements
     searchInput: null,
     searchResults: null,
@@ -62,31 +64,33 @@ let domCache = {
 function cacheDOMElements() {
     // Pages
     domCache.generatePage = document.getElementById('generatePage');
+    domCache.adventuresPage = document.getElementById('adventuresPage');
     domCache.npcPage = document.getElementById('npcPage');
     domCache.searchPage = document.getElementById('searchPage');
     domCache.settingsPage = document.getElementById('settingsPage');
-    
+    domCache.playPage = document.getElementById('playPage');
+
     // Search elements
     domCache.searchInput = document.getElementById('searchInput');
     domCache.searchResults = document.getElementById('searchResults');
-    
+
     // Filter elements
     domCache.typeFilter = document.getElementById('typeFilter');
     domCache.envFilter = document.getElementById('envFilter');
     domCache.locationTypeFilter = document.getElementById('locationTypeFilter');
     domCache.settingFilter = document.getElementById('settingFilter');
     domCache.planeFilter = document.getElementById('planeFilter');
-    
+
     // NPC elements
     domCache.npcSpecies = document.getElementById('npcSpecies');
     domCache.npcProfession = document.getElementById('npcProfession');
     domCache.npcAlignment = document.getElementById('npcAlignment');
     domCache.npcPersonality = document.getElementById('npcPersonality');
-    
+
     // Settings
     domCache.themeSwitch = document.getElementById('themeSwitch');
     domCache.progressiveRevealSwitch = document.getElementById('progressiveRevealSwitch');
-    
+
     // Pagination
     domCache.itemsPerPageTop = document.getElementById('itemsPerPageTop');
     domCache.itemsPerPageBottom = document.getElementById('itemsPerPageBottom');
@@ -97,41 +101,41 @@ function cacheDOMElements() {
  */
 export async function initApp() {
     console.log('🚀 Initializing LoreWeaver...');
-    
+
     // Cache DOM elements
     cacheDOMElements();
-    
+
     // Show loading indicator on generate button
-    const generateBtns = document.querySelectorAll('button[onclick*="generateEncounter"]');
+    const generateBtns = document.querySelectorAll('button[onclick*="generateAdventure"]');
     generateBtns.forEach(btn => {
         btn.disabled = true;
         btn.textContent = '⏳ Loading data...';
     });
-    
+
     // Disable NPC generate button
     const npcGenerateBtn = document.querySelector('button[onclick*="generateNPC"]');
     if (npcGenerateBtn) {
         npcGenerateBtn.disabled = true;
     }
-    
+
     // Load saved theme
     loadTheme();
-    
+
     // Load progressive reveal setting
     loadProgressiveReveal();
-    
+
     // Load external data files
     console.log('Loading data files...');
     await loadData();
     console.log('Data loading complete. window.dataLoaded =', window.dataLoaded);
     console.log('Data available:', {
-        encounterTitles: window.encounterTitles ? Object.keys(window.encounterTitles).length : 0,
+        encounterTemplates: window.encounterTemplates ? Object.keys(window.encounterTemplates).length : 0,
         locationObjects: window.locationObjects ? Object.keys(window.locationObjects).length : 0,
         npcData: window.npcData ? 'loaded' : 'missing',
         skillChecksData: window.skillChecksData?.skillChecks?.length || 0,
         dangersData: window.dangersData ? 'loaded' : 'missing'
     });
-    
+
     // Re-enable generate buttons after data loads
     if (window.dataLoaded) {
         generateBtns.forEach(btn => {
@@ -139,12 +143,12 @@ export async function initApp() {
             // Restore original button text by checking for dice icon
             const hasDiceIcon = btn.querySelector('.dice-icon');
             if (hasDiceIcon) {
-                btn.innerHTML = '<img src="assets/img/d20.png" alt="dice" class="dice-icon"> Generate Encounter';
+                btn.innerHTML = '<img src="assets/img/d20.png" alt="dice" class="dice-icon"> Generate Adventure';
             } else {
                 btn.textContent = 'Generate';
             }
         });
-        
+
         if (npcGenerateBtn) {
             npcGenerateBtn.disabled = false;
         }
@@ -154,45 +158,45 @@ export async function initApp() {
             btn.textContent = '❌ Data load failed - Refresh page';
         });
     }
-    
+
     // Setup search input with debouncing
     if (domCache.searchInput) {
         // Create debounced version of performSearch (300ms delay)
         const debouncedSearch = debounce(window.performSearch, 300);
-        
+
         // Listen for input events (typing)
         domCache.searchInput.addEventListener('input', debouncedSearch);
-        
+
         // Keep Enter key for immediate search
-        domCache.searchInput.addEventListener('keypress', function(e) {
+        domCache.searchInput.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 window.performSearch();
             }
         });
     }
-    
+
     // Setup environment tag selection
     document.querySelectorAll('.tag').forEach(tag => {
-        tag.addEventListener('click', function() {
+        tag.addEventListener('click', function () {
             document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
             this.classList.add('active');
             selectedEnvironment = this.dataset.env;
         });
     });
-    
+
     // Set default active tag
     const urbanTag = document.querySelector('.tag[data-env="urban"]');
     if (urbanTag) urbanTag.classList.add('active');
-    
+
     // Populate NPC dropdowns
     populateNPCDropdowns();
-    
+
     // Set initial page context for undo/redo
     window.currentPage = 'generate';
-    
+
     console.log('✅ LoreWeaver initialized');
     console.log('Ready to generate encounters!');
-    
+
     // Display version in footer
     displayVersion();
 }
@@ -206,7 +210,7 @@ async function displayVersion() {
         const response = await fetch('data/version.json');
         const versionData = await response.json();
         const versionElement = document.getElementById('versionDisplay');
-        
+
         if (versionElement && versionData.version) {
             versionElement.textContent = `v${versionData.version}`;
         }
@@ -227,15 +231,15 @@ function populateNPCDropdowns() {
         console.warn('NPC data not loaded yet, skipping dropdown population');
         return;
     }
-    
+
     // Populate Species dropdown
     if (domCache.npcSpecies && window.npcData.species) {
         // Keep the Random option
         domCache.npcSpecies.innerHTML = '<option value="random">Random</option>';
-        
+
         // Get all species keys and sort alphabetically
         const speciesKeys = Object.keys(window.npcData.species).sort();
-        
+
         speciesKeys.forEach(key => {
             const option = document.createElement('option');
             option.value = key;
@@ -243,62 +247,62 @@ function populateNPCDropdowns() {
             option.textContent = key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' ');
             domCache.npcSpecies.appendChild(option);
         });
-        
+
         console.log('✓ Populated species dropdown with', speciesKeys.length, 'options');
     }
-    
+
     // Populate Profession dropdown
     if (domCache.npcProfession && window.npcData.professions) {
         // Keep the Random option
         domCache.npcProfession.innerHTML = '<option value="random">Random</option>';
-        
+
         // Sort professions alphabetically by name
-        const sortedProfessions = [...window.npcData.professions].sort((a, b) => 
+        const sortedProfessions = [...window.npcData.professions].sort((a, b) =>
             a.name.localeCompare(b.name)
         );
-        
+
         sortedProfessions.forEach(profession => {
             const option = document.createElement('option');
             option.value = profession.name;
             option.textContent = profession.name;
             domCache.npcProfession.appendChild(option);
         });
-        
+
         console.log('✓ Populated profession dropdown with', sortedProfessions.length, 'options');
     }
-    
+
     // Populate Alignment dropdown
     if (domCache.npcAlignment && window.npcData.alignments) {
         // Keep the Random option
         domCache.npcAlignment.innerHTML = '<option value="random">Random</option>';
-        
+
         window.npcData.alignments.forEach(alignment => {
             const option = document.createElement('option');
             option.value = alignment.name;
             option.textContent = alignment.name;
             domCache.npcAlignment.appendChild(option);
         });
-        
+
         console.log('✓ Populated alignment dropdown with', window.npcData.alignments.length, 'options');
     }
-    
+
     // Populate Personality dropdown
     if (domCache.npcPersonality && window.npcData.personalities) {
         // Keep the Random option
         domCache.npcPersonality.innerHTML = '<option value="random">Random</option>';
-        
+
         // Sort personalities alphabetically by trait
-        const sortedPersonalities = [...window.npcData.personalities].sort((a, b) => 
+        const sortedPersonalities = [...window.npcData.personalities].sort((a, b) =>
             a.trait.localeCompare(b.trait)
         );
-        
+
         sortedPersonalities.forEach(personality => {
             const option = document.createElement('option');
             option.value = personality.trait;
             option.textContent = personality.trait;
             domCache.npcPersonality.appendChild(option);
         });
-        
+
         console.log('✓ Populated personality dropdown with', sortedPersonalities.length, 'options');
     }
 }
@@ -310,22 +314,22 @@ export function toggleTheme() {
     const html = document.documentElement;
     const currentTheme = html.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
+
     html.setAttribute('data-theme', newTheme);
-    
+
     try {
         localStorage.setItem('theme', newTheme);
     } catch (e) {
         console.warn('Could not save theme preference:', e);
         // Non-critical error, continue without saving
     }
-    
+
     updateThemeUI(newTheme);
-    
+
     // Publish theme toggled event
-    eventBus.publish(Events.THEME_TOGGLED, { 
+    eventBus.publish(Events.THEME_TOGGLED, {
         theme: newTheme,
-        timestamp: Date.now() 
+        timestamp: Date.now()
     });
 }
 
@@ -335,11 +339,11 @@ export function toggleTheme() {
  */
 function updateThemeUI(theme) {
     const icons = document.querySelectorAll('.theme-icon');
-    
+
     icons.forEach(icon => {
         icon.textContent = theme === 'dark' ? '☀️' : '🌙';
     });
-    
+
     if (domCache.themeSwitch) {
         if (theme === 'dark') {
             domCache.themeSwitch.classList.add('active');
@@ -364,14 +368,14 @@ function loadTheme() {
 export function toggleProgressiveReveal() {
     const currentSetting = localStorage.getItem('progressiveReveal') === 'true';
     const newSetting = !currentSetting;
-    
+
     try {
         localStorage.setItem('progressiveReveal', newSetting);
     } catch (e) {
         console.warn('Could not save progressive reveal preference:', e);
         // Non-critical error, continue without saving
     }
-    
+
     updateProgressiveRevealUI(newSetting);
 }
 
@@ -382,7 +386,7 @@ export function toggleProgressiveReveal() {
 function updateProgressiveRevealUI(enabled) {
     const progressiveRevealSwitch = document.getElementById('progressiveRevealSwitch');
     const icon = progressiveRevealSwitch?.querySelector('.theme-icon');
-    
+
     if (progressiveRevealSwitch) {
         if (enabled) {
             progressiveRevealSwitch.classList.add('active');
@@ -408,10 +412,12 @@ function loadProgressiveReveal() {
  */
 export function switchPage(page) {
     domCache.generatePage.style.display = 'none';
+    domCache.adventuresPage.style.display = 'none';
     domCache.npcPage.style.display = 'none';
     domCache.searchPage.style.display = 'none';
     domCache.settingsPage.style.display = 'none';
-    
+    if (domCache.playPage) domCache.playPage.style.display = 'none';
+
     document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
 
     // Set current page for context-aware undo/redo
@@ -420,18 +426,23 @@ export function switchPage(page) {
     if (page === 'generate') {
         domCache.generatePage.style.display = 'block';
         document.querySelectorAll('.nav-tab')[0].classList.add('active');
+    } else if (page === 'adventures') {
+        domCache.adventuresPage.style.display = 'block';
+        document.querySelectorAll('.nav-tab')[1].classList.add('active');
     } else if (page === 'npc') {
         domCache.npcPage.style.display = 'block';
-        document.querySelectorAll('.nav-tab')[1].classList.add('active');
+        document.querySelectorAll('.nav-tab')[2].classList.add('active');
     } else if (page === 'search') {
         domCache.searchPage.style.display = 'block';
-        document.querySelectorAll('.nav-tab')[2].classList.add('active');
+        document.querySelectorAll('.nav-tab')[3].classList.add('active');
         if (window.initializeSearchFilters) window.initializeSearchFilters();
     } else if (page === 'settings') {
         domCache.settingsPage.style.display = 'block';
-        document.querySelectorAll('.nav-tab')[3].classList.add('active');
+        document.querySelectorAll('.nav-tab')[4].classList.add('active');
+    } else if (page === 'play') {
+        if (domCache.playPage) domCache.playPage.style.display = 'block';
     }
-    
+
     // Publish page switched event
     eventBus.publish(Events.PAGE_SWITCHED, { page, timestamp: Date.now() });
 }
@@ -481,7 +492,7 @@ export function applyFilters() {
  */
 function updateAllFilters() {
     if (!window.locationObjects) return;
-    
+
     // Check if data has changed - invalidate cache if so
     const currentTimestamp = window.dataLoadedTimestamp || Date.now();
     if (filterCache.lastDataTimestamp !== currentTimestamp) {
@@ -489,27 +500,27 @@ function updateAllFilters() {
         filterCache.typeCountsCache = null;
         filterCache.optionsCache = {};
     }
-    
+
     // Get current selections from cached elements
     const currentType = domCache.typeFilter.value;
     const currentEnv = domCache.envFilter.value;
     const currentLocationType = domCache.locationTypeFilter.value;
     const currentSetting = domCache.settingFilter.value;
-    
+
     // Helper function to collect available options with counts, excluding the filter being updated
     function collectOptionsWithCounts(excludeFilter) {
         const environmentCounts = {};
         const locationTypeCounts = {};
         const settingCounts = {};
-        
+
         // If type is "encounter", count encounters by environment
         if (currentType === 'encounter') {
-            if (window.encounterTitles) {
-                Object.entries(window.encounterTitles).forEach(([env, encounters]) => {
+            if (window.encounterTemplates) {
+                Object.entries(window.encounterTemplates).forEach(([env, encounters]) => {
                     environmentCounts[env] = (environmentCounts[env] || 0) + encounters.length;
                 });
             }
-        } 
+        }
         // If type is "location" or no type filter, process locations
         else if (!currentType || currentType === 'location') {
             Object.entries(window.locationObjects).forEach(([env, locationTypes_]) => {
@@ -518,7 +529,7 @@ function updateAllFilters() {
                     const matchesEnv = excludeFilter === 'environment' || !currentEnv || env === currentEnv;
                     const matchesLocType = excludeFilter === 'locationType' || !currentLocationType || locType === currentLocationType;
                     const matchesSetting = excludeFilter === 'setting' || !currentSetting || (locData.tags && locData.tags.includes(currentSetting));
-                    
+
                     if (matchesEnv && matchesLocType && matchesSetting) {
                         environmentCounts[env] = (environmentCounts[env] || 0) + 1;
                         locationTypeCounts[locType] = (locationTypeCounts[locType] || 0) + 1;
@@ -531,11 +542,11 @@ function updateAllFilters() {
                 });
             });
         }
-        
+
         // If showing both types, also count encounters for environment
         if (!currentType) {
-            if (window.encounterTitles) {
-                Object.entries(window.encounterTitles).forEach(([env, encounters]) => {
+            if (window.encounterTemplates) {
+                Object.entries(window.encounterTemplates).forEach(([env, encounters]) => {
                     const matchesEnv = excludeFilter === 'environment' || !currentEnv || env === currentEnv;
                     if (matchesEnv) {
                         environmentCounts[env] = (environmentCounts[env] || 0) + encounters.length;
@@ -543,10 +554,10 @@ function updateAllFilters() {
                 });
             }
         }
-        
+
         return { environmentCounts, locationTypeCounts, settingCounts };
     }
-    
+
     // Helper function to count total items for Type filter
     function getTypeCounts() {
         // Return cached value if available
@@ -554,49 +565,49 @@ function updateAllFilters() {
         if (filterCache.optionsCache[cacheKey]) {
             return filterCache.optionsCache[cacheKey];
         }
-        
+
         let encounterCount = 0;
         let locationCount = 0;
-        
+
         // Count encounters
-        if (window.encounterTitles) {
-            Object.entries(window.encounterTitles).forEach(([env, encounters]) => {
+        if (window.encounterTemplates) {
+            Object.entries(window.encounterTemplates).forEach(([env, encounters]) => {
                 const matchesEnv = !currentEnv || env === currentEnv;
                 if (matchesEnv) {
                     encounterCount += encounters.length;
                 }
             });
         }
-        
+
         // Count locations
         Object.entries(window.locationObjects).forEach(([env, locationTypes_]) => {
             Object.entries(locationTypes_).forEach(([locType, locData]) => {
                 const matchesEnv = !currentEnv || env === currentEnv;
                 const matchesLocType = !currentLocationType || locType === currentLocationType;
                 const matchesSetting = !currentSetting || (locData.tags && locData.tags.includes(currentSetting));
-                
+
                 if (matchesEnv && matchesLocType && matchesSetting) {
                     locationCount++;
                 }
             });
         });
-        
+
         const result = { encounterCount, locationCount };
         // Cache the result
         filterCache.optionsCache[cacheKey] = result;
         return result;
     }
-    
+
     // Update Type filter with counts
     const typeCounts = getTypeCounts();
     const currentTypeValue = domCache.typeFilter.value;
     domCache.typeFilter.innerHTML = `
         <option value="">All Types (${typeCounts.encounterCount + typeCounts.locationCount})</option>
-        <option value="encounter">Encounters Only (${typeCounts.encounterCount})</option>
+        <option value="encounter">Adventures Only (${typeCounts.encounterCount})</option>
         <option value="location">Locations Only (${typeCounts.locationCount})</option>
     `;
     domCache.typeFilter.value = currentTypeValue;
-    
+
     // Update environment dropdown (exclude environment filter when collecting)
     const counts = collectOptionsWithCounts('environment');
     const totalEnvCount = Object.values(counts.environmentCounts).reduce((sum, count) => sum + count, 0);
@@ -608,7 +619,7 @@ function updateAllFilters() {
         if (env === currentEnv) option.selected = true;
         domCache.envFilter.appendChild(option);
     });
-    
+
     // Update location type dropdown (exclude locationType filter when collecting)
     if (currentType !== 'encounter') {
         const locTypeCounts = collectOptionsWithCounts('locationType');
@@ -626,7 +637,7 @@ function updateAllFilters() {
         domCache.locationTypeFilter.innerHTML = '<option value="">All Location Types</option>';
         domCache.locationTypeFilter.disabled = true;
     }
-    
+
     // Update setting dropdown (exclude setting filter when collecting)
     if (currentType !== 'encounter') {
         const settingCounts = collectOptionsWithCounts('setting');
@@ -644,11 +655,11 @@ function updateAllFilters() {
         domCache.settingFilter.innerHTML = '<option value="">All Settings</option>';
         domCache.settingFilter.disabled = true;
     }
-    
+
     // Publish filters updated event
-    eventBus.publish(Events.FILTERS_UPDATED, { 
+    eventBus.publish(Events.FILTERS_UPDATED, {
         filters: activeFilters,
-        timestamp: Date.now() 
+        timestamp: Date.now()
     });
 }
 
@@ -661,7 +672,7 @@ export function clearFilters() {
     domCache.locationTypeFilter.value = '';
     domCache.settingFilter.value = '';
     domCache.planeFilter.value = '';
-    
+
     activeFilters = {
         type: '',
         environment: [],
@@ -669,7 +680,7 @@ export function clearFilters() {
         setting: [],
         plane: []
     };
-    
+
     // Publish filters cleared event
     eventBus.publish(Events.FILTERS_CLEARED, { timestamp: Date.now() });
 
@@ -696,7 +707,7 @@ export function performSearch() {
         }
         return;
     }
-    
+
     // Publish search started event
     const searchTerm = domCache.searchInput.value.toLowerCase().trim();
     eventBus.publish(Events.SEARCH_STARTED, { searchTerm, timestamp: Date.now() });
@@ -704,16 +715,16 @@ export function performSearch() {
     let results = [];
 
     // Search through encounters (only if type filter allows)
-    if (window.encounterTitles && (!activeFilters.type || activeFilters.type === 'encounter')) {
-        Object.entries(window.encounterTitles).forEach(([environment, encounters]) => {
+    if (window.encounterTemplates && (!activeFilters.type || activeFilters.type === 'encounter')) {
+        Object.entries(window.encounterTemplates).forEach(([environment, encounters]) => {
             if (Array.isArray(encounters)) {
                 encounters.forEach((encounter, index) => {
-                    const matchesSearch = !searchTerm || 
+                    const matchesSearch = !searchTerm ||
                         encounter.title.toLowerCase().includes(searchTerm) ||
                         (encounter.descriptions && encounter.descriptions.some(desc => desc.toLowerCase().includes(searchTerm))) ||
                         (encounter.tags && encounter.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
                     const matchesFilters = checkEncounterFilters(environment);
-                    
+
                     if (matchesSearch && matchesFilters) {
                         results.push({
                             type: 'encounter',
@@ -734,13 +745,13 @@ export function performSearch() {
         Object.entries(window.locationObjects).forEach(([environment, locationTypes]) => {
             Object.entries(locationTypes).forEach(([locationType, location]) => {
                 const locationName = locationType.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                const matchesSearch = !searchTerm || 
+                const matchesSearch = !searchTerm ||
                     locationName.toLowerCase().includes(searchTerm) ||
                     locationType.toLowerCase().includes(searchTerm) ||
                     (location.description && location.description.toLowerCase().includes(searchTerm)) ||
                     (location.tags && location.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
                 const matchesFilters = checkLocationFilters(location, environment, locationType);
-                
+
                 if (matchesSearch && matchesFilters) {
                     results.push({
                         type: 'location',
@@ -759,14 +770,14 @@ export function performSearch() {
     // Store results and reset to first page
     allResults = results;
     currentPage = 1;
-    
+
     // Publish search completed event
-    eventBus.publish(Events.SEARCH_COMPLETED, { 
-        searchTerm, 
+    eventBus.publish(Events.SEARCH_COMPLETED, {
+        searchTerm,
         resultCount: results.length,
-        timestamp: Date.now() 
+        timestamp: Date.now()
     });
-    
+
     // Display paginated results
     renderPaginatedResults();
 }
@@ -776,32 +787,32 @@ export function performSearch() {
  */
 function renderPaginatedResults() {
     const resultsContainer = document.getElementById('searchResults');
-    
+
     if (allResults.length === 0) {
         resultsContainer.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 40px;">No results found. Try different search terms or filters.</p>';
         return;
     }
-    
+
     // Calculate pagination
     const totalPages = Math.ceil(allResults.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = Math.min(startIndex + itemsPerPage, allResults.length);
     const paginatedResults = allResults.slice(startIndex, endIndex);
-    
+
     // Count encounters and locations
     const encounterCount = allResults.filter(r => r.type === 'encounter').length;
     const locationCount = allResults.filter(r => r.type === 'location').length;
-    
+
     const resultSummary = `
         <div class="result-summary">
             <span class="result-count">Found ${allResults.length} result${allResults.length !== 1 ? 's' : ''}</span>
             <span class="result-breakdown">
-                ${encounterCount > 0 ? `<span class="count-badge encounter-badge">${encounterCount} Encounter${encounterCount !== 1 ? 's' : ''}</span>` : ''}
+                ${encounterCount > 0 ? `<span class="count-badge encounter-badge">${encounterCount} Adventure${encounterCount !== 1 ? 's' : ''}</span>` : ''}
                 ${locationCount > 0 ? `<span class="count-badge location-badge">${locationCount} Location${locationCount !== 1 ? 's' : ''}</span>` : ''}
             </span>
         </div>
     `;
-    
+
     // Pagination controls (top)
     const paginationControls = `
         <div class="pagination-controls">
@@ -828,7 +839,7 @@ function renderPaginatedResults() {
             </div>
         </div>
     `;
-    
+
     // Pagination controls (bottom)
     const bottomPaginationControls = `
         <div class="pagination-controls bottom">
@@ -855,32 +866,32 @@ function renderPaginatedResults() {
             </div>
         </div>
     `;
-    
+
     const resultsHTML = paginatedResults.map(result => {
         if (result.type === 'encounter') {
-            return renderEncounterResult(result);
+            return renderAdventureResult(result);
         } else {
             return renderLocationResult(result);
         }
     }).join('');
-    
+
     resultsContainer.innerHTML = resultSummary + paginationControls + resultsHTML + bottomPaginationControls;
-    
+
     // Attach click handlers for expandable cards
     attachExpandHandlers();
-    
+
     // Scroll to top of results
     resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 /**
- * Render an encounter result with expandable description cards
+ * Render an adventure result with expandable description cards
  */
-function renderEncounterResult(result) {
+function renderAdventureResult(result) {
     const encounter = result.data;
     const descriptions = encounter.descriptions || (encounter.description ? [encounter.description] : []);
     const resolutions = encounter.resolutions || [];
-    
+
     const descriptionCards = descriptions.map((desc, index) => `
         <div class="description-card collapsed" data-index="${index}">
             <div class="description-preview">${desc.substring(0, 150)}...</div>
@@ -888,7 +899,7 @@ function renderEncounterResult(result) {
             <div class="expand-hint">Click to expand</div>
         </div>
     `).join('');
-    
+
     const resolutionCards = resolutions.map((res, index) => `
         <div class="resolution-card collapsed" data-index="${index}">
             <div class="resolution-title">${res.title}</div>
@@ -901,12 +912,12 @@ function renderEncounterResult(result) {
             <div class="expand-hint">Click to expand</div>
         </div>
     `).join('');
-    
+
     return `
         <div class="result-card">
             <div class="result-header">
                 <div class="result-title">${result.title}</div>
-                <span class="result-type">⚔️ Encounter</span>
+                <span class="result-type">⚔️ Adventure</span>
             </div>
             <div class="result-environment">${result.environment}</div>
             <div class="descriptions-container">
@@ -939,11 +950,11 @@ function renderLocationResult(result) {
     const primary = location.primary || [];
     const secondary = location.secondary || [];
     const tertiary = location.tertiary || [];
-    
+
     const primaryList = primary.length > 0 ? primary.map(item => `<li>${item}</li>`).join('') : '<li class="empty-list">None listed</li>';
     const secondaryList = secondary.length > 0 ? secondary.map(item => `<li>${item}</li>`).join('') : '<li class="empty-list">None listed</li>';
     const tertiaryList = tertiary.length > 0 ? tertiary.map(item => `<li>${item}</li>`).join('') : '<li class="empty-list">None listed</li>';
-    
+
     return `
         <div class="result-card location-result">
             <div class="result-header">
@@ -985,11 +996,11 @@ function renderLocationResult(result) {
 function attachExpandHandlers() {
     // Attach handlers for expandable cards
     document.querySelectorAll('.description-card, .resolution-card').forEach(card => {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function () {
             const preview = this.querySelector('.description-preview, .resolution-preview');
             const full = this.querySelector('.description-full, .resolution-full');
             const hint = this.querySelector('.expand-hint');
-            
+
             if (this.classList.contains('collapsed')) {
                 this.classList.remove('collapsed');
                 this.classList.add('expanded');
@@ -1005,16 +1016,16 @@ function attachExpandHandlers() {
             }
         });
     });
-    
+
     // Attach handlers for "Use for Generation" buttons
     document.querySelectorAll('.use-for-gen-btn').forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
-            
+
             const environment = this.getAttribute('data-environment');
             const encounterJson = this.getAttribute('data-encounter');
-            
+
             if (environment && encounterJson) {
                 try {
                     const encounter = JSON.parse(encounterJson.replace(/&apos;/g, "'"));
@@ -1028,6 +1039,8 @@ function attachExpandHandlers() {
     });
 }
 
+
+
 /**
  * Check if encounter matches active filters
  */
@@ -1036,11 +1049,11 @@ function checkEncounterFilters(environment) {
     if (activeFilters.locationType.length || activeFilters.setting.length) {
         return false;
     }
-    
+
     if (activeFilters.environment.length && !activeFilters.environment.includes(environment)) {
         return false;
     }
-    
+
     return true;
 }
 
@@ -1051,25 +1064,25 @@ function checkLocationFilters(location, environment, locationType) {
     if (activeFilters.environment.length && !activeFilters.environment.includes(environment)) {
         return false;
     }
-    
+
     if (activeFilters.locationType.length && !activeFilters.locationType.includes(locationType)) {
         return false;
     }
-    
+
     if (activeFilters.setting.length) {
         const locationTags = location.tags || [];
         if (!locationTags.some(tag => activeFilters.setting.includes(tag))) {
             return false;
         }
     }
-    
+
     // TODO: Add plane filter check once plane data is added to locations
     if (activeFilters.plane && activeFilters.plane.length && location.plane) {
         if (!activeFilters.plane.includes(location.plane)) {
             return false;
         }
     }
-    
+
     return true;
 }
 
@@ -1101,63 +1114,63 @@ export function changeItemsPerPage(value) {
     itemsPerPage = parseInt(value);
     currentPage = 1; // Reset to first page
     renderPaginatedResults();
-    
+
     // Sync both dropdowns
     document.getElementById('itemsPerPageTop').value = value;
     document.getElementById('itemsPerPageBottom').value = value;
 }
 
 /**
- * Use an encounter from search results for generation
- * @param {string} environment - The environment of the encounter
- * @param {object} encounterData - The encounter data object
+ * Use an adventure from search results for generation
+ * @param {string} environment - The environment of the adventure
+ * @param {object} encounterData - The adventure data object
  */
-export function useEncounterForGeneration(environment, encounterData) {
-    console.log('🎲 Using encounter for generation:', encounterData.title);
-    
-    // Store the preselected encounter
-    window.preselectedEncounter = {
+export function useAdventureForGeneration(environment, encounterData) {
+    console.log('🎲 Using adventure for generation:', encounterData.title);
+
+    // Store the preselected adventure
+    window.preselectedAdventure = {
         environment: environment,
         template: encounterData
     };
-    
+
     // Update the environment selector
     window.selectedEnvironment = environment;
     const envSelect = document.getElementById('environmentSelect');
     if (envSelect) {
         envSelect.value = environment;
     }
-    
+
     // Clear any existing seed to allow for randomization
     const seedInput = document.getElementById('encounterSeed');
     if (seedInput) {
         seedInput.value = '';
     }
-    
+
     // Switch to the Generate page
     switchPage('generate');
-    
+
     // Show a notification banner
-    showEncounterSelectedBanner(encounterData.title);
-    
-    console.log('✅ Generate page prepared with encounter:', encounterData.title);
+    showAdventureSelectedBanner(encounterData.title);
+
+    console.log('✅ Generate page prepared with adventure:', encounterData.title);
 }
 
 /**
- * Show a temporary banner indicating which encounter was selected
- * @param {string} encounterTitle - The title of the selected encounter
+ * Show a temporary banner indicating which adventure was selected
+ * @param {string} encounterTitle - The title of the selected adventure
  */
-function showEncounterSelectedBanner(encounterTitle) {
+function showAdventureSelectedBanner(encounterTitle) {
     // Remove any existing banner
-    const existingBanner = document.getElementById('encounterSelectedBanner');
+    const existingBanner = document.getElementById('adventureSelectedBanner');
     if (existingBanner) {
         existingBanner.remove();
     }
-    
+
     // Create and show the banner
     const banner = document.createElement('div');
-    banner.id = 'encounterSelectedBanner';
-    banner.className = 'encounter-selected-banner';
+    banner.id = 'adventureSelectedBanner';
+    banner.className = 'adventure-selected-banner';
     banner.innerHTML = `
         <div class="banner-content">
             <span class="banner-icon">✨</span>
@@ -1165,12 +1178,12 @@ function showEncounterSelectedBanner(encounterTitle) {
             <button class="banner-close" onclick="this.parentElement.parentElement.remove()">×</button>
         </div>
     `;
-    
+
     // Insert at the top of the generate page
     const generatePage = document.getElementById('generatePage');
     if (generatePage) {
         generatePage.insertBefore(banner, generatePage.firstChild);
-        
+
         // Auto-remove after 8 seconds
         setTimeout(() => {
             if (banner.parentElement) {
@@ -1195,7 +1208,7 @@ window.clearFilters = clearFilters;
 window.nextPage = nextPage;
 window.previousPage = previousPage;
 window.changeItemsPerPage = changeItemsPerPage;
-window.useEncounterForGeneration = useEncounterForGeneration;
+window.useAdventureForGeneration = useAdventureForGeneration;
 
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', initApp);

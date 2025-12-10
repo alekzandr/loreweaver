@@ -14,7 +14,7 @@
  */
 
 // capitalizeSpecies utility - use global mock in test environment, fallback otherwise
-const capitalizeSpecies = globalThis.capitalizeSpecies || function(species) {
+const capitalizeSpecies = globalThis.capitalizeSpecies || function (species) {
     if (!species) return species;
     return species
         .split('-')
@@ -40,7 +40,7 @@ export class ExportStrategy {
         if (this.constructor === ExportStrategy) {
             throw new Error('ExportStrategy is an abstract class and cannot be instantiated directly');
         }
-        
+
         this.name = name;
         this.fileExtension = fileExtension;
         this.mimeType = mimeType;
@@ -64,38 +64,38 @@ export class ExportStrategy {
     }
 
     /**
-     * Export encounter data
+     * Export adventure data
      * Must be implemented by concrete strategies
      * 
      * @abstract
-     * @param {Object} _encounterData - The encounter data to export
+     * @param {Object} _adventureData - The adventure data to export
      * @returns {string} Formatted export content
      * @throws {Error} If not implemented by subclass
      */
-    export(_encounterData) {
+    export(_adventureData) {
         throw new Error('export() must be implemented by concrete strategy');
     }
 
     /**
-     * Validate encounter data
-     * @param {Object} encounterData - The encounter data to validate
+     * Validate adventure data
+     * @param {Object} adventureData - The adventure data to validate
      * @returns {boolean} True if valid
      * @throws {Error} If data is invalid
      */
-    validateData(encounterData) {
-        if (!encounterData) {
-            throw new Error('Encounter data is required');
+    validateData(adventureData) {
+        if (!adventureData) {
+            throw new Error('Adventure data is required');
         }
         return true;
     }
 
     /**
      * Generate filename for export
-     * @param {Object} encounterData - The encounter data
+     * @param {Object} adventureData - The adventure data
      * @returns {string} Generated filename
      */
-    generateFilename(encounterData) {
-        const title = encounterData?.encounterTemplate?.title || 'encounter';
+    generateFilename(adventureData) {
+        const title = adventureData?.encounterTemplate?.title || 'adventure';
         const timestamp = Date.now();
         const safeName = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
         return `${safeName}-${timestamp}.${this.fileExtension}`;
@@ -134,23 +134,23 @@ export class MarkdownExportStrategy extends ExportStrategy {
     }
 
     /**
-     * Export encounter as Markdown
-     * @param {Object} data - Encounter data
+     * Export adventure as Markdown
+     * @param {Object} data - Adventure data
      * @returns {string} Markdown content
      */
     export(data) {
         this.validateData(data);
-        
+
         let md = '';
-        
+
         // Title
-        md += `# ${data.encounterTemplate?.title || 'Encounter'}\n\n`;
-        
+        md += `# ${data.encounterTemplate?.title || 'Adventure'}\n\n`;
+
         // Metadata
         if (this.options.includeMetadata) {
             md += `**Environment:** ${data.selectedEnvironment || 'Unknown'} | **Party Level:** ${data.partyLevel || 'Unknown'}\n\n`;
         }
-        
+
         // Description
         const descSrc = data.encounterTemplate?.descriptions || data.encounterTemplate?.description;
         if (descSrc) {
@@ -158,32 +158,32 @@ export class MarkdownExportStrategy extends ExportStrategy {
             md += `${description}\n\n`;
         }
 
-        // Encounter Flow
-        if (data.currentEncounterFlow && data.currentEncounterFlow.length > 0) {
-            md += `## ${this.options.includeIcons ? '🗺️ ' : ''}Encounter Flow\n\n`;
-            data.currentEncounterFlow.forEach((step) => {
+        // Adventure Flow
+        if (data.currentAdventureFlow && data.currentAdventureFlow.length > 0) {
+            md += `## ${this.options.includeIcons ? '🗺️ ' : ''}Adventure Flow\n\n`;
+            data.currentAdventureFlow.forEach((step) => {
                 md += `### Step ${step.step}: ${step.title}\n\n`;
-                
+
                 if (step.location) {
                     md += `**Location:** ${step.location.name || step.location.key}\n\n`;
                 }
-                
+
                 if (step.description) {
                     md += `${step.description}\n\n`;
                 }
-                
+
                 if (step.dmTips && step.dmTips.length > 0) {
                     md += `**${this.options.includeIcons ? '💡 ' : ''}DM Tips:**\n`;
                     step.dmTips.forEach(tip => md += `- ${tip}\n`);
                     md += '\n';
                 }
-                
+
                 if (step.connections && step.connections.length > 0) {
                     md += '**Connections:**\n';
                     step.connections.forEach(conn => md += `- ${conn}\n`);
                     md += '\n';
                 }
-                
+
                 if (step.customResolutions && step.customResolutions.length > 0) {
                     md += '**Possible Resolutions:**\n\n';
                     step.customResolutions.forEach((res, idx) => {
@@ -197,9 +197,9 @@ export class MarkdownExportStrategy extends ExportStrategy {
         }
 
         // Locations
-        if (data.currentEncounterLocations && data.currentEncounterLocations.length > 0) {
+        if (data.currentAdventureLocations && data.currentAdventureLocations.length > 0) {
             md += `## ${this.options.includeIcons ? '📍 ' : ''}Locations\n\n`;
-            data.currentEncounterLocations.forEach((location) => {
+            data.currentAdventureLocations.forEach((location) => {
                 md += `### ${location.name || location.key}\n\n`;
                 if (location.data?.description) {
                     md += `${location.data.description}\n\n`;
@@ -208,9 +208,9 @@ export class MarkdownExportStrategy extends ExportStrategy {
         }
 
         // NPCs
-        if (data.currentEncounterNPCs && data.currentEncounterNPCs.length > 0) {
+        if (data.currentAdventureNPCs && data.currentAdventureNPCs.length > 0) {
             md += `## ${this.options.includeIcons ? '👥 ' : ''}NPCs\n\n`;
-            data.currentEncounterNPCs.forEach((npc) => {
+            data.currentAdventureNPCs.forEach((npc) => {
                 md += `### ${npc.name || 'NPC'}\n\n`;
                 if (npc.data) {
                     if (npc.data.species) md += `**Species:** ${capitalizeSpecies(npc.data.species)}\n`;
@@ -223,9 +223,9 @@ export class MarkdownExportStrategy extends ExportStrategy {
         }
 
         // Skill Checks
-        if (data.currentEncounterSkillChecks && data.currentEncounterSkillChecks.length > 0) {
+        if (data.currentAdventureSkillChecks && data.currentAdventureSkillChecks.length > 0) {
             md += `## ${this.options.includeIcons ? '🎲 ' : ''}Skill Checks\n\n`;
-            data.currentEncounterSkillChecks.forEach((check) => {
+            data.currentAdventureSkillChecks.forEach((check) => {
                 md += `### ${check.name || 'Check'}\n\n`;
                 if (check.data) {
                     if (check.data.skill) md += `**Skill:** ${check.data.skill} | **DC:** ${check.data.dc || 'Variable'}\n`;
@@ -238,9 +238,9 @@ export class MarkdownExportStrategy extends ExportStrategy {
         }
 
         // Dangers
-        if (data.currentEncounterDangers && data.currentEncounterDangers.length > 0) {
+        if (data.currentAdventureDangers && data.currentAdventureDangers.length > 0) {
             md += `## ${this.options.includeIcons ? '⚠️ ' : ''}Dangers\n\n`;
-            data.currentEncounterDangers.forEach((danger) => {
+            data.currentAdventureDangers.forEach((danger) => {
                 md += `### ${danger.name || 'Danger'}\n\n`;
                 if (danger.data) {
                     if (danger.data.description) md += `${danger.data.description}\n`;
@@ -279,22 +279,22 @@ export class TextExportStrategy extends ExportStrategy {
      */
     export(data) {
         this.validateData(data);
-        
+
         let text = '';
         const divider = this.options.useDividers ? '='.repeat(this.options.lineLength) + '\n' : '';
-        
+
         // Title
         text += divider;
-        text += `${data.encounterTemplate?.title || 'Encounter'}\n`;
+        text += `${data.encounterTemplate?.title || 'Adventure'}\n`;
         text += divider;
         text += '\n';
-        
+
         // Metadata
         if (this.options.includeMetadata) {
             text += `Environment: ${data.selectedEnvironment || 'Unknown'}\n`;
             text += `Party Level: ${data.partyLevel || 'Unknown'}\n\n`;
         }
-        
+
         // Description
         const descSrc = data.encounterTemplate?.descriptions || data.encounterTemplate?.description;
         if (descSrc) {
@@ -302,11 +302,11 @@ export class TextExportStrategy extends ExportStrategy {
             text += this.wrapText(description) + '\n\n';
         }
 
-        // Encounter Flow
-        if (data.currentEncounterFlow && data.currentEncounterFlow.length > 0) {
-            text += 'ENCOUNTER FLOW\n';
+        // Adventure Flow
+        if (data.currentAdventureFlow && data.currentAdventureFlow.length > 0) {
+            text += 'ADVENTURE FLOW\n';
             text += '-'.repeat(this.options.lineLength) + '\n\n';
-            data.currentEncounterFlow.forEach((step) => {
+            data.currentAdventureFlow.forEach((step) => {
                 text += `Step ${step.step}: ${step.title}\n\n`;
                 if (step.description) {
                     text += this.wrapText(step.description) + '\n\n';
@@ -315,10 +315,10 @@ export class TextExportStrategy extends ExportStrategy {
         }
 
         // Locations
-        if (data.currentEncounterLocations && data.currentEncounterLocations.length > 0) {
+        if (data.currentAdventureLocations && data.currentAdventureLocations.length > 0) {
             text += 'LOCATIONS\n';
             text += '-'.repeat(this.options.lineLength) + '\n\n';
-            data.currentEncounterLocations.forEach((location) => {
+            data.currentAdventureLocations.forEach((location) => {
                 text += `${location.name || location.key}\n`;
                 if (location.data?.description) {
                     text += this.wrapText(location.data.description) + '\n';
@@ -328,10 +328,10 @@ export class TextExportStrategy extends ExportStrategy {
         }
 
         // NPCs
-        if (data.currentEncounterNPCs && data.currentEncounterNPCs.length > 0) {
+        if (data.currentAdventureNPCs && data.currentAdventureNPCs.length > 0) {
             text += 'NPCs\n';
             text += '-'.repeat(this.options.lineLength) + '\n\n';
-            data.currentEncounterNPCs.forEach((npc) => {
+            data.currentAdventureNPCs.forEach((npc) => {
                 text += `${npc.name || 'NPC'}\n`;
                 if (npc.data) {
                     if (npc.data.species) text += `  Species: ${capitalizeSpecies(npc.data.species)}\n`;
@@ -364,7 +364,7 @@ export class TextExportStrategy extends ExportStrategy {
                 currentLine += word + ' ';
             }
         });
-        
+
         if (currentLine) lines.push(currentLine.trim());
         return lines.join('\n');
     }
@@ -394,24 +394,24 @@ export class HTMLExportStrategy extends ExportStrategy {
      */
     export(data) {
         this.validateData(data);
-        
+
         let html = '';
-        
+
         if (this.options.includeStyles) {
             html += this.getStyles();
         }
 
-        html += '<div class="encounter-export">';
-        
+        html += '<div class="adventure-export">';
+
         // Title
-        html += `<h1>${this.sanitize(data.encounterTemplate?.title || 'Encounter')}</h1>`;
-        
+        html += `<h1>${this.sanitize(data.encounterTemplate?.title || 'Adventure')}</h1>`;
+
         // Metadata
         html += '<div class="meta">';
         html += `<span><strong>Environment:</strong> ${this.sanitize(data.selectedEnvironment || 'Unknown')}</span>`;
         html += `<span><strong>Party Level:</strong> ${this.sanitize(data.partyLevel || 'Unknown')}</span>`;
         html += '</div>';
-        
+
         // Description
         const descSrc = data.encounterTemplate?.descriptions || data.encounterTemplate?.description;
         if (descSrc) {
@@ -419,10 +419,10 @@ export class HTMLExportStrategy extends ExportStrategy {
             html += `<p class="description">${this.sanitize(description)}</p>`;
         }
 
-        // Encounter Flow
-        if (data.currentEncounterFlow && data.currentEncounterFlow.length > 0) {
-            html += '<div class="section"><h2>🗺️ Encounter Flow</h2>';
-            data.currentEncounterFlow.forEach((step) => {
+        // Adventure Flow
+        if (data.currentAdventureFlow && data.currentAdventureFlow.length > 0) {
+            html += '<div class="section"><h2>🗺️ Adventure Flow</h2>';
+            data.currentAdventureFlow.forEach((step) => {
                 html += '<div class="flow-step">';
                 html += `<h3>Step ${step.step}: ${this.sanitize(step.title)}</h3>`;
                 if (step.description) {
@@ -434,9 +434,9 @@ export class HTMLExportStrategy extends ExportStrategy {
         }
 
         // Locations
-        if (data.currentEncounterLocations && data.currentEncounterLocations.length > 0) {
+        if (data.currentAdventureLocations && data.currentAdventureLocations.length > 0) {
             html += '<div class="section"><h2>📍 Locations</h2>';
-            data.currentEncounterLocations.forEach((location) => {
+            data.currentAdventureLocations.forEach((location) => {
                 html += '<div class="location">';
                 html += `<h3>${this.sanitize(location.name || location.key)}</h3>`;
                 if (location.data?.description) {
@@ -448,9 +448,9 @@ export class HTMLExportStrategy extends ExportStrategy {
         }
 
         // NPCs
-        if (data.currentEncounterNPCs && data.currentEncounterNPCs.length > 0) {
+        if (data.currentAdventureNPCs && data.currentAdventureNPCs.length > 0) {
             html += '<div class="section"><h2>👥 NPCs</h2>';
-            data.currentEncounterNPCs.forEach((npc) => {
+            data.currentAdventureNPCs.forEach((npc) => {
                 html += '<div class="npc">';
                 html += `<h3>${this.sanitize(npc.name || 'NPC')}</h3>`;
                 if (npc.data) {
@@ -466,7 +466,7 @@ export class HTMLExportStrategy extends ExportStrategy {
         }
 
         html += '</div>';
-        
+
         return html;
     }
 
@@ -477,7 +477,7 @@ export class HTMLExportStrategy extends ExportStrategy {
     getStyles() {
         return `
         <style>
-            .encounter-export {
+            .adventure-export {
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 max-width: 800px;
                 margin: 40px auto;
@@ -485,12 +485,12 @@ export class HTMLExportStrategy extends ExportStrategy {
                 line-height: 1.6;
                 color: #333;
             }
-            .encounter-export h1 {
+            .adventure-export h1 {
                 color: #2c3e50;
                 border-bottom: 3px solid #3498db;
                 padding-bottom: 10px;
             }
-            .encounter-export h2 {
+            .adventure-export h2 {
                 color: #34495e;
                 margin-top: 25px;
                 border-bottom: 2px solid #95a5a6;
@@ -561,27 +561,27 @@ export class JSONExportStrategy extends ExportStrategy {
      */
     export(data) {
         this.validateData(data);
-        
+
         const exportData = {
             meta: this.options.includeMetadata ? {
                 exportedAt: new Date().toISOString(),
                 exportedBy: 'LoreWeaver',
                 version: '1.5.0'
             } : undefined,
-            encounter: {
-                title: data.encounterTemplate?.title || 'Encounter',
+            adventure: {
+                title: data.encounterTemplate?.title || 'Adventure',
                 environment: data.selectedEnvironment,
                 partyLevel: data.partyLevel,
                 description: data.encounterTemplate?.description || data.encounterTemplate?.descriptions?.[0]
             },
-            flow: data.currentEncounterFlow || [],
-            locations: data.currentEncounterLocations || [],
-            npcs: data.currentEncounterNPCs || [],
-            skillChecks: data.currentEncounterSkillChecks || [],
-            dangers: data.currentEncounterDangers || []
+            flow: data.currentAdventureFlow || [],
+            locations: data.currentAdventureLocations || [],
+            npcs: data.currentAdventureNPCs || [],
+            skillChecks: data.currentAdventureSkillChecks || [],
+            dangers: data.currentAdventureDangers || []
         };
 
-        return this.options.pretty 
+        return this.options.pretty
             ? JSON.stringify(exportData, null, 2)
             : JSON.stringify(exportData);
     }
@@ -597,13 +597,13 @@ export class ExportManager {
     constructor() {
         this.strategies = new Map();
         this.defaultStrategy = null;
-        
+
         // Register built-in strategies
         this.registerStrategy('markdown', new MarkdownExportStrategy());
         this.registerStrategy('text', new TextExportStrategy());
         this.registerStrategy('html', new HTMLExportStrategy());
         this.registerStrategy('json', new JSONExportStrategy());
-        
+
         this.setDefaultStrategy('markdown');
     }
 
@@ -655,17 +655,17 @@ export class ExportManager {
     }
 
     /**
-     * Export encounter data using specified strategy
-     * @param {Object} encounterData - The data to export
+     * Export adventure data using specified strategy
+     * @param {Object} adventureData - The data to export
      * @param {string} [strategyKey] - Strategy to use (defaults to default strategy)
      * @param {Object} [options] - Options to pass to the strategy
      * @returns {Object} Export result with content and metadata
      * @throws {Error} If strategy not found or export fails
      */
-    export(encounterData, strategyKey = null, options = {}) {
+    export(adventureData, strategyKey = null, options = {}) {
         const key = strategyKey || this.defaultStrategy;
         const strategy = this.getStrategy(key);
-        
+
         if (!strategy) {
             throw new Error(`Export strategy '${key}' not found`);
         }
@@ -677,8 +677,8 @@ export class ExportManager {
             }
 
             // Perform export
-            const content = strategy.export(encounterData);
-            const filename = strategy.generateFilename(encounterData);
+            const content = strategy.export(adventureData);
+            const filename = strategy.generateFilename(adventureData);
 
             return {
                 success: true,
@@ -695,12 +695,12 @@ export class ExportManager {
 
     /**
      * Export and trigger download
-     * @param {Object} encounterData - The data to export
+     * @param {Object} adventureData - The data to export
      * @param {string} [strategyKey] - Strategy to use
      * @param {Object} [options] - Strategy options
      */
-    exportAndDownload(encounterData, strategyKey = null, options = {}) {
-        const result = this.export(encounterData, strategyKey, options);
+    exportAndDownload(adventureData, strategyKey = null, options = {}) {
+        const result = this.export(adventureData, strategyKey, options);
         this.downloadFile(result.content, result.filename, result.mimeType);
     }
 

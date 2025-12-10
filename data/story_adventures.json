@@ -1,0 +1,105 @@
+{
+    "shadows_of_the_foundry": {
+        "id": "shadows_of_the_foundry",
+        "title": "Shadows of the Foundry",
+        "description": "An investigation into the malfunctioning automata of the Iron District leads to a darker conspiracy.",
+        "coverImage": "assets/img/d20.png",
+        "startingNode": "start",
+        "nodes": {
+            "start": {
+                "text": "The Arcane Tram Depot is a cacophony of hissing steam and crackling magic. Commuters rush past, heads down, but you stand still, watching the schedule board flicker erratically. The city's pulse is jagged today. You've come to meet an informant, a nervous gear-smith named Kaelen who claims to know why the foundry's automata have been turning on their masters.",
+                "image": "assets/img/d20.png",
+                "options": [
+                    {
+                        "text": "Wait by the ticket booth as agreed.",
+                        "target": "meet_kaelen"
+                    },
+                    {
+                        "text": "Scan the crowd for anything suspicious.",
+                        "target": "scan_crowd",
+                        "check": {
+                            "skill": "perception",
+                            "dc": 12
+                        }
+                    }
+                ]
+            },
+            "meet_kaelen": {
+                "text": "You lean against the ticket booth. Minutes pass. Then, a small figure in a grease-stained tunic stumbles out of the crowd. It's Kaelen. He looks terrified, eyes darting around. 'They... they're watching,' he whispers, shoving a crumpled schematic into your hand. 'The Clockwork Foundry... deep storage. Go!'",
+                "options": [
+                    {
+                        "text": "Ask who is watching.",
+                        "target": "kaelen_flees"
+                    },
+                    {
+                        "text": "Take the schematic and head for the tram.",
+                        "target": "tram_ride"
+                    }
+                ]
+            },
+            "scan_crowd": {
+                "text": "You narrow your eyes, filtering out the noise. There—leaning against a pillar—a figure in a long grey coat. They aren't watching the trams; they're watching the entrance. And they have a hand tucked into their coat.",
+                "options": [
+                    {
+                        "text": "Confront the watcher.",
+                        "target": "confront_watcher"
+                    },
+                    {
+                        "text": "Slip into the crowd and find Kaelen.",
+                        "target": "stealth_approach"
+                    }
+                ]
+            },
+            "kaelen_flees": {
+                "text": "Before he can answer, a metallic screech echoes from the platform. A rogue automaton bursts through the turnstiles! Chaos erupts. Kaelen bolts into the crowd. 'Just go!' he screams.",
+                "options": [
+                    {
+                        "text": "Run for the departing tram.",
+                        "target": "tram_ride"
+                    }
+                ]
+            },
+            "tram_ride": {
+                "text": "You catch the Number 7 tram just as it unhooks from the magnetic rail. The city blurs past below—a smog-choked labyrinth of brick and iron. Your destination awaits: The Clockwork Foundry.",
+                "options": [
+                    {
+                        "text": "Examine the schematic.",
+                        "target": "examine_schematic"
+                    }
+                ]
+            },
+            "examine_schematic": {
+                "text": "The paper is old, smelling of ozone. It shows a sublevel in the Foundry marked 'Project: Echo'. Notes in the margins are frantic: 'It's not a malfunction. It's a directive.'",
+                "options": [
+                    {
+                        "text": "Prepare for arrival.",
+                        "target": "foundry_arrival"
+                    }
+                ]
+            },
+            "foundry_arrival": {
+                "text": "The Clockwork Foundry looms like a fortress of rust and smoke. The heat hits you the moment the tram doors open. Inside, massive gears grind with a bone-shaking rhythm. The main floor is empty of workers, but the machines are still running.",
+                "image": "assets/img/d20.png",
+                "options": [
+                    {
+                        "text": "Sneak towards the service elevator.",
+                        "target": "service_elevator"
+                    },
+                    {
+                        "text": "Investigate the foreman's office.",
+                        "target": "foreman_office"
+                    }
+                ]
+            },
+            "confront_watcher": {
+                "text": "You stride towards the watcher. They stiffen, turning to face you. Beneath the brim of their hat, you see not a face, but a smooth copper mask. An automaton spy!",
+                "options": [
+                    {
+                        "text": "Attack!",
+                        "target": "combat_start"
+                    }
+                ]
+            }
+        }
+    }
+}

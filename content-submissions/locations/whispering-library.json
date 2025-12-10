@@ -1,0 +1,30 @@
+{
+  "key": "whispering-library",
+  "name": "Whispering Library",
+  "environment": "dungeon",
+  "tags": ["ancient", "magical", "knowledge", "eerie"],
+  "primary": [
+    "Towering Bookshelves",
+    "Reading Tables",
+    "Main Desk",
+    "Enchanted Candelabras",
+    "Stone Floor",
+    "High Arched Ceiling"
+  ],
+  "secondary": [
+    "Hidden Reading Nook",
+    "Magical Card Catalog",
+    "Restricted Section Door",
+    "Whispering Voices",
+    "Dust Motes in Light",
+    "Ancient Book Smell"
+  ],
+  "tertiary": [
+    "Secret Vault Behind Bookshelf",
+    "Forbidden Tome Chained to Pedestal",
+    "Trapped Index System",
+    "Ancient Librarian's Ghost",
+    "Magical Preservation Ward",
+    "Hidden Passage to Catacombs"
+  ]
+}
