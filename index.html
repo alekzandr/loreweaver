@@ -183,7 +183,7 @@
                             face the guardian, and uncover the secrets lost to time in this high-stakes adventure.
                         </p>
                         <div class="hero-actions">
-                            <button class="btn-hero-primary">
+                            <button class="btn-hero-primary" onclick="window.startShadowsAdventure()">
                                 <span class="play-icon">▶</span> Play Adventure
                             </button>
                             <button class="btn-hero-secondary">
@@ -251,6 +251,17 @@
                 </div>
 
 
+            </div>
+
+            <!-- Play Adventure Page -->
+            <div id="playPage" class="page-content" style="display: none;">
+                <div class="controls">
+                    <button onclick="switchPage('adventures')" class="btn-danger btn-medium">
+                        ← Back to Adventures
+                    </button>
+                    <h2 style="display:inline-block; margin-left:10px;">Shadows of the Foundry</h2>
+                </div>
+                <div id="adventureEngineContainer"></div>
             </div>
 
             <!-- Location Detail Panel (Sticky) -->
@@ -482,6 +493,7 @@
         } from './assets/js/export.js';
         import './assets/js/core.js';
         import './assets/js/ui.js';
+        // import './assets/js/adventure-engine.js';
 
         // Expose export functions globally
         window.exportAdventureMarkdown = exportAdventureMarkdown;
@@ -493,6 +505,7 @@
 
         // Note: initApp is called automatically by app.js on DOMContentLoaded
     </script>
+    <script type="module" src="tests/test-window-exports.js"></script>
 
     <script>
         // ============================================================================

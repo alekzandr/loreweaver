@@ -8,6 +8,7 @@ import { getProfessionRoleTip, capitalizeSpecies } from './utils.js';
 // ============================================================================
 // UI INTERACTION FUNCTIONS
 // ============================================================================
+console.log('✅ UI Module loading...');
 
 /**
  * Toggle collapsible sections
@@ -60,9 +61,11 @@ export function closeAdventureMenu() {
  * Toggle flow navigator
  */
 export function toggleFlowNavigator() {
+    console.log('toggleFlowNavigator called');
     const navigator = document.getElementById('flowNavigator');
     const toggle = document.getElementById('flowNavigatorToggle');
     const mainContent = document.getElementById('mainContent');
+    console.log('Navigator:', navigator, 'Toggle:', toggle);
 
     navigator.classList.toggle('active');
     toggle.classList.toggle('active');
@@ -823,8 +826,8 @@ export function initializeSearchFilters() {
 
 // Export functions to window for HTML onclick handlers
 window.toggleSection = toggleSection;
-window.toggleEncounterMenu = toggleEncounterMenu;
-window.closeEncounterMenu = closeEncounterMenu;
+window.toggleAdventureMenu = toggleAdventureMenu;
+window.closeAdventureMenu = closeAdventureMenu;
 window.toggleFlowNavigator = toggleFlowNavigator;
 window.scrollToFlowStep = scrollToFlowStep;
 window.populateFlowNavigator = populateFlowNavigator;
