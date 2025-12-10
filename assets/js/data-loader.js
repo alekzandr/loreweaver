@@ -1,7 +1,7 @@
 // LoreWeaver - Data Loader Module
 // Handles async loading of all JSON data files
 
-export let adventureTemplates = {};
+export let encounterTemplates = {};
 export let locationObjects = {};
 export let npcData = {};
 export let skillChecksData = {};
@@ -16,7 +16,7 @@ export async function loadData() {
     try {
         console.log('Starting data load...');
         const [encountersResponse, locationsResponse, npcsResponse, skillChecksResponse, dangersResponse] = await Promise.all([
-            fetch('data/adventures.json').catch(err => { console.error('Failed to fetch adventures.json:', err); return null; }),
+            fetch('data/encounters.json').catch(err => { console.error('Failed to fetch encounters.json:', err); return null; }),
             fetch('data/locations.json').catch(err => { console.error('Failed to fetch locations.json:', err); return null; }),
             fetch('data/npcs.json').catch(err => { console.error('Failed to fetch npcs.json:', err); return null; }),
             fetch('data/skillchecks.json').catch(err => { console.error('Failed to fetch skillchecks.json:', err); return null; }),
@@ -24,10 +24,10 @@ export async function loadData() {
         ]);
 
         if (encountersResponse && encountersResponse.ok) {
-            adventureTemplates = await encountersResponse.json();
-            console.log('✓ Loaded adventures.json:', Object.keys(adventureTemplates).length, 'environments');
+            encounterTemplates = await encountersResponse.json();
+            console.log('✓ Loaded encounters.json:', Object.keys(encounterTemplates).length, 'environments');
         } else {
-            console.error('❌ Failed to load adventures.json - response:', encountersResponse?.status);
+            console.error('❌ Failed to load encounters.json - response:', encountersResponse?.status);
         }
 
         if (locationsResponse && locationsResponse.ok) {
@@ -65,7 +65,7 @@ export async function loadData() {
         console.log('✓ Data load complete');
 
         // Expose data to window for inline scripts
-        window.adventureTemplates = adventureTemplates;
+        window.encounterTemplates = encounterTemplates;
         window.locationObjects = locationObjects;
         window.npcData = npcData;
         window.skillChecksData = skillChecksData;

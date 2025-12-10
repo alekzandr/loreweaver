@@ -1235,7 +1235,7 @@
             const results = [];
 
             // Search encounters
-            Object.entries(window.adventureTemplates).forEach(([env, encounters]) => {
+            Object.entries(window.encounterTemplates).forEach(([env, encounters]) => {
                 if (activeFilters.env.length > 0 && !activeFilters.env.includes(env)) return;
 
                 encounters.forEach(encounter => {
@@ -1377,7 +1377,7 @@
                 }
 
                 // Find and use specific encounter
-                const encounters = window.adventureTemplates[environment];
+                const encounters = window.encounterTemplates[environment];
                 window.adventureTemplate = encounters.find(e => e.title === title);
 
                 if (window.adventureTemplate) {

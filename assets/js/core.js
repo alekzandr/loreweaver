@@ -13,7 +13,7 @@ import { random, formatLocationName, capitalizeSpecies } from './utils.js';
  * Select adventure template based on environment and optional specific title
  */
 export function selectAdventureTemplate(environment, specificTitle = null) {
-    const entries = window.adventureTemplates && window.adventureTemplates[environment];
+    const entries = window.encounterTemplates && window.encounterTemplates[environment];
 
     if (specificTitle && entries) {
         const specificAdventure = entries.find(entry => entry.title === specificTitle);

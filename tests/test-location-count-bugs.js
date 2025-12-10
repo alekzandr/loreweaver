@@ -15,7 +15,7 @@ if (htmlContent.includes('limitedCustomLocations') && htmlContent.includes('.sli
 }
 
 // Test 2: Resolution not counted
-if (htmlContent.includes('actualLocationCount') && htmlContent.includes('currentEncounterLocations.length')) {
+if (htmlContent.includes('actualLocationCount') && htmlContent.includes('currentAdventureLocations.length')) {
     console.log('PASS: Resolution counting fix present');
     passed++;
 } else {

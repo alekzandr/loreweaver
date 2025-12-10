@@ -35,6 +35,7 @@ let domCache = {
     npcPage: null,
     searchPage: null,
     settingsPage: null,
+    playPage: null,
     // Search elements
     searchInput: null,
     searchResults: null,
@@ -67,6 +68,7 @@ function cacheDOMElements() {
     domCache.npcPage = document.getElementById('npcPage');
     domCache.searchPage = document.getElementById('searchPage');
     domCache.settingsPage = document.getElementById('settingsPage');
+    domCache.playPage = document.getElementById('playPage');
 
     // Search elements
     domCache.searchInput = document.getElementById('searchInput');
@@ -127,7 +129,7 @@ export async function initApp() {
     await loadData();
     console.log('Data loading complete. window.dataLoaded =', window.dataLoaded);
     console.log('Data available:', {
-        adventureTemplates: window.adventureTemplates ? Object.keys(window.adventureTemplates).length : 0,
+        encounterTemplates: window.encounterTemplates ? Object.keys(window.encounterTemplates).length : 0,
         locationObjects: window.locationObjects ? Object.keys(window.locationObjects).length : 0,
         npcData: window.npcData ? 'loaded' : 'missing',
         skillChecksData: window.skillChecksData?.skillChecks?.length || 0,
@@ -414,6 +416,7 @@ export function switchPage(page) {
     domCache.npcPage.style.display = 'none';
     domCache.searchPage.style.display = 'none';
     domCache.settingsPage.style.display = 'none';
+    if (domCache.playPage) domCache.playPage.style.display = 'none';
 
     document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
 
@@ -436,6 +439,8 @@ export function switchPage(page) {
     } else if (page === 'settings') {
         domCache.settingsPage.style.display = 'block';
         document.querySelectorAll('.nav-tab')[4].classList.add('active');
+    } else if (page === 'play') {
+        if (domCache.playPage) domCache.playPage.style.display = 'block';
     }
 
     // Publish page switched event
@@ -510,8 +515,8 @@ function updateAllFilters() {
 
         // If type is "encounter", count encounters by environment
         if (currentType === 'encounter') {
-            if (window.adventureTemplates) {
-                Object.entries(window.adventureTemplates).forEach(([env, encounters]) => {
+            if (window.encounterTemplates) {
+                Object.entries(window.encounterTemplates).forEach(([env, encounters]) => {
                     environmentCounts[env] = (environmentCounts[env] || 0) + encounters.length;
                 });
             }
@@ -540,8 +545,8 @@ function updateAllFilters() {
 
         // If showing both types, also count encounters for environment
         if (!currentType) {
-            if (window.adventureTemplates) {
-                Object.entries(window.adventureTemplates).forEach(([env, encounters]) => {
+            if (window.encounterTemplates) {
+                Object.entries(window.encounterTemplates).forEach(([env, encounters]) => {
                     const matchesEnv = excludeFilter === 'environment' || !currentEnv || env === currentEnv;
                     if (matchesEnv) {
                         environmentCounts[env] = (environmentCounts[env] || 0) + encounters.length;
@@ -565,8 +570,8 @@ function updateAllFilters() {
         let locationCount = 0;
 
         // Count encounters
-        if (window.adventureTemplates) {
-            Object.entries(window.adventureTemplates).forEach(([env, encounters]) => {
+        if (window.encounterTemplates) {
+            Object.entries(window.encounterTemplates).forEach(([env, encounters]) => {
                 const matchesEnv = !currentEnv || env === currentEnv;
                 if (matchesEnv) {
                     encounterCount += encounters.length;
@@ -710,8 +715,8 @@ export function performSearch() {
     let results = [];
 
     // Search through encounters (only if type filter allows)
-    if (window.adventureTemplates && (!activeFilters.type || activeFilters.type === 'encounter')) {
-        Object.entries(window.adventureTemplates).forEach(([environment, encounters]) => {
+    if (window.encounterTemplates && (!activeFilters.type || activeFilters.type === 'encounter')) {
+        Object.entries(window.encounterTemplates).forEach(([environment, encounters]) => {
             if (Array.isArray(encounters)) {
                 encounters.forEach((encounter, index) => {
                     const matchesSearch = !searchTerm ||
@@ -1034,10 +1039,12 @@ function attachExpandHandlers() {
     });
 }
 
+
+
 /**
- * Check if adventure matches active filters
+ * Check if encounter matches active filters
  */
-function checkAdventureFilters(environment) {
+function checkEncounterFilters(environment) {
     // If location-specific filters are set, encounters should not match
     if (activeFilters.locationType.length || activeFilters.setting.length) {
         return false;

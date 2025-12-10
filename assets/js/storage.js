@@ -186,4 +186,20 @@ window.showSavedAdventures = showSavedAdventures;
 window.loadSavedAdventure = loadSavedAdventure;
 window.deleteSavedAdventure = deleteSavedAdventure;
 
+window.startShadowsAdventure = function () {
+    // 1. Switch to play page
+    import('./app.js').then(module => {
+        module.switchPage('play');
+
+        // 2. Initialize engine
+        if (window.adventureEngine) {
+            window.adventureEngine.init('adventureEngineContainer');
+            // 3. Start specific adventure
+            window.adventureEngine.startAdventure('shadows_of_the_foundry');
+        } else {
+            console.error('Adventure Engine not loaded!');
+        }
+    });
+};
+
 

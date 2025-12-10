@@ -95,7 +95,7 @@ export class ExportStrategy {
      * @returns {string} Generated filename
      */
     generateFilename(adventureData) {
-        const title = adventureData?.adventureTemplate?.title || 'adventure';
+        const title = adventureData?.encounterTemplate?.title || 'adventure';
         const timestamp = Date.now();
         const safeName = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
         return `${safeName}-${timestamp}.${this.fileExtension}`;
@@ -144,7 +144,7 @@ export class MarkdownExportStrategy extends ExportStrategy {
         let md = '';
 
         // Title
-        md += `# ${data.adventureTemplate?.title || 'Adventure'}\n\n`;
+        md += `# ${data.encounterTemplate?.title || 'Adventure'}\n\n`;
 
         // Metadata
         if (this.options.includeMetadata) {
@@ -285,7 +285,7 @@ export class TextExportStrategy extends ExportStrategy {
 
         // Title
         text += divider;
-        text += `${data.adventureTemplate?.title || 'Adventure'}\n`;
+        text += `${data.encounterTemplate?.title || 'Adventure'}\n`;
         text += divider;
         text += '\n';
 
@@ -404,7 +404,7 @@ export class HTMLExportStrategy extends ExportStrategy {
         html += '<div class="adventure-export">';
 
         // Title
-        html += `<h1>${this.sanitize(data.adventureTemplate?.title || 'Adventure')}</h1>`;
+        html += `<h1>${this.sanitize(data.encounterTemplate?.title || 'Adventure')}</h1>`;
 
         // Metadata
         html += '<div class="meta">';
@@ -569,10 +569,10 @@ export class JSONExportStrategy extends ExportStrategy {
                 version: '1.5.0'
             } : undefined,
             adventure: {
-                title: data.adventureTemplate?.title || 'Adventure',
+                title: data.encounterTemplate?.title || 'Adventure',
                 environment: data.selectedEnvironment,
                 partyLevel: data.partyLevel,
-                description: data.adventureTemplate?.description || data.adventureTemplate?.descriptions?.[0]
+                description: data.encounterTemplate?.description || data.encounterTemplate?.descriptions?.[0]
             },
             flow: data.currentAdventureFlow || [],
             locations: data.currentAdventureLocations || [],

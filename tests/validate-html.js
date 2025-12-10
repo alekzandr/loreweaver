@@ -14,7 +14,7 @@ const requiredElements = [
   'npcPage',
   'searchPage',
   'settingsPage',
-  'encounterDisplay',
+  'adventureDisplay',
   'locationDetailPanel',
   'npcDetailPanel'
 ];
