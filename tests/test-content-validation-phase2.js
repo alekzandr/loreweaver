@@ -64,17 +64,17 @@ function assertContains(str, substring, message) {
 function runValidation(args = '') {
     try {
         const cmd = `node scripts/validate-content.js ${args}`;
-        const output = execSync(cmd, { 
-            cwd: path.join(__dirname, '..'), 
+        const output = execSync(cmd, {
+            cwd: path.join(__dirname, '..'),
             encoding: 'utf8',
             stdio: 'pipe'
         });
         return { success: true, output, exitCode: 0 };
     } catch (error) {
-        return { 
-            success: false, 
-            output: error.stdout || error.message, 
-            exitCode: error.status || 1 
+        return {
+            success: false,
+            output: error.stdout || error.message,
+            exitCode: error.status || 1
         };
     }
 }
@@ -151,13 +151,13 @@ test('warns about unknown tags not in production', () => {
         firstNames: Array(15).fill('TestName'),
         surnames: Array(15).fill('TestSurname')
     };
-    
+
     const filePath = createTempFile('test-unknown-tags.json', testContent);
     const result = runValidation(`--check-production --report ${filePath}`);
-    
+
     // Test passes if validation ran (with or without warnings showing - functionality exists)
     assert(result.output.includes('LoreWeaver Content Validation'), 'Should run validation');
-    
+
     fs.unlinkSync(filePath);
 });
 
@@ -186,12 +186,12 @@ test('provides suggestions for extreme weight values', () => {
             }
         ]
     };
-    
+
     const filePath = createTempFile('test-weight.json', testContent);
     const result = runValidation(`--report ${filePath}`);
-    
+
     assert(result.output.includes('weight') || result.output.includes('Suggestions'), 'Should provide weight suggestions or show suggestions section');
-    
+
     fs.unlinkSync(filePath);
 });
 
@@ -220,17 +220,17 @@ test('auto-fix removes extra whitespace', () => {
             }
         ]
     };
-    
+
     const filePath = createTempFile('test-whitespace.json', testContent);
     const result = runValidation(`--fix ${filePath}`);
-    
+
     assertContains(result.output, 'Auto-fix', 'Should show auto-fix was applied');
-    
+
     // Read the file back and check it was fixed
     const fixed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
     assert(fixed.title === 'Test Encounter With Whitespace', 'Should trim title whitespace');
     assert(!fixed.tags[0].includes('  '), 'Should trim tag whitespace');
-    
+
     fs.unlinkSync(filePath);
 });
 
@@ -259,17 +259,17 @@ test('auto-fix normalizes tag formatting', () => {
             }
         ]
     };
-    
+
     const filePath = createTempFile('test-tag-format.json', testContent);
     const result = runValidation(`--fix ${filePath}`);
-    
+
     assertContains(result.output, 'Fixed tag formatting', 'Should report tag fixes');
-    
+
     const fixed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
     assert(fixed.tags.every(tag => tag === tag.toLowerCase()), 'All tags should be lowercase');
     assert(fixed.tags.every(tag => !tag.includes(' ')), 'Tags should not have spaces');
     assert(fixed.tags.every(tag => !tag.includes('_')), 'Tags should not have underscores');
-    
+
     fs.unlinkSync(filePath);
 });
 
@@ -285,15 +285,15 @@ test('auto-fix clamps weight to valid range', () => {
             { title: 'R2', description: 'Description with enough characters', requirements: 'Reqs', rewards: 'Rewards here' }
         ]
     };
-    
+
     const filePath1 = createTempFile('test-low-weight.json', testContent1);
     runValidation(`--fix ${filePath1}`);
-    
+
     const fixed1 = JSON.parse(fs.readFileSync(filePath1, 'utf8'));
     assert(fixed1.weight === 0.5, 'Should clamp low weight to 0.5');
-    
+
     fs.unlinkSync(filePath1);
-    
+
     const testContent2 = {
         title: 'Test High Weight',
         tags: ['test'],
@@ -304,13 +304,13 @@ test('auto-fix clamps weight to valid range', () => {
             { title: 'R2', description: 'Description with enough characters', requirements: 'Reqs', rewards: 'Rewards here' }
         ]
     };
-    
+
     const filePath2 = createTempFile('test-high-weight.json', testContent2);
     runValidation(`--fix ${filePath2}`);
-    
+
     const fixed2 = JSON.parse(fs.readFileSync(filePath2, 'utf8'));
     assert(fixed2.weight === 2.0, 'Should clamp high weight to 2.0');
-    
+
     fs.unlinkSync(filePath2);
 });
 
@@ -326,27 +326,27 @@ test('warns about description length issues', () => {
         ],
         weight: 1.0,
         resolutions: [
-            { 
+            {
                 title: 'Resolution One',
                 description: 'This resolution description has exactly one hundred characters to pass the schema validation rules here.',
                 requirements: 'Requirements that are long enough for schema',
-                rewards: 'Short reward text here' 
+                rewards: 'Short reward text here'
             },
-            { 
+            {
                 title: 'Resolution Two',
                 description: 'Another resolution description that has exactly one hundred characters to pass validation rules here.',
                 requirements: 'More requirements for schema compliance',
-                rewards: 'More reward text' 
+                rewards: 'More reward text'
             }
         ]
     };
-    
+
     const filePath = createTempFile('test-desc-length.json', testContent);
     const result = runValidation(`--report ${filePath}`);
-    
+
     const cleanOutput = result.output.replace(/\x1b\[[0-9;]*m/g, '');
     assert(cleanOutput.includes('short') || cleanOutput.includes('long') || cleanOutput.includes('Warnings') || result.success, 'Should warn about description length issues or pass');
-    
+
     fs.unlinkSync(filePath);
 });
 
@@ -359,20 +359,20 @@ test('detects duplicate location details across reveal levels', () => {
         secondary: ['Item7', 'Item8', 'Item9', 'Item10', 'Item11', 'Item12'],
         tertiary: ['Item13', 'Item2', 'Item15', 'Item16']  // Item2 is duplicate
     };
-    
+
     const filePath = createTempFile('test-location-dupes.json', testContent);
     const result = runValidation(filePath);
-    
+
     assertContains(result.output, 'Duplicate details', 'Should detect duplicate details');
     assert(!result.success, 'Should fail validation');
-    
+
     fs.unlinkSync(filePath);
 });
 
 // Test 13: Validation report summary includes warnings and suggestions
 test('validation report shows warnings and suggestions summary', () => {
     const result = runValidation('--report examples/');
-    
+
     assertContains(result.output, 'Validation Summary', 'Should show summary');
     // Should have warnings about unknown tags in examples
     if (result.output.includes('Warnings:')) {
@@ -383,7 +383,7 @@ test('validation report shows warnings and suggestions summary', () => {
 // Test 14: Multiple flags work together
 test('multiple flags work together correctly', () => {
     const result = runValidation('--fix --report --check-production examples/');
-    
+
     assertContains(result.output, 'Auto-fix mode enabled', 'Should enable auto-fix');
     assertContains(result.output, 'Detailed report mode enabled', 'Should enable report');
     assertContains(result.output, 'Production cross-check enabled', 'Should enable production check');
@@ -400,13 +400,13 @@ test('warns about extreme DC values', () => {
         failure: 'Failure description that is also long enough for validation requirements to pass schema validation checks consistently',
         tags: ['test', 'extreme', 'dc-validation']
     };
-    
+
     const filePath = createTempFile('test-extreme-dc.json', testContent);
     const result = runValidation(`--report ${filePath}`);
-    
+
     // Test passes if validation ran (functionality exists)
     assert(result.output.includes('LoreWeaver Content Validation'), 'Should run validation');
-    
+
     fs.unlinkSync(filePath);
 });
 

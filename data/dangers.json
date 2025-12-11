@@ -6,7 +6,15 @@
       "detectMethod": "Perception or Investigation",
       "disarmMethod": "Thieves' Tools",
       "damageType": "piercing",
-      "tags": ["mechanical", "dungeon", "underground", "ancient", "crypt", "urban", "fortress"],
+      "tags": [
+        "mechanical",
+        "dungeon",
+        "underground",
+        "ancient",
+        "crypt",
+        "urban",
+        "fortress"
+      ],
       "severity": "medium",
       "resetable": true
     },
@@ -16,7 +24,15 @@
       "detectMethod": "Perception",
       "disarmMethod": "Thieves' Tools or block the holes",
       "damageType": "poison",
-      "tags": ["mechanical", "dungeon", "underground", "jungle", "forest", "ancient", "temple"],
+      "tags": [
+        "mechanical",
+        "dungeon",
+        "underground",
+        "jungle",
+        "forest",
+        "ancient",
+        "temple"
+      ],
       "severity": "medium",
       "resetable": true
     },
@@ -26,7 +42,14 @@
       "detectMethod": "Perception or prodding ahead",
       "disarmMethod": "Spike the hinges or bridge the gap",
       "damageType": "bludgeoning",
-      "tags": ["mechanical", "dungeon", "underground", "ancient", "crypt", "mountain"],
+      "tags": [
+        "mechanical",
+        "dungeon",
+        "underground",
+        "ancient",
+        "crypt",
+        "mountain"
+      ],
       "severity": "high",
       "resetable": false
     },
@@ -36,7 +59,14 @@
       "detectMethod": "Perception or Investigation",
       "disarmMethod": "Thieves' Tools or jam the mechanism",
       "damageType": "slashing",
-      "tags": ["mechanical", "dungeon", "ancient", "crypt", "fortress", "temple"],
+      "tags": [
+        "mechanical",
+        "dungeon",
+        "ancient",
+        "crypt",
+        "fortress",
+        "temple"
+      ],
       "severity": "high",
       "resetable": true
     },
@@ -46,7 +76,15 @@
       "detectMethod": "Investigation (structural weakness)",
       "disarmMethod": "Support beams or disable trigger",
       "damageType": "bludgeoning",
-      "tags": ["mechanical", "environmental", "dungeon", "underground", "ancient", "mine", "unstable"],
+      "tags": [
+        "mechanical",
+        "environmental",
+        "dungeon",
+        "underground",
+        "ancient",
+        "mine",
+        "unstable"
+      ],
       "severity": "deadly",
       "resetable": false
     },
@@ -56,7 +94,15 @@
       "detectMethod": "Arcana or detect magic",
       "disarmMethod": "Dispel Magic or careful disarming",
       "damageType": "varies",
-      "tags": ["magical", "dungeon", "tower", "temple", "ancient", "arcane", "urban"],
+      "tags": [
+        "magical",
+        "dungeon",
+        "tower",
+        "temple",
+        "ancient",
+        "arcane",
+        "urban"
+      ],
       "severity": "high",
       "resetable": true
     },
@@ -66,7 +112,14 @@
       "detectMethod": "Perception (faint hiss) or Investigation",
       "disarmMethod": "Block vents or disable mechanism",
       "damageType": "none",
-      "tags": ["mechanical", "alchemical", "dungeon", "underground", "fortress", "sophisticated"],
+      "tags": [
+        "mechanical",
+        "alchemical",
+        "dungeon",
+        "underground",
+        "fortress",
+        "sophisticated"
+      ],
       "severity": "medium",
       "resetable": true
     },
@@ -76,7 +129,14 @@
       "detectMethod": "Perception",
       "disarmMethod": "Cut the net or disable trigger",
       "damageType": "none",
-      "tags": ["mechanical", "dungeon", "forest", "hunting", "cave", "primitive"],
+      "tags": [
+        "mechanical",
+        "dungeon",
+        "forest",
+        "hunting",
+        "cave",
+        "primitive"
+      ],
       "severity": "low",
       "resetable": true
     },
@@ -86,7 +146,15 @@
       "detectMethod": "Arcana or Investigation",
       "disarmMethod": "Ground the current or disable power source",
       "damageType": "lightning",
-      "tags": ["magical", "technological", "dungeon", "tower", "laboratory", "space", "advanced"],
+      "tags": [
+        "magical",
+        "technological",
+        "dungeon",
+        "tower",
+        "laboratory",
+        "space",
+        "advanced"
+      ],
       "severity": "high",
       "resetable": true
     },
@@ -96,7 +164,15 @@
       "detectMethod": "Perception or Arcana",
       "disarmMethod": "Thieves' Tools or Dispel Magic",
       "damageType": "none",
-      "tags": ["mechanical", "magical", "urban", "fortress", "dungeon", "guard", "detection"],
+      "tags": [
+        "mechanical",
+        "magical",
+        "urban",
+        "fortress",
+        "dungeon",
+        "guard",
+        "detection"
+      ],
       "severity": "low",
       "resetable": true
     },
@@ -106,7 +182,15 @@
       "detectMethod": "Perception (scorch marks) or Investigation",
       "disarmMethod": "Block the jets or disable fuel source",
       "damageType": "fire",
-      "tags": ["mechanical", "magical", "dungeon", "temple", "fortress", "fire", "ancient"],
+      "tags": [
+        "mechanical",
+        "magical",
+        "dungeon",
+        "temple",
+        "fortress",
+        "fire",
+        "ancient"
+      ],
       "severity": "high",
       "resetable": true
     },
@@ -116,7 +200,14 @@
       "detectMethod": "Arcana or temperature drop",
       "disarmMethod": "Dispel Magic or disable source",
       "damageType": "cold",
-      "tags": ["magical", "dungeon", "arctic", "ice", "winter", "elemental"],
+      "tags": [
+        "magical",
+        "dungeon",
+        "arctic",
+        "ice",
+        "winter",
+        "elemental"
+      ],
       "severity": "medium",
       "resetable": true
     },
@@ -126,7 +217,14 @@
       "detectMethod": "Investigation (sliding walls)",
       "disarmMethod": "Jam the mechanism or destroy control",
       "damageType": "bludgeoning",
-      "tags": ["mechanical", "dungeon", "ancient", "temple", "deadly", "sophisticated"],
+      "tags": [
+        "mechanical",
+        "dungeon",
+        "ancient",
+        "temple",
+        "deadly",
+        "sophisticated"
+      ],
       "severity": "deadly",
       "resetable": true
     },
@@ -136,7 +234,14 @@
       "detectMethod": "Perception (pitting on surfaces)",
       "disarmMethod": "Neutralize acid or disable mechanism",
       "damageType": "acid",
-      "tags": ["mechanical", "alchemical", "dungeon", "laboratory", "underground", "corrosive"],
+      "tags": [
+        "mechanical",
+        "alchemical",
+        "dungeon",
+        "laboratory",
+        "underground",
+        "corrosive"
+      ],
       "severity": "high",
       "resetable": true
     },
@@ -146,7 +251,15 @@
       "detectMethod": "Arcana or detect magic",
       "disarmMethod": "Dispel Magic or redirect destination",
       "damageType": "none",
-      "tags": ["magical", "arcane", "teleport", "dungeon", "tower", "wizard", "sophisticated"],
+      "tags": [
+        "magical",
+        "arcane",
+        "teleport",
+        "dungeon",
+        "tower",
+        "wizard",
+        "sophisticated"
+      ],
       "severity": "high",
       "resetable": true
     },
@@ -156,7 +269,14 @@
       "detectMethod": "Perception (rumbling) or Investigation",
       "disarmMethod": "Avoid, redirect, or destroy the boulder",
       "damageType": "bludgeoning",
-      "tags": ["mechanical", "temple", "ancient", "jungle", "mountain", "indiana-jones"],
+      "tags": [
+        "mechanical",
+        "temple",
+        "ancient",
+        "jungle",
+        "mountain",
+        "indiana-jones"
+      ],
       "severity": "deadly",
       "resetable": false
     },
@@ -166,7 +286,14 @@
       "detectMethod": "Perception",
       "disarmMethod": "Timing and agility, or disable all mechanisms",
       "damageType": "slashing",
-      "tags": ["mechanical", "dungeon", "fortress", "ancient", "temple", "gauntlet"],
+      "tags": [
+        "mechanical",
+        "dungeon",
+        "fortress",
+        "ancient",
+        "temple",
+        "gauntlet"
+      ],
       "severity": "high",
       "resetable": true
     },
@@ -176,7 +303,14 @@
       "detectMethod": "Nature or careful observation",
       "disarmMethod": "Avoid or create a solid path",
       "damageType": "suffocation",
-      "tags": ["environmental", "swamp", "desert", "jungle", "natural", "trap"],
+      "tags": [
+        "environmental",
+        "swamp",
+        "desert",
+        "jungle",
+        "natural",
+        "trap"
+      ],
       "severity": "high",
       "resetable": false
     },
@@ -186,7 +320,14 @@
       "detectMethod": "Investigation or detect magic",
       "disarmMethod": "Dispel Magic or careful navigation",
       "damageType": "varies",
-      "tags": ["magical", "illusion", "dungeon", "wizard", "deceptive", "arcane"],
+      "tags": [
+        "magical",
+        "illusion",
+        "dungeon",
+        "wizard",
+        "deceptive",
+        "arcane"
+      ],
       "severity": "medium",
       "resetable": true
     },
@@ -196,7 +337,15 @@
       "detectMethod": "Arcana",
       "disarmMethod": "Dispel Magic or deface the circle",
       "damageType": "varies",
-      "tags": ["magical", "summoning", "dungeon", "demon", "wizard", "temple", "deadly"],
+      "tags": [
+        "magical",
+        "summoning",
+        "dungeon",
+        "demon",
+        "wizard",
+        "temple",
+        "deadly"
+      ],
       "severity": "deadly",
       "resetable": true
     },
@@ -206,7 +355,15 @@
       "detectMethod": "Perception",
       "disarmMethod": "Cut wire or muffle the bell",
       "damageType": "none",
-      "tags": ["mechanical", "simple", "guard", "fortress", "warehouse", "urban", "bandit"],
+      "tags": [
+        "mechanical",
+        "simple",
+        "guard",
+        "fortress",
+        "warehouse",
+        "urban",
+        "bandit"
+      ],
       "severity": "low",
       "resetable": true
     },
@@ -216,7 +373,14 @@
       "detectMethod": "Perception (smell) or Investigation",
       "disarmMethod": "Seal vents or disable pump",
       "damageType": "poison",
-      "tags": ["mechanical", "alchemical", "dungeon", "sewer", "underground", "laboratory"],
+      "tags": [
+        "mechanical",
+        "alchemical",
+        "dungeon",
+        "sewer",
+        "underground",
+        "laboratory"
+      ],
       "severity": "high",
       "resetable": true
     },
@@ -226,7 +390,14 @@
       "detectMethod": "Perception (ceiling)",
       "disarmMethod": "Jam mechanism or disable trigger",
       "damageType": "none",
-      "tags": ["mechanical", "capture", "dungeon", "slavers", "guard", "fortress"],
+      "tags": [
+        "mechanical",
+        "capture",
+        "dungeon",
+        "slavers",
+        "guard",
+        "fortress"
+      ],
       "severity": "medium",
       "resetable": true
     },
@@ -236,7 +407,14 @@
       "detectMethod": "Arcana or Investigation (humming)",
       "disarmMethod": "Disconnect power source or drain water",
       "damageType": "lightning",
-      "tags": ["magical", "technological", "water", "dungeon", "laboratory", "space"],
+      "tags": [
+        "magical",
+        "technological",
+        "water",
+        "dungeon",
+        "laboratory",
+        "space"
+      ],
       "severity": "high",
       "resetable": true
     },
@@ -246,7 +424,15 @@
       "detectMethod": "Arcana or detect magic",
       "disarmMethod": "Dispel Magic or Remove Curse",
       "damageType": "necrotic",
-      "tags": ["magical", "curse", "crypt", "temple", "treasure", "ancient", "supernatural"],
+      "tags": [
+        "magical",
+        "curse",
+        "crypt",
+        "temple",
+        "treasure",
+        "ancient",
+        "supernatural"
+      ],
       "severity": "high",
       "resetable": true
     },
@@ -256,7 +442,14 @@
       "detectMethod": "Investigation (winch mechanism)",
       "disarmMethod": "Spike the mechanism or lift with Strength",
       "damageType": "bludgeoning",
-      "tags": ["mechanical", "fortress", "castle", "dungeon", "gate", "military"],
+      "tags": [
+        "mechanical",
+        "fortress",
+        "castle",
+        "dungeon",
+        "gate",
+        "military"
+      ],
       "severity": "medium",
       "resetable": true
     },
@@ -266,7 +459,14 @@
       "detectMethod": "Investigation or detect magic",
       "disarmMethod": "Shatter mirrors or navigate carefully",
       "damageType": "slashing",
-      "tags": ["magical", "illusion", "wizard", "tower", "mansion", "sophisticated"],
+      "tags": [
+        "magical",
+        "illusion",
+        "wizard",
+        "tower",
+        "mansion",
+        "sophisticated"
+      ],
       "severity": "medium",
       "resetable": false
     },
@@ -276,7 +476,14 @@
       "detectMethod": "Arcana or Perception (glowing crystals)",
       "disarmMethod": "Cover the eyes or Dispel Magic",
       "damageType": "none",
-      "tags": ["magical", "petrification", "dungeon", "medusa", "ancient", "deadly"],
+      "tags": [
+        "magical",
+        "petrification",
+        "dungeon",
+        "medusa",
+        "ancient",
+        "deadly"
+      ],
       "severity": "deadly",
       "resetable": true
     },
@@ -286,7 +493,14 @@
       "detectMethod": "Investigation or Survival",
       "disarmMethod": "Repair ropes or find alternate path",
       "damageType": "bludgeoning",
-      "tags": ["mechanical", "mountain", "canyon", "jungle", "outdoor", "sabotage"],
+      "tags": [
+        "mechanical",
+        "mountain",
+        "canyon",
+        "jungle",
+        "outdoor",
+        "sabotage"
+      ],
       "severity": "high",
       "resetable": false
     },
@@ -296,7 +510,15 @@
       "detectMethod": "Arcana or detect magic",
       "disarmMethod": "Destroy or deactivate control mechanism",
       "damageType": "bludgeoning",
-      "tags": ["magical", "construct", "temple", "tomb", "guardian", "ancient", "golem"],
+      "tags": [
+        "magical",
+        "construct",
+        "temple",
+        "tomb",
+        "guardian",
+        "ancient",
+        "golem"
+      ],
       "severity": "deadly",
       "resetable": true
     }
@@ -306,7 +528,14 @@
       "name": "Unstable Floor",
       "description": "The floor is weak and may collapse under weight.",
       "saveAbility": "Dexterity",
-      "tags": ["structural", "underground", "ancient", "decay", "dungeon", "mine"],
+      "tags": [
+        "structural",
+        "underground",
+        "ancient",
+        "decay",
+        "dungeon",
+        "mine"
+      ],
       "severity": "medium",
       "persistent": false
     },
@@ -314,7 +543,14 @@
       "name": "Toxic Fumes",
       "description": "Poisonous gases seep from cracks or are present in the air.",
       "saveAbility": "Constitution",
-      "tags": ["poison", "underground", "swamp", "volcanic", "mine", "alchemical"],
+      "tags": [
+        "poison",
+        "underground",
+        "swamp",
+        "volcanic",
+        "mine",
+        "alchemical"
+      ],
       "severity": "high",
       "persistent": true
     },
@@ -322,7 +558,14 @@
       "name": "Extreme Heat",
       "description": "The area is dangerously hot, causing exhaustion and damage.",
       "saveAbility": "Constitution",
-      "tags": ["temperature", "desert", "volcanic", "fire", "elemental", "forge"],
+      "tags": [
+        "temperature",
+        "desert",
+        "volcanic",
+        "fire",
+        "elemental",
+        "forge"
+      ],
       "severity": "high",
       "persistent": true
     },
@@ -330,7 +573,14 @@
       "name": "Extreme Cold",
       "description": "Freezing temperatures threaten hypothermia and frostbite.",
       "saveAbility": "Constitution",
-      "tags": ["temperature", "arctic", "winter", "ice", "mountain", "elemental"],
+      "tags": [
+        "temperature",
+        "arctic",
+        "winter",
+        "ice",
+        "mountain",
+        "elemental"
+      ],
       "severity": "high",
       "persistent": true
     },
@@ -338,7 +588,13 @@
       "name": "Thin Ice",
       "description": "Ice covering water is dangerously thin and may break.",
       "saveAbility": "Dexterity",
-      "tags": ["ice", "arctic", "winter", "water", "fragile"],
+      "tags": [
+        "ice",
+        "arctic",
+        "winter",
+        "water",
+        "fragile"
+      ],
       "severity": "high",
       "persistent": false
     },
@@ -346,7 +602,14 @@
       "name": "Slippery Surfaces",
       "description": "Moss, ice, or slime makes surfaces treacherous.",
       "saveAbility": "Dexterity",
-      "tags": ["surface", "cave", "swamp", "ice", "dungeon", "underground"],
+      "tags": [
+        "surface",
+        "cave",
+        "swamp",
+        "ice",
+        "dungeon",
+        "underground"
+      ],
       "severity": "low",
       "persistent": true
     },
@@ -354,7 +617,13 @@
       "name": "Falling Rocks",
       "description": "Loose stones frequently fall from above.",
       "saveAbility": "Dexterity",
-      "tags": ["falling", "mountain", "cave", "unstable", "underground"],
+      "tags": [
+        "falling",
+        "mountain",
+        "cave",
+        "unstable",
+        "underground"
+      ],
       "severity": "medium",
       "persistent": true
     },
@@ -362,7 +631,14 @@
       "name": "High Winds",
       "description": "Powerful winds threaten to knock people over or off ledges.",
       "saveAbility": "Strength",
-      "tags": ["weather", "mountain", "sky", "storm", "outdoor", "elemental"],
+      "tags": [
+        "weather",
+        "mountain",
+        "sky",
+        "storm",
+        "outdoor",
+        "elemental"
+      ],
       "severity": "medium",
       "persistent": true
     },
@@ -370,7 +646,14 @@
       "name": "Dense Fog",
       "description": "Thick fog heavily obscures vision and disorients travelers.",
       "saveAbility": "Wisdom",
-      "tags": ["vision", "weather", "swamp", "ocean", "mystery", "obscuring"],
+      "tags": [
+        "vision",
+        "weather",
+        "swamp",
+        "ocean",
+        "mystery",
+        "obscuring"
+      ],
       "severity": "low",
       "persistent": true
     },
@@ -378,7 +661,13 @@
       "name": "Radiation Zone",
       "description": "Harmful radiation permeates the area, causing sickness.",
       "saveAbility": "Constitution",
-      "tags": ["technological", "space", "contamination", "deadly", "sci-fi"],
+      "tags": [
+        "technological",
+        "space",
+        "contamination",
+        "deadly",
+        "sci-fi"
+      ],
       "severity": "deadly",
       "persistent": true
     },
@@ -386,7 +675,14 @@
       "name": "Antigravity Field",
       "description": "Gravity is reduced or eliminated, making movement difficult.",
       "saveAbility": "Dexterity",
-      "tags": ["magical", "technological", "space", "wizard", "strange", "sci-fi"],
+      "tags": [
+        "magical",
+        "technological",
+        "space",
+        "wizard",
+        "strange",
+        "sci-fi"
+      ],
       "severity": "medium",
       "persistent": true
     },
@@ -394,7 +690,14 @@
       "name": "Darkness",
       "description": "Magical or absolute darkness that normal light cannot penetrate.",
       "saveAbility": "Wisdom",
-      "tags": ["magical", "darkness", "underground", "shadow", "dungeon", "obscuring"],
+      "tags": [
+        "magical",
+        "darkness",
+        "underground",
+        "shadow",
+        "dungeon",
+        "obscuring"
+      ],
       "severity": "low",
       "persistent": true
     },
@@ -402,7 +705,14 @@
       "name": "Wild Magic Zone",
       "description": "Magic behaves unpredictably, with random effects.",
       "saveAbility": "Charisma",
-      "tags": ["magical", "chaos", "arcane", "unstable", "wizard", "strange"],
+      "tags": [
+        "magical",
+        "chaos",
+        "arcane",
+        "unstable",
+        "wizard",
+        "strange"
+      ],
       "severity": "medium",
       "persistent": true
     },
@@ -410,7 +720,13 @@
       "name": "Dead Magic Zone",
       "description": "All magic is suppressed in this area.",
       "saveAbility": "none",
-      "tags": ["magical", "antimagic", "suppression", "wizard", "rare"],
+      "tags": [
+        "magical",
+        "antimagic",
+        "suppression",
+        "wizard",
+        "rare"
+      ],
       "severity": "medium",
       "persistent": true
     },
@@ -418,7 +734,13 @@
       "name": "Corrosive Environment",
       "description": "Acid or corrosive substances damage equipment and flesh.",
       "saveAbility": "Constitution",
-      "tags": ["acid", "corrosive", "underground", "swamp", "alchemical"],
+      "tags": [
+        "acid",
+        "corrosive",
+        "underground",
+        "swamp",
+        "alchemical"
+      ],
       "severity": "high",
       "persistent": true
     },
@@ -426,7 +748,13 @@
       "name": "Earthquake Tremors",
       "description": "The ground shakes violently and unpredictably.",
       "saveAbility": "Dexterity",
-      "tags": ["earth", "underground", "volcanic", "elemental", "unstable"],
+      "tags": [
+        "earth",
+        "underground",
+        "volcanic",
+        "elemental",
+        "unstable"
+      ],
       "severity": "high",
       "persistent": true
     },
@@ -434,7 +762,13 @@
       "name": "Flooding Waters",
       "description": "Water rapidly fills the area from an unknown source.",
       "saveAbility": "Strength",
-      "tags": ["water", "underground", "ocean", "storm", "drowning"],
+      "tags": [
+        "water",
+        "underground",
+        "ocean",
+        "storm",
+        "drowning"
+      ],
       "severity": "deadly",
       "persistent": false
     },
@@ -442,7 +776,13 @@
       "name": "Tidal Surge",
       "description": "Ocean tides surge in, threatening to wash victims away.",
       "saveAbility": "Strength",
-      "tags": ["water", "ocean", "coast", "tidal", "natural"],
+      "tags": [
+        "water",
+        "ocean",
+        "coast",
+        "tidal",
+        "natural"
+      ],
       "severity": "high",
       "persistent": false
     },
@@ -450,7 +790,13 @@
       "name": "Lava Flows",
       "description": "Rivers or pools of molten rock pose extreme danger.",
       "saveAbility": "Dexterity",
-      "tags": ["fire", "volcanic", "underground", "elemental", "deadly"],
+      "tags": [
+        "fire",
+        "volcanic",
+        "underground",
+        "elemental",
+        "deadly"
+      ],
       "severity": "deadly",
       "persistent": true
     },
@@ -458,7 +804,13 @@
       "name": "Thin Air",
       "description": "High altitude causes oxygen deprivation.",
       "saveAbility": "Constitution",
-      "tags": ["altitude", "mountain", "sky", "space", "suffocation"],
+      "tags": [
+        "altitude",
+        "mountain",
+        "sky",
+        "space",
+        "suffocation"
+      ],
       "severity": "medium",
       "persistent": true
     },
@@ -466,7 +818,13 @@
       "name": "Sandstorm",
       "description": "A violent storm of sand reduces visibility and causes damage.",
       "saveAbility": "Constitution",
-      "tags": ["weather", "desert", "storm", "obscuring", "natural"],
+      "tags": [
+        "weather",
+        "desert",
+        "storm",
+        "obscuring",
+        "natural"
+      ],
       "severity": "medium",
       "persistent": true
     },
@@ -474,7 +832,13 @@
       "name": "Lightning Storm",
       "description": "Frequent lightning strikes pose a constant threat.",
       "saveAbility": "Dexterity",
-      "tags": ["weather", "storm", "lightning", "outdoor", "elemental"],
+      "tags": [
+        "weather",
+        "storm",
+        "lightning",
+        "outdoor",
+        "elemental"
+      ],
       "severity": "high",
       "persistent": true
     },
@@ -482,7 +846,13 @@
       "name": "Avalanche Risk",
       "description": "Loud noises or vibrations may trigger a deadly avalanche.",
       "saveAbility": "Dexterity",
-      "tags": ["mountain", "snow", "arctic", "unstable", "deadly"],
+      "tags": [
+        "mountain",
+        "snow",
+        "arctic",
+        "unstable",
+        "deadly"
+      ],
       "severity": "deadly",
       "persistent": false
     },
@@ -490,7 +860,14 @@
       "name": "Haunted Atmosphere",
       "description": "Supernatural presence causes fear and unease.",
       "saveAbility": "Wisdom",
-      "tags": ["supernatural", "undead", "crypt", "haunted", "fear", "psychic"],
+      "tags": [
+        "supernatural",
+        "undead",
+        "crypt",
+        "haunted",
+        "fear",
+        "psychic"
+      ],
       "severity": "low",
       "persistent": true
     },
@@ -498,7 +875,14 @@
       "name": "Bioluminescent Spores",
       "description": "Glowing spores cause hallucinations if inhaled.",
       "saveAbility": "Constitution",
-      "tags": ["fungal", "underground", "swamp", "forest", "psychic", "strange"],
+      "tags": [
+        "fungal",
+        "underground",
+        "swamp",
+        "forest",
+        "psychic",
+        "strange"
+      ],
       "severity": "medium",
       "persistent": true
     },
@@ -506,7 +890,14 @@
       "name": "Sinking Mud",
       "description": "Deep, thick mud threatens to trap and suffocate victims.",
       "saveAbility": "Strength",
-      "tags": ["swamp", "bog", "marsh", "natural", "suffocation", "trap"],
+      "tags": [
+        "swamp",
+        "bog",
+        "marsh",
+        "natural",
+        "suffocation",
+        "trap"
+      ],
       "severity": "high",
       "persistent": true
     },
@@ -514,7 +905,13 @@
       "name": "Razor Coral Reef",
       "description": "Sharp coral cuts deeply and infections spread quickly in seawater.",
       "saveAbility": "Dexterity",
-      "tags": ["ocean", "underwater", "coast", "natural", "bleeding"],
+      "tags": [
+        "ocean",
+        "underwater",
+        "coast",
+        "natural",
+        "bleeding"
+      ],
       "severity": "medium",
       "persistent": true
     },
@@ -522,7 +919,14 @@
       "name": "Rogue Automaton Patrol",
       "description": "Malfunctioning mechanical guardians attack anything that moves.",
       "saveAbility": "Dexterity",
-      "tags": ["technological", "space", "factory", "construct", "hostile", "patrol"],
+      "tags": [
+        "technological",
+        "space",
+        "factory",
+        "construct",
+        "hostile",
+        "patrol"
+      ],
       "severity": "high",
       "persistent": true
     },
@@ -530,7 +934,14 @@
       "name": "Necrotic Aura",
       "description": "Death energy permeates the area, draining life force.",
       "saveAbility": "Constitution",
-      "tags": ["necrotic", "undead", "crypt", "tomb", "death", "supernatural"],
+      "tags": [
+        "necrotic",
+        "undead",
+        "crypt",
+        "tomb",
+        "death",
+        "supernatural"
+      ],
       "severity": "high",
       "persistent": true
     },
@@ -538,7 +949,14 @@
       "name": "Memory Fog",
       "description": "Strange mist causes short-term memory loss and disorientation.",
       "saveAbility": "Wisdom",
-      "tags": ["psychic", "fog", "magical", "fey", "forest", "strange"],
+      "tags": [
+        "psychic",
+        "fog",
+        "magical",
+        "fey",
+        "forest",
+        "strange"
+      ],
       "severity": "medium",
       "persistent": true
     },
@@ -546,7 +964,14 @@
       "name": "Vertigo Heights",
       "description": "Extreme height and exposure cause dizziness and fear.",
       "saveAbility": "Wisdom",
-      "tags": ["height", "mountain", "tower", "sky", "fear", "psychological"],
+      "tags": [
+        "height",
+        "mountain",
+        "tower",
+        "sky",
+        "fear",
+        "psychological"
+      ],
       "severity": "medium",
       "persistent": true
     },
@@ -554,7 +979,14 @@
       "name": "Carnivorous Plants",
       "description": "Aggressive plant life attempts to grab and digest intruders.",
       "saveAbility": "Dexterity",
-      "tags": ["nature", "jungle", "swamp", "forest", "plant", "hostile"],
+      "tags": [
+        "nature",
+        "jungle",
+        "swamp",
+        "forest",
+        "plant",
+        "hostile"
+      ],
       "severity": "medium",
       "persistent": true
     },
@@ -562,7 +994,14 @@
       "name": "Choking Dust Cloud",
       "description": "Ancient dust fills the air, making breathing difficult.",
       "saveAbility": "Constitution",
-      "tags": ["dust", "ancient", "tomb", "desert", "crypt", "suffocation"],
+      "tags": [
+        "dust",
+        "ancient",
+        "tomb",
+        "desert",
+        "crypt",
+        "suffocation"
+      ],
       "severity": "medium",
       "persistent": true
     },
@@ -570,7 +1009,14 @@
       "name": "Unstable Reality",
       "description": "The fabric of reality shifts unpredictably; objects phase in and out.",
       "saveAbility": "Wisdom",
-      "tags": ["planar", "magical", "strange", "chaos", "wizard", "reality"],
+      "tags": [
+        "planar",
+        "magical",
+        "strange",
+        "chaos",
+        "wizard",
+        "reality"
+      ],
       "severity": "high",
       "persistent": true
     },
@@ -578,7 +1024,14 @@
       "name": "Flesh-Eating Beetles",
       "description": "Swarms of tiny beetles devour organic matter.",
       "saveAbility": "Dexterity",
-      "tags": ["insect", "swarm", "tomb", "crypt", "jungle", "natural"],
+      "tags": [
+        "insect",
+        "swarm",
+        "tomb",
+        "crypt",
+        "jungle",
+        "natural"
+      ],
       "severity": "medium",
       "persistent": true
     }
@@ -588,246 +1041,491 @@
       "name": "Howling Wind",
       "description": "Strong winds create noise and make hearing difficult.",
       "mechanicalEffect": "Disadvantage on Perception (hearing)",
-      "tags": ["weather", "mountain", "desert", "storm", "outdoor"],
+      "tags": [
+        "weather",
+        "mountain",
+        "desert",
+        "storm",
+        "outdoor"
+      ],
       "severity": "minor"
     },
     {
       "name": "Heavy Rain",
       "description": "Rainfall creates noise, reduces visibility, and makes surfaces slick.",
       "mechanicalEffect": "Disadvantage on Perception; difficult terrain",
-      "tags": ["weather", "storm", "outdoor", "water"],
+      "tags": [
+        "weather",
+        "storm",
+        "outdoor",
+        "water"
+      ],
       "severity": "minor"
     },
     {
       "name": "Falling Snow",
       "description": "Snowfall obscures vision and leaves tracks.",
       "mechanicalEffect": "Lightly obscured; tracks are visible",
-      "tags": ["weather", "arctic", "winter", "cold", "outdoor"],
+      "tags": [
+        "weather",
+        "arctic",
+        "winter",
+        "cold",
+        "outdoor"
+      ],
       "severity": "minor"
     },
     {
       "name": "Bioluminescence",
       "description": "Plants or creatures emit soft, eerie light.",
       "mechanicalEffect": "Dim light throughout area",
-      "tags": ["underground", "cave", "ocean", "magical", "beautiful"],
+      "tags": [
+        "underground",
+        "cave",
+        "ocean",
+        "magical",
+        "beautiful"
+      ],
       "severity": "minor"
     },
     {
       "name": "Echoing Chambers",
       "description": "Sound bounces and amplifies strangely in this space.",
       "mechanicalEffect": "Stealth is difficult; sound travels far",
-      "tags": ["underground", "cave", "dungeon", "acoustic"],
+      "tags": [
+        "underground",
+        "cave",
+        "dungeon",
+        "acoustic"
+      ],
       "severity": "minor"
     },
     {
       "name": "Oppressive Heat",
       "description": "Uncomfortable warmth that causes fatigue over time.",
       "mechanicalEffect": "Exhaustion on failed saves after extended exposure",
-      "tags": ["temperature", "desert", "jungle", "volcanic", "fire"],
+      "tags": [
+        "temperature",
+        "desert",
+        "jungle",
+        "volcanic",
+        "fire"
+      ],
       "severity": "moderate"
     },
     {
       "name": "Biting Cold",
       "description": "Chilling temperatures that sap energy.",
       "mechanicalEffect": "Exhaustion on failed saves after extended exposure",
-      "tags": ["temperature", "arctic", "winter", "mountain", "ice"],
+      "tags": [
+        "temperature",
+        "arctic",
+        "winter",
+        "mountain",
+        "ice"
+      ],
       "severity": "moderate"
     },
     {
       "name": "Magnetic Anomaly",
       "description": "Strong magnetic fields disrupt compasses and metal objects.",
       "mechanicalEffect": "Compasses don't work; metal weapons feel strange",
-      "tags": ["magnetic", "underground", "technological", "strange", "space"],
+      "tags": [
+        "magnetic",
+        "underground",
+        "technological",
+        "strange",
+        "space"
+      ],
       "severity": "minor"
     },
     {
       "name": "Temporal Distortion",
       "description": "Time flows strangely, faster or slower than normal.",
       "mechanicalEffect": "Time passage differs from outside",
-      "tags": ["magical", "time", "strange", "wizard", "planar"],
+      "tags": [
+        "magical",
+        "time",
+        "strange",
+        "wizard",
+        "planar"
+      ],
       "severity": "major"
     },
     {
       "name": "Arcane Saturation",
       "description": "The air crackles with excess magical energy.",
       "mechanicalEffect": "Spells may have enhanced or unpredictable effects",
-      "tags": ["magical", "arcane", "wizard", "tower", "ley-line"],
+      "tags": [
+        "magical",
+        "arcane",
+        "wizard",
+        "tower",
+        "ley-line"
+      ],
       "severity": "moderate"
     },
     {
       "name": "Cursed Ground",
       "description": "The area is tainted by dark magic or evil deeds.",
       "mechanicalEffect": "Healing is less effective; undead are stronger",
-      "tags": ["curse", "evil", "undead", "crypt", "dark", "supernatural"],
+      "tags": [
+        "curse",
+        "evil",
+        "undead",
+        "crypt",
+        "dark",
+        "supernatural"
+      ],
       "severity": "moderate"
     },
     {
       "name": "Consecrated Ground",
       "description": "Holy or divine energy permeates the area.",
       "mechanicalEffect": "Undead and fiends are weakened; holy magic strengthened",
-      "tags": ["holy", "divine", "temple", "church", "good", "supernatural"],
+      "tags": [
+        "holy",
+        "divine",
+        "temple",
+        "church",
+        "good",
+        "supernatural"
+      ],
       "severity": "moderate"
     },
     {
       "name": "Verdant Growth",
       "description": "Plants grow with supernatural speed and density.",
       "mechanicalEffect": "Difficult terrain; natural cover everywhere",
-      "tags": ["nature", "forest", "jungle", "druid", "overgrown"],
+      "tags": [
+        "nature",
+        "forest",
+        "jungle",
+        "druid",
+        "overgrown"
+      ],
       "severity": "minor"
     },
     {
       "name": "Crystalline Resonance",
       "description": "Crystals throughout the area hum and vibrate.",
       "mechanicalEffect": "Sound-based effects are amplified",
-      "tags": ["crystal", "underground", "cave", "magical", "beautiful"],
+      "tags": [
+        "crystal",
+        "underground",
+        "cave",
+        "magical",
+        "beautiful"
+      ],
       "severity": "minor"
     },
     {
       "name": "Planar Bleed",
       "description": "Another plane of existence bleeds through into this area.",
       "mechanicalEffect": "Strange creatures may appear; physics may differ",
-      "tags": ["planar", "portal", "strange", "magical", "dangerous"],
+      "tags": [
+        "planar",
+        "portal",
+        "strange",
+        "magical",
+        "dangerous"
+      ],
       "severity": "major"
     },
     {
       "name": "Primal Energy",
       "description": "Raw, untamed elemental energy flows through the area.",
       "mechanicalEffect": "Elemental creatures are empowered",
-      "tags": ["elemental", "primal", "druid", "natural", "powerful"],
+      "tags": [
+        "elemental",
+        "primal",
+        "druid",
+        "natural",
+        "powerful"
+      ],
       "severity": "moderate"
     },
     {
       "name": "Absolute Silence",
       "description": "All sound is magically or naturally suppressed.",
       "mechanicalEffect": "No sound can be made; verbal spells fail",
-      "tags": ["silence", "magical", "strange", "stealth", "vacuum"],
+      "tags": [
+        "silence",
+        "magical",
+        "strange",
+        "stealth",
+        "vacuum"
+      ],
       "severity": "moderate"
     },
     {
       "name": "Mist of Memory",
       "description": "Mist causes those within to see visions of the past.",
       "mechanicalEffect": "Concentration difficult; may learn history",
-      "tags": ["mist", "psychic", "history", "vision", "strange"],
+      "tags": [
+        "mist",
+        "psychic",
+        "history",
+        "vision",
+        "strange"
+      ],
       "severity": "minor"
     },
     {
       "name": "Floating Debris",
       "description": "Objects and debris float weightlessly in the air.",
       "mechanicalEffect": "Ranged attacks difficult; movement is strange",
-      "tags": ["gravity", "magical", "space", "strange", "floating"],
+      "tags": [
+        "gravity",
+        "magical",
+        "space",
+        "strange",
+        "floating"
+      ],
       "severity": "moderate"
     },
     {
       "name": "Perpetual Twilight",
       "description": "The area is locked in eternal dusk, neither day nor night.",
       "mechanicalEffect": "Dim light always; time is ambiguous",
-      "tags": ["light", "time", "magical", "strange", "twilight"],
+      "tags": [
+        "light",
+        "time",
+        "magical",
+        "strange",
+        "twilight"
+      ],
       "severity": "minor"
     },
     {
       "name": "Whispering Shadows",
       "description": "Shadows move on their own and seem to whisper secrets.",
       "mechanicalEffect": "Unnerving; may provide cryptic information",
-      "tags": ["shadow", "darkness", "psychic", "strange", "creepy"],
+      "tags": [
+        "shadow",
+        "darkness",
+        "psychic",
+        "strange",
+        "creepy"
+      ],
       "severity": "minor"
     },
     {
       "name": "Regenerating Flora",
       "description": "Plants heal and regrow almost instantly when damaged.",
       "mechanicalEffect": "Clearing paths is temporary",
-      "tags": ["nature", "forest", "jungle", "magical", "persistent"],
+      "tags": [
+        "nature",
+        "forest",
+        "jungle",
+        "magical",
+        "persistent"
+      ],
       "severity": "minor"
     },
     {
       "name": "Meteor Showers",
       "description": "Small meteorites occasionally fall from the sky.",
       "mechanicalEffect": "Random fire damage potential",
-      "tags": ["space", "sky", "fire", "falling", "cosmic"],
+      "tags": [
+        "space",
+        "sky",
+        "fire",
+        "falling",
+        "cosmic"
+      ],
       "severity": "moderate"
     },
     {
       "name": "Fungal Network",
       "description": "Interconnected fungi allow psychic communication.",
       "mechanicalEffect": "Telepathy possible; fungi may react to thoughts",
-      "tags": ["fungal", "underground", "swamp", "psychic", "network"],
+      "tags": [
+        "fungal",
+        "underground",
+        "swamp",
+        "psychic",
+        "network"
+      ],
       "severity": "minor"
     },
     {
       "name": "Spectral Echoes",
       "description": "Ghostly images of past events replay periodically.",
       "mechanicalEffect": "May provide clues; can be distracting",
-      "tags": ["supernatural", "ghost", "history", "vision", "haunted"],
+      "tags": [
+        "supernatural",
+        "ghost",
+        "history",
+        "vision",
+        "haunted"
+      ],
       "severity": "minor"
     },
     {
       "name": "Acidic Rain",
       "description": "Rainfall is mildly corrosive, damaging equipment over time.",
       "mechanicalEffect": "Equipment degrades; minor damage to exposed skin",
-      "tags": ["weather", "acid", "corrosive", "swamp", "pollution", "alchemical"],
+      "tags": [
+        "weather",
+        "acid",
+        "corrosive",
+        "swamp",
+        "pollution",
+        "alchemical"
+      ],
       "severity": "moderate"
     },
     {
       "name": "Illusory Terrain",
       "description": "The landscape appears different than it truly is.",
       "mechanicalEffect": "Navigation difficult; may walk into hazards",
-      "tags": ["illusion", "magical", "fey", "forest", "deceptive", "wizard"],
+      "tags": [
+        "illusion",
+        "magical",
+        "fey",
+        "forest",
+        "deceptive",
+        "wizard"
+      ],
       "severity": "moderate"
     },
     {
       "name": "Blood-Soaked Ground",
       "description": "The earth is stained with the blood of ancient battles.",
       "mechanicalEffect": "Healing magic weakened; violence is empowered",
-      "tags": ["battlefield", "blood", "war", "death", "supernatural", "cursed"],
+      "tags": [
+        "battlefield",
+        "blood",
+        "war",
+        "death",
+        "supernatural",
+        "cursed"
+      ],
       "severity": "moderate"
     },
     {
       "name": "Living Shadows",
       "description": "Shadows move independently and seem almost alive.",
       "mechanicalEffect": "Darkvision doesn't work normally; shadows may attack",
-      "tags": ["shadow", "darkness", "undead", "supernatural", "creepy", "hostile"],
+      "tags": [
+        "shadow",
+        "darkness",
+        "undead",
+        "supernatural",
+        "creepy",
+        "hostile"
+      ],
       "severity": "moderate"
     },
     {
       "name": "Chrono-Flux",
       "description": "Time speeds up or slows down randomly in different areas.",
       "mechanicalEffect": "Initiative and movement speeds vary unpredictably",
-      "tags": ["time", "magical", "strange", "wizard", "planar", "chaos"],
+      "tags": [
+        "time",
+        "magical",
+        "strange",
+        "wizard",
+        "planar",
+        "chaos"
+      ],
       "severity": "major"
     },
     {
       "name": "Weightlessness Pockets",
       "description": "Gravity randomly fails in certain spots.",
       "mechanicalEffect": "Movement becomes flight; items float away",
-      "tags": ["gravity", "space", "magical", "strange", "floating", "chaos"],
+      "tags": [
+        "gravity",
+        "space",
+        "magical",
+        "strange",
+        "floating",
+        "chaos"
+      ],
       "severity": "moderate"
     },
     {
       "name": "Psychic Screams",
       "description": "Mental anguish from past victims echoes psychically.",
       "mechanicalEffect": "Concentration checks harder; may cause fear",
-      "tags": ["psychic", "supernatural", "torture", "prison", "asylum", "haunted"],
+      "tags": [
+        "psychic",
+        "supernatural",
+        "torture",
+        "prison",
+        "asylum",
+        "haunted"
+      ],
       "severity": "moderate"
     },
     {
       "name": "Miasma of Decay",
       "description": "The smell and presence of rot fills the air.",
       "mechanicalEffect": "Constitution saves to avoid sickness; smell alerts enemies",
-      "tags": ["decay", "rot", "swamp", "sewer", "plague", "disease"],
+      "tags": [
+        "decay",
+        "rot",
+        "swamp",
+        "sewer",
+        "plague",
+        "disease"
+      ],
       "severity": "minor"
     },
     {
       "name": "Aurora Interference",
       "description": "Magical auroras interfere with spellcasting.",
       "mechanicalEffect": "Spell attack rolls at disadvantage",
-      "tags": ["magical", "arctic", "sky", "beautiful", "interference", "elemental"],
+      "tags": [
+        "magical",
+        "arctic",
+        "sky",
+        "beautiful",
+        "interference",
+        "elemental"
+      ],
       "severity": "moderate"
     },
     {
       "name": "Siren Song",
       "description": "Haunting music draws listeners toward danger.",
       "mechanicalEffect": "Wisdom saves to avoid being charmed/lured",
-      "tags": ["charm", "ocean", "coast", "supernatural", "siren", "magical"],
+      "tags": [
+        "charm",
+        "ocean",
+        "coast",
+        "supernatural",
+        "siren",
+        "magical"
+      ],
       "severity": "moderate"
     }
-  ]
+  ],
+  "dangers": [
+    {
+      "category": "trap",
+      "name": "Collapsing Stone Ceiling",
+      "description": "Ancient support beams groan under the weight of cracked stone ceiling tiles. Pressure plates hidden beneath rubble on the floor trigger the collapse when stepped on, sending tons of stone crashing down.",
+      "detectMethod": "Perception check to notice weakened supports and suspicious floor tiles, Investigation to identify pressure plate mechanisms",
+      "disarmMethod": "Thieves' Tools to disable pressure plates, or brace weakened supports with wooden beams and stone wedges",
+      "damageType": "bludgeoning",
+      "damage": "4d10",
+      "tags": [
+        "environmental",
+        "dungeon",
+        "ancient",
+        "structural",
+        "deadly"
+      ],
+      "severity": "high",
+      "resetable": false,
+      "id": "collapsing-stone-ceiling"
+    }
+  ],
+  "metadata": {
+    "lastUpdated": "2025-12-10T23:38:39.148Z",
+    "totalCount": 1
+  }
 }

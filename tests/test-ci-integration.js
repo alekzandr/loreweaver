@@ -44,7 +44,7 @@ function cleanup() {
     'content-submissions/test-integration',
     'data/test-backup'
   ];
-  
+
   testDirs.forEach(dir => {
     const fullPath = path.join(__dirname, '..', dir);
     if (fs.existsSync(fullPath)) {
@@ -75,7 +75,7 @@ assert(
 let workflowContent = '';
 try {
   workflowContent = fs.readFileSync(workflowPath, 'utf8');
-  
+
   // Basic YAML validation checks
   const hasName = workflowContent.includes('name:');
   const hasOn = workflowContent.includes('on:');
@@ -83,19 +83,19 @@ try {
   const hasPullRequest = workflowContent.includes('pull_request');
   const hasValidateJob = workflowContent.includes('validate-content');
   const hasTestJob = workflowContent.includes('test-validation-suite');
-  
+
   assert(
     hasName && hasOn && hasJobs && hasPullRequest && hasValidateJob && hasTestJob,
     'workflow YAML has required structure'
   );
-  
+
   // Check for key workflow steps
   const hasCheckout = workflowContent.includes('actions/checkout');
   const hasSetupNode = workflowContent.includes('actions/setup-node');
   const hasNpmInstall = workflowContent.includes('npm install') || workflowContent.includes('npm ci');
   const hasValidation = workflowContent.includes('npm run validate:content');
   const hasGithubScript = workflowContent.includes('actions/github-script');
-  
+
   assert(
     hasCheckout && hasSetupNode && hasNpmInstall && hasValidation && hasGithubScript,
     'workflow has all required steps'
@@ -133,9 +133,9 @@ assert(
 );
 
 const locationSample = {
-  name: 'Test Location',
-  description: 'A test location',
-  atmosphereEffect: 'Eerie silence'
+  key: 'test-location',
+  primary: ['Detail 1'],
+  secondary: ['Detail 2']
 };
 
 assert(
@@ -144,10 +144,8 @@ assert(
 );
 
 const npcSample = {
-  name: 'Test NPC',
-  description: 'A test NPC',
-  personality: 'Friendly',
-  motivation: 'Help others'
+  type: 'species',
+  key: 'test-species'
 };
 
 assert(
@@ -186,7 +184,7 @@ try {
     encoding: 'utf8',
     cwd: path.join(__dirname, '..')
   });
-  
+
   assert(
     helpOutput.includes('Usage:') || helpOutput.includes('--all') || helpOutput.includes('--file'),
     'merge script shows usage information'
@@ -206,14 +204,26 @@ const testSubmissionDir = path.join(__dirname, '..', 'content-submissions', 'tes
 fs.mkdirSync(testSubmissionDir, { recursive: true });
 
 const testEncounter = {
-  type: 'encounter',
-  name: 'Integration Test Encounter',
-  description: 'This is a test encounter created during integration testing. It features a mysterious traveler who offers cryptic advice to the party.',
+  title: 'Integration Test Encounter',
+  descriptions: [
+    'This is a test encounter description that is long enough to pass validation. It needs to be at least one hundred characters long to meet the schema requirements for a valid description.',
+    'This is a second variant of the description to satisfy the minimum items requirements. It also needs to be long enough to pass validation checks and provide variety.'
+  ],
   tags: ['social', 'mystery'],
   weight: 1.0,
-  resolution: [
-    { type: 'success', description: 'The party learns valuable information' },
-    { type: 'failure', description: 'The traveler disappears mysteriously' }
+  resolutions: [
+    {
+      title: 'Success',
+      description: 'The party successfully resolves the encounter and gains a reward. This description must also be at least one hundred characters long to pass validation.',
+      requirements: 'Diplomacy check DC 15',
+      rewards: 'Gold and reputation'
+    },
+    {
+      title: 'Failure',
+      description: 'The party fails to resolve the encounter and suffers a setback. This description must also be at least one hundred characters long to pass validation.',
+      requirements: 'Diplomacy check DC 15',
+      rewards: 'No rewards provided.'
+    }
   ]
 };
 
@@ -235,11 +245,11 @@ try {
       stdio: 'pipe'
     }
   );
-  
-  const passed = validationOutput.includes('All validations passed') || 
-                 validationOutput.includes('✅') ||
-                 !validationOutput.includes('❌');
-  
+
+  const passed = validationOutput.includes('All validations passed') ||
+    validationOutput.includes('✅') ||
+    !validationOutput.includes('❌');
+
   assert(
     passed,
     'test submission passes validation'
@@ -248,7 +258,7 @@ try {
   // Check if it's a validation error (exit code 1) or actual error
   const output = error.stdout || error.stderr || '';
   const hasValidationOutput = output.includes('LoreWeaver Content Validation');
-  
+
   if (hasValidationOutput && !output.includes('Error:')) {
     assert(true, 'test submission passes validation');
   } else {
@@ -265,7 +275,7 @@ try {
       cwd: path.join(__dirname, '..')
     }
   );
-  
+
   assert(
     dryRunOutput.includes('DRY RUN') && dryRunOutput.includes('encounter'),
     'merge script dry-run works'
@@ -290,13 +300,13 @@ productionFiles.forEach(file => {
     allProductionValid = false;
     return;
   }
-  
+
   try {
     const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    
+
     // Check that it's a valid JSON object (not array)
     const isObject = typeof data === 'object' && !Array.isArray(data) && data !== null;
-    
+
     if (!isObject) {
       allProductionValid = false;
     }
@@ -423,8 +433,8 @@ assert(
 );
 
 assert(
-  changelogContent.includes('Phase 1') && 
-  changelogContent.includes('Phase 2') && 
+  changelogContent.includes('Phase 1') &&
+  changelogContent.includes('Phase 2') &&
   changelogContent.includes('Phase 3'),
   'CHANGELOG.md documents all three phases'
 );
